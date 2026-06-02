@@ -1,57 +1,155 @@
 # Kinematics: How Bodies Move and Deform
 
-Continuum mechanics describes matter as a continuous map from reference configuration to current configuration. Kinematics is the geometry of that map — independent of forces and materials.
+Continuum mechanics describes matter as a continuous map from a **reference configuration** to a **current configuration**. Kinematics is the geometry of that map — how lengths, areas, and volumes change; how lines rotate and stretch — independent of forces and material response.
 
-## Configurations and displacement
+Parts IV and V discretized PDEs on meshes. Part VI asks what those PDEs mean physically: what is strain, what is stress, and how do balance laws connect them? The copper wire under tension is our recurring specimen — at the continuum scale, it is a cylinder of copper with a displacement field and a deformation gradient that Part IV's elasticity code approximates node by node.
 
-Let \(\mathbf{X}\) be a point in the **reference configuration** \(\Omega_0\) and \(\mathbf{x}\) its location in the **current configuration** \(\Omega\). The **deformation map** is
+## Configurations and the deformation map
+
+Let \(\mathbf{X}\) denote a material point in the **reference configuration** \(\Omega_0\) (typically the undeformed body at \(t = 0\)). Its location in the **current configuration** \(\Omega\) at time \(t\) is
 
 \[
-\mathbf{x} = \boldsymbol{\varphi}(\mathbf{X}).
+\mathbf{x} = \boldsymbol{\varphi}(\mathbf{X}, t).
 \]
 
-**Displacement** is \(\mathbf{u}(\mathbf{X}) = \mathbf{x} - \mathbf{X}\).
+The map \(\boldsymbol{\varphi}: \Omega_0 \to \Omega\) is assumed invertible and sufficiently smooth — no tearing or interpenetration. **Displacement** is
+
+\[
+\mathbf{u}(\mathbf{X}, t) = \mathbf{x} - \mathbf{X}.
+\]
+
+In small-displacement linear elasticity (Part IV), \(\mathbf{u}\) is treated as a vector field on a fixed domain — a linearization of \(\boldsymbol{\varphi}\) about the identity. In finite deformation theory, \(\boldsymbol{\varphi}\) is primary.
 
 ## Deformation gradient
+
+The **deformation gradient** is
 
 \[
 \mathbf{F} = \frac{\partial \mathbf{x}}{\partial \mathbf{X}} = \mathbf{I} + \frac{\partial \mathbf{u}}{\partial \mathbf{X}}.
 \]
 
-Volume change is \(J = \det \mathbf{F}\). Rigid motions have \(\mathbf{F} \in SO(3)\) (proper rotations, no stretch).
+Columns of \(\mathbf{F}\) are the images of reference basis vectors in the current configuration. It encodes local stretch, shear, and rotation.
+
+**Volume change**: an infinitesimal reference volume \(dV_0\) maps to \(dV = J\, dV_0\) with \(J = \det \mathbf{F}\). Incompressibility (rubber-like materials, liquid metals in certain regimes) requires \(J = 1\).
+
+**Polar decomposition**: \(\mathbf{F} = \mathbf{R}\mathbf{U} = \mathbf{V}\mathbf{R}\), with orthogonal rotation \(\mathbf{R}\) and symmetric positive-definite stretch \(\mathbf{U}\) (or \(\mathbf{V}\)). Rigid motion has \(\mathbf{F} = \mathbf{R}\), \(\mathbf{U} = \mathbf{I}\).
+
+For the copper wire in modest tension, \(|\mathbf{u}| \ll L\) and \(\mathbf{F} \approx \mathbf{I} + \varepsilon_{xx}\mathbf{e}_x\mathbf{e}_x^T\) with \(\varepsilon_{xx} = \partial u_x/\partial X \ll 1\).
 
 ## Strain measures
 
-**Small strain** (linear elasticity):
+Different strain tensors suit different regimes. Mixing them inconsistently — using small strain in a hyperelastic energy while \(\mathbf{F}\) deviates strongly from identity — is a common source of bugs in multiphysics codes.
+
+**Infinitesimal strain** (linear elasticity, Part IV):
 
 \[
 \boldsymbol{\varepsilon} = \tfrac{1}{2}(\nabla \mathbf{u} + \nabla \mathbf{u}^T).
 \]
 
-**Green–Lagrange strain** (finite deformation):
+Valid when \(|\nabla \mathbf{u}| \ll 1\). The copper wire below yield in uniaxial tension lives here.
+
+**Green–Lagrange strain** (finite deformation, reference configuration):
 
 \[
 \mathbf{E} = \tfrac{1}{2}(\mathbf{F}^T\mathbf{F} - \mathbf{I}).
 \]
 
-**Rate of deformation** (fluids):
+Measures stretch from reference to current; zero under rigid motion. Used in hyperelastic FEM with constitutive laws \(\psi(\mathbf{E})\) or \(\psi(\mathbf{F})\).
+
+**Almansi strain** (current configuration):
 
 \[
-\mathbf{D} = \tfrac{1}{2}(\nabla \mathbf{v} + \nabla \mathbf{v}^T).
+\mathbf{e} = \tfrac{1}{2}(\mathbf{I} - \mathbf{F}^{-T}\mathbf{F}^{-1}).
 \]
 
-Different measures suit different regimes; mixing them inconsistently is a common source of bugs in multiphysics codes.
-
-## Stress and balance (preview)
-
-**Cauchy stress** \(\boldsymbol{\sigma}\) acts on area elements in the current configuration. **Piola–Kirchhoff stress** \(\mathbf{P}\) relates reference area elements to forces. Balance of linear momentum:
+**Rate of deformation** (fluids, Eulerian description, Part V):
 
 \[
-\nabla\cdot\boldsymbol{\sigma} + \mathbf{f} = \rho \mathbf{a} \quad \text{(current)}.
+\mathbf{D} = \tfrac{1}{2}(\nabla \mathbf{v} + \nabla \mathbf{v}^T),
 \]
 
-Static FEM typically works with \(\boldsymbol{\sigma}\) and small strain; hyperelastic FEM uses \(\mathbf{P}\) and \(\mathbf{F}\).
+where \(\mathbf{v}\) is velocity in the current configuration. Navier–Stokes viscous stress uses \(\mathbf{D}\); solid mechanics uses \(\boldsymbol{\varepsilon}\) or \(\mathbf{E}\). The copper wire's cooling air is \(\mathbf{D}\); the wire itself under slow loading is \(\boldsymbol{\varepsilon}\).
+
+## Material vs. spatial descriptions
+
+**Lagrangian (material)**: fields are functions of \(\mathbf{X}\) and \(t\). Time derivatives follow material particles. Natural for solid mechanics and FEM on the reference mesh.
+
+**Eulerian (spatial)**: fields are functions of \(\mathbf{x}\) and \(t\). Natural for fluids and FVM on a fixed or moving spatial grid.
+
+The **material derivative** connects them:
+
+\[
+\frac{D(\cdot)}{Dt} = \frac{\partial (\cdot)}{\partial t} + \mathbf{v}\cdot\nabla (\cdot).
+\]
+
+Fluid balance laws in Part V use \(D/Dt\); solid balance laws in Lagrangian form integrate over \(\Omega_0\).
+
+## Compatibility and integrability
+
+For a simply connected body, a symmetric strain field derives from a displacement field if **Saint-Venant's compatibility equations** hold (curl of strain vanishes in an appropriate sense). In 2D:
+
+\[
+\frac{\partial^2 \varepsilon_{xx}}{\partial y^2} + \frac{\partial^2 \varepsilon_{yy}}{\partial x^2} = 2\frac{\partial^2 \varepsilon_{xy}}{\partial x \partial y}.
+\]
+
+FEM shape functions that interpolate displacement automatically produce compatible strains — a hidden benefit of the displacement-based formulation in Part IV.
+
+Incompatible strain fields (e.g., from direct strain interpolation without potential) can violate geometry and produce spurious locking or non-convergence.
+
+## Example: uniform uniaxial stretch
+
+Stretch a copper wire uniformly in the axial direction by factor \(\lambda = 1 + \delta/L\):
+
+\[
+x_1 = \lambda X_1, \qquad x_2 = X_2, \qquad x_3 = X_3.
+\]
+
+Then \(\mathbf{F} = \text{diag}(\lambda, 1, 1)\), \(J = \lambda\). Green–Lagrange strain \(E_{11} = \tfrac{1}{2}(\lambda^2 - 1)\). For small \(\lambda - 1\), \(E_{11} \approx \lambda - 1 = \varepsilon_{11}\).
+
+Poisson contraction in real copper gives \(F_{22} = F_{33} = \sqrt{1/\lambda}\) approximately for incompressible limit — or \(F_{22} = 1 - \nu(\lambda - 1)\) in linear theory.
+
+## Example: simple shear
+
+\[
+x_1 = X_1 + \gamma X_2, \qquad x_2 = X_2.
+\]
+
+\(\mathbf{F} = \begin{bmatrix} 1 & \gamma & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}\), \(J = 1\). Infinitesimal shear strain \(\varepsilon_{12} = \gamma/2\). Pure shear tests material models and FEM implementations (constant strain triangle reproduces exactly).
+
+## Connection to Part IV FEM
+
+Part IV's linear elasticity uses \(\boldsymbol{\varepsilon}(\mathbf{u})\) from infinitesimal strain. The **B-matrix** in assembly is built from \(\nabla N_a\); it assumes small displacement. Nonlinear elasticity (Part IV, Chapter 4 preview) uses \(\mathbf{F}\) at quadrature points:
+
+\[
+\mathbf{F}_h = \mathbf{I} + \sum_a \mathbf{U}_a \otimes \nabla_{X} N_a.
+\]
+
+Hyperelastic stress \(\mathbf{P} = \partial\psi/\partial\mathbf{F}\) enters the weak form integrated over \(\Omega_0\). Kinematics is not optional metadata — it defines the constitutive input at every quadrature call.
+
+## Connection to Parts I–III
+
+- Part I: displacement on a mesh is a vector \(\mathbf{U} \in \mathbb{R}^{dN}\); \(\mathbf{F}\) at a point is a \(3 \times 3\) matrix — a linear map from Part I's Chapter 2.
+- Part II: displacement fields live in \(H^1\); \(\mathbf{F}\) requires \(W^{1,p}\) regularity for finite energy in nonlinear elasticity.
+- Part III: weak form of elasticity uses \(\boldsymbol{\varepsilon}(\mathbf{u})\), derived from kinematics via the chain rule of differentiation.
+
+## Objectivity and frame indifference
+
+Constitutive laws must be **frame-indifferent** (objective): rigid superposed motion should not generate stress. Strain measures built from \(\mathbf{F}\) (Green–Lagrange, left Cauchy–Green \(\mathbf{B} = \mathbf{F}\mathbf{F}^T\)) satisfy this; naive use of \(\partial u_i / \partial x_j\) in Eulerian form does not without careful transport.
+
+The author's [elasticity notes](https://hanfengzhai.github.io/file/elasticity_notes.pdf) develop tensor algebra and coordinate transformations — essential reading for implementing 3D constitutive routines.
+
+## Volumetric and deviatoric split
+
+Many constitutive laws separate deformation into **volumetric** (volume-changing) and **deviatoric** (shape-changing) parts:
+
+\[
+J = \det \mathbf{F}, \qquad \mathbf{F} = J^{1/d}\,\bar{\mathbf{F}}, \qquad \det \bar{\mathbf{F}} = 1.
+\]
+
+Nearly incompressible materials respond stiffly to volumetric strain — the kinematic split motivates mixed \(u\)–\(p\) formulations in Part IV and explains why \(\mathbf{F}\) is evaluated in both its isochoric and volumetric parts in modern hyperelastic models.
+
+For small strain, the trace \(\text{tr}(\boldsymbol{\varepsilon}) = \nabla\cdot\mathbf{u}\) plays the same volumetric role. Poisson's ratio \(\nu\) controls how axial stretch of the copper wire couples to lateral contraction — a kinematic constraint encoded in the elastic tensor.
 
 ## Bridge
 
-Constitutive laws connect strain to stress; balance laws connect stress to body forces and inertia. The next chapter completes the continuum picture that FEM discretizes.
+Kinematics names the geometric objects — \(\mathbf{F}\), \(\boldsymbol{\varepsilon}\), \(\mathbf{E}\), \(\mathbf{D}\). Forces enter through **stress tensors** and **balance laws** that constrain how stress varies in space and time. The next chapter completes the continuum picture: Cauchy stress, Piola–Kirchhoff stress, conservation of mass and momentum, and constitutive relations that FEM and FVM discretize.
