@@ -1,8 +1,8 @@
-# Finite Element Method — source stub
+# Finite Element Method Notes
 
-Planned canonical source for **Part IV — The Finite Element Method**, aligned with [FEA_notes.pdf](https://hanfengzhai.github.io/file/FEA_notes.pdf) and [problem sessions](https://hanfengzhai.github.io/note.html).
+Canonical markdown for **Part IV — The Finite Element Method**, aligned with [FEA_notes.pdf](https://hanfengzhai.github.io/file/FEA_notes.pdf) and [problem sessions](https://hanfengzhai.github.io/note.html).
 
-## Target layout (Functional Analysis Notes style)
+## Layout (Functional Analysis Notes style)
 
 ```
 fem/
@@ -16,4 +16,19 @@ fem/
 │   └── 05-convergence.md
 ```
 
-Chapter numbering `01`–`05` matches `src/part04-fem/`.
+Chapter numbering `01`–`05` matches `src/part04-fem/` in CompMechBook. Bridge sections connect weighted residuals to Galerkin assembly, elements, elasticity, and convergence; Chapter 05 hands off to Part V (finite volumes and conservation laws).
+
+## Build standalone
+
+```bash
+cd writings/fem && mdbook build
+```
+
+## Sync into CompMechBook
+
+```bash
+./scripts/sync-writings.sh
+mdbook build
+```
+
+When the external `Writings` git submodule is linked, prefer upstream content here and re-run the sync script.

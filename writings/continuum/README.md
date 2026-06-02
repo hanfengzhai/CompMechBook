@@ -1,8 +1,8 @@
-# Continuum Mechanics — source stub
+# Continuum Mechanics Notes
 
-Planned canonical source for **Part VI — Continuum Mechanics**, aligned with [elasticity_notes.pdf](https://hanfengzhai.github.io/file/elasticity_notes.pdf).
+Canonical markdown for **Part VI — Continuum Mechanics**, aligned with [elasticity_notes.pdf](https://hanfengzhai.github.io/file/elasticity_notes.pdf).
 
-## Target layout (Functional Analysis Notes style)
+## Layout (Functional Analysis Notes style)
 
 ```
 continuum/
@@ -14,4 +14,19 @@ continuum/
 │   └── 03-variational-elasticity.md
 ```
 
-Chapter numbering `01`–`03` matches `src/part06-continuum/`. Chapter 03's Bridge descends to Part VII (defects).
+Chapter numbering `01`–`03` matches `src/part06-continuum/` in CompMechBook. Bridge sections connect FEM discretization to the virtual work principle; Chapter 03 hands off to Part VII (defects and dislocations).
+
+## Build standalone
+
+```bash
+cd writings/continuum && mdbook build
+```
+
+## Sync into CompMechBook
+
+```bash
+./scripts/sync-writings.sh
+mdbook build
+```
+
+When the external `Writings` git submodule is linked, prefer upstream content here and re-run the sync script.

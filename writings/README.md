@@ -1,6 +1,6 @@
 # Writings source integration
 
-This directory is reserved for the [`Writings`](https://github.com/hanfengzhai/Writings) git submodule. When the repository is linked, source markdown — including the **Functional Analysis Notes** — will be mapped into the mdBook chapters under `src/`.
+This directory holds canonical mdBook sources for every part of **Computational Mechanics**, following the **Functional Analysis Notes** layout (`book.toml`, numbered `chapters/`, **Bridge** sections). When the external [`Writings`](https://github.com/hanfengzhai/Writings) git submodule is linked, merge upstream changes here and re-run `scripts/sync-writings.sh`.
 
 ## Layout
 
