@@ -1,8 +1,8 @@
-# Linear Algebra — source stub
+# Linear Algebra Notes
 
-Planned canonical source for **Part I — The Grammar of Computation**, aligned with [ME300A_LinAlg.pdf](https://hanfengzhai.github.io/file/ME300A_LinAlg.pdf).
+Canonical markdown for **Part I — The Grammar of Computation**, aligned with [ME300A_LinAlg.pdf](https://hanfengzhai.github.io/file/ME300A_LinAlg.pdf).
 
-## Target layout (Functional Analysis Notes style)
+## Layout (Functional Analysis Notes style)
 
 ```
 linear-algebra/
@@ -15,4 +15,17 @@ linear-algebra/
 │   └── 04-toward-infinity.md
 ```
 
-Chapter numbering `01`–`04` matches `src/part01-linear-algebra/` in CompMechBook. Bridge sections at the end of `04-toward-infinity.md` introduce function spaces and motivate Part II.
+Chapter numbering `01`–`04` matches `src/part01-linear-algebra/` in CompMechBook. Bridge sections at the end of each chapter connect the narrative to the next topic; Chapter 04 introduces function spaces and motivates Part II.
+
+## Build standalone
+
+```bash
+cd writings/linear-algebra && mdbook build
+```
+
+## Sync into CompMechBook
+
+```bash
+./scripts/sync-writings.sh
+mdbook build
+```

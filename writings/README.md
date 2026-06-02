@@ -6,12 +6,17 @@ This directory is reserved for the [`Writings`](https://github.com/hanfengzhai/W
 
 ```
 writings/
-├── functional-analysis/     # Functional Analysis Notes (mdBook)
-│   ├── SUMMARY.md
-│   └── chapters/
-├── linear-algebra/          # Optional: ME300A source markdown
-├── pde/                     # Optional: ME300B source markdown
-└── ...
+├── linear-algebra/          # Linear Algebra Notes (mdBook) → Part I
+│   └── chapters/01–04
+├── functional-analysis/     # Functional Analysis Notes (mdBook) → Part II
+│   └── chapters/01–05
+├── pde/                     # Planned: ME300B → Part III
+├── fem/                     # Planned: FEA notes → Part IV
+├── fvm/                     # Planned: FVM / CFD → Part V
+├── continuum/               # Planned: elasticity → Part VI
+├── defects/                 # Planned → Part VII
+├── md/                      # Planned → Part VIII
+└── dft/                     # Planned: MSE 5720 → Part IX
 ```
 
 ## Integration workflow
@@ -23,15 +28,15 @@ writings/
    git submodule update --init --recursive
    ```
 
-2. Map Functional Analysis Notes to Part II (preserve chapter numbering `01`–`05`):
+2. Map numbered chapters to book parts (preserve `01`–`NN` prefixes):
 
-   | Writings path | Book chapter |
-   |---------------|--------------|
-   | `functional-analysis/01-*.md` | `src/part02-functional-analysis/01-motivation.md` |
-   | `functional-analysis/02-*.md` | `src/part02-functional-analysis/02-normed-spaces.md` |
-   | `functional-analysis/03-*.md` | `src/part02-functional-analysis/03-hilbert-spaces.md` |
-   | `functional-analysis/04-*.md` | `src/part02-functional-analysis/04-operators-duality.md` |
-   | `functional-analysis/05-*.md` | `src/part02-functional-analysis/05-spectral-theorem.md` |
+   | Writings path | Book destination |
+   |---------------|------------------|
+   | `linear-algebra/chapters/01–04` | `src/part01-linear-algebra/` |
+   | `functional-analysis/chapters/01–05` | `src/part02-functional-analysis/` |
+   | `pde/chapters/01–04` (planned) | `src/part03-pdes/` |
+   | `fem/chapters/01–05` (planned) | `src/part04-fem/` |
+   | … | … |
 
 3. Merge strategy: prefer Writings content as canonical; retain book-specific **Bridge** sections and cross-links to Parts III–IV at the end of each chapter.
 
@@ -43,9 +48,9 @@ writings/
 
 ## Until the submodule is available
 
-Part II chapters in `src/part02-functional-analysis/` are written in the same mdBook style and at the same level of detail as the planned Functional Analysis Notes. They synthesize the author's course materials and standard references (Brezis, Evans) with a computational mechanics focus.
+Parts I and II are maintained as standalone mdBooks under `writings/linear-algebra/` and `writings/functional-analysis/` (Functional Analysis Notes style: `book.toml`, `chapters/SUMMARY.md`, numbered `01`–`NN` files). Remaining parts live in `src/` until their Writings subtrees are populated; see each subtree's `README.md` for the target layout.
 
-A working copy of the Functional Analysis Notes lives at `writings/functional-analysis/` (mdBook with `chapters/01`–`05` numbering). Sync into the main book with:
+Sync canonical chapters into the main book with:
 
 ```bash
 chmod +x scripts/sync-writings.sh
