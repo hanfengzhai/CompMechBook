@@ -1,0 +1,13 @@
+[book]
+title = "Density Functional Theory Notes"
+authors = ["Hanfeng Zhai"]
+description = "Born–Oppenheimer separation and Kohn–Sham DFT — source notes for CompMechBook Part IX."
+language = "en"
+multilingual = false
+src = "chapters"
+
+[build]
+create-missing = false
+
+[output.html]
+mathjax-support = true
