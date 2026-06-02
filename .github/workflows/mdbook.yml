@@ -2,7 +2,7 @@ name: mdBook
 
 on:
   push:
-    branches: [main, cursor/computational-mechanics-book-37a4, cursor/computational-mechanics-book-af0a, cursor/computational-mechanics-book-49d4]
+    branches: [main, cursor/computational-mechanics-book-1891, cursor/computational-mechanics-book-37a4, cursor/computational-mechanics-book-af0a, cursor/computational-mechanics-book-49d4]
   pull_request:
     branches: [main]
 

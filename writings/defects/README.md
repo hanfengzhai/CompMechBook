@@ -1,8 +1,8 @@
-# Defects & Dislocations — source stub
+# Defects and Dislocations Notes
 
-Planned canonical source for **Part VII — Defects and Dislocations**, aligned with [defects_notes.pdf](https://hanfengzhai.github.io/file/defects_notes.pdf) and [OpenDiS](https://github.com/OpenDiS/OpenDiS).
+Canonical markdown for **Part VII — Defects and Dislocations**, aligned with [defects_notes.pdf](https://hanfengzhai.github.io/file/defects_notes.pdf).
 
-## Target layout (Functional Analysis Notes style)
+## Layout (Functional Analysis Notes style)
 
 ```
 defects/
@@ -14,3 +14,16 @@ defects/
 ```
 
 Chapter numbering `01`–`02` matches `src/part07-defects/`.
+
+## Build standalone
+
+```bash
+cd writings/defects && mdbook build
+```
+
+## Sync into CompMechBook
+
+```bash
+./scripts/sync-writings.sh
+mdbook build
+```

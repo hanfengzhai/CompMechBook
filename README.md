@@ -28,7 +28,7 @@ The table of contents lives in [`src/SUMMARY.md`](src/SUMMARY.md).
 
 ## Source material
 
-Chapters synthesize the author's existing notes on [hanfengzhai.github.io](https://hanfengzhai.github.io/note.html) and related repositories. When [`Writings.git`](./writings/) is added as a submodule, Functional Analysis Notes and other source markdown will be merged into Part II and linked chapters.
+Chapters synthesize the author's existing notes on [hanfengzhai.github.io](https://hanfengzhai.github.io/note.html) and related repositories. Canonical chapter sources live under [`writings/`](./writings/) (Functional Analysis Notes layout: `book.toml`, `chapters/NN-*.md`, bridge sections). Sync into the main book with `./scripts/sync-writings.sh`.
 
 ## Build
 

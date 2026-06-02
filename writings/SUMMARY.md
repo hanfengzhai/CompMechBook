@@ -6,12 +6,12 @@ Canonical markdown sources for **Computational Mechanics** (CompMechBook). When 
 |---------|------------------|--------|
 | [`linear-algebra/`](./linear-algebra/) | Part I — The Grammar of Computation | Present (mdBook) |
 | [`functional-analysis/`](./functional-analysis/) | Part II — Function Spaces | Present (mdBook) |
-| [`pde/`](./pde/) | Part III — Fields on Domains | Stub (ME 300B) |
-| [`fem/`](./fem/) | Part IV — Finite Element Method | Stub (FEA notes) |
-| [`fvm/`](./fvm/) | Part V — Conservation on Cells | Stub (FVM / CFD notes) |
-| [`continuum/`](./continuum/) | Part VI — Continuum Mechanics | Stub (elasticity) |
-| [`defects/`](./defects/) | Part VII — Defects & Dislocations | Stub |
-| [`md/`](./md/) | Part VIII — Atomistic Simulation | Stub |
-| [`dft/`](./dft/) | Part IX — Electronic Structure | Stub (MSE 5720) |
+| [`pde/`](./pde/) | Part III — Fields on Domains | Present (mdBook) |
+| [`fem/`](./fem/) | Part IV — Finite Element Method | Present (mdBook) |
+| [`fvm/`](./fvm/) | Part V — Conservation on Cells | Present (mdBook) |
+| [`continuum/`](./continuum/) | Part VI — Continuum Mechanics | Present (mdBook) |
+| [`defects/`](./defects/) | Part VII — Defects & Dislocations | Present (mdBook) |
+| [`md/`](./md/) | Part VIII — Atomistic Simulation | Present (mdBook) |
+| [`dft/`](./dft/) | Part IX — Electronic Structure | Present (mdBook) |
 
-Each present subtree follows the **Functional Analysis Notes** layout: `book.toml`, `chapters/SUMMARY.md`, and numbered chapter files `01-*.md` … synced into matching `src/partNN-*` directories via `./scripts/sync-writings.sh`.
+Each subtree follows the **Functional Analysis Notes** layout: `book.toml`, `chapters/SUMMARY.md`, and numbered chapter files `01-*.md` … synced into matching `src/partNN-*` directories via `./scripts/sync-writings.sh`.

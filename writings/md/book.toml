@@ -1,0 +1,13 @@
+[book]
+title = "Molecular Dynamics Notes"
+authors = ["Hanfeng Zhai"]
+description = "Interatomic potentials, ensembles, and integrators — source notes for CompMechBook Part VIII."
+language = "en"
+multilingual = false
+src = "chapters"
+
+[build]
+create-missing = false
+
+[output.html]
+mathjax-support = true

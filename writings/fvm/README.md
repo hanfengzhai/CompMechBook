@@ -1,20 +1,31 @@
-# Finite Volume Method — source stub
+# Finite Volume Method Notes
 
-Canonical markdown for **Part V — Conservation on Cells** will live here when synced from `Writings.git`.
+Canonical markdown for **Part V — Conservation on Cells**, aligned with [FVM.pdf](https://hanfengzhai.github.io/note/FVM.pdf) and [CFD_note.pdf](https://hanfengzhai.github.io/file/CFD_note.pdf).
 
-## Current mapping
+## Layout (Functional Analysis Notes style)
 
-| Source | Book chapter |
-|--------|----------------|
-| [FVM.pdf](https://hanfengzhai.github.io/note/FVM.pdf) (SHU HW #2) | `src/part05-fvm/01-conservation-integral.md` through `03-fluxes-riemann.md` |
-| [CFD_note.pdf](https://hanfengzhai.github.io/file/CFD_note.pdf) | `src/part05-fvm/04-navier-stokes-cfd.md` |
+```
+fvm/
+├── book.toml
+├── chapters/
+│   ├── SUMMARY.md
+│   ├── 01-conservation-integral.md
+│   ├── 02-fvm-1d.md
+│   ├── 03-fluxes-riemann.md
+│   └── 04-navier-stokes-cfd.md
+```
 
-## Topics covered in FVM.pdf
+Chapter numbering `01`–`04` matches `src/part05-fvm/`.
 
-- Euler system in conservation form \(\partial_t U + \partial_x F(U) = 0\)
-- Cell-average definition and flux differencing
-- Eigenstructure \(J = S^{-1}\Lambda S\) with \(\lambda \in \{u-c, u, u+c\}\)
-- Shock tube Problems I and II (verification cases)
-- Illustris–TNG / Arepo second-order FVM on moving Voronoi meshes
+## Build standalone
 
-Run `./scripts/sync-writings.sh` after adding markdown here to refresh Part II; Part V sync will follow the same pattern once source files are committed to Writings.
+```bash
+cd writings/fvm && mdbook build
+```
+
+## Sync into CompMechBook
+
+```bash
+./scripts/sync-writings.sh
+mdbook build
+```

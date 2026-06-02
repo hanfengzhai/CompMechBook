@@ -23,7 +23,7 @@ The prose synthesizes course notes, teaching materials, and research experience 
 - [Atomistic Modeling notes](https://hanfengzhai.github.io/file/AtomModel_note.pdf)
 - [DFT coursework](https://github.com/hanfengzhai/MSE5720-HW) (MSE 5720)
 
-When the `Writings` repository is linked to this project, additional source chapters — including the Functional Analysis Notes — will be incorporated directly. Until then, Part II is written in the same style and at the same level of detail as those notes.
+Canonical chapter sources are maintained under `writings/` in the same layout as the Functional Analysis Notes (`book.toml`, numbered `chapters/`, bridge sections at part boundaries). Run `./scripts/sync-writings.sh` after editing those files to refresh `src/`. The `Writings` git submodule can replace `writings/` when that remote is linked; the structure and sync workflow stay the same.
 
 ## Disclaimer
 

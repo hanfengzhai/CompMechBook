@@ -1,8 +1,8 @@
-# Molecular Dynamics — source stub
+# Molecular Dynamics Notes
 
-Planned canonical source for **Part VIII — Atomistic Simulation**, aligned with [AtomModel_note.pdf](https://hanfengzhai.github.io/file/AtomModel_note.pdf) and [StatMechNotes.pdf](https://hanfengzhai.github.io/file/StatMechNotes.pdf).
+Canonical markdown for **Part VIII — Atomistic Simulation**, aligned with [AtomModel_note.pdf](https://hanfengzhai.github.io/file/AtomModel_note.pdf).
 
-## Target layout (Functional Analysis Notes style)
+## Layout (Functional Analysis Notes style)
 
 ```
 md/
@@ -14,3 +14,16 @@ md/
 ```
 
 Chapter numbering `01`–`02` matches `src/part08-md/`.
+
+## Build standalone
+
+```bash
+cd writings/md && mdbook build
+```
+
+## Sync into CompMechBook
+
+```bash
+./scripts/sync-writings.sh
+mdbook build
+```
