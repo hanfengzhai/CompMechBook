@@ -1,0 +1,13 @@
+[book]
+title = "Defects and Dislocations Notes"
+authors = ["Hanfeng Zhai"]
+description = "Defect taxonomy and dislocation dynamics — source for CompMechBook Part VII."
+language = "en"
+multilingual = false
+src = "chapters"
+
+[build]
+create-missing = false
+
+[output.html]
+mathjax-support = true

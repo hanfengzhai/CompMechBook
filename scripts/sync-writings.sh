@@ -38,10 +38,31 @@ sync_part() {
   done
 }
 
-# Part I: Linear Algebra Notes (01–04 numbering preserved)
+# Part I: Linear Algebra Notes (01–04)
 sync_part "$ROOT/writings/linear-algebra/chapters" "$ROOT/src/part01-linear-algebra" 01 02 03 04
 
-# Part II: Functional Analysis Notes (01–05 numbering preserved)
+# Part II: Functional Analysis Notes (01–05)
 sync_part "$ROOT/writings/functional-analysis/chapters" "$ROOT/src/part02-functional-analysis" 01 02 03 04 05
+
+# Part III: PDE Notes (01–04)
+sync_part "$ROOT/writings/pde/chapters" "$ROOT/src/part03-pdes" 01 02 03 04
+
+# Part IV: FEM Notes (01–05)
+sync_part "$ROOT/writings/fem/chapters" "$ROOT/src/part04-fem" 01 02 03 04 05
+
+# Part V: FVM Notes (01–04)
+sync_part "$ROOT/writings/fvm/chapters" "$ROOT/src/part05-fvm" 01 02 03 04
+
+# Part VI: Continuum Mechanics Notes (01–03)
+sync_part "$ROOT/writings/continuum/chapters" "$ROOT/src/part06-continuum" 01 02 03
+
+# Part VII: Defects Notes (01–02)
+sync_part "$ROOT/writings/defects/chapters" "$ROOT/src/part07-defects" 01 02
+
+# Part VIII: MD Notes (01–02)
+sync_part "$ROOT/writings/md/chapters" "$ROOT/src/part08-md" 01 02
+
+# Part IX: DFT Notes (01–02)
+sync_part "$ROOT/writings/dft/chapters" "$ROOT/src/part09-dft" 01 02
 
 echo "Done. Run 'mdbook build' from repo root to verify."

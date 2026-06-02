@@ -1,0 +1,13 @@
+[book]
+title = "Continuum Mechanics Notes"
+authors = ["Hanfeng Zhai"]
+description = "Kinematics, stress, balance, and variational elasticity — source for CompMechBook Part VI."
+language = "en"
+multilingual = false
+src = "chapters"
+
+[build]
+create-missing = false
+
+[output.html]
+mathjax-support = true

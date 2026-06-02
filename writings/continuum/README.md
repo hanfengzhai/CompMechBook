@@ -1,17 +1,9 @@
-# Continuum Mechanics — source stub
+# Continuum Mechanics Notes
 
-Planned canonical source for **Part VI — Continuum Mechanics**, aligned with [elasticity_notes.pdf](https://hanfengzhai.github.io/file/elasticity_notes.pdf).
+Standalone mdBook for **Part VI — Continuum Mechanics**. Chapters `01`–`03` sync to `src/part06-continuum/`.
 
-## Target layout (Functional Analysis Notes style)
+Source: [elasticity_notes.pdf](https://hanfengzhai.github.io/file/elasticity_notes.pdf).
 
+```bash
+cd writings/continuum && mdbook build
 ```
-continuum/
-├── book.toml
-├── chapters/
-│   ├── SUMMARY.md
-│   ├── 01-kinematics.md
-│   ├── 02-stress-balance.md
-│   └── 03-variational-elasticity.md
-```
-
-Chapter numbering `01`–`03` matches `src/part06-continuum/`. Chapter 03's Bridge descends to Part VII (defects).

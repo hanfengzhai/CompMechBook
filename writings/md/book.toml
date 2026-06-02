@@ -1,0 +1,13 @@
+[book]
+title = "Molecular Dynamics Notes"
+authors = ["Hanfeng Zhai"]
+description = "Potentials, phase space, ensembles, and integrators — source for CompMechBook Part VIII."
+language = "en"
+multilingual = false
+src = "chapters"
+
+[build]
+create-missing = false
+
+[output.html]
+mathjax-support = true

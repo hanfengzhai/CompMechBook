@@ -1,65 +1,64 @@
-# Writings source integration
+# Writings — canonical sources for CompMechBook
 
-This directory is reserved for the [`Writings`](https://github.com/hanfengzhai/Writings) git submodule. When the repository is linked, source markdown — including the **Functional Analysis Notes** — will be mapped into the mdBook chapters under `src/`.
+This directory is the **Writings** corpus: markdown derived from the author's course notes ([hanfengzhai.github.io](https://hanfengzhai.github.io/note.html)) and organized like the **Functional Analysis Notes** — each topic is a small mdBook with numbered chapters that sync into the main narrative under `src/`.
 
-## Expected layout (after submodule add)
+## Layout (Functional Analysis Notes style)
+
+Every populated subtree follows the same pattern:
 
 ```
-writings/
-├── linear-algebra/          # Linear Algebra Notes (mdBook) → Part I
-│   └── chapters/01–04
-├── functional-analysis/     # Functional Analysis Notes (mdBook) → Part II
-│   └── chapters/01–05
-├── pde/                     # Planned: ME300B → Part III
-├── fem/                     # Planned: FEA notes → Part IV
-├── fvm/                     # Planned: FVM / CFD → Part V
-├── continuum/               # Planned: elasticity → Part VI
-├── defects/                 # Planned → Part VII
-├── md/                      # Planned → Part VIII
-└── dft/                     # Planned: MSE 5720 → Part IX
+writings/<topic>/
+├── book.toml              # standalone mdBook metadata
+└── chapters/
+    ├── SUMMARY.md         # chapter list
+    ├── 01-….md
+    ├── 02-….md
+    └── …
 ```
+
+| Subtree | CompMechBook destination | Source PDF / notes |
+|---------|--------------------------|-------------------|
+| `linear-algebra/` | `src/part01-linear-algebra/` | [ME300A_LinAlg.pdf](https://hanfengzhai.github.io/file/ME300A_LinAlg.pdf) |
+| `functional-analysis/` | `src/part02-functional-analysis/` | Functional Analysis Notes |
+| `pde/` | `src/part03-pdes/` | [ME300B_PDE.pdf](https://hanfengzhai.github.io/file/ME300B_PDE.pdf) |
+| `fem/` | `src/part04-fem/` | [FEA_notes.pdf](https://hanfengzhai.github.io/file/FEA_notes.pdf) |
+| `fvm/` | `src/part05-fvm/` | [FVM.pdf](https://hanfengzhai.github.io/note/FVM.pdf), [CFD_note.pdf](https://hanfengzhai.github.io/file/CFD_note.pdf) |
+| `continuum/` | `src/part06-continuum/` | [elasticity_notes.pdf](https://hanfengzhai.github.io/file/elasticity_notes.pdf) |
+| `defects/` | `src/part07-defects/` | [defects_notes.pdf](https://hanfengzhai.github.io/file/defects_notes.pdf) |
+| `md/` | `src/part08-md/` | [AtomModel_note.pdf](https://hanfengzhai.github.io/file/AtomModel_note.pdf) |
+| `dft/` | `src/part09-dft/` | [MSE5720-HW](https://github.com/hanfengzhai/MSE5720-HW) |
+
+The **main book** (`book.toml` at repo root) adds the copper-wire narrative: preface, prologue, epilogue, cross-part bridges, and `src/SUMMARY.md` as the reading order.
 
 ## Integration workflow
 
-1. Add the submodule:
+1. Edit canonical prose in `writings/<topic>/chapters/`.
+2. Sync into the main book:
 
    ```bash
-   git submodule add <Writings-repo-url> writings
-   git submodule update --init --recursive
+   ./scripts/sync-writings.sh
    ```
 
-2. Map numbered chapters to book parts (preserve `01`–`NN` prefixes):
-
-   | Writings path | Book destination |
-   |---------------|------------------|
-   | `linear-algebra/chapters/01–04` | `src/part01-linear-algebra/` |
-   | `functional-analysis/chapters/01–05` | `src/part02-functional-analysis/` |
-   | `pde/chapters/01–04` (planned) | `src/part03-pdes/` |
-   | `fem/chapters/01–05` (planned) | `src/part04-fem/` |
-   | … | … |
-
-3. Merge strategy: prefer Writings content as canonical; retain book-specific **Bridge** sections and cross-links to Parts III–IV at the end of each chapter.
-
-4. Verify the build:
+3. Add or adjust **Bridge** sections and prologue/epilogue links in `src/` when the narrative arc needs book-specific glue (not duplicated in Writings).
+4. Verify:
 
    ```bash
    mdbook build
    ```
 
-## Until the submodule is available
+## Optional: external `Writings.git` submodule
 
-Parts I and II are maintained as standalone mdBooks under `writings/linear-algebra/` and `writings/functional-analysis/` (Functional Analysis Notes style: `book.toml`, `chapters/SUMMARY.md`, numbered `01`–`NN` files). Remaining parts live in `src/` until their Writings subtrees are populated; see each subtree's `README.md` for the target layout.
-
-Sync canonical chapters into the main book with:
+If a separate `Writings` repository is published later, replace this directory with:
 
 ```bash
-chmod +x scripts/sync-writings.sh
-./scripts/sync-writings.sh
-mdbook build
+git submodule add <Writings-repo-url> writings
+git submodule update --init --recursive
 ```
 
-Build the standalone FA notes:
+The sync script and chapter numbering (`01`–`NN`) are unchanged.
 
-```bash
-cd writings/functional-analysis && mdbook build
-```
+## Merge policy
+
+- **Writings** = canonical technical content aligned with course notes.
+- **`src/`** = narrative frame (prologue, epilogue, bridges, SUMMARY) plus synced chapters.
+- Prefer editing `writings/` first, then run `./scripts/sync-writings.sh`.

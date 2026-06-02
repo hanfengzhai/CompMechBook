@@ -1,16 +1,9 @@
-# Molecular Dynamics — source stub
+# Molecular Dynamics Notes
 
-Planned canonical source for **Part VIII — Atomistic Simulation**, aligned with [AtomModel_note.pdf](https://hanfengzhai.github.io/file/AtomModel_note.pdf) and [StatMechNotes.pdf](https://hanfengzhai.github.io/file/StatMechNotes.pdf).
+Standalone mdBook for **Part VIII — Atomistic Simulation**. Chapters `01`–`02` sync to `src/part08-md/`.
 
-## Target layout (Functional Analysis Notes style)
+Source: [AtomModel_note.pdf](https://hanfengzhai.github.io/file/AtomModel_note.pdf).
 
+```bash
+cd writings/md && mdbook build
 ```
-md/
-├── book.toml
-├── chapters/
-│   ├── SUMMARY.md
-│   ├── 01-potentials-phase-space.md
-│   └── 02-ensembles-integrators.md
-```
-
-Chapter numbering `01`–`02` matches `src/part08-md/`.
