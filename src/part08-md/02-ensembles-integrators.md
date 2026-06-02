@@ -1,45 +1,188 @@
 # Ensembles, Integrators, and Practical Molecular Dynamics
 
-MD is not merely integrating Newton's laws — it is controlled sampling of statistical mechanics. The integrator and thermostat determine what physical state the simulation represents.
+MD is not merely integrating Newton's laws — it is **controlled sampling** of statistical mechanics. The integrator and thermostat determine what physical state the simulation represents. A copper wire held at room temperature in the lab corresponds to an **NVT** or **NPT** ensemble at 300 K and ambient pressure — not an isolated **NVE** cluster drifting with whatever energy the initial velocity draw happened to assign.
 
-## Time integration
+Getting the ensemble wrong is not a small error. It is simulating the wrong experiment.
 
-**Verlet** and **velocity Verlet** are symplectic, second-order schemes preserving phase-space structure approximately:
+## The symplectic baseline: Verlet integration
+
+The **Verlet** algorithm advances positions from the previous two timesteps:
 
 \[
-\mathbf{r}^{n+1} = 2\mathbf{r}^n - \mathbf{r}^{n-1} + \mathbf{a}^n \Delta t^2.
+\mathbf{r}^{n+1} = 2\mathbf{r}^n - \mathbf{r}^{n-1} + \mathbf{a}^n \Delta t^2,
 \]
 
-Timestep \(\Delta t\) must resolve the highest vibrational frequency — typically femtoseconds for metals. **Constraint algorithms** (SHAKE, RATTLE) freeze fast bonds when implicit integration is too costly.
+where \(\mathbf{a}^n = \mathbf{F}^n / m\) is acceleration at step \(n\). **Velocity Verlet** (leapfrog) splits the update for better bookkeeping:
 
-## Thermostats and barostats
+\[
+\mathbf{v}^{n+\tfrac{1}{2}} = \mathbf{v}^n + \tfrac{1}{2}\mathbf{a}^n \Delta t, \qquad
+\mathbf{r}^{n+1} = \mathbf{r}^n + \mathbf{v}^{n+\tfrac{1}{2}} \Delta t, \qquad
+\mathbf{v}^{n+1} = \mathbf{v}^{n+\tfrac{1}{2}} + \tfrac{1}{2}\mathbf{a}^{n+1} \Delta t.
+\]
 
-| Ensemble | Control | Algorithm examples |
-|----------|---------|-------------------|
-| NVE | Energy fixed | Verlet |
-| NVT | Temperature fixed | Nosé–Hoover, Langevin, Berendsen |
-| NPT | Temperature + pressure | Parrinello–Rahman |
+Both are **symplectic** (for conservative \(V\)): they preserve a modified Hamiltonian to \(O(\Delta t^2)\), keeping energy drift bounded over long trajectories rather than accumulating secular error like generic Runge–Kutta on Hamiltonian systems.
 
-Choosing the wrong ensemble misrepresents the experiment you compare against.
+### Timestep choice for copper
+
+Timestep \(\Delta t\) must resolve the highest vibrational frequency \(\omega_{\max}\). For Cu with nearest-neighbor spring scale \(k \sim 50\) N/m and mass \(m \sim 10^{-25}\) kg, \(\omega_{\max} \sim 10^{13}\) rad/s, suggesting \(\Delta t \lesssim 1\)–\(2\) fs in metal units.
+
+Too large \(\Delta t\): energy blows up, bonds over-extend. Too small: wasted compute with negligible accuracy gain. Adaptive timestep schemes appear in some codes but fixed \(\Delta t\) with stability margin remains standard in LAMMPS metal workflows.
+
+### Constraint algorithms
+
+Flexible molecules (or explicit hydrogen in biomolecules) contain stiff bonds requiring sub-femtosecond steps. **SHAKE** and **RATTLE** constrain bond lengths, allowing larger \(\Delta t\) on slow degrees of freedom. For monatomic copper EAM, constraints are usually unnecessary — every atom is free.
+
+## Thermostats: sampling NVT
+
+The **microcanonical (NVE)** ensemble fixes total energy — appropriate for checking integrator stability or short-time dynamics, not for comparing to a wire at constant laboratory temperature.
+
+**NVT** (canonical) fixes temperature \(T\). Common algorithms:
+
+| Thermostat | Idea | Caveat |
+|------------|------|--------|
+| **Berendsen** | Weak coupling to heat bath | Wrong fluctuation spectrum; not true canonical |
+| **Nosé–Hoover** | Extended system with fictitious variable | Can become non-ergodic for small systems |
+| **Langevin** | Friction + random force | Stochastic; damps dynamics, good for equilibration |
+| **Bussi (CSVR)** | Stochastic velocity rescaling | Popular in modern MD; correct average \(T\) |
+
+For copper property calculation (diffusion, thermal expansion), **Nosé–Hoover chains** or **Langevin** with careful friction choice are common. Equilibration often begins with Langevin (fast thermalization), then production with Nosé–Hoover.
+
+Target temperature 300 K for "room-temperature copper wire" must be maintained during **mechanical loading** as well — deforming in NVE heats the sample adiabatically, mimicking high strain rates, not quasi-static lab tests.
+
+## Barostats: sampling NPT
+
+**NPT** (isothermal–isobaric) fixes \(T\) and pressure \(P\) — the ensemble closest to a wire segment under ambient conditions with free thermal expansion.
+
+**Berendsen barostat** scales cell volume toward target pressure — fast but incorrect fluctuation statistics.
+
+**Parrinello–Rahman** treats the cell matrix as a dynamical variable with kinetic energy, allowing **anisotropic** stress control — essential when simulating uniaxial tension of a copper nanowire with Poisson contraction.
+
+Stress control couples to **elastic constants**: NPT equilibration at zero stress validates lattice parameter against the EAM/DFT value before production runs.
+
+## Ensemble selection for copper wire problems
+
+| Physical question | Ensemble | Notes |
+|-------------------|----------|-------|
+| Bulk modulus from small strain | NPT | Ramp pressure, measure volume |
+| Thermal expansion | NPT | \(\alpha = \frac{1}{L}\frac{dL}{dT}\) |
+| Uniaxial tension at fixed \(T\) | NPT with stress control | Fix \(\sigma_{zz}\), measure strain |
+| Crack propagation (adiabatic limit) | NVE or NVT with caution | Heating at tip is physical at high rate |
+| Diffusion coefficient | NVT | Einstein relation on MSD |
+| Dislocation mobility | NVT + applied shear stress | Fit \(v\)–\(\tau\) for DDD |
+
+Choosing the wrong ensemble misrepresents the experiment you compare against — the MD analogue of using Dirichlet data where the lab imposed traction.
 
 ## Extracting continuum quantities
 
-**Stress**: Irving–Kirkwood or Hardy formulas relate atomic trajectories to Cauchy stress.
+### Stress: Irving–Kirkwood and Hardy
 
-**Temperature**: equipartition of kinetic energy.
+**Cauchy stress** in MD is not read from a constitutive law; it is computed from the atomistic configuration. The Irving–Kirkwood formula combines kinetic and virial contributions:
 
-**Elastic constants**: fluctuation formulas or small-strain deformations.
+\[
+\sigma_{\alpha\beta} = \frac{1}{V}\left[\sum_i m_i v_i^\alpha v_i^\beta + \sum_{i<j} r_{ij}^\alpha F_{ij}^\beta\right],
+\]
 
-**Dislocation mobility**: fit velocity–stress curves from constrained MD for input to DDD.
+(with appropriate conventions for pairwise potentials). **Hardy** formulations localize stress to atoms for crack-tip analysis.
 
-## Software ecosystem
+Stress from MD feeds **continuum boundary conditions** in sequential multiscale schemes: MD at an interface provides traction for FEM in the surrounding bulk.
 
-[LAMMPS](https://www.lammps.org/) and [GPUMD](https://github.com/brucefan1983/GPUMD) scale to billions of atoms on GPUs. Workflows often chain:
+### Temperature
+
+**Kinetic temperature** from equipartition:
+
+\[
+T = \frac{1}{3N k_B} \sum_i m_i \|\mathbf{v}_i\|^2
+\]
+
+(excluding constrained or frozen degrees of freedom). In NVT, \(T\) fluctuates around the target; block averages report meaningful values only after autocorrelation time of kinetic energy.
+
+### Elastic constants
+
+Two routes:
+
+1. **Fluctuation formulas** (requires NVT or NPT with correct statistics): relate stress fluctuations to compliance tensor.
+2. **Small-strain deformation**: apply \(\varepsilon_{ij}\), measure \(\sigma_{ij}\) in NPT — simpler, widely used for validating potentials against DFT elastic constants of copper (\(C_{11}, C_{12}, C_{44}\)).
+
+### Dislocation mobility for DDD
+
+Constrained MD applies shear stress \(\tau\) on a simulation cell containing a dislocation. Steady-state velocity \(v(\tau, T)\) is extracted and tabulated for **OpenDiS** mobility laws. This closes the loop between Part VIII and Part VII: atoms inform lines.
+
+## LAMMPS workflow in practice
+
+[LAMMPS](https://www.lammps.org/) organizes simulation into **styles**: units, atom_style, pair_style, fix, compute, dump. A reproducible copper wire fragment study might follow:
+
+### 1. Build structure
+
+Create fcc lattice, define simulation box, optionally carve cylindrical nanowire geometry with `region` and `delete_atoms`.
+
+### 2. Specify potential
 
 ```
-DFT → fit potential → MD → extract parameters → DDD / FEM
+pair_style      eam/alloy
+pair_coeff      * * Cu_mishin.eam.alloy Cu
 ```
+
+Verify energy per atom near \(-3.5\) eV/atom (potential-dependent) and lattice parameter \(a \approx 3.615\) Å.
+
+### 3. Minimize and equilibrate
+
+```
+minimize        1e-12 1e-12 1000 10000
+velocity        all create 300.0 12345 dist gaussian
+fix             1 all npt temp 300 300 0.1 iso 0 0 1
+run             50000
+unfix           1
+```
+
+### 4. Production deformation
+
+```
+fix             2 all npt temp 300 300 0.1 y 0 0 1 z 0 0 1
+variable        srate equal 1.0e8
+fix             3 all deform 1 erate ${srate} units box remap x
+compute         stress all stress/atom NULL
+run             100000
+```
+
+### 5. Post-process
+
+Dump trajectories to OVITO for dislocation extraction; compute stress–strain from box dimensions and pressure tensor.
+
+### 6. Chain upward
+
+Export elastic constants, mobility curves, or fracture energies to DDD/FEM inputs.
+
+GPU packages (`package gpu`, Kokkos) accelerate pair force evaluation — essential for million-atom fracture runs.
+
+## Energy conservation as diagnostic
+
+In NVE, total energy \(H\) should drift slowly (symplectic) rather than explode. Plot \(H(t)\) and temperature \(T(t)\) during method development:
+
+- Sudden energy jump: neighbor list error, bad potential cutoff, or too large \(\Delta t\).
+- Linear drift: subtle thermostat coupling left on during NVE test.
+- Stable oscillation: normal for small systems; average over many vibrational periods.
+
+Verification culture from Part IV–V applies here: **manufactured** checks (harmonic oscillator), conservation checks, and convergence in \(\Delta t\) before trusting production data.
+
+## Rare events and the time-scale gap
+
+Wire creep over years involves vacancy diffusion and dislocation climb at strain rates MD cannot reach directly. **Accelerated MD** (hyperdynamics, parallel replica, metadynamics) and **kinetic Monte Carlo** extrapolate from MD-derived barriers — topics beyond this chapter but essential for connecting atomistics to service life.
+
+For crack nucleation, **transition path sampling** finds rare barrier-crossing trajectories. The copper wire epilogue will return to these coupling strategies; here we note MD supplies **barriers and mechanisms**, not always **timescales**.
+
+## Reproducibility checklist
+
+Before publishing MD results on copper (or any metal):
+
+1. Cite potential source and version; report cutoff and neighbor skin.
+2. Converge \(\Delta t\) and system size for the observable of interest.
+3. Document ensemble, thermostat/barostat parameters, equilibration length.
+4. Report energy drift in NVE sanity checks.
+5. Compare lattice parameter, cohesive energy, and elastic constants to DFT/experiment.
+6. Archive input decks and random seeds.
+
+Unconverged MD is structured noise — the same warning we will repeat for DFT cutoff energy.
 
 ## Bridge
 
-MD assumes classical nuclei with empirical or fitted potentials. When potentials themselves must be derived from first principles — bond breaking, chemistry, electronic effects — we descend one more rung to density functional theory.
+MD assumes classical nuclei with empirical or fitted potentials. When potentials themselves must be derived from first principles — bond breaking, chemistry, electronic effects, or validation of EAM against quantum data — we descend one more rung to **density functional theory**. The copper wire's cohesive energy, its elastic constants, and the energy of a vacancy all begin as electron-density problems in Part IX.
