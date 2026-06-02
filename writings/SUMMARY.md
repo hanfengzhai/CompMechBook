@@ -5,7 +5,8 @@ Canonical markdown sources for **Computational Mechanics** (CompMechBook). When 
 | Subtree | Book destination | Status |
 |---------|------------------|--------|
 | [`functional-analysis/`](./functional-analysis/) | Part II — Function Spaces | Present (mdBook) |
-| `linear-algebra/` | Part I | Planned (ME 300A) |
+| [`linear-algebra/`](./linear-algebra/) | Part I | Stub (ME 300A) |
+| [`fvm/`](./fvm/) | Part V | Stub (FVM / CFD notes) |
 | `pde/` | Part III | Planned (ME 300B) |
 | `fem/` | Part IV | Planned (FEA notes) |
 | `fvm/` | Part V | Planned (CFD / FVM) |

@@ -142,6 +142,19 @@ Galerkin FEM for advection does not automatically conserve mass or energy at the
 
 The tradeoff: first-order FVM is robust but dissipative; high-order FVM with limiters is sharper but more complex. Part IV's FEM excels where symmetry and energy minimization dominate; Part V's FVM excels where flux balance and shock stability dominate.
 
+## From shock tubes to cosmological volumes
+
+The same integral-balance philosophy scales from homework shock tubes to galaxy formation. The author's [FVM notes](https://hanfengzhai.github.io/note/FVM.pdf) close with the **Illustris–TNG** project, where the moving-mesh code **Arepo** solves (magneto)hydrodynamics on a Voronoi tessellation of space. Cell-centered volume averages of density \(\rho\), velocity \(\mathbf{u}\), and magnetic field \(\mathbf{B}\) evolve by finite-volume fluxes; second-order accuracy in time uses a predictor–corrector structure analogous to MUSCL in space:
+
+\[
+\rho^{n+1} = \rho^n - \tfrac{1}{2}\Delta t\,(\rho^n \nabla\cdot\mathbf{u} + \mathbf{u}\cdot\nabla\rho^n), \qquad
+\mathbf{u}^{n+1} = \mathbf{u}^n - \tfrac{1}{2}\Delta t\left(\mathbf{u}^n\nabla\cdot\mathbf{u}^n + \frac{1}{\rho}\nabla p^n\right),
+\]
+
+with a matching update for pressure from the ideal-gas law. The schematic is unchanged from the 1D bar in Chapter 2: store cell averages, compute face fluxes, advance conservatively. Only the mesh moves with the flow, refining resolution where gravity collapses gas into galaxies.
+
+For the copper wire, Illustris is irrelevant numerically — but intellectually it matters. **Conservation on control volumes** is not a trick for Sod problems; it is the discretization contract trusted when integrating hydrodynamics over billions of years or cooling air around a heated conductor. Once the integral form is internalized, reading Arepo's documentation or an OpenFOAM manual is recognition, not reinvention.
+
 ## Control volumes in 2D and 3D
 
 In 2D, control volumes are polygonal cells; in 3D, polyhedral cells (hexes, tets, general polyhedra in OpenFOAM). The integral balance reads

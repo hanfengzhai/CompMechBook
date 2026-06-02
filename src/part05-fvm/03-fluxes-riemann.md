@@ -22,6 +22,18 @@ For the 1D Euler equations, the solution typically consists of:
 
 The exact wave pattern depends on \(U_L, U_R\). Analytic formulas exist for ideal gas — Toro's textbook is the standard reference.
 
+### Eigenstructure of the Euler flux
+
+Writing the 1D Euler system in quasilinear form \(U_t + \mathbf{J}\, U_x = 0\), the flux Jacobian \(\mathbf{J} = \partial \mathbf{F}/\partial \mathbf{U}\) has real eigenvalues
+
+\[
+\lambda_1 = u - c, \qquad \lambda_2 = u, \qquad \lambda_3 = u + c,
+\]
+
+where \(c = \sqrt{\gamma p/\rho}\) is the sound speed. The middle eigenvalue \(\lambda_2 = u\) corresponds to the **contact wave** — information advected at the fluid velocity without acoustic coupling. The outer eigenvalues \(\lambda_1, \lambda_3\) are genuinely nonlinear (shocks and rarefactions).
+
+Diagonalizing \(\mathbf{J} = \mathbf{S}^{-1}\boldsymbol{\Lambda}\mathbf{S}\) is the algebraic heart of Roe's solver and of characteristic-based boundary conditions. Every Riemann solver, exact or approximate, is a different way of respecting these three wave speeds at a face.
+
 ## Godunov flux
 
 The **Godunov flux** evaluates the exact Riemann solution at the face:
@@ -70,7 +82,20 @@ Sod's problem (1978) initializes on \([0,1]\):
 - Left (\(x < 0.5\)): \(\rho_L = 1\), \(p_L = 1\), \(u_L = 0\)
 - Right (\(x \ge 0.5\)): \(\rho_R = 0.125\), \(p_R = 0.1\), \(u_R = 0\)
 
-The exact solution at time \(t = 0.2\) shows a leftward rarefaction, a contact at \(\rho \approx 0.265\), and a rightward shock. Numerical diagnostics:
+The exact solution at time \(t = 0.2\) shows a leftward rarefaction, a contact at \(\rho \approx 0.265\), and a rightward shock.
+
+The author's [FVM notes](https://hanfengzhai.github.io/note/FVM.pdf) use two additional verification cases on \([0,1]\) with \(\Delta t = 0.001\), \(t_{\text{final}} = 0.2\), and zero initial velocity on both sides:
+
+| Case | \(\rho_L\) | \(p_L\) | \(\rho_R\) | \(p_R\) | Cells | Wave pattern |
+|------|-----------|---------|-----------|---------|-------|--------------|
+| Problem I | 1.0 | 0.7 | 1.0 | 0.2 | 300 | Equal density, pressure drop → expansion |
+| Problem II (classic Sod) | 1.0 | 1.0 | 0.3 | 0.1 | 200 | Rarefaction–contact–shock |
+
+Problem I isolates a **contact-like** density interface with a pressure-driven expansion — useful for checking that a scheme does not spuriously mix density when velocity and pressure start uniform. Problem II is the standard Sod configuration. A reference Python implementation is available at [python_finite_volume_solver](https://github.com/bwvdnbro/python_finite_volume_solver).
+
+Comparing first- and second-order FVM against the exact Riemann solution at \(t = 0.2\) reveals the expected tradeoff: first-order schemes smear shocks over several cells but remain monotone; second-order MUSCL sharpens the profile at the cost of needing limiters near discontinuities.
+
+Numerical diagnostics:
 
 1. **Mass, momentum, energy** conserved to machine precision (conservative scheme).
 2. **No overshoots** at shock or contact (monotonicity/limiters).
