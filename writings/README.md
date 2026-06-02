@@ -2,7 +2,7 @@
 
 This directory is reserved for the [`Writings`](https://github.com/hanfengzhai/Writings) git submodule. When the repository is linked, source markdown — including the **Functional Analysis Notes** — will be mapped into the mdBook chapters under `src/`.
 
-## Expected layout (after submodule add)
+## Layout
 
 ```
 writings/
@@ -10,14 +10,16 @@ writings/
 │   └── chapters/01–04
 ├── functional-analysis/     # Functional Analysis Notes (mdBook) → Part II
 │   └── chapters/01–05
-├── pde/                     # Planned: ME300B → Part III
-├── fem/                     # Planned: FEA notes → Part IV
-├── fvm/                     # Planned: FVM / CFD → Part V
-├── continuum/               # Planned: elasticity → Part VI
-├── defects/                 # Planned → Part VII
-├── md/                      # Planned → Part VIII
-└── dft/                     # Planned: MSE 5720 → Part IX
+├── pde/                     # ME300B → Part III
+├── fem/                     # FEA notes → Part IV
+├── fvm/                     # FVM / CFD → Part V
+├── continuum/               # Elasticity → Part VI
+├── defects/                 # Defects & dislocations → Part VII
+├── md/                      # Atomistic modeling → Part VIII
+└── dft/                     # MSE 5720 → Part IX
 ```
+
+Each subtree has `book.toml`, `chapters/SUMMARY.md`, and numbered markdown files. See [SUMMARY.md](./SUMMARY.md) for the full index.
 
 ## Integration workflow
 
@@ -46,9 +48,9 @@ writings/
    mdbook build
    ```
 
-## Until the submodule is available
+## Canonical source workflow
 
-Parts I and II are maintained as standalone mdBooks under `writings/linear-algebra/` and `writings/functional-analysis/` (Functional Analysis Notes style: `book.toml`, `chapters/SUMMARY.md`, numbered `01`–`NN` files). Remaining parts live in `src/` until their Writings subtrees are populated; see each subtree's `README.md` for the target layout.
+All parts are maintained as standalone mdBooks under `writings/` (Functional Analysis Notes style). The rendered narrative in `src/` is synced from these sources via `scripts/sync-writings.sh`. Book-specific **Bridge** sections at chapter ends may be edited in either location; re-run sync after updating canonical chapters.
 
 Sync canonical chapters into the main book with:
 

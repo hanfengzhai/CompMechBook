@@ -1,17 +1,24 @@
-# Writings — Source Index
+# Writings — source index
 
-Canonical markdown sources for **Computational Mechanics** (CompMechBook). When this directory is a git submodule from `Writings.git`, each subtree maps to book parts as documented in [`README.md`](./README.md).
+Canonical mdBook sources for **Computational Mechanics**. Each subtree follows the Functional Analysis Notes layout: `book.toml`, `chapters/SUMMARY.md`, numbered `01`–`NN` chapter files.
 
-| Subtree | Book destination | Status |
-|---------|------------------|--------|
-| [`linear-algebra/`](./linear-algebra/) | Part I — The Grammar of Computation | Present (mdBook) |
-| [`functional-analysis/`](./functional-analysis/) | Part II — Function Spaces | Present (mdBook) |
-| [`pde/`](./pde/) | Part III — Fields on Domains | Stub (ME 300B) |
-| [`fem/`](./fem/) | Part IV — Finite Element Method | Stub (FEA notes) |
-| [`fvm/`](./fvm/) | Part V — Conservation on Cells | Stub (FVM / CFD notes) |
-| [`continuum/`](./continuum/) | Part VI — Continuum Mechanics | Stub (elasticity) |
-| [`defects/`](./defects/) | Part VII — Defects & Dislocations | Stub |
-| [`md/`](./md/) | Part VIII — Atomistic Simulation | Stub |
-| [`dft/`](./dft/) | Part IX — Electronic Structure | Stub (MSE 5720) |
+| Subtree | Book part | Chapters |
+|---------|-----------|----------|
+| [linear-algebra](./linear-algebra/chapters/SUMMARY.md) | Part I | 01–04 |
+| [functional-analysis](./functional-analysis/chapters/SUMMARY.md) | Part II | 01–05 |
+| [pde](./pde/chapters/SUMMARY.md) | Part III | 01–04 |
+| [fem](./fem/chapters/SUMMARY.md) | Part IV | 01–05 |
+| [fvm](./fvm/chapters/SUMMARY.md) | Part V | 01–04 |
+| [continuum](./continuum/chapters/SUMMARY.md) | Part VI | 01–03 |
+| [defects](./defects/chapters/SUMMARY.md) | Part VII | 01–02 |
+| [md](./md/chapters/SUMMARY.md) | Part VIII | 01–02 |
+| [dft](./dft/chapters/SUMMARY.md) | Part IX | 01–02 |
 
-Each present subtree follows the **Functional Analysis Notes** layout: `book.toml`, `chapters/SUMMARY.md`, and numbered chapter files `01-*.md` … synced into matching `src/partNN-*` directories via `./scripts/sync-writings.sh`.
+Sync into the main book:
+
+```bash
+./scripts/sync-writings.sh
+mdbook build
+```
+
+When the external `Writings` git submodule is linked, replace or merge these subtrees with upstream content and re-run the sync script.
