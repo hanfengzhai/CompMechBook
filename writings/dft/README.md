@@ -1,8 +1,8 @@
-# Density Functional Theory — source stub
+# Density Functional Theory Notes
 
-Planned canonical source for **Part IX — Electronic Structure**, aligned with [MSE5720-HW](https://github.com/hanfengzhai/MSE5720-HW) coursework and standard DFT references (Martin, *Electronic Structure*).
+Canonical markdown for **Part IX — Electronic Structure**, aligned with [MSE5720 coursework](https://github.com/hanfengzhai/MSE5720-HW).
 
-## Target layout (Functional Analysis Notes style)
+## Layout (Functional Analysis Notes style)
 
 ```
 dft/
@@ -14,3 +14,16 @@ dft/
 ```
 
 Chapter numbering `01`–`02` matches `src/part09-dft/`.
+
+## Build standalone
+
+```bash
+cd writings/dft && mdbook build
+```
+
+## Sync into CompMechBook
+
+```bash
+./scripts/sync-writings.sh
+mdbook build
+```
