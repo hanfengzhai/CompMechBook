@@ -1,5 +1,7 @@
 # The Finite Volume Method in One Dimension
 
+Part IV discretized elliptic problems on the copper wire — tension, conduction, bending — with trial functions and global stiffness. Part V turns to **conservation laws** and **hyperbolic fluxes**: the language of cooling air around a heated conductor, shock waves in a gas, and any field whose evolution is governed by net flux through control surfaces rather than by minimizing a quadratic energy.
+
 The integral form of a conservation law balances fluxes through control volume boundaries. The finite volume method (FVM) replaces continuous averages with **cell averages** and exact fluxes with **numerical flux functions** that depend on data from neighboring cells. The 1D algorithm is clean enough to implement in an afternoon and rich enough to capture shocks — the standard first milestone in CFD education.
 
 The author's FVM notes and CFD curriculum treat 1D advection and the Sod shock tube as mandatory verification cases before advancing to 2D grids and Navier–Stokes. This chapter follows that path.
