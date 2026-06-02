@@ -23,7 +23,7 @@ The prose synthesizes course notes, teaching materials, and research experience 
 - [Atomistic Modeling notes](https://hanfengzhai.github.io/file/AtomModel_note.pdf)
 - [DFT coursework](https://github.com/hanfengzhai/MSE5720-HW) (MSE 5720)
 
-When the `Writings` repository is linked to this project, additional source chapters — including the Functional Analysis Notes — will be incorporated directly. Until then, Part II is written in the same style and at the same level of detail as those notes.
+**Functional Analysis Notes** live in [`writings/functional-analysis/`](https://github.com/hanfengzhai/CompMechBook/tree/main/writings/functional-analysis) as a standalone mdBook (chapters `01`–`05`, matching the structure of the author's Writings sources). Part II of this book is kept in sync via [`scripts/sync-writings.sh`](./scripts/sync-writings.sh). Additional Writings subtrees (linear algebra, PDE, FEM, FVM, and so on) can be added as markdown becomes available in `Writings.git`.
 
 ## Disclaimer
 

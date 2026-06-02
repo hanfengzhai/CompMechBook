@@ -44,3 +44,17 @@ writings/
 ## Until the submodule is available
 
 Part II chapters in `src/part02-functional-analysis/` are written in the same mdBook style and at the same level of detail as the planned Functional Analysis Notes. They synthesize the author's course materials and standard references (Brezis, Evans) with a computational mechanics focus.
+
+A working copy of the Functional Analysis Notes lives at `writings/functional-analysis/` (mdBook with `chapters/01`–`05` numbering). Sync into the main book with:
+
+```bash
+chmod +x scripts/sync-writings.sh
+./scripts/sync-writings.sh
+mdbook build
+```
+
+Build the standalone FA notes:
+
+```bash
+cd writings/functional-analysis && mdbook build
+```

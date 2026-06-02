@@ -169,6 +169,20 @@ Force convergence threshold (Ry/Bohr) gates structural predictions — a "relaxe
 
 Phonon calculations linearize DFT around equilibrium — compare phonon frequencies to inelastic neutron scattering or MD spectra for copper.
 
+## Convergence: a worked discipline (MSE 5720)
+
+The author's [DFT coursework notebooks](https://hanfengzhai.github.io/file/HW1_MSE5720.html) treat convergence as an experiment, not a footnote. The pattern transfers directly to copper (or any crystal) in Quantum ESPRESSO.
+
+**Plane-wave cutoff.** Scan \(E_{\text{cut}}\) (e.g. 20–100 Ry in steps of 10 Ry) at fixed k-mesh. Declare cutoff converged when the total-energy difference between successive cutoffs falls below about **5 meV per formula unit** — in Ry, \(\delta E \approx 3.7\times 10^{-4}\,\mathrm{Ry}\). For boron arsenide in the homework, 50 Ry met this criterion; for copper you repeat the scan with the same logic.
+
+**k-point mesh.** At the converged cutoff, refine an \(M\times M\times M\) Monkhorst–Pack grid until energy differences fall below the same tolerance. Metals need denser sampling near the Fermi surface; smearing reduces but does not remove this requirement.
+
+**Forces.** Displace one atom slightly (e.g. \(+0.05\) in fractional \(z\)) and converge forces to roughly **10 meV/Å** (\(\approx 3.9\times 10^{-4}\,\mathrm{Ry/bohr}\)). Energy and force convergence can differ: the homework finds 40 Ry sufficient for forces while 50 Ry was needed for absolute energy — a reminder to converge the observable you will actually use.
+
+**Lattice and bulk modulus.** With converged electronic settings, scan lattice constants \(\pm 5\%\) in `scf`, fit \(E(a)\) parabolically for \(a_0\), or use `vc-relax` with `bfgs` and compare. Fit \(E(V)\) to extract bulk modulus \(B_0 = V\,\partial^2 E/\partial V^2\) at equilibrium and compare to experiment and literature **at the same XC functional**.
+
+This checklist is the same verification culture as patch tests in FEM and Sod problems in FVM: no downstream multiscale number is trustworthy until it passes.
+
 ## Quantum ESPRESSO workflow sketch
 
 Typical input sections (`pw.x`):
