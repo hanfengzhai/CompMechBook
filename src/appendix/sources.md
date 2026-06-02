@@ -1,6 +1,6 @@
 # Sources and Further Reading
 
-This book synthesizes material from the author's notes, coursework, and teaching. When `Writings.git` is linked to the repository, additional source files — including the Functional Analysis Notes — will be merged as canonical chapter sources.
+This book synthesizes material from the author's notes, coursework, and teaching. Canonical chapter markdown lives in [`writings/`](../writings/) — nine standalone mdBooks in the **Functional Analysis Notes** layout (see [`writings/README.md`](../writings/README.md)). Run `./scripts/sync-writings.sh` to copy them into `src/`. When the external `Writings.git` submodule is linked, that directory becomes the upstream; the sync workflow stays the same.
 
 ## Primary notes (hanfengzhai.github.io)
 
