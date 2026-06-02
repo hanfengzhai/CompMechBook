@@ -1,8 +1,8 @@
-# Finite Element Method — source stub
+# Finite Element Analysis Notes
 
-Planned canonical source for **Part IV — The Finite Element Method**, aligned with [FEA_notes.pdf](https://hanfengzhai.github.io/file/FEA_notes.pdf) and [problem sessions](https://hanfengzhai.github.io/note.html).
+Canonical markdown for **Part IV — The Finite Element Method**, aligned with [FEA_notes.pdf](https://hanfengzhai.github.io/file/FEA_notes.pdf).
 
-## Target layout (Functional Analysis Notes style)
+## Layout (Functional Analysis Notes style)
 
 ```
 fem/
@@ -17,3 +17,16 @@ fem/
 ```
 
 Chapter numbering `01`–`05` matches `src/part04-fem/`.
+
+## Build standalone
+
+```bash
+cd writings/fem && mdbook build
+```
+
+## Sync into CompMechBook
+
+```bash
+./scripts/sync-writings.sh
+mdbook build
+```
