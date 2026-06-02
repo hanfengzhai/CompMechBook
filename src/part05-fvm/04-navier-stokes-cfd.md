@@ -124,6 +124,16 @@ The CFD notes distinguish:
 
 Both are necessary. A converged simulation of the wrong equations — wrong turbulence model, wrong boundary condition — is worthless.
 
+## From shock tubes to cosmological hydrodynamics
+
+The same FVM kernel that passes Sod's shock tube scales to problems with vastly larger domains. The **Illustris** and **IllustrisTNG** cosmological simulations solve magnetohydrodynamics on moving Voronoi meshes with second-order finite-volume discretization — storing volume-averaged \(\rho\), \(\mathbf{u}\), and magnetic field at cell centers, as described in the author's FVM notes. The update for a primitive variable \(\phi \in \{\rho, \mathbf{u}, p\}\) at second order takes the schematic form
+
+\[
+\phi^{n+1} = \phi^n - \tfrac{1}{2}\Delta t\left(\phi^n \nabla\cdot\mathbf{u} + \mathbf{u}\cdot\nabla\phi^n\right),
+\]
+
+with analogous pressure and momentum terms. The copper wire's cooling jet and a galaxy cluster's intracluster medium share the same conservation structure; only the Reynolds number, geometry, and closure models change. Passing Sod on a 200-cell grid is the sanity check before trusting any of it.
+
 ## Software landscape
 
 Open-source: **OpenFOAM** (FVM, C++), **SU2** (FVM, adjoints), **FEniCS/Firedrake** (FEM, Stokes/Navier–Stokes). Commercial: Fluent, STAR-CCM+, COMSOL. Choice depends on physics (compressible vs. incompressible), geometry, HPC needs, and coupling to structural FEM for the wire problem.
