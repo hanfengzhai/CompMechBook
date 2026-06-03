@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - cursor/computational-mechanics-book-6411
+      - cursor/computational-mechanics-book-7293
       - cursor/computational-mechanics-book-6413
       - cursor/computational-mechanics-book-8ca8
       - cursor/computational-mechanics-book-c5ac
