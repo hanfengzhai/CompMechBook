@@ -15,7 +15,7 @@ default-theme = "rust"
 preferred-dark-theme = "navy"
 mathjax-support = true
 git-repository-url = "https://github.com/hanfengzhai/CompMechBook"
-edit-url-template = "https://github.com/hanfengzhai/CompMechBook/edit/main/{path}"
+edit-url-template = "https://github.com/hanfengzhai/CompMechBook/edit/cursor/computational-mechanics-book-9387/{path}"
 additional-css = ["theme/custom.css"]
 
 [output.html.search]
