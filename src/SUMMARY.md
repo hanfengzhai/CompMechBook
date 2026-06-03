@@ -83,6 +83,7 @@
 
 - [Born–Oppenheimer and the Hohenberg–Kohn Theorems](./part09-dft/01-born-oppenheimer.md)
 - [Kohn–Sham DFT: Equations, Convergence, and Practice](./part09-dft/02-kohn-sham.md)
+- [Post-SCF Workflows: Convergence, Phonons, and Elasticity](./part09-dft/03-post-scf-workflows.md)
 
 ---
 

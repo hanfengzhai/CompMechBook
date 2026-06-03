@@ -16,7 +16,7 @@ writings/
 ├── continuum/               # Part VI — chapters 01–03
 ├── defects/                 # Part VII — chapters 01–02
 ├── md/                      # Part VIII — chapters 01–02
-└── dft/                     # Part IX — chapters 01–02
+└── dft/                     # Part IX — chapters 01–03
 ```
 
 Every subtree contains:
@@ -48,7 +48,7 @@ Every subtree contains:
    | `continuum/chapters/01–03` | `src/part06-continuum/` |
    | `defects/chapters/01–02` | `src/part07-defects/` |
    | `md/chapters/01–02` | `src/part08-md/` |
-   | `dft/chapters/01–02` | `src/part09-dft/` |
+   | `dft/chapters/01–03` | `src/part09-dft/` |
 
 4. Book-specific material (prologue, preface, epilogue, appendix) lives only in `src/`.
 

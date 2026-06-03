@@ -33,7 +33,9 @@ sync_part() {
     if [[ -n "$src_file" && -n "$dst_file" ]]; then
       sync_file "$src_file" "$dst_file"
     elif [[ -n "$src_file" ]]; then
-      echo "skip (no dst for $n): $src_file"
+      local basename
+      basename="$(basename "$src_file")"
+      sync_file "$src_file" "$dst_dir/$basename"
     fi
   done
 }
@@ -62,7 +64,7 @@ sync_part "$ROOT/writings/defects/chapters" "$ROOT/src/part07-defects" 01 02
 # Part VIII: MD Notes (01–02)
 sync_part "$ROOT/writings/md/chapters" "$ROOT/src/part08-md" 01 02
 
-# Part IX: DFT Notes (01–02)
-sync_part "$ROOT/writings/dft/chapters" "$ROOT/src/part09-dft" 01 02
+# Part IX: DFT Notes (01–03)
+sync_part "$ROOT/writings/dft/chapters" "$ROOT/src/part09-dft" 01 02 03
 
 echo "Done. Run 'mdbook build' from repo root to verify."

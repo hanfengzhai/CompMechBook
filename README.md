@@ -21,7 +21,7 @@ Build locally (see below) or open the rendered site once GitHub Pages is enabled
 | VI | Continuum mechanics |
 | VII | Defects & dislocation dynamics |
 | VIII | Molecular dynamics |
-| IX | Density functional theory |
+| IX | Density functional theory (Born–Oppenheimer, Kohn–Sham, post-SCF workflows) |
 | Epilogue | Multiscale coupling |
 
 The table of contents lives in [`src/SUMMARY.md`](src/SUMMARY.md).
