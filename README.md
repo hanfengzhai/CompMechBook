@@ -34,8 +34,13 @@ Chapters synthesize the author's existing notes on [hanfengzhai.github.io](https
 
 ```bash
 # Install mdBook: https://github.com/rust-lang/mdBook/releases
-mdbook build        # output in book/
-mdbook serve        # http://localhost:3000
+chmod +x scripts/sync-writings.sh scripts/build-all-writings.sh
+./scripts/sync-writings.sh   # refresh src/ from writings/
+mdbook build                 # output in book/
+mdbook serve                 # http://localhost:3000
+
+# Optional: build each standalone Writings mdBook (Functional Analysis Notes layout)
+./scripts/build-all-writings.sh
 ```
 
 ## License
