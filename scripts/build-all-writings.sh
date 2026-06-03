@@ -3,6 +3,13 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+if ! command -v mdbook >/dev/null 2>&1; then
+  if [[ -x "$ROOT/scripts/install-mdbook.sh" ]]; then
+    bash "$ROOT/scripts/install-mdbook.sh"
+    export PATH="${HOME}/.local/bin:${PATH}"
+  fi
+fi
 PARTS=(
   linear-algebra
   functional-analysis
