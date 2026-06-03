@@ -2,7 +2,7 @@
 
 At a discontinuity, pointwise PDEs fail but integral conservation holds. The finite volume method does not resolve the shock as a grid-scale jump in derivatives; it resolves it as a consistent flux between cells. **Riemann solvers** are the local engines that translate left and right cell states into that flux.
 
-The Sod shock tube — a diaphragm separating high- and low-pressure gas, ruptured at \(t = 0\) — is the canonical verification problem in the author's [FVM notes](https://hanfengzhai.github.io/note/FVM.pdf). It is to CFD what the patch test is to FEM: if your code fails Sod, nothing else matters.
+The Sod shock tube — a diaphragm separating high- and low-pressure gas, ruptured at \(t = 0\) — is the canonical verification problem in the author's [FVM notes](https://hanfengzhai.github.io/note/FVM.pdf). It is to CFD what the patch test is to FEM: if your code fails Sod, nothing else matters. The copper wire from the prologue does not need a shock tube to justify this chapter: cooling air around a heated conductor, or any steep gradient in density and temperature, eventually demands the same flux machinery — local left/right states, consistent numerical flux, and conservation on control volumes.
 
 ## The Riemann problem
 

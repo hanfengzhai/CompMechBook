@@ -1,29 +1,25 @@
 # Writings source integration
 
-This directory holds canonical markdown for **Computational Mechanics** (CompMechBook). It is structured for eventual linking as a [`Writings`](https://github.com/hanfengzhai/Writings) git submodule; until that remote is available, the full source tree is vendored here.
+This directory holds canonical mdBook sources for every part of **Computational Mechanics**, following the **Functional Analysis Notes** layout (`book.toml`, numbered `chapters/`, **Bridge** sections). When the external [`Writings`](https://github.com/hanfengzhai/Writings) git submodule is linked, merge upstream changes here and re-run `scripts/sync-writings.sh`. Until that remote is available, the full source tree is vendored here.
 
-## Layout (Functional Analysis Notes style)
-
-Each part is a standalone mdBook:
+## Layout
 
 ```
 writings/
-├── linear-algebra/          # Part I  — chapters 01–04
-├── functional-analysis/     # Part II — chapters 01–05
-├── pde/                     # Part III — chapters 01–04
-├── fem/                     # Part IV — chapters 01–05
-├── fvm/                     # Part V  — chapters 01–04
-├── continuum/               # Part VI — chapters 01–03
-├── defects/                 # Part VII — chapters 01–02
-├── md/                      # Part VIII — chapters 01–02
-└── dft/                     # Part IX — chapters 01–02
+├── linear-algebra/          # Linear Algebra Notes (mdBook) → Part I
+│   └── chapters/01–04
+├── functional-analysis/     # Functional Analysis Notes (mdBook) → Part II
+│   └── chapters/01–05
+├── pde/                     # ME300B → Part III
+├── fem/                     # FEA notes → Part IV
+├── fvm/                     # FVM / CFD → Part V
+├── continuum/               # Elasticity → Part VI
+├── defects/                 # Defects & dislocations → Part VII
+├── md/                      # Atomistic modeling → Part VIII
+└── dft/                     # MSE 5720 → Part IX
 ```
 
-Every subtree contains:
-
-- `book.toml` — standalone mdBook configuration with MathJax
-- `chapters/SUMMARY.md` — table of contents
-- `chapters/NN-*.md` — numbered chapters with **Bridge** sections linking to the next part
+Each subtree has `book.toml`, `chapters/SUMMARY.md`, and numbered markdown files. See [SUMMARY.md](./SUMMARY.md) for the full index.
 
 ## Integration workflow
 
@@ -36,7 +32,7 @@ Every subtree contains:
    mdbook build
    ```
 
-3. Chapter mapping (numbering preserved):
+3. Map numbered chapters to book parts (preserve `01`–`NN` prefixes):
 
    | Writings path | Book destination |
    |---------------|------------------|
@@ -52,13 +48,13 @@ Every subtree contains:
 
 4. Book-specific material (prologue, preface, epilogue, appendix) lives only in `src/`.
 
+5. Merge strategy: prefer Writings content as canonical; retain book-specific **Bridge** sections and cross-links when merging from upstream.
+
 ## Build standalone notes
 
 ```bash
 cd writings/functional-analysis && mdbook build
-cd writings/linear-algebra && mdbook build
-# … any other subtree, or:
-./scripts/build-all-writings.sh
+./scripts/build-all-writings.sh   # all nine parts
 ```
 
 ## Submodule (future)
@@ -70,5 +66,3 @@ git submodule add <Writings-repo-url> writings
 git submodule update --init --recursive
 ./scripts/sync-writings.sh
 ```
-
-Prefer upstream Writings content as canonical; retain book-specific **Bridge** sections and cross-links when merging.
