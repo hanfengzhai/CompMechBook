@@ -24,7 +24,7 @@ Build locally (see below) or open the rendered site once GitHub Pages is enabled
 | IX | Density functional theory |
 | Epilogue | Multiscale coupling |
 
-The table of contents lives in [`src/SUMMARY.md`](src/SUMMARY.md).
+The table of contents lives in [`src/SUMMARY.md`](src/SUMMARY.md). The narrative is ~54k words across 33 chapters plus prologue, preface, epilogue, and appendix.
 
 ## Source material
 
