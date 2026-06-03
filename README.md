@@ -30,11 +30,15 @@ The table of contents lives in [`src/SUMMARY.md`](src/SUMMARY.md).
 
 Chapters synthesize the author's existing notes on [hanfengzhai.github.io](https://hanfengzhai.github.io/note.html) and related repositories. Canonical source markdown lives under [`writings/`](./writings/) in Functional Analysis Notes style (one mdBook per part). Run `./scripts/sync-writings.sh` to refresh `src/` from those sources.
 
+## Scope
+
+Roughly **54,000 words** across **36 chapters** (prologue through epilogue), plus nine standalone Writings mdBooks under `writings/`. Each chapter ends with a **Bridge** section that hands off to the next topic, following the [Functional Analysis Notes](./writings/functional-analysis/) layout.
+
 ## Build
 
 ```bash
-# Install mdBook: https://github.com/rust-lang/mdBook/releases
-chmod +x scripts/sync-writings.sh scripts/build-all-writings.sh
+chmod +x scripts/install-mdbook.sh scripts/sync-writings.sh scripts/build-all-writings.sh
+./scripts/install-mdbook.sh   # optional; or use your package manager
 ./scripts/sync-writings.sh   # refresh src/ from writings/
 mdbook build                 # output in book/
 mdbook serve                 # http://localhost:3000
