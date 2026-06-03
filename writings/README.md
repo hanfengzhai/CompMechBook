@@ -36,9 +36,13 @@ Each subtree has `book.toml`, `chapters/SUMMARY.md`, and numbered markdown files
    |---------------|------------------|
    | `linear-algebra/chapters/01–04` | `src/part01-linear-algebra/` |
    | `functional-analysis/chapters/01–05` | `src/part02-functional-analysis/` |
-   | `pde/chapters/01–04` (planned) | `src/part03-pdes/` |
-   | `fem/chapters/01–05` (planned) | `src/part04-fem/` |
-   | … | … |
+   | `pde/chapters/01–04` | `src/part03-pdes/` |
+   | `fem/chapters/01–05` | `src/part04-fem/` |
+   | `fvm/chapters/01–04` | `src/part05-fvm/` |
+   | `continuum/chapters/01–03` | `src/part06-continuum/` |
+   | `defects/chapters/01–02` | `src/part07-defects/` |
+   | `md/chapters/01–02` | `src/part08-md/` |
+   | `dft/chapters/01–02` | `src/part09-dft/` |
 
 3. Merge strategy: prefer Writings content as canonical; retain book-specific **Bridge** sections and cross-links to Parts III–IV at the end of each chapter.
 
