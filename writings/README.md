@@ -50,6 +50,12 @@ Each subtree has `book.toml`, `chapters/SUMMARY.md`, and numbered markdown files
 
 5. Merge strategy: prefer Writings content as canonical; retain book-specific **Bridge** sections and cross-links when merging from upstream.
 
+6. Book-only pages (prologue, preface, epilogue, appendix) live in `src/` and are not overwritten by sync.
+
+## Canonical source workflow
+
+All parts are maintained as standalone mdBooks under `writings/` (Functional Analysis Notes style). The rendered narrative in `src/` is synced from these sources via `scripts/sync-writings.sh`. Re-run sync after editing canonical chapters under `writings/<topic>/chapters/`.
+
 ## Build standalone notes
 
 ```bash
