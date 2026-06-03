@@ -100,6 +100,8 @@ Fix geometry (experimental lattice constant initially). Sweep \(E_{\text{cut}}\)
 
 Forces converge more slowly than energy — elastic constant calculations need tighter settings than coarse cohesive energy estimates.
 
+**Worked pattern (MSE 5720, boron arsenide).** The author's [DFT homework notebooks](https://hanfengzhai.github.io/file/HW1_MSE5720.html) treat BAs as a semiconductor benchmark — a cousin problem to bulk copper with the same convergence ritual. Exercise 1a runs `scf` calculations while increasing the plane-wave cutoff from 20 to 100 Ry in 10 Ry steps; the total energy per formula unit is tabulated and plotted until the difference between successive cutoffs falls below about **5 meV/f.u.** (the course tolerance for "absolute" energy). Exercise 1b then fixes the converged cutoff and sweeps Monkhorst–Pack grids \(M \times M \times M\) for \(M = 2, 3, 4, 5, 6, 8\), recording total energy at each mesh. The pedagogical point is identical for fcc Cu: **never quote a number from a single arbitrary cutoff** — document the convergence curves, state the tolerance, and separate cutoff tests from k-point tests while acknowledging small cross-effects. The copper wire's cohesive energy belongs in a paragraph that cites the converged \(E_{\text{cut}}\) and k-mesh, not in a table copied from a tutorial default.
+
 ### Step 2: Optimize lattice constants
 
 Relax atomic positions and **cell parameters** until forces and stress vanish:

@@ -116,6 +116,8 @@ Finite volume ideas appear far beyond shock tubes:
 
 The method is **scale-agnostic** because conservation is scale-agnostic. The same flux-differencing logic applies to a 1D Sod shock tube and a billion-cell galaxy formation run — only the Riemann solver complexity and parallel mesh infrastructure change.
 
+The author's [CFD notes](https://hanfengzhai.github.io/file/CFD_note.pdf) begin from the Navier–Stokes equation in coordinate form — the same conservation-of-momentum story written before discretization. Part V does not rederive every constitutive closure for turbulence or combustion; it assumes you have seen the continuum equations once and asks how to **preserve** mass and momentum when the mesh is finite.
+
 ## Linear advection as the simplest conservation law
 
 Before Euler, consider \(U_t + a U_x = 0\) with constant speed \(a\). Here \(\mathbf{F}(U) = aU\). The integral update is
