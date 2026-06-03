@@ -2,7 +2,7 @@ name: mdBook
 
 on:
   push:
-    branches: [main, cursor/computational-mechanics-book-9ac1, cursor/computational-mechanics-book-2589, cursor/computational-mechanics-book-8ca8, cursor/computational-mechanics-book-e40e, cursor/computational-mechanics-book-92f8, cursor/computational-mechanics-book-954c, cursor/computational-mechanics-book-8630, cursor/computational-mechanics-book-37a4, cursor/computational-mechanics-book-af0a, cursor/computational-mechanics-book-49d4]
+    branches: [main, cursor/computational-mechanics-book-c5ac, cursor/computational-mechanics-book-9ac1, cursor/computational-mechanics-book-2589, cursor/computational-mechanics-book-8ca8, cursor/computational-mechanics-book-e40e, cursor/computational-mechanics-book-92f8, cursor/computational-mechanics-book-954c, cursor/computational-mechanics-book-8630, cursor/computational-mechanics-book-37a4, cursor/computational-mechanics-book-af0a, cursor/computational-mechanics-book-49d4]
   pull_request:
     branches: [main]
 
