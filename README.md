@@ -24,7 +24,7 @@ Build locally (see below) or open the rendered site once GitHub Pages is enabled
 | IX | Density functional theory |
 | Epilogue | Multiscale coupling |
 
-The table of contents lives in [`src/SUMMARY.md`](src/SUMMARY.md).
+The table of contents lives in [`src/SUMMARY.md`](src/SUMMARY.md). The narrative runs **prologue → Parts I–IX → epilogue** (33 chapters) with a recurring **copper wire** thread and **Bridge** sections at the end of each chapter (Functional Analysis Notes style).
 
 ## Source material
 
