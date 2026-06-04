@@ -18,6 +18,48 @@ In **conservative form** (compressible formulation), mass, momentum, and energy 
 
 **Reynolds number** \(\text{Re} = \rho U L / \mu\) measures inertial-to-viscous force ratio. Low Re: laminar, diffusion-dominated. High Re: turbulent, advection-dominated, stiff boundary layers. The copper wire in slow natural convection might be Re \(\sim 10^2\); a jet impinging on it might be Re \(\sim 10^4\)–\(10^5\), demanding turbulence modeling or LES.
 
+## Conservative vector formulation
+
+Production CFD codes often store a **conservative state vector** \(\mathbf{U}\) and flux vectors \(\mathbf{E}, \mathbf{F}, \mathbf{G}\) so that the Navier–Stokes system matches the FVM machinery of Chapters 1–3. In 2D, following the author's [CFD notes](https://hanfengzhai.github.io/file/CFD_note.pdf),
+
+\[
+\frac{\partial \mathbf{U}}{\partial t} + \frac{\partial \mathbf{E}}{\partial x} + \frac{\partial \mathbf{F}}{\partial y} = \frac{\partial \mathbf{E}_v}{\partial x} + \frac{\partial \mathbf{F}_v}{\partial y},
+\]
+
+with inviscid fluxes
+
+\[
+\mathbf{U} = \begin{bmatrix} \rho \\ \rho u \\ \rho v \\ \rho E \end{bmatrix}, \quad
+\mathbf{E} = \begin{bmatrix} \rho u \\ \rho u^2 + p \\ \rho u v \\ \rho u H \end{bmatrix}, \quad
+\mathbf{F} = \begin{bmatrix} \rho v \\ \rho u v \\ \rho v^2 + p \\ \rho v H \end{bmatrix},
+\]
+
+and viscous fluxes \(\mathbf{E}_v, \mathbf{F}_v\) built from stress components \(\sigma_{ij}\) and heat conduction \(-\kappa \partial T / \partial x_i\). For an ideal gas,
+
+\[
+p = \rho R T, \qquad \rho H = \rho E + p, \qquad E = \frac{R}{\gamma - 1},
+\]
+
+linking pressure, temperature, and total enthalpy \(H\). The inviscid part is hyperbolic — Riemann solvers from Chapter 3 apply face by face; the viscous part is parabolic — centered differences or implicit treatment as in Chapter 2 of Part V.
+
+This split is why CFD is naturally **operator splitting**: advection by upwind FVM, diffusion by implicit FEM-like stencils, pressure by elliptic Poisson. The copper wire's cooling air, discretized on a structured or unstructured mesh, advances \(\mathbf{U}\) with the same conservative update \(\dot{\mathbf{U}}\,\Delta V + \sum_f \mathbf{F}_f \cdot \mathbf{n}_f \,\Delta S_f = 0\) derived in Chapter 1 — only the flux definitions gain viscous and thermal terms.
+
+## Nondimensionalization and scaling
+
+The CFD notes emphasize that **reference scales** must be chosen before writing a solver. Variables are scaled by freestream or far-field values \([\rho]_\infty, [p]_\infty, [T]_\infty, [l]_\infty\), with velocity reference \([u] = \sqrt{[p]/[\rho]}\) (sound speed) and time \([t] = [l]/[u]\). Substituting \(\rho = \rho' [\rho]\), \(u = u' [u]\), etc., into the 1D viscous momentum equation yields
+
+\[
+\frac{\partial \rho' u'}{\partial t'} + \frac{M\sqrt{\gamma}}{\text{Re}} \frac{\partial^2 u'}{\partial x'^2} = 0,
+\]
+
+where \(\text{Re} = \rho_\infty u_\infty l_\infty / \mu_\infty\) and \(M = u_\infty / c\) is the Mach number. **One equation, two dimensionless groups** — the entire laminar–turbulent and compressible–incompressible landscape is encoded in Re and Ma.
+
+Practical consequences:
+
+- **Magnitude matching**: storing \(\rho \sim 1\) kg/m³ and \(p \sim 10^5\) Pa in the same array without scaling loses floating-point precision; nondimensionalization keeps all primed variables \(\mathcal{O}(1)\).
+- **Similitude**: a wind-tunnel experiment matches a full-scale wire in cross-flow when Re, Ma, Pr, and Gr (for buoyancy) coincide — not when raw velocities match.
+- **Code input decks**: OpenFOAM and SU2 expect reference values explicitly; botched unit conversion at this step is the most common multiscale workflow failure (see the prologue on units).
+
 ## Nondimensional groups and similitude
 
 CFD notes emphasize nondimensionalization:

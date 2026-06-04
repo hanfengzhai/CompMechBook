@@ -1,36 +1,42 @@
 # Writings source integration
 
-This directory holds canonical mdBook sources for every part of **Computational Mechanics**, following the **Functional Analysis Notes** layout (`book.toml`, numbered `chapters/`, **Bridge** sections). When the external [`Writings`](https://github.com/hanfengzhai/Writings) git submodule is linked, merge upstream changes here and re-run `scripts/sync-writings.sh`.
+This directory holds canonical markdown for **Computational Mechanics** (CompMechBook). It is structured for eventual linking as a [`Writings`](https://github.com/hanfengzhai/Writings) git submodule; until that remote is available, the full source tree is vendored here.
 
-## Layout
+## Layout (Functional Analysis Notes style)
+
+Each part is a standalone mdBook:
 
 ```
 writings/
-├── linear-algebra/          # Linear Algebra Notes (mdBook) → Part I
-│   └── chapters/01–04
-├── functional-analysis/     # Functional Analysis Notes (mdBook) → Part II
-│   └── chapters/01–05
-├── pde/                     # ME300B → Part III
-├── fem/                     # FEA notes → Part IV
-├── fvm/                     # FVM / CFD → Part V
-├── continuum/               # Elasticity → Part VI
-├── defects/                 # Defects & dislocations → Part VII
-├── md/                      # Atomistic modeling → Part VIII
-└── dft/                     # MSE 5720 → Part IX
+├── linear-algebra/          # Part I  — chapters 01–04
+├── functional-analysis/     # Part II — chapters 01–05
+├── pde/                     # Part III — chapters 01–04
+├── fem/                     # Part IV — chapters 01–05
+├── fvm/                     # Part V  — chapters 01–04
+├── continuum/               # Part VI — chapters 01–03
+├── defects/                 # Part VII — chapters 01–02
+├── md/                      # Part VIII — chapters 01–02
+└── dft/                     # Part IX — chapters 01–02
 ```
 
-Each subtree has `book.toml`, `chapters/SUMMARY.md`, and numbered markdown files. See [SUMMARY.md](./SUMMARY.md) for the full index.
+Every subtree contains:
+
+- `book.toml` — standalone mdBook configuration with MathJax
+- `chapters/SUMMARY.md` — table of contents
+- `chapters/NN-*.md` — numbered chapters with **Bridge** sections linking to the next part
 
 ## Integration workflow
 
-1. Add the submodule:
+1. Edit canonical chapters under `writings/<topic>/chapters/`.
+2. Sync into the main book:
 
    ```bash
-   git submodule add <Writings-repo-url> writings
-   git submodule update --init --recursive
+   chmod +x scripts/sync-writings.sh
+   ./scripts/sync-writings.sh
+   mdbook build
    ```
 
-2. Map numbered chapters to book parts (preserve `01`–`NN` prefixes):
+3. Chapter mapping (numbering preserved):
 
    | Writings path | Book destination |
    |---------------|------------------|
@@ -44,28 +50,25 @@ Each subtree has `book.toml`, `chapters/SUMMARY.md`, and numbered markdown files
    | `md/chapters/01–02` | `src/part08-md/` |
    | `dft/chapters/01–02` | `src/part09-dft/` |
 
-3. Merge strategy: prefer Writings content as canonical; retain book-specific **Bridge** sections and cross-links to Parts III–IV at the end of each chapter.
+4. Book-specific material (prologue, preface, epilogue, appendix) lives only in `src/`.
 
-4. Verify the build:
-
-   ```bash
-   mdbook build
-   ```
-
-## Canonical source workflow
-
-All parts are maintained as standalone mdBooks under `writings/` (Functional Analysis Notes style). The rendered narrative in `src/` is synced from these sources via `scripts/sync-writings.sh`. Book-specific **Bridge** sections at chapter ends may be edited in either location; re-run sync after updating canonical chapters.
-
-Sync canonical chapters into the main book with:
-
-```bash
-chmod +x scripts/sync-writings.sh
-./scripts/sync-writings.sh
-mdbook build
-```
-
-Build the standalone FA notes:
+## Build standalone notes
 
 ```bash
 cd writings/functional-analysis && mdbook build
+cd writings/linear-algebra && mdbook build
+# … any other subtree, or:
+./scripts/build-all-writings.sh
 ```
+
+## Submodule (future)
+
+When the remote repository is available:
+
+```bash
+git submodule add <Writings-repo-url> writings
+git submodule update --init --recursive
+./scripts/sync-writings.sh
+```
+
+See [SUMMARY.md](./SUMMARY.md) for the full index of subtrees.
