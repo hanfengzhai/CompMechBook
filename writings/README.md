@@ -1,6 +1,6 @@
 # Writings source integration
 
-This directory holds canonical mdBook sources for every part of **Computational Mechanics**, following the **Functional Analysis Notes** layout (`book.toml`, numbered `chapters/`, **Bridge** sections). When the external [`Writings`](https://github.com/hanfengzhai/Writings) git submodule is linked, merge upstream changes here and re-run `scripts/sync-writings.sh`.
+This directory holds canonical mdBook sources for every part of **Computational Mechanics**, following the **Functional Analysis Notes** layout (`book.toml`, numbered `chapters/`, **Bridge** sections). When the external [`Writings`](https://github.com/hanfengzhai/Writings) git submodule is linked, merge upstream changes here and re-run `scripts/sync-writings.sh`. Until that remote is available, the full source tree is vendored here.
 
 ## Layout
 
@@ -23,14 +23,16 @@ Each subtree has `book.toml`, `chapters/SUMMARY.md`, and numbered markdown files
 
 ## Integration workflow
 
-1. Add the submodule:
+1. Edit canonical chapters under `writings/<topic>/chapters/`.
+2. Sync into the main book:
 
    ```bash
-   git submodule add <Writings-repo-url> writings
-   git submodule update --init --recursive
+   chmod +x scripts/sync-writings.sh
+   ./scripts/sync-writings.sh
+   mdbook build
    ```
 
-2. Map numbered chapters to book parts (preserve `01`–`NN` prefixes):
+3. Map numbered chapters to book parts (preserve `01`–`NN` prefixes):
 
    | Writings path | Book destination |
    |---------------|------------------|
@@ -44,28 +46,29 @@ Each subtree has `book.toml`, `chapters/SUMMARY.md`, and numbered markdown files
    | `md/chapters/01–02` | `src/part08-md/` |
    | `dft/chapters/01–02` | `src/part09-dft/` |
 
-3. Merge strategy: prefer Writings content as canonical; retain book-specific **Bridge** sections and cross-links to Parts III–IV at the end of each chapter.
+4. Book-specific material (prologue, preface, epilogue, appendix) lives only in `src/`.
 
-4. Verify the build:
+5. Merge strategy: prefer Writings content as canonical; retain book-specific **Bridge** sections and cross-links when merging from upstream.
 
-   ```bash
-   mdbook build
-   ```
+6. Book-only pages (prologue, preface, epilogue, appendix) are not overwritten by sync.
 
 ## Canonical source workflow
 
-All parts are maintained as standalone mdBooks under `writings/` (Functional Analysis Notes style). The rendered narrative in `src/` is synced from these sources via `scripts/sync-writings.sh`. Book-specific **Bridge** sections at chapter ends may be edited in either location; re-run sync after updating canonical chapters.
+All parts are maintained as standalone mdBooks under `writings/` (Functional Analysis Notes style). The rendered narrative in `src/` is synced from these sources via `scripts/sync-writings.sh`. Re-run sync after editing canonical chapters under `writings/<topic>/chapters/`.
 
-Sync canonical chapters into the main book with:
-
-```bash
-chmod +x scripts/sync-writings.sh
-./scripts/sync-writings.sh
-mdbook build
-```
-
-Build the standalone FA notes:
+## Build standalone notes
 
 ```bash
 cd writings/functional-analysis && mdbook build
+./scripts/build-all-writings.sh   # all nine parts
+```
+
+## Submodule (future)
+
+When the remote repository is available:
+
+```bash
+git submodule add <Writings-repo-url> writings
+git submodule update --init --recursive
+./scripts/sync-writings.sh
 ```
