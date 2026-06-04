@@ -68,7 +68,7 @@ Pressure closes the system via an **equation of state** — for ideal gas, \(p =
 
 The PDE \(\partial \mathbf{U}/\partial t + \partial \mathbf{F}/\partial x = 0\) integrates to flux balance on each cell. **Shocks**, **contact discontinuities**, and **rarefaction waves** are weak solutions: the integral form holds everywhere, but classical derivatives do not exist on the shock surface.
 
-The author's [FVM notes](https://hanfengzhai.github.io/file/FVM_note.pdf) develop this system as the entry point to shock capturing — the CFD counterpart of patch tests in FEM.
+The author's [FVM notes](https://hanfengzhai.github.io/note/FVM.pdf) develop this system as the entry point to shock capturing — the CFD counterpart of patch tests in FEM.
 
 ## Connection to Part III
 
