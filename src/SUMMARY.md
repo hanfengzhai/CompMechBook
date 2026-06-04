@@ -21,6 +21,7 @@
 
 # Part II — Function Spaces
 
+- [Opening](./part02-functional-analysis/00-opening.md)
 - [Why Infinite Dimensions Appear in Mechanics](./part02-functional-analysis/01-motivation.md)
 - [Normed Spaces and Completeness](./part02-functional-analysis/02-normed-spaces.md)
 - [Inner Products and Hilbert Spaces](./part02-functional-analysis/03-hilbert-spaces.md)
@@ -67,6 +68,7 @@
 
 # Part VII — Defects and Dislocations
 
+- [Opening](./part07-defects/00-opening.md)
 - [Point, Line, and Surface Defects](./part07-defects/01-defect-taxonomy.md)
 - [Dislocation Dynamics and Strain Hardening](./part07-defects/02-dislocation-dynamics.md)
 

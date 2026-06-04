@@ -6,7 +6,9 @@ An mdBook-style narrative covering the mathematical and numerical foundations of
 
 ## Read online
 
-Build locally (see below) or open the rendered site once GitHub Pages is enabled.
+Build locally (see below) or open the rendered site once GitHub Pages is enabled on `main`.
+
+**Scope:** 31 numbered chapters (~10k lines of prose), prologue and epilogue, vendored `writings/` sources in Functional Analysis Notes layout (standalone mdBook per part, **Bridge** sections between chapters). Narrative thread: a copper wire under tension, cooling, and plastic deformation traced from linear algebra through DFT.
 
 ## Structure
 
