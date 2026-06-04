@@ -186,6 +186,20 @@ Example logic for Cu bulk modulus:
 
 Archive inputs, pseudopotential files, and commit hash of the code — reproducibility is non-negotiable in multiscale research.
 
+## Worked example: convergence before trusting bulk properties
+
+The [MSE 5720 DFT coursework](https://hanfengzhai.github.io/file/HW1_MSE5720.html) walks through a discipline every multiscale pipeline depends on: **do not report a lattice constant until energy, forces, cutoff, and k-mesh are converged independently**. The workflow transfers directly from a semiconductor homework crystal to fcc copper inputs for the wire's bulk interior.
+
+**Plane-wave cutoff.** Fix a modest k-mesh and scan `ecutwfc` (or equivalent \(E_{\text{cut}}\)) over a range — say 20–100 Ry in steps of 10 Ry for a zinc-blende tutorial system. Tabulate total energy per formula unit and plot successive differences \(|\Delta E|\) on a log scale. A practical stopping rule from the homework is \(|\Delta E| < 5\,\mathrm{meV}\) per formula unit between the chosen cutoff and the next higher one; for the BAs tutorial that occurred near 50 Ry, while force convergence on a displaced geometry sometimes demanded 40 Ry first.
+
+**k-point mesh.** With cutoff fixed at the converged value, sweep Monkhorst–Pack grids \(M \times M \times M\) (or the code's automatic k-list) and apply the same energy-difference criterion. Metals such as copper generally need denser sampling than wide-gap insulators because Fermi-surface integrals converge slowly — expect to revisit this step whenever the pseudopotential or smearing changes.
+
+**Forces on a displaced configuration.** Displace one atom slightly (e.g., \(+0.05\) in fractional \(z\)) and converge **forces** on that atom, not only total energy. A homework target of \(10\,\mathrm{meV}/\text{\AA}\) on the force translates to a threshold in Ry/Bohr; cutoff and k-mesh cross-talk is small but not zero, so the displaced-geometry test is the stricter gate before `relax` or `vc-relax`.
+
+**Lattice constant and bulk modulus.** Only then scan lattice parameter \(\pm 5\%\) around a guess, fit \(E(a)\) parabolically (or use `vc-relax` with `press=0`), and extract bulk modulus from \(B = V\,\partial^2 E / \partial V^2\) on an energy–volume curve. Compare to experiment and to **literature DFT using the same XC functional and pseudopotential family** — mixing LDA numbers with PBE calculations invalidates the error bars.
+
+This sequence is the same whether the output feeds an EAM fit for MD or an elastic tensor for FEM: unconverged SCF is structured noise; unconverged k-sampling is a smeared Fermi surface; unconverged forces are wrong relaxations. The epilogue's homogenization ladder starts here, with documented thresholds, not with a single `scf` run that "looks reasonable."
+
 ## Common failure modes
 
 | Symptom | Likely cause |
