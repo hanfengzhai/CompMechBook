@@ -33,8 +33,8 @@ Chapters synthesize the author's existing notes on [hanfengzhai.github.io](https
 ## Build
 
 ```bash
-# Install mdBook: https://github.com/rust-lang/mdBook/releases
-chmod +x scripts/sync-writings.sh scripts/build-all-writings.sh
+chmod +x scripts/install-mdbook.sh scripts/sync-writings.sh scripts/build-all-writings.sh
+./scripts/install-mdbook.sh   # or install mdBook manually
 ./scripts/sync-writings.sh   # refresh src/ from writings/
 mdbook build                 # output in book/
 mdbook serve                 # http://localhost:3000
