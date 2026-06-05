@@ -32,7 +32,7 @@ Chapters synthesize the author's existing notes on [hanfengzhai.github.io](https
 
 ## Scope
 
-Roughly **54,000 words** across **36 chapters** (prologue through epilogue), plus nine standalone Writings mdBooks under `writings/`. Each chapter ends with a **Bridge** section that hands off to the next topic, following the [Functional Analysis Notes](./writings/functional-analysis/) layout.
+Roughly **53,500 words** across **36 chapters** (prologue through epilogue), plus nine standalone Writings mdBooks under `writings/`. Each chapter ends with a **Bridge** section that hands off to the next topic, following the [Functional Analysis Notes](./writings/functional-analysis/) layout. The copper wire from the prologue reappears throughout as a narrative thread linking scales.
 
 ## Build
 
