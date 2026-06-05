@@ -96,7 +96,7 @@ The author's [MSE 5720 DFT coursework](https://github.com/hanfengzhai/MSE5720-HW
 
 ### Step 1: Converge cutoff and k-grid
 
-Fix geometry (experimental lattice constant initially). Sweep \(E_{\text{cut}}\) and k-mesh; plot total energy per atom vs. parameters. Choose the **smallest** settings where energy changes are below target tolerance (often 1 meV/atom for total energy, tighter for forces).
+Fix geometry (experimental lattice constant initially). Sweep \(E_{\text{cut}}\) (e.g., 20–100 Ry in 10 Ry steps, as in the [MSE 5720 HW1](https://hanfengzhai.github.io/file/HW1_MSE5720.html) BAs convergence study) and k-mesh; plot total energy per formula unit vs. parameters. Choose the **smallest** settings where the energy difference between successive cutoffs falls below about **5 meV/formula unit** — a practical absolute-energy criterion from that coursework. Tighten further for forces and elastic constants.
 
 Forces converge more slowly than energy — elastic constant calculations need tighter settings than coarse cohesive energy estimates.
 
