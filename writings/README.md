@@ -66,7 +66,15 @@ cd writings/linear-algebra && mdbook build
 When the remote repository is available:
 
 ```bash
-git submodule add <Writings-repo-url> writings
+./scripts/clone-writings.sh          # clone or update upstream Writings
+./scripts/sync-writings.sh           # copy chapters into src/
+mdbook build
+```
+
+Or link as a submodule (see commented `.gitmodules` at repo root):
+
+```bash
+git submodule add <Writings-repo-url> writings-upstream
 git submodule update --init --recursive
 ./scripts/sync-writings.sh
 ```

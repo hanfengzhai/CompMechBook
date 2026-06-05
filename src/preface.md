@@ -10,6 +10,35 @@ The chapters that follow are written to be read in order, like a novel with a pl
 
 The structure follows the arc of the author's personal notes — linear algebra and functional analysis as foundations, partial differential equations and weak forms as the bridge to discretization, finite elements and finite volumes as the two great discretization philosophies for solids and fluids, and atomistic and electronic methods as the descent to finer scales. Each part ends with a short bridge section that explains why the next scale is necessary.
 
+```mermaid
+flowchart TB
+  subgraph foundations["Foundations"]
+    I[Part I: Linear algebra]
+    II[Part II: Functional analysis]
+    III[Part III: PDEs and weak forms]
+  end
+  subgraph discretize["Discretization"]
+    IV[Part IV: Finite elements]
+    V[Part V: Finite volumes and CFD]
+  end
+  subgraph physics["Continuum physics"]
+    VI[Part VI: Continuum mechanics]
+  end
+  subgraph finer["Finer scales"]
+    VII[Part VII: Defects and DDD]
+    VIII[Part VIII: Molecular dynamics]
+    IX[Part IX: DFT]
+  end
+  I --> II --> III --> IV
+  III --> V
+  IV --> VI
+  V --> VI
+  VI --> VII --> VIII --> IX
+  IX --> E[Epilogue: Multiscale coupling]
+```
+
+Read straight through from the prologue to the epilogue. Parts IV and V can be swapped if you already know FEM and want CFD first; Part VI then unifies the stress–balance language both discretizations approximate. Parts VII–IX are best read after the continuum vocabulary of Part VI, because dislocation, atomistic, and electronic models explain where continuum parameters originate.
+
 ## Source material
 
 The prose synthesizes course notes, teaching materials, and research experience collected over several years. Primary written sources include:
