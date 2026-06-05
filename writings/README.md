@@ -71,4 +71,4 @@ git submodule update --init --recursive
 ./scripts/sync-writings.sh
 ```
 
-Prefer upstream Writings content as canonical; retain book-specific **Bridge** sections and cross-links when merging.
+See [SUMMARY.md](./SUMMARY.md) for the full index of subtrees.
