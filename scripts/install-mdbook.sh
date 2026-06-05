@@ -18,7 +18,7 @@ if command -v sudo >/dev/null 2>&1 && [[ -w /usr/local/bin ]]; then
 elif mkdir -p "${HOME}/.local/bin" 2>/dev/null; then
   install -m 0755 "$bin" "${HOME}/.local/bin/mdbook"
   echo "Installed mdbook to ${HOME}/.local/bin/mdbook"
-  echo "Ensure ${HOME}/.local/bin is on your PATH."
+  export PATH="${HOME}/.local/bin:${PATH}"
 else
   echo "Could not install mdbook; copy manually from $bin"
   exit 1
