@@ -16,6 +16,7 @@ on:
       - cursor/computational-mechanics-book-dc02
       - cursor/computational-mechanics-book-70e1
       - cursor/computational-mechanics-book-d640
+      - cursor/computational-mechanics-book-d3ea
   pull_request:
     branches: [main]
 
