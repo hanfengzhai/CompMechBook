@@ -14,4 +14,4 @@ Canonical markdown sources for **Computational Mechanics** (CompMechBook). Each 
 | [`md/`](./md/) | Part VIII — Atomistic Simulation | Present (mdBook) |
 | [`dft/`](./dft/) | Part IX — Electronic Structure | Present (mdBook) |
 
-When `Writings.git` is linked as a git submodule, replace this vendored tree with the remote repository and re-run the sync script.
+The vendored tree mirrors the intended `Writings.git` submodule layout. When the remote repository is linked, replace this directory with the submodule and re-run `./scripts/sync-writings.sh` — chapter numbering and **Bridge** sections stay the same.

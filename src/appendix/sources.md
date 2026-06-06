@@ -1,6 +1,6 @@
 # Sources and Further Reading
 
-This book synthesizes material from the author's notes, coursework, and teaching. When `Writings.git` is linked to the repository, additional source files — including the Functional Analysis Notes — will be merged as canonical chapter sources.
+This book synthesizes material from the author's notes, coursework, and teaching. Canonical chapter markdown lives in [`writings/`](../writings/) — nine standalone mdBooks in the **Functional Analysis Notes** layout (see [`writings/README.md`](../writings/README.md)). Run `./scripts/sync-writings.sh` to copy them into `src/`. When the external `Writings.git` submodule is linked, that directory becomes the upstream; the sync workflow stays the same.
 
 ## Primary notes (hanfengzhai.github.io)
 
@@ -66,11 +66,11 @@ Output appears in `book/`. CI can publish to GitHub Pages on merge to `main`.
 
 ## Contributing
 
-When integrating `Writings.git`:
+1. Edit canonical chapters under `writings/<topic>/chapters/` (Functional Analysis Notes style).
+2. Run `./scripts/sync-writings.sh` to refresh `src/`.
+3. Run `mdbook build` to verify cross-links and MathJax rendering.
+4. Preserve chapter numbering (`01`–`NN`) and **Bridge** sections at chapter ends.
 
-1. Add as a git submodule at `writings/`
-2. Map existing note paths to `src/` chapters via symlinks or include macros
-3. Preserve the Functional Analysis Notes chapter numbering in Part II
-4. Run `mdbook build` to verify cross-links
+When the external `Writings.git` submodule is available, replace the vendored `writings/` tree with the submodule and keep the same sync script.
 
 Pull requests that improve narrative flow, fix errors, or add worked examples are welcome at [CompMechBook](https://github.com/hanfengzhai/CompMechBook).

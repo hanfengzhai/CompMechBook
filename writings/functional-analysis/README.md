@@ -1,6 +1,6 @@
 # Functional Analysis Notes
 
-Canonical markdown for **Part II — Function Spaces**, aligned with the author's functional-analysis lecture notes and the weak-form theory used in ME 300B / FEA coursework.
+Canonical markdown for **Part II — Function Spaces**, the template layout for all Writings subtrees and the mathematical foundation for weak forms, Galerkin FEM, and convergence analysis in CompMechBook.
 
 ## Layout (Functional Analysis Notes style)
 
@@ -16,7 +16,7 @@ functional-analysis/
 │   └── 05-spectral-theorem.md
 ```
 
-Chapter numbering `01`–`05` matches `src/part02-functional-analysis/` in CompMechBook. Bridge sections at the end of each chapter connect the narrative to PDEs (Part III) and the Galerkin theory of FEM (Part IV). Chapter 01 opens with the copper-wire thread from the CompMechBook prologue.
+Chapter numbering `01`–`05` matches `src/part02-functional-analysis/` in CompMechBook. Each chapter ends with a **Bridge** section that connects the narrative to the next topic — from function spaces to PDE weak forms in Part III.
 
 ## Build standalone
 
