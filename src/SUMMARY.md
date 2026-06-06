@@ -67,6 +67,7 @@
 
 # Part VII — Defects and Dislocations
 
+- [Part VII Opening — Descending to the Mesoscale](./part07-defects/00-opening.md)
 - [Point, Line, and Surface Defects](./part07-defects/01-defect-taxonomy.md)
 - [Dislocation Dynamics and Strain Hardening](./part07-defects/02-dislocation-dynamics.md)
 
