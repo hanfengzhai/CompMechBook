@@ -33,9 +33,18 @@ Chapters synthesize the author's existing notes on [hanfengzhai.github.io](https
 ## Build
 
 ```bash
-# Install mdBook: https://github.com/rust-lang/mdBook/releases
-mdbook build        # output in book/
-mdbook serve        # http://localhost:3000
+./scripts/install-mdbook.sh   # once: installs mdBook to ~/.local/bin
+export PATH="$HOME/.local/bin:$PATH"
+
+mdbook build                  # output in book/
+mdbook serve                  # http://localhost:3000
+
+# Sync canonical Writings chapters into src/, then rebuild
+./scripts/sync-writings.sh
+mdbook build
+
+# Build every standalone mdBook under writings/
+./scripts/build-all-writings.sh
 ```
 
 ## License
