@@ -32,7 +32,7 @@ Chapters synthesize the author's existing notes on [hanfengzhai.github.io](https
 
 ## Scope
 
-Roughly **54,000 words** across **36 chapters** (prologue through epilogue), plus nine standalone Writings mdBooks under `writings/`. Each chapter ends with a **Bridge** section that hands off to the next topic, following the [Functional Analysis Notes](./writings/functional-analysis/) layout.
+Roughly **56,000 words** across **45 sections** (preface, prologue, nine part openings, 31 numbered chapters, epilogue, appendix), plus nine standalone Writings mdBooks under `writings/`. Each numbered chapter and part opening ends with a **Bridge** section that hands off to the next topic, following the [Functional Analysis Notes](./writings/functional-analysis/) layout.
 
 ## Build
 
