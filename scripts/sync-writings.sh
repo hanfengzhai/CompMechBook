@@ -38,31 +38,40 @@ sync_part() {
   done
 }
 
-# Part I: Linear Algebra Notes (01–04)
+# Part I: Linear Algebra Notes (00 opening, 01–04)
+sync_file "$ROOT/writings/linear-algebra/chapters/00-opening.md" "$ROOT/src/part01-linear-algebra/00-opening.md"
 sync_part "$ROOT/writings/linear-algebra/chapters" "$ROOT/src/part01-linear-algebra" 01 02 03 04
 
-# Part II: Functional Analysis Notes (01–05)
+# Part II: Functional Analysis Notes (00 opening, 01–05)
+sync_file "$ROOT/writings/functional-analysis/chapters/00-opening.md" "$ROOT/src/part02-functional-analysis/00-opening.md"
 sync_part "$ROOT/writings/functional-analysis/chapters" "$ROOT/src/part02-functional-analysis" 01 02 03 04 05
 
-# Part III: PDE Notes (01–04)
+# Part III: PDE Notes (00 opening, 01–04)
+sync_file "$ROOT/writings/pde/chapters/00-opening.md" "$ROOT/src/part03-pdes/00-opening.md"
 sync_part "$ROOT/writings/pde/chapters" "$ROOT/src/part03-pdes" 01 02 03 04
 
-# Part IV: FEM Notes (01–05)
+# Part IV: FEM Notes (00 opening, 01–05)
+sync_file "$ROOT/writings/fem/chapters/00-opening.md" "$ROOT/src/part04-fem/00-opening.md"
 sync_part "$ROOT/writings/fem/chapters" "$ROOT/src/part04-fem" 01 02 03 04 05
 
-# Part V: FVM Notes (01–04)
+# Part V: FVM Notes (00 opening, 01–04)
+sync_file "$ROOT/writings/fvm/chapters/00-opening.md" "$ROOT/src/part05-fvm/00-opening.md"
 sync_part "$ROOT/writings/fvm/chapters" "$ROOT/src/part05-fvm" 01 02 03 04
 
-# Part VI: Continuum Mechanics Notes (01–03)
+# Part VI: Continuum Mechanics Notes (00 opening, 01–03)
+sync_file "$ROOT/writings/continuum/chapters/00-opening.md" "$ROOT/src/part06-continuum/00-opening.md"
 sync_part "$ROOT/writings/continuum/chapters" "$ROOT/src/part06-continuum" 01 02 03
 
-# Part VII: Defects Notes (01–02)
+# Part VII: Defects Notes (00 opening, 01–02)
+sync_file "$ROOT/writings/defects/chapters/00-opening.md" "$ROOT/src/part07-defects/00-opening.md"
 sync_part "$ROOT/writings/defects/chapters" "$ROOT/src/part07-defects" 01 02
 
-# Part VIII: MD Notes (01–02)
+# Part VIII: MD Notes (00 opening, 01–02)
+sync_file "$ROOT/writings/md/chapters/00-opening.md" "$ROOT/src/part08-md/00-opening.md"
 sync_part "$ROOT/writings/md/chapters" "$ROOT/src/part08-md" 01 02
 
-# Part IX: DFT Notes (01–02)
+# Part IX: DFT Notes (00 opening, 01–02)
+sync_file "$ROOT/writings/dft/chapters/00-opening.md" "$ROOT/src/part09-dft/00-opening.md"
 sync_part "$ROOT/writings/dft/chapters" "$ROOT/src/part09-dft" 01 02
 
 echo "Done. Run 'mdbook build' from repo root to verify."
