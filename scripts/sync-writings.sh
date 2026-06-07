@@ -21,10 +21,16 @@ sync_file() {
   fi
 }
 
+sync_opening() {
+  local src_dir="$1" dst_dir="$2"
+  sync_file "$src_dir/00-opening.md" "$dst_dir/00-opening.md"
+}
+
 sync_part() {
   local src_dir="$1" dst_dir="$2"
   shift 2
   local numbers=("$@")
+  sync_opening "$src_dir" "$dst_dir"
   for n in "${numbers[@]}"; do
     local src_file
     src_file="$(ls "$src_dir"/${n}-*.md 2>/dev/null | head -1 || true)"
