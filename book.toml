@@ -1,0 +1,16 @@
+[book]
+authors = ["Hanfeng Zhai"]
+language = "en"
+src = "src"
+title = "From Vectors to Atoms: Computational Mechanics"
+
+[output.html]
+fold = { enable = true }
+no-section-label = true
+git-repository-url = "https://github.com/hanfengzhai/CompMechBook"
+edit-url-template = "https://github.com/hanfengzhai/CompMechBook/edit/cursor/computational-mechanics-book-09b6/{path}"
+mathjax-support = true
+
+# Optional: install mdbook-katex for faster math rendering
+# [preprocessor.katex]
+# after = ["links"]
