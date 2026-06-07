@@ -24,5 +24,14 @@ trap 'rm -rf "$tmpdir"' EXIT
 
 echo "Downloading ${URL}"
 curl -sSL "$URL" | tar -xz -C "$tmpdir"
-install -m 755 "$tmpdir/mdbook" "$INSTALL_DIR/mdbook"
-echo "Installed $(mdbook --version) to ${INSTALL_DIR}/mdbook"
+
+if install -m 755 "$tmpdir/mdbook" "$INSTALL_DIR/mdbook" 2>/dev/null; then
+  :
+else
+  INSTALL_DIR="${MDBOOK_INSTALL_DIR:-${HOME}/.local/bin}"
+  mkdir -p "$INSTALL_DIR"
+  install -m 755 "$tmpdir/mdbook" "$INSTALL_DIR/mdbook"
+  echo "Note: add ${INSTALL_DIR} to PATH if mdbook is not found" >&2
+fi
+
+echo "Installed $("$INSTALL_DIR/mdbook" --version) to ${INSTALL_DIR}/mdbook"
