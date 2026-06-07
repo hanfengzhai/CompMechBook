@@ -209,6 +209,6 @@ DFT will never simulate the whole wire. It **anchors** the ladder:
 
 The intellectual chain from electrons to engineering design passes through these numbers — each with documented convergence and stated functional choice.
 
-## Bridge to the epilogue
+## Bridge
 
-We began with a copper wire and asked how each scale describes it. DFT explains cohesion; MD explains thermal motion and fracture; DDD explains work hardening; FEM explains bending; CFD explains cooling fluid around a heated conductor. Multiscale computational mechanics is the craft of making those descriptions **converse** — sequentially, concurrently, and with quantified uncertainty. The epilogue gathers the coupling paradigms that complete the story.
+The Kohn–Sham equations are the theory; Quantum ESPRESSO inputs and convergence sweeps are the practice. The next chapter walks through reproducible DFT workflows — cutoff and k-mesh convergence, relaxation, equations of state, bands and phonons, defect supercells — using the MSE 5720 homework archive as a template. Those workflows produce the numbers that Parts VI–VIII import before the epilogue asks how to couple them.

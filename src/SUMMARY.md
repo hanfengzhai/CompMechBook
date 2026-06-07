@@ -68,6 +68,7 @@
 - [Kinematics: How Bodies Move and Deform](./part06-continuum/01-kinematics.md)
 - [Stress, Balance Laws, and Constitutive Relations](./part06-continuum/02-stress-balance.md)
 - [Variational Elasticity and Nonlinear Extensions](./part06-continuum/03-variational-elasticity.md)
+- [Nonlinear Elasticity and the Onset of Plasticity](./part06-continuum/04-nonlinear-plasticity-preview.md)
 
 ---
 
@@ -92,6 +93,7 @@
 - [Opening](./part09-dft/00-opening.md)
 - [Born–Oppenheimer and the Hohenberg–Kohn Theorems](./part09-dft/01-born-oppenheimer.md)
 - [Kohn–Sham DFT: Equations, Convergence, and Practice](./part09-dft/02-kohn-sham.md)
+- [DFT Workflows: From Input Files to Multiscale Numbers](./part09-dft/03-dft-workflows.md)
 
 ---
 

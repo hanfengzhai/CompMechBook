@@ -18,10 +18,10 @@ Build locally (see below) or open the rendered site once GitHub Pages is enabled
 | III | PDEs & weak forms |
 | IV | Finite element method |
 | V | Finite volume method & CFD |
-| VI | Continuum mechanics |
+| VI | Continuum mechanics (incl. nonlinear plasticity preview) |
 | VII | Defects & dislocation dynamics |
 | VIII | Molecular dynamics |
-| IX | Density functional theory |
+| IX | Density functional theory (incl. QE workflows) |
 | Epilogue | Multiscale coupling |
 
 The table of contents lives in [`src/SUMMARY.md`](src/SUMMARY.md).
@@ -32,7 +32,7 @@ Chapters synthesize the author's existing notes on [hanfengzhai.github.io](https
 
 ## Scope
 
-Roughly **105,000 words** across **45 sections** (prologue, nine part openings, 36 chapters, epilogue), plus nine standalone Writings mdBooks under `writings/`. Each part opens with a short framing chapter; each numbered chapter ends with a **Bridge** section that hands off to the next topic, following the [Functional Analysis Notes](./writings/functional-analysis/) layout.
+Roughly **112,000 words** across **47 sections** (prologue, nine part openings, 38 chapters, epilogue), plus nine standalone Writings mdBooks under `writings/`. Each part opens with a short framing chapter; each numbered chapter ends with a **Bridge** section that hands off to the next topic, following the [Functional Analysis Notes](./writings/functional-analysis/) layout.
 
 ## Build
 

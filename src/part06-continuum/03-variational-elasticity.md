@@ -148,4 +148,4 @@ The prologue's copper wire: DFT gives cohesion; MD gives thermal motion; DDD giv
 
 ## Bridge
 
-Defects are where the continuum picture admits its limitations — and where mesoscale models take over. Crack tips, dislocation lines, and grain boundaries are not nuisances to mesh around forever; they are the physical mechanisms behind yield, fracture, and work hardening in the copper wire. Part VII begins that descent: defect taxonomy, dislocation dynamics, and the models that replace singular continuum fields with structured mesoscale physics.
+Variational elasticity explains conservative, path-independent response — the elastic springback of a copper wire before yield. The next chapter asks what changes when strains are large and when history matters: geometric nonlinearity, J₂ plasticity, and the Newton–Raphson loops that nonlinear FEM codes run at every load increment. That is the last continuum stop before defects take the stage in Part VII.
