@@ -21,6 +21,7 @@ on:
       - cursor/computational-mechanics-book-fed0
       - cursor/computational-mechanics-book-0cfa
       - cursor/computational-mechanics-book-4158
+      - cursor/computational-mechanics-book-bb15
   pull_request:
     branches: [main]
 
