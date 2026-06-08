@@ -187,6 +187,8 @@ The copper wire is still under tension — mechanical, electrical, intellectual.
 
 The wire does not care which chapter we finished last. It responds to physics. Our craft is to make that physics computable, connected, and credible.
 
----
+## Bridge
 
-*Continue with the [Sources appendix](../appendix/sources.md) for references to the underlying notes and repositories.*
+The story began in the prologue with one material at many scales. It ends here with the discipline of connecting those scales in practice. If you need to revisit a rung — linear algebra in Part I, weak forms in Part III, assembly in Part IV, Riemann fluxes in Part V, dislocation mobility in Part VII, thermostats in Part VIII, or SCF mixing in Part IX — each part is written to stand alone while remaining a chapter in the same book. Canonical source markdown for every numbered chapter lives under [`writings/`](../writings/) in the Functional Analysis Notes layout; run `./scripts/sync-writings.sh` after editing those sources to refresh `src/`.
+
+For the PDF notes, coursework repositories, and standard textbooks that ground each part, continue to the [Sources appendix](../appendix/sources.md). The ladder does not end with a closing sentence — it ends when you pick a scale, ask the four questions from the prologue, and know which equations, discretization, and upward exports make the answer credible.

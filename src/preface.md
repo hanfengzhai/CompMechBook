@@ -6,6 +6,8 @@ When we write a finite element code, we solve a linear system assembled from loc
 
 The chapters that follow are written to be read in order, like a novel with a plot. A copper wire under tension, a turbulent jet, a dislocation network in a crystal, and the electrons that bind the atoms together are not separate homework problems. They are scenes in one story. The mathematics is the thread that stitches them together.
 
+Each numbered chapter ends with a **Bridge** section — the same convention as the [Functional Analysis Notes](./writings/functional-analysis/) under `writings/`. Bridges are not summaries; they are handoffs. They tell you what problem the next chapter must solve and why the copper wire (or your own specimen) demands it. Part openings frame the rung you are about to climb; the epilogue closes the loop on multiscale coupling.
+
 ## How this book is organized
 
 The structure follows the arc of the author's personal notes — linear algebra and functional analysis as foundations, partial differential equations and weak forms as the bridge to discretization, finite elements and finite volumes as the two great discretization philosophies for solids and fluids, and atomistic and electronic methods as the descent to finer scales. Each part ends with a short bridge section that explains why the next scale is necessary.
