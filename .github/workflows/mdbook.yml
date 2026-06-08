@@ -20,6 +20,7 @@ on:
       - cursor/computational-mechanics-book-4ddc
       - cursor/computational-mechanics-book-fed0
       - cursor/computational-mechanics-book-5526
+      - cursor/computational-mechanics-book-bfab
   pull_request:
     branches: [main]
 
