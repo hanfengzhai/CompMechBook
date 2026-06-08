@@ -4,6 +4,20 @@ At a discontinuity, pointwise PDEs fail but integral conservation holds. The fin
 
 The Sod shock tube — a diaphragm separating high- and low-pressure gas, ruptured at \(t = 0\) — is the canonical verification problem in the author's [FVM notes](https://hanfengzhai.github.io/note/FVM.pdf). It is to CFD what the patch test is to FEM: if your code fails Sod, nothing else matters.
 
+## FVM in the wild: from shock tubes to galaxy formation
+
+The same Riemann-flux machinery that verifies Sod's shock tube also powers cosmological hydrodynamics. The **Illustris** and **IllustrisTNG** projects simulate galaxy formation with magnetohydrodynamics on moving Voronoi meshes (the AREPO code). Each timestep follows a familiar pipeline: update primitive variables, compute gradients, accumulate face fluxes, advance conserved quantities — the structure of our 1D update, except the mesh moves with the gas and the physics adds gravity, radiative cooling, and star formation.
+
+This is worth remembering when the copper wire feels small. Conservation laws on control volumes are **scale-agnostic**: a shock tube in a laboratory, a cooling jet around a heated wire, and a supersonic outflow in a forming galaxy all ask the same local question — *what flux passes through this face given the states on either side?*
+
+The author's FVM notes summarize the method's practical tradeoffs, which reappear at every scale:
+
+| Strength | Limitation |
+|----------|------------|
+| Natural on unstructured meshes | High-order extensions require limiters and wider stencils |
+| Enforces local conservation cell by cell | Integral (weak) form is the right one for non-smooth solutions |
+| Upwind bias captures wave propagation | Positivity and entropy fixes need care near strong shocks |
+
 ## The Riemann problem
 
 Given left and right constant states \(U_L, U_R\) separated by a face at \(x = 0\), the **Riemann problem** solves
