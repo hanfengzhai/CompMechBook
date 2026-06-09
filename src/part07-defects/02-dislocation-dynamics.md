@@ -149,4 +149,4 @@ The copper wire's cold-worked strength is, in part, a snapshot of step 4 frozen 
 
 ## Bridge
 
-Dislocations are lines of missing registry in a lattice — but atoms still matter at the core. Molecular dynamics resolves core structure, stacking-fault energies, and mobility laws that DDD calibrates against. When bonds break at a crack tip in the wire, we leave line-defect elasticity entirely and descend to atoms — Part VIII.
+Single-crystal DDD explains how lines move, multiply, and harden a crystal — but the copper wire is polycrystalline and structural models speak crystal plasticity and FEM, not segment networks alone. The next chapter follows how DDD statistics export upward to constitutive laws and where Peierls barriers and grain boundaries still demand finer-scale input.

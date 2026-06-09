@@ -77,6 +77,7 @@
 - [Opening](./part07-defects/00-opening.md)
 - [Point, Line, and Surface Defects](./part07-defects/01-defect-taxonomy.md)
 - [Dislocation Dynamics and Strain Hardening](./part07-defects/02-dislocation-dynamics.md)
+- [From DDD to Crystal Plasticity and FEM](./part07-defects/03-polycrystal-and-fem-handoff.md)
 
 ---
 
@@ -85,6 +86,7 @@
 - [Opening](./part08-md/00-opening.md)
 - [Interatomic Potentials and Phase Space](./part08-md/01-potentials-phase-space.md)
 - [Ensembles, Integrators, and Practical Molecular Dynamics](./part08-md/02-ensembles-integrators.md)
+- [Ab Initio MD, Coarse-Graining, and the Ladder Upward](./part08-md/03-ab-initio-and-coarse-graining.md)
 
 ---
 

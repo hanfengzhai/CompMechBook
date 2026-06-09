@@ -14,8 +14,8 @@ writings/
 ├── fem/                     # Part IV — opening + chapters 01–05
 ├── fvm/                     # Part V  — opening + chapters 01–04
 ├── continuum/               # Part VI — opening + chapters 01–04
-├── defects/                 # Part VII — opening + chapters 01–02
-├── md/                      # Part VIII — opening + chapters 01–02
+├── defects/                 # Part VII — opening + chapters 01–03
+├── md/                      # Part VIII — opening + chapters 01–03
 └── dft/                     # Part IX — opening + chapters 01–03
 ```
 
@@ -47,8 +47,8 @@ Every subtree contains:
    | `fem/chapters/00, 01–05` | `src/part04-fem/` |
    | `fvm/chapters/00, 01–04` | `src/part05-fvm/` |
    | `continuum/chapters/00, 01–04` | `src/part06-continuum/` |
-   | `defects/chapters/00, 01–02` | `src/part07-defects/` |
-   | `md/chapters/00, 01–02` | `src/part08-md/` |
+   | `defects/chapters/00, 01–03` | `src/part07-defects/` |
+   | `md/chapters/00, 01–03` | `src/part08-md/` |
    | `dft/chapters/00, 01–03` | `src/part09-dft/` |
 
 4. Book-specific material (prologue, preface, epilogue, appendix) lives only in `src/`.
