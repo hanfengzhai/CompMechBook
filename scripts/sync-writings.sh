@@ -21,10 +21,16 @@ sync_file() {
   fi
 }
 
+sync_opening() {
+  local src_dir="$1" dst_dir="$2"
+  sync_file "$src_dir/00-opening.md" "$dst_dir/00-opening.md"
+}
+
 sync_part() {
   local src_dir="$1" dst_dir="$2"
   shift 2
   local numbers=("$@")
+  sync_opening "$src_dir" "$dst_dir"
   for n in "${numbers[@]}"; do
     local src_file
     src_file="$(ls "$src_dir"/${n}-*.md 2>/dev/null | head -1 || true)"
@@ -53,8 +59,8 @@ sync_part "$ROOT/writings/fem/chapters" "$ROOT/src/part04-fem" 01 02 03 04 05
 # Part V: FVM Notes (01–04)
 sync_part "$ROOT/writings/fvm/chapters" "$ROOT/src/part05-fvm" 01 02 03 04
 
-# Part VI: Continuum Mechanics Notes (01–03)
-sync_part "$ROOT/writings/continuum/chapters" "$ROOT/src/part06-continuum" 01 02 03
+# Part VI: Continuum Mechanics Notes (01–04)
+sync_part "$ROOT/writings/continuum/chapters" "$ROOT/src/part06-continuum" 01 02 03 04
 
 # Part VII: Defects Notes (01–02)
 sync_part "$ROOT/writings/defects/chapters" "$ROOT/src/part07-defects" 01 02
@@ -62,7 +68,7 @@ sync_part "$ROOT/writings/defects/chapters" "$ROOT/src/part07-defects" 01 02
 # Part VIII: MD Notes (01–02)
 sync_part "$ROOT/writings/md/chapters" "$ROOT/src/part08-md" 01 02
 
-# Part IX: DFT Notes (01–02)
-sync_part "$ROOT/writings/dft/chapters" "$ROOT/src/part09-dft" 01 02
+# Part IX: DFT Notes (01–03)
+sync_part "$ROOT/writings/dft/chapters" "$ROOT/src/part09-dft" 01 02 03
 
 echo "Done. Run 'mdbook build' from repo root to verify."

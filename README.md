@@ -18,10 +18,10 @@ Build locally (see below) or open the rendered site once GitHub Pages is enabled
 | III | PDEs & weak forms |
 | IV | Finite element method |
 | V | Finite volume method & CFD |
-| VI | Continuum mechanics |
+| VI | Continuum mechanics (incl. nonlinear plasticity preview) |
 | VII | Defects & dislocation dynamics |
 | VIII | Molecular dynamics |
-| IX | Density functional theory |
+| IX | Density functional theory (incl. QE workflows) |
 | Epilogue | Multiscale coupling |
 
 The table of contents lives in [`src/SUMMARY.md`](src/SUMMARY.md).
@@ -30,11 +30,15 @@ The table of contents lives in [`src/SUMMARY.md`](src/SUMMARY.md).
 
 Chapters synthesize the author's existing notes on [hanfengzhai.github.io](https://hanfengzhai.github.io/note.html) and related repositories. Canonical source markdown lives under [`writings/`](./writings/) in Functional Analysis Notes style (one mdBook per part). Run `./scripts/sync-writings.sh` to refresh `src/` from those sources.
 
+## Scope
+
+Roughly **60,000 words** across **47 sections** (prologue, nine part openings, 38 chapters, epilogue), plus nine standalone Writings mdBooks under `writings/`. Each part opens with a short framing chapter; each numbered chapter ends with a **Bridge** section that hands off to the next topic, following the [Functional Analysis Notes](./writings/functional-analysis/) layout.
+
 ## Build
 
 ```bash
-# Install mdBook: https://github.com/rust-lang/mdBook/releases
-chmod +x scripts/sync-writings.sh scripts/build-all-writings.sh
+chmod +x scripts/install-mdbook.sh scripts/sync-writings.sh scripts/build-all-writings.sh
+./scripts/install-mdbook.sh   # optional; or use your package manager
 ./scripts/sync-writings.sh   # refresh src/ from writings/
 mdbook build                 # output in book/
 mdbook serve                 # http://localhost:3000

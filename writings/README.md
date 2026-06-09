@@ -8,21 +8,22 @@ Each part is a standalone mdBook:
 
 ```
 writings/
-├── linear-algebra/          # Part I  — chapters 01–04
-├── functional-analysis/     # Part II — chapters 01–05
-├── pde/                     # Part III — chapters 01–04
-├── fem/                     # Part IV — chapters 01–05
-├── fvm/                     # Part V  — chapters 01–04
-├── continuum/               # Part VI — chapters 01–03
-├── defects/                 # Part VII — chapters 01–02
-├── md/                      # Part VIII — chapters 01–02
-└── dft/                     # Part IX — chapters 01–02
+├── linear-algebra/          # Part I  — opening + chapters 01–04
+├── functional-analysis/     # Part II — opening + chapters 01–05
+├── pde/                     # Part III — opening + chapters 01–04
+├── fem/                     # Part IV — opening + chapters 01–05
+├── fvm/                     # Part V  — opening + chapters 01–04
+├── continuum/               # Part VI — opening + chapters 01–04
+├── defects/                 # Part VII — opening + chapters 01–02
+├── md/                      # Part VIII — opening + chapters 01–02
+└── dft/                     # Part IX — opening + chapters 01–03
 ```
 
 Every subtree contains:
 
 - `book.toml` — standalone mdBook configuration with MathJax
 - `chapters/SUMMARY.md` — table of contents
+- `chapters/00-opening.md` — part framing (synced to `src/partNN-*/00-opening.md`)
 - `chapters/NN-*.md` — numbered chapters with **Bridge** sections linking to the next part
 
 ## Integration workflow
@@ -40,15 +41,15 @@ Every subtree contains:
 
    | Writings path | Book destination |
    |---------------|------------------|
-   | `linear-algebra/chapters/01–04` | `src/part01-linear-algebra/` |
-   | `functional-analysis/chapters/01–05` | `src/part02-functional-analysis/` |
-   | `pde/chapters/01–04` | `src/part03-pdes/` |
-   | `fem/chapters/01–05` | `src/part04-fem/` |
-   | `fvm/chapters/01–04` | `src/part05-fvm/` |
-   | `continuum/chapters/01–03` | `src/part06-continuum/` |
-   | `defects/chapters/01–02` | `src/part07-defects/` |
-   | `md/chapters/01–02` | `src/part08-md/` |
-   | `dft/chapters/01–02` | `src/part09-dft/` |
+   | `linear-algebra/chapters/00, 01–04` | `src/part01-linear-algebra/` |
+   | `functional-analysis/chapters/00, 01–05` | `src/part02-functional-analysis/` |
+   | `pde/chapters/00, 01–04` | `src/part03-pdes/` |
+   | `fem/chapters/00, 01–05` | `src/part04-fem/` |
+   | `fvm/chapters/00, 01–04` | `src/part05-fvm/` |
+   | `continuum/chapters/00, 01–04` | `src/part06-continuum/` |
+   | `defects/chapters/00, 01–02` | `src/part07-defects/` |
+   | `md/chapters/00, 01–02` | `src/part08-md/` |
+   | `dft/chapters/00, 01–03` | `src/part09-dft/` |
 
 4. Book-specific material (prologue, preface, epilogue, appendix) lives only in `src/`.
 
@@ -71,4 +72,4 @@ git submodule update --init --recursive
 ./scripts/sync-writings.sh
 ```
 
-Prefer upstream Writings content as canonical; retain book-specific **Bridge** sections and cross-links when merging.
+See [SUMMARY.md](./SUMMARY.md) for the full index of subtrees.
