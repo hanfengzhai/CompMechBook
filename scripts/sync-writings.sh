@@ -39,7 +39,8 @@ sync_part() {
     if [[ -n "$src_file" && -n "$dst_file" ]]; then
       sync_file "$src_file" "$dst_file"
     elif [[ -n "$src_file" ]]; then
-      echo "skip (no dst for $n): $src_file"
+      local new_dst="$dst_dir/$(basename "$src_file")"
+      sync_file "$src_file" "$new_dst"
     fi
   done
 }

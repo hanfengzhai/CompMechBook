@@ -32,7 +32,7 @@ Chapters synthesize the author's existing notes on [hanfengzhai.github.io](https
 
 ## Scope
 
-Roughly **60,000 words** across **47 sections** (prologue, nine part openings, 38 chapters, epilogue), plus nine standalone Writings mdBooks under `writings/`. Each part opens with a short framing chapter; each numbered chapter ends with a **Bridge** section that hands off to the next topic, following the [Functional Analysis Notes](./writings/functional-analysis/) layout.
+Roughly **56,000 words** in the nine parts (prologue, epilogue, preface, and appendix add another **~6,000**), for **~62,000 words** in the main mdBook narrative across **47 sections** (prologue, nine part openings, 38 chapters, epilogue). The vendored `writings/` tree mirrors the same prose for nine standalone mdBooks (~115k words total including duplicated part content). Each part opens with a short framing chapter; each numbered chapter ends with a **Bridge** section that hands off to the next topic, following the [Functional Analysis Notes](./writings/functional-analysis/) layout.
 
 ## Build
 
