@@ -68,6 +68,7 @@
 - [Kinematics: How Bodies Move and Deform](./part06-continuum/01-kinematics.md)
 - [Stress, Balance Laws, and Constitutive Relations](./part06-continuum/02-stress-balance.md)
 - [Variational Elasticity and Nonlinear Extensions](./part06-continuum/03-variational-elasticity.md)
+- [Nonlinear Elasticity and the Onset of Plasticity](./part06-continuum/04-nonlinear-plasticity-preview.md)
 
 ---
 
@@ -76,6 +77,7 @@
 - [Opening](./part07-defects/00-opening.md)
 - [Point, Line, and Surface Defects](./part07-defects/01-defect-taxonomy.md)
 - [Dislocation Dynamics and Strain Hardening](./part07-defects/02-dislocation-dynamics.md)
+- [From DDD to Crystal Plasticity and FEM](./part07-defects/03-polycrystal-and-fem-handoff.md)
 
 ---
 
@@ -84,6 +86,7 @@
 - [Opening](./part08-md/00-opening.md)
 - [Interatomic Potentials and Phase Space](./part08-md/01-potentials-phase-space.md)
 - [Ensembles, Integrators, and Practical Molecular Dynamics](./part08-md/02-ensembles-integrators.md)
+- [Ab Initio MD, Coarse-Graining, and the Ladder Upward](./part08-md/03-ab-initio-and-coarse-graining.md)
 
 ---
 
@@ -92,6 +95,7 @@
 - [Opening](./part09-dft/00-opening.md)
 - [Born–Oppenheimer and the Hohenberg–Kohn Theorems](./part09-dft/01-born-oppenheimer.md)
 - [Kohn–Sham DFT: Equations, Convergence, and Practice](./part09-dft/02-kohn-sham.md)
+- [DFT Workflows: From Input Files to Multiscale Numbers](./part09-dft/03-dft-workflows.md)
 
 ---
 

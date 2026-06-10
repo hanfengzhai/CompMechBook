@@ -9,6 +9,7 @@ functional-analysis/
 ├── book.toml
 ├── chapters/
 │   ├── SUMMARY.md
+│   ├── 00-opening.md
 │   ├── 01-motivation.md
 │   ├── 02-normed-spaces.md
 │   ├── 03-hilbert-spaces.md
@@ -16,7 +17,7 @@ functional-analysis/
 │   └── 05-spectral-theorem.md
 ```
 
-Chapter numbering `01`–`05` matches `src/part02-functional-analysis/` in CompMechBook. Each chapter ends with a **Bridge** section that connects the narrative to the next topic; Chapter 05 hands off to Part III (PDEs and weak forms).
+Chapter numbering `00`–`05` matches `src/part02-functional-analysis/` in CompMechBook. Each chapter ends with a **Bridge** section that connects the narrative to the next topic; Chapter 05 hands off to Part III (PDEs and weak forms).
 
 ## Build standalone
 

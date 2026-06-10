@@ -185,4 +185,4 @@ Unconverged MD is structured noise — the same warning we will repeat for DFT c
 
 ## Bridge
 
-MD assumes classical nuclei with empirical or fitted potentials. When potentials themselves must be derived from first principles — bond breaking, chemistry, electronic effects, or validation of EAM against quantum data — we descend one more rung to **density functional theory**. The copper wire's cohesive energy, its elastic constants, and the energy of a vacancy all begin as electron-density problems in Part IX.
+Verlet integrators and NVT/NPT ensembles make classical MD a controlled experiment on the potential energy surface — but that surface is usually empirical. The next chapter asks when **ab initio** forces replace EAM, how DFT data are compressed into potentials and mobility tables, and how atomistic simulations hand parameters upward before we descend to electrons in Part IX.

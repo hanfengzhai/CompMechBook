@@ -2,6 +2,7 @@
 
 # Finite Element Method Notes
 
+- [Opening](./00-opening.md)
 - [The Method of Weighted Residuals](./01-weighted-residuals.md)
 - [Galerkin's Method and Global Assembly](./02-galerkin-assembly.md)
 - [Elements, Shape Functions, and Quadrature](./03-elements-quadrature.md)
