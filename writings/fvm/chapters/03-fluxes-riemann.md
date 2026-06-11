@@ -175,6 +175,28 @@ When a shock tube run fails, check in this order:
 
 Passing Sod at reasonable resolution is the gateway to 2D Riemann problems, nozzle flow, and eventually Navier–Stokes with viscous regularization of shocks.
 
+## From shock tubes to galaxy formation
+
+The Sod problem lives on a one-dimensional domain with two hundred cells. Production finite-volume codes operate on unstructured meshes with billions of cells and adaptive refinement — yet the same flux machinery sits at the core.
+
+The **Illustris** and **IllustrisTNG** cosmological simulations (Vogelsberger et al.; [Illustris project](https://www.tng-project.org/)) solve the coupled dynamics of dark matter and gas with the **AREPO** code. AREPO uses a **moving Voronoi tessellation**: mesh-generating points follow the gas flow, so control volumes adapt as galaxies form and merge. The hydro step is still a second-order finite-volume update on volume-averaged primitive variables \(\rho\), \(\mathbf{u}\), and (for magnetized runs) \(\mathbf{B}\):
+
+\[
+\rho^{n+1} = \rho^n - \tfrac{1}{2}\Delta t\left(\rho^n \nabla\cdot\mathbf{u} + \mathbf{u}\cdot\nabla\rho^n\right),
+\]
+
+\[
+\mathbf{u}^{n+1} = \mathbf{u}^n - \tfrac{1}{2}\Delta t\left(\mathbf{u}^n\cdot\nabla\mathbf{u}^n + \tfrac{1}{\rho}\nabla p\right),
+\]
+
+\[
+p^{n+1} = p^n - \tfrac{1}{2}\Delta t\left(\gamma p \nabla\cdot\mathbf{u} + \mathbf{u}\cdot\nabla p\right).
+\]
+
+The schematic is identical to the first- and second-order FVM diagrams in the author's [FVM notes](https://hanfengzhai.github.io/note/FVM.pdf): reconstruct primitives, compute face fluxes, update conserved quantities, repeat. Local time stepping bins cells by Courant number; fluxes across bin boundaries accumulate on the smaller timestep — the same conservation bookkeeping as a one-dimensional shock tube, scaled to cosmology.
+
+The copper wire and a forming galaxy share no geometry, but they share a **verification philosophy**. Shock-tube tests (Problems I and II above) prove that a flux implementation respects wave speeds and conserves mass, momentum, and energy. Only after that gateway do we trust AREPO on IllustrisTNG's magnetohydrodynamic Riemann problems, or OpenFOAM on the wire's cooling jet. The ladder from Part I began with a stiffness matrix; here it ends a chapter with a Riemann solver that also powers structure formation in the universe — same equations, different scale, same insistence on flux consistency.
+
 ## Bridge
 
 Navier–Stokes adds viscous fluxes, heat conduction, and the incompressibility constraint. CFD combines hyperbolic advection — FVM's strength — with parabolic diffusion and elliptic pressure fields that resemble Part IV's Stokes solvers. The next chapter situates the full fluid mechanics pipeline, from Reynolds number to turbulence models, with the copper wire's cooling flow as motivation.
