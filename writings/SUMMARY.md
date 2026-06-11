@@ -9,7 +9,7 @@ Canonical mdBook sources for **Computational Mechanics**. Each subtree follows t
 | [pde](./pde/chapters/SUMMARY.md) | Part III | 00, 01–04 |
 | [fem](./fem/chapters/SUMMARY.md) | Part IV | 00, 01–05 |
 | [fvm](./fvm/chapters/SUMMARY.md) | Part V | 00, 01–04 |
-| [continuum](./continuum/chapters/SUMMARY.md) | Part VI | 00, 01–04 |
+| [continuum](./continuum/chapters/SUMMARY.md) | Part VI | 00, 01–04 (+ plasticity preview) |
 | [defects](./defects/chapters/SUMMARY.md) | Part VII | 00, 01–03 |
 | [md](./md/chapters/SUMMARY.md) | Part VIII | 00, 01–03 |
 | [dft](./dft/chapters/SUMMARY.md) | Part IX | 00, 01–03 |
