@@ -4,7 +4,7 @@ Parts I–VII treated the copper wire as a continuum or a network of line defect
 
 Molecular dynamics is the workhorse of atomistic materials mechanics. It supplies the interatomic potentials that empirical models require, the mobility laws that dislocation dynamics calibrates, and the fracture trajectories that explain how notches become cracks. Classical MD assumes nuclei follow Born–Oppenheimer surfaces; Part IX derives those surfaces from electron density.
 
-Two chapters cover potentials and phase space, then ensembles, integrators, and practical workflows. The layout follows the **MD Notes** in [`writings/md/`](../../writings/md/): numbered chapters with **Bridge** sections and explicit upward links to DDD (Part VII) and DFT (Part IX).
+Three chapters cover potentials and phase space, ensembles and integrators, and ab initio MD with coarse-graining workflows. The layout follows the **MD Notes** in [`writings/md/`](../../writings/md/): numbered chapters with **Bridge** sections and explicit upward links to DDD (Part VII) and DFT (Part IX).
 
 ## Bridge
 
