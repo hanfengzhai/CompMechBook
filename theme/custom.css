@@ -1,0 +1,25 @@
+.content main {
+  max-width: 900px;
+}
+
+.chapter li.part-title {
+  font-weight: bold;
+  margin-top: 1.2em;
+  color: var(--sidebar-fg);
+}
+
+blockquote.story {
+  border-left: 4px solid var(--links);
+  font-style: italic;
+  margin: 1.5em 0;
+  padding: 0.5em 1em;
+  background: var(--quote-bg);
+}
+
+.bridge {
+  border-top: 1px dashed var(--table-border-color);
+  margin: 2em 0;
+  padding-top: 1em;
+  color: var(--fg);
+  font-size: 0.95em;
+}
