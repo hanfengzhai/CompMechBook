@@ -1,0 +1,27 @@
+[book]
+title = "Computational Mechanics: From Linear Algebra to Density Functional Theory"
+authors = ["Hanfeng Zhai"]
+description = "From linear algebra to functional analysis, finite elements and volumes, and down to dislocations, molecular dynamics, and density functional theory — one continuous story."
+language = "en"
+multilingual = false
+src = "src"
+
+[build]
+build-dir = "book"
+create-missing = true
+
+[output.html]
+default-theme = "rust"
+preferred-dark-theme = "navy"
+mathjax-support = true
+git-repository-url = "https://github.com/hanfengzhai/CompMechBook"
+edit-url-template = "https://github.com/hanfengzhai/CompMechBook/edit/main/{path}"
+additional-css = ["theme/custom.css"]
+
+[output.html.search]
+enable = true
+limit-results = 30
+
+[preprocessor.index]
+
+[preprocessor.links]
