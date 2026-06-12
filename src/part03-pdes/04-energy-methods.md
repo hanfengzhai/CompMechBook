@@ -107,7 +107,7 @@ Coolant flowing around the copper wire in the low-Reynolds limit may be Stokes-l
 
 ## Complementary energy and dual methods
 
-In linear elasticity, a **complementary energy** functional in stress \(\boldsymbol{\tau}\) yields a maximization principle among statically admissible stress fields. Hybrid and mixed methods (stress–displacement formulations) exploit this duality. Part VI's variational elasticity chapter connects these principles to implementation choices in industrial codes.
+In linear elasticity, a **complementary energy** functional in stress \(\boldsymbol{\tau}\) yields a maximization principle among statically admissible stress fields. Hybrid and mixed methods (stress–displacement formulations) exploit this duality. Part VI’s variational elasticity chapter connects these principles to implementation choices in industrial codes.
 
 ## Time-dependent problems
 
@@ -154,7 +154,7 @@ We have:
 - Sobolev spaces for admissible fields
 - Energy principles for well-posedness and algorithms
 
-Part IV asks: how do we choose \(V_h\), compute integrals, and assemble \(\mathbf{K}\)? The finite element method is the answer — weighted residuals, element-by-element assembly, quadrature rules, and convergence theory that make the copper wire's discrete model faithful to the continuum energy we minimized here.
+Part IV asks: how do we choose \(V_h\), compute integrals, and assemble \(\mathbf{K}\)? The finite element method is the answer — weighted residuals, element-by-element assembly, quadrature rules, and convergence theory that make the copper wire’s discrete model faithful to the continuum energy we minimized here.
 
 Part V offers the alternative discretization philosophy for fluids and hyperbolic problems: balance fluxes on control volumes, Riemann solvers, and CFL-limited time stepping — still grounded in the PDEs and weak ideas from this part, but oriented toward conservation rather than trial functions in \(H^1\).
 

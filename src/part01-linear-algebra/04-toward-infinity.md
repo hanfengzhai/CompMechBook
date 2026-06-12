@@ -112,7 +112,7 @@ Given a mesh with piecewise-linear hat functions \(\{\phi_i\}\), the finite elem
 V_h = \text{span}\{\phi_1,\ldots,\phi_N\} \subset H^1(\Omega).
 \]
 
-The best approximation \(u_h \in V_h\) to a true solution \(u\) in the energy norm minimizes \(\|u - v_h\|_{\text{energy}}\). Céa's lemma (Part IV) bounds the FEM error by the best approximation error — linking **infinitely many** degrees of freedom in \(u\) to **finite** ones in \(V_h\).
+The best approximation \(u_h \in V_h\) to a true solution \(u\) in the energy norm minimizes \(\|u - v_h\|_{\text{energy}}\). Céa’s lemma (Part IV) bounds the FEM error by the best approximation error — linking **infinitely many** degrees of freedom in \(u\) to **finite** ones in \(V_h\).
 
 For the heated copper wire, a coarse mesh captures the gross gradient; a fine mesh resolves boundary layers if the Biot number demands it. Refinement is not merely "more numbers" — it is enlarging a finite-dimensional subspace inside an infinite-dimensional space.
 
@@ -150,4 +150,4 @@ Linear algebra taught us to solve \(\mathbf{K}\mathbf{u}=\mathbf{f}\). Mechanics
 
 Steps 1–2 require function spaces. Part II supplies normed spaces, completeness, Hilbert space structure, and compactness — the vocabulary for existence, uniqueness, and convergence. Part III writes the weak forms for Poisson, heat, and elasticity that Part IV discretizes.
 
-Turn the page. We leave the comfort of \(\mathbb{R}^N\) and enter the space of admissible fields. The copper wire's temperature and displacement live there; our meshes are finite-dimensional shadows of those fields, and the shadow improves as \(h \to 0\).
+Turn the page. We leave the comfort of \(\mathbb{R}^N\) and enter the space of admissible fields. The copper wire’s temperature and displacement live there; our meshes are finite-dimensional shadows of those fields, and the shadow improves as \(h \to 0\).

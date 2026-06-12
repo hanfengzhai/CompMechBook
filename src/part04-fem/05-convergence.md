@@ -22,7 +22,7 @@ The continuous error \(e = u - u_h\) is orthogonal to the test space in the ener
 \|u - u_h\|_{H} \le C \inf_{v_h \in V_h} \|u - v_h\|_{H},
 \]
 
-where \(\|\cdot\|_{H}\) is the norm induced by \(a(\cdot,\cdot)\) (the **energy norm**) and \(C\) depends on coercivity and continuity constants but not on \(h\).
+where \(\|\cdot\|_H\) is the norm induced by \(a(\cdot,\cdot)\) (the **energy norm**) and \(C\) depends on coercivity and continuity constants but not on \(h\).
 
 Consequence: FEM does not introduce extra error beyond discretization. If the approximation space can represent the solution well, the FEM solution is nearly as good as the best possible approximation in that space.
 

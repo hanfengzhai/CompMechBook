@@ -124,7 +124,7 @@ When we pass to function spaces in Part II, these become the \(H^1\), \(L^2\), a
 
 For \(\mathbf{A} \in \mathbb{R}^{m \times n}\), the **column space** \(\mathcal{R}(\mathbf{A})\) is the set of reachable outputs; the **null space** \(\mathcal{N}(\mathbf{A})\) is the set of inputs mapped to zero. For an unconstrained stiffness matrix, rigid-body modes live in \(\mathcal{N}(\mathbf{K})\). Boundary conditions and constraints remove them — otherwise \(\mathbf{K}\mathbf{u}=\mathbf{f}\) has no unique solution.
 
-The **row space** and **left null space** govern solvability: \(\mathbf{f}\) must lie in the column space of \(\mathbf{K}\) for equilibrium to exist. In mixed formulations (pressure–velocity, contact), the augmented system's block structure makes these subspaces explicit. Part IV's assembly chapter is, in disguise, linear algebra on sparse matrices whose null spaces encode physics.
+The **row space** and **left null space** govern solvability: \(\mathbf{f}\) must lie in the column space of \(\mathbf{K}\) for equilibrium to exist. In mixed formulations (pressure–velocity, contact), the augmented system’s block structure makes these subspaces explicit. Part IV’s assembly chapter is, in disguise, linear algebra on sparse matrices whose null spaces encode physics.
 
 ## Sparsity and scale
 
@@ -147,3 +147,4 @@ Finite volume methods (Part V) assemble conservation balances that also reduce t
 ## Bridge
 
 With vectors and matrices in hand, we next examine **linear maps** abstractly: change of basis, coordinate transformations, and the assembly operators that translate element-level physics into global systems. The bar element stiffness in the worked example above was written in local node coordinates; connecting two elements requires a change of coordinates — the subject of the next chapter. The copper wire, meshed or unmeshed, is the same physical object in every basis we choose.
+

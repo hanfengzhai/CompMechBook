@@ -22,7 +22,7 @@ For symmetric \(\mathbf{A}\), eigenvalues are real, eigenvectors for distinct ei
 \mathbf{A} = \mathbf{V}\boldsymbol{\Lambda}\mathbf{V}^T
 \]
 
-with \(\mathbf{V}\) orthogonal and \(\boldsymbol{\Lambda}\) diagonal. This **spectral theorem** is the finite-dimensional case of Part II's operator spectral theory.
+with \(\mathbf{V}\) orthogonal and \(\boldsymbol{\Lambda}\) diagonal. This **spectral theorem** is the finite-dimensional case of Part II’s operator spectral theory.
 
 ## Physical meaning: normal modes
 
@@ -138,7 +138,7 @@ Finite element eigenvalue error analysis (Part IV) compares discrete \(\omega_{h
 
 ## Connection to PDEs and FVM (forward look)
 
-Eigenvalues of discretized Laplacians approximate spatial frequencies in heat and wave problems. In Part III, the Laplacian appears in Poisson's equation, the heat equation, and linear elasticity. In Part V, finite volume schemes for advection–diffusion analyze amplification factors that play the same role as eigenvalues for explicit updates.
+Eigenvalues of discretized Laplacians approximate spatial frequencies in heat and wave problems. In Part III, the Laplacian appears in Poisson’s equation, the heat equation, and linear elasticity. In Part V, finite volume schemes for advection–diffusion analyze amplification factors that play the same role as eigenvalues for explicit updates.
 
 Hyperbolic problems (wave propagation, advection) involve non-normal operators; eigenvalues alone can mislead — yet the modal picture remains the first tool engineers reach for when diagnosing resonance in the copper wire fixture or chatter in machining.
 

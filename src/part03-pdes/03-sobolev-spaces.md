@@ -66,7 +66,7 @@ For bounded \(\Omega\),
 
 Coercivity of the Laplacian bilinear form on \(H^1_0\) follows: \(a(u,u) = \|\nabla u\|_{L^2}^2 \ge C_P^{-2}\|u\|_{L^2}^2\), so \(\|\nabla u\|_{L^2}\) and \(\|u\|_{H^1}\) are equivalent on \(H^1_0\). The constant \(C_P\) depends on domain geometry — narrow domains (long thin copper wire segments in 2D/3D models) have large \(C_P\), worsening conditioning of stiffness matrices.
 
-**Friedrichs inequality** is the vector analogue for elasticity: \(\|\mathbf{u}\|_{L^2} \le C \|\boldsymbol{\varepsilon}(\mathbf{u})\|_{L^2}\) on kinematically admissible fields — Korn's inequality makes this precise.
+** Friedrichs inequality** is the vector analogue for elasticity: \(\|\mathbf{u}\|_{L^2} \le C \|\boldsymbol{\varepsilon}(\mathbf{u})\|_{L^2}\) on kinematically admissible fields — Korn's inequality makes this precise.
 
 ## Sobolev embedding (selected cases)
 
