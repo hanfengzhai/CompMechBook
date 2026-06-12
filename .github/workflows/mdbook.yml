@@ -29,6 +29,8 @@ on:
       - cursor/computational-mechanics-book-c7e5
       - cursor/computational-mechanics-book-586e
       - cursor/computational-mechanics-book-47cc
+      - cursor/computational-mechanics-book-86f5
+      - cursor/computational-mechanics-book-9795
   pull_request:
     branches: [main]
 
