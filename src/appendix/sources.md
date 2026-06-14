@@ -7,6 +7,7 @@ This book synthesizes material from the author's notes, coursework, and teaching
 | Topic | Link |
 |-------|------|
 | Linear Algebra (ME 300A) | [ME300A_LinAlg.pdf](https://hanfengzhai.github.io/file/ME300A_LinAlg.pdf) |
+| Functional Analysis | [FunctionalAnalysis.pdf](https://hanfengzhai.github.io/file/FunctionalAnalysis.pdf) |
 | Partial Differential Equations (ME 300B) | [ME300B_PDE.pdf](https://hanfengzhai.github.io/file/ME300B_PDE.pdf) |
 | Finite Element Analysis | [FEA_notes.pdf](https://hanfengzhai.github.io/file/FEA_notes.pdf) |
 | FEA Problem Sessions & Tutorials | [note.html](https://hanfengzhai.github.io/note.html) |
