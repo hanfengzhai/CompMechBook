@@ -32,6 +32,7 @@ on:
       - cursor/computational-mechanics-book-b86a
       - cursor/computational-mechanics-book-9978
       - cursor/computational-mechanics-book-c2a1
+      - cursor/computational-mechanics-book-a342
   pull_request:
     branches: [main]
 
