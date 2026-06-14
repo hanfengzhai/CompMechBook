@@ -44,6 +44,7 @@ Read straight through from the prologue to the epilogue. Parts IV and V can be s
 The prose synthesizes course notes, teaching materials, and research experience collected over several years. Primary written sources include:
 
 - [Linear Algebra notes](https://hanfengzhai.github.io/file/ME300A_LinAlg.pdf) (ME 300A)
+- [Functional Analysis notes](https://hanfengzhai.github.io/file/FunctionalAnalysis.pdf)
 - [Partial Differential Equations notes](https://hanfengzhai.github.io/file/ME300B_PDE.pdf) (ME 300B)
 - [Finite Element Analysis notes](https://hanfengzhai.github.io/file/FEA_notes.pdf) and [problem sessions](https://hanfengzhai.github.io/note.html)
 - [Elasticity & Inelasticity notes](https://hanfengzhai.github.io/file/elasticity_notes.pdf)
