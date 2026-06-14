@@ -30,6 +30,7 @@ on:
       - cursor/computational-mechanics-book-fc1e
       - cursor/computational-mechanics-book-a343
       - cursor/computational-mechanics-book-fbee
+      - cursor/computational-mechanics-book-fc49
   pull_request:
     branches: [main]
 
