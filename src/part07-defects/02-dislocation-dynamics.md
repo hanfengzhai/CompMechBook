@@ -39,6 +39,23 @@ Open-source frameworks such as [OpenDiS](https://github.com/OpenDiS/OpenDiS) and
 
 For the copper wire, a representative **single-crystal slip** simulation might impose shear at constant strain rate and record how dislocation density and flow stress co-evolve — output that feeds crystal plasticity constitutive laws used in polycrystal FEM.
 
+## Link statistics: what the network topology remembers
+
+Taylor hardening treats dislocations as a scalar density \(\rho\). Taylor's \(\sqrt{\rho}\) law uses a **scalar** measure of defect content — but large-scale DDD campaigns show that **topology** — how line length is distributed across the network — carries information the square root alone does not.
+
+Recent work on fcc metals under monotonic loading tracks **link length distributions** on each slip system: a **link** is a continuous segment between two nodes (junctions or endpoints), classified as active or inactive under the current stress state. Two patterns emerge across more than a hundred DDD simulations:
+
+- **Inactive slip systems** maintain link lengths that follow a **single exponential** distribution — a memoryless Poisson-like picture of random forest structure left behind when slip ceases on that system.
+- **Active slip systems** evolve toward **double-exponential** distributions whose shape responds to resolved shear stress — consistent with a generalized Poisson process in which stress accelerates creation and annihilation of links on the active system.
+
+The distribution \(P(\ell)\), mean link length \(\bar\ell\), and network connectivity affect hardening in ways \(\rho\) alone cannot capture. Long links glide freely; short links in dense tangles contribute disproportionately to obstacle strength.
+
+For the copper wire, this distinction matters when cold work activates only a subset of slip systems while others remain latent. Exporting a single \(\rho\) to crystal plasticity collapses that structure. Exporting **link statistics** — mean link length \(\bar\ell\), active-system fractions, distribution shape parameters — gives constitutive models internal variables with clearer physical meaning than a fitted Voce law alone.
+
+The author's research on [link statistics during strain hardening](https://doi.org/10.1016/j.jmps.2026.106533) sits at this interface: using large-scale DDD to extract statistical laws that continuum models can adopt as **internal state variables** beyond scalar dislocation density. For copper wire, where conductivity depends on defect scattering, link-length statistics may correlate with both mechanical strength and electrical resistivity — a reminder that mesoscale structure carries multiple property footprints.
+
+The mesoscale lesson matches the book's ladder theme: DDD does not only produce \(\tau(\gamma)\); it produces **distributional** outputs that homogenization must decide whether to keep or discard.
+
 ## Taylor hardening and dislocation density
 
 Classical models relate flow stress to total dislocation density \(\rho\):
@@ -58,14 +75,6 @@ During deformation, **storage** (multiplication at sources, junction formation) 
 (with strain \(\gamma\)) produces the familiar hardening then saturation shape. Parameters \(k_1, k_2\) depend on temperature, strain rate, and crystal structure — DDD extracts them from first-principles mesoscale physics rather than curve fitting alone.
 
 For copper at room temperature, initial yield corresponds to \(\rho \sim 10^{10}\) m\(^{-2}\) (as-received); cold work can push \(\rho\) toward \(10^{15}\) m\(^{-2}\) before saturation effects dominate.
-
-## Link statistics: beyond scalar density
-
-Taylor's \(\sqrt{\rho}\) law uses a **scalar** measure of defect content. Recent work on **link statistics** asks a finer question: how do dislocation lines form **connected networks** during loading, and how does network **topology** — loop sizes, junction connectivity, line-length distribution — co-evolve with stress?
-
-A **link** is a continuous segment between two nodes (junctions or endpoints). Its length distribution \(P(\ell)\), mean link length \(\bar{\ell}\), and network connectivity affect hardening in ways \(\rho\) alone cannot capture. Long links glide freely; short links in dense tangles contribute disproportionately to obstacle strength.
-
-The author's research on [link statistics during strain hardening](https://doi.org/10.1016/j.jmps.2026.106533) sits at this interface: using large-scale DDD to extract statistical laws that continuum models can adopt as **internal state variables** beyond scalar dislocation density. For copper wire, where conductivity depends on defect scattering, link-length statistics may correlate with both mechanical strength and electrical resistivity — a reminder that mesoscale structure carries multiple property footprints.
 
 ## Frank–Read sources and multiplication
 
@@ -111,7 +120,7 @@ Temperature raises recovery rates (cross-slip, climb via vacancies). Annealing s
 |-------|----------|-------|
 | Isotropic J2 + Voce hardening | Macro \(\sigma\)–\(\varepsilon\) curve | Texture, anisotropy, Bauschinger |
 | Crystal plasticity | Slip system activity, texture | Individual dislocation topology |
-| DDD | Line geometry, junctions, link stats | Fast core reactions, chemistry |
+| DDD | Line geometry, junctions, link-length statistics | Fast core reactions, chemistry |
 | MD | Core, nucleation | Time/length scale of wire |
 
 Calibration path: DDD → extract \( \tau(\gamma), \dot\rho(\gamma), \bar\ell(\gamma) \) → fit crystal plasticity or simplified J2 internal variables → FEM of wire. Each hop loses detail but gains domain size.
@@ -142,7 +151,7 @@ A typical OpenDiS-style workflow for copper single-crystal shear:
 2. **Set material properties**: \(\mu\), \(b\), anisotropic elastic constants from DFT or experiment.
 3. **Load** via applied strain rate or stress boundary conditions.
 4. **Integrate** equations of motion for segments; remesh when curvature exceeds threshold.
-5. **Post-process**: \(\rho(\gamma)\), \(\tau(\gamma)\), link-length distributions, dislocation velocity histograms.
+5. **Post-process**: \(\rho(\gamma)\), \(\tau(\gamma)\), link-length distributions (single vs. double exponential by slip-system activity), dislocation velocity histograms.
 6. **Export** hardening parameters to crystal plasticity or phenomenological flow laws.
 
 The copper wire's cold-worked strength is, in part, a snapshot of step 4 frozen by manufacturing — DDD helps explain what that snapshot contains.
