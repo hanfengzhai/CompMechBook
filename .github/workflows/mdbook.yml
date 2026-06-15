@@ -1,0 +1,74 @@
+name: mdBook
+
+on:
+  push:
+    branches:
+      - main
+      - cursor/computational-mechanics-book-6411
+      - cursor/computational-mechanics-book-7293
+      - cursor/computational-mechanics-book-6413
+      - cursor/computational-mechanics-book-8ca8
+      - cursor/computational-mechanics-book-c5ac
+      - cursor/computational-mechanics-book-e40e
+      - cursor/computational-mechanics-book-92f8
+      - cursor/computational-mechanics-book-954c
+      - cursor/computational-mechanics-book-6786
+      - cursor/computational-mechanics-book-dc02
+      - cursor/computational-mechanics-book-70e1
+      - cursor/computational-mechanics-book-d640
+      - cursor/computational-mechanics-book-f665
+      - cursor/computational-mechanics-book-4ddc
+      - cursor/computational-mechanics-book-fed0
+      - cursor/computational-mechanics-book-7d3e
+      - cursor/computational-mechanics-book-f2c3
+      - cursor/computational-mechanics-book-8c77
+      - cursor/computational-mechanics-book-cccd
+      - cursor/computational-mechanics-book-66d4
+      - cursor/computational-mechanics-book-c913
+      - cursor/computational-mechanics-book-c744
+      - cursor/computational-mechanics-book-c7e5
+      - cursor/computational-mechanics-book-586e
+      - cursor/computational-mechanics-book-5fb5
+      - cursor/computational-mechanics-book-4d2d
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install mdBook
+        run: |
+          curl -sSL https://github.com/rust-lang/mdBook/releases/download/v0.4.40/mdbook-v0.4.40-x86_64-unknown-linux-gnu.tar.gz \
+            | tar -xz -C /usr/local/bin
+
+      - name: Build book
+        run: mdbook build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: book
+
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
