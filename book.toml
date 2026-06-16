@@ -1,5 +1,5 @@
 [book]
-title = "Computational Mechanics"
+title = "Computational Mechanics: From Linear Algebra to Density Functional Theory"
 authors = ["Hanfeng Zhai"]
 description = "From linear algebra to functional analysis, finite elements and volumes, and down to dislocations, molecular dynamics, and density functional theory — one continuous story."
 language = "en"
