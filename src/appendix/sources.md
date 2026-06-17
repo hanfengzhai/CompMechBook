@@ -2,6 +2,61 @@
 
 This book synthesizes material from the author's notes, coursework, and teaching. Canonical chapter sources live under [`writings/`](../writings/) (Functional Analysis Notes layout). Run `./scripts/sync-writings.sh` to copy them into `src/`. When the external `Writings` git submodule is linked, prefer upstream content and re-run the sync script.
 
+## How to read the ladder
+
+The narrative is designed for a **single front-to-back pass** from the [prologue](../prologue/00-many-scales.md) through this appendix. Each numbered chapter ends with a **Bridge** that states why the next chapter exists; if a jump feels abrupt, read the prior Bridge first.
+
+| Path | Order | Best for |
+|------|-------|----------|
+| **Canonical** | Prologue → I → II → III → IV → V → VI → VII → VIII → IX → Epilogue | First read; builds weak forms before CFD and continuum |
+| **Solids-first** | Prologue → I–IV → VI → VII → III → II (as needed) → V → VIII → IX | Students who already took an FEM course |
+| **Fluids-first** | Prologue → I–III → V → VI → IV → VII–IX | CFD practitioners adding solid mechanics |
+| **Multiscale-down** | Prologue → VI (skim) → IX → VIII → VII → I–V | Researchers starting from DFT or MD who need upward context |
+
+Parts IV and V are siblings: both discretize Part III, but FEM targets elliptic solids while FVM targets hyperbolic conservation laws. Part VI reunifies the stress–balance language both approximate.
+
+## Chapter index
+
+| Section | One-line focus |
+|---------|----------------|
+| Prologue | Copper wire at every scale; four questions (state, equations, discretization, exports) |
+| I.1 | Vectors, matrices, inner products as discrete state |
+| I.2 | Linear maps, bases, coordinate changes |
+| I.3 | Eigenvalues as decoupled modes |
+| I.4 | From \(\mathbb{R}^N\) toward function spaces |
+| II.1 | Why infinite dimensions; weak forms preview; Lax–Milgram |
+| II.2 | Normed spaces, completeness, \(L^p\), Banach |
+| II.3 | Hilbert spaces, Riesz, Galerkin, Céa's lemma |
+| II.4 | Operators, duality, weak convergence |
+| II.5 | Compactness, spectral theorem, Rayleigh–Ritz |
+| III.1 | Strong PDEs and when smoothness fails |
+| III.2 | Weak formulations and test functions |
+| III.3 | Sobolev spaces and regularity |
+| III.4 | Energy methods and minimum principles |
+| IV.1 | Method of weighted residuals |
+| IV.2 | Galerkin assembly and global systems |
+| IV.3 | Elements, shape functions, quadrature |
+| IV.4 | Poisson to linear elasticity |
+| IV.5 | Convergence and error estimates |
+| V.1 | Integral conservation laws |
+| V.2 | Finite volume method in 1D |
+| V.3 | Fluxes, Riemann problems, shocks |
+| V.4 | Navier–Stokes and CFD |
+| VI.1 | Kinematics of deformation |
+| VI.2 | Stress, balance, constitutive laws |
+| VI.3 | Variational elasticity |
+| VI.4 | Nonlinear elasticity and plasticity preview |
+| VII.1 | Point, line, and surface defects |
+| VII.2 | Dislocation dynamics and hardening |
+| VII.3 | Polycrystal plasticity and FEM handoff |
+| VIII.1 | Interatomic potentials and phase space |
+| VIII.2 | Ensembles, integrators, practical MD |
+| VIII.3 | Ab initio MD and coarse-graining |
+| IX.1 | Born–Oppenheimer and Hohenberg–Kohn |
+| IX.2 | Kohn–Sham equations and convergence |
+| IX.3 | DFT workflows (inputs to multiscale numbers) |
+| Epilogue | Sequential, concurrent, and learned multiscale coupling |
+
 ## Primary notes (hanfengzhai.github.io)
 
 | Topic | Link |
