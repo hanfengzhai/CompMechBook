@@ -79,6 +79,10 @@ Canonical source markdown lives under [`writings/`](../writings/) in the **Funct
 
 These notes represent the author's understanding of the material and are intended for study and reference. They may contain errors. Feedback is welcome at [hzhai@stanford.edu](mailto:hzhai@stanford.edu).
 
+## Bridge
+
+The story begins not with symbols but with a specimen. Turn to the [prologue](./prologue/00-many-scales.md) and meet the copper wire — the same material at every scale, and the thread that runs through every chapter that follows.
+
 ---
 
 *Hanfeng Zhai, 2026*
