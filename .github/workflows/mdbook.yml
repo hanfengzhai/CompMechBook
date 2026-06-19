@@ -4,36 +4,7 @@ on:
   push:
     branches:
       - main
-      - cursor/computational-mechanics-book-6411
-      - cursor/computational-mechanics-book-7293
-      - cursor/computational-mechanics-book-6413
-      - cursor/computational-mechanics-book-8ca8
-      - cursor/computational-mechanics-book-c5ac
-      - cursor/computational-mechanics-book-e40e
-      - cursor/computational-mechanics-book-92f8
-      - cursor/computational-mechanics-book-954c
-      - cursor/computational-mechanics-book-6786
-      - cursor/computational-mechanics-book-dc02
-      - cursor/computational-mechanics-book-70e1
-      - cursor/computational-mechanics-book-d640
-      - cursor/computational-mechanics-book-f665
-      - cursor/computational-mechanics-book-4ddc
-      - cursor/computational-mechanics-book-fed0
-      - cursor/computational-mechanics-book-7d3e
-      - cursor/computational-mechanics-book-f2c3
-      - cursor/computational-mechanics-book-8c77
-      - cursor/computational-mechanics-book-cccd
-      - cursor/computational-mechanics-book-66d4
-      - cursor/computational-mechanics-book-c913
-      - cursor/computational-mechanics-book-c744
-      - cursor/computational-mechanics-book-c7e5
-      - cursor/computational-mechanics-book-586e
-      - cursor/computational-mechanics-book-47cc
-      - cursor/computational-mechanics-book-ac66
-      - cursor/computational-mechanics-book-81d8
-      - cursor/computational-mechanics-book-202a
-      - cursor/computational-mechanics-book-3929
-      - cursor/computational-mechanics-book-e710
+      - 'cursor/computational-mechanics-book-*'
   pull_request:
     branches: [main]
 
