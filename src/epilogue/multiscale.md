@@ -187,6 +187,8 @@ The copper wire is still under tension — mechanical, electrical, intellectual.
 
 The wire does not care which chapter we finished last. It responds to physics. Our craft is to make that physics computable, connected, and credible.
 
----
+## Bridge
 
-*Continue with the [Sources appendix](../appendix/sources.md) for references to the underlying notes and repositories.*
+The ladder ends here, but the references do not. The [Sources appendix](../appendix/sources.md) lists the PDF notes, coursework repositories, and external texts behind each part. When `Writings.git` is linked, canonical chapter markdown lives under `writings/` in the Functional Analysis Notes layout; run `./scripts/sync-writings.sh` after upstream edits to refresh this book.
+
+Return to the [prologue](../prologue/00-many-scales.md) whenever a new project needs scale discipline — the four questions (state, equations, discretization, upward exports) apply to every material, not only copper.
