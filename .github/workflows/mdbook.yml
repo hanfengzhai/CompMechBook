@@ -39,6 +39,7 @@ on:
       - cursor/computational-mechanics-book-fef8
       - cursor/computational-mechanics-book-3d5b
       - cursor/computational-mechanics-book-63ef
+      - cursor/computational-mechanics-book-ea2c
   pull_request:
     branches: [main]
 
