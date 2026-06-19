@@ -10,7 +10,7 @@ TARGET="$ROOT/writings"
 if [[ -f "$TARGET/.git" ]] || [[ -d "$TARGET/.git" ]]; then
   echo "Updating existing Writings checkout in $TARGET"
   git -C "$TARGET" pull --ff-only
-elif [[ -f "$ROOT/.gitmodules" ]] && grep -q 'path = writings' "$ROOT/.gitmodules" 2>/dev/null; then
+elif [[ -f "$ROOT/.gitmodules" ]] && grep -E '^[^#]*path = writings' "$ROOT/.gitmodules" >/dev/null 2>&1; then
   echo "Initializing writings submodule"
   git submodule update --init --recursive writings
 else
