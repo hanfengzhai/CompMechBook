@@ -7,6 +7,7 @@ This book synthesizes material from the author's notes, coursework, and teaching
 | Topic | Link |
 |-------|------|
 | Linear Algebra (ME 300A) | [ME300A_LinAlg.pdf](https://hanfengzhai.github.io/file/ME300A_LinAlg.pdf) |
+| Functional Analysis | [FunctionalAnalysis.pdf](https://hanfengzhai.github.io/file/FunctionalAnalysis.pdf) |
 | Partial Differential Equations (ME 300B) | [ME300B_PDE.pdf](https://hanfengzhai.github.io/file/ME300B_PDE.pdf) |
 | Finite Element Analysis | [FEA_notes.pdf](https://hanfengzhai.github.io/file/FEA_notes.pdf) |
 | FEA Problem Sessions & Tutorials | [note.html](https://hanfengzhai.github.io/note.html) |
@@ -16,6 +17,7 @@ This book synthesizes material from the author's notes, coursework, and teaching
 | Finite Volume Method | [FVM.pdf](https://hanfengzhai.github.io/note/FVM.pdf) |
 | Defects & Disorders | [defects_notes.pdf](https://hanfengzhai.github.io/file/defects_notes.pdf) |
 | Atomistic Modeling | [AtomModel_note.pdf](https://hanfengzhai.github.io/file/AtomModel_note.pdf) |
+| Density Functional Theory | [MSE5720 notebooks](https://hanfengzhai.github.io/note.html) · [MSE5720-HW](https://github.com/hanfengzhai/MSE5720-HW) |
 | Statistical Mechanics | [StatMechNotes.pdf](https://hanfengzhai.github.io/file/StatMechNotes.pdf) |
 | Computational Methods (applied mechanics) | [CompMethMechProb.pdf](https://hanfengzhai.github.io/file/CompMethMechProb.pdf) |
 
