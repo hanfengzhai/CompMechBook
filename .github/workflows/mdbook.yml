@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - 'cursor/computational-mechanics-book-*'
+      - 'cursor/unified-mechanics-book-*'
   pull_request:
     branches: [main]
 
