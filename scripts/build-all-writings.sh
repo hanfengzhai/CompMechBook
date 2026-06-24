@@ -3,6 +3,7 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+export PATH="${HOME}/.local/bin:${PATH}"
 PARTS=(
   linear-algebra
   functional-analysis

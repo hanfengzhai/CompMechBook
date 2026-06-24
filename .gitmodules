@@ -1,8 +1,8 @@
 # Uncomment and run `git submodule update --init` when Writings is accessible:
 #
 # [submodule "writings-upstream"]
-# 	path = writings-upstream
-# 	url = https://github.com/hanfengzhai/Writings.git
+#	path = writings-upstream
+#	url = https://github.com/hanfengzhai/Writings.git
 #
 # Canonical chapter markdown is vendored under writings/ until the submodule is linked.
 # Prefer upstream Writings content, then: ./scripts/sync-writings.sh
