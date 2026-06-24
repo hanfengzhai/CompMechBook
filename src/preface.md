@@ -39,11 +39,32 @@ flowchart TB
 
 Read straight through from the prologue to the epilogue. Parts IV and V can be swapped if you already know FEM and want CFD first; Part VI then unifies the stress–balance language both discretizations approximate. Parts VII–IX are best read after the continuum vocabulary of Part VI, because dislocation, atomistic, and electronic models explain where continuum parameters originate.
 
+## The copper wire through the book
+
+The same specimen — a cold-drawn copper wire under tension, heated by current, cooled by air — reappears in every part. The table below is a reading map: what changes is the **state variable**, not the material.
+
+| Part | What the wire becomes | What we learn to compute |
+|------|----------------------|--------------------------|
+| Prologue | A ladder of scales | State, equations, discretization, upward exports |
+| I | Coupled springs / modes | \(\mathbf{K}\mathbf{u}=\mathbf{f}\), eigenmodes |
+| II | Fields in \(H^1\) and \(L^2\) | Norms, operators, Galerkin convergence |
+| III | PDEs with weak forms | Strong vs. weak, Sobolev regularity, energy |
+| IV | Meshed solid | Galerkin assembly, elements, convergence |
+| V | Fluid around the wire | FVM fluxes, Navier–Stokes, conjugate heat transfer |
+| VI | Cauchy stress and strain | Kinematics, balance, variational elasticity |
+| VII | Dislocation forest | DDD, Taylor hardening, crystal plasticity handoff |
+| VIII | Atomic lattice | Potentials, ensembles, LAMMPS workflows |
+| IX | Valence electrons | Kohn–Sham, QE inputs, elastic constants upward |
+| Epilogue | All scales coupled | Sequential, concurrent, and learned multiscale workflows |
+
+Each numbered chapter ends with a **Bridge** section that states explicitly why the next chapter exists. If you ever feel a jump in abstraction, read the Bridge at the end of the prior chapter first — it is the narrative hinge.
+
 ## Source material
 
 The prose synthesizes course notes, teaching materials, and research experience collected over several years. Primary written sources include:
 
 - [Linear Algebra notes](https://hanfengzhai.github.io/file/ME300A_LinAlg.pdf) (ME 300A)
+- [Functional Analysis notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) (ME 412) — layout model for Part II and all `writings/` subtrees
 - [Partial Differential Equations notes](https://hanfengzhai.github.io/file/ME300B_PDE.pdf) (ME 300B)
 - [Finite Element Analysis notes](https://hanfengzhai.github.io/file/FEA_notes.pdf) and [problem sessions](https://hanfengzhai.github.io/note.html)
 - [Elasticity & Inelasticity notes](https://hanfengzhai.github.io/file/elasticity_notes.pdf)
