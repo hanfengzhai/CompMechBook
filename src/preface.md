@@ -39,6 +39,26 @@ flowchart TB
 
 Read straight through from the prologue to the epilogue. Parts IV and V can be swapped if you already know FEM and want CFD first; Part VI then unifies the stress–balance language both discretizations approximate. Parts VII–IX are best read after the continuum vocabulary of Part VI, because dislocation, atomistic, and electronic models explain where continuum parameters originate.
 
+## The copper wire through the book
+
+The prologue introduces a copper wire under tension as the recurring physical thread. Each part revisits the same object at the scale that part owns — not as a repeated example, but as the next scene in one story. The table below is a reading map; every numbered chapter ends with a **Bridge** section that hands off explicitly to the next scene.
+
+| Part | What the wire becomes | Question answered |
+|------|------------------------|-------------------|
+| Prologue | Specimen pulled in tension | Why do we need a ladder of models at all? |
+| I | Nodal displacements and \(\mathbf{K}\mathbf{u}=\mathbf{f}\) | What is the grammar every discretization eventually speaks? |
+| II | Fields in \(H^1\) and \(L^2\), not fixed \(\mathbb{R}^N\) | Why do weak forms and convergence theorems exist? |
+| III | Poisson/heat/elasticity weak forms on the domain | What PDEs govern the wire before we mesh it? |
+| IV | Tetrahedral mesh, Galerkin assembly, stress recovery | How do we compute the wire on a computer (solids)? |
+| V | Control volumes, fluxes, thermal convection in air | How do we treat conservation laws and fluids on the same wire? |
+| VI | Cauchy stress, virtual work, nonlinear elasticity preview | What continuum physics do FEM and FVM approximate? |
+| VII | Dislocation forest from cold drawing, DDD hardening | Why does the stress–strain curve bend upward? |
+| VIII | Cu lattice, EAM potential, MD moduli and vacancies | Where do elastic constants and defect energies come from? |
+| IX | Valence electrons, cohesive energy, DFT elastic tensor | What binds the crystal before any spring constant is assumed? |
+| Epilogue | Full multiscale workflow back to the structural member | How do teams couple the rungs in practice? |
+
+If a chapter feels abstract, return to this table and ask which row you are in. The mathematics changes; the wire does not.
+
 ## Source material
 
 The prose synthesizes course notes, teaching materials, and research experience collected over several years. Primary written sources include:
