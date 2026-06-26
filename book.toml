@@ -17,6 +17,7 @@ mathjax-support = true
 git-repository-url = "https://github.com/hanfengzhai/CompMechBook"
 edit-url-template = "https://github.com/hanfengzhai/CompMechBook/edit/main/{path}"
 additional-css = ["theme/custom.css"]
+additional-js = ["mermaid.min.js", "mermaid-init.js"]
 
 [output.html.search]
 enable = true
@@ -25,3 +26,6 @@ limit-results = 30
 [preprocessor.index]
 
 [preprocessor.links]
+
+[preprocessor.mermaid]
+command = "mdbook-mermaid"

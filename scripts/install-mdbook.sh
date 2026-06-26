@@ -25,3 +25,11 @@ else
 fi
 
 mdbook --version
+
+if command -v cargo >/dev/null 2>&1; then
+  cargo install mdbook-mermaid --version 0.14.1 --locked
+  mdbook-mermaid install "$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+  echo "Installed mdbook-mermaid and configured mermaid assets"
+else
+  echo "cargo not found; skip mdbook-mermaid (preface diagram will render as code block)"
+fi
