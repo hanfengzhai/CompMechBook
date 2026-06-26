@@ -38,7 +38,7 @@ Roughly **62,000 words** across **49 sections** (prologue, nine part openings, 4
 
 ```bash
 chmod +x scripts/install-mdbook.sh scripts/sync-writings.sh scripts/build-all-writings.sh
-./scripts/install-mdbook.sh   # optional; or use your package manager
+./scripts/install-mdbook.sh   # optional; installs mdBook + mdbook-mermaid for preface diagram
 ./scripts/sync-writings.sh   # refresh src/ from writings/
 mdbook build                 # output in book/
 mdbook serve                 # http://localhost:3000

@@ -9,6 +9,7 @@ linear-algebra/
 ├── book.toml
 ├── chapters/
 │   ├── SUMMARY.md
+│   ├── 00-opening.md
 │   ├── 01-vectors-matrices.md
 │   ├── 02-linear-maps.md
 │   ├── 03-eigenvalues.md

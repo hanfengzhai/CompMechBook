@@ -23,13 +23,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install mdBook
+      - name: Install mdBook and mdbook-mermaid
         run: |
           curl -sSL https://github.com/rust-lang/mdBook/releases/download/v0.4.40/mdbook-v0.4.40-x86_64-unknown-linux-gnu.tar.gz \
             | tar -xz -C /usr/local/bin
+          cargo install mdbook-mermaid --version 0.14.1 --locked
+          mdbook-mermaid install .
 
       - name: Build book
         run: mdbook build
+
+      - name: Build standalone Writings mdBooks
+        run: ./scripts/build-all-writings.sh
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
