@@ -79,6 +79,10 @@ Canonical source markdown lives under [`writings/`](../writings/) in the **Funct
 
 These notes represent the author's understanding of the material and are intended for study and reference. They may contain errors. Feedback is welcome at [hzhai@stanford.edu](mailto:hzhai@stanford.edu).
 
+## Bridge
+
+The table above is the map; the prologue is the first step on the trail. Turn the page when ready — the copper wire is already under tension, and the ladder of scales is already in view.
+
 ---
 
 *Hanfeng Zhai, 2026*
