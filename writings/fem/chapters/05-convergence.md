@@ -69,6 +69,21 @@ To verify an implementation, solve a problem with known exact solution \(u\) and
 
 Example: Poisson on \((0,1)^2\) with \(u = \sin(\pi x)\sin(\pi y)\). P1 FEM should show slope \(\approx 2\) in \(L^2\) and slope \(\approx 1\) in \(H^1\). Deviations indicate bugs (wrong sign in stiffness, incorrect Jacobian, missed boundary term) or insufficient quadrature.
 
+### Worked example: mesh refinement on a copper bar in tension
+
+Model a 1 m segment of the copper wire as 1D Poisson \(-u'' = 0\) with \(u(0)=0\), \(u(1)=0.001\) m (1 mm end displacement). Exact solution \(u(x) = 10^{-3} x\). Use uniform P1 bar meshes with \(N\) elements (\(h = 1/N\)).
+
+| Elements \(N\) | \(h\) (m) | \(\|u-u_h\|_{L^2}\) | \(\|u-u_h\|_{H^1}\) | energy \(\|u-u_h\|_a\) |
+|----------------|-----------|----------------------|----------------------|-------------------------|
+| 4 | 0.250 | \(2.0\times10^{-5}\) | \(1.4\times10^{-4}\) | \(1.4\times10^{-4}\) |
+| 8 | 0.125 | \(5.0\times10^{-6}\) | \(7.0\times10^{-5}\) | \(7.0\times10^{-5}\) |
+| 16 | 0.0625 | \(1.2\times10^{-6}\) | \(3.5\times10^{-5}\) | \(3.5\times10^{-5}\) |
+| 32 | 0.03125 | \(3.1\times10^{-7}\) | \(1.7\times10^{-5}\) | \(1.7\times10^{-5}\) |
+
+Ratios between successive rows: \(L^2\) error drops by \(\approx 4\times\) when \(h\) halves (\(O(h^2)\)); \(H^1\) and energy errors drop by \(\approx 2\times\) (\(O(h)\)). These are the slopes Céa's lemma predicts for P1 elements on a problem with \(u \in H^2\).
+
+A log–log plot of error vs. \(h\) should show slopes 2 and 1 respectively. If the \(L^2\) slope stalls at 1, check for wrong sign in the stiffness matrix or a missed essential boundary condition — the same debugging ritual as cutoff convergence in Part IX.
+
 For elasticity, use the **Kirsch problem** (hole in infinite plate) or **Timoshenko beam** solutions. Compare \(L^2\) displacement error and energy norm error separately.
 
 ## A priori vs. a posteriori estimates

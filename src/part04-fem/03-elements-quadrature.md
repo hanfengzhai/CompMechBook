@@ -89,6 +89,31 @@ Partition the unit square \([0,1]^2\) into two triangles or one bilinear quadril
 
 At each quadrature point, evaluate \(\mathbf{J}\), \(\nabla_x N_a\), and accumulate \(k_{ab}^e += w_q w_r\, (\nabla N_a \cdot \nabla N_b)\, |\det \mathbf{J}|\). The resulting \(4 \times 4\) local matrix matches the analytic stiffness for this uniform element. Distorting the quad — moving one corner inward — changes \(\mathbf{J}\) and the stiffness; the same quadrature rule remains valid if the map is invertible.
 
+### Worked example: Q1 bar element for the copper wire in tension
+
+Consider a single 1D bar element of length \(L = 0.01\) m (10 mm mesh along the wire axis), linear shape functions on \(\xi \in [0,1]\):
+
+\[
+N_1(\xi) = 1 - \xi, \qquad N_2(\xi) = \xi, \qquad x(\xi) = x_1 + L\xi.
+\]
+
+The Jacobian is scalar: \(J = dx/d\xi = L\), so \(\partial N_a/\partial x = (1/L)\,\partial N_a/\partial \xi\). For Poisson's equation \(-(EA u')' = f\) (or thermal conduction \(-(k T')' = q\)), the element stiffness with constant \(EA\) is
+
+\[
+k^e = \frac{EA}{L} \begin{bmatrix} 1 & -1 \\ -1 & 1 \end{bmatrix}.
+\]
+
+Verify with 2-point Gauss quadrature on \([0,1]\) mapped from \([-1,1]\): at \(\xi_q = \pm 1/\sqrt{3}\),
+
+\[
+\frac{dN_1}{d\xi} = -1, \quad \frac{dN_2}{d\xi} = 1, \quad
+\frac{dN_a}{dx} = \frac{1}{L}\frac{dN_a}{d\xi}.
+\]
+
+Each quadrature point contributes \(w_q (EA/L^2) \begin{bmatrix} 1 & -1 \\ -1 & 1 \end{bmatrix}\) with \(w_q = 1\); summing two points recovers \(k^e\) exactly — linear gradients integrated with 2-point Gauss is exact for constant coefficients.
+
+For a **distorted** bar (non-uniform spacing: nodes at \(x_1 = 0\), \(x_2 = 0.012\) m), \(J = x_2 - x_1 = 0.012\) m and the same formula applies with that \(L\). This is the atom inside the global assembly loop from Chapter 2: one element, two nodes, one scalar \(J\), one \(2\times2\) contribution to \(\mathbf{K}\).
+
 ## Reduced integration and locking
 
 **Full integration** uses enough points to integrate all polynomial terms in the bilinear form exactly. **Reduced integration** uses fewer points — sometimes deliberately.

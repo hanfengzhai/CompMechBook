@@ -78,6 +78,50 @@ Initialize \(U_j^0 = 1\) on \([0.2, 0.4]\) and 0 elsewhere on \([0,1]\) with per
 
 This test — trivial analytically, diagnostic numerically — should run before any shock tube calculation.
 
+### Worked example: a 70-line Python advection solver
+
+The listing below implements first-order upwind FVM for \(U_t + a U_x = 0\) on \([0,1]\) with periodic boundaries. It verifies CFL stability and conservation of the pulse integral (up to quadrature error).
+
+```python
+#!/usr/bin/env python3
+"""1D periodic advection: U_t + a U_x = 0, first-order upwind FVM."""
+import numpy as np
+
+def solve_advection(a=1.0, nx=200, nt=500, t_end=1.0):
+    x = np.linspace(0, 1, nx, endpoint=False)
+    dx = x[1] - x[0]
+    dt = t_end / nt
+    cfl = abs(a) * dt / dx
+    if cfl > 1.0:
+        raise ValueError(f"CFL={cfl:.3f} > 1; reduce dt or increase nx")
+
+    U = np.zeros(nx)
+    U[(x >= 0.2) & (x < 0.4)] = 1.0
+    mass0 = U.sum() * dx
+
+    for _ in range(nt):
+        F = np.zeros(nx + 1)
+        for j in range(nx + 1):
+            jl = (j - 1) % nx
+            jr = j % nx
+            U_L = U[jl] if a >= 0 else U[jr]
+            F[j] = a * U_L
+        U = U - (dt / dx) * (F[1:] - F[:-1])
+
+    mass1 = U.sum() * dx
+    print(f"CFL={cfl:.3f}, mass drift={abs(mass1 - mass0):.2e}")
+    return x, U
+
+if __name__ == "__main__":
+    x, U = solve_advection()
+    peak = U.max()
+    print(f"peak after one period (expect ~1.0): {peak:.4f}")
+```
+
+Run with increasing `nx` at fixed CFL: the smeared pulse width should shrink as \(O(\Delta x)\). Switch the flux to central differencing (`F[j] = a * 0.5 * (U[jl] + U[jr])`) and watch instability appear within a few steps — the same directional bias Part IV's symmetric Galerkin form does not provide for hyperbolic problems.
+
+For the heated copper wire's cooling air (Part V, Chapter 4), this script is the skeleton: replace scalar \(U\) with \(\mathbf{U} = (\rho, \rho u, \rho E)\), replace upwind with an HLLC flux (Chapter 3), and add viscous fluxes implicitly when the Reynolds number is large.
+
 ## Burgers' equation: shock formation
 
 Burgers' equation \(U_t + \partial(U^2/2)/\partial x = 0\) is a scalar model for nonlinear wave steepening. Smooth initial data develops a shock in finite time. A first-order upwind scheme captures the shock as a few-cell transition; exact solutions (rarefaction and shock relations) validate the numerical flux.
