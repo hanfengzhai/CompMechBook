@@ -9,11 +9,13 @@ md/
 ├── book.toml
 ├── chapters/
 │   ├── SUMMARY.md
+│   ├── 00-opening.md
 │   ├── 01-potentials-phase-space.md
-│   └── 02-ensembles-integrators.md
+│   ├── 02-ensembles-integrators.md
+│   └── 03-ab-initio-and-coarse-graining.md
 ```
 
-Chapter numbering `01`–`02` matches `src/part08-md/` in CompMechBook. Bridge sections connect dislocation-scale physics to interatomic potentials and LAMMPS workflows; Chapter 02 hands off to Part IX (density functional theory).
+Chapter numbering `00`–`03` matches `src/part08-md/` in CompMechBook. Bridge sections connect dislocation-scale physics to interatomic potentials and LAMMPS workflows; Chapter 03 hands off to Part IX (density functional theory).
 
 ## Build standalone
 

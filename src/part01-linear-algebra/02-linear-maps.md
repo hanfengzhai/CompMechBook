@@ -146,7 +146,7 @@ The **Jacobian** of the isoparametric map appears in every element integral; it 
 
 Finite volume methods (Part V) use different maps — cell volumes, face normals, flux integrals — but the same principle: express physics in a convenient local frame, then transform to a global conservation statement.
 
-## Bridge to the next chapter
+## Bridge
 
 Not every linear map is best viewed in the standard basis. The modes of vibration of a fixed–fixed copper wire, the principal stretches of a deformation gradient, and the normal modes of a coupled oscillator all arise from choosing a basis that **diagonalizes** the map. That is the story of eigenvalues — and the discrete preview of the spectral theorem we will meet in Part II.
 

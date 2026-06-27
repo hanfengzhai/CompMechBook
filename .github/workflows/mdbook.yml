@@ -31,6 +31,12 @@ jobs:
           cargo install mdbook-mermaid --version 0.14.1 --locked
           mdbook-mermaid install .
 
+      - name: Sync writings into src
+        run: ./scripts/sync-writings.sh
+
+      - name: Verify src matches writings
+        run: git diff --exit-code src/
+
       - name: Build book
         run: mdbook build
 

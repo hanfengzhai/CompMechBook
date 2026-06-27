@@ -146,6 +146,6 @@ Hyperbolic problems (wave propagation, advection) involve non-normal operators; 
 
 Industrial codes rarely form dense \(\mathbf{K}^{-1}\mathbf{M}\). **Lanczos** and **Arnoldi** methods build Krylov subspaces \(\{\mathbf{v}, \mathbf{K}^{-1}\mathbf{M}\mathbf{v}, \ldots\}\) and extract Ritz pairs — approximate eigenvalues from a small projected matrix. For the lowest modes of a fine copper-wire mesh, only a handful of iterations on the sparse \(\mathbf{K}\) solve are needed. Part IV's dynamics chapter and Part VIII's normal-mode analysis of atomic systems both rely on this same pattern: physics lives in a few dominant modes; the rest of the spectrum sets stability limits, not engineering response.
 
-## Bridge to the next chapter
+## Bridge
 
 We have stayed in finite dimensions: \(\mathbf{A}\mathbf{v} = \lambda \mathbf{v}\), finitely many modes, matrices we can factor. Mechanics, however, specifies fields at every point — temperature along the wire, displacement in every direction, pressure in every fluid cell. The next chapter takes the first step from \(\mathbb{R}^N\) toward function spaces: inner products become integrals, matrices become operators, and the eigenvalue problem becomes a spectral problem for differential operators. Part II makes that transition rigorous; Part III writes down the PDEs those operators encode.

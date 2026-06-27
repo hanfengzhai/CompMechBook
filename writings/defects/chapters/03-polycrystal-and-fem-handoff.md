@@ -75,6 +75,67 @@ For the copper wire, **offline calibration** dominates industry practice: tensil
 
 Two-scale FE² is research-grade: powerful for notches and grain clusters, costly when every element hosts an RVE. The epilogue returns to when concurrent coupling is worth the price.
 
+## Worked example: calibrating a drawn copper wire
+
+Follow one cold-drawn copper wire from mesoscale statistics to macroscopic FEM — the same ladder the prologue opened, now with file names and observables.
+
+**Step 1 — RVE DDD.** Run OpenDiS or ParaDiS on a \(2\times2\times2\) µm fcc single-crystal cube with periodic boundaries, initial dislocation density \(\rho_0 \sim 10^{12}\,\mathrm{m}^{-2}\) (as-drawn order of magnitude), and applied shear strain rate \(\dot\gamma = 10^{3}\,\mathrm{s}^{-1}\). Export time series of:
+
+- resolved shear stress \(\tau(\gamma)\) on primary slip systems,
+- total dislocation density \(\rho(\gamma)\),
+- link-length histograms (optional, for advanced hardening laws).
+
+OpenDiS writes segment files (node positions, Burgers vectors, connectivity) and stress–strain logs; ParaDiS uses similar restart formats. The calibration target is not the raw segments — it is **homogenized** \(\tau\)–\(\gamma\) and \(\rho\)–\(\gamma\) curves at the temperature of interest.
+
+**Step 2 — Fit crystal plasticity.** In DAMASK or an Abaqus UMAT, choose a phenomenological law — e.g. Voce isotropic hardening on each slip system:
+
+\[
+\dot\gamma^{(s)} = \dot\gamma_0 \left|\frac{\tau^{(s)}}{g^{(s)}}\right|^m \mathrm{sign}(\tau^{(s)}), \qquad
+\dot{g}^{(s)} = h_0 \left(1 - \frac{g^{(s)}}{g_s}\right) \sum_s |\dot\gamma^{(s)}|.
+\]
+
+Adjust \(\dot\gamma_0\), \(h_0\), \(g_s\), and initial \(g_0\) until the RVE stress–strain curve from Step 1 matches over the strain range relevant to wire drawing (typically 5–30% engineering strain before fracture). If DDD shows rapid dynamic recovery, add a recovery term or reduce \(h_0\) — the forest alone is not always enough.
+
+**Step 3 — Polycrystal texture.** EBSD on the wire cross-section yields orientation distribution function (ODF) weights. Assign one grain orientation per FEM element (or per integration point in a texture cluster) using the measured ODF. Elastic constants from Part VI (\(C_{11}, C_{12}, C_{44}\) for fcc Cu) enter the crystal plasticity update; isotropic \(E=120\) GPa is a last resort when texture matters.
+
+**Step 4 — Macroscopic FEM.** Mesh the wire as a 3D solid (Part IV elements, Part VI balance laws). Apply drawing-relevant boundary conditions: fixed end, prescribed displacement or force on the free end, optional thermal load from Joule heating (Part V hands off temperature fields). At each Gauss point, the crystal plasticity UMAT consumes the calibrated law from Step 2 and the local orientation from Step 3.
+
+**Step 5 — Validate.** Compare simulated engineering stress–strain to tensile test data. Discrepancy at yield often traces to Step 1 (wrong \(\rho_0\) or mobility); discrepancy at large strain often traces to texture (Step 3) or adiabatic heating omitted from the model.
+
+```text
+OpenDiS RVE  →  τ(γ), ρ(γ) logs
+      ↓ fit (Steps 1–2)
+DAMASK / UMAT parameters (γ̇₀, h₀, g_s, …)
+      ↓ + EBSD ODF (Step 3)
+Abaqus / FEniCS wire mesh (Step 4)
+      ↓
+Tensile test validation (Step 5)
+```
+
+This pipeline is **offline**: DDD and FEM do not run concurrently. It is how most industrial copper products are modeled today.
+
+## FE² at a notch: when offline calibration fails
+
+Consider a wire with a surface notch — stress concentrates, grains rotate locally, and a single global hardening curve from Step 2 mis-predicts initiation. **FE²** embeds an RVE DDD solve at selected macroscopic Gauss points:
+
+1. The macro FEM supplies **deformation gradient history** \(\bar{\mathbf{F}}(t)\) (or velocity gradient) as boundary data to the RVE.
+2. The RVE runs DDD with **periodic** or **mixed** boundary conditions consistent with \(\bar{\mathbf{F}}\).
+3. Homogenized Cauchy stress \(\bar{\boldsymbol{\sigma}}\) returns to the macro solver as the constitutive response.
+
+```text
+Macro wire mesh (coarse)
+    │
+    ├─ Gauss point at notch root ──► RVE DDD (2 µm cube, OpenDiS)
+    │                                      │
+    │                                      ▼
+    │                               homogenized σ̄
+    │                                      │
+    └──────────────────────────────────────┘
+              macro equilibrium update
+```
+
+Cost scales with the number of RVE hosts × DDD timesteps × macro load increments. For a production wire drawing simulation, one notch-root Gauss point may suffice; for every element, the job becomes intractable. The epilogue's **concurrent coupling** section compares FE² to surrogate models (neural constitutive laws trained on RVE ensembles) when full two-scale runs are too expensive.
+
 ## Verification and validation
 
 DDD-to-FEM handoff fails silently when units, rates, or temperatures mismatch:
@@ -98,6 +159,6 @@ DDD assumes **closed cores** and empirical short-range rules. When dislocations 
 
 The wire's strength is a story written in dislocation lines; the **ink** is atomic bonding. We have named the lines and their statistics. Next we resolve the atoms that give those lines their mobility.
 
-## Bridge
+## Bridge to Part VIII
 
 Crystal plasticity and calibrated DDD close the mesoscale chapter: they explain why the copper wire yields and hardens without resolving every atom. But mobility laws, stacking-fault energies, and crack-tip bond breaking are not adjustable forever — they are measured or computed at the atomic scale. Part VIII follows the same copper lattice with Newton's equations and empirical or fitted potentials, supplying the parameters DDD and FEM inherit.

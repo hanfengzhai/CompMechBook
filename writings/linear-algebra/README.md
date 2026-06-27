@@ -9,13 +9,14 @@ linear-algebra/
 ├── book.toml
 ├── chapters/
 │   ├── SUMMARY.md
+│   ├── 00-opening.md
 │   ├── 01-vectors-matrices.md
 │   ├── 02-linear-maps.md
 │   ├── 03-eigenvalues.md
 │   └── 04-toward-infinity.md
 ```
 
-Chapter numbering `01`–`04` matches `src/part01-linear-algebra/` in CompMechBook. Bridge sections at the end of each chapter connect the narrative to the next topic; Chapter 04 introduces function spaces and motivates Part II.
+Chapter numbering `00`–`04` matches `src/part01-linear-algebra/` in CompMechBook. Bridge sections at the end of each chapter connect the narrative to the next topic; Chapter 04 introduces function spaces and motivates Part II.
 
 ## Build standalone
 

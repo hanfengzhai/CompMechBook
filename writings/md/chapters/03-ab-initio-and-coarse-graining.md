@@ -61,6 +61,56 @@ Mobility tables, τ_P, junction rules  →  DDD (Part VII)
 
 A potential fit only to perfect-lattice bulk properties **fails** at dislocation cores and surfaces — exactly where the wire's processing history matters. Multiscale credibility requires **diverse** training configurations, not a single equation-of-state curve.
 
+## Worked example: fitting EAM for copper (checklist)
+
+Mirror the Part IX Quantum ESPRESSO discipline with an explicit copper workflow. The goal is a LAMMPS-ready EAM file that reproduces bulk moduli **and** one generalized stacking-fault (GSF) curve along \(\langle 111\rangle\{111\}\) slip.
+
+| Step | Action | Target / pass criterion |
+|------|--------|-------------------------|
+| 1 | DFT relax fcc Cu (`vc-relax`), record \(a_0\), \(E_{\text{coh}}\) | \(a_0 \approx 3.61\) Å (PBE typical) |
+| 2 | DFT elastic constants \(C_{11}, C_{12}, C_{44}\) (small strains) | Symmetric stiffness matrix |
+| 3 | DFT GSF: rigidly shift half-crystals along slip plane | \(\gamma_{\text{sf}} \approx 45\) mJ/m² (functional-dependent) |
+| 4 | DFT vacancy formation energy \(E_f^v\) in supercell | Compare to experiment ~1.17 eV |
+| 5 | Choose EAM functional form (Finnis–Sinclair or DYNAMO-style) | Cutoff \(\sim 5\)–\(6\) Å for Cu |
+| 6 | Optimize weights on bulk + GSF + \(E_f^v\) (force matching on snapshots optional) | Weight GSF ≥ bulk if DDD mobility is the consumer |
+| 7 | Validate: phonon at \(\Gamma\), melt test (qualitative), screw dislocation core relaxation | No imaginary phonons; core width sensible |
+| 8 | Export `.eam.alloy` or `.eam.fs` and archive DFT inputs | Version-control alongside manuscript |
+
+Step 6 is where teams disagree: a potential that nails \(B\) but misses \(\gamma_{\text{sf}}\) by 30% will mis-predict Peierls stress in Part VII. When in doubt, **prioritize configurations the wire actually visits** — faulted planes, surfaces, compressed cores — over perfect-lattice EOS alone.
+
+## Minimal LAMMPS deck (EAM copper)
+
+After Step 8, a sanity-check NVT run on fcc Cu at 300 K:
+
+```lammps
+units           metal
+atom_style      atomic
+boundary        p p p
+
+lattice         fcc 3.615
+region          box block 0 20 0 20 0 20
+create_box      1 box
+create_atoms    1 box
+
+pair_style      eam/alloy
+pair_coeff      * * Cu_u3.eam.alloy Cu
+
+mass            1 63.546
+velocity        all create 300.0 12345
+
+fix             1 all nvt temp 300 300 0.1
+thermo          100
+run             10000
+```
+
+Replace `Cu_u3.eam.alloy` with your fitted file. Compare:
+
+- relaxed lattice parameter vs. DFT \(a_0\),
+- mean pressure in NPT (not shown) vs. zero,
+- cohesive energy per atom vs. DFT.
+
+Then run a **screw dislocation** periodic cell (Part VII preview): if the core spreads or collapses unphysically, return to Step 6 with core configurations in the training set — do not patch mobility laws in DDD to compensate for a bad potential.
+
 ## Coarse-graining atomistic data
 
 Not every DDD or FEM parameter needs a full trajectory. Common **coarse-graining** exports:
@@ -79,13 +129,22 @@ For the wire, coarse-graining is the **discipline of reporting**: which averages
 
 ## Machine-learned potentials
 
-**Neural network potentials** (Behler–Parrinello, DeepMD, etc.) interpolate DFT data with near-DFT accuracy at MD cost after training. Workflow:
+**Neural network potentials** (Behler–Parrinello, DeepMD, etc.) interpolate DFT data with near-DFT accuracy at MD cost after training. A typical copper workflow:
 
-1. Generate DFT snapshots (active learning expands the set where uncertainty is high).
-2. Train network on energies and forces.
-3. Deploy in LAMMPS for large-scale MD.
+1. **Initial DFT pool**: bulk fcc, compressed/dilated cells, vacancy, surface (111), GSF points, small amorphous clusters.
+2. **Active learning loop**: run short LAMMPS/DeepMD probes; where force uncertainty exceeds a threshold, add that configuration to the DFT pool and retrain.
+3. **Train** on energies and forces (weighted; forces often dominate for dynamics).
+4. **Deploy** in LAMMPS via `pair_style deepmd` or PyTorch interface; benchmark against held-out DFT configs before exporting mobilities to DDD.
 
-For multiscale copper studies, ML potentials increasingly replace hand-tuned EAM when **reactive** or **complex** configurations matter. The ladder logic is unchanged: electronic structure defines the surface; atomistics explores it; mesoscale inherits statistics.
+| Stage | Tooling | Output for the wire story |
+|-------|---------|---------------------------|
+| DFT reference | Quantum ESPRESSO / VASP | Labeled \((\mathbf{R}, E, \mathbf{F})\) sets |
+| Dataset curation | ASE, dpdata | Train/validation splits with functional labels |
+| Training | DeePMD-kit, NequIP | Frozen model + metadata JSON |
+| Production MD | LAMMPS + plugin | Core structures, \(\gamma_{\text{sf}}\), fracture trajectories |
+| Upward export | Post-processing scripts | Mobility tables, Peierls estimates for OpenDiS |
+
+For multiscale copper studies, ML potentials increasingly replace hand-tuned EAM when **reactive** or **complex** configurations matter — notched fracture, oxidation at the surface, or alloy additions to the wire. The ladder logic is unchanged: electronic structure defines the surface; atomistics explores it; mesoscale inherits statistics. ML does not remove Part IX; it **amplifies** how much of the DFT landscape classical MD can faithfully visit.
 
 ## Limits of classical MD for the wire
 
@@ -108,6 +167,6 @@ When publishing parameters that cross scales:
 
 Silent mismatch — PBE DFT training, LDA used in a later study — corrupts the ladder worse than a 5% force error.
 
-## Bridge
+## Bridge to Part IX
 
 Classical MD is the workhorse; ab initio MD and QM/MM are the auditors when potentials fail. Coarse-graining and fitting are how Part VIII **hands numbers upward** to DDD and FEM and **requests truth downward** from electronic structure. Part IX makes that downward request precise: the Hohenberg–Kohn theorems, the Kohn–Sham equations, and the Quantum ESPRESSO-style workflows that turn a copper crystal into cohesive energy, elastic constants, and the potential datasets MD cannot invent.
