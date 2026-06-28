@@ -158,6 +158,35 @@ Picture the heated copper wire in cross-flow air. A minimal CFD setup requires:
 
 Steady RANS with a k–ω SST model might suffice for engineering heat transfer coefficients. LES resolves vortex shedding behind the wire at higher cost. FEM conduction in the wire (Part IV) plus FVM convection in the air (Part V) exchanges wall heat flux each iteration — the multiphysics loop the book's ladder is built to support.
 
+## Multiphysics scene: conjugate heat transfer
+
+Parts IV and V use different discretizations, but the copper wire under current is **one coupled boundary-value problem** split across domains. The solid solves steady conduction; the fluid solves convection with a no-slip wall whose temperature is unknown until both sides agree on heat flux.
+
+**Solid (FEM, Part IV).** On the wire mesh \(\Omega_s\), find temperature \(T_s\) such that
+
+\[
+\int_{\Omega_s} k \nabla T_s \cdot \nabla v \, d\Omega + \int_{\Gamma_w} q_w \, v \, dS = \int_{\Omega_s} \dot{q}_{\text{Joule}} \, v \, d\Omega
+\]
+
+for all test functions \(v \in H^1(\Omega_s)\). Here \(\dot{q}_{\text{Joule}} = \sigma_e |\mathbf{J}|^2\) is volumetric heating from electrical current, and \(q_w\) is the unknown wall heat flux at the fluid interface \(\Gamma_w\).
+
+**Fluid (FVM, Part V).** In the air domain \(\Omega_f\), steady incompressible flow with energy equation gives cell-averaged \(T_f\) and velocity \(\mathbf{u}\). At the wire surface,
+
+\[
+-k \left.\frac{\partial T_s}{\partial n}\right|_{\Gamma_w} = q_w = h\,(T_w - T_\infty) \quad\text{or}\quad q_w = -k_f \left.\frac{\partial T_f}{\partial n}\right|_{\Gamma_w},
+\]
+
+with \(T_w = T_s|_{\Gamma_w} = T_f|_{\Gamma_w}\) enforced by **interface coupling**.
+
+**Partitioned coupling loop** (the story both codes tell together):
+
+1. Guess wall temperature \(T_w^{(0)}\) (or flux \(q_w^{(0)}\)).
+2. **Fluid step:** solve Navier–Stokes + energy with fixed \(T_w\); extract \(q_w^{(k)} = -k_f \partial T_f / \partial n\).
+3. **Solid step:** solve conduction with Neumann data \(q_w^{(k)}\) on \(\Gamma_w\); read updated \(T_w^{(k+1)} = T_s|_{\Gamma_w}\).
+4. Repeat until \(|T_w^{(k+1)} - T_w^{(k)}| < \varepsilon\) — a **fixed-point iteration** between sparse linear systems (solid) and nonlinear FVM updates (fluid).
+
+This is not a third method. It is Part IV and Part V **speaking at an interface** — the same weak-form / flux-balance pattern the epilogue later generalizes to DFT→MD→DDD→FEM chains. When the wire runs hot enough to soften, add thermal strain \(\alpha\Delta T\) in the solid weak form (Part VI); when Reynolds number exceeds the laminar regime, swap the RANS closure on the fluid side. The coupling skeleton stays.
+
 ## Bridge to Part VI
 
 Part V discretized conservation on control volumes for fluids. Part VI develops the **kinematics and stress measures** that both FEM solid codes and FVM fluid codes ultimately approximate — deformation gradient and strain for solids, rate of deformation for fluids, Cauchy stress and balance laws for both. The copper wire under tension and the air cooling it are one multiphysics story told in two discretization languages; Part VI supplies the shared continuum vocabulary.
