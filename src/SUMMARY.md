@@ -1,6 +1,6 @@
 # Summary
 
-Read in order from the **Preface** through the **Epilogue** for the full narrative. Each numbered chapter ends with a **Bridge** that explains why the next chapter exists; part openings add a **concept map** (object, structure, theorem, failure mode) following the [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) layout. Parts IV and V may be swapped if you already know FEM and want CFD first — both paths converge at Part VI.
+Read in order from the **Preface** through the **Epilogue** for the full narrative. Each numbered chapter ends with a **Bridge** that explains why the next chapter exists; part openings add a **concept map** (object, structure, theorem, failure mode) following the Functional Analysis Notes (ME 412) layout. Parts IV and V may be swapped if you already know FEM and want CFD first — both paths converge at Part VI.
 
 [Preface](./preface.md)
 
