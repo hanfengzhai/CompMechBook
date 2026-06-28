@@ -27,6 +27,43 @@ Each rung supports the one above it. Each rung limits the one below it. Climbing
 
 The copper wire is our thread through every rung. At the macro scale it is a structural member; at the mesoscale a polycrystal with texture; at the atomistic scale a lattice of nuclei vibrating in an effective potential; at the electronic scale a sea of valence electrons binding the crystal together.
 
+## The concept map (whole book)
+
+The [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) organize each topic with four questions — object, structure, theorem, failure mode. At the scale of the entire book, the same discipline applies:
+
+| Question | Answer for this book |
+|----------|----------------------|
+| What **object** spans all parts? | The copper wire as a multiscale state — vectors, fields, defects, atoms, electrons |
+| What **structure** connects the parts? | The ladder: homogenize upward, derive downward; weak forms at every rung |
+| What **theorem** (or principle) makes the story coherent? | Well-posedness and convergence at each discretization; consistent interface data across scales |
+| What **breaks** if we ignore the ladder? | Wrong moduli, missing hardening history, unit mismatches, category errors at notches and cores |
+
+The reading order is one continuous arc — not a catalog of methods:
+
+```mermaid
+flowchart TB
+  P[Prologue: one wire, many scales]
+  I[Part I: Linear algebra]
+  II[Part II: Functional analysis]
+  III[Part III: PDEs and weak forms]
+  IV[Part IV: Finite elements]
+  V[Part V: Finite volumes and CFD]
+  VI[Part VI: Continuum mechanics]
+  VII[Part VII: Defects and DDD]
+  VIII[Part VIII: Molecular dynamics]
+  IX[Part IX: DFT]
+  E[Epilogue: Multiscale coupling]
+  P --> I --> II --> III
+  III --> IV
+  III --> V
+  IV --> VI
+  V --> VI
+  VI --> VII --> VIII --> IX --> E
+  E -.->|four questions| P
+```
+
+**Baby picture:** climb the mathematical rungs (I–VI) until the wire is a meshed solid with stress and flux; then descend (VII–IX) to learn where yield stress, potentials, and cohesive energy originate; finish by wiring the rungs together in workflows no single code runs alone.
+
 ## The same questions at every scale
 
 At each rung we ask the same four questions — whether we are solving a sparse linear system, a weak form, or a self-consistent Kohn–Sham cycle:
