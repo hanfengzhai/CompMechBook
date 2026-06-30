@@ -28,7 +28,13 @@ This is the **Dirichlet principle** — existence of a minimizer proves existenc
 
 ### Worked example: 1D quadratic energy
 
-On \((0,L)\) with \(u(0)=u(L)=0\) and \(f=1\), \(\Pi(u) = \int \tfrac{1}{2}(u')^2 - u \, dx\). The Euler–Lagrange equation is \(-u'' = 1\), giving \(u(x) = x(L-x)/2\). Evaluate \(\Pi(u) = L^3/6 - L^3/6 = \ldots\) (direct integration confirms the minimum). Rayleigh–Ritz on a two-element mesh (Part I assembly) approximates this minimum in \(V_h\); the minimizing \(\mathbf{U}\) solves \(\mathbf{K}\mathbf{U}=\mathbf{F}\).
+On \((0,L)\) with \(u(0)=u(L)=0\) and \(f=1\), \(\Pi(u) = \int \tfrac{1}{2}(u')^2 - u \, dx\). The Euler–Lagrange equation is \(-u'' = 1\), giving \(u(x) = x(L-x)/2\). Direct integration yields
+
+\[
+\int_0^L \tfrac{1}{2}(u')^2 \, dx = \frac{L^3}{24}, \qquad \int_0^L u \, dx = \frac{L^3}{12}, \qquad \Pi(u) = -\frac{L^3}{24}.
+\]
+
+At the minimizer, \(a(u,u) = \ell(u)\), so \(\Pi(u) = \tfrac{1}{2}a(u,u) - \ell(u) = -\tfrac{1}{2}\ell(u)\) — the negative sign reflects work done by the load against the restoring stiffness. Rayleigh–Ritz on a two-element mesh (Part I assembly) approximates this minimum in \(V_h\); the minimizing \(\mathbf{U}\) solves \(\mathbf{K}\mathbf{U}=\mathbf{F}\).
 
 ## Elastic strain energy
 
