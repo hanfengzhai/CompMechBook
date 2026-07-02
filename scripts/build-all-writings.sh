@@ -5,6 +5,8 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 export PATH="${HOME}/.local/bin:${PATH}"
 PARTS=(
+  preface
+  prologue
   linear-algebra
   functional-analysis
   pde
@@ -14,6 +16,7 @@ PARTS=(
   defects
   md
   dft
+  epilogue
 )
 
 for part in "${PARTS[@]}"; do

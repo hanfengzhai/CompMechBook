@@ -88,6 +88,11 @@ sync_part "$ROOT/writings/md/chapters" "$ROOT/src/part08-md" 01 02 03
 # Part IX: DFT Notes (01–03)
 sync_part "$ROOT/writings/dft/chapters" "$ROOT/src/part09-dft" 01 02 03
 
+# Narrative framing (preface, prologue, epilogue)
+sync_file "$ROOT/writings/preface/chapters/00-preface.md" "$ROOT/src/preface.md"
+sync_file "$ROOT/writings/prologue/chapters/00-many-scales.md" "$ROOT/src/prologue/00-many-scales.md"
+sync_file "$ROOT/writings/epilogue/chapters/00-multiscale.md" "$ROOT/src/epilogue/multiscale.md"
+
 if $CHECK_ONLY; then
   if [[ $DRIFT -ne 0 ]]; then
     echo "FAIL: src/ is out of sync with writings/. Run ./scripts/sync-writings.sh"
