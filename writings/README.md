@@ -8,15 +8,18 @@ Each part is a standalone mdBook:
 
 ```
 writings/
+├── preface/                 # Book preface (synced to src/preface.md)
+├── prologue/                # Prologue — multiscale motivation
 ├── linear-algebra/          # Part I  — opening + chapters 01–04
-├── functional-analysis/     # Part II — opening + chapters 01–05
+├── functional-analysis/     # Part II — opening + chapters 01–05 (ME 412 layout model)
 ├── pde/                     # Part III — opening + chapters 01–04
 ├── fem/                     # Part IV — opening + chapters 01–05
 ├── fvm/                     # Part V  — opening + chapters 01–04
 ├── continuum/               # Part VI — opening + chapters 01–04
 ├── defects/                 # Part VII — opening + chapters 01–03
 ├── md/                      # Part VIII — opening + chapters 01–03
-└── dft/                     # Part IX — opening + chapters 01–03
+├── dft/                     # Part IX — opening + chapters 01–03
+└── epilogue/                # Epilogue — multiscale coupling (synced to src/epilogue/)
 ```
 
 Every subtree contains:
@@ -50,8 +53,11 @@ Every subtree contains:
    | `defects/chapters/00, 01–03` | `src/part07-defects/` |
    | `md/chapters/00, 01–03` | `src/part08-md/` |
    | `dft/chapters/00, 01–03` | `src/part09-dft/` |
+   | `preface/chapters/00-preface.md` | `src/preface.md` |
+   | `prologue/chapters/00-many-scales.md` | `src/prologue/00-many-scales.md` |
+   | `epilogue/chapters/00-multiscale.md` | `src/epilogue/multiscale.md` |
 
-4. Book-specific material (prologue, preface, epilogue, appendix) lives only in `src/`.
+4. Book-specific material that is **not** synced from `writings/` includes only the appendix (`src/appendix/`).
 
 ## Build standalone notes
 

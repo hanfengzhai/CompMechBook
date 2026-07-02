@@ -72,6 +72,37 @@ On \((0,L)\), \(-(EA u')' = f(x)\), \(u(0)=u(L)=0\). Weak form with test \(v \in
 
 Take \(f = 1\), constant \(EA\). A piecewise-linear FEM with two elements gives the same \(3 \times 3\) system as Part I’s assembly; solving yields nodal displacements approximating the parabolic exact solution \(u(x) = x(L-x)/(2EA)\). The weak form, Galerkin discretization, and linear algebra pipeline close the loop from Part I to Part IV.
 
+## Worked example: point load at midspan (why the weak form wins)
+
+Return to the copper wire gripped at both ends and loaded by a **point force** \(P\) at midspan \(x = L/2\). Part I modeled this as a spring network; Part III now writes the continuum limit.
+
+**Strong form.** Axial equilibrium is \(-(EA u')' = P\,\delta(x - L/2)\) on \((0,L)\), with \(u(0)=u(L)=0\). Away from the load, \(u'' = 0\), so \(u\) is piecewise linear — a **tent function** with peak at \(L/2\). At the load point, \(u\) is continuous but **not twice differentiable**: a classical \(C^2\) solution does not exist. The strong Laplacian \(\Delta u\) is not defined pointwise at the kink; insisting on a pointwise PDE is the wrong question.
+
+**Weak form.** Multiply by \(v \in H^1_0(0,L)\) and integrate:
+
+\[
+\int_0^L EA\, u' v' \, dx = P\, v(L/2).
+\]
+
+Only **first** derivatives appear. The right-hand side is a **point evaluation** of the test function — the continuum version of applying a nodal load in Part I. Lax–Milgram applies with coercivity from Poincaré on \(H^1_0\); a unique weak solution exists. It is the tent function \(u(x) = \frac{P}{EA}\min(x, L-x)\) for \(x \in [0,L]\), with \(\|u\|_{H^1}\) finite even though \(u''\) is a delta distribution, not a function.
+
+**Three-node Galerkin (preview of Part IV).** Split \([0,L]\) into two equal elements with nodes at \(0, L/2, L\). Piecewise-linear hat functions \(\phi_0, \phi_1, \phi_2\) give
+
+\[
+K_{ij} = \int_0^L EA\, \phi_i' \phi_j' \, dx, \qquad F_i = P\, \phi_i(L/2).
+\]
+
+Because \(\phi_0(L/2)=\phi_2(L/2)=0\) and \(\phi_1(L/2)=1\), the load vector is \(\mathbf{F} = (0,\, P,\, 0)^T\) — exactly the middle-node pattern from Part I’s spring assembly. Symmetry and sparsity match the stiffness matrix assembled there; only the **interpretation** has changed: \(\mathbf{K}\) is a Galerkin projection of the operator \(-(EA\,(\cdot)')'\), not an ad hoc graph Laplacian.
+
+| Question | Strong form at \(x=L/2\) | Weak form / FEM |
+|----------|--------------------------|-----------------|
+| Does a \(C^2\) solution exist? | No (kink) | Not required |
+| Where is equilibrium enforced? | Pointwise (fails at load) | Against all admissible \(v\) |
+| Discrete unknowns | Ill-defined second derivatives | Nodal displacements in \(H^1\) |
+| Link to Part I | — | Same \(\mathbf{K}\mathbf{U}=\mathbf{F}\) pattern |
+
+This example is the narrative hinge between Parts I, III, and IV: linear algebra was always a weak-form discretization in disguise; we simply had not yet named the function space or the integration-by-parts step that makes the point load legitimate.
+
 ## Virtual work in elasticity
 
 For displacements, the weak form is the **principle of virtual work**:
