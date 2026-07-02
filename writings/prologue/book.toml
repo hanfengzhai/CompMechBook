@@ -1,0 +1,13 @@
+[book]
+title = "Computational Mechanics — Prologue"
+authors = ["Hanfeng Zhai"]
+description = "Multiscale motivation for CompMechBook — source notes in Functional Analysis Notes layout."
+language = "en"
+multilingual = false
+src = "chapters"
+
+[build]
+create-missing = false
+
+[output.html]
+mathjax-support = true
