@@ -61,6 +61,11 @@ sync_part() {
   done
 }
 
+# Front matter
+sync_file "$ROOT/writings/preface/chapters/preface.md" "$ROOT/src/preface.md"
+sync_file "$ROOT/writings/prologue/chapters/00-many-scales.md" "$ROOT/src/prologue/00-many-scales.md"
+sync_file "$ROOT/writings/epilogue/chapters/multiscale.md" "$ROOT/src/epilogue/multiscale.md"
+
 # Part I: Linear Algebra Notes (01–04)
 sync_part "$ROOT/writings/linear-algebra/chapters" "$ROOT/src/part01-linear-algebra" 01 02 03 04
 
