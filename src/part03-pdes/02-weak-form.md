@@ -4,6 +4,24 @@ The weak form is the computational mechanic's version of integration by parts: m
 
 If the copper wire is fixed at both ends and loaded in the middle, the displacement field may be continuous but not twice differentiable at the load point — the strong form \(-EA u'' = f\) fails classically at a point force. The weak form still asks: for all admissible virtual displacements, is internal virtual work equal to external virtual work? That question has an answer in \(H^1\), and Galerkin discretization turns it into \(\mathbf{K}\mathbf{U}=\mathbf{F}\).
 
+## From springs to weak form: the same question twice
+
+Return to Part I's spring network on the copper wire. Equilibrium at each interior node required the sum of spring forces to vanish — a **discrete balance law**. Multiply that balance by an arbitrary virtual displacement at the node and sum over all nodes: internal virtual work equals external virtual work. That is already a weak statement; the only novelty in the continuum limit is that the index set of nodes becomes the domain \(\Omega\), and the sum becomes an integral.
+
+The pipeline the book has been building now closes a loop:
+
+```mermaid
+flowchart LR
+  LA[Part I: K u = f] --> FA[Part II: u in H1]
+  FA --> SF[Strong PDE]
+  SF --> WF[Weak form]
+  WF --> FEM[Part IV: K U = F again]
+```
+
+**Linear algebra** gave us \(\mathbf{K}\mathbf{u}=\mathbf{f}\). **Functional analysis** explained why the limit as the mesh refines lives in \(H^1\). **Strong forms** wrote the PDE the mesh approximates. **Weak forms** are the variational statement FEM implements — and they return us to a matrix system whose entries are integrals of shape-function gradients. The copper wire never changed; only the language did.
+
+This is why the weak form is not a numerical trick. It is the **correct continuum statement** for problems whose classical solutions fail at corners, kinks, and point loads — exactly the situations the drawn wire presents when clamped, notched, or loaded at a grip.
+
 ## Derivation: Poisson with Dirichlet BCs
 
 Start with \(-\Delta u = f\) in \(\Omega\), \(u = 0\) on \(\partial\Omega\). Multiply by a test function \(v\) that also vanishes on the boundary:
@@ -71,6 +89,16 @@ On \((0,L)\), \(-(EA u')' = f(x)\), \(u(0)=u(L)=0\). Weak form with test \(v \in
 \]
 
 Take \(f = 1\), constant \(EA\). A piecewise-linear FEM with two elements gives the same \(3 \times 3\) system as Part I’s assembly; solving yields nodal displacements approximating the parabolic exact solution \(u(x) = x(L-x)/(2EA)\). The weak form, Galerkin discretization, and linear algebra pipeline close the loop from Part I to Part IV.
+
+### Point load at midspan: where the strong form breaks
+
+Suppose instead the wire carries a concentrated force \(P\) at \(x = L/2\). The strong form \(-EA u'' = P\,\delta(x - L/2)\) uses a **Dirac delta** on the right-hand side — not a function in \(L^2\), but a **linear functional** on test functions (Part II, Chapter 4). The weak form remains well posed: seek \(u \in H^1_0(0,L)\) such that
+
+\[
+\int_0^L EA\, u' v' \, dx = P\, v(L/2) \quad \forall v \in H^1_0(0,L).
+\]
+
+The load appears as evaluation of the test function at the load point — the discrete analogue of a nodal force in Part I's spring network. A finite element mesh with a node at midspan assembles \(F_i = P\) at that node directly; no delta function is ever stored in memory. This is the computational mechanic's everyday encounter with **distributions**: the weak form absorbs singular loads; the assembly code sees numbers at nodes.
 
 ## Virtual work in elasticity
 
