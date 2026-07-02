@@ -31,6 +31,22 @@ flowchart LR
 
 **Baby picture:** separate fast electrons from slow nuclei, prove the ground-state energy is a functional of density alone, solve Kohn–Sham equations self-consistently, then export cohesive energy and elastic moduli upward to MD, DDD, and FEM. The copper wire's valence electrons live here.
 
+## Closing the arc from Part I
+
+If you have read linearly since the prologue, notice how the **same four questions** from the opening table reappear here with new vocabulary — and how the **same mathematical moves** from Part I return at the finest scale:
+
+| Part I (springs on the wire) | Part IX (electrons in copper) |
+|------------------------------|-------------------------------|
+| State vector \(\mathbf{u}\) | Electron density \(\rho(\mathbf{r})\) |
+| Stiffness matrix \(\mathbf{K}\) | Kohn–Sham Hamiltonian operator |
+| Eigenmodes decouple vibration | Kohn–Sham orbitals diagonalize the effective potential |
+| \(\mathbf{K}\mathbf{u}=\mathbf{f}\) from energy minimization | Ground-state \(\rho\) minimizes \(E[\rho]\) |
+| Mesh refinement sends \(N\to\infty\) | Plane-wave cutoff and k-mesh send basis size \(\to\infty\) |
+
+Part II taught that Galerkin convergence is projection onto finite subspaces; Part IX's plane-wave basis is the same idea with Bloch phases instead of shape functions. Part III's weak forms asked us to multiply by test functions and integrate by parts; DFT's Hohenberg–Kohn framework replaces pointwise Schrödinger equations with a **variational statement on density** — the same instinct that made FEM honest at reentrant corners.
+
+The copper wire that began as a chain of coupled springs ends as a periodic crystal whose valence electrons are solved by a self-consistent **eigenvalue loop** (Part I), in function spaces of orbitals (Part II), arising from a variational principle (Part III), discretized on a basis (Part IV's assembly philosophy), and exported upward as moduli and potentials (Parts VI–VIII). Part IX is not a new subject bolted onto the end. It is the **finest rung** of the ladder the prologue promised — and the epilogue will ask how to climb back up with the numbers computed here.
+
 ## Bridge
 
 Part VIII treated atoms as classical particles. The first chapter below separates electrons from nuclei — the Born–Oppenheimer approximation — and explains why the ground-state electron density alone determines the energy landscape on which MD and elasticity ultimately rest.
