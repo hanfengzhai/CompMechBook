@@ -61,6 +61,40 @@ Modern multiscale work combines paradigms. None replaces the others; each manage
 
 **Remedy:** Pass **multiple** outputs (not just \(E\), but hardening laws, yield surface evolution) and validate homogenization assumptions (representative volume element size, periodicity).
 
+The copper wire workflow, read as one story from Part IX back to the test bench:
+
+```mermaid
+flowchart TB
+  subgraph IX["Part IX — DFT"]
+    QE[Quantum ESPRESSO SCF]
+    QE --> OUT9["E_coh, C_ij, γ_sf, E_f^v"]
+  end
+  subgraph VIII["Part VIII — MD"]
+    EAM[Fit EAM / ML potential]
+    LMP[LAMMPS NVT / NPT]
+    OUT9 --> EAM --> LMP --> OUT8["a_0, mobility, thermal expansion"]
+  end
+  subgraph VII["Part VII — DDD"]
+    OD[OpenDiS / ParaDiS]
+    OUT8 --> OD --> OUT7["τ(γ), ρ̇, link statistics"]
+  end
+  subgraph VI["Part VI — Continuum"]
+    CP[Crystal plasticity / J₂]
+    OUT7 --> CP --> OUT6["σ_y(γ), hardening, texture"]
+  end
+  subgraph IVV["Parts IV–V — FEM / FVM"]
+    FEM[FEM solid + FVM fluid]
+    OUT6 --> FEM --> OUT45["deflection, T(x), q_w at wall"]
+  end
+  subgraph LAB["Epilogue — laboratory"]
+    TEST[Load cell, strain gauge, thermocouple]
+    OUT45 --> TEST
+  end
+  IX --> VIII --> VII --> VI --> IVV --> LAB
+```
+
+Each arrow is an **export contract**: documented units, validation at the interface, and a tolerance that closes the loop before the next rung consumes the data.
+
 ### Concurrent multiscale
 
 **Concurrent multiscale** runs fine and coarse models **simultaneously** with handshaking in overlapping domains:
