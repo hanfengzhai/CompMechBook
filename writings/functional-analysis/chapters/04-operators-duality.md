@@ -2,6 +2,10 @@
 
 Matrices act on column vectors. Differential operators act on functions. Dual spaces act on vectors and functions alike through pairing — the language of loads, constraints, and virtual work. This chapter develops the operator vocabulary that makes weak formulations, mixed finite elements, and convergence under mesh refinement precise. When the copper wire's displacement field \(u_h\) changes with mesh size, we ask not only whether \(\|u_h - u\|\) shrinks, but in what **sense** the sequence approaches the limit. Strong convergence in norm is the strongest answer; weak convergence is often enough, and sometimes all that holds.
 
+## Scene: the load is not a vector of numbers
+
+The grip applies a fixed displacement; gravity pulls downward with a force per unit volume; a contact constraint pushes only where the wire touches the wedge. In the weak form, each load becomes a linear functional on the displacement space — not an entry in a column vector until we choose a basis. Dual spaces are where virtual work lives: they translate physical loads into data the weak form can consume, and they explain why refining the mesh changes the discrete vector but not the underlying load object.
+
 ## Bounded linear operators
 
 Let \(H_1\) and \(H_2\) be Hilbert spaces. A linear operator \(A: H_1 \to H_2\) is **bounded** if there exists a constant \(C \ge 0\) such that

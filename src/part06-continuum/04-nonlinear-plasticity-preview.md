@@ -4,6 +4,10 @@ The copper wire from the prologue was never purely elastic. Cold drawing pushed 
 
 This chapter is not a full treatise on plasticity theory — that would require its own book. It is the **bridge** between variational elasticity and the defect mechanics of Part VII: what changes when displacements are large, when energy is no longer quadratic, and when history matters.
 
+## Scene: the curve bends, the model must follow
+
+Return to the force–displacement trace from Part I: linear climb, then yield knee, then hardening plateau. Linear elasticity explains only the first segment. Large strain, necking, and path-dependent hardening live outside the quadratic energy landscape — yet the same wire, same grips, same experiment. This chapter names what changes when the tangent stiffness stops being constant and points toward Part VII's defects as the microscale reason for the knee.
+
 ## When linear elasticity breaks down
 
 Linear elasticity assumes:

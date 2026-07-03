@@ -4,6 +4,10 @@ A finite element mesh of the copper wire can look impressively fine — thousand
 
 This chapter connects Part I's discrete norms, Part II's function-space error analysis, and Part IV's implementation choices (\(h\), \(p\), element type) into a coherent refinement strategy.
 
+## Scene: finer mesh, same answer?
+
+The analyst refines the wire mesh once, twice, five times — stress contour colors shift, peak values creep downward, then stabilize. Is the solution converged, or merely pretty? Without a norm and an expected decay rate, refinement is guesswork dressed as diligence. This chapter gives the wire plot a certificate: in the energy norm, error should fall like \(h^p\), and when it does not, the element type or boundary model — not the solver — is suspect.
+
 ## Galerkin orthogonality and Céa's lemma
 
 Let \(u \in V\) solve the weak problem \(a(u,v) = \ell(v)\) for all \(v \in V\), and let \(u_h \in V_h \subset V\) solve the discrete problem \(a(u_h, v_h) = \ell(v_h)\) for all \(v_h \in V_h\).

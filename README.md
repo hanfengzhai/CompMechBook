@@ -32,7 +32,7 @@ Chapters synthesize the author's existing notes on [hanfengzhai.github.io](https
 
 ## Scope
 
-Roughly **78,000 words** across **49 sections** (preface, prologue, nine part openings, **35 numbered chapters**, epilogue, appendix), plus **twelve** standalone Writings mdBooks under `writings/` (preface, prologue, epilogue, and nine parts). Each part opens with a short framing chapter; each numbered chapter ends with a **Bridge** section that hands off to the next topic, following the [Functional Analysis Notes](./writings/functional-analysis/) layout. **Twenty** numbered chapters open with a **Scene** section that returns to the copper wire narrative before the technical development.
+Roughly **79,000 words** across **49 sections** (preface, prologue, nine part openings, **35 numbered chapters**, epilogue, appendix), plus **twelve** standalone Writings mdBooks under `writings/` (preface, prologue, epilogue, and nine parts). Each part opens with a short framing chapter; each numbered chapter ends with a **Bridge** section that hands off to the next topic, following the [Functional Analysis Notes](./writings/functional-analysis/) layout. **All 35** numbered chapters open with a **Scene** section that returns to the copper wire narrative before the technical development.
 
 ## Build
 

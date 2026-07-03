@@ -4,6 +4,10 @@ Where a norm tells us how large an object is, an inner product tells us how two 
 
 Pull the copper wire again and consider two displacement fields \(u\) and \(v\) along its length. If one mode of vibration is even and another odd about the midpoint, their product integrated over the domain averages to zero: they are **orthogonal** in the \(L^2\) inner product. Decoupling of normal modes in linear vibration analysis is not a numerical convenience; it is a theorem about orthogonality of eigenfunctions in a Hilbert space.
 
+## Scene: modes that ignore each other
+
+Clamp the wire and strike it softly: the fundamental bend and the second bend do not exchange energy arbitrarily — their displacements integrate to orthogonal patterns over the length. That decoupling is Hilbert geometry: an inner product turns mode orthogonality into a theorem, and Galerkin projection into best approximation in energy. The wire's vibration spectrum is a Hilbert-space story told before any tetrahedral mesh exists.
+
 ## Definition
 
 An **inner product** on a real vector space \(V\) is a map \((\cdot,\cdot): V \times V \to \mathbb{R}\) such that for all \(u,v,w \in V\) and \(\alpha \in \mathbb{R}\):

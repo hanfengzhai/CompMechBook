@@ -4,6 +4,10 @@ A matrix is not merely a table of numbers. It is a **linear map** expressed in a
 
 When we mesh the copper wire for a tensile test, each bar element has a **local** coordinate system aligned with the element axis. The global displacement vector lives in a **global** basis tied to node numbering. Assembly is the book-keeping that says: "this local degree of freedom is global degree of freedom 17." That book-keeping is a linear map.
 
+## Scene: two languages for the same grip load
+
+The tensile frame displays grip displacement in millimeters; the finite element deck stores it as degree of freedom 1. The bar element on the wire axis has its own local axis; the global stiffness matrix sees a completely different numbering. Same physics, three coordinate systems. Assembly is the map that declares them equivalent — and if that map is wrong, the wire appears to stretch when only one end moves.
+
 ## Linear maps and their matrix representations
 
 A map \(T: \mathbb{R}^n \to \mathbb{R}^m\) is linear if

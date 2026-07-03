@@ -6,6 +6,10 @@ The copper wire under tension illustrates the transition cleanly. Steady Joule h
 
 > **Reader's note:** This chapter uses small-strain kinematics and isotropic Hooke's law in the form a FEM code expects. **Part VI** develops the same objects — deformation, stress, balance laws, and variational elasticity — from continuum mechanics first principles. Read here for assembly; return to Part VI for the physics foundation, or skim Part VI Chapters 1–3 first if you prefer definitions before discretization.
 
+## Scene: one wire, two fields
+
+Run current through the copper wire and two simulations appear on the same mesh: a scalar temperature field from Joule heating, and a vector displacement field from thermal expansion plus tension. Poisson gave us the scalar pipeline; elasticity repeats it threefold — same assembly loop, block stiffness matrix, different physics. The wire does not separate those couplings as cleanly as the FEM deck does, but recognizing the pattern saves a semester of relearning.
+
 ## Strong form of linear elasticity
 
 In small-displacement theory, the **strain tensor** is

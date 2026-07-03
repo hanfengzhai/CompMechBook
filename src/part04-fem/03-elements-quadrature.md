@@ -4,6 +4,10 @@ An finite element is three things bundled together: a **reference domain** with 
 
 Chapter 2 showed assembly as a scatter of local matrices. This chapter explains what happens inside the element loop — how geometry enters through the Jacobian, how polynomial order controls accuracy, and why bad elements (slivers, nearly incompressible materials on Q1 meshes) produce bad answers even when the assembly code is correct.
 
+## Scene: the mesh becomes tiny shapes
+
+Zoom into the copper wire model until individual elements fill the screen: small triangles or bricks, each with the same reference template, stretched and rotated to fit the local geometry. Shape functions interpolate temperature and displacement inside each patch; quadrature integrates the weak form as a weighted sum of point values. A coarse mesh captures bulk stretch; a fine mesh resolves the hot spot where current density peaks — same element library, different resolution.
+
 ## Reference elements and local coordinates
 
 Engineering meshes use triangles, quadrilaterals, tetrahedra, and hexahedra in arbitrary orientations and sizes. Computing shape function derivatives on each physical element separately would be tedious. Instead, every element type defines a **reference element** \(\hat{\Omega}\) and an invertible map \(\mathbf{x}(\xi)\) from reference coordinates \(\xi\) to physical coordinates \(\mathbf{x}\).
