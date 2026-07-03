@@ -54,7 +54,7 @@ Every subtree contains:
    | `md/chapters/00, 01–03` | `src/part08-md/` |
    | `dft/chapters/00, 01–03` | `src/part09-dft/` |
 
-4. Book-specific material (prologue, preface, epilogue, appendix) lives only in `src/`.
+4. Front matter (preface, prologue, epilogue) is canonical under `writings/` and synced into `src/`; the appendix (`src/appendix/`) and unified `src/SUMMARY.md` live only in the main book.
 
 ## Build standalone notes
 
