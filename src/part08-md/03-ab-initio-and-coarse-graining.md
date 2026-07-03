@@ -217,6 +217,19 @@ The intellectual contract is unchanged: **electronic structure defines the surfa
 
 Document every conversion at the boundary: Ry → eV, Bohr → Å, metal units → SI when feeding DAMASK or Abaqus.
 
+## Concept map checkpoint (Part VIII)
+
+Part VIII followed the MD Notes from phase space through coarse-graining. The four questions summarize the atomistic arc:
+
+| Question | Part VIII answer (copper wire) |
+|----------|--------------------------------|
+| What **object**? | Positions \(\{\mathbf{r}_i\}\), momenta, interatomic potential \(V\) |
+| What **structure**? | Hamiltonian mechanics, thermostats, periodic boundaries, cutoff radius |
+| What **theorem**? | Energy conservation (symplectic integrators); ergodic sampling in NVT/NPT |
+| What **breaks**? | Energy drift; wrong ensemble; cutoff artifacts in EAM fits |
+
+The handoff table above closes the upward exports from atomistics: stacking-fault energy and core structures feed Part VII mobility; cohesive energy and moduli feed Part VI and Part IV elastic steps. What MD cannot invent — the potential surface itself — is Part IX's responsibility. Classical MD assumes Born–Oppenheimer surfaces; the next part derives them from electron density.
+
 ## Bridge
 
 Classical MD is the workhorse; ab initio MD and QM/MM are the auditors when potentials fail. Coarse-graining and fitting are how Part VIII **hands numbers upward** to DDD and FEM and **requests truth downward** from electronic structure. Part IX makes that downward request precise: the Hohenberg–Kohn theorems, the Kohn–Sham equations, and the Quantum ESPRESSO-style workflows that turn a copper crystal into cohesive energy, elastic constants, and the potential datasets MD cannot invent.

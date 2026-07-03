@@ -191,6 +191,19 @@ with \(T_w = T_s|_{\Gamma_w} = T_f|_{\Gamma_w}\) enforced by **interface couplin
 
 This is not a third method. It is Part IV and Part V **speaking at an interface** — the same weak-form / flux-balance pattern the epilogue later generalizes to DFT→MD→DDD→FEM chains. When the wire runs hot enough to soften, add thermal strain \(\alpha\Delta T\) in the solid weak form (Part VI); when Reynolds number exceeds the laminar regime, swap the RANS closure on the fluid side. The coupling skeleton stays.
 
+## Concept map checkpoint (Part V)
+
+Part V followed the FVM Notes from integral conservation through Navier–Stokes CFD. The four questions summarize the fluid discretization arc:
+
+| Question | Part V answer (copper wire) |
+|----------|----------------------------|
+| What **object**? | Cell-averaged states, face fluxes \(\mathbf{F}\cdot\mathbf{n}\), Riemann data |
+| What **structure**? | Integral conservation, upwind bias, CFL-limited time stepping |
+| What **theorem**? | Godunov-type stability; Lax–Friedrichs entropy conditions (conceptually) |
+| What **breaks**? | Shock smearing without limiters; equal-order \(P1\)–\(P1\) without inf–sup |
+
+The conjugate heat transfer scene above is Part IV and Part V **speaking at an interface** — the same pattern the epilogue generalizes to DFT→MD→DDD→FEM chains. Fluids and solids share conservation of mass and momentum; they differ in constitutive response. Part VI names the Cauchy stress and rate of deformation both discretizations approximate.
+
 ## Bridge to Part VI
 
 Part V discretized conservation on control volumes for fluids. Part VI develops the **kinematics and stress measures** that both FEM solid codes and FVM fluid codes ultimately approximate — deformation gradient and strain for solids, rate of deformation for fluids, Cauchy stress and balance laws for both. The copper wire under tension and the air cooling it are one multiphysics story told in two discretization languages; Part VI supplies the shared continuum vocabulary.

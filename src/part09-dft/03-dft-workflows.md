@@ -236,6 +236,19 @@ MSE5720 homeworks combine Jupyter notebooks with batch scripts for clusters (XSE
 
 Scientific machine learning surrogates (epilogue) trained on DFT data inherit these metadata requirements. A neural network predicting formation energy without functional labels is not multiscale — it is interpolation without a ladder.
 
+## Concept map checkpoint (Part IX)
+
+Part IX followed the DFT coursework arc from Born–Oppenheimer through Quantum ESPRESSO workflows. The four questions summarize the electronic scale:
+
+| Question | Part IX answer (copper wire) |
+|----------|------------------------------|
+| What **object**? | Electron density \(\rho(\mathbf{r})\), Kohn–Sham orbitals, ionic positions |
+| What **structure**? | Hohenberg–Kohn variational principle; SCF cycle; plane-wave basis, k-mesh |
+| What **theorem**? | Hohenberg–Kohn; Kohn–Sham mapping (with approximate \(E_{xc}\)) |
+| What **breaks**? | Functional dependence; metals without smearing; pseudopotential transferability |
+
+The export table above is where the **downward derivation** of the ladder begins: \(E_{\text{coh}}\), \(C_{ijkl}\), stacking-fault energies, and phonons feed MD potentials, DDD mobilities, and continuum moduli. A wire simulation that imports \(E = 120\) GPa without asking whether it came from Voigt-averaged DFT, room-temperature experiment, or cold-worked polycrystal data carries silent assumptions this part makes explicit. The epilogue asks how disciplined teams wire these exports into multiscale workflows.
+
 ## Bridge to the epilogue
 
 We have reached the finest rung of the spatial ladder for equilibrium properties of bulk copper: electrons, orbitals, self-consistency, convergence, exports. The copper wire at human scale — sag, Joule heat, work hardening, possible fracture — never lives here. It lives in the **coupling** of what each part computes.

@@ -219,6 +219,19 @@ Cost scales with `(# active Gauss points) × (DDD timesteps per macro step)`. Fo
 
 When all gates pass, the drawn copper wire story closes at the mesoscale: dislocation statistics become internal state variables on the same mesh Part IV taught us to assemble.
 
+## Concept map checkpoint (Part VII)
+
+Part VII followed the Defects Notes from taxonomy through crystal plasticity handoff. The four questions summarize the mesoscale arc:
+
+| Question | Part VII answer (copper wire) |
+|----------|-------------------------------|
+| What **object**? | Dislocation lines, Burgers vector \(\mathbf{b}\), density \(\rho\), link statistics |
+| What **structure**? | Peach–Köhler forces, mobility laws, Taylor \(\sqrt{\rho}\) hardening |
+| What **theorem**? | DDD time integration; homogenization to crystal plasticity internal variables |
+| What **breaks**? | Core singularity without cutoff; wrong mobility; phenomenological yield without forest structure |
+
+The drawn copper wire's strength is a **history written in line defects** — cold work stored dislocations; loading multiplies and tangles them; the load cell curve bends upward because the forest thickens. Crystal plasticity FEM and calibrated DDD export that history as internal state variables on the same mesh Part IV taught us to assemble. When cores meet grain boundaries or crack tips, the mesoscale model needs atomic detail — the descent continues in Part VIII.
+
 ## What remains for atomistics
 
 DDD assumes **closed cores** and empirical short-range rules. When dislocations meet grain boundaries, crack tips, or chemistry (oxygen at copper surfaces), cores interact with **atomic structure** DDD cannot resolve. Part VIII supplies stacking-fault energies, cross-slip rates, and nucleation barriers. Part IX supplies formation energies when even those atomistic parameters need first-principles validation.

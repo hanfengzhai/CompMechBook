@@ -146,6 +146,19 @@ Point loads on the copper wire (a force at a node) are not functions in \(L^2\);
 
 Given basis functions \(\{\phi_j\}\) on a mesh, the **Gram matrix** \(G_{ij} = (\phi_i, \phi_j)_{L^2}\) is the mass matrix before assembly into physical units. Orthonormalizing the basis (via Gram–Schmidt or QR on sampled values) produces a condition-number-friendly coordinate system — the same idea as orthonormal eigenvectors, now on function spaces. Isoparametric maps (Part IV) generalize this: the Jacobian determinant weights integrals so that reference-element orthogonality becomes physical-space coupling.
 
+## Concept map checkpoint (Part I)
+
+Part I opened with the four questions the [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) later formalize for infinite dimensions. Before leaving \(\mathbb{R}^N\), summarize the grammar every later part inherits:
+
+| Question | Part I answer (copper wire) |
+|----------|----------------------------|
+| What **object**? | State vector \(\mathbf{u}\), stiffness \(\mathbf{K}\), eigenmodes |
+| What **structure**? | Inner product (energy), symmetry (reciprocity), sparsity (local coupling) |
+| What **theorem**? | Spectral theorem; SPD \(\mathbf{K}\) \(\Rightarrow\) unique equilibrium |
+| What **breaks**? | Ill-conditioning; spurious modes; \(N\to\infty\) without a target space |
+
+The wire began as a chain of springs — \(\mathbf{K}\mathbf{u}=\mathbf{f}\) at fixed \(N\). Chapter 4 showed that refining the mesh sends \(N\) without bound and displacements toward a **function** \(u(x)\). Part II names the space that limit lives in; Part III writes the weak PDE; Part IV assembles \(\mathbf{K}\) from shape functions. The matrix was never arbitrary — it was always a finite-dimensional shadow of something larger.
+
 ## Bridge to Part II
 
 Linear algebra taught us to solve \(\mathbf{K}\mathbf{u}=\mathbf{f}\). Mechanics asks us to solve PDEs. The bridge is:

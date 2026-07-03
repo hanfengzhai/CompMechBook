@@ -168,7 +168,16 @@ where \(a\) is stiffness and \(m\) is mass — both symmetric, \(a\) coercive, \
 
 For the wire with non-uniform cross-section, \(a\) and \(m\) vary spatially through elastic modulus and density. The spectral theorem applies to the operator \(\mathbf{M}^{-1}\mathbf{K}\) on the discrete side and to the continuous generalized problem on \(H^1_0\). Orthogonality of modes is with respect to both forms: \(a(\phi_i, \phi_j) = \lambda_i m(\phi_i, \phi_j)\) and \(m(\phi_i, \phi_j) = 0\) for \(i \ne j\) after scaling.
 
-## What Part II has assembled
+## Concept map checkpoint (Part II)
+
+Part II followed the Functional Analysis Notes concept map chapter by chapter. Before Part III writes weak PDEs, the four questions summarize the whole part:
+
+| Question | Part II answer (copper wire) |
+|----------|------------------------------|
+| What **object**? | Fields \(u(x)\), \(T(x)\) in \(H^1\) and \(L^2\), not vectors \(\mathbf{u}\in\mathbb{R}^N\) |
+| What **structure**? | Norms (energy), inner products (orthogonality), completeness (limits stay inside) |
+| What **theorem**? | Lax–Milgram existence; Galerkin best approximation; spectral convergence |
+| What **breaks**? | Cauchy sequences leaving the space; corners with no classical \(C^2\) solution |
 
 We now possess, in order:
 
@@ -182,7 +191,7 @@ We now possess, in order:
 
 - **Spectral theory:** Self-adjoint compact operators, Rayleigh–Ritz quotients, modal expansions for heat and wave.
 
-The copper wire at continuum scale is now a mathematical object: displacement and temperature in Sobolev spaces, loads in duals, stiffness as a bilinear form, vibration as eigenvalues of a self-adjoint operator.
+The copper wire at continuum scale is now a mathematical object: displacement and temperature in Sobolev spaces, loads in duals, stiffness as a bilinear form, vibration as eigenvalues of a self-adjoint operator. Part III applies this toolkit to Poisson, heat, and elasticity; Part IV discretizes the resulting weak forms.
 
 ## Bridge
 

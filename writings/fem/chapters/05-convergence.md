@@ -169,6 +169,25 @@ Before trusting a mesh for a design decision:
 
 These habits mirror verification protocols in the FEA teaching notes and align with ASME and NASA CFD verification guidelines extended to solids.
 
+## Concept map checkpoint (Part IV)
+
+Part IV followed the FEM Notes from weighted residuals through error estimates. The four questions close the discretization arc for elliptic solids:
+
+| Question | Part IV answer (copper wire) |
+|----------|------------------------------|
+| What **object**? | Trial space \(V_h\), shape functions, assembled \(\mathbf{K}\) and \(\mathbf{f}\) |
+| What **structure**? | Galerkin orthogonality, isoparametric maps, \(h\)- and \(p\)-refinement |
+| What **theorem**? | Best approximation; Céa lemma; a priori convergence rates |
+| What **breaks**? | Locking, hourglass modes, pollution on distorted elements |
+
+The pipeline from Part III is now complete:
+
+```
+Weak form (Part III)  →  Galerkin on V_h (Part IV)  →  K U = F  →  error bounds as h → 0
+```
+
+The copper wire's tensile equilibrium, steady heating, and elastic step all occupy rows in the summary tables above. Convergence as \(h \to 0\) is the promise Part II made in function spaces, made numerical in this chapter.
+
 ## Bridge: two doors from here
 
 Part IV answered *how* to discretize elliptic problems on meshes. Two natural continuations follow — and both converge on the same continuum vocabulary of Part VI.
