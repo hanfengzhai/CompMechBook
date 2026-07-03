@@ -165,6 +165,19 @@ Before trusting a mesh for a design decision:
 
 These habits mirror verification protocols in the FEA teaching notes and align with ASME and NASA CFD verification guidelines extended to solids.
 
+## Concept map checkpoint (Part IV → Parts V or VI)
+
+Part IV closed the loop from Part I's \(\mathbf{K}\mathbf{u}=\mathbf{f}\) to Part II's Galerkin projection. Two continuations share the same PDEs from Part III but choose different discretization philosophies:
+
+| Question | FEM (Part IV) | FVM (Part V preview) | Continuum (Part VI preview) |
+|----------|---------------|------------------------|----------------------------|
+| **Object** | \(V_h \subset H^1\), \(\mathbf{K}\), \(\mathbf{F}\) | Cell averages, face fluxes, CFL-limited updates | \(\mathbf{F}\), \(\boldsymbol{\varepsilon}\), \(\boldsymbol{\sigma}\), \(\mathbf{D}\) |
+| **Structure** | Galerkin orthogonality; isoparametric maps | Flux balance; Riemann solvers; upwind bias | Balance laws; constitutive maps; virtual work |
+| **Theorem** | Céa; a priori rates in energy norm | Godunov; TVD; stability under CFL | Existence of weak solutions; objectivity |
+| **Breaks if missing** | Locking; hourglassing | Numerical diffusion; shock smearing | Category errors mixing solid and fluid measures |
+
+The copper wire in tension is a **Door B** story first: a meshed solid whose stiffness matrix converges as \(h \to 0\). The same wire heated by current adds **Door A**: FVM convection in the cooling air, coupled at the wall by flux continuity — practice for the multiscale handshakes in the epilogue.
+
 ## Bridge: two doors from here
 
 Part IV answered *how* to discretize elliptic problems on meshes. Two natural continuations follow — and both converge on the same continuum vocabulary of Part VI.

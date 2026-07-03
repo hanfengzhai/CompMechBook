@@ -14,6 +14,12 @@ At the engineering scale the wire still satisfies balance laws and virtual work;
 
 Recall the prologue's processing history: **drawing** through dies increases dislocation density and aligns grains; **annealing** lets vacancies diffuse and lines rearrange. Part VI's nonlinear plasticity preview fit phenomenological hardening parameters \(H\) and \(\sigma_{y0}\) without naming the forest that produces them. Part VII names the forest — and shows how dislocation dynamics turns cold-work history into exportable internal variables for crystal plasticity FEM.
 
+## Scene: cold drawing as mesoscale history
+
+Follow one grain in the wire as it passes through a drawing die. Before entry, dislocation density \(\rho\) is moderate — annealed copper, mobile lines, low yield stress. During passage, geometric constraint forces new slip; lines multiply, tangle, and align with the drawing axis. After exit, \(\rho\) is orders of magnitude higher and the forest is **frozen** into the material: the wire is stronger, less ductile, and carries texture that a scalar elastic modulus cannot see.
+
+Part VI could fit the resulting stress–strain curve with a hardening modulus \(H\). Part VII asks a sharper question: *can we simulate the forest* — segment positions, link lengths, junction reactions — and **predict** \(H\) and texture instead of fitting them? OpenDiS-style dislocation dynamics is that simulator. The copper wire becomes a periodic representative volume element (RVE) with image dislocations, Peach–Köhler driving forces from the Part VI elastic field, and mobility tables that Part VIII will supply from atomistics. When the RVE exports \(\sqrt{\rho}\) hardening to a crystal plasticity FEM run, the narrative closes a loop the prologue opened: processing history becomes computable state, not a tabulated afterthought.
+
 ## The concept map
 
 | Question | Example in this part |

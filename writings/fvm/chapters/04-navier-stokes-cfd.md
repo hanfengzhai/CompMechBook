@@ -187,6 +187,19 @@ with \(T_w = T_s|_{\Gamma_w} = T_f|_{\Gamma_w}\) enforced by **interface couplin
 
 This is not a third method. It is Part IV and Part V **speaking at an interface** — the same weak-form / flux-balance pattern the epilogue later generalizes to DFT→MD→DDD→FEM chains. When the wire runs hot enough to soften, add thermal strain \(\alpha\Delta T\) in the solid weak form (Part VI); when Reynolds number exceeds the laminar regime, swap the RANS closure on the fluid side. The coupling skeleton stays.
 
+## Concept map checkpoint (Part V → Part VI)
+
+FVM and FEM discretize different PDE regimes — hyperbolic fluxes vs. elliptic trial functions — but both approximate **continuum fields** whose names Part VI will make precise:
+
+| Question | FVM fluid side (Part V) | FEM solid side (Part IV) | Continuum vocabulary (Part VI) |
+|----------|-------------------------|--------------------------|--------------------------------|
+| **Object** | \(\bar{u}_i\), \(\bar{p}_i\), face fluxes | Nodal \(\mathbf{U}\), \(\mathbf{K}\) | \(\mathbf{v}\), \(p\), \(\mathbf{u}\), \(\boldsymbol{\sigma}\) |
+| **Structure** | Conservation on cells; CFL stability | Galerkin energy norm; patch tests | Cauchy stress; rate of deformation \(\mathbf{D}\); virtual work |
+| **Theorem** | Godunov / TVD for shocks | Céa convergence for elliptic problems | Balance laws shared by solids and fluids |
+| **Breaks if missing** | Non-conservative schemes; wrong BCs at wall | Locking in nearly incompressible solids | Treating \(\boldsymbol{\sigma}\) and \(\boldsymbol{\tau}\) as unrelated objects |
+
+Conjugate heat transfer on the copper wire is the **scene** that demands Part VI: the solid exports wall temperature and thermal strain; the fluid exports wall heat flux and pressure traction. Part VI names the tensors both codes already approximate — so when we later ask why the wire yields or hardens, we speak one continuum language whether the mesh came from Part IV or the cells from Part V.
+
 ## Bridge to Part VI
 
 Part V discretized conservation on control volumes for fluids. Part VI develops the **kinematics and stress measures** that both FEM solid codes and FVM fluid codes ultimately approximate — deformation gradient and strain for solids, rate of deformation for fluids, Cauchy stress and balance laws for both. The copper wire under tension and the air cooling it are one multiphysics story told in two discretization languages; Part VI supplies the shared continuum vocabulary.

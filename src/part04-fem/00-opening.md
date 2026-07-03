@@ -44,6 +44,26 @@ If you have read linearly since the prologue, the same specimen has changed lang
 
 Part III ended with a promise: the weak form of equilibrium is a **minimum principle** (or saddle point for mixed problems), and the minimizer lives in \(H^1\). Part IV is where that promise becomes code — shape functions on elements, quadrature at Gauss points, scatter into a global stiffness matrix. The copper wire that was a spring network in Part I and a field in Part II is now a **meshed solid** whose node values are the discrete shadow of the continuous solution. Convergence as \(h\to 0\) is the story Part II told in function spaces, made numerical in Chapter 5.
 
+## A first assembly scene
+
+Picture the wire as a 1D bar for intuition — ten two-node line elements, axial displacement \(u\) at eleven nodes, fixed at the left grip and pulled at the right. Part I would write \(\mathbf{K}\mathbf{u}=\mathbf{f}\) directly from spring stiffnesses. Part IV writes the **same system** from a weak form:
+
+1. Choose linear shape functions \(N_i\) on each element (Chapter 3).
+2. Form element stiffness \(K_e = \int E A (dN/dx)^T (dN/dx)\, dx\) with one-point Gauss quadrature (Chapter 2).
+3. Scatter \(K_e\) into global \(\mathbf{K}\) using the connectivity table (Chapter 2).
+4. Apply essential BCs — zero displacement at node 0, unit load at node 10 — and solve (Chapter 1).
+
+Nothing mystical happens at step 3: it is the change-of-basis and assembly logic from Part I.2, now driven by integration of bilinear forms from Part III. Refine to twenty elements and the displacement at midspan moves toward the Part II limit function; Chapter 5 quantifies that approach. Extend to 3D tetrahedra on a twisted wire geometry and the pipeline is unchanged — only the dimension of \(V_h\) and the quadrature order grow.
+
+## Two doors ahead
+
+Part IV ends with a fork the book is designed to accommodate:
+
+- **Door A (Part V):** When the wire heats in air, convection and pressure forces live on a **fluid mesh** with flux-balance time stepping — complementary to the solid FEM you build here.
+- **Door B (Part VI):** When the story is tension-dominated, skip ahead to continuum kinematics and stress once convergence rates justify trusting \(\mathbf{K}\).
+
+Either door is valid on first reading; both reunite at Part VI and again in the epilogue's conjugate heat-transfer loop. What Part IV guarantees is that the solid-side numbers — stiffness, thermal conduction, wall temperature — are Galerkin projections with error estimates, not ad hoc spring networks.
+
 ## Bridge
 
 Part III ended with energy methods and the promise of assembly. The first chapter below introduces weighted residuals — the unifying idea behind Galerkin's method — and shows why choosing test functions as trial functions is the natural discretization of the weak form the copper wire's equilibrium demands.
