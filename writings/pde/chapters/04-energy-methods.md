@@ -158,6 +158,25 @@ Finite volume schemes often derive from **integral conservation** rather than po
 | Stokes | Saddle Lagrangian | Saddle point | Mixed FEM |
 | Navier–Stokes | Not global convex | Stationary point | FVM / stabilized FEM |
 
+## Concept map checkpoint (Part III)
+
+Part III opened with fields on domains and closes with the **energy** those fields minimize or stationarize. The [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) habit — object, structure, theorem, failure mode — summarizes the whole part in one table:
+
+| Question | Part III answer (copper wire) |
+|----------|-------------------------------|
+| What **object**? | Fields \(u\), \(\mathbf{u}\), \(T\) on the wire domain; loads as functionals |
+| What **structure**? | Weak forms in \(H^1\); bilinear forms; convex or saddle functionals |
+| What **theorem**? | Lax–Milgram (existence); Dirichlet principle (minimizers); LBB (mixed problems) |
+| What **breaks**? | Reentrant corners (no classical \(C^2\) solution); equal-order \(P1\)–\(P1\) Stokes (no inf–sup) |
+
+The pipeline is now complete from physics to algorithm:
+
+```
+Strong PDE  →  Weak form  →  Energy / saddle functional  →  (Part IV) discrete search on V_h
+```
+
+The copper wire's tensile equilibrium, steady heating, and low-Re cooling flow each occupy a row in the summary table above. Part IV does not change the physics — it chooses \(V_h\), computes integrals, and assembles the \(\mathbf{K}\) that Rayleigh–Ritz minimization demands.
+
 ## Bridge to Part IV
 
 We have:

@@ -144,6 +144,19 @@ Part VII introduces **dislocations** as explicit mesoscale objects — lines wit
 
 When we later fit an EAM potential in Part VIII or compute stacking-fault energy in Part IX, we are closing the loop: electronic structure sets the energy landscape; MD sets mobility and cross-slip; DDD sets hardening; FEM sets structural response. Nonlinear continuum mechanics is the **lowest rung that still speaks the language of stress and strain tensors** familiar to structural engineers.
 
+## Concept map checkpoint (Part VI)
+
+Part VI named the fields that Parts IV and V already approximated on meshes. Before descending to defects, the four questions summarize the continuum scale:
+
+| Question | Part VI answer (copper wire) |
+|----------|------------------------------|
+| What **object**? | Deformation \(\mathbf{F}\), strain measures, Cauchy stress \(\boldsymbol{\sigma}\) |
+| What **structure**? | Balance laws; hyperelastic energy \(\psi\); yield surface and flow rules |
+| What **theorem**? | Virtual work equivalence; polyconvexity (existence in hyperelasticity); Drucker's stability postulate |
+| What **breaks**? | Crack tips and dislocation cores (singular gradients); hardening without mesoscale physics |
+
+The copper wire under rising load follows this arc: Part IV's mesh computes \(\mathbf{u}\); Part VI explains that \(\mathbf{u}\) minimizes energy until yield; this chapter adds Newton–Raphson and \(J_2\) plasticity when the load cell curve bends. When the mesh is refined but the hardening law is wrong, the fault is not discretization — it is **constitutive physics** that lives at the dislocation scale. Part VII supplies that physics.
+
 ## Bridge
 
 Linear and nonlinear elasticity — geometric and material — exhaust what a **continuum field** can say before its assumptions fail at defects. The copper wire's cold-worked strength is not in \(\mathbb{C}\); it is in the dislocation forest frozen by manufacturing. Part VII names those defects, simulates their motion, and exports the hardening laws that make nonlinear FEM honest. Turn the page when the mesh is fine enough but the physics still wrong — that is the signal to descend.
