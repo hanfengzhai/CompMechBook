@@ -35,6 +35,19 @@ flowchart LR
 
 **Baby picture:** collect degrees of freedom into a vector, write equilibrium as \(\mathbf{K}\mathbf{u}=\mathbf{f}\), decouple complexity with eigenmodes, then ask what happens when the mesh — and \(N\) — grows without bound. The copper wire's tension test begins as a spring network long before it becomes a PDE.
 
+## Story so far (Prologue)
+
+The prologue placed one specimen — a cold-drawn copper wire under tension, heated by current, cooled by air — at the center of a **ladder of scales**. Continuum stress, dislocation forests, atomic trajectories, and electron densities were previewed not as separate courses but as scenes in one story. Four questions were introduced that every later part will answer in its own vocabulary:
+
+| Prologue question | Preview at engineering scale | Preview at finest scale |
+|-------------------|------------------------------|-------------------------|
+| **State** | Displacement field \(\mathbf{u}(\mathbf{x})\) | Electron density \(\rho(\mathbf{r})\) |
+| **Equations** | Virtual work / balance | Kohn–Sham self-consistency |
+| **Discretization** | FEM mesh / FVM cells | Plane waves, timesteps, line segments |
+| **Upward export** | Stress, stiffness | Cohesive energy, moduli, mobility |
+
+Part I does not yet climb those rungs. It installs the **syntax** every rung shares: collect degrees of freedom into a vector, write equilibrium as \(\mathbf{K}\mathbf{u}=\mathbf{f}\), decouple complexity with eigenmodes, then ask what happens when \(N\) grows without bound. The wire enters as a chain of coupled springs — the simplest discrete model whose limit becomes the function spaces of Part II.
+
 ## Bridge
 
 The prologue introduced the copper wire at every scale. Part I begins at the scale every simulation shares: degrees of freedom collected into vectors, evolution and equilibrium written as linear systems. The first chapter refreshes the language — inner products, norms, matrix structure — that Parts II through IX will generalize to functions and operators.
