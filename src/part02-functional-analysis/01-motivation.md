@@ -4,6 +4,12 @@ Part I ended with the spring network on the copper wire refining without bound: 
 
 A mesh with a million nodes is enormous by linear-algebra standards, but it is still finite. When we prove that the discrete solution converges as the element size \(h \to 0\), we are letting the number of degrees of freedom grow without bound. The **limit problem** — the boundary value problem the mesh is supposed to approximate — lives in an infinite-dimensional space. Functional analysis is the calculus of those spaces. It is not abstraction for its own sake. It is the vocabulary in which existence, uniqueness, stability, and convergence are stated precisely enough that a code's colorful plots can be trusted.
 
+## Scene: the mesh refines forever
+
+Return to the spring network from Part I, now with element size halving on each pass. A coarse mesh gives \(N = 10\) nodes and a vector \(\mathbf{u}_{10}\); refine once and \(N = 20\); refine again and \(N = 40\). Each solve returns a different column vector, yet the plotted displacement profile along the wire axis looks smoother with every pass. The engineer asks the question Part I could not answer: **where does this family settle** as \(h \to 0\)?
+
+The answer is not "a bigger vector." It is a **function** \(u(x)\) defined at every point along the bar — the limit object the sequence of meshes approximates. The stiffness matrix at each refinement is a finite-dimensional shadow of an operator acting on that function space. This scene is why Part II exists: convergence proofs need a target space, energy norms need a ruler that does not change when we add nodes, and Galerkin FEM needs to be honest projection rather than repeated linear algebra on ever-larger arrays. The copper wire's displacement field lives here long before any tetrahedral mesh assigns it nodal values.
+
 ## The modeling pipeline
 
 Every continuum simulation, whether of the copper wire in tension or a turbulent jet around it, follows the same pipeline:

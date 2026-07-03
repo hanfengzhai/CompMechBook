@@ -4,6 +4,16 @@ Kinematics describes how bodies move and deform. **Balance laws** relate stress 
 
 Part IV assembled \(\int \boldsymbol{\varepsilon}(\mathbf{u}):\mathbb{C}:\boldsymbol{\varepsilon}(\mathbf{v})\). Part V balanced fluxes of momentum. This chapter explains what \(\boldsymbol{\sigma}\) and \(\mathbb{C}\) mean, where the equilibrium equation comes from, and how copper, air, and plastic metal differ at the constitutive level.
 
+## Scene: three balances on one wire
+
+The tensile frame from Part I is still running, but the operator has raised the current. Three instruments watch the same copper cylinder:
+
+- A **load cell** reads axial force \(T\) — mechanical equilibrium in the solid.
+- A **thermocouple** at the grip reads temperature — thermal boundary data for conduction inside the wire.
+- A **thermal camera** shows a hot stripe along the narrowest cross-section — Joule heating balanced by conduction and convection to the surrounding air.
+
+None of these measurements belongs to a single code. Part IV's FEM mesh carries mechanical equilibrium; Part V's FVM mesh carries enthalpy flux in the cooling air; Part VI names the **Cauchy stress** \(\boldsymbol{\sigma}\) and **Fourier flux** \(\mathbf{q} = -\kappa \nabla T\) that tie the two discretizations together at the wire surface. This scene is continuum mechanics at the engineering scale: not one PDE in isolation, but **balance laws** — momentum, energy, charge — coupled through **constitutive relations** that say how copper responds to strain and temperature. The chapter below makes those balances precise enough to export moduli upward from DFT and hardening laws downward from DDD.
+
 ## Concept map checkpoint
 
 Parts I–V built the same four-question discipline the Functional Analysis Notes use — object, structure, theorem, failure mode. At the continuum scale the answers look like this:

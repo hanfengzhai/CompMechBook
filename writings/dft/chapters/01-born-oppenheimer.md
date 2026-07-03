@@ -4,6 +4,12 @@ Electrons determine almost all material properties at the chemical level. Densit
 
 For copper, DFT answers the most basic question the wire poses at the finest scale: **why does the crystal cohere at all?** The answer lives in the quantum mechanical balance between kinetic energy, electrostatic attraction, and exchange–correlation — not in a spring constant inserted by hand.
 
+## Scene: electrons adjust in a blink
+
+Freeze a snapshot from Part VIII's molecular dynamics: copper nuclei mid-vibration, positions \(\{\mathbf{R}_I\}\) changing on picosecond timescales. The electrons that bind those nuclei respond in **femtoseconds** — three orders of magnitude faster because \(m_e \ll m_{\text{Cu}}\). In the laboratory frame, nuclei appear nearly stationary while the electron cloud rearranges around each geometry almost instantly.
+
+That separation is the **Born–Oppenheimer** picture this chapter opens with. Part VIII's EAM potential treated nuclei as classical particles on a fixed energy surface; Part IX asks where that surface came from. The answer is not a fitted spline through experimental data alone — it is the **ground-state electron density** \(\rho(\mathbf{r})\) that minimizes total energy for each nuclear configuration. The copper wire at this scale is a periodic lattice of nuclei immersed in a sea of valence electrons; cohesive energy, elastic constants, and vacancy formation enthalpies are all consequences of that quantum balance. The sections below make the separation and the density functional theorems precise enough to run in Quantum ESPRESSO and export numbers upward to MD, DDD, and FEM.
+
 ## Born–Oppenheimer approximation
 
 The full molecular Hamiltonian includes kinetic energy of \(N_n\) nuclei and \(N_e\) electrons, electron–nuclear attraction, electron–electron repulsion, and nuclear–nuclear repulsion. Mass scales differ dramatically: \(m_e \ll m_{\text{nucleon}}\).
