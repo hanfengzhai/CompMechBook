@@ -6,6 +6,56 @@ The copper wire that opened the prologue — drawn, annealed, carrying current, 
 
 Before descending to electrons, we already practiced coupling at the engineering scale: Part IV's FEM conduction and Part V's FVM convection exchange wall temperature and heat flux until the wire and the cooling air agree — conjugate heat transfer as a fixed-point loop between discretizations. The epilogue generalizes that handshake from two meshes on one specimen to DFT, MD, DDD, and continuum FEM on the same material history.
 
+## Story so far (Parts I–IX)
+
+If you have read linearly since the prologue, the copper wire has changed language nine times without changing material:
+
+| Part | Scale | Wire instance | Key export upward |
+|------|-------|---------------|-------------------|
+| I | Discrete algebra | Spring network | \(\mathbf{K}\), eigenmodes |
+| II | Function spaces | Fields \(u(x)\), \(T(x)\) | Galerkin convergence target |
+| III | Weak PDEs | Equilibrium + heat | Energy functionals |
+| IV | FEM | Meshed solid | \(\mathbf{K}\mathbf{U}=\mathbf{F}\), error estimates |
+| V | FVM | Cooling air | Fluxes, conjugate heat loop |
+| VI | Continuum | \(\mathbf{F}\), \(\boldsymbol{\sigma}\) | Virtual work, balance laws |
+| VII | Defects | Dislocation forest | Hardening law for FEM |
+| VIII | Atoms | Trajectories | Potentials, moduli hints |
+| IX | Electrons | \(\rho(\mathbf{r})\) | \(E_{\text{coh}}\), \(C_{ij}\), \(\gamma_{\text{sf}}\) |
+
+The epilogue asks what none of these parts alone can answer: **how do we compose them** when the wire's lifetime spans every row of the table?
+
+## The concept map (closing lens)
+
+The [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) organized each part with four questions — object, structure, theorem, failure mode. At the scale of the full book, the same discipline applies to **coupling**:
+
+| Question | Answer at multiscale scale |
+|----------|---------------------------|
+| What **object** spans all parts? | Coupled states at interfaces — wall temperature, hardening law, potential |
+| What **structure** connects runs? | Handshake loops with consistent units, frames, and averaging |
+| What **theorem** (principle) makes coupling credible? | Scale separation, convergence at each rung, verification and validation |
+| What **breaks** if we skip handshakes? | Wrong history, unit errors, category errors at notches and crack tips |
+
+```mermaid
+flowchart TB
+  subgraph upward["Homogenize upward"]
+    DFT[DFT: E_coh, C_ij] --> MD[MD: potential]
+    MD --> DDD[DDD: mobility]
+    DDD --> FEM[FEM: hardening]
+  end
+  subgraph downward["Derive downward"]
+    FEM --> DDD
+    DDD --> MD
+    MD --> DFT
+  end
+  subgraph same["Same habit at every interface"]
+    Q[state / equations / discretization / export]
+  end
+  upward --> Q
+  downward --> Q
+```
+
+**Baby picture:** each part solved one rung of the ladder; multiscale mechanics wires the rungs together with the same four questions the prologue asked — now at **interfaces** between codes, not only within a single mesh.
+
 ## The same question at every scale
 
 At each rung of the ladder, we asked:
