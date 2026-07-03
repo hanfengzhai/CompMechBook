@@ -6,6 +6,29 @@ Parts IV and V discretized PDEs on meshes. Part VI asks what those PDEs mean phy
 
 The copper wire under tension is our recurring specimen — at the continuum scale, it is a cylinder of copper with a displacement field and a deformation gradient that Part IV's elasticity code approximates node by node, while the air cooling it (Part V) carries a velocity field whose gradient enters the rate-of-deformation tensor in the fluid stress.
 
+## Scene: the wire in the tensile frame
+
+Picture a 1 mm diameter copper wire, 100 mm gauge length, gripped at both ends in a tensile frame. A 50 N axial load produces a modest engineering strain \(\varepsilon \approx \sigma/E \sim 10^{-4}\) — well within the linear elastic range Part IV assumed when assembling \(\mathbf{K}\). Every node on the FEM mesh carries a displacement vector; kinematics asks what **continuous map** those nodal values sample.
+
+Fix a material point on the wire axis at reference position \(X = 50\) mm (mid-span). After loading, it moves to \(x = 50.005\) mm — a 5 µm axial displacement. Locally,
+
+\[
+\mathbf{F} \approx \mathbf{I} + \varepsilon_{xx}\,\mathbf{e}_x\mathbf{e}_x^T, \qquad \varepsilon_{xx} \approx \frac{\partial u_x}{\partial X} \approx 5\times 10^{-5},
+\]
+
+with Poisson contraction \( \varepsilon_{yy} = \varepsilon_{zz} \approx -\nu\varepsilon_{xx}\) shrinking the diameter slightly. Part IV's three-node bar example (Part I, Chapter 1) captured the same physics in one dimension; Part VI now names the **three-dimensional object** \(\mathbf{F}\) that a 3D hex mesh approximates at each Gauss point.
+
+If the load increases until the wire yields, \(\mathbf{F}\) ceases to be infinitesimally close to \(\mathbf{I}\) near necking regions — hyperelastic and plastic formulations track \(\mathbf{F}\) directly. If the wire heats from Joule current, thermal expansion adds a strain increment \(\alpha\Delta T\,\mathbf{I}\) on top of mechanical \(\boldsymbol{\varepsilon}\). Kinematics does not assign causality (that is constitutive law in the next chapter); it records **how** each point moved and stretched so stress and balance laws have geometric input.
+
+```mermaid
+flowchart LR
+  X[Reference X on wire axis] --> phi[Deformation map phi]
+  phi --> x[Current position x]
+  x --> F[Deformation gradient F]
+  F --> eps[Strain epsilon or E]
+  eps --> IV[Part IV B-matrix at Gauss points]
+```
+
 ## Configurations and the deformation map
 
 Let \(\mathbf{X}\) denote a material point in the **reference configuration** \(\Omega_0\) (typically the undeformed body at \(t = 0\)). Its location in the **current configuration** \(\Omega\) at time \(t\) is
