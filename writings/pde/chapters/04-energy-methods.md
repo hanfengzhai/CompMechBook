@@ -4,6 +4,12 @@ Many PDEs of mechanics are Euler–Lagrange equations of an energy functional. M
 
 Pull the copper wire in tension: in linear elasticity, equilibrium minimizes stored elastic energy minus work done by the load. Heat the wire: steady conduction minimizes a thermal dissipation functional subject to boundary data. Even when the physics is not literally "energy" (electrostatics, Darcy flow), a convex functional often lurks behind the PDE — and convexity is what makes minimizers unique and computable.
 
+## Scene: the wire finds its rest
+
+Load the copper wire in the tensile frame and hold the grip displacement fixed. Microscopically, atoms rearrange for milliseconds; macroscopically, the wire **settles** to an equilibrium shape that minimizes total potential energy — elastic stored energy minus work done by the grips. Plot energy versus a trial displacement field: the true equilibrium sits at the bottom of a bowl; perturb it slightly and the energy rises, a sign of stability.
+
+The same variational picture governs steady heating: among all temperature fields satisfying boundary data, the physical one minimizes a thermal functional whose Euler–Lagrange equation is Fourier's law. Part III ends here because Part IV will **discretize this minimization** — replace the infinite-dimensional search over admissible fields with a finite-dimensional search over nodal values, and call the result finite element assembly. Energy methods are the bridge from weak PDEs to algorithms.
+
 ## The Dirichlet principle
 
 For Poisson's equation with homogeneous Dirichlet data, define

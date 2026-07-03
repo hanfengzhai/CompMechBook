@@ -4,6 +4,12 @@ Static equilibrium of an elastic body is equivalent to minimizing total potentia
 
 The copper wire under tension minimizes (or rather, stationarizes) elastic energy stored in its stretched atomic lattice — a minimization FEM approximates on a mesh. When the load exceeds yield, minimization gives way to incremental variational inequalities; when deformation grows large, the energy depends on \(\mathbf{F}\), not \(\boldsymbol{\varepsilon}\). This chapter walks that path.
 
+## Scene: energy stored in the stretch
+
+Return to the tensile frame with the load cell climbing. Below yield, the wire lengthens elastically: each increment of grip displacement adds work, and most of that work is **stored** as elastic strain energy recoverable on unloading. Plot \(\Pi(\mathbf{u})\) — total potential energy as a functional of the displacement field — and the equilibrium path is the trajectory that keeps \(\Pi\) stationary under admissible variations.
+
+Part IV assembled \(\mathbf{K}\mathbf{U}=\mathbf{F}\) from element matrices; Part VI now explains **why** that linear system is the discrete first variation of an energy. Virtual work and minimum potential energy are two views of the same equilibrium; variational elasticity makes the connection explicit before Part VII asks what happens when the stored-energy landscape develops singularities at dislocation cores.
+
 ## Principle of minimum potential energy
 
 Among **kinematically admissible** displacements \(\mathbf{u}\) — satisfying \(\mathbf{u} = \mathbf{u}_0\) on \(\Gamma_D\) — define the **total potential energy**

@@ -2,6 +2,12 @@
 
 Eigenvalues decouple finite-dimensional vibration problems. A symmetric stiffness matrix diagonalizes in orthonormal modes; each mode oscillates at its own frequency, independently of the others. The **spectral theorem** for self-adjoint operators on Hilbert spaces is the same story without a fixed matrix size. It governs the normal modes of a copper wire, the buckling loads of a slender column, the diffusion rates of heat along that wire, and the convergence of finite element eigenvalues as the mesh refines. Part II has built the spaces, the inner products, and the compactness that make this theorem true. Here we state it, apply it, and hand the toolkit to Part III.
 
+## Scene: the wire sings
+
+Tap the clamped end of the copper wire with a small impulse and listen — not with your ears, but with an accelerometer and a spectrum analyzer. The time trace looks complicated: many frequencies mixed together, amplitudes changing along the length. Transform to **modal coordinates** — the eigenvector basis of the stiffness and mass matrices from Part I — and the picture simplifies: mode 1 oscillates at \(f_1\), mode 2 at \(f_2\), each shape fixed, each amplitude decoupled from the others. That decoupling is finite-dimensional spectral theory doing its job on a mesh.
+
+Refine the mesh and the spectrum shifts — but not arbitrarily. The lowest modes converge toward the normal modes of the **continuous** bar, governed by a self-adjoint operator on \(H^1\). The spectral theorem is the guarantee that this limit makes sense: real eigenvalues, orthogonal mode shapes, a discrete spectrum accumulating toward a continuous one. Part II closes with this scene because every vibration, buckling, and diffusion problem in Parts III–VI will ask the same question: **what are the modes of the operator**, and do the mesh eigenvalues converge to them?
+
 ## Self-adjoint operators
 
 Let \(H\) be a Hilbert space. A bounded linear operator \(A: H \to H\) is **self-adjoint** if

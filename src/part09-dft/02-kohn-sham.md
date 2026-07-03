@@ -4,6 +4,12 @@ Kohn–Sham DFT turns the abstract Hohenberg–Kohn energy functional into a **s
 
 For copper, a typical calculation fits in a few hundred atoms' worth of plane-wave coefficients — yet supplies the cohesive energy and elastic constants that anchor every coarser model of the wire.
 
+## Scene: the self-consistent loop
+
+A Quantum ESPRESSO run on fcc copper begins with a guess for the electron density \(\rho(\mathbf{r})\). From that guess, build an effective potential; solve single-particle Schrödinger-like equations for orbitals; reconstruct a new density from occupied states; mix old and new densities; repeat until \(\rho\) stops changing — the **SCF cycle**. Each iteration is linear algebra on orbital coefficients; convergence is the signal that the Kohn–Sham equations are satisfied.
+
+Only after SCF converges do we trust the total energy, the stress tensor, and the numbers we will export upward: cohesive energy for vacancy formation, elastic constants for continuum moduli, surface energies for fracture models. The copper wire's baseline — what it costs to create a defect, how stiff the lattice is at 0 K — lives in this loop. Part IX's final chapter will show the input files; this chapter shows the **story inside the loop** that makes those files worth running.
+
 ## Kohn–Sham equations
 
 Kohn and Sham (1965) introduced auxiliary **non-interacting orbitals** \(\psi_i(\mathbf{r})\) that reproduce the interacting density:

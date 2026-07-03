@@ -4,6 +4,12 @@ Return to the copper wire from the prologue. At the engineering scale we want it
 
 The answer begins not with triangles and quadrature, but with a family of methods united by one idea. **Weighted residual methods** seek an approximate field \(u_h\) that makes the PDE residual small in a weighted average sense. The finite element method is the most important member of that family — Galerkin's method on a piecewise-polynomial space — but understanding the family clarifies why FEM is structured the way it is, and why alternatives (collocation, least squares, Petrov–Galerkin) appear when elliptic intuition fails.
 
+## Scene: a guess that almost works
+
+Joule heating has raised the copper wire's temperature profile above ambient. An analyst guesses a simple shape — perhaps a straight line from hot grip to cool grip — plugs it into the heat equation, and finds the **residual** nonzero everywhere: the guess violates the PDE at almost every point. Weighted residuals ask a softer question: can we adjust the guess so that, when weighted and averaged over the domain, the residual vanishes in a finite number of directions?
+
+Choose three test functions — constants, a linear ramp, a parabola — and demand three weighted integrals of the residual equal zero. Three equations, three unknown coefficients: a miniature finite-dimensional problem already. Galerkin's method chooses the test functions from the same family as the trial space; on a mesh, that family becomes hat functions and the "three equations" become millions. This scene is the birth of FEM: not triangles yet, but the insistence that a good approximate field makes the PDE wrong in a **controlled average sense**, not at every point.
+
 ## Residuals: measuring how wrong we are
 
 Consider a differential operator \(\mathcal{L}\) and source term \(f\) on a domain \(\Omega\). The strong-form problem is

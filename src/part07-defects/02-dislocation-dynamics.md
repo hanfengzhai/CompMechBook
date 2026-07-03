@@ -2,6 +2,12 @@
 
 When metal yields, dislocations multiply and tangle. **Dislocation dynamics (DDD)** tracks their motion and interactions — the mesoscale engine of strain hardening. Pull a copper wire beyond its elastic limit and the stress–strain curve bends upward not because the lattice stiffens, but because an evolving **forest** of dislocation lines impedes further slip. DDD is how we simulate that forest without resolving every atom.
 
+## Scene: the forest grows
+
+Resume the tensile test where Part VI left it — load increasing, stress beyond yield. Inside the copper crystal, dislocation lines **glide** on {111} planes, **multiply** at Frank–Read sources, and **tangle** into a forest whose density rises with plastic strain. The load cell registers hardening: more stress needed for the next increment of stretch. No phenomenological law was typed in by hand; the curve bends because moving lines must push through a thickening forest.
+
+A DDD simulation represents that forest as a network of segments, each feeling Peach–Köhler forces from external load and from every other segment. Timestep by timestep, the network evolves; the accumulated obstacle strength passes upward as a **hardening law** for crystal plasticity and, eventually, for continuum FEM. This scene is why Part VII exists: the wire's cold-drawn strength and its post-yield curve are **histories written in line defects**, not numbers we may choose arbitrarily at the continuum scale.
+
 ## From elasticity to line defects
 
 In Part VI, equilibrium satisfied a virtual work equation with smooth displacement fields. Dislocations introduce **topological** content: the displacement field is multi-valued, and the Burgers vector \(\mathbf{b}\) quantifies the jump. DDD replaces the singular continuum field with a **discrete network** of line segments, each carrying \(\mathbf{b}\) and a line direction \(\boldsymbol{\xi}\).

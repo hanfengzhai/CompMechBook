@@ -6,6 +6,12 @@ The integral form of a conservation law balances fluxes through control volume b
 
 The author's FVM notes and CFD curriculum treat 1D advection and the Sod shock tube as mandatory verification cases before advancing to 2D grids and Navier–Stokes. This chapter follows that path.
 
+## Scene: hot wire, cool air
+
+The copper wire from the prologue carries current; its surface runs hotter than the surrounding air. Along a one-dimensional slice through the boundary layer — distance measured normal to the wire — temperature and heat flux obey a conservation law: what enters a control volume must equal what leaves plus what accumulates. Partition that slice into cells, store **cell averages** instead of point values, and balance fluxes at interfaces.
+
+A coarse partition captures the gross gradient from hot wire to cool freestream; refine the cells near the wall and the same algorithm resolves the steep thermal boundary layer without changing philosophy — only the numerical flux at each face. This is FVM in miniature: conservation first, pointwise PDE second. The wire's conjugate heat transfer loop (Part V, Chapter 4) will exchange these cell-averaged fluxes with the FEM conduction field inside the solid; the 1D algorithm here is where that handshake begins.
+
 ## Mesh and cell averages
 
 Partition \([x_{\min}, x_{\max}]\) into cells with interfaces at \(x_{j-1/2}\), centers at \(x_j\), and widths \(\Delta x_j\). The **cell average** at time \(t_n\) is

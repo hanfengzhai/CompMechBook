@@ -4,6 +4,12 @@ Sobolev spaces measure how much smoothness a function has in an \(L^2\) sense. T
 
 When we approximate the temperature on the copper wire with piecewise-linear hat functions, the discrete field is continuous but has kinks at nodes. It is not twice differentiable in the classical sense — yet finite element solutions of Poisson's equation are meaningful because kinks are allowed in \(H^1\): only the **first** weak derivative must live in \(L^2\). Sobolev spaces encode exactly that level of regularity.
 
+## Scene: kinks at the nodes
+
+Mesh the copper wire for steady Joule heating with ten linear bar elements. Plot the temperature: a continuous broken line, slope changing abruptly at each node, nowhere twice differentiable in the classical sense. A mathematician trained on \(C^2\) solutions might reject the picture; a finite element practitioner recognizes it as a **conforming \(H^1\)** approximation — continuous across elements, square-integrable gradient piecewise constant.
+
+Now refine to a hundred elements. The kinks remain at nodes, but the profile smooths toward the true \(T(x)\). Sobolev spaces are the room where both the limit function and every mesh refinement live together: we measure regularity by \(\|\nabla T\|_{L^2}\), not by pointwise second derivatives. This scene is why weak formulations beat classical ones at grip corners and reentrant notches — the physics cares about energy in gradients, not about curvature at every point.
+
 ## Weak derivatives
 
 A function \(u \in L^2(\Omega)\) has **weak derivative** \(\partial u / \partial x_i = w \in L^2(\Omega)\) if
