@@ -31,6 +31,18 @@ flowchart LR
 
 **Baby picture:** separate fast electrons from slow nuclei, prove the ground-state energy is a functional of density alone, solve Kohn–Sham equations self-consistently, then export cohesive energy and elastic moduli upward to MD, DDD, and FEM. The copper wire's valence electrons live here.
 
+## Story so far (Parts I–VIII)
+
+The descent from continuum to atoms is complete; Part IX reaches the **finest rung**:
+
+| Part | Scale | Wire story beat |
+|------|-------|-----------------|
+| I–VI | Mathematics → FEM/FVM → continuum stress/strain | Meshed cylinder; virtual work; J₂ plasticity **preview** |
+| VII | Dislocation lines | Forest hardening from cold drawing; DDD exports \(\tau(\gamma)\) |
+| VIII | Atoms on potentials | EAM cores, LAMMPS workflows; mobility and \(\gamma_{\text{sf}}\) upward |
+
+Part VIII assumed nuclei move on a potential surface — EAM, MEAM, or machine-learned — and exported moduli, stacking-fault energies, and mobility tables to DDD and FEM. That potential is a **practical fiction**: electrons adjust instantaneously to nuclear motion, but the quantum mechanics that sets cohesive energy, vacancy formation enthalpy, and elastic constants was hidden. Part IX makes the downward contract explicit: DFT resolves \(\rho(\mathbf{r})\), the ground-state energy is a functional of density alone, and every number exported upward — \(E_{\text{coh}}\), \(C_{ij}\), \(\gamma_{\text{sf}}\) — is traceable to a self-consistent Kohn–Sham cycle. The epilogue will ask how to climb back up with those numbers in a reproducible workflow.
+
 ## Closing the arc from Part I
 
 If you have read linearly since the prologue, notice how the **same four questions** from the opening table reappear here with new vocabulary — and how the **same mathematical moves** from Part I return at the finest scale:

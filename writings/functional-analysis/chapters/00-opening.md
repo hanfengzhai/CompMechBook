@@ -38,6 +38,19 @@ flowchart LR
 
 **Baby picture:** first build the room (vector space), then add a ruler (norm), then close the holes (Banach/Hilbert completeness), then add angles (inner product), then write weak PDEs and trust that FEM is projection, not guesswork. The copper wire's displacement lives in that room long before any mesh assigns it node values.
 
+## Story so far (Prologue & Part I)
+
+The prologue introduced the copper wire as a **ladder of scales** — continuum, dislocations, atoms, electrons — and the four questions every rung answers: state, equations, discretization, upward export. Part I made the bottom rung of that ladder explicit in finite dimensions:
+
+| Stage | What we learned | What the wire became |
+|-------|-----------------|----------------------|
+| Prologue | One specimen, many scales; weak forms as recurring character | Cold-drawn copper under tension and current |
+| I.1–I.2 | \(\mathbf{K}\mathbf{u}=\mathbf{f}\), bases, assembly | A chain of coupled springs under end load |
+| I.3 | Eigenmodes decouple vibration | Normal modes of the same spring network |
+| I.4 | \(N\to\infty\); fields replace vectors; operators replace matrices | Axial \(u(x)\) and \(T(x)\) as limits of mesh refinement |
+
+Part I ended with a question Part II must answer: if every mesh gives a matrix \(\mathbf{K}_N\), what object does \(\mathbf{K}_N\) approximate as \(N\) grows? The answer is not "a bigger matrix" — it is an **operator** on a space of functions. Part II builds that space, names the norms that measure elastic energy, and proves that Galerkin FEM is honest projection rather than ad hoc linear algebra.
+
 ## Bridge
 
 Part I ended with a promise: as the mesh refines, the copper wire's displacement and temperature fields live in infinite-dimensional spaces, not in \(\mathbb{R}^N\) for any fixed \(N\). The first chapter below makes that promise precise — why weak forms appear, why classical smoothness fails at corners, and why the stiffness matrix is a Galerkin projection rather than an arbitrary sparse array.
