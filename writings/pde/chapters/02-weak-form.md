@@ -4,6 +4,14 @@ The weak form is the computational mechanic's version of integration by parts: m
 
 If the copper wire is fixed at both ends and loaded in the middle, the displacement field may be continuous but not twice differentiable at the load point — the strong form \(-EA u'' = f\) fails classically at a point force. The weak form still asks: for all admissible virtual displacements, is internal virtual work equal to external virtual work? That question has an answer in \(H^1\), and Galerkin discretization turns it into \(\mathbf{K}\mathbf{U}=\mathbf{F}\).
 
+## Scene: the grip corner
+
+Mount the copper wire in a rigid bracket with a reentrant corner — an L-shaped steel jaw gripping a cylindrical specimen. Under tension, the displacement field is visually smooth: the wire elongates, the bracket barely flexes. But zoom into the corner where copper meets steel: finite element post-processing shows stress components spiking, and a curious analyst asks whether \(-\nabla\cdot\boldsymbol{\sigma} = \mathbf{0}\) holds **pointwise** in classical sense.
+
+It does not. The corner is a geometric singularity; gradients blow up as power laws of distance from the corner. Demanding a \(C^2\) displacement field is the wrong requirement — the physics still balances forces, but the balance is meaningful only in **integral** form. Multiply the equilibrium equation by a smooth test function, integrate over the domain, integrate stress divergence by parts, and the boundary terms carry the grip traction while the interior asks only that \(\boldsymbol{\sigma}\) be square-integrable in a suitable sense.
+
+That maneuver — one integration by parts, one space of admissible test functions — is the weak form. It is the reason Part II built \(H^1\) before Part III wrote PDEs, and the reason Part IV's shape functions need only be continuous, not twice differentiable. The copper wire at the grip corner is where the story stops pretending that every field is smooth.
+
 ## From springs to weak form: the same question twice
 
 Return to Part I's spring network on the copper wire. Equilibrium at each interior node required the sum of spring forces to vanish — a **discrete balance law**. Multiply that balance by an arbitrary virtual displacement at the node and sum over all nodes: internal virtual work equals external virtual work. That is already a weak statement; the only novelty in the continuum limit is that the index set of nodes becomes the domain \(\Omega\), and the sum becomes an integral.

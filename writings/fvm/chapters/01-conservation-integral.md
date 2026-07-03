@@ -4,6 +4,14 @@ Where FEM whispers "multiply by a test function and integrate by parts," FVM dec
 
 The copper wire reappears in a different guise. Solid mechanics on the wire still favors FEM, but imagine air cooling the heated specimen, or a shock tube test validating a CFD code before it simulates that cooling jet. Those flows are governed by conservation of mass, momentum, and energy — laws that make sense even when the pointwise PDE breaks down at shocks.
 
+## Scene: air leaving the wire
+
+The thermal camera from Part III showed the wire hot; now widen the frame. Still air in the lab carries heat away from the surface by natural convection — no fan, just buoyancy-driven flow. A CFD practitioner does not start by writing Navier–Stokes at a single point in the room. She tiles the air volume into control volumes, each a small box surrounding a node, and asks a bookkeeping question: **how much enthalpy flows in through each face, and how much flows out?**
+
+For the cell glued to the wire surface, one face exchanges heat with the solid; the others exchange with neighboring air cells. In steady state, the sum of convective fluxes through all faces balances the heat conducted from the copper. No shape functions, no weak form of the wire's displacement — only **flux balance on volumes**. That is the finite volume instinct: conservation first, pointwise PDE second.
+
+When the operator later turns on a fan, the same grid may capture a turbulent wake; the fluxes become numerically approximated Riemann problems rather than laminar gradients. Part V builds from this scene — integral balance on cells — through one-dimensional prototypes to Navier–Stokes and conjugate heat transfer with the wire from Part IV.
+
 ## From strong form to integral form
 
 Consider a conserved scalar or vector quantity \(U(\mathbf{x}, t)\) with flux \(\mathbf{F}(U)\) and source \(S\). The strong-form conservation law is

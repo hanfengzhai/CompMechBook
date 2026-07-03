@@ -4,6 +4,14 @@ Weighted residuals gave us the logic: enforce \(\int r\, w_i = 0\) for chosen we
 
 That algorithm is **global assembly**: loop over elements, compute local contributions, scatter into a global sparse matrix. It is structured linear algebra — the change-of-basis story from Part I, executed millions of times with a sparsity pattern dictated by mesh connectivity.
 
+## Scene: the mesh becomes a matrix
+
+Return to the copper wire in the tensile frame. Part I reduced it to a chain of springs; Part III wrote equilibrium as a weak form in \(H^1\); now a graduate student opens a FEM script and imports the same geometry as a one-dimensional mesh — twenty quadratic line elements along the axis, a refined cluster near the grip where stress will peak.
+
+The script loops over elements. On each segment it evaluates shape functions \(N_I(\xi)\) at Gauss points, forms the local stiffness \(\mathbf{k}_e = \int B^T D B \, d\xi\), and **scatters** entries into global indices. When the loop finishes, the screen shows a sparse banded matrix and a load vector — the same symbols as Part I, now built from integrals of the weak form rather than hand-written spring constants.
+
+The operator clicks **Solve**. The displacement curve overlays the experimental trace from Part I: linear at first, then diverging as plasticity (still absent from this elastic model) would take over. Nothing mystical happened. Galerkin assembly is the proof that Part III's weak form and Part I's \(\mathbf{K}\mathbf{u}=\mathbf{f}\) are the same story at two resolutions — continuous field and finite-dimensional projection. The rest of this chapter makes that loop explicit enough to code.
+
 ## The Galerkin system
 
 Let \(V_h = \text{span}\{\phi_1, \ldots, \phi_N\} \subset V\). Seek
