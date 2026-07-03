@@ -4,6 +4,19 @@ Static equilibrium of an elastic body is equivalent to minimizing total potentia
 
 The copper wire under tension minimizes (or rather, stationarizes) elastic energy stored in its stretched atomic lattice — a minimization FEM approximates on a mesh. When the load exceeds yield, minimization gives way to incremental variational inequalities; when deformation grows large, the energy depends on \(\mathbf{F}\), not \(\boldsymbol{\varepsilon}\). This chapter walks that path.
 
+## Concept map checkpoint
+
+Kinematics and balance laws from Chapters 1–2 now close into a **single variational statement** — the same structure Part II and Part III built for scalar PDEs:
+
+| Question | Variational elasticity on the wire |
+|----------|-------------------------------------|
+| **Object** | Admissible \(\mathbf{u}\), strain energy \(\psi\), total potential \(\Pi\) |
+| **Structure** | Convexity of \(\psi\); essential vs. natural BCs; hyperelastic \(\mathbf{P}=\partial\psi/\partial\mathbf{F}\) |
+| **Theorem** | Minimum potential energy \(\Leftrightarrow\) virtual work equilibrium |
+| **Breaks if missing** | Non-physical stress in finite strain; locking in nearly incompressible limits |
+
+Part IV's assembly loop is Rayleigh–Ritz on \(\Pi\); convergence rates from Part IV assume the coercivity established here.
+
 ## Principle of minimum potential energy
 
 Among **kinematically admissible** displacements \(\mathbf{u}\) — satisfying \(\mathbf{u} = \mathbf{u}_0\) on \(\Gamma_D\) — define the **total potential energy**

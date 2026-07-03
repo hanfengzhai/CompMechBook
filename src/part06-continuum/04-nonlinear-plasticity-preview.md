@@ -140,6 +140,19 @@ Part VII introduces **dislocations** as explicit mesoscale objects — lines wit
 
 When we later fit an EAM potential in Part VIII or compute stacking-fault energy in Part IX, we are closing the loop: electronic structure sets the energy landscape; MD sets mobility and cross-slip; DDD sets hardening; FEM sets structural response. Nonlinear continuum mechanics is the **lowest rung that still speaks the language of stress and strain tensors** familiar to structural engineers.
 
+## Concept map checkpoint (Part VI → Part VII)
+
+Continuum plasticity fits hardening into internal variables — but the copper wire's cold-drawn strength is **not** a fitted parameter alone. It is a dislocation forest frozen by manufacturing:
+
+| Question | Continuum J₂ / crystal plasticity | What Part VII adds |
+|----------|-----------------------------------|---------------------|
+| **Object** | \(\boldsymbol{\sigma}\), \(\boldsymbol{\varepsilon}^p\), hardening \(\alpha\) | Dislocation lines, density \(\rho\), link statistics |
+| **Structure** | Yield surface, flow rule, consistency | Peach–Köhler force, mobility \(M(\tau,T)\), forest hardening |
+| **Theorem** | Incremental variational structure (not global minimum) | Taylor hardening \(\Delta\tau \propto \sqrt{\rho}\) from DDD |
+| **Breaks if missing** | Mesh-size-dependent yield; wrong notch response | Spurious size effects when \(\rho^{-1/2} \sim h\) |
+
+When the mesh is fine enough but the physics still wrong — when yield stress is a mystery parameter — that is the signal to descend to dislocations.
+
 ## Bridge
 
 Linear and nonlinear elasticity — geometric and material — exhaust what a **continuum field** can say before its assumptions fail at defects. The copper wire's cold-worked strength is not in \(\mathbb{C}\); it is in the dislocation forest frozen by manufacturing. Part VII names those defects, simulates their motion, and exports the hardening laws that make nonlinear FEM honest. Turn the page when the mesh is fine enough but the physics still wrong — that is the signal to descend.

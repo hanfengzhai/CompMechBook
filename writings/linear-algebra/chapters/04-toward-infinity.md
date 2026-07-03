@@ -140,6 +140,19 @@ Point loads on the copper wire (a force at a node) are not functions in \(L^2\);
 
 Given basis functions \(\{\phi_j\}\) on a mesh, the **Gram matrix** \(G_{ij} = (\phi_i, \phi_j)_{L^2}\) is the mass matrix before assembly into physical units. Orthonormalizing the basis (via Gram–Schmidt or QR on sampled values) produces a condition-number-friendly coordinate system — the same idea as orthonormal eigenvectors, now on function spaces. Isoparametric maps (Part IV) generalize this: the Jacobian determinant weights integrals so that reference-element orthogonality becomes physical-space coupling.
 
+## Concept map checkpoint (Part I → Part II)
+
+Part I ends where finite-dimensional algebra meets its limit. The four questions from the opening concept map now change vocabulary without changing discipline:
+
+| Question | At \(N\) nodes (Part I) | At the continuum limit (Part II preview) |
+|----------|-------------------------|------------------------------------------|
+| **Object** | \(\mathbf{u} \in \mathbb{R}^N\), \(\mathbf{K}\) | \(u \in H^1(\Omega)\), operator \(A\) |
+| **Structure** | Symmetry, sparsity, positive definiteness | Inner product, completeness, compact embeddings |
+| **Theorem** | Unique \(\mathbf{u}=\mathbf{K}^{-1}\mathbf{f}\); spectral modes | Lax–Milgram; Galerkin best approximation; spectral accumulation |
+| **Breaks if missing** | Ill-conditioning as \(N\) grows | Cauchy sequences without limit in the space; loads not in \(L^2\) |
+
+The copper wire's nodal displacements are still numbers on a mesh — but the **limit** those numbers approximate is a function. Part II supplies the spaces where that limit lives and the theorems that make mesh refinement meaningful.
+
 ## Bridge to Part II
 
 Linear algebra taught us to solve \(\mathbf{K}\mathbf{u}=\mathbf{f}\). Mechanics asks us to solve PDEs. The bridge is:

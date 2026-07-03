@@ -215,6 +215,19 @@ Cost scales with `(# active Gauss points) × (DDD timesteps per macro step)`. Fo
 
 When all gates pass, the drawn copper wire story closes at the mesoscale: dislocation statistics become internal state variables on the same mesh Part IV taught us to assemble.
 
+## Concept map checkpoint (Part VII → Part VIII)
+
+DDD tracks dislocation lines with mobility laws — but every mobility, stacking-fault energy, and core width is an **atomic-scale input**:
+
+| Question | DDD (Part VII) | MD (Part VIII preview) |
+|----------|----------------|------------------------|
+| **Object** | Dislocation segments, density \(\rho\), link length | Atoms \(\{\mathbf{r}_i\}\), potential \(V(\mathbf{r}^N)\) |
+| **Structure** | Peach–Köhler; forest hardening; periodic RVE | Newton's equations; thermostats; EAM or ML potentials |
+| **Theorem** | Taylor hardening from link statistics | Ergodic averages \(\Rightarrow\) moduli, \(\gamma_{\text{sf}}\), \(M(\tau)\) |
+| **Breaks if missing** | Ad hoc mobility; wrong core energy | Unphysical cores; timestep instability; wrong units at handoff |
+
+The wire's strength is a story written in dislocation lines; the **ink** is atomic bonding. Part VIII resolves the atoms that give those lines their mobility.
+
 ## What remains for atomistics
 
 DDD assumes **closed cores** and empirical short-range rules. When dislocations meet grain boundaries, crack tips, or chemistry (oxygen at copper surfaces), cores interact with **atomic structure** DDD cannot resolve. Part VIII supplies stacking-fault energies, cross-slip rates, and nucleation barriers. Part IX supplies formation energies when even those atomistic parameters need first-principles validation.

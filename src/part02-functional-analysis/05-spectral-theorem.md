@@ -162,6 +162,19 @@ where \(a\) is stiffness and \(m\) is mass — both symmetric, \(a\) coercive, \
 
 For the wire with non-uniform cross-section, \(a\) and \(m\) vary spatially through elastic modulus and density. The spectral theorem applies to the operator \(\mathbf{M}^{-1}\mathbf{K}\) on the discrete side and to the continuous generalized problem on \(H^1_0\). Orthogonality of modes is with respect to both forms: \(a(\phi_i, \phi_j) = \lambda_i m(\phi_i, \phi_j)\) and \(m(\phi_i, \phi_j) = 0\) for \(i \ne j\) after scaling.
 
+## Concept map checkpoint (Part II → Part III)
+
+Functional analysis answered *where* weak solutions live and *why* Galerkin projections converge. The four questions now attach to **equations on domains**:
+
+| Question | Part II answer | Part III will instantiate |
+|----------|----------------|---------------------------|
+| **Object** | \(u \in H^1\), bilinear form \(a(u,v)\), dual load \(\ell\) | Poisson, heat, elasticity on the copper wire domain |
+| **Structure** | Coercivity, symmetry, compact resolvent | Integration by parts; Sobolev trace; energy minimization |
+| **Theorem** | Lax–Milgram; Céa; spectral accumulation | Existence of weak solutions; a priori regularity |
+| **Breaks if missing** | Non-coercive forms; inconsistent BCs | Strong-form-only thinking at corners and interfaces |
+
+The wire's displacement \(u(x)\) and temperature \(T(x)\) are no longer abstractions — Part III writes their PDEs, derives weak forms, and names the Sobolev spaces where FEM will discretize them.
+
 ## What Part II has assembled
 
 We now possess, in order:

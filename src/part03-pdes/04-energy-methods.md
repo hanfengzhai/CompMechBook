@@ -152,6 +152,19 @@ Finite volume schemes often derive from **integral conservation** rather than po
 | Stokes | Saddle Lagrangian | Saddle point | Mixed FEM |
 | Navier–Stokes | Not global convex | Stationary point | FVM / stabilized FEM |
 
+## Concept map checkpoint (Part III → Part IV)
+
+Part III reduced continuum physics to **well-posed variational problems**. Discretization is the remaining engineering step:
+
+| Question | Continuous (Part III) | Discrete (Part IV preview) |
+|----------|----------------------|----------------------------|
+| **Object** | \(u \in H^1_0\), bilinear form \(a\), functional \(\ell\) | \(V_h = \text{span}\{\phi_i\}\), \(\mathbf{K}\), \(\mathbf{F}\) |
+| **Structure** | Lax–Milgram coercivity; energy convexity | Galerkin orthogonality; isoparametric maps |
+| **Theorem** | Unique minimizer of \(\Pi\) | Céa: \(\|u-u_h\| \le C \inf_{v_h\in V_h}\|u-v_h\|\) |
+| **Breaks if missing** | Wrong function space for the operator | Locking, spurious modes, non-conforming elements |
+
+The copper wire's equilibrium is still a minimum principle — Part IV chooses shape functions, quadrature rules, and assembly loops that make \(\mathbf{K}\mathbf{U}=\mathbf{F}\) the discrete shadow of the energy minimized here.
+
 ## Bridge to Part IV
 
 We have:

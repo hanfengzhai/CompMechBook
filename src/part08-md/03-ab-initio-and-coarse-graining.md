@@ -213,6 +213,19 @@ The intellectual contract is unchanged: **electronic structure defines the surfa
 
 Document every conversion at the boundary: Ry → eV, Bohr → Å, metal units → SI when feeding DAMASK or Abaqus.
 
+## Concept map checkpoint (Part VIII → Part IX)
+
+MD inherits potentials from fitting or tabulation — but when EAM parameters drift or chemistry matters, the **electronic structure** is the ground truth:
+
+| Question | MD (Part VIII) | DFT (Part IX preview) |
+|----------|----------------|----------------------|
+| **Object** | Positions, momenta, empirical \(V\) | Electron density \(\rho(\mathbf{r})\), Kohn–Sham orbitals |
+| **Structure** | Newton + thermostat; periodic box | Born–Oppenheimer; self-consistent field cycle |
+| **Theorem** | Ergodic averages of observables | Hohenberg–Kohn; Kohn–Sham mapping |
+| **Breaks if missing** | Unphysical cores, wrong moduli | Wrong functional; k-point/ecut convergence failure |
+
+Coarse-graining and fitting are how Part VIII **hands numbers upward** to DDD and FEM and **requests truth downward** from electronic structure. Part IX makes that downward request precise.
+
 ## Bridge
 
 Classical MD is the workhorse; ab initio MD and QM/MM are the auditors when potentials fail. Coarse-graining and fitting are how Part VIII **hands numbers upward** to DDD and FEM and **requests truth downward** from electronic structure. Part IX makes that downward request precise: the Hohenberg–Kohn theorems, the Kohn–Sham equations, and the Quantum ESPRESSO-style workflows that turn a copper crystal into cohesive energy, elastic constants, and the potential datasets MD cannot invent.

@@ -6,6 +6,19 @@ Parts IV and V discretized PDEs on meshes. Part VI asks what those PDEs mean phy
 
 The copper wire under tension is our recurring specimen — at the continuum scale, it is a cylinder of copper with a displacement field and a deformation gradient that Part IV's elasticity code approximates node by node, while the air cooling it (Part V) carries a velocity field whose gradient enters the rate-of-deformation tensor in the fluid stress.
 
+## Concept map checkpoint
+
+Parts I–V computed on meshes; Part VI names the **geometric objects** those meshes sample:
+
+| Question | Kinematic answer on the wire |
+|----------|------------------------------|
+| **Object** | Deformation map \(\boldsymbol{\varphi}\), gradient \(\mathbf{F}\), strain \(\boldsymbol{\varepsilon}\) or \(\mathbf{E}\) |
+| **Structure** | Polar decomposition \(\mathbf{F}=\mathbf{R}\mathbf{U}\); objectivity under rigid motion |
+| **Theorem** | Compatibility (integrable \(\mathbf{F}\) \(\Rightarrow\) single-valued \(\boldsymbol{\varphi}\) on simply connected domains) |
+| **Breaks if missing** | Non-objective models; singular \(\mathbf{F}\) at cracks and voids |
+
+Part IV's B-matrix at each Gauss point is the discrete evaluation of \(\boldsymbol{\varepsilon}(\mathbf{u})\) derived here.
+
 ## Scene: the wire in the tensile frame
 
 Picture a 1 mm diameter copper wire, 100 mm gauge length, gripped at both ends in a tensile frame. A 50 N axial load produces a modest engineering strain \(\varepsilon \approx \sigma/E \sim 10^{-4}\) — well within the linear elastic range Part IV assumed when assembling \(\mathbf{K}\). Every node on the FEM mesh carries a displacement vector; kinematics asks what **continuous map** those nodal values sample.
