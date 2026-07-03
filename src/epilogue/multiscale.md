@@ -6,6 +6,47 @@ The copper wire that opened the prologue — drawn, annealed, carrying current, 
 
 Before descending to electrons, we already practiced coupling at the engineering scale: Part IV's FEM conduction and Part V's FVM convection exchange wall temperature and heat flux until the wire and the cooling air agree — conjugate heat transfer as a fixed-point loop between discretizations. The epilogue generalizes that handshake from two meshes on one specimen to DFT, MD, DDD, and continuum FEM on the same material history.
 
+## Story so far (Parts I–IX)
+
+If you have read linearly since the prologue, the copper wire changed representation nine times without changing material. The table below is the **full arc** in one view — the narrative hinge every part opening summarized, now collected before we ask how the rungs compose:
+
+| Part | Scale / method | What the wire became | What we exported upward |
+|------|----------------|----------------------|-------------------------|
+| Prologue | Ladder preview | Cold-drawn Cu under tension and current | Four questions: state, equations, discretization, export |
+| I | \(\mathbb{R}^N\) | Coupled springs; vibration modes | \(\mathbf{K}\mathbf{u}=\mathbf{f}\); limit \(N\to\infty\) |
+| II | Function spaces | Fields \(u(x)\), \(T(x)\) in \(H^1\), \(L^2\) | Galerkin as projection; spectral convergence |
+| III | PDEs / weak forms | Conduction and elasticity on a domain | Energy principles; Sobolev regularity |
+| IV | FEM | Meshed solid; shape functions | \(\mathbf{K}\mathbf{U}=\mathbf{F}\); convergence in energy norm |
+| V | FVM / CFD | Air cooling the hot wire (optional path) | Flux balance; conjugate heat transfer handshake |
+| VI | Continuum | \(\mathbf{F}\), \(\boldsymbol{\sigma}\), virtual work | Stress, stiffness; plasticity **preview** with fitted \(H\) |
+| VII | Dislocations | Forest from cold drawing; DDD | Taylor hardening; \(\tau(\gamma)\), link statistics |
+| VIII | MD | FCC lattice; EAM cores; LAMMPS | Moduli, \(\gamma_{\text{sf}}\), mobility tables |
+| IX | DFT | Valence electrons; Kohn–Sham SCF | \(E_{\text{coh}}\), \(C_{ij}\), defect formation energies |
+
+The climb **upward** (Parts I–VI) built language and discretization until the wire was a meshed solid with named stress and flux. The descent **downward** (Parts VII–IX) explained where continuum parameters hid their history — in dislocation motion, atomic potentials, and electron density. Neither direction is optional for multiscale credibility: homogenization without derivation exports numbers without provenance; atomistics without homogenization cannot answer engineering questions about deflection, fatigue, or process design.
+
+## The concept map (whole ladder)
+
+The [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) asked four questions at every scale — object, structure, theorem, failure mode. At the epilogue, the same discipline applies to **coupling**:
+
+| Question | Answer at multiscale scale |
+|----------|----------------------------|
+| What **object** spans all rungs? | Interface states — wall temperature, traction, dislocation density, cohesive energy |
+| What **structure** connects rungs? | Consistent fluxes and dual descriptions; units and tolerances on handshakes |
+| What **theorem** (or principle) makes coupling honest? | Convergence of outer loops; representative volume size; energy consistency |
+| What **breaks** if structure is missing? | Wrong moduli, lost path dependence, category errors at crack tips and cores |
+
+```mermaid
+flowchart TB
+  DFT[Part IX: DFT] --> MD[Part VIII: MD]
+  MD --> DDD[Part VII: DDD]
+  DDD --> FEM[Part IV/VI: FEM continuum]
+  FEM --> ENG[Engineering: wire deflection]
+  ENG -.->|questions downward| DFT
+```
+
+**Baby picture:** each rung computes what the rung above cannot afford; each handshake exports the minimum state description the rung above needs — then verify the outer loop converges. Conjugate heat transfer on the wire was practice; DFT→MD→DDD→FEM is the same habit at full scale.
+
 ## The same question at every scale
 
 At each rung of the ladder, we asked:
