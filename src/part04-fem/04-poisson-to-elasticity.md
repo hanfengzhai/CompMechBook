@@ -95,6 +95,23 @@ Axial deformation of the copper wire is a 1D reduction: \(\mathbf{u} = u(x)\math
 
 identical to the bar element in Chapter 2. Three-dimensional elasticity is this idea with full tensors — no change to the assembly loop, only to the dimension of \(\mathbf{B}\) and \(\mathbb{C}\).
 
+### Worked example: three-node copper bar
+
+Fix numbers from Part I and Part IV: a \(L = 1\,\text{m}\) copper wire segment, \(A = 1\,\text{mm}^2\), \(E = 120\,\text{GPa}\), fixed at \(x = 0\), tensile load \(F = 1000\,\text{N}\) at \(x = L\). Three equally spaced nodes give two bar elements of length \(h = L/2\).
+
+Each element contributes \(k^e = EA/h = (120 \times 10^9)(10^{-6})/0.5 \approx 2.4 \times 10^8\,\text{N/m}\). The global system (DOFs \(u_1, u_2, u_3\) with \(u_1 = 0\)) is
+
+\[
+\begin{bmatrix} 2k & -k \\ -k & k \end{bmatrix}
+\begin{bmatrix} u_2 \\ u_3 \end{bmatrix}
+=
+\begin{bmatrix} 0 \\ F \end{bmatrix}.
+\]
+
+Solving gives \(u_3 = F/k \approx 4.17\,\mu\text{m}\) and \(u_2 = F/(2k) \approx 2.08\,\mu\text{m}\) — linear displacement along the bar, as expected for uniform stress \(\sigma = F/A = 1\,\text{GPa}\). Refining to five nodes halves the element length and halves the error in the energy norm at the rate Part IV Chapter 5 predicts for P1 bars.
+
+This is not a new method: it is Poisson's equation with a vector-valued unknown and a tensor stiffness. The copper wire under modest tension lives in this 1D reduction until notches, bending, or multiaxial loading demand full 3D \(\mathbf{B}\) matrices — but the assembly loop, boundary conditions, and convergence story are unchanged.
+
 ## Example: 2D plane problems
 
 When geometry and loading have translational symmetry, 3D elasticity reduces to 2D:
