@@ -33,6 +33,22 @@ flowchart LR
 
 **Baby picture:** name the line defects that carry plasticity, simulate their motion with elastic superposition and mobility tables, extract hardening laws and link statistics, then export internal variables to polycrystal FEM. The drawn copper wire is stronger because of this forest, not because \(\mathbf{K}\) changed.
 
+## Representative schematics (Defects & Disorders)
+
+The [Defects & Disorders notes](https://hanfengzhai.github.io/file/defects_notes.pdf) collect the mesoscale machine this part builds — use them as a visual index while reading:
+
+| Schematic | Idea | Chapter in this part |
+|-----------|------|----------------------|
+| 1 | Defect taxonomy: point, line, surface; Burgers vector \(\mathbf{b}\) | [VII.1](01-defect-taxonomy.md) |
+| 2 | Dislocation line geometry; edge vs. screw; forest structure from cold drawing | [VII.1](01-defect-taxonomy.md) |
+| 3 | Peach–Köhler force; elastic superposition; mobility law | [VII.2](02-dislocation-dynamics.md) |
+| 4 | DDD time integration; segment network; OpenDiS workflow | [VII.2](02-dislocation-dynamics.md) |
+| 5 | Taylor hardening \(\tau \propto \sqrt{\rho}\); link statistics | [VII.2](02-dislocation-dynamics.md) |
+| 6 | Crystal plasticity FEM: internal variables from DDD | [VII.3](03-polycrystal-and-fem-handoff.md) |
+| 7 | OpenDiS → DAMASK → continuum FEM handoff on the wire | [VII.3](03-polycrystal-and-fem-handoff.md) |
+
+When a mobility table feels empirical, return to the matching row: DDD exports what phenomenological plasticity fit in Part VI — and Part VIII will derive mobility from atomistic cores.
+
 ## Lab act (prologue map)
 
 You are in **Act IV — Hardening**. The load cell curve bends upward because cold drawing left a dislocation forest in the wire — history invisible to linear elasticity, visible only when slip accelerates. Part VII is the mesoscale narrator of that bend: line defects multiply, tangle, and export Taylor hardening laws that nonlinear FEM consumes. The specimen was mounted in Act I and pulled in Act III; Act IV is the backstory made dynamic.

@@ -70,6 +70,22 @@ The [prologue](../prologue/00-many-scales.md#the-experiment-as-plot) maps one co
 | **VI — Foundation** | \(E\), \(\nu\), potentials chosen offline | IX → VIII → VII → IV | [IX.0](../part09-dft/00-opening.md), [VIII.0](../part08-md/00-opening.md) |
 | **All acts** | Full afternoon wired together | Epilogue | [Multiscale](../epilogue/multiscale.md) |
 
+## Course schematic index
+
+Each part opening includes a **Representative schematics** table linking baby pictures from the course notes to numbered chapters. Use this index to jump from a PDF figure to the book chapter that develops it.
+
+| Part | Course notes | Opening |
+|------|--------------|---------|
+| I | [ME 300A Linear Algebra](https://hanfengzhai.github.io/file/ME300A_LinAlg.pdf) | [I.0](../part01-linear-algebra/00-opening.md) |
+| II | [ME 412 Functional Analysis](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) | [II.0](../part02-functional-analysis/00-opening.md) |
+| III | [ME 300B PDEs](https://hanfengzhai.github.io/file/ME300B_PDE.pdf) | [III.0](../part03-pdes/00-opening.md) |
+| IV | [FEA notes](https://hanfengzhai.github.io/file/FEA_notes.pdf) | [IV.0](../part04-fem/00-opening.md) |
+| V | [FVM](https://hanfengzhai.github.io/note/FVM.pdf) / [CFD](https://hanfengzhai.github.io/file/CFD_note.pdf) | [V.0](../part05-fvm/00-opening.md) |
+| VI | [Elasticity & Inelasticity](https://hanfengzhai.github.io/file/elasticity_notes.pdf) | [VI.0](../part06-continuum/00-opening.md) |
+| VII | [Defects & Disorders](https://hanfengzhai.github.io/file/defects_notes.pdf) | [VII.0](../part07-defects/00-opening.md) |
+| VIII | [Atomistic Modeling](https://hanfengzhai.github.io/file/AtomModel_note.pdf) | [VIII.0](../part08-md/00-opening.md) |
+| IX | [MSE 5720 DFT coursework](https://github.com/hanfengzhai/MSE5720-HW) | [IX.0](../part09-dft/00-opening.md) |
+
 ## Primary notes (hanfengzhai.github.io)
 
 | Topic | Link |

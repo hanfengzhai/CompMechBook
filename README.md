@@ -17,7 +17,7 @@ Read straight through for the full arc. Parts IV (FEM) and V (FVM) may be swappe
 
 ## Narrative structure
 
-The book follows the **Functional Analysis Notes** (ME 412) layout: numbered chapters, **concept maps** (object → structure → theorem → failure mode) at every part opening and part closing checkpoint, **Scene** sections that return to the copper wire, and **Bridge** sections at every chapter end explaining why the next chapter exists.
+The book follows the **Functional Analysis Notes** (ME 412) layout: numbered chapters, **concept maps** (object → structure → theorem → failure mode) at every part opening and part closing checkpoint, **representative schematics** from the course notes at all nine part openings (ME 300A through MSE 5720), **Scene** sections that return to the copper wire, and **Bridge** sections at every chapter end explaining why the next chapter exists.
 
 ```mermaid
 flowchart TB

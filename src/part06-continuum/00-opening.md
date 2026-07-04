@@ -31,6 +31,22 @@ flowchart LR
 
 **Baby picture:** describe how the copper wire stretches and rotates, relate stress to force per area, derive virtual work from balance, then admit that cold drawing and notch roots violate the smooth fields FEM assumes — setting up the descent to dislocations.
 
+## Representative schematics (Elasticity & Inelasticity)
+
+The [Elasticity & Inelasticity notes](https://hanfengzhai.github.io/file/elasticity_notes.pdf) and [Nonlinear FEA notes](https://hanfengzhai.github.io/file/NonlinFEA_note.pdf) collect the continuum vocabulary this part builds — baby pictures you can return to when tensor notation feels abstract:
+
+| Schematic | Idea | Chapter in this part |
+|-----------|------|----------------------|
+| 1 | Deformation gradient \(\mathbf{F}\); polar decomposition; strain measures | [VI.1](01-kinematics.md) |
+| 2 | Cauchy stress, traction \(\mathbf{t}=\boldsymbol{\sigma}\mathbf{n}\); symmetry | [VI.2](02-stress-balance.md) |
+| 3 | Balance of momentum, energy, charge on the wire | [VI.2](02-stress-balance.md) |
+| 4 | Constitutive closure: Hooke's law, thermal strain, temperature-dependent \(E\) | [VI.2](02-stress-balance.md) |
+| 5 | Virtual work principle; hyperelastic strain energy | [VI.3](03-variational-elasticity.md) |
+| 6 | Finite strain preview; J₂ yield; work hardening as a fitted curve | [VI.4](04-nonlinear-plasticity-preview.md) |
+| 7 | Where smooth continuum fails: notches, cold work, export to DDD (Part VII) | [VI.4](04-nonlinear-plasticity-preview.md) |
+
+When \(\boldsymbol{\sigma}\) and \(\mathbb{C}\) feel like notation without physics, return to the matching row: Part IV's \(\mathbf{K}\) is a Galerkin projection of the virtual work written here — not a separate subject.
+
 ## Lab act (prologue map)
 
 This part is **Act III — Pulling** in continuum language, with **Act IV — Hardening** on the horizon. The force–displacement curve the operator reads is Cauchy stress integrated over the cross section; virtual work is what Part IV already discretized. When the curve bends upward, Act IV begins — but Part VI admits first that the bend is not in \(\mathbb{C}\) alone. **Act V — Notch** lives here too: stress concentrators at grips and scratches are where smooth continuum fields predict *where* failure might nucleate before MD resolves bond breaking in Part VIII.

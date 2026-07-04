@@ -31,6 +31,22 @@ flowchart LR
 
 **Baby picture:** separate fast electrons from slow nuclei, prove the ground-state energy is a functional of density alone, solve Kohn–Sham equations self-consistently, then export cohesive energy and elastic moduli upward to MD, DDD, and FEM. The copper wire's valence electrons live here.
 
+## Representative schematics (MSE 5720 / DFT)
+
+The [MSE 5720 DFT coursework](https://github.com/hanfengzhai/MSE5720-HW) and standard DFT references collect the electronic-structure machine this part builds:
+
+| Schematic | Idea | Chapter in this part |
+|-----------|------|----------------------|
+| 1 | Born–Oppenheimer separation: fast electrons, slow nuclei | [IX.1](01-born-oppenheimer.md) |
+| 2 | Hohenberg–Kohn theorems: \(E[\rho]\) as a functional of density alone | [IX.1](01-born-oppenheimer.md) |
+| 3 | Kohn–Sham equations; effective potential; SCF iteration loop | [IX.2](02-kohn-sham.md) |
+| 4 | Plane-wave basis; pseudopotentials; k-point sampling | [IX.2](02-kohn-sham.md) |
+| 5 | Convergence: cutoff energy, k-mesh, smearing — the DFT analogue of \(h\)-refinement | [IX.2](02-kohn-sham.md) |
+| 6 | Quantum ESPRESSO workflow: input files, fcc Cu cell, reproducible runs | [IX.3](03-dft-workflows.md) |
+| 7 | Export upward: \(E_{\text{coh}}\), \(C_{ij}\), \(\gamma_{\text{sf}}\) → MD, DDD, FEM | [IX.3](03-dft-workflows.md) |
+
+When an SCF cycle oscillates, return to the matching row: convergence parameters are the discretization knobs Part IV would call mesh refinement — here plane-wave cutoff and k-mesh instead of element size.
+
 ## Lab act (prologue map)
 
 You are in **Act VI — Foundation**, the prequel every practitioner runs before the wire-scale simulation starts. No tension test begins without \(E\), \(\nu\), cohesive energy, and surface terms — numbers that trace to this part's Kohn–Sham cycles on small fcc cells. The afternoon experiment (Acts I–V) assumed these constants; Part IX derives them. Read backward from here toward Part VIII (potentials) and Part IV (FEM input decks) to complete the foundation arc the [prologue](../prologue/00-many-scales.md#the-experiment-as-plot) describes.

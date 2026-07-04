@@ -35,6 +35,22 @@ flowchart LR
 
 **Baby picture:** write Newton's equations for nuclei on a potential surface, choose an ensemble (NVT, NPT), integrate with a stable timestep, then fit EAM parameters and export moduli to continuum models. The copper lattice vibrates here; DDD mobility and FEM stiffness inherit the averages.
 
+## Representative schematics (Atomistic Modeling)
+
+The [Atomistic Modeling notes](https://hanfengzhai.github.io/file/AtomModel_note.pdf) and [Statistical Mechanics notes](https://hanfengzhai.github.io/file/StatMechNotes.pdf) collect the atomistic machine this part builds:
+
+| Schematic | Idea | Chapter in this part |
+|-----------|------|----------------------|
+| 1 | Interatomic potential \(V(\{\mathbf{r}_i\})\); EAM for copper | [VIII.1](01-potentials-phase-space.md) |
+| 2 | Phase space \((\mathbf{q}, \mathbf{p})\); Hamiltonian mechanics | [VIII.1](01-potentials-phase-space.md) |
+| 3 | Ensembles: NVE, NVT, NPT; thermostats and barostats | [VIII.2](02-ensembles-integrators.md) |
+| 4 | Verlet / velocity-Verlet integrators; timestep and energy drift | [VIII.2](02-ensembles-integrators.md) |
+| 5 | LAMMPS workflow: input deck, periodic boundaries, representative volume | [VIII.2](02-ensembles-integrators.md) |
+| 6 | Ab initio MD; DeepMD; fitting potentials from DFT (Part IX) | [VIII.3](03-ab-initio-and-coarse-graining.md) |
+| 7 | Coarse-graining upward: moduli, \(\gamma_{\text{sf}}\), mobility to DDD and FEM | [VIII.3](03-ab-initio-and-coarse-graining.md) |
+
+When a cutoff radius feels arbitrary, return to the matching row: the representative volume must answer an upstream question from Part VII (core structure) or Part VI (cohesive response at a notch).
+
 ## Lab act (prologue map)
 
 **Act V — Notch** and **Act VI — Foundation** meet in this part. At a scratched grip or sharp concentrator, Act V demands atomistic resolution — bond breaking, dislocation nucleation — that MD supplies in a representative volume too small to see on the load cell, yet decisive for failure. Act VI's offline foundation continues here: EAM potentials fit on bulk copper cells, stacking-fault energies for DDD mobility, moduli cross-checked against DFT — the upward climb from Part IX through MD into continuum inputs.
