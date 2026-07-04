@@ -1,0 +1,68 @@
+# Part IX — Electronic Structure
+
+Part VIII assumed classical nuclei interacting through potentials fitted to data or theory. Part IX asks where those potentials originate: in the **quantum mechanical electron density** that binds copper atoms into a crystal, sets its cohesive energy, and determines the elastic constants and defect formation energies that every coarser model inherits.
+
+Density functional theory makes the ground-state energy a functional of the electron density — tractable on computers with plane waves, pseudopotentials, and self-consistent field iteration. Born–Oppenheimer separation justifies treating nuclei as classical particles on surfaces defined by electronic structure; Hohenberg–Kohn theorems explain why the density alone suffices.
+
+Three chapters cover Born–Oppenheimer and the Hohenberg–Kohn framework, Kohn–Sham equations and convergence practice, and reproducible Quantum ESPRESSO workflows that export numbers to MD, DDD, and continuum models. The layout follows the **DFT Notes** in [`writings/dft/`](../../writings/dft/): numbered chapters with **Bridge** sections leading to the epilogue's multiscale coupling story.
+
+## Where we left the wire
+
+Part VIII ended with nuclei vibrating on an interatomic potential — EAM parameters fit to experiments, MD trajectories, or machine-learned surfaces. That potential is a **practical fiction**: it assumes electrons adjust instantaneously to nuclear motion, and it hides the quantum mechanics that sets cohesive energy, stacking-fault energy, and vacancy formation enthalpy.
+
+The copper wire at the electronic scale is not a chain of balls on springs. It is a periodic crystal of nuclei immersed in a sea of valence electrons whose density \(\rho(\mathbf{r})\) determines how strongly the lattice resists drawing, how easily dislocations slip, and how vacancies cost energy. DFT resolves that density; every number exported upward — \(E_{\text{coh}}\), \(C_{ij}\), \(\gamma_{\text{sf}}\) — is a contract between Part IX and Parts VI–VIII.
+
+## The concept map
+
+| Question | Example in this part |
+|----------|----------------------|
+| What **object** are we studying? | Electron density \(\rho(\mathbf{r})\), Kohn–Sham orbitals, total energy |
+| What **structure** does it add? | Hohenberg–Kohn mapping, SCF iteration, k-point sampling |
+| What **theorem** becomes possible? | Variational ground state, force theorem, elastic constants from strain |
+| What **breaks** if structure is missing? | Wrong functional, SCF oscillation, size-extensive errors on small cells |
+
+```mermaid
+flowchart LR
+  BO[Born-Oppenheimer] --> HK[Hohenberg-Kohn]
+  HK --> KS[Kohn-Sham SCF]
+  KS --> QE[Quantum ESPRESSO workflows]
+  QE --> MS[Multiscale epilogue]
+```
+
+**Baby picture:** separate fast electrons from slow nuclei, prove the ground-state energy is a functional of density alone, solve Kohn–Sham equations self-consistently, then export cohesive energy and elastic moduli upward to MD, DDD, and FEM. The copper wire's valence electrons live here.
+
+## Lab act (prologue map)
+
+You are in **Act VI — Foundation**, the prequel every practitioner runs before the wire-scale simulation starts. No tension test begins without \(E\), \(\nu\), cohesive energy, and surface terms — numbers that trace to this part's Kohn–Sham cycles on small fcc cells. The afternoon experiment (Acts I–V) assumed these constants; Part IX derives them. Read backward from here toward Part VIII (potentials) and Part IV (FEM input decks) to complete the foundation arc the [prologue](../prologue/00-many-scales.md#the-experiment-as-plot) describes.
+
+## Story so far (Parts I–VIII)
+
+The descent from continuum to atoms is complete; Part IX reaches the **finest rung**:
+
+| Part | Scale | Wire story beat |
+|------|-------|-----------------|
+| I–VI | Mathematics → FEM/FVM → continuum stress/strain | Meshed cylinder; virtual work; J₂ plasticity **preview** |
+| VII | Dislocation lines | Forest hardening from cold drawing; DDD exports \(\tau(\gamma)\) |
+| VIII | Atoms on potentials | EAM cores, LAMMPS workflows; mobility and \(\gamma_{\text{sf}}\) upward |
+
+Part VIII assumed nuclei move on a potential surface — EAM, MEAM, or machine-learned — and exported moduli, stacking-fault energies, and mobility tables to DDD and FEM. That potential is a **practical fiction**: electrons adjust instantaneously to nuclear motion, but the quantum mechanics that sets cohesive energy, vacancy formation enthalpy, and elastic constants was hidden. Part IX makes the downward contract explicit: DFT resolves \(\rho(\mathbf{r})\), the ground-state energy is a functional of density alone, and every number exported upward — \(E_{\text{coh}}\), \(C_{ij}\), \(\gamma_{\text{sf}}\) — is traceable to a self-consistent Kohn–Sham cycle. The epilogue will ask how to climb back up with those numbers in a reproducible workflow.
+
+## Closing the arc from Part I
+
+If you have read linearly since the prologue, notice how the **same four questions** from the opening table reappear here with new vocabulary — and how the **same mathematical moves** from Part I return at the finest scale:
+
+| Part I (springs on the wire) | Part IX (electrons in copper) |
+|------------------------------|-------------------------------|
+| State vector \(\mathbf{u}\) | Electron density \(\rho(\mathbf{r})\) |
+| Stiffness matrix \(\mathbf{K}\) | Kohn–Sham Hamiltonian operator |
+| Eigenmodes decouple vibration | Kohn–Sham orbitals diagonalize the effective potential |
+| \(\mathbf{K}\mathbf{u}=\mathbf{f}\) from energy minimization | Ground-state \(\rho\) minimizes \(E[\rho]\) |
+| Mesh refinement sends \(N\to\infty\) | Plane-wave cutoff and k-mesh send basis size \(\to\infty\) |
+
+Part II taught that Galerkin convergence is projection onto finite subspaces; Part IX's plane-wave basis is the same idea with Bloch phases instead of shape functions. Part III's weak forms asked us to multiply by test functions and integrate by parts; DFT's Hohenberg–Kohn framework replaces pointwise Schrödinger equations with a **variational statement on density** — the same instinct that made FEM honest at reentrant corners.
+
+The copper wire that began as a chain of coupled springs ends as a periodic crystal whose valence electrons are solved by a self-consistent **eigenvalue loop** (Part I), in function spaces of orbitals (Part II), arising from a variational principle (Part III), discretized on a basis (Part IV's assembly philosophy), and exported upward as moduli and potentials (Parts VI–VIII). Part IX is not a new subject bolted onto the end. It is the **finest rung** of the ladder the prologue promised — and the epilogue will ask how to climb back up with the numbers computed here.
+
+## Bridge
+
+Part VIII treated atoms as classical particles. The first chapter below separates electrons from nuclei — the Born–Oppenheimer approximation — and explains why the ground-state electron density alone determines the energy landscape on which MD and elasticity ultimately rest.
