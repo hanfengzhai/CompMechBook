@@ -38,6 +38,23 @@ flowchart LR
 
 **Baby picture:** first build the room (vector space), then add a ruler (norm), then close the holes (Banach/Hilbert completeness), then add angles (inner product), then write weak PDEs and trust that FEM is projection, not guesswork. The copper wire's displacement lives in that room long before any mesh assigns it node values.
 
+## Representative schematics (ME 412)
+
+Section A of the [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) collects eight **representative schematics** — baby pictures of the same machine this part builds. Use them as a visual index while reading:
+
+| Schematic | Idea | Chapter in this part |
+|-----------|------|----------------------|
+| 1a–1b | Master roadmap: linear algebra → operators → weak PDE/FEM | This opening; [II.5](05-spectral-theorem.md) Bridge |
+| 2 | Norms define topology; equivalent norms, same convergence | [II.2](02-normed-spaces.md) |
+| 3 | Completeness hierarchy: normed → Banach → Hilbert | [II.2](02-normed-spaces.md), [II.3](03-hilbert-spaces.md) |
+| 4 | Sequence spaces \(\ell^p\), \(\ell^\infty\), closure under norms | [II.2](02-normed-spaces.md) |
+| 5 | \(L^p\), \(H^1\), \(H^1_0\), weak derivatives | [II.3](03-hilbert-spaces.md); Part III.3 |
+| 6 | Orthogonal projection; best approximation in Hilbert space | [II.3](03-hilbert-spaces.md) |
+| 7 | Duality, Riesz representation, weak convergence | [II.4](04-operators-duality.md) |
+| 8a–8b | PDE → weak form → FEM; well-posedness triangle | [II.5](05-spectral-theorem.md) → Part III |
+
+Each schematic answers the four concept-map questions for one layer of structure. When a proof feels abstract, return to the matching row: *what object, what structure, what theorem, what breaks?*
+
 ## Story so far (Prologue & Part I)
 
 The prologue introduced the copper wire as a **ladder of scales** — continuum, dislocations, atoms, electrons — and the four questions every rung answers: state, equations, discretization, upward export. Part I made the bottom rung of that ladder explicit in finite dimensions:
