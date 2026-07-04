@@ -4,7 +4,7 @@ Every scale in computational mechanics eventually reduces to **finite-dimensiona
 
 We begin where most readers already have intuition: vectors, matrices, linear maps, and eigenvalues. The copper wire from the prologue appears first as a chain of coupled springs — a stiffness matrix and a load — then as a vibration problem whose modes decouple in an eigenbasis. By the final chapter, finite meshes suggest the limit \(N \to \infty\) and the function spaces of Part II.
 
-Four chapters follow the **Linear Algebra Notes** in [`writings/linear-algebra/`](../../writings/linear-algebra/): numbered files, mechanics examples, and **Bridge** sections at each handoff. Nothing here requires functional analysis; everything here prepares for it.
+Four chapters follow the **Linear Algebra Notes** in [`writings/linear-algebra/`](https://github.com/hanfengzhai/CompMechBook/tree/main/writings/linear-algebra/): numbered files, mechanics examples, and **Bridge** sections at each handoff. Nothing here requires functional analysis; everything here prepares for it.
 
 ## Where we left the wire
 

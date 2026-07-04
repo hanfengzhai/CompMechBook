@@ -6,6 +6,14 @@ The copper wire that opened the prologue — drawn, annealed, carrying current, 
 
 Before descending to electrons, we already practiced coupling at the engineering scale: Part IV's FEM conduction and Part V's FVM convection exchange wall temperature and heat flux until the wire and the cooling air agree — conjugate heat transfer as a fixed-point loop between discretizations. The epilogue generalizes that handshake from two meshes on one specimen to DFT, MD, DDD, and continuum FEM on the same material history.
 
+## Scene: the full afternoon
+
+The copper wire is still mounted in the tensile frame from the prologue — grips closed, load cell armed, infrared camera watching the gauge section. Current has been flowing long enough that the surface glows faintly above ambient; the cooling fan from Part V hums against the rising wall temperature. On a workstation nearby, three jobs run in sequence, not because one code cannot do everything, but because each job answers a question the others cannot afford to ask.
+
+The first job is a bulk DFT cell: periodic copper, plane-wave cutoff converged, k-mesh dense enough that \(C_{11}\) and cohesive energy export to a spreadsheet. The second job fits an EAM potential to those numbers and runs a 50,000-atom MD slab around a notch root — bond stretching visible in the trajectory, dislocations nucleating where Part VI's stress concentration predicted they would. The third job feeds a mobility table into OpenDiS, evolves a dislocation network under the same nominal strain rate the load cell applies, and writes a hardening curve that a crystal plasticity FEM model consumes before the structural mesh predicts whether the wire survives the afternoon.
+
+No single window shows all three at once. The **handshake** is the story: wall temperature from FVM updates thermal softening in FEM; hardening from DDD updates the yield surface; cohesive energy from DFT updates the potential MD uses at the notch. The wire does not know it is being simulated in pieces. The engineer does — and must keep units, frames, and history consistent at every interface. This scene is what multiscale computational mechanics names: not a bigger mesh, but a **linked ladder** of models on one specimen.
+
 ## Story so far (Parts I–IX)
 
 If you have read linearly since the prologue, the copper wire has changed language nine times without changing material:

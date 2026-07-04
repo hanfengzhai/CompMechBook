@@ -84,4 +84,4 @@ Every numbered chapter also ends with its own **Bridge** section — the primary
 
 ## Canonical sources
 
-Chapter markdown is authored under [`writings/`](../../writings/) (Functional Analysis Notes layout) and synced into `src/` via [`scripts/sync-writings.sh`](../../scripts/sync-writings.sh). For PDF links, repositories, and the full chapter roadmap, see [Sources and Further Reading](sources.md).
+Chapter markdown is authored under [`writings/`](https://github.com/hanfengzhai/CompMechBook/tree/main/writings/) (Functional Analysis Notes layout) and synced into `src/` via [`scripts/sync-writings.sh`](https://github.com/hanfengzhai/CompMechBook/blob/main/scripts/sync-writings.sh). For PDF links, repositories, and the full chapter roadmap, see [Sources and Further Reading](sources.md).

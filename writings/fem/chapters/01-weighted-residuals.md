@@ -90,6 +90,26 @@ Galerkin's method seeks \(u_h \in V_h\) such that \(R_{\text{weak}}(v; u_h) = 0\
 
 The connection to Part I is immediate: choosing a basis \(\{\phi_i\}\) and enforcing \(R_{\text{weak}}(\phi_i; u_h) = 0\) for each \(i\) produces a linear system \(\mathbf{K}\mathbf{U} = \mathbf{F}\).
 
+## Worked example: three-term Galerkin on 1D heat
+
+To make the Scene concrete before triangles appear, solve a miniature problem on the unit interval — a stand-in for the copper wire's temperature profile under uniform Joule heating. Take \(-u'' = 1\) on \((0,1)\) with \(u(0)=u(1)=0\). The exact solution is \(u(x) = \tfrac{1}{2}x(1-x)\).
+
+Approximate with a **three-term polynomial space** (not yet a mesh — the same Galerkin logic Part IV will later apply to hat functions):
+
+\[
+u_h(x) = U_1\,\phi_1(x) + U_2\,\phi_2(x) + U_3\,\phi_3(x), \qquad \phi_1 = x,\ \phi_2 = x^2,\ \phi_3 = x^3.
+\]
+
+Each \(\phi_j\) satisfies homogeneous Dirichlet data at \(x=0\); at \(x=1\) only \(\phi_1\) is nonzero, so enforce \(U_1 + U_2 + U_3 = 0\) as an additional constraint — or, equivalently, use the subspace spanned by \(x(1-x)\), \(x^2(1-x)\), and \(x^3(1-x)\), which vanishes at both ends automatically. With the latter choice, Galerkin orthogonality gives three equations \(a(u_h, \phi_i) = \ell(\phi_i)\):
+
+\[
+\int_0^1 u_h'(x)\,\phi_i'(x)\, dx = \int_0^1 \phi_i(x)\, dx, \qquad i = 1,2,3.
+\]
+
+Substituting the basis yields a \(3\times 3\) stiffness matrix \(\mathbf{K}\) and load vector \(\mathbf{F}\) — the same \(\mathbf{K}\mathbf{U}=\mathbf{F}\) pattern from Part I, now assembled from integrals of products of derivatives rather than spring constants. Solving gives coefficients within a few percent of the exact parabolic profile; adding one more basis function tightens the error without changing the algorithm.
+
+This warm-up is the **finite-dimensional shadow** of Part II's Galerkin projection: choose a trial space, enforce orthogonality of the weak residual to that space, solve linear algebra. Chapter 2 replaces polynomials with piecewise linears on a mesh; Chapter 5 proves the error vanishes as \(h\to 0\) because the trial space densifies in \(H^1_0\).
+
 ## Example: 1D bar with second-order operator
 
 Consider a copper wire segment modeled as a 1D bar in equilibrium. The strong form is

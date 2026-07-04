@@ -45,6 +45,14 @@ where \(\mathcal{C}\) is a path encircling the dislocation core and \(\mathbf{u}
 
 In fcc copper, the shortest perfect dislocations have \(|\mathbf{b}| = a/\sqrt{2}\) along \(\langle 110 \rangle\) directions, where \(a \approx 3.61\) Å is the lattice constant. **Edge** dislocations have \(\mathbf{b}\) perpendicular to the line direction; **screw** dislocations have \(\mathbf{b}\) parallel. Real dislocations are mixed — neither pure edge nor pure screw.
 
+### Worked example: Burgers circuit on Cu {111}
+
+Trace a rectangular Burgers circuit on the (111) close-packed plane of fcc copper — the plane on which slip lines appear when the wire yields. Start at lattice point \(A\), walk four nearest-neighbor steps along \(\langle 110 \rangle\) directions in the plane, and close the loop at \(A\). In a perfect crystal the circuit closes with zero closure failure.
+
+Now insert an extra half-plane of atoms along one edge of the circuit — an edge dislocation with line direction \(\boldsymbol{\xi} \parallel [110]\) and Burgers vector \(\mathbf{b} = \tfrac{a}{2}[110]\). Re-walk the circuit: the path that used to close now fails by exactly one lattice translation. That failure vector **is** \(\mathbf{b}\), with magnitude \(|\mathbf{b}| \approx 2.55\) Å for copper.
+
+The elastic displacement field winds by \(|\mathbf{b}|\) around the core; the Peach–Köhler force on this segment under axial tension is \(\mathbf{f} = (\boldsymbol{\sigma}\cdot\mathbf{b}) \times \boldsymbol{\xi}\). When the wire's load cell registers yield, thousands of such segments move on {111} planes — the mesoscale mechanism behind the knee Part VI's J₂ law fitted with a single \(\sigma_y\).
+
 ## Elastic fields and singularities
 
 Linear isotropic elasticity gives closed-form stress fields around straight dislocations. For a screw dislocation along the \(z\)-axis,

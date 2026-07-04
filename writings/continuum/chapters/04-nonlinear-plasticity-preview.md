@@ -6,7 +6,7 @@ This chapter is not a full treatise on plasticity theory — that would require 
 
 ## Scene: the curve bends, the model must follow
 
-Return to the force–displacement trace from Part I: linear climb, then yield knee, then hardening plateau. Linear elasticity explains only the first segment. Large strain, necking, and path-dependent hardening live outside the quadratic energy landscape — yet the same wire, same grips, same experiment. This chapter names what changes when the tangent stiffness stops being constant and points toward Part VII's defects as the microscale reason for the knee.
+Return to the force–displacement trace from Part I: linear climb to roughly 120 N over the first 0.3 mm of grip travel, then a **yield knee** where the slope drops by half, then a hardening plateau near 150 N as the gauge section work-hardens. Linear elasticity explains only the first segment — the part where Part IV's \(\mathbf{K}\mathbf{U}=\mathbf{F}\) with constant \(\mathbb{C}\) matches the load cell within measurement noise. Large strain, necking, and path-dependent hardening live outside the quadratic energy landscape — yet the same wire, same grips, same afternoon experiment. This chapter names what changes when the tangent stiffness stops being constant and points toward Part VII's defects as the microscale reason for the knee.
 
 ## When linear elasticity breaks down
 

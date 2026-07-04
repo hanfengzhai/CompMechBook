@@ -4,7 +4,7 @@ Parts I–VI described the copper wire as a smooth continuum: displacement field
 
 This part steps down one rung on the ladder. We classify defects, then follow dislocation dynamics — Peach–Köhler forces, mobility laws, and the forest hardening that makes cold-drawn copper stronger than annealed copper. The continuum moduli and yield surfaces used in Part VI are not fundamental constants; they are **homogenized summaries** of motion at this scale. Parts VIII and IX descend further, to atoms and electrons, to explain where even dislocation theory must borrow its parameters.
 
-Three chapters cover defect taxonomy, dislocation dynamics, and the handoff to crystal plasticity and FEM. The layout follows the **Defects Notes** in [`writings/defects/`](../../writings/defects/): numbered chapters with **Bridge** sections, worked examples tied to the copper wire, and explicit upward links to Part VI (continuum) and downward requests to Part VIII (MD).
+Three chapters cover defect taxonomy, dislocation dynamics, and the handoff to crystal plasticity and FEM. The layout follows the **Defects Notes** in [`writings/defects/`](https://github.com/hanfengzhai/CompMechBook/tree/main/writings/defects/): numbered chapters with **Bridge** sections, worked examples tied to the copper wire, and explicit upward links to Part VI (continuum) and downward requests to Part VIII (MD).
 
 ## Where we left the wire
 
@@ -64,6 +64,20 @@ The climb upward is complete for the **continuum floor**. Every rung below Part 
 | VI | Continuum physics | \(\mathbf{F}\), \(\boldsymbol{\sigma}\), virtual work; J₂ plasticity **preview** with fitted \(H\), \(\sigma_y\) |
 
 Part VI admitted that cold-drawn copper work-hardens and that notch roots break smooth-field assumptions — but it could not **simulate** the dislocation forest that drawing created. Phenomenological plasticity fits curves; dislocation dynamics **generates** the curves from line motion. The prologue's processing history (draw, anneal, load) now gets a mesoscale narrator: Burgers vectors, Peach–Köhler forces, Taylor \(\sqrt{\rho}\) hardening. Parts VIII–IX will ask where mobility and stacking-fault energy come from; Part VII asks how plasticity **moves** before we shrink to atoms and electrons.
+
+## Closing the arc from Part I
+
+If you have read linearly since the prologue, notice how the **same four questions** reappear here at the mesoscale — and how Part I's discrete picture returns with new objects:
+
+| Part I (springs on the wire) | Part VII (defects on the wire) |
+|------------------------------|--------------------------------|
+| State vector \(\mathbf{u}\) | Dislocation line positions + Burgers vectors \(\mathbf{b}\) |
+| Stiffness matrix \(\mathbf{K}\) | Elastic Green's function + interaction forces between lines |
+| Eigenmodes decouple vibration | Slip systems decouple plastic flow on {111} planes |
+| \(\mathbf{K}\mathbf{u}=\mathbf{f}\) from energy minimization | Peach–Köhler force balance on each segment |
+| Internal state hidden in fitted \(H\) (Part VI.4) | Explicit dislocation density \(\rho\) and link statistics |
+
+Part VI's J₂ preview fitted hardening with a modulus \(H\) and yield \(\sigma_y\); Part VII explains those parameters as **statistics of line defects** — not magic entries in a constitutive file. The copper wire that began as coupled springs is now a polycrystal whose strength is a forest of Burgers circuits that fail to close. Parts VIII–IX will resolve what happens inside each core where linear elasticity breaks down.
 
 ## Bridge
 

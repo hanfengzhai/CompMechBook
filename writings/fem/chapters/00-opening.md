@@ -4,7 +4,7 @@ Part III reduced continuum mechanics to weak forms: bilinear forms on Sobolev sp
 
 The finite element method is the answer for elliptic and parabolic problems on complex geometries — the copper wire in tension, a bracket with a reentrant corner, a heated solid coupled to a fluid boundary. We begin with **weighted residuals**, the family of methods that includes Galerkin's method as its most important member, then build element-by-element assembly, quadrature, and convergence theory that connects discrete stiffness matrices to the infinite-dimensional operators of Part II.
 
-The layout follows the **FEM Notes** in [`writings/fem/`](../../writings/fem/): five numbered chapters from residuals through error estimates, with **Bridge** sections linking each chapter to the next. Part V offers the complementary philosophy for fluids and hyperbolic conservation laws; both discretizations approximate the PDEs defined here.
+The layout follows the **FEM Notes** in [`writings/fem/`](https://github.com/hanfengzhai/CompMechBook/tree/main/writings/fem/): five numbered chapters from residuals through error estimates, with **Bridge** sections linking each chapter to the next. Part V offers the complementary philosophy for fluids and hyperbolic conservation laws; both discretizations approximate the PDEs defined here.
 
 ## Where we left the wire
 
@@ -63,6 +63,20 @@ If you have read linearly since the prologue, the same specimen has changed lang
 | III | Strong vs. weak form, Sobolev regularity, energy methods | Poisson/heat/elasticity PDEs ready for a mesh |
 
 Part III ended with a promise: the weak form of equilibrium is a **minimum principle** (or saddle point for mixed problems), and the minimizer lives in \(H^1\). Part IV is where that promise becomes code — shape functions on elements, quadrature at Gauss points, scatter into a global stiffness matrix. The copper wire that was a spring network in Part I and a field in Part II is now a **meshed solid** whose node values are the discrete shadow of the continuous solution. Convergence as \(h\to 0\) is the story Part II told in function spaces, made numerical in Chapter 5.
+
+## Closing the arc from Part I
+
+If you have read linearly since the prologue, notice how the **same four questions** from the opening table reappear here with discretization vocabulary — and how the **same mathematical moves** from Part I return on a mesh:
+
+| Part I (springs on the wire) | Part IV (FEM on the wire) |
+|------------------------------|---------------------------|
+| State vector \(\mathbf{u}\) | Nodal displacement vector \(\mathbf{U}\) |
+| Stiffness matrix \(\mathbf{K}\) | Assembled Galerkin stiffness \(\mathbf{K} = \sum_e \mathbf{K}^e\) |
+| \(\mathbf{K}\mathbf{u}=\mathbf{f}\) from equilibrium | \(\mathbf{K}\mathbf{U}=\mathbf{F}\) from weak form restricted to \(V_h\) |
+| Eigenmodes decouple vibration | Modal analysis on the same \(\mathbf{K}\) (Part I.3 returns) |
+| Mesh refinement sends \(N\to\infty\) | \(h\)-refinement sends \(V_h\) toward \(H^1\) (Part II's limit) |
+
+Part II taught that \(\mathbf{K}\) is a Galerkin projection of a differential operator; Part III wrote the bilinear form that projection must preserve. Part IV is where assembly loops, shape functions, and quadrature make that projection **computable** on the copper cylinder — the same wire, now a meshed solid whose node values approximate \(u(x)\) in energy norm. Part V offers the complementary cell-balance philosophy for the cooling air; both paths converge at Part VI when stress and flux need physical names.
 
 ## Bridge
 

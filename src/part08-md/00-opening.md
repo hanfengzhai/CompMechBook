@@ -4,7 +4,7 @@ Parts I–VII treated the copper wire as a continuum or a network of line defect
 
 Molecular dynamics is the workhorse of atomistic materials mechanics. It supplies the interatomic potentials that empirical models require, the mobility laws that dislocation dynamics calibrates, and the fracture trajectories that explain how notches become cracks. Classical MD assumes nuclei follow Born–Oppenheimer surfaces; Part IX derives those surfaces from electron density.
 
-Three chapters cover potentials and phase space, ensembles and integrators, then ab initio MD, coarse-graining, and potential fitting. The layout follows the **MD Notes** in [`writings/md/`](../../writings/md/): numbered chapters with **Bridge** sections and explicit upward links to DDD (Part VII) and DFT (Part IX).
+Three chapters cover potentials and phase space, ensembles and integrators, then ab initio MD, coarse-graining, and potential fitting. The layout follows the **MD Notes** in [`writings/md/`](https://github.com/hanfengzhai/CompMechBook/tree/main/writings/md/): numbered chapters with **Bridge** sections and explicit upward links to DDD (Part VII) and DFT (Part IX).
 
 ## Where we left the wire
 
@@ -13,8 +13,6 @@ Part VII ended with dislocation lines gliding through a polycrystal, exporting h
 The copper wire at the atomistic scale is a face-centered cubic lattice of copper nuclei — roughly \(10^{23}\) atoms per centimeter of wire. No laptop integrates Newton's equations for all of them. Molecular dynamics therefore chooses a **representative volume**: a notch tip, a grain boundary segment, a dislocation core, or a slab under uniaxial strain. Periodic boundaries mimic bulk crystal; thermostats exchange heat with a reservoir; a finite timestep and cutoff radius make the simulation tractable.
 
 What MD returns upward: cohesive energy, elastic constants, stacking-fault energies, and mobility parameters that DDD and continuum models consume. What MD demands downward: a potential energy surface — empirical (EAM, MEAM) or learned from DFT (Part IX). The wire's story continues here as vibrating nuclei on that surface.
-
-Part VII left dislocation **cores** as line singularities regularized by a cutoff radius. MD is where that cutoff becomes physical: a cylindrical or spherical volume enclosing the core, periodic or fixed boundaries, and forces from an EAM potential fit to copper's lattice parameter and cohesive energy. The representative volume is not arbitrary — it must be large enough that bulk elastic response dominates the boundary, yet small enough that a workstation or cluster can integrate millions of timesteps. That tension between fidelity and cost repeats at every scale in this book; MD is its first atomistic instance.
 
 ## The concept map
 
@@ -65,6 +63,20 @@ The wire has been a spring network, a meshed solid, a stress field, a dislocatio
 | VII | Line defects with cutoff cores | Atomic structure inside the core; bond breaking at cracks |
 
 MD closes the gap at **cores, grain boundaries, and fracture surfaces** — regions where Part VII's line singularities and Part VI's continuum fields need atomic resolution. The representative volume is the narrative device: we cannot simulate \(10^{23}\) atoms, so we simulate the smallest patch that still answers the upstream question (stacking-fault energy for DDD mobility, cohesive law for a notch). Part IX will derive the potential surface MD assumes; Part VIII shows how timesteps, thermostats, and LAMMPS workflows make that assumption computable.
+
+## Closing the arc from Part I
+
+If you have read linearly since the prologue, notice how the **same four questions** reappear here at the atomistic scale:
+
+| Part I (springs on the wire) | Part VIII (MD on the wire) |
+|------------------------------|----------------------------|
+| State vector \(\mathbf{u}\) | Atomic positions \(\{\mathbf{r}_i\}\) and momenta \(\{\mathbf{p}_i\}\) |
+| Stiffness matrix \(\mathbf{K}\) | Hessian \(\partial^2 V / \partial \mathbf{r}_i \partial \mathbf{r}_j\) of interatomic potential |
+| \(\mathbf{K}\mathbf{u}=\mathbf{f}\) from equilibrium | Newton's equations \(\mathbf{F}_i = -\nabla_{\mathbf{r}_i} V\) integrated in time |
+| Eigenmodes decouple vibration | Phonon normal modes from Hessian diagonalization (Part I.3 at atomic scale) |
+| Mesh refinement sends \(N\to\infty\) | Representative volume + periodic boundaries approximate bulk copper |
+
+Part VII regularized dislocation cores with a cutoff radius; Part VIII is where that cutoff becomes a **simulation cell** with EAM forces fit to bulk properties. The copper wire that began as coupled springs is now a lattice of nuclei on a potential surface — still too many atoms for the full gauge section, but enough to export \(\gamma_{\text{sf}}\), mobility, and cohesive response upward. Part IX derives the surface MD integrates.
 
 ## Bridge
 
