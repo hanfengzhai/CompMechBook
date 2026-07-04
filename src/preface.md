@@ -51,6 +51,47 @@ The book is one continuous story, but not every reader enters at the same rung:
 
 On every path, read the **Bridge** at the end of the prior chapter when a jump feels abrupt. Part openings add **Story so far** recaps, **concept map** tables (object → structure → theorem → failure mode) following the [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) layout, and **representative schematics** from the course notes (ME 300A through MSE 5720) as visual indexes. Part closings add **concept map checkpoints** that summarize what the part exported to the next scale.
 
+## The plot spine
+
+Read the book as one continuous story, not a reference shelf. The narrative devices below are the joints that keep chapters from feeling like separate courses:
+
+| Device | Where it appears | What it does for the reader |
+|--------|------------------|----------------------------|
+| **Scene** | Every numbered chapter | Returns to the copper wire in the current vocabulary — springs, fields, fluxes, dislocations, atoms, electrons |
+| **Bridge** | End of every chapter and part opening | States why the next chapter exists; read it first when a jump feels abrupt |
+| **Lab act** | Every part opening and the epilogue | Maps mathematical order to one afternoon in the lab (mounting → warming → pulling → hardening → notch → foundation) |
+| **Concept map** | Part openings and part closings | Four questions — object, structure, theorem, failure mode — from the Functional Analysis Notes template |
+| **Story so far** | Part openings | Recaps the ladder without rereading prior parts |
+
+The **dramatic arc** follows mathematical dependency, not laboratory clock time:
+
+```mermaid
+flowchart LR
+  subgraph act1["Act I — Grammar (Parts I–II)"]
+    A1[Vectors and matrices] --> A2[Function spaces]
+  end
+  subgraph act2["Act II — Equations (Part III)"]
+    B1[Strong and weak PDEs]
+  end
+  subgraph act3["Act III — Discretization (Parts IV–V)"]
+    C1[FEM on the wire] --> C2[FVM on the cooling air]
+  end
+  subgraph act4["Act IV — Physics named (Part VI)"]
+    D1[Stress, strain, virtual work]
+  end
+  subgraph act5["Act V — Descent (Parts VII–IX)"]
+    E1[Dislocations] --> E2[Atoms] --> E3[Electrons]
+  end
+  subgraph act6["Act VI — Resolution (Epilogue)"]
+    F1[Multiscale coupling]
+  end
+  act1 --> act2 --> act3 --> act4 --> act5 --> act6
+```
+
+**Act VI — Foundation** in the [prologue lab session](prologue/00-many-scales.md#the-experiment-as-plot) runs in parallel throughout: DFT and MD supply the numbers that Parts I–V consume long before Part IX names them. That prequel structure is deliberate — practitioners always know the ending parameters before the tensile test begins.
+
+If you read only one section per chapter when time is short, read **Scene** (where we are on the wire), then **Bridge** (where we go next). The mathematics in between is the proof that the story is not metaphor alone.
+
 ## The copper wire through the book
 
 The same specimen — a cold-drawn copper wire under tension, heated by current, cooled by air — reappears in every part. The table below is a reading map: what changes is the **state variable**, not the material.
