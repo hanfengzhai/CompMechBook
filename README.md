@@ -11,6 +11,7 @@ A continuous narrative from linear algebra through functional analysis, finite e
 | **Start here** | [Preface](src/preface.md) → [Prologue: The Same Material, Many Scales](src/prologue/00-many-scales.md) |
 | **Full table of contents** | [src/SUMMARY.md](src/SUMMARY.md) |
 | **Chapter roadmap** | [Appendix: Sources and Further Reading](src/appendix/sources.md) |
+| **Cross-scale glossary** | [Appendix: Glossary and Cross-Scale Index](src/appendix/glossary.md) |
 
 Read straight through for the full arc. Parts IV (FEM) and V (FVM) may be swapped on first reading; both converge at Part VI (continuum mechanics) before descending to defects, atoms, and electrons.
 

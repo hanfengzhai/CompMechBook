@@ -109,4 +109,5 @@ Read in order from the **Preface** through the **Epilogue** for the full narrati
 
 # Appendices
 
+- [Glossary and Cross-Scale Index](./appendix/glossary.md)
 - [Sources and Further Reading](./appendix/sources.md)
