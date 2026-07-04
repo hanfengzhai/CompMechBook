@@ -32,6 +32,21 @@ flowchart LR
 
 **Baby picture:** write the physics as a PDE, relax smoothness to a weak statement testable on a mesh, identify the function space where the solution lives, then package existence as minimizing an energy. The copper wire's temperature profile and axial displacement are two instances of the same pipeline.
 
+## Representative schematics (ME 300B)
+
+The [PDE Notes (ME 300B)](https://hanfengzhai.github.io/file/ME300B_PDE.pdf) collect the same pipeline this part follows — strong form, weak form, Sobolev regularity, energy principles — with baby pictures tied to mechanics examples. Use them as a visual index while reading:
+
+| Schematic | Idea | Chapter in this part |
+|-----------|------|----------------------|
+| 1 | Strong form: PDE + boundary conditions pointwise | [III.1](01-strong-form.md) |
+| 2 | Where classical solutions fail: corners, concentrated loads | [III.1](01-strong-form.md) → [III.2](02-weak-form.md) |
+| 3 | Weak form: test functions, integration by parts | [III.2](02-weak-form.md) |
+| 4 | Sobolev spaces \(H^1\), \(L^2\); weak derivatives | [III.3](03-sobolev-spaces.md) |
+| 5 | Energy functional; coercivity; Lax–Milgram | [III.4](04-energy-methods.md) |
+| 6 | PDE → weak form → FEM/FVM fork | [III.4](04-energy-methods.md) → Parts IV–V |
+
+Each schematic answers the four concept-map questions for one layer of structure. When a boundary condition or source term feels ad hoc, return to the matching row: *what object, what structure, what theorem, what breaks?*
+
 ## Story so far (Parts I–II)
 
 The mathematical foundations are now in place. The same copper wire has changed representation twice without changing material:
