@@ -45,6 +45,20 @@ The climb upward is complete for the **continuum floor**. Every rung below Part 
 
 Part VI admitted that cold-drawn copper work-hardens and that notch roots break smooth-field assumptions — but it could not **simulate** the dislocation forest that drawing created. Phenomenological plasticity fits curves; dislocation dynamics **generates** the curves from line motion. The prologue's processing history (draw, anneal, load) now gets a mesoscale narrator: Burgers vectors, Peach–Köhler forces, Taylor \(\sqrt{\rho}\) hardening. Parts VIII–IX will ask where mobility and stacking-fault energy come from; Part VII asks how plasticity **moves** before we shrink to atoms and electrons.
 
+## Closing the arc from Part I
+
+The copper wire began as a chain of coupled springs in Part I. At the mesoscale it is a **forest of line defects** whose collective motion reproduces the same load-cell curve that phenomenological plasticity fit in Part VI:
+
+| Part I (springs on the wire) | Part VII (dislocations on the wire) |
+|------------------------------|-------------------------------------|
+| State vector \(\mathbf{u}\) | Dislocation network (positions, \(\mathbf{b}\), \(\rho\)) |
+| Stiffness matrix \(\mathbf{K}\) | Elastic superposition + Peach–Köhler driving forces |
+| Eigenmodes decouple vibration | Slip systems decouple on {111}\(\langle 110 \rangle\) families |
+| Mesh refinement sends \(N\to\infty\) | DDD link statistics → crystal plasticity internal variables |
+| Energy \(\mathbf{u}^T \mathbf{K}\mathbf{u}\) | Line energy + forest hardening \(\Delta\tau \propto \sqrt{\rho}\) |
+
+Part II taught that infinite-dimensional limits live in function spaces; Part VI named the stress tensors those limits carry. Part VII is the first descent that **generates** constitutive history rather than fitting parameters to a curve. When the load cell slope rises after cold drawing, the mechanism is not a larger \(\mathbf{K}\) — it is dislocation density stored by manufacturing and multiplied under load.
+
 ## Bridge
 
-Part VI closed with variational elasticity: energy minimization and virtual work for smooth fields. The drawn copper wire violates that smoothness at the mesoscale — dislocation lines, grain boundaries, and vacancy clusters are the mechanisms behind yield and work hardening. The next chapter names those structures; the one after simulates their motion.
+Part VI closed with the load cell curve bending upward — yield and work hardening that no elastic modulus alone explains. Look at the wire under the microscope: slip lines appear on the surface; inside the grains, dislocation lines tangle and multiply. That is the scene Part VII opens on. The next chapter names the defect structures (vacancies, grain boundaries, dislocations); the one after simulates their motion with Peach–Köhler forces and mobility laws; the last exports hardening laws to crystal plasticity FEM on the same mesh Part IV taught us to assemble.

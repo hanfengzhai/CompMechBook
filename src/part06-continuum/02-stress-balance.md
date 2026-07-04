@@ -12,7 +12,11 @@ The tensile frame from Part I is still running, but the operator has raised the 
 - A **thermocouple** at the grip reads temperature — thermal boundary data for conduction inside the wire.
 - A **thermal camera** shows a hot stripe along the narrowest cross-section — Joule heating balanced by conduction and convection to the surrounding air.
 
-None of these measurements belongs to a single code. Part IV's FEM mesh carries mechanical equilibrium; Part V's FVM mesh carries enthalpy flux in the cooling air; Part VI names the **Cauchy stress** \(\boldsymbol{\sigma}\) and **Fourier flux** \(\mathbf{q} = -\kappa \nabla T\) that tie the two discretizations together at the wire surface. This scene is continuum mechanics at the engineering scale: not one PDE in isolation, but **balance laws** — momentum, energy, charge — coupled through **constitutive relations** that say how copper responds to strain and temperature. The chapter below makes those balances precise enough to export moduli upward from DFT and hardening laws downward from DDD.
+None of these measurements belongs to a single code. Part IV's FEM mesh carries mechanical equilibrium; Part V's FVM mesh carries enthalpy flux in the cooling air; Part VI names the **Cauchy stress** \(\boldsymbol{\sigma}\) and **Fourier flux** \(\mathbf{q} = -\kappa \nabla T\) that tie the two discretizations together at the wire surface.
+
+**If you skipped Part V (Door B):** treat the cooling air as a Robin boundary \(\mathbf{q}\cdot\mathbf{n} = h(T - T_\infty)\) on the wire surface rather than a resolved FVM domain. The stress balances below are identical; only the thermal boundary data change. Revisit Part V.4 when the epilogue's conjugate heat transfer loop needs a resolved fluid mesh.
+
+This scene is continuum mechanics at the engineering scale: not one PDE in isolation, but **balance laws** — momentum, energy, charge — coupled through **constitutive relations** that say how copper responds to strain and temperature. The chapter below makes those balances precise enough to export moduli upward from DFT and hardening laws downward from DDD.
 
 ## Concept map checkpoint
 

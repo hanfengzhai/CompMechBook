@@ -4,7 +4,13 @@ We have climbed from linear algebra to functional analysis, built finite element
 
 The copper wire that opened the prologue — drawn, annealed, carrying current, sagging under load — never lived at a single scale. It lived at all of them simultaneously. Our simulations never do. Multiscale computational mechanics is the discipline of **connecting** what each scale computes into a workflow that answers questions no single model can.
 
-Before descending to electrons, we already practiced coupling at the engineering scale: Part IV's FEM conduction and Part V's FVM convection exchange wall temperature and heat flux until the wire and the cooling air agree — conjugate heat transfer as a fixed-point loop between discretizations. The epilogue generalizes that handshake from two meshes on one specimen to DFT, MD, DDD, and continuum FEM on the same material history.
+Having descended to electrons in Part IX, we now climb back to the engineering scale where the story began. At the continuum level we already practiced coupling between discretizations: Part IV's FEM conduction and Part V's FVM convection exchange wall temperature and heat flux until the wire and the cooling air agree — conjugate heat transfer as a fixed-point loop between meshes. The epilogue generalizes that handshake from two codes on one specimen to DFT, MD, DDD, and continuum FEM on the same material history.
+
+## Scene: the wire at human scale again
+
+Step back from ångströms. The cold-drawn copper wire hangs again in the tensile frame from Part I — load cell, thermocouple, the faint hum of current through the grip. On the desk beside the experiment lies the computational residue of everything we have read: a FEM mesh export from Part IV, a DAMASK crystal-plasticity input seeded by OpenDiS statistics from Part VII, a LAMMPS log from a notch MD box in Part VIII, and a spreadsheet of elastic constants from a converged Quantum ESPRESSO run in Part IX.
+
+No single program produced that pile of files. Each belongs to a rung on the ladder — but the wire does not know about rungs. It responds to the **history** encoded in those files: dislocations frozen by drawing, moduli borrowed from a perfect-lattice calculation, a cooling coefficient that may have come from FVM or a textbook correlation. The epilogue is about making that pile **coherent**: which numbers handshake, which history must travel upward, and which approximations we can defend when the load cell curve is the final judge.
 
 ## Story so far (Parts I–IX)
 

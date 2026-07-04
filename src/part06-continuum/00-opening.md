@@ -61,4 +61,8 @@ The copper wire that began as a chain of coupled springs is now a cylinder with 
 
 ## Bridge
 
-Parts IV and V solved PDEs on meshes. Part VI names the fields those PDEs carry — deformation gradient, strain, stress — and derives the virtual work principle that both discretizations inherit. The first chapter begins with the geometry of deformation: how the copper wire stretches, rotates, and changes volume when pulled.
+Parts IV and V solved PDEs on meshes. Part VI names the fields those PDEs carry — deformation gradient, strain, stress — and derives the virtual work principle that both discretizations inherit.
+
+**Reading order note:** if you arrived from Part V (Door A, fluids first), read Chapter VI.2 first for the shared Cauchy stress language that connects solid and fluid descriptions, then return to VI.1 for solid kinematics. If you skipped Part V (Door B), treat convection at the wire surface as a Robin boundary condition \( \mathbf{q}\cdot\mathbf{n} = h(T - T_\infty) \); revisit Part V.4 when the epilogue's conjugate heat transfer loop needs a resolved air domain.
+
+The first chapter begins with the geometry of deformation: how the copper wire stretches, rotates, and changes volume when pulled.

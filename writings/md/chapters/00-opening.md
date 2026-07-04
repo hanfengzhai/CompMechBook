@@ -46,6 +46,20 @@ The wire has been a spring network, a meshed solid, a stress field, a dislocatio
 
 MD closes the gap at **cores, grain boundaries, and fracture surfaces** — regions where Part VII's line singularities and Part VI's continuum fields need atomic resolution. The representative volume is the narrative device: we cannot simulate \(10^{23}\) atoms, so we simulate the smallest patch that still answers the upstream question (stacking-fault energy for DDD mobility, cohesive law for a notch). Part IX will derive the potential surface MD assumes; Part VIII shows how timesteps, thermostats, and LAMMPS workflows make that assumption computable.
 
+## Closing the arc from Part I
+
+The wire began as \(N\) coupled degrees of freedom in Part I. At the atomistic scale it is \(N \sim 10^4\)–\(10^6\) nuclei in a representative volume — still finite, but the state is now **positions and momenta** rather than nodal displacements:
+
+| Part I (springs on the wire) | Part VIII (atoms on the wire) |
+|------------------------------|-------------------------------|
+| State vector \(\mathbf{u}\) | Positions \(\{\mathbf{r}_i\}\), momenta \(\{\mathbf{p}_i\}\) |
+| Stiffness matrix \(\mathbf{K}\) | Hessian \(\nabla^2 V\) of interatomic potential |
+| Assembly from local elements | Force loop over neighbor lists within cutoff |
+| Timestep stability from eigenvalues | Symplectic integrator + femtosecond \(\Delta t\) |
+| Export moduli from spring constants | Fit EAM to DFT; export \(C_{ij}\), \(\gamma_{\text{sf}}\) to DDD |
+
+Part VII treated dislocation cores as line singularities with a cutoff radius. Part VIII is where that cutoff becomes a **box of atoms** under the microscope — the notch tip from Part VI, the core from Part VII, now resolved as neighbors swapping across a disturbed fcc lattice. The first chapter below opens on that box.
+
 ## Bridge
 
-Part VII ended with dislocation lines and the admission that atoms matter at cores and crack tips. The first chapter below puts those atoms back: phase space, Hamiltonian mechanics, and the interatomic potentials that define forces in every MD simulation of copper.
+Part VII ended with crystal plasticity and calibrated DDD — mesoscale models that still hide atomic structure inside cutoff cores. Zoom in: a dislocation core is not a mathematical singularity but a rearrangement of copper neighbors; a notch tip is not a stress concentration alone but bonds stretching until they break. The first chapter below puts those atoms back — phase space, Hamiltonian mechanics, and the interatomic potentials that define forces in every MD simulation of copper.
