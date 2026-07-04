@@ -45,6 +45,20 @@ The climb upward is complete for the **continuum floor**. Every rung below Part 
 
 Part VI admitted that cold-drawn copper work-hardens and that notch roots break smooth-field assumptions — but it could not **simulate** the dislocation forest that drawing created. Phenomenological plasticity fits curves; dislocation dynamics **generates** the curves from line motion. The prologue's processing history (draw, anneal, load) now gets a mesoscale narrator: Burgers vectors, Peach–Köhler forces, Taylor \(\sqrt{\rho}\) hardening. Parts VIII–IX will ask where mobility and stacking-fault energy come from; Part VII asks how plasticity **moves** before we shrink to atoms and electrons.
 
+## Closing the arc from Part I
+
+If you have read linearly since the prologue, notice how the **same four questions** reappear here with mesoscale vocabulary — and how the **same mathematical habits** from Part I return on a network of line segments:
+
+| Part I (springs on the wire) | Part VII (dislocations on the wire) |
+|------------------------------|-------------------------------------|
+| State vector \(\mathbf{u}\) | Dislocation segment positions and Burgers vectors |
+| Local stiffness coupling neighbors | Elastic field superposition from each segment |
+| Eigenmodes decouple vibration | Slip systems decouple (approximately) under Taylor hardening |
+| \(\mathbf{K}\mathbf{u}=\mathbf{f}\) at equilibrium | Peach–Köhler force balance + mobility law at quasi-steady glide |
+| Refinement sends \(N\to\infty\) | Finer segments resolve curvature; statistics converge to \(\rho\), \(\tau(\gamma)\) |
+
+Part IV assembled \(\mathbf{K}\) from element matrices; Part VII assembles **hardening laws** from link-length statistics and dislocation density. Part VI's J₂ plasticity preview fit \(H\) and \(\sigma_{y0}\) without naming the forest; Part VII names the forest and shows how cold drawing wrote its history into line defects. The copper wire that began as a spring network now yields because **lines move**, not because a yield surface appeared by decree. Parts VIII–IX will ask what sets mobility and core energy; Part VII asks how plasticity propagates before we shrink to atoms and electrons.
+
 ## Bridge
 
 Part VI closed with variational elasticity: energy minimization and virtual work for smooth fields. The drawn copper wire violates that smoothness at the mesoscale — dislocation lines, grain boundaries, and vacancy clusters are the mechanisms behind yield and work hardening. The next chapter names those structures; the one after simulates their motion.
