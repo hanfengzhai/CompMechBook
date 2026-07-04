@@ -68,6 +68,10 @@ The prologue introduced the copper wire as a **ladder of scales** — continuum,
 
 Part I ended with a question Part II must answer: if every mesh gives a matrix \(\mathbf{K}_N\), what object does \(\mathbf{K}_N\) approximate as \(N\) grows? The answer is not "a bigger matrix" — it is an **operator** on a space of functions. Part II builds that space, names the norms that measure elastic energy, and proves that Galerkin FEM is honest projection rather than ad hoc linear algebra.
 
+## Lab act (prologue map)
+
+Part II runs in parallel with **Act III — Pulling** from the [prologue experiment map](../../prologue/00-many-scales.md#the-experiment-as-plot): the grip has not yet moved far, but the operator asks *where the force–displacement curve will live mathematically* when it does. Weak forms, \(H^1\) energy norms, and Galerkin convergence are the analysis that justifies every line the operator will trust on screen during the linear elastic climb — before the curve bends upward in Act IV.
+
 ## Bridge
 
 Part I ended with a promise: as the mesh refines, the copper wire's displacement and temperature fields live in infinite-dimensional spaces, not in \(\mathbb{R}^N\) for any fixed \(N\). The first chapter below makes that promise precise — why weak forms appear, why classical smoothness fails at corners, and why the stiffness matrix is a Galerkin projection rather than an arbitrary sparse array.

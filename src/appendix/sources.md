@@ -2,6 +2,21 @@
 
 This book synthesizes material from the author's notes, coursework, and teaching. Canonical chapter sources live under [`writings/`](../writings/) (Functional Analysis Notes layout). Run `./scripts/sync-writings.sh` to copy them into `src/`. When the external `Writings` git submodule is linked, prefer upstream content and re-run the sync script.
 
+## Lab act index (prologue experiment map)
+
+The [prologue](../prologue/00-many-scales.md#the-experiment-as-plot) maps one afternoon in the lab to book parts. Use this table when a chapter feels abstract — locate the **act** first, then the mathematics.
+
+| Act | Lab beat | Parts | Part opening cross-link |
+|-----|----------|-------|-------------------------|
+| I — Mounting | Grips, zero instruments, first bar model | Prologue, I | [Part I opening](../part01-linear-algebra/00-opening.md#lab-act-prologue-map) |
+| II — Warming | Current on; hot stripe; air cools the wire | III, IV, V | [Part III](../part03-pdes/00-opening.md#lab-act-prologue-map), [IV](../part04-fem/00-opening.md#lab-act-prologue-map), [V](../part05-fvm/00-opening.md#lab-act-prologue-map) |
+| III — Pulling | Linear climb on the force–displacement curve | II, III, IV, VI | [Part II](../part02-functional-analysis/00-opening.md#lab-act-prologue-map), [VI](../part06-continuum/00-opening.md#lab-act-prologue-map) |
+| IV — Hardening | Curve bends upward; cold-work history | VII | [Part VII opening](../part07-defects/00-opening.md#lab-act-prologue-map) |
+| V — Notch | Stress concentrator; bonds break | VI, VIII | [Part VIII opening](../part08-md/00-opening.md#lab-act-prologue-map) |
+| VI — Foundation | Where \(E\), \(\nu\), yield stress originate | IX → VIII → VII → IV | [Part IX opening](../part09-dft/00-opening.md#lab-act-prologue-map) |
+
+Parts I–VI are Acts I–III in slow motion; Parts VII–IX are Acts IV–VI — where input-file numbers came from and what they omit. The [epilogue](../epilogue/multiscale.md) wires all six acts into one workflow.
+
 ## Chapter roadmap (one continuous arc)
 
 Read in order for the full narrative. Each row is one chapter; **Bridge** sections at chapter ends explain the handoff to the next row.

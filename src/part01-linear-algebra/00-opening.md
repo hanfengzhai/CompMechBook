@@ -47,6 +47,10 @@ The prologue introduced a single copper wire as a **ladder of scales** — from 
 
 The wire at this scale is still a chain of coupled springs — not yet a PDE, not yet a mesh of tetrahedra. Part I supplies the syntax every later part generalizes: collect degrees of freedom, write balance as a linear system, decouple complexity with eigenmodes, then ask what happens when \(N \to \infty\) in Chapter 4.
 
+## Lab act (prologue map)
+
+In the [prologue's experiment-as-plot narrative](../../prologue/00-many-scales.md#the-experiment-as-plot), the copper wire lives in **laboratory time** as well as part number. Part I is **Act I — Mounting** in slow motion: wedge jaws grip the cold-drawn cylinder, the load cell and thermocouple are zeroed, and the first bar-element model writes \(\mathbf{K}\mathbf{u}=\mathbf{f}\) before current flows or displacement ramps. Every later part assumes this grammar; none replaces it.
+
 ## Bridge
 
 The prologue introduced the copper wire at every scale. Part I begins at the scale every simulation shares: degrees of freedom collected into vectors, evolution and equilibrium written as linear systems. The first chapter refreshes the language — inner products, norms, matrix structure — that Parts II through IX will generalize to functions and operators.

@@ -59,6 +59,10 @@ Part II taught that the limit \(N\to\infty\) lives in \(H^1\); Part III wrote th
 
 The copper wire that began as a chain of coupled springs is now a cylinder with a stress tensor — still finite-dimensional on any mesh, still infinite-dimensional in the continuum limit, and still one specimen in a single story. Part VII will explain why cold-drawn strength is not in \(\mathbb{C}\) alone; Parts VIII–IX will ask where \(\mathbb{C}\) itself comes from.
 
+## Lab act (prologue map)
+
+Part VI is **Act III — Pulling** named in continuum language and the gateway to **Act V — Notch** from the [prologue experiment map](../../prologue/00-many-scales.md#the-experiment-as-plot). Virtual work and Cauchy stress explain what the load cell measures during the linear climb; the nonlinear plasticity preview admits that grip corners and scratches concentrate fields where smooth continuum models need a finer rung. Read Part VI as the physics caption on the operator's screen before the curve bends upward.
+
 ## Bridge
 
 Parts IV and V solved PDEs on meshes. Part VI names the fields those PDEs carry — deformation gradient, strain, stress — and derives the virtual work principle that both discretizations inherit. The first chapter begins with the geometry of deformation: how the copper wire stretches, rotates, and changes volume when pulled.

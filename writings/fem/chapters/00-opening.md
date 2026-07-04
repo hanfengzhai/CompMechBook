@@ -44,6 +44,10 @@ If you have read linearly since the prologue, the same specimen has changed lang
 
 Part III ended with a promise: the weak form of equilibrium is a **minimum principle** (or saddle point for mixed problems), and the minimizer lives in \(H^1\). Part IV is where that promise becomes code — shape functions on elements, quadrature at Gauss points, scatter into a global stiffness matrix. The copper wire that was a spring network in Part I and a field in Part II is now a **meshed solid** whose node values are the discrete shadow of the continuous solution. Convergence as \(h\to 0\) is the story Part II told in function spaces, made numerical in Chapter 5.
 
+## Lab act (prologue map)
+
+Part IV is **Act II — Warming** (solid-side conduction in the meshed wire) and **Act III — Pulling** (Galerkin elasticity as the force–displacement curve climbs) from the [prologue experiment map](../../prologue/00-many-scales.md#the-experiment-as-plot). The operator sees node temperatures rise when current flows and axial reaction forces grow when grips move — both are the same assembly habit: local contributions scattered into a global system. Chapter 5's convergence theory is what makes those on-screen numbers credible before the curve bends in Act IV.
+
 ## Bridge
 
 Part III ended with energy methods and the promise of assembly. The first chapter below introduces weighted residuals — the unifying idea behind Galerkin's method — and shows why choosing test functions as trial functions is the natural discretization of the weak form the copper wire's equilibrium demands.

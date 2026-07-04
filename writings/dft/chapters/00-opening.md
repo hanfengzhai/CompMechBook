@@ -59,6 +59,10 @@ Part II taught that Galerkin convergence is projection onto finite subspaces; Pa
 
 The copper wire that began as a chain of coupled springs ends as a periodic crystal whose valence electrons are solved by a self-consistent **eigenvalue loop** (Part I), in function spaces of orbitals (Part II), arising from a variational principle (Part III), discretized on a basis (Part IV's assembly philosophy), and exported upward as moduli and potentials (Parts VI–VIII). Part IX is not a new subject bolted onto the end. It is the **finest rung** of the ladder the prologue promised — and the epilogue will ask how to climb back up with the numbers computed here.
 
+## Lab act (prologue map)
+
+Part IX is **Act VI — Foundation** from the [prologue experiment map](../../prologue/00-many-scales.md#the-experiment-as-plot): the prequel every practitioner runs before the wire-scale job starts. No tensile test begins without \(E\), \(\nu\), and a yield stress in the input deck — and those numbers trace here, to cohesive energy and elastic constants from a small fcc cell, before they climb through MD potentials and DDD mobility into FEM.
+
 ## Bridge
 
 Part VIII treated atoms as classical particles. The first chapter below separates electrons from nuclei — the Born–Oppenheimer approximation — and explains why the ground-state electron density alone determines the energy landscape on which MD and elasticity ultimately rest.

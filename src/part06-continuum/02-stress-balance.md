@@ -14,7 +14,7 @@ The tensile frame from Part I is still running, but the operator has raised the 
 
 None of these measurements belongs to a single code. Part IV's FEM mesh carries mechanical equilibrium; Part V's FVM mesh carries enthalpy flux in the cooling air; Part VI names the **Cauchy stress** \(\boldsymbol{\sigma}\) and **Fourier flux** \(\mathbf{q} = -\kappa \nabla T\) that tie the two discretizations together at the wire surface. This scene is continuum mechanics at the engineering scale: not one PDE in isolation, but **balance laws** — momentum, energy, charge — coupled through **constitutive relations** that say how copper responds to strain and temperature. The chapter below makes those balances precise enough to export moduli upward from DFT and hardening laws downward from DDD.
 
-## Concept map checkpoint
+## Concept map lens (mid-chapter)
 
 Parts I–V built the same four-question discipline the Functional Analysis Notes use — object, structure, theorem, failure mode. At the continuum scale the answers look like this:
 

@@ -56,6 +56,10 @@ No single matrix assembles both sides. A **fixed-point or monolithic coupling lo
 
 Chapter 4 closes the loop on the wire: Joule heating in the solid, convection in the air, and the SIMPLE-type pressure–velocity coupling that makes incompressible CFD tractable.
 
+## Lab act (prologue map)
+
+Part V is **Act II — Warming** on the fluid side of the [prologue experiment map](../../prologue/00-many-scales.md#the-experiment-as-plot): the thermal camera shows a hot stripe along the narrowest cross-section while air carries enthalpy away. Part IV solved conduction inside the copper; Part V makes the cooling **explicit** — cell-averaged velocity and temperature, Robin coupling at the wall, and the outer fixed-point loop the epilogue generalizes to multiscale workflows.
+
 ## Bridge
 
 Part IV assembled stiffness matrices from shape functions. Part V begins with a different question: given a conservation law in integral form, how do we balance fluxes across cell faces so that discrete solutions respect the same invariants the continuous PDE preserves?

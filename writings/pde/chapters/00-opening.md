@@ -54,6 +54,10 @@ Part III ends with energy methods — the last purely analytical chapter before 
 
 Read Part IV first if solids and elliptic PDEs are your immediate goal; read Part V first if fluids and hyperbolic conservation laws pull harder. Part IV Chapter 5 names two **exit doors** from FEM — continue to Part V or skip ahead to Part VI — which are separate from the solids-first / fluids-first choice above. Either way, Part VI must follow before we descend to dislocations and atoms. The story stays one book — only the order of two middle acts is flexible.
 
+## Lab act (prologue map)
+
+Part III spans **Act II — Warming** and the setup for **Act III — Pulling** in the [prologue experiment map](../../prologue/00-many-scales.md#the-experiment-as-plot). When current switches on, Joule heating writes a source term into the heat equation; when the operator prepares the tensile test, elastic equilibrium waits in weak form. Strong forms name the physics on the blackboard; weak forms and Sobolev spaces make those equations computable on the meshes Parts IV and V will build.
+
 ## Bridge
 
 Part II promised that the copper wire's displacement and temperature live in Sobolev spaces, not in \(\mathbb{R}^N\) for any fixed mesh. The first chapter below writes the strong forms that describe those fields — and shows where classical pointwise solutions fail, motivating the weak formulations that follow.
