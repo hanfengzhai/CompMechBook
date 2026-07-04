@@ -56,6 +56,10 @@ flowchart TB
 
 **Baby picture:** each part solved one rung of the ladder; multiscale mechanics wires the rungs together with the same four questions the prologue asked — now at **interfaces** between codes, not only within a single mesh.
 
+## Lab act (prologue map)
+
+The epilogue returns to **all six acts** of one laboratory afternoon. Acts I–III are what Parts I–VI computed in slow motion; Acts IV–VI are what Parts VII–IX supply as history and foundation. Multiscale workflows wire mounting through foundation into a single orchestrated story — conjugate heat transfer (Acts II–III), hardening handoffs (Act IV), notch atomistics (Act V), and parameter pipelines (Act VI). See the full [experiment-as-plot table](../prologue/00-many-scales.md#the-experiment-as-plot) and the [lab act index](../appendix/sources.md#lab-act-index) in the appendix.
+
 ## The same question at every scale
 
 At each rung of the ladder, we asked:

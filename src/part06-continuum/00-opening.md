@@ -31,6 +31,10 @@ flowchart LR
 
 **Baby picture:** describe how the copper wire stretches and rotates, relate stress to force per area, derive virtual work from balance, then admit that cold drawing and notch roots violate the smooth fields FEM assumes — setting up the descent to dislocations.
 
+## Lab act (prologue map)
+
+This part is **Act III — Pulling** in continuum language, with **Act IV — Hardening** on the horizon. The force–displacement curve the operator reads is Cauchy stress integrated over the cross section; virtual work is what Part IV already discretized. When the curve bends upward, Act IV begins — but Part VI admits first that the bend is not in \(\mathbb{C}\) alone. **Act V — Notch** lives here too: stress concentrators at grips and scratches are where smooth continuum fields predict *where* failure might nucleate before MD resolves bond breaking in Part VIII.
+
 ## Story so far (Parts I–V)
 
 Whether you read Part V or skipped from Part IV to here, the **computational spine** of the book is complete:

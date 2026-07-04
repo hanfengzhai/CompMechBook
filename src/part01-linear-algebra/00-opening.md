@@ -35,6 +35,26 @@ flowchart LR
 
 **Baby picture:** collect degrees of freedom into a vector, write equilibrium as \(\mathbf{K}\mathbf{u}=\mathbf{f}\), decouple complexity with eigenmodes, then ask what happens when the mesh — and \(N\) — grows without bound. The copper wire's tension test begins as a spring network long before it becomes a PDE.
 
+## Representative schematics (ME 300A)
+
+The [Linear Algebra notes](https://hanfengzhai.github.io/file/ME300A_LinAlg.pdf) (ME 300A) organize the same grammar this part teaches — baby pictures you can return to when a proof feels abstract:
+
+| Schematic | Idea | Chapter in this part |
+|-----------|------|----------------------|
+| 1 | Vector space: addition, scaling, dimension \(N\) | [I.1](01-vectors-matrices.md) |
+| 2 | Matrix as linear map; composition = multiplication | [I.2](02-linear-maps.md) |
+| 3 | \(\mathbf{K}\mathbf{u}=\mathbf{f}\) from energy minimization | [I.1](01-vectors-matrices.md) |
+| 4 | Change of basis; assembly as scatter from local to global | [I.2](02-linear-maps.md) |
+| 5 | Eigenvalues: modes that decouple; spectral theorem (finite \(N\)) | [I.3](03-eigenvalues.md) |
+| 6 | Gram matrix / orthonormal bases; condition number | [I.3](03-eigenvalues.md) |
+| 7 | \(N\to\infty\): fields, operators, \(L^2\) inner products | [I.4](04-toward-infinity.md) → Part II |
+
+Each schematic answers the four concept-map questions for one layer of structure. When assembly feels mechanical, return to the matching row: *what object, what structure, what theorem, what breaks?*
+
+## Lab act (prologue map)
+
+You are in **Act I — Mounting** of the [prologue experiment](../prologue/00-many-scales.md#the-experiment-as-plot): the operator grips the cold-drawn copper cylinder, zeros the load cell, and the first honest model is a chain of bar elements. Part I supplies the syntax that makes that moment computable — boundary conditions as load vectors, equilibrium as \(\mathbf{K}\mathbf{u}=\mathbf{f}\), and eigenmodes that reappear when the wire vibrates or when DFT diagonalizes Kohn–Sham orbitals in Part IX. When this part feels abstract, remember: the grips are tightening on a real specimen; the matrix is the second language for the same scene.
+
 ## Story so far (Prologue)
 
 The prologue introduced a single copper wire as a **ladder of scales** — from continuum stress and FEM meshes down through dislocations, atoms, and electrons — and the four questions every rung answers: state, equations, discretization, upward export. Before climbing that ladder mathematically, Part I pauses at the rung every simulation shares:

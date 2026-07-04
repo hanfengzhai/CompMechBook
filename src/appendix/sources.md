@@ -56,6 +56,20 @@ Read in order for the full narrative. Each row is one chapter; **Bridge** sectio
 | IX.3 | [DFT workflows](../part09-dft/03-dft-workflows.md) | Quantum ESPRESSO on Cu |
 | — | [Epilogue](../epilogue/multiscale.md) | Coupling DFT→MD→DDD→FEM |
 
+## Lab act index
+
+The [prologue](../prologue/00-many-scales.md#the-experiment-as-plot) maps one copper-wire tensile test to six laboratory acts. Each part opening includes a **Lab act (prologue map)** section; this table is the reverse index — from act to part.
+
+| Act | What happens in the lab | Parts | Opening |
+|-----|-------------------------|-------|---------|
+| **I — Mounting** | Grips tighten; load cell zeros | Prologue, I | [I.0](../part01-linear-algebra/00-opening.md) |
+| **II — Warming** | Current on; air cools the wire | III, IV, V | [III.0](../part03-pdes/00-opening.md), [IV.0](../part04-fem/00-opening.md), [V.0](../part05-fvm/00-opening.md) |
+| **III — Pulling** | Force–displacement climbs linearly | II, III, IV, VI | [II.0](../part02-functional-analysis/00-opening.md), [VI.0](../part06-continuum/00-opening.md) |
+| **IV — Hardening** | Curve bends upward | VII | [VII.0](../part07-defects/00-opening.md) |
+| **V — Notch** | Stress concentrator; possible fracture | VI, VIII | [VI.0](../part06-continuum/00-opening.md), [VIII.0](../part08-md/00-opening.md) |
+| **VI — Foundation** | \(E\), \(\nu\), potentials chosen offline | IX → VIII → VII → IV | [IX.0](../part09-dft/00-opening.md), [VIII.0](../part08-md/00-opening.md) |
+| **All acts** | Full afternoon wired together | Epilogue | [Multiscale](../epilogue/multiscale.md) |
+
 ## Primary notes (hanfengzhai.github.io)
 
 | Topic | Link |

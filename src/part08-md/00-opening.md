@@ -35,6 +35,10 @@ flowchart LR
 
 **Baby picture:** write Newton's equations for nuclei on a potential surface, choose an ensemble (NVT, NPT), integrate with a stable timestep, then fit EAM parameters and export moduli to continuum models. The copper lattice vibrates here; DDD mobility and FEM stiffness inherit the averages.
 
+## Lab act (prologue map)
+
+**Act V — Notch** and **Act VI — Foundation** meet in this part. At a scratched grip or sharp concentrator, Act V demands atomistic resolution — bond breaking, dislocation nucleation — that MD supplies in a representative volume too small to see on the load cell, yet decisive for failure. Act VI's offline foundation continues here: EAM potentials fit on bulk copper cells, stacking-fault energies for DDD mobility, moduli cross-checked against DFT — the upward climb from Part IX through MD into continuum inputs.
+
 ## Story so far (Parts I–VII)
 
 The wire has been a spring network, a meshed solid, a stress field, a dislocation forest, and now becomes a **lattice of nuclei**:

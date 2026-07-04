@@ -31,6 +31,26 @@ flowchart LR
 
 **Baby picture:** divide the domain into cells, balance fluxes across faces, resolve discontinuities with a Riemann problem, then extend to Navier–Stokes for the air cooling the copper wire. FVM complements FEM: conservation-first where Galerkin energy principles are awkward.
 
+## Representative schematics (FVM / CFD)
+
+The [Finite Volume Method notes](https://hanfengzhai.github.io/note/FVM.pdf) and [CFD notes](https://hanfengzhai.github.io/file/CFD_note.pdf) collect the flux-balance machine this part builds:
+
+| Schematic | Idea | Chapter in this part |
+|-----------|------|----------------------|
+| 1 | Control volume; integral conservation; flux through faces | [V.1](01-conservation-integral.md) |
+| 2 | 1D FVM: cell averages; upwind advection; CFL stability | [V.2](02-fvm-1d.md) |
+| 3 | Flux splitting; Godunov / Roe Riemann solvers | [V.3](03-fluxes-riemann.md) |
+| 4 | TVD limiters; shock capturing without spurious oscillations | [V.3](03-fluxes-riemann.md) |
+| 5 | Navier–Stokes: pressure–velocity coupling; SIMPLE loop | [V.4](04-navier-stokes-cfd.md) |
+| 6 | Conjugate heat transfer: wire (FEM) ↔ air (FVM) interface | [V.4](04-navier-stokes-cfd.md) |
+| 7 | Lax equivalence: consistency + stability \(\Rightarrow\) convergence | [V.2](02-fvm-1d.md), [V.3](03-fluxes-riemann.md) |
+
+When a flux formula feels arbitrary, return to the matching row: discrete conservation is the structure FVM adds that Galerkin energy alone does not guarantee for transport.
+
+## Lab act (prologue map)
+
+You are in **Act II — Warming**, outside the wire. Current heats the copper; air decides how fast that heat leaves — convection, boundary layers, perhaps vortices at high Reynolds number. Part V is the second discretization on the same afternoon: FEM solved conduction inside (Part IV or Part III); FVM balances enthalpy flux in the fluid domain. The [prologue](../prologue/00-many-scales.md#the-experiment-as-plot) calls this conjugate heat transfer; Chapter 4 closes the loop.
+
 ## Story so far (Parts I–IV)
 
 The ladder from the prologue now has a **computational spine** — not only equations, but algorithms:

@@ -55,6 +55,10 @@ Section A of the [Functional Analysis Notes](https://hanfengzhai.github.io/file/
 
 Each schematic answers the four concept-map questions for one layer of structure. When a proof feels abstract, return to the matching row: *what object, what structure, what theorem, what breaks?*
 
+## Lab act (prologue map)
+
+You are in **Act III — Pulling** in slow motion — the mathematical front end. Before the grip displacement ramps, Part II answers why mesh refinement has a target: the displacement field \(u(x)\) lives in \(H^1\), not in \(\mathbb{R}^N\) for any fixed mesh. The load-cell curve you will read in Parts IV and VI is measured in the laboratory; this part explains what "convergence" means before any tetrahedron is meshed. Acts II (warming) and VI (foundation) bracket this part; return to the [prologue table](../prologue/00-many-scales.md#the-experiment-as-plot) when the function-space vocabulary feels removed from the tensile frame.
+
 ## Story so far (Prologue & Part I)
 
 The prologue introduced the copper wire as a **ladder of scales** — continuum, dislocations, atoms, electrons — and the four questions every rung answers: state, equations, discretization, upward export. Part I made the bottom rung of that ladder explicit in finite dimensions:

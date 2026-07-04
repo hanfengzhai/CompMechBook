@@ -33,6 +33,10 @@ flowchart LR
 
 **Baby picture:** name the line defects that carry plasticity, simulate their motion with elastic superposition and mobility tables, extract hardening laws and link statistics, then export internal variables to polycrystal FEM. The drawn copper wire is stronger because of this forest, not because \(\mathbf{K}\) changed.
 
+## Lab act (prologue map)
+
+You are in **Act IV — Hardening**. The load cell curve bends upward because cold drawing left a dislocation forest in the wire — history invisible to linear elasticity, visible only when slip accelerates. Part VII is the mesoscale narrator of that bend: line defects multiply, tangle, and export Taylor hardening laws that nonlinear FEM consumes. The specimen was mounted in Act I and pulled in Act III; Act IV is the backstory made dynamic.
+
 ## Story so far (Parts I–VI)
 
 The climb upward is complete for the **continuum floor**. Every rung below Part VII exported numbers upward; Part VII is the first descent that explains where those numbers hid their history:

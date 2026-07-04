@@ -32,6 +32,26 @@ flowchart LR
 
 **Baby picture:** write the physics as a PDE, relax smoothness to a weak statement testable on a mesh, identify the function space where the solution lives, then package existence as minimizing an energy. The copper wire's temperature profile and axial displacement are two instances of the same pipeline.
 
+## Representative schematics (ME 300B)
+
+The [PDE notes](https://hanfengzhai.github.io/file/ME300B_PDE.pdf) (ME 300B) collect the same pipeline this part builds — use them as a visual index while reading:
+
+| Schematic | Idea | Chapter in this part |
+|-----------|------|----------------------|
+| 1 | PDE classification: elliptic / parabolic / hyperbolic | [III.1](01-strong-form.md) |
+| 2 | Strong form: pointwise derivatives; where it fails | [III.1](01-strong-form.md) |
+| 3 | Weak form: multiply by test function, integrate by parts | [III.2](02-weak-form.md) |
+| 4 | Sobolev ladder: \(L^2\), \(H^1\), \(H^1_0\); weak derivatives | [III.3](03-sobolev-spaces.md) |
+| 5 | Energy functional; minimizer \(\Leftrightarrow\) weak solution | [III.4](04-energy-methods.md) |
+| 6 | Well-posedness triangle: existence, uniqueness, stability | [III.4](04-energy-methods.md) → Part IV |
+| 7 | Two exit doors: Galerkin FEM (Part IV) vs. FVM flux balance (Part V) | This opening; [III.4](04-energy-methods.md) |
+
+Heat conduction along the wire is Act II in the [prologue experiment](../prologue/00-many-scales.md#the-experiment-as-plot); elastic equilibrium under grip load is Act III. Part III writes both in weak form — the language Parts IV and V discretize.
+
+## Lab act (prologue map)
+
+This part serves **Acts II — Warming** and **III — Pulling** simultaneously. When current heats the wire, steady conduction along the bar and transient Joule heating are the PDEs of Act II; when the grips load elastically before yield, virtual work and equilibrium are the PDEs of Act III. Part III writes those equations in weak form — the language both FEM (Part IV) and FVM (Part V) will discretize. Locate yourself: heat-only chapters are Act II; elasticity and energy chapters are Act III.
+
 ## Story so far (Parts I–II)
 
 The mathematical foundations are now in place. The same copper wire has changed representation twice without changing material:

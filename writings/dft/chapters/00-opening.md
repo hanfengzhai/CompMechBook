@@ -31,6 +31,10 @@ flowchart LR
 
 **Baby picture:** separate fast electrons from slow nuclei, prove the ground-state energy is a functional of density alone, solve Kohn–Sham equations self-consistently, then export cohesive energy and elastic moduli upward to MD, DDD, and FEM. The copper wire's valence electrons live here.
 
+## Lab act (prologue map)
+
+You are in **Act VI — Foundation**, the prequel every practitioner runs before the wire-scale simulation starts. No tension test begins without \(E\), \(\nu\), cohesive energy, and surface terms — numbers that trace to this part's Kohn–Sham cycles on small fcc cells. The afternoon experiment (Acts I–V) assumed these constants; Part IX derives them. Read backward from here toward Part VIII (potentials) and Part IV (FEM input decks) to complete the foundation arc the [prologue](../prologue/00-many-scales.md#the-experiment-as-plot) describes.
+
 ## Story so far (Parts I–VIII)
 
 The descent from continuum to atoms is complete; Part IX reaches the **finest rung**:

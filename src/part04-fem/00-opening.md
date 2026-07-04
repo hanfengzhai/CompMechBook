@@ -32,6 +32,26 @@ flowchart LR
 
 **Baby picture:** choose trial and test spaces, enforce the weak form by making residuals orthogonal to the test space, assemble element by element, then prove the discrete solution tracks the continuous one as \(h \to 0\). The copper wire in tension is a bar whose stiffness matrix is not magic — it is a Galerkin projection.
 
+## Representative schematics (FEA)
+
+The [Finite Element Analysis notes](https://hanfengzhai.github.io/file/FEA_notes.pdf) and [problem sessions](https://hanfengzhai.github.io/note.html) collect the same discretization machine this part builds:
+
+| Schematic | Idea | Chapter in this part |
+|-----------|------|----------------------|
+| 1 | Weighted residual: trial guess, test functions, orthogonality | [IV.1](01-weighted-residuals.md) |
+| 2 | Galerkin: test space = trial space; best approximation | [IV.2](02-galerkin-assembly.md) |
+| 3 | Local-to-global assembly: element \(\mathbf{K}^e\) → scatter into \(\mathbf{K}\) | [IV.2](02-galerkin-assembly.md) |
+| 4 | Reference element; isoparametric map; Jacobian in quadrature | [IV.3](03-elements-quadrature.md) |
+| 5 | Poisson → vector elasticity: Voigt notation on the wire | [IV.4](04-poisson-to-elasticity.md) |
+| 6 | \(h\)-refinement; patch test; a priori error estimates | [IV.5](05-convergence.md) |
+| 7 | Two doors at chapter end: continue to FVM (Part V) or continuum (Part VI) | [IV.5](05-convergence.md) |
+
+When assembly feels like bookkeeping, return to the matching row: the stiffness matrix is a Galerkin projection of the bilinear form Part III wrote — not an arbitrary sparse array.
+
+## Lab act (prologue map)
+
+You are in **Acts II and III** at the computational level. Act II: the wire mesh solves conduction from Joule heating — a Galerkin assembly problem. Act III: the same mesh carries axial displacement under grip load — \(\mathbf{K}\mathbf{U}=\mathbf{F}\) is the force–displacement curve the operator watches climb. Part IV turns Part III's weak forms into the code the lab trusts; when assembly feels mechanical, remember both acts share one specimen and one mesh philosophy.
+
 ## Story so far (Parts I–III)
 
 If you have read linearly since the prologue, the same specimen has changed language three times without changing material:
