@@ -43,6 +43,20 @@ The mathematical foundations are now in place. The same copper wire has changed 
 
 Part II promised that mesh refinement has a **target** — a function \(u \in H^1(\Omega)\) — and that the stiffness matrix is a Galerkin projection of a bilinear form. Part III writes the **equations** those projections discretize: Poisson conduction along the wire, elastic equilibrium under tension, transient heating when current flows. Each begins as a strong form (pointwise PDE), fails at corners and concentrated loads, and is rewritten as a weak form testable on a mesh. Sobolev spaces supply the regularity theory; energy methods package existence as minimization — the last purely analytical chapter before FEM and FVM turn weak forms into code.
 
+## Closing the arc from Part I
+
+If you have read linearly since the prologue, notice how the **same four questions** from the opening table reappear here with PDE vocabulary — and how the **same mathematical moves** from Part I return in the continuum limit:
+
+| Part I (springs on the wire) | Part III (PDEs on the wire) |
+|------------------------------|-----------------------------|
+| State vector \(\mathbf{u}\) | Fields \(u(x)\), \(\mathbf{u}(\mathbf{x})\), \(T(x)\) on the bar domain |
+| Stiffness matrix \(\mathbf{K}\) | Differential operator (e.g. \(-(EA u')'\) for axial elasticity) |
+| \(\mathbf{K}\mathbf{u}=\mathbf{f}\) from nodal equilibrium | Weak form \(a(u,v)=\ell(v)\) integrated over \(\Omega\) |
+| Sparsity from local spring coupling | Locality of PDEs and domain decomposition (mesh preview) |
+| Mesh refinement sends \(N\to\infty\) | Weak forms in \(H^1\) — the limit Part II named |
+
+Part I showed that every mesh eventually gives linear algebra; Part II proved that refinement has a **target** in function space. Part III writes the **equations** that target satisfies. The copper wire that began as coupled springs is now a bar with boundary conditions — fixed grips, Joule heating, perhaps convection at the surface — still one specimen, now with PDEs that Parts IV and V will discretize. When Part IV assembles \(\mathbf{K}\) from shape functions, you will recognize the same sparse pattern Part I taught, now justified by the bilinear form defined here.
+
 ## Two paths ahead (preview)
 
 Part III ends with energy methods — the last purely analytical chapter before discretization. What follows is not a single road but a **fork in the narrative**, both leading to the same continuum floor in Part VI:

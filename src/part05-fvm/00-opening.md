@@ -56,6 +56,20 @@ No single matrix assembles both sides. A **fixed-point or monolithic coupling lo
 
 Chapter 4 closes the loop on the wire: Joule heating in the solid, convection in the air, and the SIMPLE-type pressure–velocity coupling that makes incompressible CFD tractable.
 
+## Closing the arc from Part I
+
+If you have read linearly since the prologue, notice how the **same four questions** from the opening table reappear here with transport vocabulary — and how the **same mathematical habits** from Part I return on a grid of control volumes:
+
+| Part I (springs on the wire) | Part V (fluid around the wire) |
+|------------------------------|--------------------------------|
+| State vector \(\mathbf{u}\) | Cell-averaged \(\bar{u}_i\), \(\bar{T}_i\) on each control volume |
+| Local coupling in \(\mathbf{K}\) | Face fluxes \(F_{i+1/2}\) coupling neighboring cells |
+| \(\mathbf{K}\mathbf{u}=\mathbf{f}\) at equilibrium | \(\sum_i \frac{d}{dt}(\bar{u}_i V_i) + \sum_{\text{faces}} F = 0\) (discrete conservation) |
+| Eigenmodes and natural frequencies | Wave speeds and Riemann fan structure at interfaces |
+| Mesh refinement sends \(N\to\infty\) | Finer cells resolve boundary layers; CFL limit ties \(\Delta t\) to \(\Delta x\) |
+
+Part IV assembled \(\mathbf{K}\) from shape-function integrals; Part V assembles **flux balances** from face quadrature — still sparse linear algebra at each implicit step, but the governing principle is conservation rather than energy minimization. Part III's weak forms asked us to multiply by test functions and integrate; FVM asks us to integrate the PDE over each cell and balance what crosses the faces. The copper wire that began as a spring network now heats the air around it; the interface handshake (wall temperature, heat flux) is the same **export discipline** the prologue promised at every scale — only here the two meshes speak different discretization dialects before Part VI names the stress and flux tensors both approximate.
+
 ## Bridge
 
 Part IV assembled stiffness matrices from shape functions. Part V begins with a different question: given a conservation law in integral form, how do we balance fluxes across cell faces so that discrete solutions respect the same invariants the continuous PDE preserves?
