@@ -10,6 +10,10 @@ Zoom once more, to ångströms, and the very notion of an "atom" as a ball on a 
 
 None of these descriptions is wrong. Each is appropriate at its scale. Computational mechanics is the art of choosing — and connecting — the right description.
 
+## Scene: the bench before the test
+
+Before current flows or grips tighten, a cold-drawn copper cylinder rests in a mechanics lab — cut square at the ends, faintly oxidized, labeled with a lot number that encodes drawing and partial anneal. The tensile frame stands empty; the power supply is off; a tray of wedge grips waits on the bench. No simulation has run yet, but the specimen already carries **history**: a dislocation forest from cold work, grain texture from drawing, conductivity restored just enough by anneal. Every model in the chapters ahead will read this same afternoon differently — as a spring network, as a mesh, as line defects, as atoms, as electron density. The prologue is the wide shot before the camera zooms to Part I's first stiffness matrix.
+
 ## A ladder, not a menu
 
 It is tempting to treat finite elements, finite volumes, molecular dynamics, and DFT as separate courses with separate software packages. That temptation is practical: one does not run Quantum ESPRESSO inside Abaqus. But conceptually, the methods form a **ladder**:

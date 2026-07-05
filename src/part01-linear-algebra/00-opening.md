@@ -64,6 +64,21 @@ The prologue introduced a single copper wire as a **ladder of scales** — from 
 
 The wire at this scale is still a chain of coupled springs — not yet a PDE, not yet a mesh of tetrahedra. Part I supplies the syntax every later part generalizes: collect degrees of freedom, write balance as a linear system, decouple complexity with eigenmodes, then ask what happens when \(N \to \infty\) in Chapter 4.
 
+## Forward arc (what later parts will echo)
+
+Parts II–IX each open with **Closing the arc from Part I** — a table tracing the same four moves from this part into new vocabulary. Read this spine once here; later parts will invite you to recognize the same pattern under every scale change:
+
+| Part I move (copper wire) | First returns as… | Part |
+|---------------------------|-------------------|------|
+| \(\mathbf{K}\mathbf{u}=\mathbf{f}\) from force balance | Weak-form equilibrium; bilinear \(a(u,v)\) | II–III |
+| Energy \(\tfrac{1}{2}\mathbf{u}^T\mathbf{K}\mathbf{u}\) | Strain energy; Lax–Milgram minimization | II–III |
+| Eigenmodes decouple vibration | Spectral theorem; Galerkin modes | II, IV |
+| Assembly from local element matrices | Shape functions; isoparametric maps | IV |
+| Limit \(N\to\infty\) needs a target space | \(H^1\), Sobolev regularity | II–III |
+| Spurious modes when \(\mathbf{K}\) is ill-conditioned | Locking, pollution, wrong weak form | IV–V |
+
+When a later chapter feels like new machinery, locate the row it extends. The matrix was never arbitrary — it was always a finite-dimensional shadow of something Part I already named.
+
 ## Bridge
 
 The prologue introduced the copper wire at every scale. Part I begins at the scale every simulation shares: degrees of freedom collected into vectors, evolution and equilibrium written as linear systems. The first chapter refreshes the language — inner products, norms, matrix structure — that Parts II through IX will generalize to functions and operators.

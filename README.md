@@ -17,7 +17,7 @@ Read straight through for the full arc. Parts IV (FEM) and V (FVM) may be swappe
 
 ## Narrative structure
 
-The book follows the **Functional Analysis Notes** (ME 412) layout: numbered chapters, **concept maps** (object → structure → theorem → failure mode) at every part opening and part closing checkpoint, **Scene** sections that return to the copper wire, **Lab act** sections at every part opening tying chapters to the prologue's six-act lab session (reunited in the **epilogue**), and **Bridge** sections at every chapter end explaining why the next chapter exists.
+The book follows the **Functional Analysis Notes** (ME 412) layout: numbered chapters, **concept maps** (object → structure → theorem → failure mode) at every part opening and part closing checkpoint, **Scene** sections in the prologue, every numbered chapter, and the epilogue that return to the copper wire, **Lab act** sections at every part opening tying chapters to the prologue's six-act lab session (reunited in the **epilogue**), **Forward arc** and **Closing the arc from Part I** bookends linking Part I to Parts II–IX, and **Bridge** sections at every chapter end explaining why the next chapter exists.
 
 ```mermaid
 flowchart TB
