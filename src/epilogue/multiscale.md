@@ -6,6 +6,16 @@ The copper wire that opened the prologue — drawn, annealed, carrying current, 
 
 Before descending to electrons, we already practiced coupling at the engineering scale: Part IV's FEM conduction and Part V's FVM convection exchange wall temperature and heat flux until the wire and the cooling air agree — conjugate heat transfer as a fixed-point loop between discretizations. The epilogue generalizes that handshake from two meshes on one specimen to DFT, MD, DDD, and continuum FEM on the same material history.
 
+## Scene
+
+It is late afternoon in a shared compute lab. On one screen, a Quantum ESPRESSO job on a four-atom copper cell has just converged: lattice constant 3.615 Å, bulk modulus 137 GPa, vacancy formation energy 1.28 eV. The post-processing script writes a Voigt elastic tensor to a YAML file and hands it to a colleague fitting an EAM potential.
+
+On the next monitor, LAMMPS equilibrates a notched wire segment at 300 K. The potential came from last week's DFT fit; the notch geometry came from yesterday's continuum mesh export. Every thousand steps, a Python callback estimates an Irving–Kirkwood stress field and checks whether the peak value matches what the coarse FEM predicted two folders up the tree.
+
+A third terminal runs OpenDiS on a subregion extracted from a drawn-wire polycrystal: dislocation density rising, Taylor stress updating. The hardening curve will feed a DAMASK crystal-plasticity run that homogenizes texture before the structural FEM model asks how much the wire sags under its own weight when current heats it.
+
+None of these jobs share an executable. They share a **specimen** — the same copper wire from the prologue — and a discipline about what crosses each interface. The afternoon is not chaos; it is the ladder in workflow form.
+
 ## Story so far (Parts I–IX)
 
 If you have read linearly since the prologue, the copper wire has changed language nine times without changing material:
