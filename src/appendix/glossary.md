@@ -62,7 +62,7 @@ The [prologue](../prologue/00-many-scales.md#the-experiment-as-plot) maps the co
 | **V — Notch** | Stress concentration at scratch/corner | VI, VIII | Atomistic resolution; EAM calibration |
 | **VI — Foundation** | Parameters chosen before the test | IX → VIII → VII → IV | DFT → MD → DDD → FEM inputs |
 
-Mathematical reading order (Parts I–IX) and lab act order differ by design: Act VI is a **prequel** run offline; Acts II–III interleave analysis and discretization across Parts II–V.
+Mathematical reading order (Parts I–IX) and lab act order differ by design: Act VI is a **prequel** run offline; Acts II–III interleave analysis and discretization across Parts II–V. The [epilogue](../epilogue/multiscale.md) reunites all six acts on the bench with its own **Lab act** section — the narrative close of the prologue's experiment-as-plot.
 
 ## Narrative hinges (where to look if the story jumps)
 
