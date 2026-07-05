@@ -31,6 +31,19 @@ flowchart LR
 
 **Baby picture:** describe how the copper wire stretches and rotates, relate stress to force per area, derive virtual work from balance, then admit that cold drawing and notch roots violate the smooth fields FEM assumes — setting up the descent to dislocations.
 
+## Representative schematics (elasticity notes)
+
+The [Elasticity & Inelasticity notes](https://hanfengzhai.github.io/file/elasticity_notes.pdf) supply the continuum figures this part names — the mechanical vocabulary FEM and FVM approximate:
+
+| Schematic | Idea | Chapter in this part |
+|-----------|------|----------------------|
+| 1 | Deformation gradient \(\mathbf{F}\); strain measures | [VI.1](01-kinematics.md) |
+| 2 | Cauchy stress; balance laws; constitutive closure | [VI.2](02-stress-balance.md) |
+| 3 | Virtual work; hyperelastic energy potentials | [VI.3](03-variational-elasticity.md) |
+| 4 | Geometric and material nonlinearity; plasticity preview | [VI.4](04-nonlinear-plasticity-preview.md) |
+
+When \(\mathbf{K}\mathbf{U}=\mathbf{F}\) feels like sparse linear algebra alone, return to these schematics: they name the tensors whose integrals assemble \(\mathbf{K}\).
+
 ## Story so far (Parts I–V)
 
 Whether you read Part V or skipped from Part IV to here, the **computational spine** of the book is complete:

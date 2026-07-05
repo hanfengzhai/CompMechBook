@@ -56,6 +56,24 @@ Read in order for the full narrative. Each row is one chapter; **Bridge** sectio
 | IX.3 | [DFT workflows](../part09-dft/03-dft-workflows.md) | Quantum ESPRESSO on Cu |
 | — | [Epilogue](../epilogue/multiscale.md) | Coupling DFT→MD→DDD→FEM |
 
+## Schematic index across parts
+
+Every part opening includes a **Representative schematics** table — baby pictures indexed to chapters, following the ME 412 layout in Part II. Use this master index when you need a visual anchor without rereading an entire opening:
+
+| Part | Source notes | Schematics cover |
+|------|--------------|------------------|
+| I | [ME 300A LinAlg](https://hanfengzhai.github.io/file/ME300A_LinAlg.pdf) | Vectors → maps → eigenmodes → \(N\to\infty\) |
+| II | [ME 412 CourseSummary](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) | Operators → norms → Hilbert → duality → weak FEM |
+| III | [ME 300B PDE](https://hanfengzhai.github.io/file/ME300B_PDE.pdf) | Strong → weak → Sobolev → energy |
+| IV | [FEA notes](https://hanfengzhai.github.io/file/FEA_notes.pdf) | Residuals → assembly → elements → elasticity → convergence |
+| V | [FVM](https://hanfengzhai.github.io/note/FVM.pdf) / [CFD](https://hanfengzhai.github.io/file/CFD_note.pdf) | Conservation → 1D FVM → Riemann → Navier–Stokes |
+| VI | [Elasticity notes](https://hanfengzhai.github.io/file/elasticity_notes.pdf) | Kinematics → balance → variational → nonlinearity |
+| VII | [Defects notes](https://hanfengzhai.github.io/file/defects_notes.pdf) | Taxonomy → DDD → crystal plasticity handoff |
+| VIII | [AtomModel notes](https://hanfengzhai.github.io/file/AtomModel_note.pdf) | Potentials → ensembles → LAMMPS / coarse-graining |
+| IX | [MSE 5720 DFT](https://github.com/hanfengzhai/MSE5720-HW) | Born–Oppenheimer → Kohn–Sham → QE workflows |
+
+Each row links to the part opening's detailed schematic table with chapter-level cross-references.
+
 ## Primary notes (hanfengzhai.github.io)
 
 | Topic | Link |

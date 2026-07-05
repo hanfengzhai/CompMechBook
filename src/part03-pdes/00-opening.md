@@ -32,6 +32,19 @@ flowchart LR
 
 **Baby picture:** write the physics as a PDE, relax smoothness to a weak statement testable on a mesh, identify the function space where the solution lives, then package existence as minimizing an energy. The copper wire's temperature profile and axial displacement are two instances of the same pipeline.
 
+## Representative schematics (ME 300B)
+
+The [PDE notes](https://hanfengzhai.github.io/file/ME300B_PDE.pdf) (ME 300B) collect representative figures for the pipeline this part builds — strong form to weak form to energy:
+
+| Schematic | Idea | Chapter in this part |
+|-----------|------|----------------------|
+| 1 | Strong PDE and boundary conditions on the wire domain | [III.1](01-strong-form.md) |
+| 2 | Weak form: test functions, integration by parts | [III.2](02-weak-form.md) |
+| 3 | Sobolev \(H^1\), \(L^2\); kinks at mesh nodes | [III.3](03-sobolev-spaces.md) |
+| 4 | Energy minimization; Lax–Milgram well-posedness | [III.4](04-energy-methods.md) |
+
+When a proof feels abstract, return to the matching row and ask the four concept-map questions for that layer of the pipeline.
+
 ## Story so far (Parts I–II)
 
 The mathematical foundations are now in place. The same copper wire has changed representation twice without changing material:

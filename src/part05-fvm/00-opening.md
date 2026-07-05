@@ -31,6 +31,19 @@ flowchart LR
 
 **Baby picture:** divide the domain into cells, balance fluxes across faces, resolve discontinuities with a Riemann problem, then extend to Navier–Stokes for the air cooling the copper wire. FVM complements FEM: conservation-first where Galerkin energy principles are awkward.
 
+## Representative schematics (FVM notes)
+
+The [Finite Volume Method notes](https://hanfengzhai.github.io/note/FVM.pdf) and [CFD notes](https://hanfengzhai.github.io/file/CFD_note.pdf) collect the conservation-first figures this part follows:
+
+| Schematic | Idea | Chapter in this part |
+|-----------|------|----------------------|
+| 1 | Integral conservation on control volumes | [V.1](01-conservation-integral.md) |
+| 2 | 1D upwind advection; CFL stability | [V.2](02-fvm-1d.md) |
+| 3 | Riemann fluxes; shock and contact capturing | [V.3](03-fluxes-riemann.md) |
+| 4 | Navier–Stokes; SIMPLE; conjugate heat on the wire | [V.4](04-navier-stokes-cfd.md) |
+
+When flux balance feels unlike FEM assembly, return to the matching row: the same four concept-map questions apply — only the object is a cell average, not a nodal trial function.
+
 ## Story so far (Parts I–IV)
 
 The ladder from the prologue now has a **computational spine** — not only equations, but algorithms:

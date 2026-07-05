@@ -35,6 +35,18 @@ flowchart LR
 
 **Baby picture:** write Newton's equations for nuclei on a potential surface, choose an ensemble (NVT, NPT), integrate with a stable timestep, then fit EAM parameters and export moduli to continuum models. The copper lattice vibrates here; DDD mobility and FEM stiffness inherit the averages.
 
+## Representative schematics (atomistic notes)
+
+The [Atomistic Modeling notes](https://hanfengzhai.github.io/file/AtomModel_note.pdf) collect the phase-space and integrator figures this part implements:
+
+| Schematic | Idea | Chapter in this part |
+|-----------|------|----------------------|
+| 1 | Interatomic potentials; phase space and Hamiltonian | [VIII.1](01-potentials-phase-space.md) |
+| 2 | Thermostats, barostats, Verlet integrators | [VIII.2](02-ensembles-integrators.md) |
+| 3 | LAMMPS workflows; ab initio MD; coarse-graining upward | [VIII.3](03-ab-initio-and-coarse-graining.md) |
+
+When a representative volume feels arbitrary, return to these schematics: they show what question each patch must answer before its averages export upward.
+
 ## Story so far (Parts I–VII)
 
 The wire has been a spring network, a meshed solid, a stress field, a dislocation forest, and now becomes a **lattice of nuclei**:

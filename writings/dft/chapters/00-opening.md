@@ -31,6 +31,18 @@ flowchart LR
 
 **Baby picture:** separate fast electrons from slow nuclei, prove the ground-state energy is a functional of density alone, solve Kohn–Sham equations self-consistently, then export cohesive energy and elastic moduli upward to MD, DDD, and FEM. The copper wire's valence electrons live here.
 
+## Representative schematics (MSE 5720)
+
+The [MSE 5720 DFT coursework](https://github.com/hanfengzhai/MSE5720-HW) and teaching materials index the electronic-structure pipeline this part closes:
+
+| Schematic | Idea | Chapter in this part |
+|-----------|------|----------------------|
+| 1 | Born–Oppenheimer; Hohenberg–Kohn theorems | [IX.1](01-born-oppenheimer.md) |
+| 2 | Kohn–Sham SCF; convergence and force theorem | [IX.2](02-kohn-sham.md) |
+| 3 | Quantum ESPRESSO workflows; export \(E_{\text{coh}}\), \(C_{ij}\) | [IX.3](03-dft-workflows.md) |
+
+When plane-wave cutoff and k-mesh choices feel like tuning knobs, return to these schematics: they are the same basis-refinement instinct Part IV taught for shape functions — now on Bloch orbitals.
+
 ## Story so far (Parts I–VIII)
 
 The descent from continuum to atoms is complete; Part IX reaches the **finest rung**:

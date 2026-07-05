@@ -33,6 +33,18 @@ flowchart LR
 
 **Baby picture:** name the line defects that carry plasticity, simulate their motion with elastic superposition and mobility tables, extract hardening laws and link statistics, then export internal variables to polycrystal FEM. The drawn copper wire is stronger because of this forest, not because \(\mathbf{K}\) changed.
 
+## Representative schematics (defects notes)
+
+The [Defects & Disorders notes](https://hanfengzhai.github.io/file/defects_notes.pdf) index the mesoscale figures this part follows — from taxonomy to DDD to crystal plasticity handoff:
+
+| Schematic | Idea | Chapter in this part |
+|-----------|------|----------------------|
+| 1 | Point, line, and surface defects on the wire | [VII.1](01-defect-taxonomy.md) |
+| 2 | Peach–Köhler forces; DDD time integration | [VII.2](02-dislocation-dynamics.md) |
+| 3 | Taylor hardening; OpenDiS → DAMASK → FEM | [VII.3](03-polycrystal-and-fem-handoff.md) |
+
+When phenomenological hardening parameters feel like magic constants, return to these schematics: they show where \(\sigma_y(\gamma)\) is **generated**, not fitted.
+
 ## Story so far (Parts I–VI)
 
 The climb upward is complete for the **continuum floor**. Every rung below Part VII exported numbers upward; Part VII is the first descent that explains where those numbers hid their history:
