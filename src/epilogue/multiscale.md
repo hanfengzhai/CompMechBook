@@ -10,6 +10,21 @@ Before descending to electrons, we already practiced coupling at the engineering
 
 Return to the mechanics lab from the [prologue](../prologue/00-many-scales.md). The copper cylinder is still in the grips — perhaps unloaded now, perhaps still warm from the last current pulse. On the bench lie printouts from six acts: a spring-network \(\mathbf{K}\) from the first homework assignment; a converged FEM mesh; an FVM air-cooling plot; a DDD link-length histogram; a LAMMPS stress–strain curve from a notched supercell; a Quantum ESPRESSO log with converged \(C_{ij}\). No single executable produced them all. The epilogue is the moment the operator asks how a research team wires these outputs into one credible answer about the wire's lifetime.
 
+## Lab act (The full afternoon — all six acts reunited)
+
+The [prologue](../prologue/00-many-scales.md#the-experiment-as-plot) split one afternoon into six acts and scattered them across nine parts. Each part opening carried its **Lab act** section; here the acts meet again on the bench — not as a single job submission, but as the **pedigree** every credible wire-scale prediction requires:
+
+| Act | What the operator saw | Parts | Printout on the bench |
+|-----|----------------------|-------|------------------------|
+| **I — Mounting** | Grips close; load cell zeroed | I | Spring-network \(\mathbf{K}\) from bar elements |
+| **II — Warming** | Current on; surface cools in air | III, IV, V | FEM temperature field + FVM flux plot |
+| **III — Pulling** | Force–displacement climbs linearly | II, III, IV, VI | Converged mesh + Cauchy stress report |
+| **IV — Hardening** | Curve bends upward | VII | DDD link-length histogram |
+| **V — Notch** | Scratch concentrates stress (optional) | VI, VIII | LAMMPS stress–strain at the tip |
+| **VI — Foundation** | Constants in the input deck (prequel) | IX → VIII → VII | Quantum ESPRESSO log with \(C_{ij}\) |
+
+Read the table **bottom-up** for parameter pedigree (Act VI first) and **top-down** for laboratory time (Act I first). Multiscale workflows in the sections below are exactly the discipline of making both orderings consistent: the operator's afternoon and the researcher's offline calibration must agree on units, history, and what was homogenized away.
+
 ## Story so far (Parts I–IX)
 
 If you have read linearly since the prologue, the copper wire has changed language nine times without changing material:
