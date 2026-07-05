@@ -6,6 +6,49 @@ When we write a finite element code, we solve a linear system assembled from loc
 
 The chapters that follow are written to be read in order, like a novel with a plot. A copper wire under tension, a turbulent jet, a dislocation network in a crystal, and the electrons that bind the atoms together are not separate homework problems. They are scenes in one story. The mathematics is the thread that stitches them together.
 
+## Plot spine: how the story is told
+
+Each part follows the **Functional Analysis Notes** (ME 412) layout — numbered chapters, concept maps at openings, checkpoints at closings — but the book adds four narrative devices so the arc reads as one continuous text rather than a syllabus:
+
+| Device | Role | Where it appears |
+|--------|------|------------------|
+| **Scene** | Return to the copper wire in concrete detail | Prologue, every numbered chapter, epilogue |
+| **Bridge** | State why the next chapter must exist | End of every numbered chapter and part opening |
+| **Lab act** | Worked example, workflow, or checklist tied to computation | Inside chapters (assembly, LAMMPS, OpenDiS, QE inputs) |
+| **Concept map** | Object → structure → theorem → failure mode | Part openings; part closing checkpoints |
+
+The dramatic arc is not a surprise twist — it is **scale change with the same specimen**:
+
+```mermaid
+flowchart LR
+  subgraph act1["Act I: Grammar"]
+    A1[Vectors and matrices]
+    A2[Function spaces]
+    A3[Weak PDEs]
+  end
+  subgraph act2["Act II: Discretization"]
+    B1[FEM mesh]
+    B2[FVM fluxes]
+    B3[Continuum fields]
+  end
+  subgraph act3["Act III: Descent"]
+    C1[Dislocation forest]
+    C2[Atomic lattice]
+    C3[Electron density]
+  end
+  subgraph act4["Act IV: Coupling"]
+    D1[Multiscale workflows]
+  end
+  A1 --> A2 --> A3 --> B1
+  A3 --> B2
+  B1 --> B3
+  B2 --> B3
+  B3 --> C1 --> C2 --> C3 --> D1
+  D1 -.->|four questions| A1
+```
+
+**Act I** teaches the language (Parts I–III). **Act II** makes PDEs computable on meshes and control volumes (Parts IV–VI). **Act III** asks where continuum parameters hide their history (Parts VII–IX). **Act IV** wires the rungs together (epilogue). When a transition feels abrupt, read the **Bridge** at the end of the prior chapter — it is the narrative hinge the plot spine assumes you will use.
+
 ## How this book is organized
 
 The structure follows the arc of the author's personal notes — linear algebra and functional analysis as foundations, partial differential equations and weak forms as the bridge to discretization, finite elements and finite volumes as the two great discretization philosophies for solids and fluids, and atomistic and electronic methods as the descent to finer scales. Each part ends with a short bridge section that explains why the next scale is necessary.
