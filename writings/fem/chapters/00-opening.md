@@ -12,6 +12,10 @@ Part III wrote the weak forms — virtual work for elasticity, the heat equation
 
 At this scale the wire is a solid specimen in a tensile test: displacement unknowns at nodes, boundary conditions at the grips, perhaps a refined region near a stress concentrator. Part IV is the engineer's answer to Part III's mathematics — how weighted residuals become Galerkin assembly, how convergence rates connect discrete matrices to the infinite-dimensional operators of Part II, and why the stiffness matrix is not magic but a best approximation in energy norm.
 
+## Lab act (Warming and pulling — Acts II–III)
+
+On screen, the operator sees a meshed solid: temperature contours from Joule heating, nodal displacements as the load cell still reads a nearly linear force. **Acts II and III** share the same FEM mesh philosophy — trial functions on elements, scatter into \(\mathbf{K}\) — even when one field is thermal and the other is mechanical.
+
 ## The concept map
 
 | Question | Example in this part |

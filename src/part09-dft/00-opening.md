@@ -12,6 +12,10 @@ Part VIII ended with nuclei vibrating on an interatomic potential — EAM parame
 
 The copper wire at the electronic scale is not a chain of balls on springs. It is a periodic crystal of nuclei immersed in a sea of valence electrons whose density \(\rho(\mathbf{r})\) determines how strongly the lattice resists drawing, how easily dislocations slip, and how vacancies cost energy. DFT resolves that density; every number exported upward — \(E_{\text{coh}}\), \(C_{ij}\), \(\gamma_{\text{sf}}\) — is a contract between Part IX and Parts VI–VIII.
 
+## Lab act (Foundation — Act VI)
+
+Before any simulation ran, someone typed elastic constants into an input deck. **Act VI** is the prequel every practitioner runs offline: DFT on a small fcc cell supplies cohesive energy, elastic tensors, and defect formation enthalpies that climb the ladder into MD, DDD, and FEM. This part makes that pedigree explicit.
+
 ## The concept map
 
 | Question | Example in this part |

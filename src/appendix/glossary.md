@@ -49,6 +49,21 @@ See the [chapter roadmap](sources.md) for one-line roles of every numbered chapt
 | IX | \(\rho(\mathbf{r})\), total energy, \(C_{ij}\) | Quantum ESPRESSO, VASP |
 | Epilogue | Coupled workflows across rows | Sequential / concurrent multiscale |
 
+## Lab act index (prologue's six acts)
+
+The [prologue](../prologue/00-many-scales.md#the-experiment-as-plot) maps the copper wire to **six lab acts** — laboratory time, not part number. Use this table when a chapter feels abstract: locate the act, then read the matching part opening's **Lab act** section.
+
+| Act | Lab event | Parts | What the book computes |
+|-----|-----------|-------|------------------------|
+| **I — Mounting** | Specimen gripped; load cell zeroed | Prologue, I | \(\mathbf{K}\mathbf{u}=\mathbf{f}\); bar elements |
+| **II — Warming** | Current on; air cools surface | III, IV, V | Heat PDE → FEM conduction; FVM convection |
+| **III — Pulling** | Grip displacement ramps (linear regime) | II, III, IV, VI | Weak forms; Galerkin; Cauchy stress |
+| **IV — Hardening** | Force–displacement curve bends | VII | DDD; Taylor hardening |
+| **V — Notch** | Stress concentration at scratch/corner | VI, VIII | Atomistic resolution; EAM calibration |
+| **VI — Foundation** | Parameters chosen before the test | IX → VIII → VII → IV | DFT → MD → DDD → FEM inputs |
+
+Mathematical reading order (Parts I–IX) and lab act order differ by design: Act VI is a **prequel** run offline; Acts II–III interleave analysis and discretization across Parts II–V.
+
 ## Narrative hinges (where to look if the story jumps)
 
 | If you feel a jump between… | Read first… |

@@ -12,6 +12,10 @@ Whether you arrived from Part IV (Door B) or completed Part V (Door A), you have
 
 The copper wire at this scale is still a cylinder: pulled in tension, heated by current, cooled by air you may or may not have resolved with FVM. Part VI supplies the continuum vocabulary those simulations approximate — and the admission that cold-drawn copper, notch roots, and yield surfaces cannot be understood from smooth elastic fields alone. That admission is the bridge to dislocations in Part VII.
 
+## Lab act (Pulling — Act III)
+
+The force–displacement trace is still climbing almost linearly. **Act III** is not only a FEM solve — it is a measurement: the load cell reports axial force; the extensometer reports stretch. This part names Cauchy stress and virtual work as the continuum objects those instruments approximate, before the curve bends into **Act IV**.
+
 ## The concept map
 
 | Question | Example in this part |

@@ -6,6 +6,10 @@ The copper wire that opened the prologue — drawn, annealed, carrying current, 
 
 Before descending to electrons, we already practiced coupling at the engineering scale: Part IV's FEM conduction and Part V's FVM convection exchange wall temperature and heat flux until the wire and the cooling air agree — conjugate heat transfer as a fixed-point loop between discretizations. The epilogue generalizes that handshake from two meshes on one specimen to DFT, MD, DDD, and continuum FEM on the same material history.
 
+## Scene: the full afternoon
+
+Return to the mechanics lab from the [prologue](../prologue/00-many-scales.md). The copper cylinder is still in the grips — perhaps unloaded now, perhaps still warm from the last current pulse. On the bench lie printouts from six acts: a spring-network \(\mathbf{K}\) from the first homework assignment; a converged FEM mesh; an FVM air-cooling plot; a DDD link-length histogram; a LAMMPS stress–strain curve from a notched supercell; a Quantum ESPRESSO log with converged \(C_{ij}\). No single executable produced them all. The epilogue is the moment the operator asks how a research team wires these outputs into one credible answer about the wire's lifetime.
+
 ## Story so far (Parts I–IX)
 
 If you have read linearly since the prologue, the copper wire has changed language nine times without changing material:

@@ -12,6 +12,10 @@ Part I ended with a limit: as the spring network refines, the copper wire's disp
 
 The wire at this scale is still one-dimensional for intuition: axial displacement \(u(x)\) under tension, temperature \(T(x)\) along its length when current flows. Part II supplies the room those fields live in — norms that measure elastic energy, inner products that define orthogonality of vibration modes, completeness so mesh refinement has a target to converge toward. Every FEM code in later parts is linear algebra inside \(H^1\); this part explains why that claim is honest.
 
+## Lab act (Pulling, prelude — Act III)
+
+The grip has not yet moved, but the analyst is already asking whether repeated mesh refinement settles on a definite displacement profile. **Act III** in the lab — the linear elastic pull — cannot be trusted until that limit lives in a named function space. This part supplies the room \(u(x)\) occupies before Galerkin FEM assigns it node values in Part IV.
+
 ## The concept map (ME 412)
 
 The [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) are organized as a concept map, not a proof stack. At every step, ask:

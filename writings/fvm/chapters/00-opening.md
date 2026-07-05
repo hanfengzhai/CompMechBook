@@ -12,6 +12,10 @@ Part IV meshed the copper wire as a solid: stiffness matrices from Galerkin asse
 
 Current heats the copper; air carries that heat away by convection. Inside the wire, conduction is elliptic and FEM-friendly. In the surrounding fluid, momentum and energy are **transported**, not minimized — mass and enthalpy move with the flow, boundary layers steepen near the hot surface, and at high Reynolds number vortices shed downstream. The strong form is still Navier–Stokes and the energy equation from Part III, but the discretization philosophy shifts from trial functions in \(H^1\) to **flux balance on control volumes**. Part V is where the wire meets the wind.
 
+## Lab act (Warming — Act II)
+
+The thermal camera shows a hot stripe on the wire; the operator's second window shows air moving past the cylinder. **Act II** continues in the fluid domain: FVM balances enthalpy flux on control volumes and exchanges Robin data with Part IV's solid mesh at the wire surface. Conjugate heat transfer is this act's handshake loop.
+
 ## The concept map
 
 | Question | Example in this part |

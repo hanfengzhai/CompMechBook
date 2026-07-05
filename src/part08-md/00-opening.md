@@ -16,6 +16,10 @@ What MD returns upward: cohesive energy, elastic constants, stacking-fault energ
 
 Part VII left dislocation **cores** as line singularities regularized by a cutoff radius. MD is where that cutoff becomes physical: a cylindrical or spherical volume enclosing the core, periodic or fixed boundaries, and forces from an EAM potential fit to copper's lattice parameter and cohesive energy. The representative volume is not arbitrary — it must be large enough that bulk elastic response dominates the boundary, yet small enough that a workstation or cluster can integrate millions of timesteps. That tension between fidelity and cost repeats at every scale in this book; MD is its first atomistic instance.
 
+## Lab act (Notch and calibration — Act V)
+
+Optional in the experiment, mandatory in the book: a scratched surface or sharp grip corner concentrates stress where elliptic PDEs fail. **Act V** resolves bond stretching and dislocation nucleation with atomistic resolution — and calibrates the EAM potentials that **Act VI** will trace to electrons.
+
 ## The concept map
 
 | Question | Example in this part |

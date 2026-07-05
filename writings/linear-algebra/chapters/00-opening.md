@@ -12,6 +12,10 @@ The prologue placed a cold-drawn copper wire under tension — heated by current
 
 At this first scale the wire is not yet a PDE or a mesh. It is a chain of coupled springs: each node carries a displacement, each bond contributes a stiffness entry, and tension at the grips becomes a load vector. Finite element assembly, molecular dynamics force evaluation, and Kohn–Sham orbital solves all reduce to the same pattern — \(\mathbf{K}\mathbf{u}=\mathbf{f}\) or its eigenvalue cousin. Part I makes that pattern explicit before Part II asks what happens when the number of springs grows without bound.
 
+## Lab act (Mounting — Act I)
+
+The operator grips the cold-drawn copper cylinder in wedge jaws and zeros the load cell. Before current or displacement, the first model on screen is discrete: a chain of bar elements, boundary conditions at the grips, a stiffness matrix waiting for assembly. This part is **Act I** of the [prologue's lab session](../prologue/00-many-scales.md#the-experiment-as-plot) — mounting the specimen in the language every later code shares.
+
 ## The concept map
 
 At every step in this part, ask the same four questions the [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) later formalize for infinite dimensions:

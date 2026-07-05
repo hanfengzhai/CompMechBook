@@ -14,6 +14,10 @@ At the engineering scale the wire still satisfies balance laws and virtual work;
 
 Recall the prologue's processing history: **drawing** through dies increases dislocation density and aligns grains; **annealing** lets vacancies diffuse and lines rearrange. Part VI's nonlinear plasticity preview fit phenomenological hardening parameters \(H\) and \(\sigma_{y0}\) without naming the forest that produces them. Part VII names the forest — and shows how dislocation dynamics turns cold-work history into exportable internal variables for crystal plasticity FEM.
 
+## Lab act (Hardening — Act IV)
+
+The force–displacement curve bends upward: more force for each increment of stretch. Cold drawing left a dislocation forest the continuum elastic modulus cannot see. **Act IV** is where mesoscale physics enters the lab narrative — Taylor hardening, link statistics, the export of \(\tau(\gamma)\) that makes nonlinear FEM honest.
+
 ## The concept map
 
 | Question | Example in this part |

@@ -12,6 +12,10 @@ Part II named the function spaces — \(L^2\) for field energy, \(H^1\) for weak
 
 The physics at this scale is still continuum: steady axial conduction along the bar, elastic equilibrium under uniaxial tension, transient heating when current switches on. Each scenario begins as a **strong form** — a PDE satisfied pointwise — and must be rewritten as a **weak form** testable on a mesh. Part III is where the wire's equations become computable statements in the Sobolev spaces Part II defined.
 
+## Lab act (Warming and pulling — Acts II–III)
+
+Current heats the wire; grip displacement will soon ramp. **Act II** (warming) demands steady heat conduction in the solid; **Act III** (pulling) demands equilibrium elasticity — both are PDEs before they are meshes. This part writes the weak forms that Parts IV and V will discretize with different philosophies on the same specimen.
+
 ## The concept map
 
 | Question | Example in this part |
