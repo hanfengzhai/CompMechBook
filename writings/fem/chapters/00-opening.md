@@ -44,6 +44,20 @@ If you have read linearly since the prologue, the same specimen has changed lang
 
 Part III ended with a promise: the weak form of equilibrium is a **minimum principle** (or saddle point for mixed problems), and the minimizer lives in \(H^1\). Part IV is where that promise becomes code — shape functions on elements, quadrature at Gauss points, scatter into a global stiffness matrix. The copper wire that was a spring network in Part I and a field in Part II is now a **meshed solid** whose node values are the discrete shadow of the continuous solution. Convergence as \(h\to 0\) is the story Part II told in function spaces, made numerical in Chapter 5.
 
+## Closing the arc from Part I
+
+If you have read linearly since the prologue, notice how the **same four questions** from the opening table reappear here with assembly vocabulary — and how the **same mathematical moves** from Part I return on every mesh:
+
+| Part I (springs on the wire) | Part IV (FEM on the wire) |
+|------------------------------|---------------------------|
+| Local spring stiffness → global \(\mathbf{K}\) | Element matrices → scatter into global \(\mathbf{K}\) |
+| \(\mathbf{K}\mathbf{u}=\mathbf{f}\) at equilibrium | Galerkin orthogonality: residual \(\perp V_h\) |
+| Bar elements along the wire axis | Shape functions \(N_i(x)\) on tetrahedra or hexes |
+| Eigenmodes for vibration | Modal analysis on the same assembled \(\mathbf{K}\) |
+| \(N\) degrees of freedom | \(h\)-refinement sends element size \(\to 0\) |
+
+Part I assembled \(\mathbf{K}\) from bar elements without naming the continuous limit; Part IV proves that assembly is **Galerkin projection** of the bilinear form Part III wrote — Céa's lemma is the finite-dimensional energy principle made rigorous. The copper wire that began as a chain of coupled springs is now a meshed solid, but the solver still calls the same sparse linear algebra from Part I. Part V will ask whether flux balance on cells is a better dialect for the air cooling this wire; Part VI will name the stress tensor hidden inside \(\mathbf{K}\).
+
 ## Bridge
 
 Part III ended with energy methods and the promise of assembly. The first chapter below introduces weighted residuals — the unifying idea behind Galerkin's method — and shows why choosing test functions as trial functions is the natural discretization of the weak form the copper wire's equilibrium demands.

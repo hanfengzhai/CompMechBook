@@ -46,6 +46,20 @@ The wire has been a spring network, a meshed solid, a stress field, a dislocatio
 
 MD closes the gap at **cores, grain boundaries, and fracture surfaces** — regions where Part VII's line singularities and Part VI's continuum fields need atomic resolution. The representative volume is the narrative device: we cannot simulate \(10^{23}\) atoms, so we simulate the smallest patch that still answers the upstream question (stacking-fault energy for DDD mobility, cohesive law for a notch). Part IX will derive the potential surface MD assumes; Part VIII shows how timesteps, thermostats, and LAMMPS workflows make that assumption computable.
 
+## Closing the arc from Part I
+
+If you have read linearly since the prologue, notice how the **same four questions** from the opening table reappear here with atomistic vocabulary — and how the **same mathematical moves** from Part I return at the finest classical scale:
+
+| Part I (springs on the wire) | Part VIII (atoms in the wire) |
+|------------------------------|-------------------------------|
+| State vector \(\mathbf{u}\in\mathbb{R}^N\) | Positions \(\{\mathbf{r}_i\}\in\mathbb{R}^{3N}\) |
+| Stiffness matrix \(\mathbf{K}\) | Hessian of interatomic potential \(\nabla^2 U\) |
+| \(\mathbf{K}\mathbf{u}=\mathbf{f}\) at equilibrium | \(\mathbf{F}_i=-\nabla_i U=0\) at minimum energy |
+| Timestep evolution (preview in dynamics) | Verlet/leapfrog integration of Newton's equations |
+| Limit \(N\to\infty\) sent us to Part II | Representative volume keeps \(N\) finite but meaningful |
+
+Part I's bar elements were a crude two-body spring network; Part VIII's EAM potential is a **refined** two- and many-body model whose parameters must be fit or derived. Every MD timestep still reduces to force evaluation and linear algebra inside the integrator — but the state now tracks nuclei, not continuum nodes. Part IX will derive the potential surface MD assumes; the epilogue will ask how to climb back up with moduli and cohesive energies computed here.
+
 ## Bridge
 
 Part VII ended with dislocation lines and the admission that atoms matter at cores and crack tips. The first chapter below puts those atoms back: phase space, Hamiltonian mechanics, and the interatomic potentials that define forces in every MD simulation of copper.

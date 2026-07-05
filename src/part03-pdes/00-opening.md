@@ -43,6 +43,20 @@ The mathematical foundations are now in place. The same copper wire has changed 
 
 Part II promised that mesh refinement has a **target** — a function \(u \in H^1(\Omega)\) — and that the stiffness matrix is a Galerkin projection of a bilinear form. Part III writes the **equations** those projections discretize: Poisson conduction along the wire, elastic equilibrium under tension, transient heating when current flows. Each begins as a strong form (pointwise PDE), fails at corners and concentrated loads, and is rewritten as a weak form testable on a mesh. Sobolev spaces supply the regularity theory; energy methods package existence as minimization — the last purely analytical chapter before FEM and FVM turn weak forms into code.
 
+## Closing the arc from Part I
+
+If you have read linearly since the prologue, notice how the **same four questions** from the opening table reappear here with PDE vocabulary — and how the **same mathematical moves** from Part I return before any mesh is drawn:
+
+| Part I (springs on the wire) | Part III (PDEs on the wire) |
+|------------------------------|-----------------------------|
+| \(\mathbf{K}\mathbf{u}=\mathbf{f}\) from force balance | \(-\nabla\cdot(k\nabla u)=f\) from flux balance |
+| Symmetric \(\mathbf{K}\) from energy \(\mathbf{u}^T\mathbf{K}\mathbf{u}\) | Symmetric bilinear form \(a(u,v)\) from strain energy |
+| Spurious modes when \(\mathbf{K}\) is ill-conditioned | Oscillatory FEM when weak form is wrong or \(h\) too large |
+| Assembly from local element matrices | Weak form from integration by parts on subdomains |
+| Limit \(N\to\infty\) needs a target space | Sobolev \(H^1\) is the target space |
+
+Part I taught equilibrium as minimizing quadratic energy; Part III makes that principle **continuous** — Lax–Milgram existence is the infinite-dimensional generalization of positive-definite \(\mathbf{K}\). The copper wire's heat equation and elastic equilibrium are the same story as \(\mathbf{K}\mathbf{u}=\mathbf{f}\), now written in the language of domains, boundaries, and test functions. Parts IV and V will discretize what Part III defines; Part VI will name the stress tensors those bilinear forms carry.
+
 ## Two paths ahead (preview)
 
 Part III ends with energy methods — the last purely analytical chapter before discretization. What follows is not a single road but a **fork in the narrative**, both leading to the same continuum floor in Part VI:

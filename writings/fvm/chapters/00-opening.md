@@ -56,6 +56,20 @@ No single matrix assembles both sides. A **fixed-point or monolithic coupling lo
 
 Chapter 4 closes the loop on the wire: Joule heating in the solid, convection in the air, and the SIMPLE-type pressure–velocity coupling that makes incompressible CFD tractable.
 
+## Closing the arc from Part I
+
+If you have read linearly since the prologue, notice how the **same four questions** from the opening table reappear here with conservation vocabulary — and how the **same mathematical moves** from Part I return in a different discretization dialect:
+
+| Part I (springs on the wire) | Part V (FVM on the air around the wire) |
+|------------------------------|----------------------------------------|
+| Local coupling in sparse \(\mathbf{K}\) | Local flux balance across cell faces |
+| \(\mathbf{K}\mathbf{u}=\mathbf{f}\) at equilibrium | \(\mathbf{A}\mathbf{U}=\mathbf{b}\) from semi-discrete conservation |
+| Spurious modes when coupling is wrong | Numerical diffusion and shock smearing when fluxes are wrong |
+| Assembly from element contributions | Reconstruction from cell averages to face values |
+| Eigenvalues set stability of explicit updates | CFL condition ties timestep to mesh and wave speed |
+
+Part IV minimized energy with trial functions; Part V **balances fluxes** on control volumes — the hyperbolic and parabolic cousin of Part I's equilibrium system. The copper wire's Joule heating still lives in Part IV's mesh, but the cooling air is Part V's domain: two discretizations, one conjugate heat-transfer loop. Part VI will unify the stress and flux tensors both approximate before we descend to dislocations and atoms.
+
 ## Bridge
 
 Part IV assembled stiffness matrices from shape functions. Part V begins with a different question: given a conservation law in integral form, how do we balance fluxes across cell faces so that discrete solutions respect the same invariants the continuous PDE preserves?

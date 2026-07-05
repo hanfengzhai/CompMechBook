@@ -68,6 +68,20 @@ The prologue introduced the copper wire as a **ladder of scales** — continuum,
 
 Part I ended with a question Part II must answer: if every mesh gives a matrix \(\mathbf{K}_N\), what object does \(\mathbf{K}_N\) approximate as \(N\) grows? The answer is not "a bigger matrix" — it is an **operator** on a space of functions. Part II builds that space, names the norms that measure elastic energy, and proves that Galerkin FEM is honest projection rather than ad hoc linear algebra.
 
+## Closing the arc from Part I
+
+If you have read linearly since the prologue, notice how the **same four questions** from the opening table reappear here with infinite-dimensional vocabulary — and how the **same mathematical moves** from Part I survive the limit \(N\to\infty\):
+
+| Part I (springs on the wire) | Part II (fields on the wire) |
+|------------------------------|------------------------------|
+| State vector \(\mathbf{u}\in\mathbb{R}^N\) | Displacement field \(u(x)\in H^1\) |
+| Stiffness matrix \(\mathbf{K}\) | Stiffness operator \(a(u,v)=\int k u' v'\,dx\) |
+| Energy \(\tfrac{1}{2}\mathbf{u}^T\mathbf{K}\mathbf{u}\) | Strain energy \(\tfrac{1}{2}a(u,u)\) |
+| Eigenmodes decouple vibration | Spectral theorem on compact operators |
+| Mesh refinement sends \(N\to\infty\) | Cauchy sequences converge in \(H^1\) (completeness) |
+
+The spring network did not disappear — it became a **Galerkin projection** onto finite subspaces of \(H^1\). Part II is where the ME 412 concept map earns its name: we add a norm (energy), close the holes (Banach/Hilbert completeness), add angles (inner products), and prove that the discrete \(\mathbf{K}_N\) from Part I is not magic but best approximation in energy norm. Every FEM chapter in Parts III–IV rests on this claim.
+
 ## Bridge
 
 Part I ended with a promise: as the mesh refines, the copper wire's displacement and temperature fields live in infinite-dimensional spaces, not in \(\mathbb{R}^N\) for any fixed \(N\). The first chapter below makes that promise precise — why weak forms appear, why classical smoothness fails at corners, and why the stiffness matrix is a Galerkin projection rather than an arbitrary sparse array.
