@@ -20,6 +20,8 @@ Tetrahedra march along the cylinder. Temperature contours ring the hot waist; no
 
 On screen, the operator sees a meshed solid: temperature contours from Joule heating, nodal displacements as the load cell still reads a nearly linear force. **Acts II and III** share the same FEM mesh philosophy — trial functions on elements, scatter into \(\mathbf{K}\) — even when one field is thermal and the other is mechanical.
 
+Part III, Chapter 2 already derived the steady heat weak form with Joule source \(\dot{q}_{\text{Joule}}\) and Robin cooling to the air. Part IV assembles that thermal system on the wire mesh while Part V balances enthalpy flux in the surrounding fluid — **conjugate heat transfer** is Act II told in two discretizations on one specimen. When the grip displacement ramps in Act III, mechanical DOFs join the same mesh through thermoelastic coupling (Chapter 4): temperature from Act II enters equilibrium via thermal strain before the load cell curve bends into the hardening regime of Act IV.
+
 ## The concept map
 
 | Question | Example in this part |
