@@ -79,6 +79,25 @@ Mathematical reading order (Parts I–IX) and lab act order differ by design: Ac
 
 Every numbered chapter also ends with its own **Bridge** section — the primary narrative hinge within a part.
 
+## Key concepts (cross-scale vocabulary)
+
+| Term | One-line meaning | Where it enters the story |
+|------|------------------|---------------------------|
+| **Weak form** | Integral balance after integrating by parts; test functions carry derivatives | Part III → IV (Galerkin), VI (virtual work), IX (Hohenberg–Kohn) |
+| **Galerkin projection** | Residual orthogonal to trial space; FEM assembly | Part II (best approximation), IV |
+| **Coercivity / SPD** | Energy norm controls norm; unique equilibrium | Part I (\(\mathbf{K}\) SPD), II–III (Lax–Milgram) |
+| **Born–Oppenheimer** | Electrons adiabatically follow nuclei; justifies classical MD | Part VIII assumption; Part IX derivation |
+| **Kohn–Sham** | Auxiliary non-interacting electrons reproduce density; SCF loop | Part IX |
+| **Frank–Read source** | Pinned segment bows out and doubles dislocation loops | Part VII hardening |
+| **Taylor hardening** | Flow stress \(\tau \propto \sqrt{\rho}\) from forest obstacles | Part VII → VI plasticity |
+| **Link statistics** | Distribution of dislocation segment lengths between junctions | Part VII; beyond scalar \(\rho\) |
+| **Peach–Köhler force** | Driving force on a dislocation segment from stress | Part VII DDD |
+| **Voigt / Reuss bounds** | Upper/lower polycrystal moduli from single-crystal \(C_{ij}\) | Part IX export → Part VI |
+| **Irving–Kirkwood stress** | Atomistic virial formula for Cauchy stress | Part VIII → VI/FEM handoff |
+| **Conjugate heat transfer (CHT)** | Coupled solid conduction and fluid convection at a wall | Part IV + V; Epilogue |
+| **Sequential homogenization** | Fine-scale properties passed upward as constants | Epilogue; DFT → MD → DDD → FEM |
+| **Concurrent multiscale** | Fine and coarse models run together (QM/MM, FE²) | Epilogue |
+
 ## Abbreviations
 
 | Term | Meaning | First major appearance |
@@ -94,6 +113,9 @@ Every numbered chapter also ends with its own **Bridge** section — the primary
 | EAM | Embedded atom method | Part VIII |
 | PBC | Periodic boundary conditions | Part VIII |
 | CHT | Conjugate heat transfer | Part V.4, Epilogue |
+| KS | Kohn–Sham (DFT) | Part IX |
+| BO | Born–Oppenheimer | Part IX.1, VIII |
+| RVE | Representative volume element | Epilogue; Part VI homogenization |
 
 ## Canonical sources
 

@@ -100,7 +100,23 @@ Computational mechanics is one conversation about **representation** — how we 
 
 Modern multiscale work combines paradigms. None replaces the others; each manages cost and accuracy differently.
 
-### Sequential homogenization
+### Worked example: tracing Young's modulus from DFT to the tensile frame
+
+The copper wire in the grips does not know whether its Young's modulus \(E\) came from a handbook, a tension test, or a DFT cell. A disciplined multiscale workflow makes the pedigree **explicit** — the same habit as cutoff convergence in Part IX or mesh refinement in Part IV. Follow one number from electrons to the load cell.
+
+**Step 1 — DFT bulk (Part IX).** A relaxed fcc supercell with converged `ecutwfc` and k-mesh yields elastic constants \(C_{11} \approx 170\) GPa, \(C_{12} \approx 120\) GPa, \(C_{44} \approx 75\) GPa at 0 K with PBE (typical bracket; archive the exact values and functional). Voigt and Reuss bounds on polycrystal moduli give \(E_{\text{Voigt}} \approx 130\) GPa and \(E_{\text{Reuss}} \approx 110\) GPa — a **range**, not a single handbook entry.
+
+**Step 2 — MD cross-check (Part VIII).** An EAM potential fitted to the same DFT cohesive energy and \(a_0\) is equilibrated in NPT at 300 K. Small uniaxial strains in NPT give \(C_{ij}\) at finite temperature; Voigt \(E\) typically sits between the DFT bounds and may differ by a few percent from room-temperature experiment because of anharmonicity and functional error. Document the potential file hash and the strain protocol.
+
+**Step 3 — Texture and processing (Parts VII–VI).** Cold-drawn wire is not isotropic polycrystal. Crystal plasticity or DDD-informed texture models rotate the stiffness tensor; drawn copper can show \(E\) along the wire axis measurably above the isotropic average. A phenomenological \(E = 120\) GPa in an Abaqus deck is an **effective** number — it may match experiment while hiding texture and residual stress.
+
+**Step 4 — FEM tensile test (Parts IV–VI).** A 1D bar model with \(E\) from Step 3 and the measured cross-section predicts end displacement under grip load. Compare to the load cell: agreement validates the **structural** model, not necessarily the DFT functional. Disagreement sends you down the ladder — wrong texture, wrong anneal history, or wrong temperature in Step 2.
+
+**Step 5 — Audit trail.** A credible project README lists: DFT commit, pseudopotential, converged cutoffs; EAM source; MD input deck; texture model or assumption; FEM mesh and \(E\) with units. The epilogue's coupling paradigms are not abstract when one modulus carries five provenance links.
+
+This chain is **sequential homogenization** in miniature. It also shows where sequential homogenization fails: cold-worked hardening is not in bulk DFT \(C_{ij}\); it lives in dislocation density and link statistics (Part VII). A wire model that imports only Step 1–2 moduli and skips Step 3 history predicts elastic response but not the bend in the force–displacement curve — the signal to invoke Act IV of the prologue and descend to DDD.
+
+## Sequential homogenization
 
 **Sequential homogenization** computes effective properties at fine scale and passes **constants upward**:
 
