@@ -56,6 +56,21 @@ flowchart TB
 
 **Baby picture:** each part solved one rung of the ladder; multiscale mechanics wires the rungs together with the same four questions the prologue asked — now at **interfaces** between codes, not only within a single mesh.
 
+## Lab act reunion: one afternoon, six acts
+
+The [prologue](../prologue/00-many-scales.md#the-experiment-as-plot) mapped one lab session to six acts — mounting, warming, pulling, hardening, notch, foundation. The epilogue reunites them:
+
+| Act | Lab beat | Book parts | Coupling habit |
+|-----|----------|------------|----------------|
+| I — Mounting | Grips close; first \(\mathbf{K}\mathbf{u}=\mathbf{f}\) | I | Boundary conditions export to every mesh |
+| II — Warming | Current on; thermocouple rises | III, IV, V | Conjugate heat: FEM solid ↔ FVM fluid |
+| III — Pulling | Force–displacement ramp | II, III, IV, VI | Weak form → assembly → stress interpretation |
+| IV — Hardening | Curve bends upward | VII | DDD / Taylor hardening → crystal plasticity FEM |
+| V — Notch | Stress concentrator | VI, VIII | Continuum locates; MD resolves |
+| VI — Foundation | Input deck parameters | IX → VIII → VII → IV | DFT → MD → DDD → FEM pedigree |
+
+No single executable runs all six acts unattended. Disciplined teams wire them with the same handshake the conjugate heat section practiced: consistent units, documented exports, and outer loops that converge at interfaces — not only inside each solver.
+
 ## The same question at every scale
 
 At each rung of the ladder, we asked:

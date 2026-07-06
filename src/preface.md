@@ -51,6 +51,19 @@ The book is one continuous story, but not every reader enters at the same rung:
 
 On every path, read the **Bridge** at the end of the prior chapter when a jump feels abrupt. Part openings add **Story so far** recaps and **concept map** tables (object → structure → theorem → failure mode) following the [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) layout. Part closings add **concept map checkpoints** that summarize what the part exported to the next scale.
 
+## Reading rhythm
+
+Each chapter uses a deliberate rhythm so the book reads as one continuous story rather than a stack of lecture notes:
+
+| Section | Role | Where it appears |
+|---------|------|------------------|
+| **Scene** | Places the mathematics in the lab — grips tightening, current switching on, a notch concentrating stress | Numbered chapters (not part openings) |
+| **Lab act** | Links the part to one act of the [six-act lab session](prologue/00-many-scales.md#the-experiment-as-plot) | Part openings I–IX and epilogue reunion |
+| **Concept map** | Four questions: object, structure, theorem, failure mode | Part openings; epilogue closing lens |
+| **Bridge** | States why the next chapter exists — the narrative hinge | End of every numbered chapter, part opening, preface, prologue, epilogue |
+
+When abstraction rises, read in this order: **Lab act** (which experiment am I in?) → **Scene** (what is the operator watching?) → **Concept map** (what structure makes the theorem possible?) → **Bridge** (why turn the page?).
+
 ## The copper wire through the book
 
 The same specimen — a cold-drawn copper wire under tension, heated by current, cooled by air — reappears in every part. The table below is a reading map: what changes is the **state variable**, not the material.

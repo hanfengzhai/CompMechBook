@@ -45,6 +45,10 @@ The climb upward is complete for the **continuum floor**. Every rung below Part 
 
 Part VI admitted that cold-drawn copper work-hardens and that notch roots break smooth-field assumptions — but it could not **simulate** the dislocation forest that drawing created. Phenomenological plasticity fits curves; dislocation dynamics **generates** the curves from line motion. The prologue's processing history (draw, anneal, load) now gets a mesoscale narrator: Burgers vectors, Peach–Köhler forces, Taylor \(\sqrt{\rho}\) hardening. Parts VIII–IX will ask where mobility and stacking-fault energy come from; Part VII asks how plasticity **moves** before we shrink to atoms and electrons.
 
+## Lab act: IV — Hardening
+
+**Act IV** is the moment the force–displacement curve bends upward — more force for each increment of stretch. Cold drawing left a dislocation forest in the wire before the test began; Part VII is where that **history** becomes visible in the simulation. When Taylor hardening or DDD time integration feels abstract, return to the load cell: the bend is not a magic constant in a yield surface; it is collective line motion the chapters below make computable.
+
 ## Bridge
 
 Part VI closed with variational elasticity: energy minimization and virtual work for smooth fields. The drawn copper wire violates that smoothness at the mesoscale — dislocation lines, grain boundaries, and vacancy clusters are the mechanisms behind yield and work hardening. The next chapter names those structures; the one after simulates their motion.
