@@ -12,6 +12,10 @@ Whether you arrived from Part IV (Door B) or completed Part V (Door A), you have
 
 The copper wire at this scale is still a cylinder: pulled in tension, heated by current, cooled by air you may or may not have resolved with FVM. Part VI supplies the continuum vocabulary those simulations approximate — and the admission that cold-drawn copper, notch roots, and yield surfaces cannot be understood from smooth elastic fields alone. That admission is the bridge to dislocations in Part VII.
 
+## Scene: the load cell still reads linear
+
+Grip displacement inches upward; the force–displacement trace climbs almost straight. Part VI names what the instruments measure: Cauchy stress integrated over the cross-section, strain as the symmetric part of the deformation gradient, virtual work as the inner product between trial stress and admissible strain rate. The mesh from Part IV computed \(\mathbf{u}\); this part explains **why** that displacement minimizes elastic energy until yield interrupts the story.
+
 ## Lab act (Pulling — Act III)
 
 The force–displacement trace is still climbing almost linearly. **Act III** is not only a FEM solve — it is a measurement: the load cell reports axial force; the extensometer reports stretch. This part names Cauchy stress and virtual work as the continuum objects those instruments approximate, before the curve bends into **Act IV**.

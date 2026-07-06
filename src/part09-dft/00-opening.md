@@ -12,6 +12,10 @@ Part VIII ended with nuclei vibrating on an interatomic potential — EAM parame
 
 The copper wire at the electronic scale is not a chain of balls on springs. It is a periodic crystal of nuclei immersed in a sea of valence electrons whose density \(\rho(\mathbf{r})\) determines how strongly the lattice resists drawing, how easily dislocations slip, and how vacancies cost energy. DFT resolves that density; every number exported upward — \(E_{\text{coh}}\), \(C_{ij}\), \(\gamma_{\text{sf}}\) — is a contract between Part IX and Parts VI–VIII.
 
+## Scene: the input deck before the test
+
+The wire on the bench never saw this scene: a research laptop running Quantum ESPRESSO on a four-atom fcc cell, pseudopotentials and k-meshes converging to \(C_{ij}\) and cohesive energy. Those numbers travel **upward** — into MD potentials, DDD mobilities, FEM input decks — long before the operator mounts the specimen. Part IX makes that offline pedigree explicit: electrons first, structure second, the engineering scale last.
+
 ## Lab act (Foundation — Act VI)
 
 Before any simulation ran, someone typed elastic constants into an input deck. **Act VI** is the prequel every practitioner runs offline: DFT on a small fcc cell supplies cohesive energy, elastic tensors, and defect formation enthalpies that climb the ladder into MD, DDD, and FEM. This part makes that pedigree explicit.

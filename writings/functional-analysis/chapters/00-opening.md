@@ -12,6 +12,10 @@ Part I ended with a limit: as the spring network refines, the copper wire's disp
 
 The wire at this scale is still one-dimensional for intuition: axial displacement \(u(x)\) under tension, temperature \(T(x)\) along its length when current flows. Part II supplies the room those fields live in — norms that measure elastic energy, inner products that define orthogonality of vibration modes, completeness so mesh refinement has a target to converge toward. Every FEM code in later parts is linear algebra inside \(H^1\); this part explains why that claim is honest.
 
+## Scene: the refinement loop
+
+On a second monitor, overlay plots from three spring networks — coarse, medium, fine — show displacement along the wire axis approaching a smooth profile. Each solve returns a different \(\mathbf{u}_N\), yet the curves agree where the mesh is dense. The analyst's question is not whether the matrix solved; it is whether the family has a **limit**. Part II names that limit as a function in \(H^1\) and supplies the energy norm that makes "closer" mean something as \(h \to 0\).
+
 ## Lab act (Pulling, prelude — Act III)
 
 The grip has not yet moved, but the analyst is already asking whether repeated mesh refinement settles on a definite displacement profile. **Act III** in the lab — the linear elastic pull — cannot be trusted until that limit lives in a named function space. This part supplies the room \(u(x)\) occupies before Galerkin FEM assigns it node values in Part IV.

@@ -10,7 +10,7 @@ Read in order for the full narrative. Each row is one chapter; **Bridge** sectio
 |---|---------|----------------------------|
 | — | [Preface](../preface.md) | Why one book; copper-wire reading map |
 | — | [Prologue](../prologue/00-many-scales.md) | Same copper wire at every scale; the ladder; **Scene** on the bench |
-| I.0 | [Linear algebra opening](../part01-linear-algebra/00-opening.md) | Finite-dimensional grammar shared by all codes |
+| I.0 | [Linear algebra opening](../part01-linear-algebra/00-opening.md) | Finite-dimensional grammar; **Scene** at the grips |
 | I.1 | [Vectors and matrices](../part01-linear-algebra/01-vectors-matrices.md) | \(\mathbf{K}\mathbf{u}=\mathbf{f}\) on the wire as springs |
 | I.2 | [Linear maps](../part01-linear-algebra/02-linear-maps.md) | Bases, change of coordinates, stiffness assembly |
 | I.3 | [Eigenvalues](../part01-linear-algebra/03-eigenvalues.md) | Vibration modes that decouple complexity |
