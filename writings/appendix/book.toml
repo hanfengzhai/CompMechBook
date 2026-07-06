@@ -1,0 +1,13 @@
+[book]
+title = "Appendix Notes"
+authors = ["Hanfeng Zhai"]
+description = "Glossary and sources for CompMechBook — cross-scale index and chapter roadmap."
+language = "en"
+multilingual = false
+src = "chapters"
+
+[build]
+create-missing = false
+
+[output.html]
+mathjax-support = true
