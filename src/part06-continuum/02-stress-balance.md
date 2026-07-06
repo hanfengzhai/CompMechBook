@@ -37,6 +37,20 @@ Take the cold-drawn copper wire under tension \(T\), carrying current \(I\) and 
 
 None of these three problems is independent. Temperature shifts \(E\) and yield stress; tension shifts electrical resistance and Joule heating. Multiphysics is not a software feature — it is the same balance laws with coupled constitutive closures.
 
+### Worked example: orders of magnitude on the wire
+
+Fix numbers so the three balances can be read on one napkin. A \(L = 0.1\,\text{m}\) gauge length, \(d = 1\,\text{mm}\) diameter copper wire carries \(I = 5\,\text{A}\) and is pulled to \(\sigma_{xx} = 100\,\text{MPa}\) at room temperature (\(E \approx 120\,\text{GPa}\), \(\nu \approx 0.34\), \(\kappa \approx 400\,\text{W/(m·K)}\), \(\alpha \approx 17\times 10^{-6}\,\text{K}^{-1}\)).
+
+| Balance | Governing relation | Order-of-magnitude estimate |
+|---------|-------------------|----------------------------|
+| Mechanical | \(\sigma_{xx} = T/A\) | \(T = \sigma A \approx 100\,\text{MPa} \times \pi(d/2)^2 \approx 78\,\text{N}\) |
+| Elastic strain | \(\varepsilon_{xx} = \sigma/E\) | \(\varepsilon \approx 8\times 10^{-4}\) — matches Part IV's three-node bar |
+| Joule heat | \(\dot{q} = \rho_e (I/A)^2\) | \(\dot{q} \sim 10^8\,\text{W/m}^3\); mid-span \(\Delta T \sim \dot{q} L^2/\kappa \sim 10\text{–}40\,\text{K}\) |
+| Thermal stress (fixed ends) | \(\sigma_{\text{th}} \sim E\alpha\Delta T\) | \(\sigma_{\text{th}} \sim 10\,\text{MPa}\) — comparable to 10% of the tensile load |
+| Air cooling (Part V) | \(q'' = h(T_s - T_\infty)\) | Robin BC couples FVM fluid enthalpy to solid surface temperature |
+
+The table is not a substitute for a coupled solve — it shows **why** the prologue's six lab acts interleave. Act II (warming) shifts the baseline stress before Act III (pulling) ramps displacement; Act V (notch) concentrates the combined mechanical and thermal fields at a defect. Continuum mechanics names the tensors both FEM and FVM approximate; it does not choose one discretization over the other.
+
 ## Cauchy stress and traction
 
 **Cauchy stress** \(\boldsymbol{\sigma}(\mathbf{x}, t)\) is a symmetric second-order tensor mapping surface normals to traction vectors:

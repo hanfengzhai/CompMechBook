@@ -64,6 +64,17 @@ where \(\phi\) is a pairwise repulsion, \(\rho_j\) is an electron-density contri
 
 Potentials such as **Mishin et al.** EAM for Cu are fitted to DFT energies, lattice constants, elastic constants, and vacancy formation energies. A wire simulation's credibility begins with which potential file sits in the input deck.
 
+### Worked example: Mishin Cu at 300 K
+
+A minimal sanity check before any production run:
+
+1. **Lattice constant.** Minimize energy of a 4×4×4 fcc supercell at 0 K. Mishin Cu gives \(a_0 \approx 3.615\,\text{Å}\), matching experiment and DFT (Part IX).
+2. **Cohesive energy.** Per-atom energy at \(a_0\) is \(\approx -3.5\,\text{eV/atom}\) — the scale of bond breaking referenced in the epilogue's multiscale ladder.
+3. **Elastic constants.** Small strains \(\pm 0.1\%\) on the cell give \(C_{11}, C_{12}, C_{44}\) via stress–strain response; compare to Part IX DFT and Part VI continuum \(\mathbb{C}\).
+4. **Vacancy formation.** Remove one atom, relax, compare \(E_f^v = E_{\text{vac}} - E_{\text{bulk}} + \mu\) to DFT (\(\sim 1.3\,\text{eV}\) for Cu) — the defect thermodynamics Part VII exports upward.
+
+If Step 4 fails by 50%, the same potential should not be trusted for notch-tip fracture in the **Scene** above. MD inherits DFT's calibration burden; it does not escape it.
+
 ### Machine-learned potentials
 
 **ML interatomic potentials** train on DFT datasets of energies and forces for diverse configurations (bulk, surfaces, defects, liquids). They aim for near-DFT accuracy at MD cost. For copper fracture — where bond breaking at crack tips matters — ML potentials increasingly replace fixed functional forms, at the price of careful validation outside the training manifold.

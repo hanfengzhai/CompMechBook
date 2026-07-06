@@ -147,6 +147,46 @@ where \(\alpha\) is the coefficient of thermal expansion and \(\Delta T = T - T_
 
 Each step uses the same assembly infrastructure. The copper wire carrying current heats up, expands, and changes stress — three physics, one discretization philosophy.
 
+### Worked example: thermoelastic sag on the same mesh
+
+Return to the prologue's **Act II — Warming**: current \(I = 5\,\text{A}\) through a \(1\,\text{mm}\) diameter copper wire (\(\rho_e \approx 1.7\times 10^{-8}\,\Omega\cdot\text{m}\)). Steady Joule heating per unit volume is \(\dot{q} = \rho_e J^2\) with \(J = I/A \approx 6.4\times 10^6\,\text{A/m}^2\), giving \(\dot{q} \approx 7\times 10^8\,\text{W/m}^3\) — hot enough that the centerline runs tens of degrees above the air-cooled surface.
+
+**Step 1 — scalar Poisson on the 1D axis.** Discretize \(-k T'' = \dot{q}\) with \(k \approx 400\,\text{W/(m·K)}\), fixed \(T = 300\,\text{K}\) at both grips (Dirichlet stand-in for clamped cold ends), ten P1 bar elements. Assembly is identical to Chapter 2 with conductivity replacing \(EA\). The solution profile is parabolic: \(T_{\max}\) at mid-span, \(\Delta T = T_{\max} - 300\,\text{K}\).
+
+**Step 2 — mechanical solve with thermal eigenstrain.** With \(\alpha \approx 17\times 10^{-6}\,\text{K}^{-1}\) and no external mechanical load (\(\mathbf{f}=\mathbf{0}\), free expansion except at fixed grips), the weak form seeks \(\mathbf{u}\) such that
+
+\[
+\int_0^L EA\, u'\, v'\, dx = \int_0^L EA\, \alpha \Delta T(x)\, v'\, dx,
+\]
+
+where \(\Delta T(x) = T(x) - 300\,\text{K}\) is the temperature field from Step 1. The right-hand side is a **thermal load vector** assembled from the same shape functions — no new element routine, only a different source term at each quadrature point.
+
+**Step 3 — read the numbers.** If \(\Delta T_{\max} \approx 40\,\text{K}\) at mid-span, free thermal strain would be \(\alpha \Delta T \approx 7\times 10^{-4}\). With both ends fixed, the wire develops compressive axial stress \(\sigma_{\text{th}} \approx -E\alpha \Delta T_{\text{avg}} \approx -10\,\text{MPa}\) in order of magnitude — small compared to the GPa-scale tensile stress in **Act III**, but large enough to shift the load cell baseline before the grip displacement ramp begins. That is why multiphysics codes alternate or monolithically couple the two solves: the same mesh, two fields, one assembly loop.
+
+This three-step workflow is the discrete version of Part VI's coupled balance laws. When the analyst later turns to **Act III** and applies tensile load, the total stress is superposed: mechanical \(\boldsymbol{\sigma}_{\text{mech}}\) from grip displacement plus the thermal prestress from Act II. Skipping Step 2 and wondering why the initial load cell reading drifted is a common debugging story in coupled thermoelasticity.
+
+## The strain–displacement matrix in 2D and 3D
+
+On a single element, the discrete strain at a quadrature point is
+
+\[
+\boldsymbol{\varepsilon}_h = \mathbf{B}\,\mathbf{U}_e,
+\]
+
+where \(\mathbf{U}_e\) stacks nodal displacement components for that element and \(\mathbf{B}\) encodes \(\partial N_a / \partial x_j\). For 2D plane strain with three nodes and six DOFs,
+
+\[
+\mathbf{B} = \begin{bmatrix}
+\partial N_1/\partial x & 0 & \partial N_2/\partial x & 0 & \partial N_3/\partial x & 0 \\
+0 & \partial N_1/\partial y & 0 & \partial N_2/\partial y & 0 & \partial N_3/\partial y \\
+\partial N_1/\partial y & \partial N_1/\partial x & \partial N_2/\partial y & \partial N_2/\partial x & \partial N_3/\partial y & \partial N_3/\partial x
+\end{bmatrix}.
+\]
+
+Each row enforces one strain component; the third row couples \(x\) and \(y\) derivatives for shear. For P1 triangles, \(\mathbf{B}\) is **constant** on the element — the same simplification that made Poisson's local stiffness computable in closed form (Chapter 2). For 3D hex elements with trilinear shapes, \(\mathbf{B}\) varies with \(\xi\) at each Gauss point; the assembly loop is unchanged, only the quadrature loop grows.
+
+The block structure of the global \(\mathbf{K}\) mirrors Part I's coupled spring network: node \(a\) couples to node \(b\) through a \(d\times d\) block when they share an element. Sparsity is still dictated by mesh connectivity — the graph from Chapter 2, now with vector-valued DOFs.
+
 ## Body forces and initial stress
 
 Gravity enters as \(\mathbf{f} = \rho \mathbf{g}\). Centrifugal loads in rotating machinery appear as body forces in a co-rotating frame. **Initial stress** fields (residual stress from manufacturing) enter the weak form as an additional term:
