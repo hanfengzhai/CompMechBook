@@ -10,6 +10,49 @@ The chapters that follow are written to be read in order, like a novel with a pl
 
 You are holding this book, not yet at the bench where the copper wire waits — but the wire is already implied. Every chapter ahead will return to the same cold-drawn cylinder: gripped, heated, pulled, work-hardened, perhaps notched, always the same lot number on the label. The mathematics will change language — vectors, then fields, then fluxes, then Burgers vectors, then atomic positions, then electron density — but the specimen does not swap out mid-story. Read the preface for the map; read the [prologue](prologue/00-many-scales.md) for the wide shot of the lab; then turn to Part I when you are ready for the first stiffness matrix. If a chapter feels abstract, search for **Scene** — that section names the laboratory moment the algebra is pretending to be.
 
+## Plot spine: how the story is told
+
+Each part follows the **Functional Analysis Notes** (ME 412) layout — numbered chapters, concept maps at openings, checkpoints at closings — but the book adds narrative devices so the arc reads as one continuous text rather than a syllabus:
+
+| Device | Role | Where it appears |
+|--------|------|------------------|
+| **Scene** | Return to the copper wire in concrete laboratory detail | Preface, prologue, every part opening, every numbered chapter, epilogue |
+| **Lab act** | Tie the chapter to one act of the prologue's six-act lab session | Every part opening; reunited in the epilogue |
+| **Bridge** | State why the next chapter must exist | End of preface, every part opening, every numbered chapter |
+| **Concept map** | Object → structure → theorem → failure mode | Part openings; part-closing checkpoints; epilogue |
+
+The dramatic arc is not a surprise twist — it is **scale change with the same specimen**:
+
+```mermaid
+flowchart LR
+  subgraph act1["Act I: Grammar"]
+    A1[Vectors and matrices]
+    A2[Function spaces]
+    A3[Weak PDEs]
+  end
+  subgraph act2["Act II: Discretization"]
+    B1[FEM mesh]
+    B2[FVM fluxes]
+    B3[Continuum fields]
+  end
+  subgraph act3["Act III: Descent"]
+    C1[Dislocation forest]
+    C2[Atomic lattice]
+    C3[Electron density]
+  end
+  subgraph act4["Act IV: Coupling"]
+    D1[Multiscale workflows]
+  end
+  A1 --> A2 --> A3 --> B1
+  A3 --> B2
+  B1 --> B3
+  B2 --> B3
+  B3 --> C1 --> C2 --> C3 --> D1
+  D1 -.->|four questions| A1
+```
+
+**Act I** teaches the language (Parts I–III). **Act II** makes PDEs computable on meshes and control volumes (Parts IV–VI). **Act III** asks where continuum parameters hide their history (Parts VII–IX). **Act IV** wires the rungs together (epilogue). When a transition feels abrupt, read the **Bridge** at the end of the prior chapter — it is the narrative hinge the plot spine assumes you will use.
+
 ## How this book is organized
 
 The structure follows the arc of the author's personal notes — linear algebra and functional analysis as foundations, partial differential equations and weak forms as the bridge to discretization, finite elements and finite volumes as the two great discretization philosophies for solids and fluids, and atomistic and electronic methods as the descent to finer scales. Each part opening adds a **Scene** (laboratory moment), **Lab act** (which act of the prologue experiment), and a **Bridge** at the end of each numbered chapter that explains why the next scale is necessary.
@@ -57,15 +100,16 @@ On every path, read the **Bridge** at the end of the prior chapter when a jump f
 
 ## Reading rhythm
 
-The book alternates three voices on purpose — not to interrupt the math, but to keep the plot visible while the definitions accumulate:
+The book alternates four voices on purpose — not to interrupt the math, but to keep the plot visible while the definitions accumulate:
 
 | Voice | Where it appears | What it does |
 |-------|------------------|--------------|
-| **Scene** | Prologue, every part opening, every numbered chapter, epilogue | Returns to the copper wire in the lab at the scale of the current chapter |
+| **Scene** | Preface, prologue, every part opening, every numbered chapter, epilogue | Returns to the copper wire in the lab at the scale of the current chapter |
+| **Lab act** | Every part opening; epilogue reunion table | Names which act of the prologue experiment the current part performs |
 | **Concept map** | Part openings; part-closing chapters; epilogue | Asks object → structure → theorem → failure mode (ME 412 habit) |
 | **Bridge** | End of preface, every part opening, every numbered chapter | States why the next chapter exists before you turn the page |
 
-Read **Scene** when the notation feels bloodless; read **Bridge** when the next chapter's title looks like a non sequitur; read the **concept map** when you want one table that summarizes an entire part. The numbered sections in between carry the definitions, theorems, and worked examples drawn from the author's [Writings](https://hanfengzhai.github.io) notes — linear algebra through DFT — rewritten as one continuous narrative rather than a course catalog.
+Read **Scene** when the notation feels bloodless; read **Lab act** when you lose track of laboratory time versus part number; read **Bridge** when the next chapter's title looks like a non sequitur; read the **concept map** when you want one table that summarizes an entire part. Part I adds **Forward arc** and every later part opening adds **Closing the arc from Part I** — bookends that trace the same four moves from springs to fields to fluxes to atoms. The numbered sections in between carry the definitions, theorems, and worked examples drawn from the author's [Writings](https://hanfengzhai.github.io) notes — linear algebra through DFT — rewritten as one continuous narrative rather than a course catalog.
 
 ## The copper wire through the book
 

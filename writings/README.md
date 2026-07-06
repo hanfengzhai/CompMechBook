@@ -19,7 +19,8 @@ writings/
 ├── defects/                 # Part VII — opening + chapters 01–03
 ├── md/                      # Part VIII — opening + chapters 01–03
 ├── dft/                     # Part IX — opening + chapters 01–03
-└── epilogue/                # Epilogue — multiscale coupling
+├── epilogue/                # Epilogue — multiscale coupling
+└── appendix/                # Glossary and sources (synced to src/appendix/)
 ```
 
 Every subtree contains:
