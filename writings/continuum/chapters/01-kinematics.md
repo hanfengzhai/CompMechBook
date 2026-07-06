@@ -175,6 +175,59 @@ Nearly incompressible materials respond stiffly to volumetric strain — the kin
 
 For small strain, the trace \(\text{tr}(\boldsymbol{\varepsilon}) = \nabla\cdot\mathbf{u}\) plays the same volumetric role. Poisson's ratio \(\nu\) controls how axial stretch of the copper wire couples to lateral contraction — a kinematic constraint encoded in the elastic tensor.
 
+## Thermo-mechanical kinematics (Act II meets Act III)
+
+The prologue's **Act II** — current through the wire, air cooling the surface — and **Act III** — grips ramping displacement — are not independent experiments. They superpose on the same specimen. Kinematics must record **both** mechanical stretch and thermal expansion without double-counting either.
+
+### Thermal strain as eigenstrain
+
+When Joule heating raises temperature from reference \(T_0\) to \(T(\mathbf{X})\), copper expands isotropically (to first order):
+
+\[
+\boldsymbol{\varepsilon}_{\text{th}}(\mathbf{X}) = \alpha\,(T(\mathbf{X}) - T_0)\,\mathbf{I},
+\]
+
+with thermal expansion coefficient \(\alpha \approx 17\times 10^{-6}\,\text{K}^{-1}\). This increment is **stress-free** if the wire is free to expand. Fix the grips, and the same temperature rise produces **thermal stress** \(\boldsymbol{\sigma}_{\text{th}} \sim -E\alpha\Delta T\,\mathbf{I}\) — the order-of-magnitude estimate in Part VI, Chapter 2.
+
+In small-strain linear thermoelasticity, the **total strain** decomposes additively:
+
+\[
+\boldsymbol{\varepsilon} = \boldsymbol{\varepsilon}_{\text{mech}} + \boldsymbol{\varepsilon}_{\text{th}},
+\]
+
+where \(\boldsymbol{\varepsilon}_{\text{mech}} = \mathrm{sym}(\nabla\mathbf{u})\) is the displacement gradient from mechanical loading and \(\boldsymbol{\varepsilon}_{\text{th}}\) is the thermal eigenstrain. Constitutive law uses mechanical strain:
+
+\[
+\boldsymbol{\sigma} = \mathbb{C}:\boldsymbol{\varepsilon}_{\text{mech}} = \mathbb{C}:\bigl(\boldsymbol{\varepsilon} - \boldsymbol{\varepsilon}_{\text{th}}\bigr).
+\]
+
+Part IV's thermoelastic weak form (Chapter 4) implements exactly this split: assemble \(\mathbf{K}\mathbf{U}=\mathbf{F}\) from \(\boldsymbol{\varepsilon}(\mathbf{u})\), then subtract thermal load terms from \(\boldsymbol{\varepsilon}_{\text{th}}\) at each Gauss point. The kinematic object is still \(\mathbf{u}(\mathbf{X})\); temperature enters as a **prescribed or coupled field** that modifies the strain measure, not as an extra displacement degree of freedom unless phase change or large thermal gradients demand it.
+
+### Multiplicative split at finite deformation (preview)
+
+When temperature swings are large or the wire necks under combined load and heat, additive split is replaced by a **multiplicative decomposition** of the deformation gradient:
+
+\[
+\mathbf{F} = \mathbf{F}_{\text{mech}}\,\mathbf{F}_{\text{th}}, \qquad \mathbf{F}_{\text{th}} = \exp\!\bigl(\alpha\,(T-T_0)\,\mathbf{I}\bigr)\ \text{(isotropic)}.
+\]
+
+Hyperelastic thermo-mechanical codes track \(\mathbf{F}_{\text{mech}}\) separately so that stress derives from mechanical stretch alone. The preview matters narratively: Act II and Act III do not commute if history is path-dependent — heat while loaded differs from load while hot — and kinematics is where that path dependence enters the strain measure before constitutive plasticity (Part VI, Chapter 4) adds internal variables.
+
+### Coupling to Part V without a third kinematic field
+
+The air around the wire (Part V) does not share the solid's Lagrangian description. Fluid velocity \(\mathbf{v}(\mathbf{x})\) lives in Eulerian form; the wire surface \(\Gamma_w\) moves slowly enough that **kinematic continuity** at the interface is \(\mathbf{v}_{\text{fluid}} = \dot{\mathbf{u}}_{\text{solid}}\) on \(\Gamma_w\). Heat flux continuity couples **temperature fields**, not deformation gradients — yet thermal strain feeds back into mechanical equilibrium through \(\boldsymbol{\varepsilon}_{\text{th}}\). The conjugate heat-transfer loop in Part V, Chapter 4, and the thermoelastic sag example in Part IV, Chapter 4, are two discretizations of one coupled kinematic–thermal story told here in continuum language.
+
+```mermaid
+flowchart TB
+  J[Joule heat q in wire] --> T[T field from conduction]
+  T --> eth[Thermal strain epsilon_th]
+  eth --> mech[Mechanical equilibrium with u]
+  mech --> sag[Wire sag / prestress before Act III pull]
+  Air[Part V FVM cooling] --> T
+```
+
+**Reading habit:** when a chapter mentions "temperature-dependent modulus," distinguish **kinematic** thermal strain (this section) from **constitutive** softening (modulus \(E(T)\) in Part VI, Chapter 2). Both appear in the warmed wire; conflating them is a common multiphysics bug.
+
 ## Bridge
 
 Kinematics names the geometric objects — \(\mathbf{F}\), \(\boldsymbol{\varepsilon}\), \(\mathbf{E}\), \(\mathbf{D}\). Forces enter through **stress tensors** and **balance laws** that constrain how stress varies in space and time. The next chapter completes the continuum picture: Cauchy stress, Piola–Kirchhoff stress, conservation of mass and momentum, and constitutive relations that FEM and FVM discretize.
