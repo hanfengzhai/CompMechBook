@@ -70,7 +70,7 @@ Read Part IV first if solids and elliptic PDEs are your immediate goal; read Par
 
 ## Lab act: II–III — Warming and pulling (equations first)
 
-In [laboratory time](../../prologue/chapters/00-many-scales.md#the-experiment-as-plot), **Act II** switches on current and **Act III** ramps grip displacement — but both acts share the same mathematical habit: write the physics as a PDE, relax it to a weak form, and identify the Sobolev space where the solution lives. Part III is where Joule heating and elastic equilibrium become **computable statements** before FEM or FVM assign them node values or cell fluxes. When you read about strong versus weak forms here, picture the thermocouple warming and the grips tightening as two instances of one pipeline.
+In [laboratory time](../prologue/00-many-scales.md#the-experiment-as-plot), **Act II** switches on current and **Act III** ramps grip displacement — but both acts share the same mathematical habit: write the physics as a PDE, relax it to a weak form, and identify the Sobolev space where the solution lives. Part III is where Joule heating and elastic equilibrium become **computable statements** before FEM or FVM assign them node values or cell fluxes. When you read about strong versus weak forms here, picture the thermocouple warming and the grips tightening as two instances of one pipeline.
 
 ## Bridge
 
