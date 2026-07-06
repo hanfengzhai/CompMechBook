@@ -2,7 +2,7 @@
 
 A continuous narrative from linear algebra through functional analysis, finite elements and volumes, continuum mechanics, dislocation dynamics, molecular dynamics, and density functional theory — told as one story about a copper wire at every scale.
 
-**~87,000 words** · **35 numbered chapters** · **9 parts** · built with [mdBook](https://github.com/rust-lang/mdBook)
+**~88,000 words** · **35 numbered chapters** · **9 parts** · built with [mdBook](https://github.com/rust-lang/mdBook)
 
 ## Read the book
 
@@ -17,7 +17,7 @@ Read straight through for the full arc. Parts IV (FEM) and V (FVM) may be swappe
 
 ## Narrative structure
 
-The book follows the **Functional Analysis Notes** (ME 412) layout: numbered chapters, **concept maps** (object → structure → theorem → failure mode) at every part opening and part closing checkpoint, **Scene** sections in the prologue, every part opening, every numbered chapter, and the epilogue that return to the copper wire, **Lab act** sections at every part opening tying chapters to the prologue's six-act lab session (reunited in the **epilogue**), **Forward arc** and **Closing the arc from Part I** bookends linking Part I to Parts II–IX, and **Bridge** sections at every chapter end explaining why the next chapter exists.
+The book follows the **Functional Analysis Notes** (ME 412) layout: numbered chapters, **concept maps** (object → structure → theorem → failure mode) at every part opening and part closing checkpoint, **Scene** sections in the preface, prologue, every part opening, every numbered chapter, and the epilogue that return to the copper wire, a **Reading rhythm** guide in the preface (Scene / concept map / Bridge), **Lab act** sections at every part opening tying chapters to the prologue's six-act lab session (reunited in the **epilogue**), **Forward arc** and **Closing the arc from Part I** bookends linking Part I to Parts II–IX, and **Bridge** sections at every chapter end explaining why the next chapter exists.
 
 ```mermaid
 flowchart TB

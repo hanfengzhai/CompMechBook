@@ -78,6 +78,22 @@ Element 1 maps local DOFs \((u_1, u_2)\) to global indices; element 2 maps \((u_
 
 The middle row reflects that node 2 feels stiffness from both elements — superposition in the global basis. This \(3 \times 3\) pattern is the one-dimensional prototype of the sparse assembly loops in Part IV.
 
+## Worked example: ten bars on the wire
+
+Scale the prototype to the homework mesh from Part I's opening scene: ten equal bar elements model a 100 mm copper cylinder pulled along its axis. Each element has length \(L_e = 10\) mm, cross-section \(A\), and axial stiffness \(k = EA/L_e\). Node 1 is fixed (\(u_1 = 0\)); node 11 carries the grip displacement; interior nodes 2–10 are free.
+
+Assembly is the same scatter pattern repeated ten times. Element \(e\) connects nodes \(e\) and \(e+1\), contributing \(k\) to entries \((e,e)\), \((e+1,e+1)\), and \(-k\) to the off-diagonals \((e,e+1)\) and \((e+1,e)\). The global \(\mathbf{K}\) is tridiagonal with \(2k\) on the interior diagonal and \(k\) on the end that meets the moving grip — the **same map**, ten times, in a shared global basis.
+
+Apply a unit load at node 11. The discrete solution \(\mathbf{u}\) is nearly linear along the axis — a discrete stand-in for the smooth field \(u(x)\) Part II will treat as a limit. Refine to twenty elements and the plotted profile smooths; refine again and the eye stops distinguishing mesh from continuum. The **assembly operator** did not change its logic; only the scatter matrix \(\mathbf{L}_e\) grew. That is the narrative hinge to Chapter 4: when \(N \to \infty\), we stop asking for bigger vectors and start asking for a function space.
+
+| Mesh | Nodes \(N+1\) | What the plot shows |
+|------|---------------|---------------------|
+| 10 elements | 11 | Piecewise-linear displacement; visible kinks at nodes |
+| 40 elements | 41 | Smooth curve; nodal values hard to distinguish from a field |
+| 160 elements | 161 | Engineering plot indistinguishable from continuum solution |
+
+The copper wire on screen is still a column vector — but the experiment already hints at the field description Parts II and III will make precise.
+
 ## Projections and idempotent maps
 
 A linear map \(\mathbf{P}\) is a **projection** if \(\mathbf{P}^2 = \mathbf{P}\). An **orthogonal projection** onto a subspace spanned by columns of \(\mathbf{Q}\) is \(\mathbf{P} = \mathbf{Q}\mathbf{Q}^T\).

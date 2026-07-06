@@ -6,6 +6,10 @@ When we write a finite element code, we solve a linear system assembled from loc
 
 The chapters that follow are written to be read in order, like a novel with a plot. A copper wire under tension, a turbulent jet, a dislocation network in a crystal, and the electrons that bind the atoms together are not separate homework problems. They are scenes in one story. The mathematics is the thread that stitches them together.
 
+## Scene: before the first equation
+
+You are holding this book, not yet at the bench where the copper wire waits — but the wire is already implied. Every chapter ahead will return to the same cold-drawn cylinder: gripped, heated, pulled, work-hardened, perhaps notched, always the same lot number on the label. The mathematics will change language — vectors, then fields, then fluxes, then Burgers vectors, then atomic positions, then electron density — but the specimen does not swap out mid-story. Read the preface for the map; read the [prologue](prologue/00-many-scales.md) for the wide shot of the lab; then turn to Part I when you are ready for the first stiffness matrix. If a chapter feels abstract, search for **Scene** — that section names the laboratory moment the algebra is pretending to be.
+
 ## How this book is organized
 
 The structure follows the arc of the author's personal notes — linear algebra and functional analysis as foundations, partial differential equations and weak forms as the bridge to discretization, finite elements and finite volumes as the two great discretization philosophies for solids and fluids, and atomistic and electronic methods as the descent to finer scales. Each part opening adds a **Scene** (laboratory moment), **Lab act** (which act of the prologue experiment), and a **Bridge** at the end of each numbered chapter that explains why the next scale is necessary.
@@ -50,6 +54,18 @@ The book is one continuous story, but not every reader enters at the same rung:
 | **Scale descent** | Part VI after skimming I–III | VI → VII → VIII → IX, then back to IV–V for how continuum codes mesh and flux | Researchers asking where moduli and hardening laws originate |
 
 On every path, read the **Bridge** at the end of the prior chapter when a jump feels abrupt. Part openings add **Story so far** recaps, **concept map** tables (object → structure → theorem → failure mode), and **Representative schematics** indexed to the source notes — following the [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) layout. Part closings add **concept map checkpoints** that summarize what the part exported to the next scale.
+
+## Reading rhythm
+
+The book alternates three voices on purpose — not to interrupt the math, but to keep the plot visible while the definitions accumulate:
+
+| Voice | Where it appears | What it does |
+|-------|------------------|--------------|
+| **Scene** | Prologue, every part opening, every numbered chapter, epilogue | Returns to the copper wire in the lab at the scale of the current chapter |
+| **Concept map** | Part openings; part-closing chapters; epilogue | Asks object → structure → theorem → failure mode (ME 412 habit) |
+| **Bridge** | End of preface, every part opening, every numbered chapter | States why the next chapter exists before you turn the page |
+
+Read **Scene** when the notation feels bloodless; read **Bridge** when the next chapter's title looks like a non sequitur; read the **concept map** when you want one table that summarizes an entire part. The numbered sections in between carry the definitions, theorems, and worked examples drawn from the author's [Writings](https://hanfengzhai.github.io) notes — linear algebra through DFT — rewritten as one continuous narrative rather than a course catalog.
 
 ## The copper wire through the book
 

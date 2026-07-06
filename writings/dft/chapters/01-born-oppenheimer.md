@@ -114,6 +114,17 @@ Validation means comparing **like with like**: same functional, same pseudopoten
 
 ## Copper at the electronic scale
 
+A perfect fcc copper unit cell contains four atoms in a cubic close-packed arrangement. At this scale the wire is not a cylinder — it is **periodic bulk**: an infinite crystal approximated by a unit cell with Bloch boundary conditions. DFT on that cell answers the questions every coarser model smuggles in as input:
+
+| Quantity | Typical DFT target (PBE, ultrasoft PP) | Where it climbs the ladder |
+|----------|----------------------------------------|----------------------------|
+| Lattice constant \(a\) | \(\approx 3.63\) Å (exp. \(\approx 3.61\) Å) | MD box size; dislocation core width scale |
+| Cohesive energy \(E_{\text{coh}}\) | \(\approx 3.5\)–\(4.0\) eV/atom | Vacancy formation; surface energy references |
+| Bulk modulus \(B\) | \(\approx 140\) GPa | Continuum \(\mathbb{C}\) sanity check |
+| \(C_{11}\), \(C_{12}\), \(C_{44}\) | \(\approx 170\), 120, 75 GPa (order of magnitude) | Anisotropic \(\mathbb{C}\) in Part VI; EAM fit targets |
+
+The table is not a substitute for convergence studies — k-point density, cutoff energy, and pseudopotential choice shift every entry — but it names the **pedigree** of the numbers typed into Part I's \(E \approx 120\) GPa Young's modulus. Young's modulus is not measured on the wire in the lab first; it is **homogenized** from elastic constants that trace, in principle, to a calculation like this one.
+
 A perfect fcc copper unit cell contains 4 atoms. DFT computes:
 
 \[
