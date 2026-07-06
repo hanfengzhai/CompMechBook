@@ -68,6 +68,20 @@ The prologue introduced the copper wire as a **ladder of scales** — continuum,
 
 Part I ended with a question Part II must answer: if every mesh gives a matrix \(\mathbf{K}_N\), what object does \(\mathbf{K}_N\) approximate as \(N\) grows? The answer is not "a bigger matrix" — it is an **operator** on a space of functions. Part II builds that space, names the norms that measure elastic energy, and proves that Galerkin FEM is honest projection rather than ad hoc linear algebra.
 
+## Closing the arc from Part I
+
+If you have read linearly since the prologue, notice how the **same four questions** from the opening table reappear here with function-space vocabulary — and how the **same mathematical moves** from Part I return in the infinite-dimensional limit:
+
+| Part I (springs on the wire) | Part II (function spaces on the wire) |
+|------------------------------|---------------------------------------|
+| State vector \(\mathbf{u}\) | Fields \(u(x)\), \(T(x)\) in \(H^1\), \(L^2\) |
+| Stiffness matrix \(\mathbf{K}\) | Bilinear form \(a(u,v)\); operator on \(H^1\) |
+| \(\mathbf{K}\mathbf{u}=\mathbf{f}\) from nodal equilibrium | Weak form \(a(u,v)=\ell(v)\) for all test \(v\) |
+| Energy \(\mathbf{u}^T \mathbf{K}\mathbf{u}\) | \(\|u\|_{H^1}^2\) and strain-energy norms |
+| Mesh refinement sends \(N\to\infty\) | Completeness: Cauchy sequences stay in \(H^1\) |
+
+Part I showed that every mesh gives linear algebra; Part II names the **limit object** that algebra approximates. The copper wire that began as coupled springs is now a bar whose displacement and temperature are functions — not longer vectors, but elements of spaces equipped with norms, inner products, and completeness. When Part III writes weak PDEs and Part IV assembles \(\mathbf{K}\) from shape functions, you will recognize Part I's pattern: finite-dimensional projection of something infinite-dimensional that Part II has now made precise.
+
 ## Lab act: III — Pulling (mathematical prelude)
 
 **Act III** in the lab is the force–displacement ramp — but the operator cannot trust that curve until **Act III in the book** has a convergence target. Part II supplies the function spaces (\(H^1\), \(L^2\)) and the theorems (Lax–Milgram, Galerkin best approximation) that make mesh refinement honest. When the grips tighten in Part IV, every node value is a projection of a field defined here. Read Part II as the backstage justification for the linear elastic climb on the load cell.
