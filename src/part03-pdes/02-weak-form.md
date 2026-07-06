@@ -148,6 +148,14 @@ Multiply \(u_t - \alpha \Delta u = f\) by test \(v \in H^1_0(\Omega)\) and integ
 \int_\Omega u_t v \, d\Omega + \alpha \int_\Omega \nabla u \cdot \nabla v \, d\Omega = \int_\Omega f v \, d\Omega.
 \]
 
+Steady conduction with volumetric source — the copper wire under **Act II** of the prologue — drops the time term and sets \(f = \dot{q}_{\text{Joule}}\):
+
+\[
+\int_\Omega k \nabla T \cdot \nabla v \, d\Omega = \int_\Omega \dot{q}_{\text{Joule}}\, v \, d\Omega + \int_{\Gamma_N} q'' v \, dS,
+\]
+
+with \(\dot{q}_{\text{Joule}} = \rho_e |\mathbf{J}|^2 / \sigma_e\) from electrical current and \(q''\) the natural convective flux to the air (Robin-coupled to Part V). The **same assembly pattern** as Poisson elasticity follows: element stiffness from \(\int k \nabla N_i \cdot \nabla N_j\); load from \(\int \dot{q}_{\text{Joule}} N_i\). Part IV's thermoelastic chapter superposes the resulting temperature onto mechanical equilibrium via thermal strain; Part V's conjugate heat-transfer loop iterates wall flux until solid and fluid agree. Weak forms unify **Act II** (heat) and **Act III** (pull) before either FEM or FVM code runs.
+
 Semidiscretization: \(u_h = \sum_j U_j(t) \phi_j\) gives \(\mathbf{M}\dot{\mathbf{U}} + \alpha \mathbf{K}\mathbf{U} = \mathbf{F}\). The mass matrix \(\mathbf{M}\) comes from \(\int \phi_i \phi_j\); the stiffness from \(\int \nabla\phi_i \cdot \nabla\phi_j\). Time discretization (backward Euler, BDF, Runge–Kutta) is layered on top — Part IV for FEM, Part V for FVM flux differencing in fluids.
 
 ## Integration by parts in higher dimensions
