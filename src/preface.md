@@ -1,0 +1,164 @@
+# Preface
+
+This book grew out of a simple observation: computational mechanics is not a collection of unrelated numerical recipes. It is a single narrative about how we represent physical reality at different scales, and how the mathematical tools at each scale connect to the next.
+
+When we write a finite element code, we solve a linear system assembled from local contributions — linear algebra in disguise. When we prove that a Galerkin approximation converges, we invoke completeness and compactness — functional analysis in disguise. When we coarse-grain a molecular dynamics trajectory or feed a DFT energy landscape into a continuum model, we are asking the same question in a different language: *what information survives when we change scale?*
+
+The chapters that follow are written to be read in order, like a novel with a plot. A copper wire under tension, a turbulent jet, a dislocation network in a crystal, and the electrons that bind the atoms together are not separate homework problems. They are scenes in one story. The mathematics is the thread that stitches them together.
+
+## Scene: before the first equation
+
+You are holding this book, not yet at the bench where the copper wire waits — but the wire is already implied. Every chapter ahead will return to the same cold-drawn cylinder: gripped, heated, pulled, work-hardened, perhaps notched, always the same lot number on the label. The mathematics will change language — vectors, then fields, then fluxes, then Burgers vectors, then atomic positions, then electron density — but the specimen does not swap out mid-story. Read the preface for the map; read the [prologue](prologue/00-many-scales.md) for the wide shot of the lab; then turn to Part I when you are ready for the first stiffness matrix. If a chapter feels abstract, search for **Scene** — that section names the laboratory moment the algebra is pretending to be.
+
+## Plot spine: how the story is told
+
+Each part follows the **Functional Analysis Notes** (ME 412) layout — numbered chapters, concept maps at openings, checkpoints at closings — but the book adds narrative devices so the arc reads as one continuous text rather than a syllabus:
+
+| Device | Role | Where it appears |
+|--------|------|------------------|
+| **Scene** | Return to the copper wire in concrete laboratory detail | Preface, prologue, every part opening, every numbered chapter, epilogue |
+| **Lab act** | Tie the chapter to one act of the prologue's six-act lab session | Every part opening; reunited in the epilogue |
+| **Bridge** | State why the next chapter must exist | End of preface, every part opening, every numbered chapter |
+| **Concept map** | Object → structure → theorem → failure mode | Part openings; part-closing checkpoints; epilogue |
+
+The dramatic arc is not a surprise twist — it is **scale change with the same specimen**:
+
+```mermaid
+flowchart LR
+  subgraph act1["Act I: Grammar"]
+    A1[Vectors and matrices]
+    A2[Function spaces]
+    A3[Weak PDEs]
+  end
+  subgraph act2["Act II: Discretization"]
+    B1[FEM mesh]
+    B2[FVM fluxes]
+    B3[Continuum fields]
+  end
+  subgraph act3["Act III: Descent"]
+    C1[Dislocation forest]
+    C2[Atomic lattice]
+    C3[Electron density]
+  end
+  subgraph act4["Act IV: Coupling"]
+    D1[Multiscale workflows]
+  end
+  A1 --> A2 --> A3 --> B1
+  A3 --> B2
+  B1 --> B3
+  B2 --> B3
+  B3 --> C1 --> C2 --> C3 --> D1
+  D1 -.->|four questions| A1
+```
+
+**Act I** teaches the language (Parts I–III). **Act II** makes PDEs computable on meshes and control volumes (Parts IV–VI). **Act III** asks where continuum parameters hide their history (Parts VII–IX). **Act IV** wires the rungs together (epilogue). When a transition feels abrupt, read the **Bridge** at the end of the prior chapter — it is the narrative hinge the plot spine assumes you will use.
+
+## How this book is organized
+
+The structure follows the arc of the author's personal notes — linear algebra and functional analysis as foundations, partial differential equations and weak forms as the bridge to discretization, finite elements and finite volumes as the two great discretization philosophies for solids and fluids, and atomistic and electronic methods as the descent to finer scales. Each part opening adds a **Scene** (laboratory moment), **Lab act** (which act of the prologue experiment), and a **Bridge** at the end of each numbered chapter that explains why the next scale is necessary.
+
+```mermaid
+flowchart TB
+  subgraph foundations["Foundations"]
+    I[Part I: Linear algebra]
+    II[Part II: Functional analysis]
+    III[Part III: PDEs and weak forms]
+  end
+  subgraph discretize["Discretization"]
+    IV[Part IV: Finite elements]
+    V[Part V: Finite volumes and CFD]
+  end
+  subgraph physics["Continuum physics"]
+    VI[Part VI: Continuum mechanics]
+  end
+  subgraph finer["Finer scales"]
+    VII[Part VII: Defects and DDD]
+    VIII[Part VIII: Molecular dynamics]
+    IX[Part IX: DFT]
+  end
+  I --> II --> III --> IV
+  III --> V
+  IV --> VI
+  V --> VI
+  VI --> VII --> VIII --> IX
+  IX --> E[Epilogue: Multiscale coupling]
+```
+
+Read straight through from the prologue to the epilogue. Parts IV and V can be swapped if you already know FEM and want CFD first; Part VI then unifies the stress–balance language both discretizations approximate. Parts VII–IX are best read after the continuum vocabulary of Part VI, because dislocation, atomistic, and electronic models explain where continuum parameters originate.
+
+## Three reading paths
+
+The book is one continuous story, but not every reader enters at the same rung:
+
+| Path | Start here | Route | Best for |
+|------|------------|-------|----------|
+| **Full arc** | [Prologue](prologue/00-many-scales.md) | I → II → III → IV → V → VI → VII → VIII → IX → [Epilogue](epilogue/multiscale.md) | First read; builds every concept in order |
+| **Analysis first** | Part I, then Part II | Skip to Part III when function spaces feel familiar; return to IV–V for discretization | Students who know FEM but want weak-form foundations |
+| **Scale descent** | Part VI after skimming I–III | VI → VII → VIII → IX, then back to IV–V for how continuum codes mesh and flux | Researchers asking where moduli and hardening laws originate |
+
+On every path, read the **Bridge** at the end of the prior chapter when a jump feels abrupt. Part openings add **Story so far** recaps, **concept map** tables (object → structure → theorem → failure mode), and **Representative schematics** indexed to the source notes — following the [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) layout. Part closings add **concept map checkpoints** that summarize what the part exported to the next scale.
+
+## Reading rhythm
+
+The book alternates four voices on purpose — not to interrupt the math, but to keep the plot visible while the definitions accumulate:
+
+| Voice | Where it appears | What it does |
+|-------|------------------|--------------|
+| **Scene** | Preface, prologue, every part opening, every numbered chapter, epilogue | Returns to the copper wire in the lab at the scale of the current chapter |
+| **Lab act** | Every part opening; epilogue reunion table | Names which act of the prologue experiment the current part performs |
+| **Concept map** | Part openings; part-closing chapters; epilogue | Asks object → structure → theorem → failure mode (ME 412 habit) |
+| **Bridge** | End of preface, every part opening, every numbered chapter | States why the next chapter exists before you turn the page |
+
+Read **Scene** when the notation feels bloodless; read **Lab act** when you lose track of laboratory time versus part number; read **Bridge** when the next chapter's title looks like a non sequitur; read the **concept map** when you want one table that summarizes an entire part. Part I adds **Forward arc** and every later part opening adds **Closing the arc from Part I** — bookends that trace the same four moves from springs to fields to fluxes to atoms. The numbered sections in between carry the definitions, theorems, and worked examples drawn from the author's [Writings](https://hanfengzhai.github.io) notes — linear algebra through DFT — rewritten as one continuous narrative rather than a course catalog.
+
+## The copper wire through the book
+
+The same specimen — a cold-drawn copper wire under tension, heated by current, cooled by air — reappears in every part. The table below is a reading map: what changes is the **state variable**, not the material.
+
+| Part | What the wire becomes | What we learn to compute |
+|------|----------------------|--------------------------|
+| Prologue | A ladder of scales | State, equations, discretization, upward exports |
+| I | Coupled springs / modes | \(\mathbf{K}\mathbf{u}=\mathbf{f}\), eigenmodes |
+| II | Fields in \(H^1\) and \(L^2\) | Norms, operators, Galerkin convergence |
+| III | PDEs with weak forms | Strong vs. weak, Sobolev regularity, energy |
+| IV | Meshed solid | Galerkin assembly, elements, convergence |
+| V | Fluid around the wire | FVM fluxes, Navier–Stokes, conjugate heat transfer |
+| VI | Cauchy stress and strain | Kinematics, balance, variational elasticity |
+| VII | Dislocation forest | DDD, Taylor hardening, crystal plasticity handoff |
+| VIII | Atomic lattice | Potentials, ensembles, LAMMPS workflows |
+| IX | Valence electrons | Kohn–Sham, QE inputs, elastic constants upward |
+| Epilogue | All scales coupled | Sequential, concurrent, and learned multiscale workflows |
+
+Each numbered chapter ends with a **Bridge** section that states explicitly why the next chapter exists. If you ever feel a jump in abstraction, read the Bridge at the end of the prior chapter first — it is the narrative hinge. The [prologue](prologue/00-many-scales.md) opens with a **Scene** on the bench before the test, maps the wire to **six acts** of one lab session at [The experiment as plot](prologue/00-many-scales.md#the-experiment-as-plot), and each part opening carries a matching **Scene** and **Lab act** section; the [epilogue](epilogue/multiscale.md) reunites all six acts when you need laboratory time rather than part number. Part I adds a **Forward arc** table previewing what **Closing the arc from Part I** will revisit in Parts II–IX. For a one-line role of every chapter in reading order, see the [chapter roadmap](appendix/sources.md) in the appendix (also listed as **Sources and Further Reading** in the table of contents). When a symbol reappears under new vocabulary — \(\mathbf{K}\) becoming an operator, then a bilinear form, then an elastic tensor — consult the [Glossary and Cross-Scale Index](appendix/glossary.md).
+
+The [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) (ME 412) supply the template for that hinge: not a proof document, but a **concept map** where every idea answers four questions — what object we study, what structure it adds, what theorem that structure enables, and what breaks if the structure is missing. Part II adopts that map explicitly; later parts reuse the same instinct at every scale change.
+
+## Source material
+
+The prose synthesizes course notes, teaching materials, and research experience collected over several years. Primary written sources include:
+
+- [Linear Algebra notes](https://hanfengzhai.github.io/file/ME300A_LinAlg.pdf) (ME 300A)
+- [Functional Analysis notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) (ME 412) — layout model for Part II and all `writings/` subtrees
+- [Partial Differential Equations notes](https://hanfengzhai.github.io/file/ME300B_PDE.pdf) (ME 300B)
+- [Finite Element Analysis notes](https://hanfengzhai.github.io/file/FEA_notes.pdf) and [problem sessions](https://hanfengzhai.github.io/note.html)
+- [Elasticity & Inelasticity notes](https://hanfengzhai.github.io/file/elasticity_notes.pdf)
+- [Computational Fluid Dynamics notes](https://hanfengzhai.github.io/file/CFD_note.pdf) and [Finite Volume Method notes](https://hanfengzhai.github.io/note/FVM.pdf)
+- [Defects & Disorders notes](https://hanfengzhai.github.io/file/defects_notes.pdf)
+- [Atomistic Modeling notes](https://hanfengzhai.github.io/file/AtomModel_note.pdf)
+- [DFT coursework](https://github.com/hanfengzhai/MSE5720-HW) (MSE 5720)
+
+Canonical source markdown lives under [`writings/`](../writings/) in the **Functional Analysis Notes** layout: one mdBook per part, numbered chapters, and **Bridge** sections at the end of each chapter. Run [`scripts/sync-writings.sh`](../scripts/sync-writings.sh) to refresh `src/` from those sources. When the external `Writings` git submodule is linked, merge upstream changes there and re-run the sync script.
+
+## Disclaimer
+
+These notes represent the author's understanding of the material and are intended for study and reference. They may contain errors. Feedback is welcome at [hzhai@stanford.edu](mailto:hzhai@stanford.edu).
+
+## Bridge
+
+The preface is the table of contents in prose. The **prologue** is the first scene: one copper wire, many scales, and the four questions — state, equations, discretization, upward export — that every chapter will answer in its own language. Read it before Part I if you want the plot before the grammar; read it after Part VI if you prefer to meet the wire first as a meshed solid and then learn why the mesh had to exist.
+
+Turn the page when ready. The ladder begins with a specimen under tension and a question that will not go away: *what is the minimal description at this scale, and what do we pass to the scale above?*
+
+---
+
+*Hanfeng Zhai, 2026*
