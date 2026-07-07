@@ -31,6 +31,19 @@ flowchart LR
 
 **Baby picture:** divide the domain into cells, balance fluxes across faces, resolve discontinuities with a Riemann problem, then extend to Navier–Stokes for the air cooling the copper wire. FVM complements FEM: conservation-first where Galerkin energy principles are awkward.
 
+## Representative schematics (FVM / CFD Notes)
+
+The [Finite Volume Method Notes](https://hanfengzhai.github.io/note/FVM.pdf) and [Computational Fluid Dynamics Notes](https://hanfengzhai.github.io/file/CFD_note.pdf) mirror Part II's concept-map layout: each schematic is a baby picture of the conservation pipeline. Use them as a visual index while reading:
+
+| Schematic | Idea | Chapter in this part |
+|-----------|------|----------------------|
+| 1 | Integral conservation: cell averages, face fluxes, discrete balance | [V.1](01-conservation-integral.md) |
+| 2 | One-dimensional FVM: upwind advection, CFL stability (worked Python) | [V.2](02-fvm-1d.md) |
+| 3 | Riemann problems, numerical fluxes, TVD limiters at shocks | [V.3](03-fluxes-riemann.md) |
+| 4 | Navier–Stokes, SIMPLE pressure–velocity coupling, conjugate heat on the wire | [V.4](04-navier-stokes-cfd.md) |
+
+Each schematic answers the four concept-map questions for one transport layer. When a mesh converges in FEM but a fluid run loses mass or oscillates at a shock, return to the matching row: *what object, what structure, what theorem, what breaks?* Part III wrote the PDEs; Part IV discretized elliptic solids; Part V discretizes **fluxes** for the air that cools the wire.
+
 ## Story so far (Parts I–IV)
 
 The ladder from the prologue now has a **computational spine** — not only equations, but algorithms:

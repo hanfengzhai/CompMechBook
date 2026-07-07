@@ -16,6 +16,7 @@ Each part follows the **Functional Analysis Notes** (ME 412) layout — numbered
 | **Bridge** | State why the next chapter must exist | End of every numbered chapter and part opening |
 | **Lab act** | Worked example, workflow, or checklist tied to computation | Inside chapters (assembly, LAMMPS, OpenDiS, QE inputs) |
 | **Concept map** | Object → structure → theorem → failure mode | Part openings; part closing checkpoints |
+| **Representative schematics** | Baby pictures indexed to source notes (ME 300A, ME 412, ME 300B, FEA, FVM, …) | Every part opening (I–IX) |
 
 The dramatic arc is not a surprise twist — it is **scale change with the same specimen**:
 

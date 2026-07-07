@@ -35,6 +35,18 @@ flowchart LR
 
 **Baby picture:** name the line defects that carry plasticity, simulate their motion with elastic superposition and mobility tables, extract hardening laws and link statistics, then export internal variables to polycrystal FEM. The drawn copper wire is stronger because of this forest, not because \(\mathbf{K}\) changed.
 
+## Representative schematics (Defects Notes)
+
+The [Defects & Disorders Notes](https://hanfengzhai.github.io/file/defects_notes.pdf) mirror Part II's concept-map layout: each schematic is a baby picture of the mesoscale pipeline. Use them as a visual index while reading:
+
+| Schematic | Idea | Chapter in this part |
+|-----------|------|----------------------|
+| 1 | Defect taxonomy: point, line, surface; Burgers vector and core structure | [VII.1](01-defect-taxonomy.md) |
+| 2 | Dislocation dynamics: Peach–Köhler forces, mobility laws, time integration | [VII.2](02-dislocation-dynamics.md) |
+| 3 | Taylor hardening, link statistics, OpenDiS → DAMASK → polycrystal FEM handoff | [VII.3](03-polycrystal-and-fem-handoff.md) |
+
+Each schematic answers the four concept-map questions for one mesoscale layer. When a yield surface feels like a fitted curve rather than physics, return to the matching row: *what object, what structure, what theorem, what breaks?* Part VI's J₂ plasticity preview fit \(H\) and \(\sigma_{y0}\); Part VII shows where those numbers hide their history in line motion.
+
 ## Story so far (Parts I–VI)
 
 The climb upward is complete for the **continuum floor**. Every rung below Part VII exported numbers upward; Part VII is the first descent that explains where those numbers hid their history:
