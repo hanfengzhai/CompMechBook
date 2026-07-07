@@ -32,6 +32,19 @@ flowchart LR
 
 **Baby picture:** write the physics as a PDE, relax smoothness to a weak statement testable on a mesh, identify the function space where the solution lives, then package existence as minimizing an energy. The copper wire's temperature profile and axial displacement are two instances of the same pipeline.
 
+## Representative schematics (ME 300B)
+
+The [Partial Differential Equations Notes](https://hanfengzhai.github.io/file/ME300B_PDE.pdf) (ME 300B) mirror Part II's ME 412 habit: each schematic is a baby picture of the same weak-form pipeline. Use them as a visual index while reading:
+
+| Schematic | Idea | Chapter in this part |
+|-----------|------|----------------------|
+| 1 | Strong form: pointwise PDE + boundary conditions; where smoothness fails | [III.1](01-strong-form.md) |
+| 2 | Weak form: test functions, integration by parts, natural boundary conditions | [III.2](02-weak-form.md) |
+| 3 | Sobolev spaces \(H^1\), \(L^2\); weak derivatives; trace on \(\partial\Omega\) | [III.3](03-sobolev-spaces.md) |
+| 4 | Energy functional; Lax–Milgram; minimum principles before discretization | [III.4](04-energy-methods.md) |
+
+Each schematic answers the four concept-map questions for one stage of the PDE-to-computation road. When a strong-form equation looks correct but a mesh refuses to converge, return to the matching row: *what object, what structure, what theorem, what breaks?* Parts IV and V will discretize the weak forms defined here — FEM by trial functions, FVM by cell fluxes — but the pipeline is already complete in Part III.
+
 ## Story so far (Parts I–II)
 
 The mathematical foundations are now in place. The same copper wire has changed representation twice without changing material:

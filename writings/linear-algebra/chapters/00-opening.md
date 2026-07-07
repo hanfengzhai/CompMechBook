@@ -35,6 +35,19 @@ flowchart LR
 
 **Baby picture:** collect degrees of freedom into a vector, write equilibrium as \(\mathbf{K}\mathbf{u}=\mathbf{f}\), decouple complexity with eigenmodes, then ask what happens when the mesh — and \(N\) — grows without bound. The copper wire's tension test begins as a spring network long before it becomes a PDE.
 
+## Representative schematics (ME 300A)
+
+The [Linear Algebra Notes](https://hanfengzhai.github.io/file/ME300A_LinAlg.pdf) (ME 300A) collect the same baby pictures Part II later lifts into infinite dimensions. Use them as a visual index while reading:
+
+| Schematic | Idea | Chapter in this part |
+|-----------|------|----------------------|
+| 1 | Vectors, norms, inner products; energy as \(\mathbf{u}^T\mathbf{K}\mathbf{u}\) | [I.1](01-vectors-matrices.md) |
+| 2 | Linear maps, bases, change of coordinates; assembly as coordinate change | [I.2](02-linear-maps.md) |
+| 3 | Eigenvalues, eigenvectors, modal decoupling; vibration of the spring chain | [I.3](03-eigenvalues.md) |
+| 4 | \(N\to\infty\); operators, Gram matrices, preview of \(L^2\) and \(H^1\) | [I.4](04-toward-infinity.md) |
+
+Each schematic answers the four concept-map questions for one layer of finite-dimensional structure. When assembly or eigenmodes feel like bookkeeping, return to the matching row: *what object, what structure, what theorem, what breaks?* Part II will replay the same table with function spaces instead of vectors.
+
 ## Story so far (Prologue)
 
 The prologue introduced a single copper wire as a **ladder of scales** — from continuum stress and FEM meshes down through dislocations, atoms, and electrons — and the four questions every rung answers: state, equations, discretization, upward export. Before climbing that ladder mathematically, Part I pauses at the rung every simulation shares:
