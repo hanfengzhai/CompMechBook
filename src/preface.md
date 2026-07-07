@@ -12,7 +12,7 @@ Each part follows the **Functional Analysis Notes** (ME 412) layout — numbered
 
 | Device | Role | Where it appears |
 |--------|------|------------------|
-| **Scene** | Return to the copper wire in concrete detail | Prologue, every numbered chapter, epilogue |
+| **Scene** | Return to the copper wire in concrete detail | Prologue, every part opening, every numbered chapter, epilogue |
 | **Bridge** | State why the next chapter must exist | End of every numbered chapter and part opening |
 | **Lab act** | Worked example, workflow, or checklist tied to computation | Inside chapters (assembly, LAMMPS, OpenDiS, QE inputs) |
 | **Concept map** | Object → structure → theorem → failure mode | Part openings; part closing checkpoints |

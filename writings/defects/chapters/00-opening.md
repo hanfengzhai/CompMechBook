@@ -6,9 +6,11 @@ This part steps down one rung on the ladder. We classify defects, then follow di
 
 Three chapters cover defect taxonomy, dislocation dynamics, and the handoff to crystal plasticity and FEM. The layout follows the **Defects Notes** in [`writings/defects/`](../../writings/defects/): numbered chapters with **Bridge** sections, worked examples tied to the copper wire, and explicit upward links to Part VI (continuum) and downward requests to Part VIII (MD).
 
-## Where we left the wire
+## Scene
 
 Part VI closed with nonlinear elasticity and the admission that cold-drawn copper work-hardens — its yield surface rises, its texture evolves, and notch roots concentrate stress until smooth fields lie. None of that history lives in the elastic modulus \(\mathbb{C}\) alone; it lives in **defects**: dislocation lines tangled by drawing, grain boundaries from polycrystal structure, vacancies left by processing.
+
+Picture the load cell from prologue **Act IV — Hardening**: the force–displacement curve was linear at first, then bent upward as the grips kept moving. Part VI fitted that bend with a \(J_2\) yield surface and isotropic hardening modulus \(H\). Under the mesh, however, the wire is not a uniform material point — it is millions of curved lines, each carrying a Burgers vector, each feeling Peach–Köhler forces from the stress field Part IV computed. Cold drawing did not change \(\mathbb{C}\); it **stored** those lines in a forest whose density \(\rho\) rises with every percent of plastic strain.
 
 At the engineering scale the wire still satisfies balance laws and virtual work; at the mesoscale it is a forest of line defects whose collective motion we can simulate rather than postulate. Part VII is the first rung where the copper wire stops pretending to be a smooth continuum everywhere.
 
