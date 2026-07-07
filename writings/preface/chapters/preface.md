@@ -100,7 +100,7 @@ Each chapter uses a deliberate rhythm so the book reads as one continuous story 
 
 | Section | Role | Where it appears |
 |---------|------|------------------|
-| **Scene** | Places the mathematics in the lab — grips tightening, current switching on, a notch concentrating stress | Numbered chapters (not part openings) |
+| **Scene** | Places the mathematics in the lab — grips tightening, current switching on, a notch concentrating stress | Prologue, every part opening, every numbered chapter, epilogue |
 | **Lab act** | Links the part to one act of the [six-act lab session](prologue/00-many-scales.md#the-experiment-as-plot) | Part openings I–IX and epilogue reunion |
 | **Concept map** | Four questions: object, structure, theorem, failure mode | Part openings; epilogue closing lens |
 | **Bridge** | States why the next chapter exists — the narrative hinge | End of every numbered chapter, part opening, preface, prologue, epilogue |
