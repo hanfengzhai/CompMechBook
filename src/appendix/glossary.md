@@ -4,6 +4,12 @@ This appendix is a **reverse index** for reading the book as one continuous stor
 
 The layout mirrors the [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf): at every scale, four questions organize the material — **object**, **structure**, **theorem**, **failure mode**. Part openings and closing checkpoints state these explicitly; this page collects them in one place.
 
+## Scene: the wire after the epilogue
+
+The epilogue closed with a multiscale afternoon — Quantum ESPRESSO logs, LAMMPS trajectories, OpenDiS hardening curves, and the same copper wire still in the grips. You may have read straight through for weeks, or jumped between parts as a project demanded. Either way, symbols now pile up: \(\mathbf{K}\) was a stiffness matrix, then an operator, then a bilinear form, then an elastic tensor. This glossary is the **reverse index** for that journey — not a dictionary of jargon, but a map of where each habit first appeared and what it meant on the wire.
+
+When \(\rho\) appears, ask whether you mean dislocation density (Part VII) or electron density (Part IX). When "energy" appears, trace the row in the tables below before trusting a number in an input deck.
+
 ## The four questions at every scale
 
 | Part | Object | Structure | Theorem / principle | What breaks |
@@ -85,3 +91,9 @@ Every numbered chapter also ends with its own **Bridge** section — the primary
 ## Canonical sources
 
 Chapter markdown is authored under [`writings/`](../../writings/) (Functional Analysis Notes layout) and synced into `src/` via [`scripts/sync-writings.sh`](../../scripts/sync-writings.sh). For PDF links, repositories, and the full chapter roadmap, see [Sources and Further Reading](sources.md).
+
+## Bridge
+
+This page answers *what did that symbol mean last time?* The [chapter roadmap](sources.md) answers *where does each chapter sit in reading order?* The [Final Memory Sheet](memory-sheet.md) answers *what habits and traps should I carry to the next project?*
+
+Return to the [prologue](../prologue/00-many-scales.md) when a new specimen replaces copper — the four questions and six-act lab table apply to any material. Return to the [epilogue](../epilogue/multiscale.md) when you need to wire codes together rather than recall vocabulary.
