@@ -51,7 +51,7 @@ See the [chapter roadmap](sources.md) for one-line roles of every numbered chapt
 
 ## Narrative hinges (where to look if the story jumps)
 
-The [prologue](../prologue/00-many-scales.md#the-experiment-as-plot) maps the same copper wire to **six acts** of one lab session (mounting → warming → pulling → hardening → notch → foundation). Use that table when you need laboratory time rather than part number.
+The [prologue](../prologue/00-many-scales.md#the-experiment-as-plot) maps the same copper wire to **six acts** of one lab session (mounting → warming → pulling → hardening → notch → foundation). Each act links directly to the part openings where that laboratory beat is developed — use the table when you need laboratory time rather than part number.
 
 | If you feel a jump between… | Read first… |
 |-----------------------------|-------------|
