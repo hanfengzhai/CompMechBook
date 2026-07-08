@@ -60,10 +60,25 @@ The prologue introduced a single copper wire as a **ladder of scales** — from 
 
 The wire at this scale is still a chain of coupled springs — not yet a PDE, not yet a mesh of tetrahedra. Part I supplies the syntax every later part generalizes: collect degrees of freedom, write balance as a linear system, decouple complexity with eigenmodes, then ask what happens when \(N \to \infty\) in Chapter 4.
 
+## Closing the arc from the Prologue
+
+If you have read the prologue straight through, the copper wire has already appeared as a continuum member, a dislocation forest, an atomic lattice, and a sea of electrons. Part I does not repeat those scenes — it **grounds** them in the grammar every later scale inherits:
+
+| Prologue image | Part I vocabulary |
+|----------------|-------------------|
+| Ladder of scales | Every rung eventually ends in \(\mathbf{A}\mathbf{x}=\mathbf{b}\) or an eigenproblem |
+| Four questions (state, equations, discretization, export) | State = vector; equations = linear system; discretization = assembly; export = moduli or modes extracted from solves |
+| Six-act lab session | Act I (mounting) = first \(\mathbf{K}\mathbf{u}=\mathbf{f}\) before current or ramp |
+| One specimen, many scales | Same wire as \(N\) coupled springs — the discrete shadow every mesh refines |
+
+The prologue asked *what is the minimal description at each scale?* Part I answers for the rung every code shares: **finite-dimensional algebra** with energy norms, symmetry, and sparsity. When Part II replaces vectors with functions, the moves learned here remain — inner products become \(L^2\) pairings, stiffness matrices become operators, and eigenmodes become normal modes in \(H^1\). The [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) replay this same table in infinite dimensions; Part I is the finite-dimensional rehearsal.
+
 ## Lab act: I — Mounting
 
 In [laboratory time](../prologue/00-many-scales.md#the-experiment-as-plot), the operator has not yet switched on current or ramped grip displacement. The wire sits in wedge jaws; the load cell reads zero; the first honest model is a chain of bar elements with boundary conditions at the grips. **Act I** is where every later scale hides its linear algebra: \(\mathbf{K}\mathbf{u}=\mathbf{f}\) before fields, weak forms, or electrons enter the story. When a chapter in Part I feels abstract, return to the mounting scene — a cylinder gripped, a sparse matrix waiting to be assembled.
 
 ## Bridge
 
-The prologue introduced the copper wire at every scale. Part I begins at the scale every simulation shares: degrees of freedom collected into vectors, evolution and equilibrium written as linear systems. The first chapter refreshes the language — inner products, norms, matrix structure — that Parts II through IX will generalize to functions and operators.
+The prologue introduced the copper wire at every scale and named the four questions every rung must answer. Part I begins at the rung every simulation shares — degrees of freedom collected into vectors, evolution and equilibrium written as linear systems — before the wire becomes a field, a mesh, or an electron density.
+
+The first chapter refreshes the language — inner products, norms, matrix structure — that Parts II through IX will generalize to functions and operators. Read it as the opening sentence of the novel after the prologue's panoramic view: the grips are still open, the load cell still reads zero, and the first honest model is already a sparse matrix waiting to be assembled.
