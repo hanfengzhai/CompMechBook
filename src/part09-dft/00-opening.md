@@ -75,6 +75,17 @@ The copper wire that began as a chain of coupled springs ends as a periodic crys
 
 Before the operator mounted the wire, someone chose Young's modulus, Poisson's ratio, and a yield stress for the input deck. **Act VI** is that invisible afternoon — DFT on a small fcc cell, MD fitting an EAM potential, DDD calibrating mobility — run in parallel with Acts I–V and supplying every number the coarser codes trust. Part IX is where the foundation becomes explicit: cohesive energy, elastic constants, and stacking-fault energies exported upward with a pedigree traceable to Kohn–Sham orbitals.
 
+## Reading Part IX after Part VIII
+
+Part VIII already ran LAMMPS on an EAM potential **on trust** — cohesive energy, lattice parameter, and mobility tables appeared without a full electronic-structure derivation. If that felt like using numbers before understanding them, you have arrived at the right chapter.
+
+| Role | Analogy in the book |
+|------|---------------------|
+| Part II for Part I | Named the limit object (\(H^1\), operators) behind every stiffness matrix |
+| Part IX for Part VIII | Names the limit object (\(\rho(\mathbf{r})\), Kohn–Sham) behind every interatomic potential |
+
+**Chapter order** (VII → VIII → IX) descends to finer physics after continuum and atomistics show where parameters hide their history. **Workflow order** (IX → VIII → VII → IV) is how practitioners actually build input decks — documented in [Act VI of the sources appendix](../appendix/sources.md#six-acts--parts-laboratory-time) and the [two clocks note](../part08-md/00-opening.md#two-clocks-reading-order-vs-foundation-pedigree) at the Part VIII opening. Linear readers should treat Part IX as the **audit chapter**: the same copper cell Part VIII vibrated, now solved for \(\rho(\mathbf{r})\) before the epilogue climbs back up the ladder.
+
 ## Bridge
 
 Part VIII treated atoms as classical particles. The first chapter below separates electrons from nuclei — the Born–Oppenheimer approximation — and explains why the ground-state electron density alone determines the energy landscape on which MD and elasticity ultimately rest.

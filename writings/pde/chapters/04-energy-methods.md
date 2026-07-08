@@ -187,6 +187,8 @@ We have:
 
 Part IV asks: how do we choose \(V_h\), compute integrals, and assemble \(\mathbf{K}\)? The finite element method is the answer — weighted residuals, element-by-element assembly, quadrature rules, and convergence theory that make the copper wire’s discrete model faithful to the continuum energy we minimized here.
 
+After Part IV's convergence chapter ([IV.5 — Convergence, Norms, and Error Estimates](../part04-fem/05-convergence.md#bridge-two-doors-from-here)), you will choose **Door A** (Part V: FVM and conjugate heat transfer for the cooling air) or **Door B** (Part VI: continuum stress–strain vocabulary). Part III's energy minimum for the wire's solid is the same either way; only the fluid side is optional on first reading. Part III's opening [two paths ahead](00-opening.md#two-paths-ahead-preview) named this fork; IV.5 makes the exit doors explicit.
+
 Part V offers the alternative discretization philosophy for fluids and hyperbolic problems: balance fluxes on control volumes, Riemann solvers, and CFL-limited time stepping — still grounded in the PDEs and weak ideas from this part, but oriented toward conservation rather than trial functions in \(H^1\).
 
 Turn the page. Assembly awaits: the same \(\mathbf{K}\mathbf{U}=\mathbf{F}\) from Part I, now built from shape functions, Jacobians, and the bilinear forms defined in Part III.
