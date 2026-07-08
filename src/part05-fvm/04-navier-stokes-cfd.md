@@ -204,6 +204,6 @@ Part V followed the FVM Notes from integral conservation through Navier–Stokes
 
 The conjugate heat transfer scene above is Part IV and Part V **speaking at an interface** — the same pattern the epilogue generalizes to DFT→MD→DDD→FEM chains. Fluids and solids share conservation of mass and momentum; they differ in constitutive response. Part VI names the Cauchy stress and rate of deformation both discretizations approximate.
 
-## Bridge to Part VI
+## Bridge
 
 Part V discretized conservation on control volumes for fluids. Part VI develops the **kinematics and stress measures** that both FEM solid codes and FVM fluid codes ultimately approximate — deformation gradient and strain for solids, rate of deformation for fluids, Cauchy stress and balance laws for both. The copper wire under tension and the air cooling it are one multiphysics story told in two discretization languages; Part VI supplies the shared continuum vocabulary.

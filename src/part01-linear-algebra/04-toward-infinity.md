@@ -159,7 +159,7 @@ Part I opened with the four questions the [Functional Analysis Notes](https://ha
 
 The wire began as a chain of springs — \(\mathbf{K}\mathbf{u}=\mathbf{f}\) at fixed \(N\). Chapter 4 showed that refining the mesh sends \(N\) without bound and displacements toward a **function** \(u(x)\). Part II names the space that limit lives in; Part III writes the weak PDE; Part IV assembles \(\mathbf{K}\) from shape functions. The matrix was never arbitrary — it was always a finite-dimensional shadow of something larger.
 
-## Bridge to Part II
+## Bridge
 
 Linear algebra taught us to solve \(\mathbf{K}\mathbf{u}=\mathbf{f}\). Mechanics asks us to solve PDEs. The bridge is:
 

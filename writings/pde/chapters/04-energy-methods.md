@@ -177,7 +177,7 @@ Strong PDE  →  Weak form  →  Energy / saddle functional  →  (Part IV) disc
 
 The copper wire's tensile equilibrium, steady heating, and low-Re cooling flow each occupy a row in the summary table above. Part IV does not change the physics — it chooses \(V_h\), computes integrals, and assembles the \(\mathbf{K}\) that Rayleigh–Ritz minimization demands.
 
-## Bridge to Part IV
+## Bridge
 
 We have:
 
