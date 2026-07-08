@@ -55,6 +55,7 @@ Read in order for the full narrative. Each row is one chapter; **Bridge** sectio
 | IX.2 | [Kohn–Sham](../part09-dft/02-kohn-sham.md) | SCF cycle; convergence |
 | IX.3 | [DFT workflows](../part09-dft/03-dft-workflows.md) | Quantum ESPRESSO on Cu |
 | — | [Epilogue](../epilogue/multiscale.md) | Coupling DFT→MD→DDD→FEM |
+| — | [Final Memory Sheet](../appendix/memory-sheet.md) | Book-wide habits and traps (ME 412 style) |
 
 ## Primary notes (hanfengzhai.github.io)
 

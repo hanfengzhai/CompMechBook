@@ -18,7 +18,7 @@ The layout mirrors the [Functional Analysis Notes](https://hanfengzhai.github.io
 | VIII | \(\{\mathbf{r}_i\}\), potential \(V\) | Hamiltonian, thermostats, PBC | Symplectic energy conservation; ergodic sampling | Energy drift; cutoff artifacts |
 | IX | \(\rho(\mathbf{r})\), KS orbitals | Hohenberg–Kohn; SCF loop | Variational ground state; force theorem | Wrong functional; k-mesh too coarse |
 
-See the [chapter roadmap](sources.md) for one-line roles of every numbered chapter.
+See the [chapter roadmap](sources.md) for one-line roles of every numbered chapter. After the [epilogue](../epilogue/multiscale.md), the [Final Memory Sheet](memory-sheet.md) collects book-wide habits and traps in the ME 412 style.
 
 ## Recurring symbols (same habit, new meaning)
 

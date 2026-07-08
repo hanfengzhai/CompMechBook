@@ -12,6 +12,7 @@ A continuous narrative from linear algebra through functional analysis, finite e
 | **Full table of contents** | [src/SUMMARY.md](src/SUMMARY.md) |
 | **Chapter roadmap** | [Appendix: Sources and Further Reading](src/appendix/sources.md) |
 | **Cross-scale glossary** | [Appendix: Glossary and Cross-Scale Index](src/appendix/glossary.md) |
+| **Final memory sheet** | [Appendix: Final Memory Sheet](src/appendix/memory-sheet.md) |
 
 Read straight through for the full arc. Parts IV (FEM) and V (FVM) may be swapped on first reading; both converge at Part VI (continuum mechanics) before descending to defects, atoms, and electrons.
 
