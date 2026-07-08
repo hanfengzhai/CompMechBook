@@ -6,13 +6,19 @@ When we write a finite element code, we solve a linear system assembled from loc
 
 The chapters that follow are written to be read in order, like a novel with a plot. A copper wire under tension, a turbulent jet, a dislocation network in a crystal, and the electrons that bind the atoms together are not separate homework problems. They are scenes in one story. The mathematics is the thread that stitches them together.
 
+## Scene: before the first chapter
+
+Picture a shared materials lab on a weekday morning. A cold-drawn copper wire — the kind used in power cables and tensile specimens — sits in wedge grips on a small frame. The operator has not yet ramped load or switched on current; the load cell reads zero, the thermocouple at mid-span reports room temperature, and a student at the next bench is already opening a terminal for a meshing script. Nothing in the room announces "functional analysis" or "Kohn–Sham." What is visible is simpler: one cylinder of metal, one experiment waiting to run, and the quiet assumption that a computer model somewhere will eventually agree with what the grips and sensors record.
+
+That wire is the book's protagonist. Every part that follows returns to it — as a chain of springs, as a field in \(H^1\), as a meshed solid, as air cooling its surface, as a crystal carrying a dislocation forest, as an atomic lattice, as valence electrons in a periodic cell. The mathematics changes language; the specimen does not. Read this preface as the jacket copy and the prologue as the opening scene. When a chapter feels abstract, ask which bench in this lab you are standing at, and which of the four questions — state, equations, discretization, upward export — that chapter is answering for the same piece of copper.
+
 ## Plot spine: how the story is told
 
 Each part follows the **Functional Analysis Notes** (ME 412) layout — numbered chapters, concept maps at openings, checkpoints at closings — but the book adds four narrative devices so the arc reads as one continuous text rather than a syllabus:
 
 | Device | Role | Where it appears |
 |--------|------|------------------|
-| **Scene** | Return to the copper wire in concrete detail | Prologue, every part opening, every numbered chapter, epilogue |
+| **Scene** | Return to the copper wire in concrete detail | Preface, prologue, every part opening, every numbered chapter, epilogue |
 | **Bridge** | State why the next chapter must exist | End of every numbered chapter and part opening |
 | **Lab act** | Worked example, workflow, or checklist tied to computation | Inside chapters (assembly, LAMMPS, OpenDiS, QE inputs) |
 | **Concept map** | Object → structure → theorem → failure mode | Part openings; part closing checkpoints |
@@ -101,7 +107,7 @@ Each chapter uses a deliberate rhythm so the book reads as one continuous story 
 
 | Section | Role | Where it appears |
 |---------|------|------------------|
-| **Scene** | Places the mathematics in the lab — grips tightening, current switching on, a notch concentrating stress | Prologue, every part opening, every numbered chapter, epilogue |
+| **Scene** | Places the mathematics in the lab — grips tightening, current switching on, a notch concentrating stress | Preface, prologue, every part opening, every numbered chapter, epilogue |
 | **Lab act** | Links the part to one act of the [six-act lab session](prologue/00-many-scales.md#the-experiment-as-plot) | Part openings I–IX and epilogue reunion |
 | **Concept map** | Four questions: object, structure, theorem, failure mode | Part openings; epilogue closing lens |
 | **Representative schematics** | Baby pictures indexed to source notes (ME 300A, ME 412, ME 300B, FEA, FVM, …) | Every part opening (I–IX) |

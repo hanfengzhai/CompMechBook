@@ -17,6 +17,7 @@ PARTS=(
   defects
   md
   dft
+  appendix
 )
 
 for part in "${PARTS[@]}"; do

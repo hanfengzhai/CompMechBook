@@ -111,3 +111,4 @@ Read in order from the **Preface** through the **Epilogue** for the full narrati
 
 - [Glossary and Cross-Scale Index](./appendix/glossary.md)
 - [Sources and Further Reading](./appendix/sources.md)
+- [Final Memory Sheet](./appendix/memory-sheet.md)
