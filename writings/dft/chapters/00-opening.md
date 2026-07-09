@@ -102,4 +102,17 @@ Part VIII already ran LAMMPS on an EAM potential **on trust** — cohesive energ
 
 ## Bridge
 
-Part VIII treated atoms as classical particles. The first chapter below separates electrons from nuclei — the Born–Oppenheimer approximation — and explains why the ground-state electron density alone determines the energy landscape on which MD and elasticity ultimately rest.
+Part VIII ran LAMMPS on an EAM potential **on trust** — cohesive energy, lattice parameter, mobility tables appeared without a full electronic-structure derivation. [VIII.3](03-ab-initio-and-coarse-graining.md#bridge-to-part-ix) named the quantities DFT must re-derive and pointed here. Part IX is the **audit chapter**: the same fcc copper cell Part VIII vibrated, now solved for \(\rho(\mathbf{r})\).
+
+| What Part VIII assumed | What Part IX derives |
+|------------------------|----------------------|
+| Born–Oppenheimer potential \(V(\{\mathbf{r}_i\})\) | Hohenberg–Kohn: energy is a functional of \(\rho(\mathbf{r})\) |
+| EAM fit to bulk modulus and \(a_0\) | SCF total energy per atom from converged Kohn–Sham orbitals |
+| Stacking-fault energy for partial dislocations | Generalized stacking-fault surface from slab calculations |
+| Phonons for thermal expansion checks | DFPT or finite-difference phonons at documented k-mesh |
+
+The book's recurring character — weak form, virtual work, variational principle — finds its finest-scale voice here: the Hohenberg–Kohn theorem states that the ground-state energy is minimized over admissible densities, exactly as Dirichlet's principle minimized elastic energy in Part III and Rayleigh–Ritz searched on \(V_h\) in Part IV. Part I's eigenvalue loop reappears as the self-consistent Kohn–Sham cycle; Part II's function spaces as orbital Hilbert spaces; Part IV's assembly philosophy as plane-wave expansions and k-point quadrature.
+
+**Reading order** (VII → VIII → IX) descends to finer physics; **workflow order** (IX → VIII → VII → IV) is how practitioners build input decks — see the [two clocks note](../part08-md/00-opening.md#two-clocks-reading-order-vs-foundation-pedigree). Linear readers should finish Part IX before the epilogue so every upward export in the multiscale afternoon carries a pedigree traceable to SCF convergence logs.
+
+The first chapter below separates electrons from nuclei — Born–Oppenheimer — and explains why the ground-state density alone determines the energy landscape MD, DDD, and continuum elasticity ultimately rest on. Turn the page when you are ready to see where Young's modulus and stacking-fault energy actually live.

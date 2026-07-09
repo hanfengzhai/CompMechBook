@@ -102,4 +102,15 @@ In [laboratory time](../prologue/00-many-scales.md#the-experiment-as-plot), **Ac
 
 ## Bridge
 
-Part II promised that the copper wire's displacement and temperature live in Sobolev spaces, not in \(\mathbb{R}^N\) for any fixed mesh. The first chapter below writes the strong forms that describe those fields — and shows where classical pointwise solutions fail, motivating the weak formulations that follow.
+Part II ended with a promise: the copper wire's displacement and temperature live in Sobolev spaces, not in \(\mathbb{R}^N\) for any fixed mesh. [II.5](../part02-functional-analysis/05-spectral-theorem.md#bridge) named the weak form a **recurring character** about to speak on stage — multiply by a test function, integrate by parts, balance virtual work for every admissible displacement. Part III is that act.
+
+| What Part II supplied | What Part III writes |
+|-----------------------|----------------------|
+| \(H^1\), \(L^2\), completeness | Domains \(\Omega\) where fields live |
+| Bilinear forms \(a(u,v)\); dual loads \(\ell\) | Weak forms \(a(u,v)=\ell(v)\) for Poisson, heat, elasticity |
+| Lax–Milgram and spectral convergence | Energy methods that package existence as minimization |
+| Galerkin best approximation on \(V_h\) | The equations Parts IV and V will discretize |
+
+The first chapter below writes **strong forms** — what the blackboard demands at every point — and names where classical \(C^2\) smoothness fails on the wire's grip corner, insulator interface, and mid-span load. That failure is not a bug in the physics; it is the plot hinge the prologue's recurring character has been walking toward since Part I's nodal balance laws. [III.2](02-weak-form.md) gives the character its first lines; [III.4](04-energy-methods.md) closes the analytical pipeline before FEM and FVM turn weak forms into code.
+
+Turn the page when you are ready to see where pointwise PDEs break — and why the weak form is the correct continuum statement, not a numerical convenience.

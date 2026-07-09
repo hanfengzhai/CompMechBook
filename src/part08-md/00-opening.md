@@ -105,4 +105,15 @@ Part I's coupled springs become Part VIII's coupled nuclei on a potential surfac
 
 ## Bridge
 
-Part VII ended with dislocation lines and the admission that atoms matter at cores and crack tips. The first chapter below puts those atoms back: phase space, Hamiltonian mechanics, and the interatomic potentials that define forces in every MD simulation of copper.
+Part VII ended with dislocation forests, Taylor hardening, and the admission that **cores and crack tips need atoms**. [VII.3](03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) named the quantities MD must supply — stacking-fault energy, core width, mobility tables — and deferred their microscopic origin to this part. Part VIII puts the atoms back on stage.
+
+| What Part VII homogenized | What Part VIII resolves |
+|---------------------------|-------------------------|
+| Line defects with Burgers vector \(\mathbf{b}\) | Atomic positions \(\{\mathbf{r}_i\}\) in a periodic box |
+| Cutoff-regularized core singularity | Bond breaking and thermal vibrations at the notch tip |
+| Mobility law \(M(\tau, T)\) as a fitted table | NVT shear tests that measure drag from phonon scattering |
+| Taylor \(\tau \propto \sqrt{\rho}\) hardening | Trajectories whose statistics export \(\tau(\gamma)\) upward |
+
+Part I's coupled springs reappear here as coupled nuclei on an interatomic potential — still \(\mathbf{F} = -\nabla V\) at each timestep, still eigenmodes (now phonons) that decouple small oscillations, still stability constraints on \(\Delta t\) that mirror explicit Euler's CFL limit. Part VII exported mesoscale numbers; Part VIII shows how LAMMPS workflows, thermostats, and coarse-graining make those numbers **measurable and traceable** before Part IX derives the potential surface \(V(\{\mathbf{r}_i\})\) from electron density.
+
+The first chapter below opens **phase space** — positions, momenta, Hamiltonian mechanics — and the interatomic potentials every MD run of copper assumes on trust until the audit in Part IX. Turn the page when the mesh is fine enough but the core is still wrong: that is the hinge between line defects and atoms.

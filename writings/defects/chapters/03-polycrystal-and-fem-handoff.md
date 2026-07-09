@@ -238,6 +238,6 @@ DDD assumes **closed cores** and empirical short-range rules. When dislocations 
 
 The wire's strength is a story written in dislocation lines; the **ink** is atomic bonding. We have named the lines and their statistics. Next we resolve the atoms that give those lines their mobility.
 
-## Bridge
+## Bridge to Part VIII
 
 Crystal plasticity and calibrated DDD close the mesoscale chapter: they explain why the copper wire yields and hardens without resolving every atom. But mobility laws, stacking-fault energies, and crack-tip bond breaking are not adjustable forever — they are measured or computed at the atomic scale. Part VIII follows the same copper lattice with Newton's equations and empirical or fitted potentials, supplying the parameters DDD and FEM inherit.

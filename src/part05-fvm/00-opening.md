@@ -118,4 +118,15 @@ Part IV assembled \(\mathbf{K}\) from shape-function integrals; Part V assembles
 
 ## Bridge
 
-Part IV assembled stiffness matrices from shape functions. Part V begins with a different question: given a conservation law in integral form, how do we balance fluxes across cell faces so that discrete solutions respect the same invariants the continuous PDE preserves?
+Part IV assembled stiffness matrices from shape functions; [IV.5](../part04-fem/05-convergence.md#bridge-two-doors-from-here) named **Door A** — conservation on control volumes for fluids, shocks, and steep advection fronts. Part V walks through that door. The physics of the copper wire did not change; the **computational instinct** did.
+
+| What Part IV gave (solid, Galerkin) | What Part V adds (fluid, FVM) |
+|-------------------------------------|-------------------------------|
+| Trial functions in \(H^1\) on the wire mesh | Cell-averaged states and face fluxes in the air domain |
+| Energy minimization / weak residuals | Integral conservation \(\sum_i \frac{d}{dt}(\bar{u}_i V_i) + \sum_{\text{faces}} F = 0\) |
+| \(\mathbf{K}\mathbf{U}=\mathbf{F}\) from assembly | Riemann fluxes, CFL limits, upwind bias for transport |
+| Error estimates as \(h \to 0\) | Entropy conditions and shock capturing on coarse grids |
+
+The **conjugate heat transfer** scene above is why Door A is not optional on first reading for the full wire story: Joule heating in the solid (Part IV) and convection in the air (Part V) exchange wall temperature and heat flux until both sides agree — the same fixed-point handshake the epilogue later generalizes to DFT→MD→DDD→FEM chains. Part III wrote the Navier–Stokes and energy equations; Part V discretizes them with flux balances that respect the invariants Galerkin cannot guarantee at high Reynolds number.
+
+The first chapter below begins with **integral forms of conservation laws** — the FVM dialect of the same balance laws Part VI will name in Cauchy stress and rate-of-deformation language. Turn the page when the thermocouple climbs and the air around the wire needs a discretization philosophy of its own.
