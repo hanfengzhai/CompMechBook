@@ -206,3 +206,12 @@ Turn the page when ready. The ladder starts with familiar objects: vectors, matr
 ## Bridge
 
 Turn the page. The copper wire is waiting — first as vectors and matrices, eventually as electrons, dislocations, and degrees of freedom on a finite element mesh. The climb begins with the grammar we already speak: linear algebra.
+
+| Prologue promise | Part I delivery |
+|------------------|-----------------|
+| Four questions (state, equations, discretization, export) | State = vector; equations = \(\mathbf{K}\mathbf{u}=\mathbf{f}\); discretization = assembly |
+| Six-act lab session (mount → warm → pull → harden → notch → foundation) | **Act I** opens Part I: mounting before current or ramp |
+| Weak form as recurring character (preview only) | Nodal equilibrium as finite-dimensional prelude; \(N\to\infty\) deferred to I.4 |
+| One specimen, many scales | Same wire as \(N\) coupled springs — the discrete shadow every mesh refines |
+
+Part I opens with [**Closing the arc from the Prologue**](../part01-linear-algebra/00-opening.md#closing-the-arc-from-the-prologue) — the same four questions replayed in finite-dimensional vocabulary before Part II replaces vectors with functions. Read the prologue's panoramic ladder once; then let Part I make the bottom rung explicit in the syntax every simulation shares.

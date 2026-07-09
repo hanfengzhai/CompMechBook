@@ -187,6 +187,14 @@ We have:
 
 Part IV asks: how do we choose \(V_h\), compute integrals, and assemble \(\mathbf{K}\)? The finite element method is the answer — weighted residuals, element-by-element assembly, quadrature rules, and convergence theory that make the copper wire’s discrete model faithful to the continuum energy we minimized here.
 
+| What Part III completed | What Part IV opens |
+|-------------------------|-------------------|
+| Weak form \(a(u,v)=\ell(v)\) | Galerkin: choose \(u_h, v_h \in V_h\) from the same basis |
+| Dirichlet principle: minimize \(\Pi[u]\) in \(H^1\) | Rayleigh–Ritz: minimize \(\Pi[u_h]\) on \(V_h\) → assembled \(\mathbf{K}\) |
+| Lax–Milgram well-posedness | Céa lemma: discrete solution tracks continuous minimizer |
+| Sobolev \(H^1\) regularity | \(H^1\)-conforming shape functions (continuous across elements) |
+| [III.4 checkpoint](#concept-map-checkpoint-part-iii) energy pipeline | [IV opening](../part04-fem/00-opening.md#closing-the-arc-from-part-iii) **Closing the arc from Part III** |
+
 If you need the fluid fork after FEM, [IV.5](../part04-fem/05-convergence.md#bridge-two-doors-from-here) names **Door A** (Part V: FVM and conjugate heat transfer) and **Door B** (Part VI: continuum stress–strain vocabulary) — the canonical place to choose, so this chapter can stay focused on energy → assembly.
 
 Turn the page. Assembly awaits: the same \(\mathbf{K}\mathbf{U}=\mathbf{F}\) from Part I, now built from shape functions, Jacobians, and the bilinear forms defined in Part III.
