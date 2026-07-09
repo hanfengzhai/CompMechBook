@@ -152,4 +152,17 @@ Industrial codes rarely form dense \(\mathbf{K}^{-1}\mathbf{M}\). **Lanczos** an
 
 ## Bridge
 
-We have stayed in finite dimensions: \(\mathbf{A}\mathbf{v} = \lambda \mathbf{v}\), finitely many modes, matrices we can factor. Mechanics, however, specifies fields at every point — temperature along the wire, displacement in every direction, pressure in every fluid cell. The next chapter takes the first step from \(\mathbb{R}^N\) toward function spaces: inner products become integrals, matrices become operators, and the eigenvalue problem becomes a spectral problem for differential operators. Part II makes that transition rigorous; Part III writes down the PDEs those operators encode.
+We have stayed in finite dimensions: \(\mathbf{A}\mathbf{v} = \lambda \mathbf{v}\), finitely many modes, matrices we can factor. The copper wire's ringing pitches — normal modes of the spring network — live entirely in that world for fixed \(N\). Yet mechanics specifies fields at every point: temperature along the wire, displacement in every direction, pressure in every fluid cell. Refining the mesh adds eigenvalues without bound; their limit is a **spectrum** of a differential operator, not a longer list in \(\mathbb{R}^N\).
+
+| What I.3 fixed at finite \(N\) | What I.4 + Part II take to the limit |
+|-------------------------------|--------------------------------------|
+| Modal coordinates decouple \(\mathbf{M}\ddot{\mathbf{u}}+\mathbf{K}\mathbf{u}=\mathbf{0}\) | Fields \(u(x)\), \(T(x)\); operators on \(H^1\), \(L^2\) |
+| \(\mathbf{K}\mathbf{v}=\omega^2\mathbf{M}\mathbf{v}\), finitely many \(\omega_j\) | Laplacian eigenvalues accumulate; mesh \(\omega_{h,j}\to\omega_j\) as \(h\to 0\) |
+| Lanczos on sparse \(\mathbf{K}\) for lowest modes | Spectral theory for elliptic operators (Part II.5 → Part IV.5) |
+| Resonance diagnosis on the wire fixture | Same decoupling picture at atomistic scales (Part VIII) |
+
+The [prologue](../../prologue/00-many-scales.md) introduced the specimen as one ladder with many rungs; eigenmodes are the **first time decoupling appears** in the book — a preview of orthogonality in Hilbert space and of dominant modes in molecular dynamics. [I.2](02-linear-maps.md) showed change of coordinates; eigenvectors are the coordinates in which the stiffness map acts by pure scaling.
+
+The next chapter takes the first step from \(\mathbb{R}^N\) toward function spaces: inner products become integrals, matrices become operators, and the eigenvalue problem becomes a spectral problem for differential operators. Part II makes that transition rigorous; Part III writes down the PDEs those operators encode.
+
+Turn the page when the wire's modes outgrow any fixed mesh count — that is the signal that vectors are no longer enough.

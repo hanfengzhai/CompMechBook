@@ -195,4 +195,15 @@ Unconverged MD is structured noise — the same warning we will repeat for DFT c
 
 ## Bridge
 
-Verlet integrators and NVT/NPT ensembles make classical MD a controlled experiment on the potential energy surface — but that surface is usually empirical. The next chapter asks when **ab initio** forces replace EAM, how DFT data are compressed into potentials and mobility tables, and how atomistic simulations hand parameters upward before we descend to electrons in Part IX.
+Verlet integrators and NVT/NPT ensembles make classical MD a controlled experiment on the potential energy surface — but that surface is usually **empirical**. The next chapter asks when **ab initio** forces replace EAM, how DFT data are compressed into potentials and mobility tables, and how atomistic simulations hand parameters upward before we descend to electrons in Part IX.
+
+| What VIII.2 established | What VIII.3 supplies |
+|-------------------------|----------------------|
+| Symplectic Verlet; NVE as sanity check | When EAM is not enough: AIMD and QM/MM |
+| NVT/NPT thermostats and barostats for Cu at 300–600 K | EAM-fit workflow from DFT bulk properties |
+| Reproducibility checklist (cutoff, \(\Delta t\), drift) | Coarse-graining: export \(C_{ij}\), \(\gamma_{\text{sf}}\), mobility to Part VII |
+| Time-scale gap (creep, rare events) | Handoff table linking Part VIII exports to Part IV/VII consumers |
+
+Return to the [prologue](../../prologue/00-many-scales.md): the wire's strength at the engineering scale still depends on a potential someone fit from quantum data. Part VII's dislocations move on surfaces MD integrates; Part IV's elastic step uses moduli MD or DFT averaged over a polycrystal. [VIII.3](03-ab-initio-and-coarse-graining.md) is the **export chapter** — the rung where atomistics stops being a standalone movie and becomes input for coarser models, while naming what only Part IX can re-derive from \(\rho(\mathbf{r})\).
+
+Turn the page when the EAM curve matches experiment in bulk but fails at the notch root — that is the signal to audit the potential against electronic structure.

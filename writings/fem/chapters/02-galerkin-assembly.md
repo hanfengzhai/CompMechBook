@@ -172,4 +172,15 @@ The copper wire's displacement field, once meshed, is a vector \(\mathbf{U} \in 
 
 ## Bridge
 
-Local stiffness and load integrals depend on shape functions and quadrature rules. The accuracy, cost, and robustness of the method — whether P1 triangles suffice or Q2 elements are needed, whether reduced integration causes hourglassing — are determined in the next chapter, where we detail reference elements, isoparametric maps, and Gauss quadrature.
+Global assembly is the map from continuum physics to \(\mathbf{K}\mathbf{U}=\mathbf{F}\) — but the integrals inside each element depend on **shape functions**, **reference-to-physical maps**, and **quadrature rules**. The accuracy, cost, and robustness of the method — whether P1 triangles suffice or Q2 elements are needed, whether reduced integration causes hourglassing — are determined in the next chapter.
+
+| What IV.2 assembled | What IV.3 must specify |
+|-----------------------|------------------------|
+| Local \(\mathbf{K}^e\), \(\mathbf{f}^e\) from weak form | Shape functions \(\phi_i\) on reference elements |
+| Scatter/gather into global sparsity pattern | Isoparametric Jacobian \(J\) and \(\det J\) in integrals |
+| DOF map for vector problems on the wire | Quadrature points/weights that integrate polynomials exactly |
+| Mass matrix for transient heat on the wire | Locking, hourglassing, and patch-test failures |
+
+Recall the pipeline from [Part III.4](../part03-pdes/04-energy-methods.md#bridge-to-part-iv): weak form → energy minimum → Rayleigh–Ritz on \(V_h\). Assembly is the operational half of Rayleigh–Ritz; element technology is the other half. The copper wire's tensile mesh is only as trustworthy as the P1 bar elements (1D), triangles (2D cross-section), or tets (3D grip region) that define \(V_h\).
+
+Turn the page when assembly feels like bookkeeping but the stress contour still jumps between meshes — the fault is usually element order or quadrature, not the scatter loop.
