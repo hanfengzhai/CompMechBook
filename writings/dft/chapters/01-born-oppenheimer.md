@@ -196,4 +196,15 @@ Born–Oppenheimer and Hohenberg–Kohn justify the **bottom** of the ladder: wh
 
 ## Bridge
 
-Kohn–Sham DFT replaces the interacting many-body problem with an auxiliary non-interacting system sharing the same density — implemented as a self-consistent field cycle over orbitals and eigenvalues. The next chapter states the equations practitioners solve daily, the convergence rituals that separate physics from numerical artifact, and the plane-wave basis that makes periodic copper crystals computable.
+Born–Oppenheimer separation and Hohenberg–Kohn existence theorems justify treating **energy as a functional of electron density** while nuclei evolve on a slower surface — the intellectual floor under every copper cohesive-energy calculation in this book.
+
+| What Born–Oppenheimer gave | What Kohn–Sham DFT (next chapter) implements |
+|------------------------------|---------------------------------------------|
+| Fast electrons, slow nuclei; BO energy surface | Self-consistent Kohn–Sham equations solved in QE/VASP/GPAW |
+| Energy as functional of \(\rho(\mathbf{r})\) (HK theorem) | Auxiliary non-interacting orbitals with the same density |
+| Small-cell DFT computes **intensive** quantities | Plane waves, k-meshes, \(E_{\text{cut}}\) convergence rituals |
+| Inputs for Part VIII EAM fits and Part VII defect energies | Workflows from input deck to elastic constants upward |
+
+Return to the prologue's **Act VI — Foundation**: before any wire-scale FEM run, someone chose \(E\), \(\nu\), and surface energies whose pedigree traces to calculations like those in this part. Part VIII's EAM potential and Part VII's stacking-fault energies consume what IX.1–IX.3 export; the epilogue wires those exports into multiscale pipelines no single code runs alone.
+
+[IX.2](02-kohn-sham.md) is the practitioner's chapter — SCF cycles, pseudopotentials, and the convergence checklist that separates chemistry from numerical artifact. Turn the page when "DFT gave a number" but cutoff, k-sampling, and functional choice were never documented — that is the signal the foundation run is not yet trustworthy enough to climb the ladder.

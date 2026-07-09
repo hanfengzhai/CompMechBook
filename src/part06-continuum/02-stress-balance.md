@@ -200,4 +200,15 @@ Parts I–V built the same four-question discipline the Functional Analysis Note
 
 ## Bridge
 
-Static equilibrium of an elastic body is equivalent to minimizing total potential energy — or finding a saddle point when incompressibility or contact constraints appear. The next chapter makes that variational statement explicit, traces the nonlinear FEM path, and explains when continuum theory itself admits defeat at crack tips and dislocation cores — the doorway to Part VII.
+Balance laws, stress, and constitutive relations complete the **field vocabulary** Part IV and Part V approximated on meshes and control volumes — but the copper wire's elastic response is not finished with naming tensors. Static equilibrium is also a **minimum principle**.
+
+| What balance laws supplied | What variational elasticity (next chapter) adds |
+|------------------------------|------------------------------------------------|
+| Momentum balance \(\nabla\cdot\boldsymbol{\sigma}+\mathbf{f}=\mathbf{0}\) | Total potential energy \(\Pi[\mathbf{u}]\) whose stationarity is equilibrium |
+| Cauchy stress and symmetry from angular balance | Virtual work as the weak form Part III derived — now with physical \(\boldsymbol{\sigma}\) |
+| Hooke's law \(\boldsymbol{\sigma}=\mathbb{C}:\boldsymbol{\varepsilon}\) | Why Part IV's \(\mathbf{K}\) integrates \(\mathbb{C}:\boldsymbol{\varepsilon}(\mathbf{N}_I):\boldsymbol{\varepsilon}(\mathbf{N}_J)\) |
+| Thermal balance and Fourier law for Joule heating | Coupled energy functional when temperature feeds moduli (preview) |
+
+The virtual work equation in this chapter is the same balance Part IV assembled — continuum mechanics **names** the tensors the FEM code already integrated. The load cell's linear elastic climb (prologue **Act III**) measures stress derived here; when the curve bends (**Act IV**), smooth fields and isotropic \(\mathbb{C}\) stop being enough.
+
+[VI.3](03-variational-elasticity.md) makes the energy statement explicit, closes the upward arc from Part I's spring network, and previews when hyperelasticity and yield force a descent to Part VII. Turn the page when \(\boldsymbol{\sigma}=\mathbb{C}:\boldsymbol{\varepsilon}\) feels like a constitutive plug-in rather than the consequence of minimizing elastic energy — variational elasticity reunifies the story.

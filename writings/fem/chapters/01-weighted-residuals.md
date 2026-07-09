@@ -160,6 +160,15 @@ These properties explain why elliptic solid mechanics — the copper wire under 
 
 Galerkin's method on a finite element space becomes a matrix system through **global assembly**: loop over elements, compute local stiffness and load vectors, scatter into a global sparse matrix. That algorithm — identical in academic Matlab scripts and in industrial solvers processing millions of elements — is the subject of the next chapter.
 
+| What weighted residuals established | What assembly (next chapter) must compute |
+|-------------------------------------|------------------------------------------|
+| Residual \(R_{\text{weak}}(v; u_h)=0\) for all test \(v\) | Local \(\mathbf{K}^e\), \(\mathbf{f}^e\) and scatter into global sparsity |
+| Galerkin: trial space = test space | DOF maps, element connectivity, boundary constraints |
+| Rayleigh–Ritz equivalence for coercive problems | Same energy minimum as Part III.4, now on nodal coefficients |
+| Virtual work for scalar Poisson and vector elasticity | Bar/triangle/tet contributions along the copper wire mesh |
+
 Recall Part III's closing pipeline: strong PDE → weak form → **energy minimum** (Dirichlet principle) → discrete search on \(V_h\). Weighted residuals are the operational face of that minimum — enforcing \(R_{\text{weak}}(v; u_h) = 0\) for all test functions is equivalent to seeking the minimizer of a quadratic energy when the bilinear form is symmetric and coercive. The copper wire's tensile equilibrium from [III.4](../part03-pdes/04-energy-methods.md) arrives here as the same \(a(u,v) = \ell(v)\) restricted to piecewise linears; assembly is how we compute the matrix that Rayleigh–Ritz minimization demands.
 
-The weighted residual has done its job; now we build the matrix.
+Return to the [prologue](../../prologue/00-many-scales.md): **Act III — Pulling** turns abstract Galerkin orthogonality into numbers the load cell trusts. Part I named \(\mathbf{K}\mathbf{u}=\mathbf{f}\); Part II proved the limit lives in \(H^1\); Part III wrote the bilinear form. [IV.2](02-galerkin-assembly.md) is where the operator becomes code — the stiffness matrix is not magic, but the Gram matrix of the energy inner product on \(V_h\).
+
+Turn the page when the weak form is clear but no matrix exists yet — that is the signal that weighted residuals need an assembly loop.
