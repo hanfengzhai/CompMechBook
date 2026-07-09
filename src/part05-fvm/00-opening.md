@@ -57,6 +57,21 @@ Part IV answered *how* to discretize elliptic problems on complex geometry. Part
 
 The copper wire you meshed in Part IV still carries current and heat. The air around it was implicit in boundary conditions — a convection coefficient, perhaps a Robin flux. Part V makes that air **explicit**: a fluid domain with cell-averaged velocity and temperature, coupled back to the solid at the interface. Same wire, second discretization dialect; Part VI will name the stress and flux tensors both dialects approximate.
 
+## Closing the arc from Part III
+
+If you have read linearly since the prologue, Part III's closing checkpoint completed the analytical pipeline — strong form, weak form, Sobolev regularity, energy minimum. Part V is the **second discretization dialect** for the same PDEs:
+
+| Part III (PDEs on the wire) | Part V (FVM on the wire) |
+|-----------------------------|--------------------------|
+| Strong form at every point | Integral balance over each control volume |
+| Weak form \(a(u,v)=\ell(v)\) | Flux balance \(\sum_{\text{faces}} \mathbf{F}\cdot\mathbf{n} = 0\) |
+| Energy minimization (elliptic) | Entropy conditions (hyperbolic); dissipation (parabolic) |
+| Test functions in \(H^1\) | Cell averages and face fluxes |
+| Lax–Milgram well-posedness | Discrete conservation; CFL stability for explicit steps |
+| [III.4 Bridge](04-energy-methods.md#bridge-to-part-iv) defers FVM fork to IV.5 | [IV.5](../part04-fem/05-convergence.md#bridge-two-doors-from-here) Door A arrives here |
+
+Part III wrote the Navier–Stokes and energy equations the air around the wire satisfies; Part IV discretized the **solid** with Galerkin trial functions. Part V discretizes the **fluid** with conservation-first flux balances — not because the physics changed, but because transport and shocks favor a different computational instinct. The conjugate heat transfer loop below is Part III's weak forms and Part V's flux balances **speaking at an interface**; Part VI will name the Cauchy stress and rate-of-deformation tensors both sides approximate.
+
 ## Conjugate heat transfer: the wire meets the wind
 
 The prologue promised that the copper wire and the air around it are one story told in two discretizations. **Conjugate heat transfer** makes that promise concrete:

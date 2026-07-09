@@ -56,6 +56,21 @@ Whether you read Part V or skipped from Part IV to here, the **computational spi
 
 Parts IV and V solved **equations on meshes** without fully naming the mechanical objects those meshes carry. Part IV's nodal displacements sample a continuous \(\mathbf{u}(\mathbf{X})\); Part V's cell-averaged velocities sample \(\mathbf{v}(\mathbf{x})\) in the fluid domain. Part VI supplies the **continuum vocabulary** — deformation gradient \(\mathbf{F}\), Cauchy stress \(\boldsymbol{\sigma}\), virtual work — that makes \(\mathbf{K}\mathbf{U}=\mathbf{F}\) a force-balance statement rather than a sparse linear algebra exercise. It also admits what neither FEM nor FVM can resolve alone: cold-drawn strength, notch singularities, and yield surfaces that demand mesoscale physics in Part VII.
 
+## Closing the arc from Parts IV and V
+
+If you have read linearly since the prologue, Parts IV and V completed the **discretization arc** — Galerkin assembly for elliptic solids, flux balances for transport fluids. Part VI is where those algorithms receive **physical names**:
+
+| Parts IV–V (discretization on the wire) | Part VI (continuum on the wire) |
+|----------------------------------------|----------------------------------|
+| Nodal displacements \(\mathbf{U}\) from shape functions | Displacement field \(\mathbf{u}(\mathbf{X})\); deformation gradient \(\mathbf{F}\) |
+| Assembled \(\mathbf{K}\mathbf{U}=\mathbf{F}\) from virtual work | Cauchy stress \(\boldsymbol{\sigma}\); balance \(\nabla\cdot\boldsymbol{\sigma}+\mathbf{b}=\mathbf{0}\) |
+| Cell-averaged velocity and temperature (Part V) | Rate of deformation \(\mathbf{D}\); energy equation in continuum form |
+| Conjugate heat: wall \(T\) and flux \(q_w\) handshake | Thermal strain \(\alpha\Delta T\) in virtual work; coupled multiphysics vocabulary |
+| Céa lemma: discrete tracks continuous minimizer | Virtual work principle: FEM \(\mathbf{K}\) is discrete shadow of \(\int \boldsymbol{\sigma}:\delta\boldsymbol{\varepsilon}\,d\Omega\) |
+| [IV.5 Door B](../part04-fem/05-convergence.md#bridge-two-doors-from-here) or [V.4 Bridge](../part05-fvm/04-navier-stokes-cfd.md#bridge-to-part-vi) arrives here | [VI.4](04-nonlinear-plasticity-preview.md) admits smooth fields fail at defects |
+
+Part IV assembled stiffness from bilinear forms Part III derived; Part V balanced fluxes for the air Part III's energy equation governs. Neither part defined what **stress** means or why cold-drawn copper yields at a higher force than annealed copper. Part VI supplies that vocabulary — and the admission that phenomenological plasticity fits curves without simulating the dislocation forest Part VII will name. The copper wire that was a meshed solid and a cooled fluid domain is now a **mechanical body** with tensors, balance laws, and a yield surface that hides mesoscale history.
+
 ## Closing the arc from Part I
 
 If you have read linearly since the prologue, notice how the **same four questions** from the opening table reappear here with continuum vocabulary — and how the **same mathematical moves** from Part I return at the engineering scale:

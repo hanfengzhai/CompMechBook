@@ -59,6 +59,20 @@ The climb upward is complete for the **continuum floor**. Every rung below Part 
 
 Part VI admitted that cold-drawn copper work-hardens and that notch roots break smooth-field assumptions — but it could not **simulate** the dislocation forest that drawing created. Phenomenological plasticity fits curves; dislocation dynamics **generates** the curves from line motion. The prologue's processing history (draw, anneal, load) now gets a mesoscale narrator: Burgers vectors, Peach–Köhler forces, Taylor \(\sqrt{\rho}\) hardening. Parts VIII–IX will ask where mobility and stacking-fault energy come from; Part VII asks how plasticity **moves** before we shrink to atoms and electrons.
 
+## Closing the arc from Part VI
+
+If you have read linearly since the prologue, Part VI's closing checkpoint named the continuum fields and admitted that **smooth elasticity ends at defects**. Part VII is the first **descent** that explains where phenomenological parameters hide their history:
+
+| Part VI (continuum on the wire) | Part VII (dislocations on the wire) |
+|---------------------------------|-------------------------------------|
+| Cauchy stress \(\boldsymbol{\sigma}\); virtual work | Peach–Köhler force on each line segment |
+| \(J_2\) yield surface with fitted \(H\), \(\sigma_{y0}\) | Forest density \(\rho\); Taylor \(\tau \propto \sqrt{\rho}\) hardening |
+| Isotropic hardening internal variable \(\alpha\) | Link-length statistics from DDD time integration |
+| Cutoff-regularized singularities at notches | Line defects with Burgers vector \(\mathbf{b}\) and mobility law |
+| [VI.4 Bridge](04-nonlinear-plasticity-preview.md#bridge-to-part-vii) names the hinge | [VII.1](01-defect-taxonomy.md) opens the defect catalog |
+
+Part VI's return-mapping loop made the load cell curve bend upward with phenomenological \(H\); Part VII shows **why** the curve bends — dislocation lines multiply, tangle, and glide under the stress field Part IV computed on the mesh. Cold drawing did not change Young's modulus; it **stored** lines in a forest whose density rises with plastic strain. The copper wire that satisfied balance laws and virtual work at the engineering scale is now a polycrystal whose strength is a **homogenized summary** of mesoscale motion. Parts VIII–IX will ask what sets mobility and core energy; Part VII asks how plasticity propagates before we shrink to atoms and electrons.
+
 ## Closing the arc from Part I
 
 If you have read linearly since the prologue, notice how the **same four questions** reappear here with mesoscale vocabulary — and how the **same mathematical habits** from Part I return on a network of line segments:

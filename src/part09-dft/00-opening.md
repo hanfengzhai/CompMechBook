@@ -55,6 +55,20 @@ The descent from continuum to atoms is complete; Part IX reaches the **finest ru
 
 Part VIII assumed nuclei move on a potential surface — EAM, MEAM, or machine-learned — and exported moduli, stacking-fault energies, and mobility tables to DDD and FEM. That potential is a **practical fiction**: electrons adjust instantaneously to nuclear motion, but the quantum mechanics that sets cohesive energy, vacancy formation enthalpy, and elastic constants was hidden. Part IX makes the downward contract explicit: DFT resolves \(\rho(\mathbf{r})\), the ground-state energy is a functional of density alone, and every number exported upward — \(E_{\text{coh}}\), \(C_{ij}\), \(\gamma_{\text{sf}}\) — is traceable to a self-consistent Kohn–Sham cycle. The epilogue will ask how to climb back up with those numbers in a reproducible workflow.
 
+## Closing the arc from Part VIII
+
+If you have read linearly since the prologue, Part VIII's closing checkpoint fitted EAM potentials and exported moduli upward on **trust**. Part IX is the **audit chapter** — where every interatomic parameter receives an electronic pedigree:
+
+| Part VIII (atoms on the wire) | Part IX (electrons in copper) |
+|-------------------------------|-------------------------------|
+| EAM potential \(V(\{\mathbf{r}_i\})\) on trust | Born–Oppenheimer: nuclei on \(E[\rho]\) surface |
+| Cohesive energy from MD or experiment | \(E_{\text{coh}}\) from Kohn–Sham ground state |
+| Elastic constants from stress–strain fluctuations | \(C_{ij}\) from strained unit cells (force theorem) |
+| Stacking-fault energy for DDD mobility | \(\gamma_{\text{sf}}\) from relaxed faulted supercells |
+| [VIII.3 Bridge](03-ab-initio-and-coarse-graining.md#bridge-to-part-ix) requests DFT pedigree | [IX.3](03-dft-workflows.md) exports QE numbers upward |
+
+Part VIII's LAMMPS trajectories assumed electrons follow nuclei instantaneously; Part IX separates the timescales and proves the ground-state energy is a **functional of density alone** — the finest rung of the prologue's ladder. The copper wire's valence electrons determine cohesive energy, bond stiffness, and defect formation enthalpies that every coarser model inherits. Part I's eigenvalue loop reappears as Kohn–Sham orbitals; Part IV's basis discretization reappears as plane waves and k-points. The epilogue will wire DFT → MD → DDD → FEM into one reproducible afternoon; Part IX supplies the numbers at the bottom of that chain.
+
 ## Closing the arc from Part I
 
 If you have read linearly since the prologue, notice how the **same four questions** from the opening table reappear here with new vocabulary — and how the **same mathematical moves** from Part I return at the finest scale:
