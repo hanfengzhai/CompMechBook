@@ -57,6 +57,20 @@ Part IV answered *how* to discretize elliptic problems on complex geometry. Part
 
 The copper wire you meshed in Part IV still carries current and heat. The air around it was implicit in boundary conditions — a convection coefficient, perhaps a Robin flux. Part V makes that air **explicit**: a fluid domain with cell-averaged velocity and temperature, coupled back to the solid at the interface. Same wire, second discretization dialect; Part VI will name the stress and flux tensors both dialects approximate.
 
+## Closing the arc from Part IV
+
+If you arrived through [IV.5 Door A](../part04-fem/05-convergence.md#bridge-two-doors-from-here), Part IV's closing checkpoint just proved Céa lemma and named two exit doors. Part V is **Door A** — the complementary discretization for the air Part IV left as a Robin boundary condition:
+
+| Part IV (FEM on the wire) | Part V (FVM on the wire) |
+|-----------------------------|--------------------------|
+| Meshed solid; \(\mathbf{K}\mathbf{T}=\mathbf{q}\) for Joule heat | Fluid domain around the solid; cell-averaged \(T_f\), \(\mathbf{v}\) |
+| Shape functions in \(H^1\); energy-minimizing conduction | Flux-balanced transport; upwind bias at steep gradients |
+| Robin flux \(q = h(T_w - T_\infty)\) as boundary data | Resolved convection; \(h\) emerges from the boundary layer |
+| Céa: discrete tracks continuous minimizer in energy norm | CFL + limiters: discrete fluxes respect conservation invariants |
+| Convergence as \(h \to 0\) on the solid mesh | Convergence as \(\Delta x \to 0\) on the fluid grid |
+
+Part IV made the wire's interior computable; Part V makes its **surroundings** honest. The thermocouple from Act II does not respond to conductivity alone — it responds to how fast air carries heat away from the hot surface. [IV.5](../part04-fem/05-convergence.md#bridge-two-doors-from-here) promised that conjugate heat transfer would couple both meshes at an interface; the section below delivers that handshake.
+
 ## Closing the arc from Part III
 
 If you have read linearly since the prologue, Part III's closing checkpoint completed the analytical pipeline — strong form, weak form, Sobolev regularity, energy minimum. Part V is the **second discretization dialect** for the same PDEs:
