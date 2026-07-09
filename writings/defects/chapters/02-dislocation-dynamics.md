@@ -200,7 +200,9 @@ Before exporting DDD hardening laws to crystal plasticity or FEM:
 
 Unvalidated DDD is animated elasticity with pretty lines — the same warning Part VIII repeats for unconverged MD and Part IX repeats for unconverged plane-wave cutoff.
 
-## Concept map checkpoint (Part VII)
+## Concept map checkpoint (dislocation dynamics)
+
+This chapter's four questions — scoped to **segment-network simulation**, not the full Part VII arc:
 
 | Question | DDD answer (copper wire) |
 |----------|--------------------------|
@@ -209,7 +211,7 @@ Unvalidated DDD is animated elasticity with pretty lines — the same warning Pa
 | What **theorem**? | Taylor \(\tau \propto \sqrt{\rho}\); link-statistics evolution on active slip systems |
 | What **breaks**? | Core cutoff artifacts; wrong mobility; scalar \(\rho\) collapsing texture |
 
-The load cell's post-yield bend is not a fitted Voce slope alone — it is a forest whose density and link statistics DDD can measure. Part VII.3 exports those statistics upward to polycrystal FEM; Parts VIII–IX supply the mobility and elastic constants this chapter consumes.
+The load cell's post-yield bend is not a fitted Voce slope alone — it is a forest whose density and link statistics DDD can measure. The **full Part VII** checkpoint — taxonomy through crystal plasticity handoff — closes in [VII.3](03-polycrystal-and-fem-handoff.md). Parts VIII–IX supply the mobility and elastic constants this chapter consumes.
 
 ## Bridge
 

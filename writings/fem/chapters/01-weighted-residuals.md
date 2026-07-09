@@ -158,4 +158,8 @@ These properties explain why elliptic solid mechanics — the copper wire under 
 
 ## Bridge
 
-Galerkin's method on a finite element space becomes a matrix system through **global assembly**: loop over elements, compute local stiffness and load vectors, scatter into a global sparse matrix. That algorithm — identical in academic Matlab scripts and in industrial solvers processing millions of elements — is the subject of the next chapter. The weighted residual has done its job; now we build the matrix.
+Galerkin's method on a finite element space becomes a matrix system through **global assembly**: loop over elements, compute local stiffness and load vectors, scatter into a global sparse matrix. That algorithm — identical in academic Matlab scripts and in industrial solvers processing millions of elements — is the subject of the next chapter.
+
+Recall Part III's closing pipeline: strong PDE → weak form → **energy minimum** (Dirichlet principle) → discrete search on \(V_h\). Weighted residuals are the operational face of that minimum — enforcing \(R_{\text{weak}}(v; u_h) = 0\) for all test functions is equivalent to seeking the minimizer of a quadratic energy when the bilinear form is symmetric and coercive. The copper wire's tensile equilibrium from [III.4](../part03-pdes/04-energy-methods.md) arrives here as the same \(a(u,v) = \ell(v)\) restricted to piecewise linears; assembly is how we compute the matrix that Rayleigh–Ritz minimization demands.
+
+The weighted residual has done its job; now we build the matrix.

@@ -230,6 +230,17 @@ Part VIII followed the MD Notes from phase space through coarse-graining. The fo
 
 The handoff table above closes the upward exports from atomistics: stacking-fault energy and core structures feed Part VII mobility; cohesive energy and moduli feed Part VI and Part IV elastic steps. What MD cannot invent — the potential surface itself — is Part IX's responsibility. Classical MD assumes Born–Oppenheimer surfaces; the next part derives them from electron density.
 
-## Bridge
+## Bridge to Part IX
 
 Classical MD is the workhorse; ab initio MD and QM/MM are the auditors when potentials fail. Coarse-graining and fitting are how Part VIII **hands numbers upward** to DDD and FEM and **requests truth downward** from electronic structure. Part IX makes that downward request precise: the Hohenberg–Kohn theorems, the Kohn–Sham equations, and the Quantum ESPRESSO-style workflows that turn a copper crystal into cohesive energy, elastic constants, and the potential datasets MD cannot invent.
+
+The EAM-fit checklist and handoff table above already named the quantities MD exports upward. Part IX re-derives each from electron density \(\rho(\mathbf{r})\):
+
+| Quantity | Part VIII role (this chapter) | Part IX re-derivation |
+|----------|-------------------------------|------------------------|
+| \(E_{\text{coh}}\) | Sanity check on EAM fit; bulk modulus anchor | Total energy per atom from converged SCF on fcc Cu |
+| \(C_{ij}\) (elastic constants) | NPT stress–strain vs DFT \(C_{11}\) | Small-strain energy derivatives w.r.t. lattice strain |
+| \(\gamma_{\text{sf}}\) | Stacking-fault energy for partial dislocations | Generalized stacking-fault energy surface from slab calculations |
+| \(E_f^v\) (vacancy formation) | Diffusion and creep parameters at high \(T\) | Supercell with one removed atom; total-energy difference |
+
+Part VIII assumed Born–Oppenheimer surfaces and fit potentials to match these numbers. Part IX is the **audit chapter** — the same copper cell Part VIII vibrated, now solved for \(\rho(\mathbf{r})\) before the epilogue climbs back up the ladder. See also the [two clocks note](../part08-md/00-opening.md#two-clocks-reading-order-vs-foundation-pedigree): chapter order descends VII → VIII → IX; workflow order builds input decks IX → VIII → VII → IV.

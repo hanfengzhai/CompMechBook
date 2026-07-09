@@ -157,6 +157,17 @@ Part VI named the fields that Parts IV and V already approximated on meshes. Bef
 
 The copper wire under rising load follows this arc: Part IV's mesh computes \(\mathbf{u}\); Part VI explains that \(\mathbf{u}\) minimizes energy until yield; this chapter adds Newton–Raphson and \(J_2\) plasticity when the load cell curve bends. When the mesh is refined but the hardening law is wrong, the fault is not discretization — it is **constitutive physics** that lives at the dislocation scale. Part VII supplies that physics.
 
-## Bridge
+## Bridge to Part VII
 
-Linear and nonlinear elasticity — geometric and material — exhaust what a **continuum field** can say before its assumptions fail at defects. The copper wire's cold-worked strength is not in \(\mathbb{C}\); it is in the dislocation forest frozen by manufacturing. Part VII names those defects, simulates their motion, and exports the hardening laws that make nonlinear FEM honest. Turn the page when the mesh is fine enough but the physics still wrong — that is the signal to descend.
+Linear and nonlinear elasticity — geometric and material — exhaust what a **continuum field** can say before its assumptions fail at defects. The copper wire's cold-worked strength is not in \(\mathbb{C}\); it is in the dislocation forest frozen by manufacturing. Part VII names those defects, simulates their motion, and exports the hardening laws that make nonlinear FEM honest.
+
+Return to the prologue's **Act IV — Hardening**: the load cell curve bent upward after yield, and Part VI's J₂ preview fitted that bend with phenomenological \(H\) and \(\sigma_{y0}\). Those parameters worked in a return-mapping loop — but they were **placeholders**. When the mesh is refined and the hardening law is still wrong, the fault is not discretization; it is **constitutive physics** that lives at the mesoscale. That is the signal to descend.
+
+| What Part VI gave | What Part VII must supply |
+|-------------------|---------------------------|
+| Isotropic hardening \(\sigma_y = \sigma_{y0} + H\alpha\) | Forest density \(\rho\) and Taylor \(\tau \propto \sqrt{\rho}\) |
+| Yield knee on the force–displacement trace | Slip lines on the wire surface; Burgers circuits that fail to close |
+| Cutoff-regularized singularities at notches | Line defects with Peach–Köhler forces and mobility laws |
+| Fitted \(H\) from macroscopic calibration | DDD link statistics exportable to crystal plasticity |
+
+Part VII opens with the same specimen at the yield point: polished copper showing faint **slip lines** on {111} planes — the visible trace of dislocation motion that J₂ plasticity homogenized into a scalar \(\alpha\). [VII.1](01-defect-taxonomy.md) names the defect catalog; [VII.2](02-dislocation-dynamics.md) follows the forest as it moves, multiplies, and tangles under load. Turn the page when the mesh is fine enough but the physics still wrong — that is the hinge between continuum and mesoscale.
