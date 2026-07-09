@@ -181,4 +181,15 @@ Passing Sod at reasonable resolution is the gateway to 2D Riemann problems, nozz
 
 ## Bridge
 
-Navier–Stokes adds viscous fluxes, heat conduction, and the incompressibility constraint. CFD combines hyperbolic advection — FVM's strength — with parabolic diffusion and elliptic pressure fields that resemble Part IV's Stokes solvers. The next chapter situates the full fluid mechanics pipeline, from Reynolds number to turbulence models, with the copper wire's cooling flow as motivation.
+Navier–Stokes adds viscous fluxes, heat conduction, and the incompressibility constraint. CFD combines hyperbolic advection — FVM's strength — with parabolic diffusion and elliptic pressure fields that resemble Part IV's Stokes solvers.
+
+| What Riemann fluxes gave | What Navier–Stokes CFD (next chapter) adds |
+|--------------------------|--------------------------------------------|
+| Godunov-type stability for hyperbolic conservation | Viscous and heat fluxes regularize shocks |
+| Upwind bias from wave speeds | Reynolds number: advection vs diffusion balance |
+| Sod shock tube as correctness gate | Low-Re cooling flow around the copper wire |
+| FVM integral balance on cells | Pressure–velocity coupling; turbulence closures at high Re |
+
+The copper wire heated by current needs air to carry heat away — a fluid problem sitting beside the solid conduction Part IV already meshed. Riemann solvers handled the **hyperbolic** vocabulary; Navier–Stokes adds the **parabolic** and **elliptic** partners that make conjugate heat transfer a coupled story rather than two unrelated codes. When the wall temperature and wall flux handshake between solid and fluid, you are watching Part IV and Part V speak at an interface — the same partitioned coupling pattern the epilogue generalizes to DFT→MD→DDD→FEM chains.
+
+The next chapter situates the full fluid mechanics pipeline, from Reynolds number to turbulence models, with the copper wire's cooling flow as motivation. Turn the page when Sod passes but the wire still runs hot — that is the signal to add viscosity, conduction, and the shared continuum vocabulary Part VI will name.

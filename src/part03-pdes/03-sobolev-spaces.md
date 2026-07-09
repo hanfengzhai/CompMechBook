@@ -155,4 +155,15 @@ Piecewise-linear finite element fields on the copper wire are globally in \(H^1\
 
 ## Bridge
 
-Energy methods package weak forms as minimization problems. They unify FEM, provide physical intuition, and extend naturally to nonlinear elasticity where the energy functional may be polyconvex rather than quadratic. The Dirichlet principle identifies weak solutions of Poisson with minimizers of \(\Pi(u)\); coercivity on \(H^1_0\) is the same hypothesis as in Lax–Milgram. The next chapter develops that variational picture — and introduces saddle-point formulations where minimization alone is insufficient (Stokes, mixed elasticity, incompressibility).
+Energy methods package weak forms as minimization problems. They unify FEM, provide physical intuition, and extend naturally to nonlinear elasticity where the energy functional may be polyconvex rather than quadratic. The Dirichlet principle identifies weak solutions of Poisson with minimizers of \(\Pi(u)\); coercivity on \(H^1_0\) is the same hypothesis as in Lax–Milgram.
+
+| What Sobolev spaces gave | What energy methods (next chapter) add |
+|--------------------------|----------------------------------------|
+| \(H^1\) membership: \(\nabla u \in L^2\) | Dirichlet principle: weak solution = energy minimizer |
+| \(H^1_0\) encodes Dirichlet BC | Rayleigh–Ritz preview: minimize on \(V_h\) → Part IV assembly |
+| \(H^2\) regularity enables \(O(h^2)\) rates | Saddle-point forms where minimization alone fails (Stokes) |
+| Piecewise-linear FEM fields live in \(H^1\), not \(H^2\) | Polyconvex energies for nonlinear elasticity (Part VI preview) |
+
+The copper wire's displacement minimizes elastic energy in \(H^1\); its temperature minimizes a quadratic functional with conductivity \(k(x)\). Those are not separate tricks — they are the same variational pattern [III.2](02-weak-form.md) wrote as \(a(u,v)=\ell(v)\), now dressed as \(\delta\Pi[u]=0\). When incompressibility or mixed stress–displacement formulations appear, minimization alone is insufficient; saddle-point structure (LBB) enters — the same inf–sup language Part IV will meet again for Stokes.
+
+The next chapter develops that variational picture and closes Part III with the energy pipeline that Part IV discretizes: strong PDE → weak form → energy or saddle functional → search on \(V_h\). Turn the page when you want to see why "assemble \(\mathbf{K}\) from shape functions" is Rayleigh–Ritz minimization in disguise.

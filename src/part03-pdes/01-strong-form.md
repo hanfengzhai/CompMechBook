@@ -163,4 +163,13 @@ For \(-\Delta u = f\) with \(f \ge 0\) and \(u = 0\) on \(\partial\Omega\), the 
 
 The strong form is what physicists write. The weak form is what variational algorithms implement. Multiplying by a test function, integrating over \(\Omega\), and integrating by parts moves derivatives from the unknown onto smooth test functions — trading pointwise \(C^2\) requirements for integral balance in \(H^1\).
 
-The next chapter derives the weak form of Poisson's equation — the template for essentially all FEM codes — and states the Lax–Milgram theorem that guarantees a unique weak solution. The copper wire's temperature and displacement, too rough for classical derivatives at corners and kinks, will find a home there.
+| What the strong form gave | What the weak form (next chapter) must supply |
+|---------------------------|-----------------------------------------------|
+| Pointwise PDE at every interior point | Integral balance against smooth test functions |
+| \(C^2\) smoothness for \(\Delta u\) | \(H^1\) admissibility when corners break classical derivatives |
+| Natural BC as limits of flux | Emergent BC from integration by parts |
+| FEM entry via second derivatives | FEM entry via one integration by parts → stiffness integrals |
+
+The copper wire's tensile equilibrium and steady heating look elliptic and innocent in strong form — until the grip corner, the thermocouple weld, or a material interface breaks \(C^2\) smoothness. Part II built \(H^1\) and Lax–Milgram; this chapter named the PDEs those tools will serve. The next chapter derives the weak form of Poisson's equation — the template for essentially all FEM codes — and states the Lax–Milgram theorem that guarantees a unique weak solution. The wire's temperature and displacement, too rough for classical derivatives at corners and kinks, will find a home there.
+
+The [prologue](../../prologue/00-many-scales.md) introduced the weak form as a **recurring character**. It first speaks in full sentences in [III.2](02-weak-form.md); Sobolev spaces in [III.3](03-sobolev-spaces.md) make "test function" precise; energy methods in [III.4](04-energy-methods.md) recast the same balance as minimization. Turn the page when the strong form feels correct but the mesh refuses to converge — that is the signal that pointwise derivatives were the wrong contract.
