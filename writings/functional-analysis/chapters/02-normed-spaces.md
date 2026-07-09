@@ -193,4 +193,13 @@ When \(k\) is bounded above and below by positive constants, \(\|\cdot\|_a\) is 
 
 ## Bridge
 
-Norms measure size; inner products measure angle and projection. When the norm comes from an inner product via \(\|u\| = \sqrt{(u,u)}\), geometry enters: orthogonality, best approximation, Riesz representation. **Hilbert spaces** — complete inner-product spaces — are where Galerkin orthogonality and energy minimization become rigorous. The next chapter develops that geometry and connects it directly to the finite element method through best approximation and Céa's lemma.
+Norms measure size; inner products measure angle and projection. When the norm comes from an inner product via \(\|u\| = \sqrt{(u,u)}\), geometry enters: orthogonality, best approximation, Riesz representation. **Hilbert spaces** — complete inner-product spaces — are where Galerkin orthogonality and energy minimization become rigorous.
+
+| What this chapter gave (norms) | What the next chapter adds (Hilbert geometry) |
+|--------------------------------|-----------------------------------------------|
+| \(\|u\|_{H^1}\) measures strain energy on the wire | Inner product \((u,v)_{H^1}\) defines orthogonality of modes |
+| Equivalent norms: same convergence, different constants | Riesz representation: every linear functional is an inner product |
+| Banach completeness: limits stay inside the space | Best approximation: FEM error is projection error in energy norm |
+| \(L^2\) for temperature; energy norm for displacement | Céa's lemma preview: discrete solution is optimal in \(V_h\) |
+
+Part I diagonalized \(\mathbf{K}\) by finding orthogonal eigenvectors in \(\mathbb{R}^N\). The copper wire's vibration modes in the limit are the same idea — but orthogonality is now \((u_i, u_j) = 0\) in \(H^1\), not \(\mathbf{u}_i^T \mathbf{u}_j = 0\). The next chapter develops that geometry and connects it directly to the finite element method through best approximation and Céa's lemma. Turn the page when you are ready to see why "Galerkin is projection" is a theorem, not a slogan.

@@ -177,4 +177,13 @@ For small strain, the trace \(\text{tr}(\boldsymbol{\varepsilon}) = \nabla\cdot\
 
 ## Bridge
 
-Kinematics names the geometric objects — \(\mathbf{F}\), \(\boldsymbol{\varepsilon}\), \(\mathbf{E}\), \(\mathbf{D}\). Forces enter through **stress tensors** and **balance laws** that constrain how stress varies in space and time. The next chapter completes the continuum picture: Cauchy stress, Piola–Kirchhoff stress, conservation of mass and momentum, and constitutive relations that FEM and FVM discretize.
+Kinematics names the geometric objects — \(\mathbf{F}\), \(\boldsymbol{\varepsilon}\), \(\mathbf{E}\), \(\mathbf{D}\). Forces enter through **stress tensors** and **balance laws** that constrain how stress varies in space and time.
+
+| What Parts IV–V computed | What this chapter names |
+|--------------------------|-------------------------|
+| Nodal displacements \(\mathbf{U}\) on a mesh | \(\mathbf{u}(\mathbf{x})\) and deformation gradient \(\mathbf{F}\) |
+| Strain from the \(B\)-matrix | \(\boldsymbol{\varepsilon}\), \(\mathbf{E}\), rate \(\mathbf{D}\) |
+| Thermal expansion in the Joule-heating scene | Volumetric part \(J = \det\mathbf{F}\); Poisson lateral contraction |
+| FVM velocity field in the cooling air | \(\mathbf{D}\) as symmetric part of \(\nabla\mathbf{v}\) |
+
+Return to the prologue's **Act III — Pulling**: grip displacement ramps, and the load cell records force. Parts IV and VI already computed that curve from weak forms and assembly; this chapter explains **what was being measured** — axial stretch \(\lambda = 1 + u'/L\), lateral contraction from \(\nu\), and the finite-strain objects that nonlinear extensions in [VI.4](04-nonlinear-plasticity-preview.md) require. The next chapter completes the continuum picture: Cauchy stress, Piola–Kirchhoff stress, conservation of mass and momentum, and constitutive relations that FEM and FVM discretize. Turn the page when displacement fields need a stress conjugate — kinematics without balance is geometry without physics.

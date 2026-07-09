@@ -194,4 +194,13 @@ Buckling analysis searches for \(\lambda\) where stiffness loses ellipticity; th
 
 ## Bridge
 
-Operators on Hilbert spaces become transparent when they are **self-adjoint** and **compact**: spectra decompose into real eigenvalues and orthonormal eigenvectors. The spectral theorem is the infinite-dimensional generalization of diagonalizing a symmetric matrix. It explains normal modes of vibration, buckling eigenvalues, and the exponential decay of heat equation solutions — and it is the last piece of Part II before we turn in Part III to PDEs themselves: strong forms for intuition, weak forms for computation, Sobolev spaces for regularity.
+Operators on Hilbert spaces become transparent when they are **self-adjoint** and **compact**: spectra decompose into real eigenvalues and orthonormal eigenvectors. The spectral theorem is the infinite-dimensional generalization of diagonalizing a symmetric matrix.
+
+| What this chapter gave (operators) | What the next chapter completes (spectra) |
+|------------------------------------|-------------------------------------------|
+| Bounded operators as infinite matrices | Compact operators: spectra accumulate at zero |
+| Dual functionals \(\ell(v)\) for loads | Self-adjoint operators: real eigenvalues, orthogonal modes |
+| Weak convergence of sequences | Spectral theorem: diagonalization in Hilbert space |
+| Aubin–Nitsche preview for \(L^2\) error | Wire vibration, buckling, heat decay as eigenvalue problems |
+
+On the copper wire, the stiffness operator from Part I's spring network becomes a differential operator in the limit; its eigenfunctions are standing-wave patterns along the bar, its eigenvalues are squared natural frequencies. Buckling searches for \(\lambda\) where \(\mathbf{K} - \lambda \mathbf{K}_g\) loses invertibility — the same Fredholm logic previewed above. The next chapter states the spectral theorem explicitly and closes Part II with the **well-posedness triangle** that hands off to Part III: strong forms for intuition, weak forms for computation, Sobolev spaces for regularity. Turn the page when operator language feels natural — PDEs in Part III are where those operators finally have names like \(-\Delta\) and \(-\nabla\cdot(k\nabla\cdot)\).
