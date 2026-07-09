@@ -112,6 +112,10 @@ When publishing parameters that cross scales:
 
 Silent mismatch — PBE DFT training, LDA used in a later study — corrupts the ladder worse than a 5% force error.
 
+## Scene return: why this checklist matters for the wire
+
+Return to the prologue's **Act V (notch)** and **Act VI (foundation)** for a moment. The operator has not yet trusted the fracture strain at the grip corner or the multiscale story printed in the final report — but those numbers will stand or fall on what happens in this chapter. A single EOS curve or a hand-waved EAM file cannot certify the wire: **\(\gamma_{\text{sf}}\)** sets whether DDD sees the right stacking-fault energy, core forces set whether dislocations move at the right stress, and archived DFT inputs set whether a colleague can reproduce the ladder five years later. Read the worked example below as the audit the wire earns before Part IX names the electrons that supply every entry in the handoff table.
+
 ## Worked example: Cu EAM fit from DFT to LAMMPS
 
 This section ties Part IX outputs to Part VIII inputs for fcc copper — the same material as the wire, at the scale where potentials are built rather than assumed.
