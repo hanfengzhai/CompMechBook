@@ -200,4 +200,15 @@ On uniform grids, first-order FVM with upwind flux equals first-order finite dif
 
 ## Bridge
 
-Nonlinear systems require **Riemann solvers** at faces — exact or approximate solutions to local shock-tube problems that translate left and right cell states into a consistent flux. That is how FVM captures discontinuities without spurious oscillations. The next chapter develops Godunov, Roe, HLL, and HLLC fluxes — the engines of shock capturing.
+First-order FVM on cell averages taught the **conservation rhythm** Part V builds on: fluxes at faces, CFL limits, ghost cells at boundaries. That rhythm is exact on uniform 1D grids — but Sod's shock tube and the copper wire's supersonic cooling jet are **nonlinear**, and a first-order upwind flux smears discontinuities over \(O(\Delta x)\) cells without physical fidelity.
+
+| What V.2 established | What V.3 adds |
+|-------------------------|---------------|
+| Cell-average update; discrete conservation | Riemann problem at each face |
+| Godunov upwind flux for scalar advection | Roe, HLL, HLLC approximate Riemann solvers |
+| CFL stability from flux Jacobian eigenvalues | Limiters and MUSCL reconstruction for \(O(\Delta x^2)\) |
+| Ghost-cell BCs on a 1D line | Shock capturing without spurious oscillations |
+
+Return to the [prologue](../../prologue/00-many-scales.md): Part IV's wire conducts heat smoothly; Part V's air cools it with compressible flows where density and velocity jump across shocks and shear layers. The 1D Euler update you coded here is the inner loop every OpenFOAM cell executes in three dimensions — the difference is only face area and volume weighting. [V.3](03-fluxes-riemann.md) supplies the **Riemann engines** that translate left/right cell states into a unique face flux when the solution is discontinuous.
+
+Turn the page when first-order Sod's problem converges but the shock front is three cells thick — that is the signal numerical flux design, not finer \(\Delta x\) alone, must improve the physics at the face.

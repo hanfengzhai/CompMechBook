@@ -180,4 +180,15 @@ For introductory work and course problem sessions, P1 triangles in 2D remain the
 
 ## Bridge
 
-Poisson's equation — scalar, symmetric, coercive — is the training ground where elements and quadrature behave well. Vector elasticity adds tensor constitutive laws, block stiffness structure, and traction boundary integrals. The assembly loop is unchanged; the integrand grows richer. The next chapter makes that jump explicit, from a heated wire cross-section to a tensile copper specimen.
+Poisson's equation — scalar, symmetric, coercive — is the training ground where elements and quadrature behave well. Vector elasticity adds tensor constitutive laws, block stiffness structure, and traction boundary integrals. The assembly loop is unchanged; the integrand grows richer.
+
+| What IV.3 established | What IV.4 extends |
+|-------------------------|-------------------|
+| P1 triangles; centroid quadrature on \(\int k\|\nabla T\|^2\) | Vector \(\mathbf{u}\); block \(\mathbf{K}\) from \(\mathbb{C}:\boldsymbol{\varepsilon}(\mathbf{v})\) |
+| Conforming \(H^1\) continuity across element edges | Traction BC integrals on Neumann boundaries |
+| Patch test and \(O(h^2)\) intuition for smooth heat | Anisotropic stiffness from texture (cold-drawn wire) |
+| \(p\)- vs. \(h\)-refinement tradeoffs | From heated cross-section to tensile specimen under end load |
+
+Return to the [prologue](../../prologue/00-many-scales.md): **Act III**'s load cell measures force on a wire whose FEM mesh is built from the element families named here. Part III minimized thermal energy on the same P1 triangles; Part IV now carries **mechanical** degrees of freedom with the same quadrature loop. [IV.4](04-poisson-to-elasticity.md) closes the scalar-to-vector jump — the chapter where the copper wire stops being a temperature field alone and becomes the tensile bar whose stress–strain curve the prologue will track through yield.
+
+Turn the page when Poisson assembly feels routine but an elasticity run returns a singular or nonsymmetric matrix — that is the signal the block constitutive structure deserves its own chapter.

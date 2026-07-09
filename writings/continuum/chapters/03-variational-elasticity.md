@@ -201,4 +201,15 @@ The prologue's copper wire: DFT gives cohesion; MD gives thermal motion; DDD giv
 
 ## Bridge
 
-Variational elasticity explains conservative, path-independent response — the elastic springback of a copper wire before yield. The next chapter asks what changes when strains are large and when history matters: geometric nonlinearity, J₂ plasticity, and the Newton–Raphson loops that nonlinear FEM codes run at every load increment. That is the last continuum stop before defects take the stage in Part VII.
+Variational elasticity closes the loop the book has traced since Part I's spring network: minimize energy in \(H^1\), derive virtual work, assemble \(\mathbf{K}\) — and recognize the discrete solve as Rayleigh–Ritz on the same functional Part III named.
+
+| What VI.3 established | What VI.4 opens |
+|-------------------------|-----------------|
+| Hyperelastic energy \(\psi(\boldsymbol{\varepsilon})\); path-independent response | Geometric nonlinearity when strains are large |
+| Virtual work \(\delta\Pi = 0\) as FEM's philosophical source | J₂ plasticity when history matters (cold-drawn wire) |
+| Worked 1D bar: exact linear solution on P1 mesh | Newton–Raphson at every load increment |
+| Elastic springback before yield | Honest admission: smooth fields break at defects |
+
+Return to the [prologue](../../prologue/00-many-scales.md): **Act III** measured the linear elastic climb on the load cell; **Act IV** is the upward bend that variational elasticity cannot explain with a quadratic \(\psi\) alone. Part IV assembled \(\mathbf{K}\) from bilinear forms; this chapter named the stress and strain those forms integrate. [VI.4](04-nonlinear-plasticity-preview.md) is the last continuum stop — phenomenological hardening without dislocations, a fitted curve waiting for Part VII's forest to supply \(\sigma_{y0}\) and \(H\).
+
+Turn the page when the wire's stress–strain curve bends upward after cold drawing but your elastic energy minimization still returns a straight line — that is the signal history and mesoscale defects have entered the story.
