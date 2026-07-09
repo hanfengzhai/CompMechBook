@@ -28,6 +28,8 @@ flowchart LR
 
 **Linear algebra** gave us \(\mathbf{K}\mathbf{u}=\mathbf{f}\). **Functional analysis** explained why the limit as the mesh refines lives in \(H^1\). **Strong forms** wrote the PDE the mesh approximates. **Weak forms** are the variational statement FEM implements — and they return us to a matrix system whose entries are integrals of shape-function gradients. The copper wire never changed; only the language did.
 
+Read the diagram above as the plot spine of the novel, not a syllabus chart: every arrow is the same specimen seen through a different lens. When Part IV assembles \(\mathbf{K}\) from shape functions, you are not learning a new method — you are closing the loop Part I opened with nodal equilibrium. When Part VI writes virtual work, you will recognize the same pairing of stress with a virtual strain. When Part IX minimizes \(E[\rho]\), the instinct is unchanged: pick an admissible trial object, integrate, and let boundary conditions carry what pointwise equations cannot.
+
 This is why the weak form is not a numerical trick. It is the **correct continuum statement** for problems whose classical solutions fail at corners, kinks, and point loads — exactly the situations the drawn wire presents when clamped, notched, or loaded at a grip.
 
 ## Derivation: Poisson with Dirichlet BCs

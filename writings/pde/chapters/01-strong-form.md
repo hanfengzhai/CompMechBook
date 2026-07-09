@@ -4,6 +4,8 @@ Partial differential equations are the local laws of continuum mechanics written
 
 The copper wire in the prologue reappears here as a domain — a one-dimensional interval for axial deformation, a three-dimensional body for full elasticity, a boundary in contact with a cooling fluid. At every point inside the domain, a PDE relates rates of change of field variables to sources and material response. That **strong form** is what physicists write on the blackboard; it is also what fails to have a classical solution when geometry, loads, or material behavior become rough. Understanding both its power and its limits motivates the weak form in the next chapter.
 
+Part II's closing checkpoint promised that reentrant corners and concentrated loads break classical smoothness but not virtual work balance. This chapter makes that promise concrete on the blackboard: strong forms state what holds **pointwise** when \(C^2\) regularity is available, and name precisely where it fails on the wire's grip corner, insulator interface, and mid-span load. The next chapter is not a detour — it is the correct continuum statement the prologue's recurring character has been walking toward since Part I's nodal balance laws.
+
 ## Scene: heat at every point
 
 The tensile frame from Part I is still running, but the operator has raised the current. A thermal camera shows the copper wire no longer uniform: the center runs hotter than the grips, and the hottest strip follows the narrowest cross-section where Joule heating concentrates. An engineer writes on a whiteboard:

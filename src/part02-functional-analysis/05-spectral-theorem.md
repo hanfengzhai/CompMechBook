@@ -196,3 +196,7 @@ The copper wire at continuum scale is now a mathematical object: displacement an
 ## Bridge
 
 Part III applies this toolkit to **partial differential equations** directly. We will write strong forms for physical intuition — what the PDE says at each point — and weak forms for computation — what the FEM assembles. Sobolev spaces supply the regularity theory; energy methods package existence and uniqueness as minimization. The finite element method of Part IV stands at the end of that road, but the road begins with the first weak formulation of Poisson's equation and the function spaces we have spent Part II learning to trust.
+
+The [prologue](../../prologue/00-many-scales.md) named the weak form a **recurring character** — born here as integration by parts, destined to become Galerkin assembly in Part IV, virtual work in Part VI, and a variational statement on electron density in Part IX. Part II built the room that character speaks in: \(H^1\) for admissible fields, dual spaces for concentrated loads, compact embeddings so Galerkin projections have targets. Part III is the act where the character first has lines on stage: multiply by a test function, integrate by parts, and ask whether internal and external virtual work balance for every admissible virtual displacement. The copper wire at the grip corner — where Part III opens — is where that character stops pretending every field is \(C^2\).
+
+Turn the page. Strong forms first: what the blackboard demands at every point, and where that demand breaks.
