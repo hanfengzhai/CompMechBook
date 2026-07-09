@@ -56,6 +56,21 @@ The mathematical foundations are now in place. The same copper wire has changed 
 
 Part II promised that mesh refinement has a **target** — a function \(u \in H^1(\Omega)\) — and that the stiffness matrix is a Galerkin projection of a bilinear form. Part III writes the **equations** those projections discretize: Poisson conduction along the wire, elastic equilibrium under tension, transient heating when current flows. Each begins as a strong form (pointwise PDE), fails at corners and concentrated loads, and is rewritten as a weak form testable on a mesh. Sobolev spaces supply the regularity theory; energy methods package existence as minimization — the last purely analytical chapter before FEM and FVM turn weak forms into code.
 
+## Closing the arc from Part II
+
+If you have read linearly since the prologue, Part II's closing checkpoint named the **limit object** behind every stiffness matrix. Part III is where that object receives **equations**:
+
+| Part II (function spaces on the wire) | Part III (PDEs on the wire) |
+|---------------------------------------|-----------------------------|
+| Fields \(u(x)\), \(T(x)\) in \(H^1\), \(L^2\) | PDEs whose solutions live in those spaces |
+| Bilinear form \(a(u,v)\); operator on \(H^1\) | Weak forms written as \(a(u,v)=\ell(v)\) |
+| Lax–Milgram existence | Applied in [III.4](04-energy-methods.md) energy methods |
+| Galerkin best approximation | The weak forms Part IV will discretize on \(V_h\) |
+| Poincaré inequality; compact embeddings | Sobolev trace and embedding in [III.3](03-sobolev-spaces.md) |
+| Spectral theorem; modal heat decay | Semidiscrete \(\mathbf{M}\dot{\mathbf{T}}+\mathbf{K}\mathbf{T}=\mathbf{q}\) preview |
+
+Part II built the room; Part III gives the recurring character — the weak form — its first lines on stage. The prologue promised that character would return in Part IV (Galerkin assembly), Part VI (virtual work), and Part IX (variational density). Here it speaks in the language Part II prepared: multiply by a test function, integrate by parts, and ask whether balance holds for every admissible virtual displacement. The copper wire at the grip corner is where classical \(C^2\) smoothness fails but virtual work in \(H^1\) still makes sense.
+
 ## Closing the arc from Part I
 
 If you have read linearly since the prologue, notice how the **same four questions** from the opening table reappear here with PDE vocabulary — and how the **same mathematical moves** from Part I return in the continuum limit:
