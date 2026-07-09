@@ -217,4 +217,19 @@ The intellectual chain from electrons to engineering design passes through these
 
 ## Bridge
 
-The Kohn–Sham equations are the theory; Quantum ESPRESSO inputs and convergence sweeps are the practice. The next chapter walks through reproducible DFT workflows — cutoff and k-mesh convergence, relaxation, equations of state, bands and phonons, defect supercells — using the MSE 5720 homework archive as a template. Those workflows produce the numbers that Parts VI–VIII import before the epilogue asks how to couple them.
+The Kohn–Sham equations are the theory; Quantum ESPRESSO inputs and convergence sweeps are the practice.
+
+| What Part VIII assumed | What this chapter derived | What [IX.3](03-dft-workflows.md) will archive |
+|------------------------|---------------------------|-----------------------------------------------|
+| EAM \(V(\{\mathbf{r}_i\})\) on trust | SCF total energy and converged \(\rho(\mathbf{r})\) | Input decks, pseudopotentials, k-mesh convergence logs |
+| Bulk modulus from empirical fit | \(B\) from equation-of-state fits on scaled volumes | Reproducible `vc-relax` + `scf` series for fcc Cu |
+| Stacking-fault energy for partials | Generalized stacking-fault surface from slab calculations | Defect supercells with documented finite-size study |
+| Phonons for thermal checks | DFPT or finite-difference phonon workflows | Export tables for MD and continuum thermal expansion |
+
+Part I's eigenvalue loop reappears as the self-consistent cycle above; Part II's function spaces as orbital Hilbert spaces; Part IV's assembly philosophy as plane-wave expansions and k-point quadrature. The [Part IX opening](00-opening.md#bridge) framed this part as the **audit chapter** for every potential Part VIII already ran — the same role Part II played for Part I's stiffness matrices.
+
+Return to the prologue's **Act VI — Foundation**: before the operator mounted the wire, someone chose Young's modulus and a yield stress. That invisible afternoon is now explicit: cohesive energy per atom, elastic constants \(C_{ij}\), vacancy formation enthalpy, and surface energies — each gated by SCF convergence and documented functional choice. Unconverged cutoff is the DFT analogue of an ill-conditioned \(\mathbf{K}\): structured noise dressed as physics.
+
+[IX.3](03-dft-workflows.md) walks through reproducible workflows — cutoff and k-mesh convergence, relaxation, equations of state, bands and phonons, defect supercells — using the MSE 5720 homework archive as a template. Those workflows produce the numbers Parts VI–VIII import before the [epilogue](../../epilogue/multiscale.md) wires DFT → MD → DDD → FEM into one multiscale afternoon.
+
+Turn the page when the SCF loop converges in principle but no input file exists yet — that is the signal that reproducibility, not theory, is what separates research from folklore.

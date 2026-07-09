@@ -184,4 +184,17 @@ Potentials define forces; integrators and statistical ensembles define how traje
 
 ## Bridge
 
-Potentials define forces; integrators and statistical ensembles define how trajectories sample the correct thermodynamic state. A copper wire at 300 K is not a zero-Kelvin energy minimum — it is a canonical or isothermal–isobaric sample of phase space. The next chapter makes that sampling precise: Verlet integration, NVT and NPT control, and the LAMMPS workflows that connect atomistic simulation to dislocation dynamics and beyond.
+Potentials define forces; integrators and statistical ensembles define how trajectories sample the correct thermodynamic state. A copper wire at 300 K is not a zero-Kelvin energy minimum — it is a canonical or isothermal–isobaric sample of phase space.
+
+| What Part VII exported | What this chapter supplies | What [VIII.2](02-ensembles-integrators.md) must sample |
+|------------------------|----------------------------|--------------------------------------------------------|
+| Mobility \(M(\tau,T)\) fit from atomistic snapshots | EAM cohesive energy, lattice parameter \(a_0\) | NVT/NPT trajectories at the lab temperature (300 K) |
+| Stacking-fault energy for partial dislocations | Generalized stacking-fault surface from slab pulls | Ensemble averages that define the stress–strain curve |
+| Core cutoff radius in OpenDiS | Physical core structure in a cylindrical RVE | Stable timesteps and thermostat transients |
+| Taylor hardening from link statistics | Nucleation barriers and cross-slip rates | Converged runs before exporting to DDD yaml tables |
+
+Part VII's [Bridge](../../part07-defects/03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) named the **ink** behind dislocation lines — atomic bonding. The copper lattice here is that ink: nuclei on a Born–Oppenheimer surface whose parameters were trusted in LAMMPS before Part IX derived them from \(\rho(\mathbf{r})\). The [two clocks note](00-opening.md#two-clocks-reading-order-vs-foundation-pedigree) at the Part VIII opening explains why you may already have run EAM fits in workflow order; linear readers arrive correctly after DDD and should treat this chapter as **resolving the core** the mesoscale model regularized with a cutoff.
+
+Return to the prologue's **Act IV — Hardening**: the load cell curve bent because lines moved; MD shows **how bonds stretch** at the core where Peach–Köhler forces are largest. Part I's pattern returns — state vector \(\{\mathbf{r}_i\}\), force vector from \(\nabla V\), timestep loop as repeated matrix–vector work — now with \(10^5\)–\(10^9\) atoms instead of \(N\) springs.
+
+[VIII.2](02-ensembles-integrators.md) makes sampling precise: Verlet integration, NVT and NPT control, and LAMMPS workflows that connect atomistic simulation to dislocation dynamics and beyond. Turn the page when the potential is specified but the wire's laboratory temperature has not yet entered the simulation — that is the signal that phase space, not just energy minimization, is the correct stage.
