@@ -207,3 +207,14 @@ Convection–diffusion \(-\varepsilon u'' + b u' = f\) produces a nonsymmetric b
 ## Bridge
 
 Hilbert spaces give us angles, projections, and representations of loads. The next step is **operators**: linear maps between such spaces that generalize matrices. Dual spaces generalize row vectors and Lagrange multipliers; weak and weak* convergence describe limits when norms alone fail to detect oscillations — the behavior we see near shocks, fine-scale microstructure, and unresolved boundary layers. Operators, duality, and compactness complete the analytic toolkit before spectral theory decouples time-dependent and vibration problems into modes.
+
+| What Hilbert geometry gave | What [II.4](04-operators-duality.md) will generalize |
+|----------------------------|------------------------------------------------------|
+| Inner product \((u,v)\); energy norm \(\|u\|_a\) | Bounded operators \(A: H \to H\) as infinite matrices |
+| Galerkin orthogonality \(a(u-u_h, v_h)=0\) | The stiffness operator whose projection is \(\mathbf{K}\) |
+| Riesz representation of loads \(\ell(v)=(f,v)\) | Dual spaces \(H^*\); point forces as functionals, not \(L^2\) functions |
+| Céa's lemma: best approximation in energy | Compact embeddings \(H^1 \hookrightarrow L^2\); Aubin–Nitsche preview |
+
+Return to the [prologue](../../prologue/00-many-scales.md): **Act II — Warming** turns on current through the copper wire, and the temperature field \(T(x)\) that Joule heating creates is not a vector in \(\mathbb{R}^N\) — it is an element of \(H^1\) whose gradient square-integrates. Lax–Milgram and Riesz in this chapter are why a mesh of piecewise linears can approximate that field without demanding classical \(C^2\) smoothness at the thermocouple weld. Part I's energy \(\mathbf{u}^T\mathbf{K}\mathbf{u}\) reappears here as \(\|u\|_a^2 = a(u,u)\); Part IV's assembly will be the Gram matrix of the same bilinear form restricted to \(V_h\).
+
+[II.2](02-normed-spaces.md) measured size; this chapter added **angles** — orthogonality, projection, and the representation theorem that turns loads into inner products. [II.4](04-operators-duality.md) names the maps between Hilbert spaces: stiffness as an operator, loads in the dual, weak convergence when norms alone miss oscillations. Turn the page when projection feels geometric but the word "operator" still sounds abstract — that is the signal Hilbert space is ready to host matrices that never fit in \(\mathbb{R}^{N \times N}\).

@@ -94,3 +94,14 @@ The copper wire that began as a chain of coupled springs is now a cylinder with 
 ## Bridge
 
 Parts IV and V solved PDEs on meshes. Part VI names the fields those PDEs carry — deformation gradient, strain, stress — and derives the virtual work principle that both discretizations inherit. The first chapter begins with the geometry of deformation: how the copper wire stretches, rotates, and changes volume when pulled.
+
+| What Parts IV–V computed | What Part VI names |
+|--------------------------|-------------------|
+| Nodal \(\mathbf{U}\) from shape functions | Displacement field \(\mathbf{u}(\mathbf{X})\); deformation gradient \(\mathbf{F}\) |
+| \(\mathbf{K}\mathbf{U}=\mathbf{F}\) from Galerkin virtual work | Cauchy stress \(\boldsymbol{\sigma}\); balance \(\nabla\cdot\boldsymbol{\sigma}+\mathbf{b}=\mathbf{0}\) |
+| Cell fluxes and wall heat transfer (Part V) | Thermal strain \(\alpha\Delta T\); coupled energy balance in continuum form |
+| Céa lemma: discrete tracks continuous minimizer | Virtual work: FEM \(\mathbf{K}\) is the discrete shadow of \(\int \boldsymbol{\sigma}:\delta\boldsymbol{\varepsilon}\,d\Omega\) |
+
+Return to the [prologue](../../prologue/00-many-scales.md): whether you arrived via **Door B** from Part IV or completed Part V's conjugate heat transfer, the load cell curve in **Act III** measured something Part VI will finally name — Cauchy stress conjugate to the axial stretch \(\lambda = 1 + u'/L\). Cold-drawn strength and the upward bend in **Act IV** are not mesh artifacts; they are constitutive history that smooth elastic fields cannot explain alone. [VI.1](01-kinematics.md) begins with geometry; [VI.4](04-nonlinear-plasticity-preview.md) admits when that geometry needs dislocations.
+
+Turn the page when \(\mathbf{K}\mathbf{U}=\mathbf{F}\) feels like linear algebra without physics — kinematics is where the wire's stretch becomes a tensor story.

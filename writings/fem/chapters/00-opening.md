@@ -94,3 +94,14 @@ Part II proved that the limit lives in \(H^1\) and that Galerkin is **best appro
 ## Bridge
 
 Part III ended with energy methods and the promise of assembly. The first chapter below introduces weighted residuals — the unifying idea behind Galerkin's method — and shows why choosing test functions as trial functions is the natural discretization of the weak form the copper wire's equilibrium demands.
+
+| What Part III completed | What Part IV opens |
+|-------------------------|-------------------|
+| Weak form \(a(u,v)=\ell(v)\) in \(H^1\) | Galerkin: enforce residual orthogonality on \(V_h \subset H^1\) |
+| Dirichlet principle: minimize \(\Pi[u]\) | Rayleigh–Ritz: minimize on nodal coefficients → assemble \(\mathbf{K}\) |
+| Sobolev regularity and Lax–Milgram | \(H^1\)-conforming shape functions; patch tests and quadrature |
+| Energy pipeline closed at continuum scale | Same \(\mathbf{K}\mathbf{U}=\mathbf{F}\) from Part I, now with a convergence theorem |
+
+Return to the [prologue](../../prologue/00-many-scales.md): **Act III — Pulling** is the load cell's almost-linear climb, and Part IV is where that curve becomes a meshed solid whose stiffness matrix is not magic but the Gram matrix of the energy inner product on \(V_h\). Part I taught assembly as sparse bookkeeping; Part II proved the limit lives in \(H^1\); Part III wrote the bilinear form. [IV.1](01-weighted-residuals.md) is the first sentence of discretization — weighted residuals as the operational face of the energy minimum Part III named.
+
+Turn the page when the weak form is clear but no global matrix exists yet — that is the signal Galerkin assembly is the next move.
