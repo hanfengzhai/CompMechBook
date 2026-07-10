@@ -166,4 +166,15 @@ Pull requests that improve narrative flow, fix errors, or add worked examples ar
 
 The chapter roadmap is the book in one table — read it when you need orientation, not when you need proofs. For symbol reuse across parts, open the [Glossary and Cross-Scale Index](glossary.md). For habits, traps, and a one-sitting recap in ME 412 style, open the [Final Memory Sheet](memory-sheet.md).
 
-When you edit canonical prose, change files under [`writings/`](../writings/) first, run `./scripts/sync-writings.sh`, then `mdbook build`. The Functional Analysis Notes layout — numbered chapters, concept maps at openings, bridges at closings — is the contract every subtree shares.
+| When the story feels discontinuous | Read these bridges first |
+|------------------------------------|--------------------------|
+| Springs → function spaces | [I.4 Bridge](../part01-linear-algebra/04-toward-infinity.md) → [II.0 opening](../part02-functional-analysis/00-opening.md) |
+| Analysis → meshing | [III.4 Bridge](../part03-pdes/04-energy-methods.md) → [IV.0 opening](../part04-fem/00-opening.md) |
+| FEM → fluids | [IV.5 Bridge](../part04-fem/05-convergence.md) (two doors) |
+| Continuum → dislocations | [VI.4 Bridge](../part06-continuum/04-nonlinear-plasticity-preview.md) → [VII.0](../part07-defects/00-opening.md) |
+| Mesoscale → atoms → electrons | [VII.3 Bridge](../part07-defects/03-polycrystal-and-fem-handoff.md) → [VIII.0](../part08-md/00-opening.md) → [IX.0](../part09-dft/00-opening.md) |
+| DFT → full workflow | [IX.3 Bridge](../part09-dft/03-dft-workflows.md) → [Epilogue](../epilogue/multiscale.md) |
+
+Return to the [prologue](../prologue/00-many-scales.md#the-experiment-as-plot) when you need **laboratory time** rather than part number — the six-act table maps mounting through foundation onto the same roadmap above. Return to the [epilogue](../epilogue/multiscale.md#lab-act-reunion-six-acts-one-afternoon) when you need **workflow time**: how DFT exports, MD fits, DDD hardening, and FEM assembly share one afternoon on the same copper wire.
+
+When you edit canonical prose, change files under [`writings/`](../writings/) first, run `./scripts/sync-writings.sh`, then `mdbook build`. The Functional Analysis Notes layout — numbered chapters, concept maps at openings, bridges at closings — is the contract every subtree shares. Each `writings/<topic>/` subtree is a standalone mdBook that syncs into `src/part*/` for the unified narrative.

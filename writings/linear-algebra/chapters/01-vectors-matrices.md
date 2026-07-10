@@ -2,13 +2,15 @@
 
 Every computational mechanics code, before it knows anything about stress tensors or Navier–Stokes, knows about arrays. A displacement field on a mesh is a vector of nodal values. A stiffness matrix is a sparse array coupling degrees of freedom. Even the most exotic multiscale scheme eventually calls a linear solver. Linear algebra is not a prerequisite chapter we endure on the way to "real" mechanics — it is the grammar in which mechanics is written once discretized.
 
-## Scene: the grips tighten
+## Scene: Act I — mounting
 
-Picture the copper wire in the **tensile frame** of the prologue. The operator zeros the load cell, tightens the wedge grips, and clicks **Start**. For the next hour the full multiscale story is invisible: no mesh of tetrahedra, no Kohn–Sham cycle, no dislocation network — only a curve on a screen, **force versus displacement**, climbing almost linearly, then bending upward as the forest of line defects locked in by cold drawing resists further slip.
+Picture the copper wire in the **tensile frame** of the prologue at the moment **Act I — Mounting** begins. The operator zeros the load cell, closes the wedge grips, and fixes the ends — but has not yet switched on current or ramped displacement. The multiscale ladder is still offstage: no thermocouple climb, no yield knee, no Kohn–Sham cycle. What exists now is the first honest model the lab and the computer can share.
 
-Before any of that complexity enters the model, the first honest approximation is simpler: \(N\) nodes along the wire axis, each carrying one axial displacement; a sparse \(\mathbf{K}\) assembled from bar elements; a load vector \(\mathbf{f}\) encoding the grip displacement. The experiment and the matrix are two languages for the same scene. Part I teaches the second language first, because every finer-scale model in Parts II–IX still ends in sparse linear algebra whenever we discretize and solve.
+At this beat the wire is a chain of axial bar elements: \(N\) nodes along the axis, each carrying one displacement; a sparse \(\mathbf{K}\) from element stiffnesses; a load vector \(\mathbf{f}\) encoding grip constraints and any end load. The experiment and the matrix are two languages for the same mounting scene. Part I teaches the second language first, because every finer-scale model in Parts II–IX still ends in sparse linear algebra whenever we discretize and solve.
 
-Return to the copper wire from the prologue. At the scale of a tensile test, an engineer might model it as a chain of axial bar elements. Each node carries one scalar displacement along the wire axis. Stack those scalars into a column vector, assemble a stiffness matrix from element contributions, and the equilibrium problem is linear algebra before it is anything else. The wire does not know it is being approximated; the code only sees numbers in \(\mathbb{R}^N\).
+Return to the [prologue](../../prologue/00-many-scales.md): the six-act table previews warming, pulling, hardening, and foundation runs that will reuse this same grammar with richer state variables. **Act III — Pulling** will ramp grip displacement and trace force on the load cell; **Act IV — Hardening** will bend that curve when dislocations move. Those acts need the syntax established here — \(\mathbf{K}\mathbf{u}=\mathbf{f}\) before fields, weak forms, or electrons enter the story.
+
+At the scale of a tensile test, an engineer might model the mounted wire as a chain of axial bar elements. Each node carries one scalar displacement along the wire axis. Stack those scalars into a column vector, assemble a stiffness matrix from element contributions, and the equilibrium problem is linear algebra before it is anything else. The wire does not know it is being approximated; the code only sees numbers in \(\mathbb{R}^N\).
 
 ## Vectors as state
 

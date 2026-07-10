@@ -4,6 +4,20 @@ Part I ended with the spring network on the copper wire refining without bound: 
 
 A mesh with a million nodes is enormous by linear-algebra standards, but it is still finite. When we prove that the discrete solution converges as the element size \(h \to 0\), we are letting the number of degrees of freedom grow without bound. The **limit problem** — the boundary value problem the mesh is supposed to approximate — lives in an infinite-dimensional space. Functional analysis is the calculus of those spaces. It is not abstraction for its own sake. It is the vocabulary in which existence, uniqueness, stability, and convergence are stated precisely enough that a code's colorful plots can be trusted.
 
+## Story so far (Part I)
+
+Part I ended with a promise and a question. [I.4](../part01-linear-algebra/04-toward-infinity.md) showed that refining the spring network sends \(N \to \infty\) and replaces nodal vectors with fields \(u(x)\) and \(T(x)\). The stiffness matrix becomes an operator; eigenmodes become normal modes of a differential equation. Part II must name the **room** those limits live in before Part III writes PDEs and Part IV assembles another \(\mathbf{K}\).
+
+| Part I vocabulary (spring network on the wire) | Part II limit object (this part) | Prologue act that needs it |
+|-----------------------------------------------|----------------------------------|----------------------------|
+| State vector \(\mathbf{u}\in\mathbb{R}^N\) | Field \(u(x)\in H^1\), \(T(x)\in H^1\) | III — Pulling; II — Warming |
+| Stiffness matrix \(\mathbf{K}\) | Bilinear form \(a(u,v)\); operator on \(H^1\) | III — Pulling (load cell curve) |
+| Energy \(\mathbf{u}^T\mathbf{K}\mathbf{u}\) | Norm \(\|u\|_{H^1}^2\), strain-energy seminorm | II — Warming (thermal FEM convergence) |
+| Eigenvectors of \(\mathbf{K}\) | Orthonormal modes in Hilbert space | VI — Foundation (phonon preview) |
+| Mesh refinement \(N\to\infty\) | Completeness: Cauchy sequences stay in \(H^1\) | Every act that trusts mesh refinement |
+
+The [Part II opening](00-opening.md#closing-the-arc-from-part-i) replays this table with function-space vocabulary and links to the Functional Analysis Notes concept map. Read Part I's bridges as finite-dimensional rehearsals of the theorems ahead — not as a separate subject from the copper wire.
+
 ## Scene: the mesh refines forever
 
 Return to the spring network from Part I, now with element size halving on each pass. A coarse mesh gives \(N = 10\) nodes and a vector \(\mathbf{u}_{10}\); refine once and \(N = 20\); refine again and \(N = 40\). Each solve returns a different column vector, yet the plotted displacement profile along the wire axis looks smoother with every pass. The engineer asks the question Part I could not answer: **where does this family settle** as \(h \to 0\)?

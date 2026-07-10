@@ -201,4 +201,13 @@ Prologue **Act II — Warming** is where that handshake first matters in the lab
 | V — Notch (preview) | Shock-capturing for impulsive loads | Transient coupling with solid wave propagation |
 | VI — Foundation (preview) | Consistent fluxes as conservation contract | Same handshake pattern as DFT→MD→FEM in the epilogue |
 
+| Part I–II vocabulary | Riemann / FVM counterpart (this chapter) | Why the wire cares |
+|------------------------|------------------------------------------|-------------------|
+| Eigenvalues of \(\mathbf{K}\) | Eigenvalues of flux Jacobian \(\mathbf{A}=\partial\mathbf{F}/\partial\mathbf{U}\) | CFL limit on explicit timesteps for cooling air |
+| Modal decomposition ([I.3](../part01-linear-algebra/03-eigenvalues.md)) | Wave fan structure in the Riemann solution | Left/right states at a face = local modal split |
+| Sparsity from local coupling | Face flux depends only on neighboring cells | Same locality as spring chains, different physics |
+| [II.5](../part02-functional-analysis/05-spectral-theorem.md) spectral picture | Amplification factors for explicit updates | Stability is an eigenvalue story at every face |
+
+Return to [V.2](02-fvm-1d.md): the 1D update loop you implemented there becomes **nonlinear** when \(\mathbf{F}(\mathbf{U})\) is the Euler flux — Riemann solvers are how each face chooses a unique flux when \(\mathbf{U}_L \neq \mathbf{U}_R\). Part IV's Galerkin method lacks this built-in upwinding for advection; that discretization split is why the book teaches FEM and FVM as complementary dialects on the same copper wire.
+
 The next chapter situates the full fluid mechanics pipeline, from Reynolds number to turbulence models, with the copper wire's cooling flow as motivation. Turn the page when Sod passes but the wire still runs hot — that is the signal to add viscosity, conduction, and the shared continuum vocabulary Part VI will name.

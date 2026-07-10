@@ -175,4 +175,12 @@ Return to the [prologue](../../prologue/00-many-scales.md): in **Act II — Warm
 | \(H^{-1}\) loads | Nodal forces, concentrated Joule sources | Source terms in cell updates |
 | \(H^2\) regularity | \(O(h^2)\) convergence rates on Poisson | Second-order reconstruction where fields are smooth |
 
+| Part I–II vocabulary | Sobolev formalization (this chapter) | Where the wire uses it first |
+|------------------------|--------------------------------------|------------------------------|
+| Nodal vector \(\mathbf{u}\) | \(u\in H^1(\Omega)\) with weak \(\nabla u\) | Act III — Pulling: axial displacement field |
+| \(\mathbf{u}^T\mathbf{K}\mathbf{u}\) | \(\|u\|_{H^1}^2\) or energy seminorm | Act II — Warming: thermal gradient energy |
+| Refinement \(N\to\infty\) | Membership in \(H^1\) independent of mesh count | Every FEM run that claims convergence |
+| Concentrated nodal force | Load functional \(\ell\in H^{-1}\) | Grip load and thermocouple weld |
+| [II.2](../part02-functional-analysis/02-normed-spaces.md) completeness | \(H^1\) is complete; limits stay admissible | Cauchy sequences of mesh solutions |
+
 The next chapter develops that variational picture and closes Part III with the energy pipeline that Part IV discretizes: strong PDE → weak form → energy or saddle functional → search on \(V_h\). Turn the page when you want to see why "assemble \(\mathbf{K}\) from shape functions" is Rayleigh–Ritz minimization in disguise.
