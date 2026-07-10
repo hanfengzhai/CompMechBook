@@ -173,4 +173,6 @@ Return to the [prologue](../../prologue/00-many-scales.md): **Act III — Pullin
 
 Part VI will later **name** the tensors inside those integrals — Cauchy stress \(\boldsymbol{\sigma}\), strain \(\boldsymbol{\varepsilon}\), elastic tensor \(\mathbb{C}\) — and show that virtual work is the vector-valued weighted residual you already enforced here. The load cell curve is therefore not a separate experiment from the FEM solve; it is the same balance law, first as \(R_{\text{weak}}(v; u_h)=0\), then as \(\boldsymbol{\sigma}:\nabla\mathbf{v}\) integrated over the meshed wire.
 
+Part II's Hilbert-space inner product is what makes this orthogonality meaningful: \(R_{\text{weak}}(v; u-u_h)=0\) for all \(v \in V_h\) is **projection** of the true solution onto the trial subspace in the energy norm induced by \(a(\cdot,\cdot)\) — not a separate numerical recipe layered on top of Part I's \(\mathbf{K}\mathbf{u}=\mathbf{f}\). [II.3](../part02-functional-analysis/03-hilbert-spaces.md) supplied the geometry; Part III wrote the bilinear form; weighted residuals are the insistence that the discrete error is orthogonal to the trial space in that geometry.
+
 Turn the page when the weak form is clear but no matrix exists yet — that is the signal that weighted residuals need an assembly loop.

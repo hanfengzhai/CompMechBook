@@ -4,6 +4,8 @@ The weak form is the computational mechanic's version of integration by parts: m
 
 [III.1](01-strong-form.md) wrote the copper wire's equilibrium and heating as **pointwise** PDEs — valid where \(C^2\) smoothness holds, failing at the grip corner, thermocouple weld, and mid-span load. This chapter is the corrective move the prologue's recurring character has been walking toward since Part I's nodal balance laws: multiply by a test function, integrate over the domain, integrate by parts once, and ask whether virtual work balances for all admissible perturbations. The answer lives in \(H^1\), not in classical \(C^2\).
 
+Part II's operators and dual loads supplied the vocabulary for that move: the weak residual is not a pointwise check but a **pairing** against test functions in \(H^1_0\) — the same duality [II.4](../part02-functional-analysis/04-operators-duality.md) built before Part III wrote any PDE. When the grip corner breaks \(C^2\) smoothness, integration by parts is not a trick to appease a mesh; it is the honest statement that equilibrium holds in integral form against every admissible virtual displacement.
+
 If the copper wire is fixed at both ends and loaded in the middle, the displacement field may be continuous but not twice differentiable at the load point — the strong form \(-EA u'' = f\) fails classically at a point force. The weak form still asks: for all admissible virtual displacements, is internal virtual work equal to external virtual work? That question has an answer in \(H^1\), and Galerkin discretization turns it into \(\mathbf{K}\mathbf{U}=\mathbf{F}\).
 
 ## Scene: the grip corner

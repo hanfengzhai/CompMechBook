@@ -4,6 +4,8 @@ Kinematics describes how bodies move and deform. **Balance laws** relate stress 
 
 Part IV assembled \(\int \boldsymbol{\varepsilon}(\mathbf{u}):\mathbb{C}:\boldsymbol{\varepsilon}(\mathbf{v})\). Part V balanced fluxes of momentum. This chapter explains what \(\boldsymbol{\sigma}\) and \(\mathbb{C}\) mean, where the equilibrium equation comes from, and how copper, air, and plastic metal differ at the constitutive level.
 
+Part I's \(\mathbf{K}\mathbf{u}=\mathbf{f}\) was always a discrete force balance; [VI.1](01-kinematics.md) named the deformation that produces strain. This chapter completes the mechanical vocabulary: the **Cauchy stress tensor** whose weak divergence Part IV's assembly approximates, and the **constitutive map** \(\mathbb{C}\) that Parts VII–IX will trace from dislocation forests and electron density back to the numbers typed into the mesh script.
+
 ## Scene: three balances on one wire
 
 The tensile frame from Part I is still running, but the operator has raised the current. Three instruments watch the same copper cylinder:

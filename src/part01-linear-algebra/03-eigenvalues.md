@@ -4,6 +4,8 @@ Coupled systems look complicated until we find the right coordinates. Eigenvalue
 
 Clamp one end of the copper wire and pull the other rhythmically: the wire does not respond with a single uniform stretch unless you happen to excite exactly the first mode. In general, different points oscillate out of phase, amplitudes vary along the length, and the motion looks messy in physical coordinates. In **modal coordinates** — the eigenvector basis of the stiffness and mass matrices — each mode oscillates independently at its own frequency. That decoupling is eigenvalue analysis doing its job.
 
+[I.2](02-linear-maps.md) showed that the same linear map wears different matrices in different bases; eigenvectors are the **privileged basis** in which the map acts by pure scaling alone. The spring network's coupled equations become independent scalar oscillators once written in modal coordinates, and the pitches the load cell hears during **Act III — Pulling** are eigenvalues of \(\mathbf{K}\) against mass \(\mathbf{M}\) — discrete previews of the continuum spectra Part II will treat as operator eigenproblems.
+
 ## Scene: the wire hums at one pitch
 
 Tap the clamped copper wire and listen: it rings at a handful of distinct frequencies, not a continuous blur. Each pitch is an eigenmode — a pattern of motion along the length that repeats in phase at its own rate. Modal analysis is how we predict which frequencies will fatigue the wire at a fastener and which a damping pad can suppress. The spring-network matrices from Part I carry those pitches in their spectra long before any continuum model is written down.
@@ -161,7 +163,7 @@ We have stayed in finite dimensions: \(\mathbf{A}\mathbf{v} = \lambda \mathbf{v}
 | Lanczos on sparse \(\mathbf{K}\) for lowest modes | Spectral theory for elliptic operators (Part II.5 → Part IV.5) |
 | Resonance diagnosis on the wire fixture | Same decoupling picture at atomistic scales (Part VIII) |
 
-The [prologue](../../prologue/00-many-scales.md) introduced the specimen as one ladder with many rungs; eigenmodes are the **first time decoupling appears** in the book — a preview of orthogonality in Hilbert space and of dominant modes in molecular dynamics. [I.2](02-linear-maps.md) showed change of coordinates; eigenvectors are the coordinates in which the stiffness map acts by pure scaling.
+The [prologue](../../prologue/00-many-scales.md) introduced the specimen as one ladder with many rungs; eigenmodes are the **first time decoupling appears** in the book — a preview of orthogonality in Hilbert space and of dominant modes in molecular dynamics. [I.2](02-linear-maps.md) showed change of coordinates; eigenvectors are the coordinates in which the stiffness map acts by pure scaling — the last finite-dimensional change of basis before [I.4](04-toward-infinity.md) sends \(N\to\infty\) and Part II replaces matrices with operators whose spectra no longer fit in any fixed \(\mathbb{R}^N\).
 
 The next chapter takes the first step from \(\mathbb{R}^N\) toward function spaces: inner products become integrals, matrices become operators, and the eigenvalue problem becomes a spectral problem for differential operators. Part II makes that transition rigorous; Part III writes down the PDEs those operators encode.
 
