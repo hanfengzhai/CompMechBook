@@ -211,4 +211,6 @@ Balance laws, stress, and constitutive relations complete the **field vocabulary
 
 The virtual work equation in this chapter is the same balance Part IV assembled — continuum mechanics **names** the tensors the FEM code already integrated. The load cell's linear elastic climb (prologue **Act III**) measures stress derived here; when the curve bends (**Act IV**), smooth fields and isotropic \(\mathbb{C}\) stop being enough.
 
+Prologue **Act II — Warming** re-enters here as the thermal partner of the mechanical balance: Joule heating supplies a volumetric source in the energy equation; the Robin condition at the air interface is the flux handshake Part V's Navier–Stokes chapter will compute. Parts IV and V discretized those balances; Part VI states them as field laws before Part VII asks what microstructure hides inside \(\mathbb{C}\) and \(\sigma_{y0}\).
+
 [VI.3](03-variational-elasticity.md) makes the energy statement explicit, closes the upward arc from Part I's spring network, and previews when hyperelasticity and yield force a descent to Part VII. Turn the page when \(\boldsymbol{\sigma}=\mathbb{C}:\boldsymbol{\varepsilon}\) feels like a constitutive plug-in rather than the consequence of minimizing elastic energy — variational elasticity reunifies the story.

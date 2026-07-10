@@ -169,4 +169,6 @@ The taxonomy above named what broke the smooth continuum picture: point defects 
 
 Return to the [prologue](../../prologue/00-many-scales.md): **Act IV — Hardening** is when the load cell curve bends upward after yield. Part VI fitted that bend with phenomenological plasticity; Part VII explains the **geometry** cold drawing wrote into the wire before the test began. When mobility laws or core energies are still adjustable knobs, the signal to descend further is Part VIII — atomistics at the notch root and dislocation core.
 
+**Act V — Notch** is the exception the taxonomy prepares for: wherever a scratch, grip corner, or grain boundary concentrates stress beyond what smooth \(\boldsymbol{\sigma}(\mathbf{x})\) can regularize, line and surface defects in the table above become the relevant state variables. The taxonomy tells you *which* defect class to simulate; [VII.2](02-dislocation-dynamics.md) follows the lines; Part VIII resolves the core.
+
 Turn the page when \(\rho\) is a label on an input deck rather than a count of moving lines — dislocation dynamics is where the forest becomes computable geometry.

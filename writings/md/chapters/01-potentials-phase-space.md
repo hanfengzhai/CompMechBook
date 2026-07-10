@@ -197,4 +197,6 @@ Part VII's [Bridge](../../part07-defects/03-polycrystal-and-fem-handoff.md#bridg
 
 Return to the prologue's **Act IV — Hardening**: the load cell curve bent because lines moved; MD shows **how bonds stretch** at the core where Peach–Köhler forces are largest. Part I's pattern returns — state vector \(\{\mathbf{r}_i\}\), force vector from \(\nabla V\), timestep loop as repeated matrix–vector work — now with \(10^5\)–\(10^9\) atoms instead of \(N\) springs.
 
+**Act V — Notch** is the scene this chapter opened: FEM on the wire names where stress concentrates; DDD names how lines respond; MD names what happens when the smeared continuum finally resolves into neighbors swapping across a disturbed lattice. The epilogue's multiscale workflows wire those three answers together when no single code spans the ladder.
+
 [VIII.2](02-ensembles-integrators.md) makes sampling precise: Verlet integration, NVT and NPT control, and LAMMPS workflows that connect atomistic simulation to dislocation dynamics and beyond. Turn the page when the potential is specified but the wire's laboratory temperature has not yet entered the simulation — that is the signal that phase space, not just energy minimization, is the correct stage.

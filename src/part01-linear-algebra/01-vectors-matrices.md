@@ -163,5 +163,7 @@ With vectors and matrices in hand, we next examine **linear maps** abstractly: c
 
 Return to the [prologue](../../prologue/00-many-scales.md): **Act I — Mounting** fixes the wire in grips whose end displacement is a single global degree of freedom, yet every bar element still carries its own local axis. Assembly is the map that declares those languages equivalent — the same book-keeping Part IV will automate on millions of elements. When the map is wrong, the wire appears to stretch when only one end moves; when the basis is ill-chosen, \(\mathbf{K}\) is dense and ill-conditioned even though the physics is local.
 
-The copper wire, meshed or unmeshed, is the same physical object in every basis we choose. Turn the page when \(\mathbf{K}\mathbf{u}=\mathbf{f}\) feels like a table of numbers rather than a coordinate story — linear maps are where that table acquires geometry.
+The copper wire, meshed or unmeshed, is the same physical object in every basis we choose. Part II will ask what happens when \(N\) grows without bound and \(\mathbf{K}\) becomes an operator on a function space; Part IV will show that the same scatter map \(\mathbf{L}_e\) on millions of elements is the assembly loop behind **Act III — Pulling**. For now, the experiment needs only a handful of nodes and one honest matrix.
+
+Turn the page when \(\mathbf{K}\mathbf{u}=\mathbf{f}\) feels like a table of numbers rather than a coordinate story — linear maps are where that table acquires geometry.
 

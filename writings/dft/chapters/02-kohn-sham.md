@@ -230,6 +230,8 @@ Part I's eigenvalue loop reappears as the self-consistent cycle above; Part II's
 
 Return to the prologue's **Act VI — Foundation**: before the operator mounted the wire, someone chose Young's modulus and a yield stress. That invisible afternoon is now explicit: cohesive energy per atom, elastic constants \(C_{ij}\), vacancy formation enthalpy, and surface energies — each gated by SCF convergence and documented functional choice. Unconverged cutoff is the DFT analogue of an ill-conditioned \(\mathbf{K}\): structured noise dressed as physics.
 
+The [epilogue](../../epilogue/multiscale.md) reunites this foundation with the visible lab session: DFT supplies the numbers, MD fits the potential, DDD calibrates mobility, FEM runs the wire-scale job — four exports from one audit trail. Part IX is the last descent rung; what follows is coupling, not new physics.
+
 [IX.3](03-dft-workflows.md) walks through reproducible workflows — cutoff and k-mesh convergence, relaxation, equations of state, bands and phonons, defect supercells — using the MSE 5720 homework archive as a template. Those workflows produce the numbers Parts VI–VIII import before the [epilogue](../../epilogue/multiscale.md) wires DFT → MD → DDD → FEM into one multiscale afternoon.
 
 Turn the page when the SCF loop converges in principle but no input file exists yet — that is the signal that reproducibility, not theory, is what separates research from folklore.

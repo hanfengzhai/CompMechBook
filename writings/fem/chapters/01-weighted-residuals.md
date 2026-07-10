@@ -171,4 +171,6 @@ Recall Part III's closing pipeline: strong PDE → weak form → **energy minimu
 
 Return to the [prologue](../../prologue/00-many-scales.md): **Act III — Pulling** turns abstract Galerkin orthogonality into numbers the load cell trusts. Part I named \(\mathbf{K}\mathbf{u}=\mathbf{f}\); Part II proved the limit lives in \(H^1\); Part III wrote the bilinear form. [IV.2](02-galerkin-assembly.md) is where the operator becomes code — the stiffness matrix is not magic, but the Gram matrix of the energy inner product on \(V_h\).
 
+Part VI will later **name** the tensors inside those integrals — Cauchy stress \(\boldsymbol{\sigma}\), strain \(\boldsymbol{\varepsilon}\), elastic tensor \(\mathbb{C}\) — and show that virtual work is the vector-valued weighted residual you already enforced here. The load cell curve is therefore not a separate experiment from the FEM solve; it is the same balance law, first as \(R_{\text{weak}}(v; u_h)=0\), then as \(\boldsymbol{\sigma}:\nabla\mathbf{v}\) integrated over the meshed wire.
+
 Turn the page when the weak form is clear but no matrix exists yet — that is the signal that weighted residuals need an assembly loop.
