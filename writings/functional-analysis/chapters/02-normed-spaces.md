@@ -206,4 +206,11 @@ Part I diagonalized \(\mathbf{K}\) by finding orthogonal eigenvectors in \(\math
 
 Return to the [prologue](../../prologue/00-many-scales.md): **Act II — Warming** asks which norm judges whether the thermal FEM has converged; **Act III — Pulling** asks which energy norm judges whether the displacement field is close enough for the load cell to trust. This chapter named both rulers; [II.3](03-hilbert-spaces.md) will prove that Galerkin projection is optimal in the energy norm those rulers define.
 
+| Prologue act | Norm question on the wire | What completeness guarantees |
+|--------------|---------------------------|------------------------------|
+| II — Warming | \(\|T\|_{H^1}\) vs. \(\|T\|_{L^2}\) for thermal FEM | Refined meshes converge to a field, not a longer vector |
+| III — Pulling | Energy norm \(\|u\|_{H^1}\) for displacement | Cauchy sequences of mesh solutions stay in \(H^1\) |
+| I — Mounting | Equivalent norms on the same spring chain | Same physics, different error constants — not different limits |
+| VI — Foundation (preview) | Phonon DOS lives in \(L^2\)-type spaces | Atomic vibration limits have a Banach/Hilbert target |
+
 Turn the page when you are ready to see why "Galerkin is projection" is a theorem, not a slogan.

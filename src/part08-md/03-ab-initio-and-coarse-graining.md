@@ -251,4 +251,11 @@ Part VIII assumed Born–Oppenheimer surfaces and fit potentials to match these 
 
 Return to the prologue's **Act VI — Foundation**: before any wire-scale FEM run, someone chose Young's modulus, stacking-fault energy, and a mobility table — parameters whose pedigree this chapter traced to EAM fits and coarse-grained exports. Part IX re-derives each from first principles so the ladder has a floor, not folklore. The [Part IX opening](../part09-dft/00-opening.md) frames that descent explicitly; [IX.1](../part09-dft/01-born-oppenheimer.md) separates fast electrons from slow nuclei before the Kohn–Sham machinery begins.
 
+| Prologue act | Part VIII assumed on trust | Part IX audit target |
+|--------------|---------------------------|----------------------|
+| VI — Foundation | \(E_{\text{coh}}\), \(a_0\) in EAM fit | Converged SCF total energy per atom |
+| IV — Hardening | \(\gamma_{\text{sf}}\) for partial dislocations | Generalized stacking-fault surface from slabs |
+| V — Notch | Vacancy/interstitial formation for creep | Supercell defect energies with archived k-mesh |
+| III — Pulling | Elastic constants \(C_{ij}\) in the mesh | Small-strain derivatives w.r.t. lattice strain |
+
 Turn the page when the EAM potential matches bulk moduli but no one can cite the DFT input deck that produced it — that is the signal the foundation run is missing, and Part IX is where the audit starts.

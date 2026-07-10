@@ -171,4 +171,13 @@ Steps 1–2 require function spaces. Part II supplies normed spaces, completenes
 
 The [prologue](../../prologue/00-many-scales.md) named the weak form a **recurring character** — it will return as Galerkin assembly in Part IV, virtual work in Part VI, and a variational statement on electron density in Part IX. Part I could not give that character a stage: at fixed \(N\), equilibrium is \(\mathbf{K}\mathbf{u}=\mathbf{f}\), not integration by parts. Chapter 4 showed why refinement sends \(N\) without bound and why the limit object is a **function**, not a longer vector. Part II opens with [**Closing the arc from Part I**](../part02-functional-analysis/00-opening.md#closing-the-arc-from-part-i) — the same four questions from the prologue, now in \(H^1\) and \(L^2\) — and builds the room the weak form will speak in.
 
-Turn the page. We leave the comfort of \(\mathbb{R}^N\) and enter the space of admissible fields. The copper wire’s temperature and displacement live there; our meshes are finite-dimensional shadows of those fields, and the shadow improves as \(h \to 0\).
+| Prologue act | Finite \(N\) shadow (Part I) | Infinite-dimensional limit (Part II) |
+|--------------|------------------------------|--------------------------------------|
+| I — Mounting | Nodal displacements on \(N\) coupled springs | \(u(x)\in H^1\) with trace BC at the grips |
+| II — Warming | Discrete heat along the spring chain | \(T(x)\) with square-integrable gradient in \(H^1\) |
+| III — Pulling | \(\mathbf{K}_N\) grows as the mesh refines | Stiffness operator on \(H^1_0\); Galerkin limit |
+| VI — Foundation | Discrete Laplacian eigenvalues on a chain | Spectral problem for \(-\Delta\); Part II.5 |
+
+[I.3](03-eigenvalues.md) decoupled vibration at fixed \(N\); this chapter sends \(N\) without bound. Part II is not a detour — it is the **convergence target** every mesh refinement in Acts II–III already assumes when the load cell curve is trusted.
+
+Turn the page when the wire's modes and temperatures outgrow any fixed node count — that is the signal vectors are no longer enough, and function spaces are where the limit becomes a theorem.

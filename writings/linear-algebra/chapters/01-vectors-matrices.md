@@ -165,5 +165,12 @@ Return to the [prologue](../../prologue/00-many-scales.md): **Act I — Mounting
 
 The copper wire, meshed or unmeshed, is the same physical object in every basis we choose. Part II will ask what happens when \(N\) grows without bound and \(\mathbf{K}\) becomes an operator on a function space; Part IV will show that the same scatter map \(\mathbf{L}_e\) on millions of elements is the assembly loop behind **Act III — Pulling**. For now, the experiment needs only a handful of nodes and one honest matrix.
 
+| Prologue act | First finite-dimensional model on the wire | What breaks without this chapter |
+|--------------|---------------------------------------------|----------------------------------|
+| I — Mounting | \(\mathbf{K}\mathbf{u}=\mathbf{f}\) with grip BCs | No honest global equilibrium on a meshed specimen |
+| II — Warming (preview) | Thermal conductance matrix on a spring chain | Nodal temperatures cannot map to fluxes at interfaces |
+| III — Pulling (preview) | End displacement as a single controlled DOF | Local spring laws stay invisible without assembly |
+| VI — Foundation (preview) | Phonon Hessian as \(\mathbf{K}\) at atomic scale | Same matrix grammar recurs through Parts VIII–IX |
+
 Turn the page when \(\mathbf{K}\mathbf{u}=\mathbf{f}\) feels like a table of numbers rather than a coordinate story — linear maps are where that table acquires geometry.
 

@@ -220,4 +220,11 @@ Return to the prologue's **Act II — Warming**: current flows, the wire heats, 
 
 The [prologue](../../prologue/00-many-scales.md) promised one specimen in two discretization languages. Part IV's \(\mathbf{K}\mathbf{U}=\mathbf{F}\) and Part V's flux balances are not competing methods; they are **adjacent chapters** in the same afternoon. Part VI is where the load cell's force–displacement curve acquires Cauchy stress behind it, and where cold-drawn strength stops being a fitted parameter and becomes a question for dislocations in Part VII. See [VI opening](../part06-continuum/00-opening.md#closing-the-arc-from-parts-iv-and-v) **Closing the arc from Parts IV and V** for the full handoff table.
 
+| Prologue act | Part V output on the wire | Part VI names the shared field |
+|--------------|---------------------------|--------------------------------|
+| II — Warming | Wall heat flux \(q''\) from Navier–Stokes + energy | Robin BC handshake with FEM temperature |
+| III — Pulling | Cooling-jet momentum flux at the wire surface | Cauchy traction \(\boldsymbol{\sigma}\mathbf{n}\) on the solid |
+| IV — Hardening (preview) | Thermal softening if \(T\) rises under Joule heat | Coupled energy balance in continuum form |
+| V — Notch (preview) | Flow separation / recirculation near a scratch | Stress concentrator needs both FEM and FVM BCs |
+
 Turn the page when sparse linear systems and face fluxes feel like the whole story — continuum mechanics is what makes \(\mathbf{K}\mathbf{U}=\mathbf{F}\) a force-balance statement rather than an array exercise.

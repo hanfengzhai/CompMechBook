@@ -170,4 +170,13 @@ Return to the prologue's **Act IV — Hardening**: the load cell curve bent upwa
 | Cutoff-regularized singularities at notches | Line defects with Peach–Köhler forces and mobility laws |
 | Fitted \(H\) from macroscopic calibration | DDD link statistics exportable to crystal plasticity |
 
-Part VII opens with the same specimen at the yield point: polished copper showing faint **slip lines** on {111} planes — the visible trace of dislocation motion that J₂ plasticity homogenized into a scalar \(\alpha\). Remember also that the drawn wire is not a single crystal: cold drawing leaves a **polycrystal with grain boundaries** that homogenized \(H\) cannot see — the spool of wire in [VII.3](03-polycrystal-and-fem-handoff.md) is the same specimen at a finer organizational scale. [VII.1](01-defect-taxonomy.md) names the defect catalog; [VII.2](02-dislocation-dynamics.md) follows the forest as it moves, multiplies, and tangles under load. Turn the page when the mesh is fine enough but the physics still wrong — that is the hinge between continuum and mesoscale.
+Part VII opens with the same specimen at the yield point: polished copper showing faint **slip lines** on {111} planes — the visible trace of dislocation motion that J₂ plasticity homogenized into a scalar \(\alpha\). Remember also that the drawn wire is not a single crystal: cold drawing leaves a **polycrystal with grain boundaries** that homogenized \(H\) cannot see — the spool of wire in [VII.3](03-polycrystal-and-fem-handoff.md) is the same specimen at a finer organizational scale. [VII.1](01-defect-taxonomy.md) names the defect catalog; [VII.2](02-dislocation-dynamics.md) follows the forest as it moves, multiplies, and tangles under load.
+
+| Prologue act | Continuum phenomenology (Part VI) | Mesoscale descent (Part VII) |
+|--------------|-----------------------------------|------------------------------|
+| III — Pulling | Linear elastic climb before yield | Elastic constants unchanged; \(\mathbb{C}\) still from Part VI |
+| IV — Hardening | J₂ with fitted \(H\), \(\sigma_{y0}\) | Forest \(\rho\); Taylor \(\tau \propto \sqrt{\rho}\) from line statistics |
+| V — Notch | Cutoff-regularized stress peak | Dislocation pile-up; FE² when homogenization fails |
+| VI — Foundation (preview) | Mobility and SFE as input-deck numbers | DDD yaml tables trace to MD and DFT in Parts VIII–IX |
+
+Turn the page when the mesh is fine enough but the physics still wrong — that is the hinge between continuum and mesoscale.

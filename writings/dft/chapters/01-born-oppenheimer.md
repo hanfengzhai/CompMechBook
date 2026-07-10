@@ -207,6 +207,13 @@ Born–Oppenheimer separation and Hohenberg–Kohn existence theorems justify tr
 
 Return to the prologue's **Act VI — Foundation**: before any wire-scale FEM run, someone chose \(E\), \(\nu\), and surface energies whose pedigree traces to calculations like those in this part. Part VIII introduced **two clocks** — mathematical descent (VII → VIII → IX) versus workflow foundation (IX → VIII → VII → IV); this chapter is where the foundation clock starts in earnest. Every EAM parameter and cohesive energy in Part VIII's LAMMPS deck assumes the Born–Oppenheimer surface you are about to compute; Part VII's stacking-fault and vacancy energies consume the same small-cell outputs.
 
+| Prologue act | Engineering input deck | Electronic-structure origin (this part) |
+|--------------|------------------------|----------------------------------------|
+| VI — Foundation | Young's modulus \(E\), Poisson \(\nu\) | \(C_{ij}\) from strained fcc Cu supercells |
+| III — Pulling | Bulk modulus sanity check on mesh | Equation of state \(E(V)\) from SCF |
+| IV — Hardening | Stacking-fault energy in DDD yaml | GSF surface from slab calculations |
+| V — Notch | Surface energy for fracture (preview) | Slab cleavage energies with dipole corrections |
+
 Part VIII's EAM potential and Part VII's stacking-fault energies consume what IX.1–IX.3 export; the epilogue wires those exports into multiscale pipelines no single code runs alone. Reading linearly, you arrived here after atoms; reading as a practitioner, treat this chapter as the **audit** of every potential Part VIII already assumed on trust.
 
 [IX.2](02-kohn-sham.md) is the practitioner's chapter — SCF cycles, pseudopotentials, and the convergence checklist that separates chemistry from numerical artifact. Turn the page when "DFT gave a number" but cutoff, k-sampling, and functional choice were never documented — that is the signal the foundation run is not yet trustworthy enough to climb the ladder.

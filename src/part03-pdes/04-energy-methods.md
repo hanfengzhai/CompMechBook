@@ -193,4 +193,11 @@ Return to the [prologue](../../prologue/00-many-scales.md): **Act III — Pullin
 
 The [prologue](../../prologue/00-many-scales.md) named the weak form a **recurring character** — born in [III.2](02-weak-form.md), dressed as energy in this chapter, destined to become Galerkin orthogonality in Part IV, virtual work in Part VI, and a variational principle on \(\rho(\mathbf{r})\) in Part IX. If you need the fluid fork after FEM, [IV.5](../part04-fem/05-convergence.md#bridge-two-doors-from-here) names **Door A** (Part V: FVM and conjugate heat transfer) and **Door B** (Part VI: continuum stress–strain vocabulary) — the canonical place to choose, so this chapter can stay focused on energy → assembly.
 
+| Prologue act | Energy functional on the wire | What Part IV assembles from it |
+|--------------|------------------------------|-------------------------------|
+| II — Warming | Minimize thermal energy \(\int k\|\nabla T\|^2 - q_J T\) | Thermal \(\mathbf{K}_T\), Joule source \(\mathbf{f}_q\) on P1 mesh |
+| III — Pulling | Minimize elastic energy \(\int \tfrac{1}{2}EA (u')^2 - fu\) | Mechanical \(\mathbf{K}\), end-load vector \(\mathbf{f}\) |
+| IV — Hardening (preview) | Convexity lost after yield — energy minimum splits | Nonlinear Newton loops; Part VI–VII supply new \(\Pi\) |
+| VI — Foundation (preview) | Same Dirichlet principle on \(\rho(\mathbf{r})\) in Part IX | Kohn–Sham as constrained energy minimization |
+
 Turn the page when "minimize energy" and "solve \(\mathbf{K}\mathbf{U}=\mathbf{F}\)" still feel like separate subjects — assembly is where Part III's variational statement becomes the sparse matrix Part I taught you to trust.

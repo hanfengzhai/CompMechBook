@@ -252,6 +252,13 @@ Crystal plasticity and calibrated DDD close the mesoscale chapter: they explain 
 
 Return to the [prologue](../../prologue/00-many-scales.md): **Act IV** hardening and **Act V** notch stress concentration both lean on parameters whose **ink** is atomic — the same copper lattice Part VIII will traverse with Newton's equations and empirical or *ab initio* potentials. Part IX follows when even EAM parameters need first-principles validation of formation energies and band structure.
 
+| Prologue act | Mesoscale export (Part VII) | Atomistic resolution (Part VIII) |
+|--------------|----------------------------|----------------------------------|
+| IV — Hardening | Taylor \(\tau(\rho)\) from DDD link statistics | Stacking-fault energy from slab pulls |
+| V — Notch | FE² when polycrystal homogenization fails | Core structure and bond breaking at the tip |
+| VI — Foundation | Mobility \(M(\tau,T)\) yaml tables | NVT shear tests; phonon drag from trajectories |
+| III — Pulling (audit) | Elastic constants unchanged at mesoscale | EAM fit validated against DFT \(C_{ij}\) |
+
 The wire's strength is a story written in dislocation lines; the lines borrow their mobility from phonons and cores the mesoscale cannot resolve. [VIII.1](../part08-md/01-potentials-phase-space.md) begins with interatomic potentials and phase space — the next rung down on the ladder, same specimen, stricter export contract.
 
 Turn the page when Peierls stress or mobility tables feel like magic numbers — molecular dynamics is where those numbers acquire a temperature and a crystal structure.
