@@ -2,6 +2,15 @@
 
 Every computational mechanics code, before it knows anything about stress tensors or Navier–Stokes, knows about arrays. A displacement field on a mesh is a vector of nodal values. A stiffness matrix is a sparse array coupling degrees of freedom. Even the most exotic multiscale scheme eventually calls a linear solver. Linear algebra is not a prerequisite chapter we endure on the way to "real" mechanics — it is the grammar in which mechanics is written once discretized.
 
+## Story so far (Prologue)
+
+| Stage | What the wire became | Key object |
+|-------|----------------------|------------|
+| [Prologue](../../prologue/00-many-scales.md) | Six-act lab session; multiscale ladder | Four questions: state, equations, discretization, export |
+| **I.1 (here)** | Spring chain under mounting; \(\mathbf{K}\mathbf{u}=\mathbf{f}\) | State vector, stiffness matrix, sparsity |
+
+The [prologue](../../prologue/00-many-scales.md) promised one copper wire under tension and current — and that every scale eventually reduces to arrays and solvers. Part I opens **Act I — Mounting**: grips closed, load cell zeroed, no current yet. This chapter is the first language the computer and the laboratory share before fields, weak forms, or electrons enter the story.
+
 ## Scene: Act I — mounting
 
 Picture the copper wire in the **tensile frame** of the prologue at the moment **Act I — Mounting** begins. The operator zeros the load cell, closes the wedge grips, and fixes the ends — but has not yet switched on current or ramped displacement. The multiscale ladder is still offstage: no thermocouple climb, no yield knee, no Kohn–Sham cycle. What exists now is the first honest model the lab and the computer can share.
@@ -173,6 +182,13 @@ The copper wire, meshed or unmeshed, is the same physical object in every basis 
 | II — Warming (preview) | Thermal conductance matrix on a spring chain | Nodal temperatures cannot map to fluxes at interfaces |
 | III — Pulling (preview) | End displacement as a single controlled DOF | Local spring laws stay invisible without assembly |
 | VI — Foundation (preview) | Phonon Hessian as \(\mathbf{K}\) at atomic scale | Same matrix grammar recurs through Parts VIII–IX |
+
+| Prologue question | Answer in this chapter | Where it recurs |
+|-------------------|------------------------|-----------------|
+| What is the **state**? | \(\mathbf{u}\in\mathbb{R}^N\) of nodal displacements | Part II: \(u(x)\in H^1\); Part VIII: \((\mathbf{r},\mathbf{p})\) |
+| What are the **equations**? | \(\mathbf{K}\mathbf{u}=\mathbf{f}\) | Part III weak form; Part IV assembly |
+| What is the **discretization**? | Spring chain / bar elements | Part IV shape functions; Part V cell averages |
+| What **exports upward**? | Stiffness pattern, conditioning | Part II operator limit; Part VII homogenization |
 
 Turn the page when \(\mathbf{K}\mathbf{u}=\mathbf{f}\) feels like a table of numbers rather than a coordinate story — linear maps are where that table acquires geometry.
 

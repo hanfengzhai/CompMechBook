@@ -6,6 +6,17 @@ Weighted residuals gave us the logic: enforce \(\int r\, w_i = 0\) for chosen we
 
 That algorithm is **global assembly**: loop over elements, compute local contributions, scatter into a global sparse matrix. It is structured linear algebra — the change-of-basis story from Part I, executed millions of times with a sparsity pattern dictated by mesh connectivity.
 
+## Story so far (Parts I–III & IV.1)
+
+| Stage | What the wire became | Key object |
+|-------|----------------------|------------|
+| Part I | \(\mathbf{K}\mathbf{u}=\mathbf{f}\); scatter maps \(\mathbf{L}_e\) | Finite-dimensional equilibrium |
+| Part II–III | Weak form \(a(u,v)=\ell(v)\); energy minimum on \(V_h\) | Continuum target for refinement |
+| [IV.1](01-weighted-residuals.md) | Galerkin: test = trial | Orthogonal projection in energy norm |
+| **IV.2 (here)** | Global \(\mathbf{K}\), \(\mathbf{F}\) from element loops | Assembly as structured linear algebra |
+
+The [prologue](../../prologue/00-many-scales.md) promised that **Act III — Pulling** would turn grip displacement into numbers on the load cell. Assembly is the backstage step that makes that act honest — each scatter into \(\mathbf{K}\) is the finite-dimensional echo of the energy inner product Part II defined and Part III minimized.
+
 ## Scene: the mesh becomes a matrix
 
 Return to the copper wire in the tensile frame. Part I reduced it to a chain of springs; Part III wrote equilibrium as a weak form in \(H^1\); now a graduate student opens a FEM script and imports the same geometry as a one-dimensional mesh — twenty quadratic line elements along the axis, a refined cluster near the grip where stress will peak.
@@ -193,6 +204,12 @@ Return to the [prologue](../../prologue/00-many-scales.md): **Act III — Pullin
 | II — Warming | Thermal \(\mathbf{K}_T\), \(\mathbf{f}_q\) from Joule source | Part III.4 energy minimum on \(V_h\) |
 | III — Pulling | Mechanical \(\mathbf{K}\), \(\mathbf{f}\) from end displacement | Part IV.1 Galerkin orthogonality |
 | VI — Foundation (preview) | Mass matrix \(\mathbf{M}\) for dynamics | Part I eigenmodes; Part II spectral theory |
+
+| Assembly step | Part I vocabulary | Part III weak form | What IV.3 specifies |
+|---------------|-------------------|--------------------|---------------------|
+| Local \(\mathbf{k}_e\) | Element stiffness | \(\int a(\phi_i,\phi_j)\) | Shape functions \(\phi_i\), quadrature |
+| Scatter into \(\mathbf{K}\) | \(\mathbf{L}_e^T\mathbf{k}_e\mathbf{L}_e\) | Global bilinear form | DOF map, sparsity pattern |
+| Load vector \(\mathbf{f}\) | Nodal forces | \(\ell(\phi_i)\) | Consistent vs. lumped loads |
 
 Turn the page when assembly feels like bookkeeping but the stress contour still jumps between meshes — the fault is usually element order or quadrature, not the scatter loop.
 

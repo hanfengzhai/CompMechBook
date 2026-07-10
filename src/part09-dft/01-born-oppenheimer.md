@@ -4,6 +4,17 @@ Electrons determine almost all material properties at the chemical level. Densit
 
 For copper, DFT answers the most basic question the wire poses at the finest scale: **why does the crystal cohere at all?** The answer lives in the quantum mechanical balance between kinetic energy, electrostatic attraction, and exchange–correlation — not in a spring constant inserted by hand.
 
+## Story so far (Parts I–VIII)
+
+| Stage | What the wire became | Key object |
+|-------|----------------------|------------|
+| Parts I–VI | Continuum mechanics; FEM; FVM; stress and strain | Engineering moduli and fields |
+| Part VII | Dislocation dynamics; crystal plasticity | Defect energies and mobility |
+| Part VIII | EAM MD; LAMMPS trajectories; coarse-grained exports | Classical atoms on a BO surface |
+| **IX.1 (here)** | Born–Oppenheimer; Hohenberg–Kohn | Why energy is a functional of \(\rho(\mathbf{r})\) |
+
+Part VIII's EAM potential treated nuclei as classical particles on a fixed energy surface; this chapter asks **where that surface came from**. The [prologue](../../prologue/00-many-scales.md) **Act VI — Foundation** runs offline before any grip closes — every \(E\), \(\nu\), and stacking-fault energy in upstream parts traces to calculations whose intellectual floor is laid here.
+
 ## Scene: electrons adjust in a blink
 
 Freeze a snapshot from Part VIII's molecular dynamics: copper nuclei mid-vibration, positions \(\{\mathbf{R}_I\}\) changing on picosecond timescales. The electrons that bind those nuclei respond in **femtoseconds** — three orders of magnitude faster because \(m_e \ll m_{\text{Cu}}\). In the laboratory frame, nuclei appear nearly stationary while the electron cloud rearranges around each geometry almost instantly.
@@ -215,5 +226,12 @@ Return to the prologue's **Act VI — Foundation**: before any wire-scale FEM ru
 | V — Notch | Surface energy for fracture (preview) | Slab cleavage energies with dipole corrections |
 
 Part VIII's EAM potential and Part VII's stacking-fault energies consume what IX.1–IX.3 export; the epilogue wires those exports into multiscale pipelines no single code runs alone. Reading linearly, you arrived here after atoms; reading as a practitioner, treat this chapter as the **audit** of every potential Part VIII already assumed on trust.
+
+| BO/HK theorem | Copper property computed | Consumer in upstream parts |
+|---------------|-------------------------|---------------------------|
+| Born–Oppenheimer surface | Cohesive energy per atom | EAM well depth in Part VIII |
+| HK existence of \(E[\rho]\) | Elastic constants \(C_{ij}\) | Young's modulus in Part IV |
+| Variational principle | Stacking-fault energy | DDD mobility in Part VII |
+| Small-cell intensive limit | Vacancy formation enthalpy | Creep nucleation rates |
 
 [IX.2](02-kohn-sham.md) is the practitioner's chapter — SCF cycles, pseudopotentials, and the convergence checklist that separates chemistry from numerical artifact. Turn the page when "DFT gave a number" but cutoff, k-sampling, and functional choice were never documented — that is the signal the foundation run is not yet trustworthy enough to climb the ladder.

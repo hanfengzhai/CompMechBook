@@ -6,6 +6,16 @@ Where FEM whispers "multiply by a test function and integrate by parts," FVM dec
 
 The copper wire reappears in a different guise. Solid mechanics on the wire still favors FEM, but imagine air cooling the heated specimen, or a shock tube test validating a CFD code before it simulates that cooling jet. Those flows are governed by conservation of mass, momentum, and energy — laws that make sense even when the pointwise PDE breaks down at shocks.
 
+## Story so far (Parts I–IV)
+
+| Stage | What the wire became | Key object |
+|-------|----------------------|------------|
+| Parts I–III | Weak forms; \(H^1\) fields; strong-form PDEs | Elliptic operators on the solid |
+| Part IV | Galerkin assembly; \(\mathbf{K}\mathbf{U}=\mathbf{F}\); Céa convergence | FEM inside the copper wire |
+| **V.1 (here)** | Integral balance on control volumes | Conservation contract for the fluid side |
+
+Part IV meshed conduction **inside** the solid; this chapter states the **conservation contract** for the air **outside** it — what enters a control volume must equal what leaves plus what accumulates. The [prologue](../../prologue/00-many-scales.md) **Act II — Warming** showed the wire surface running hot; conjugate heat transfer in [V.4](04-navier-stokes-cfd.md) will handshake FEM temperature fields with FVM enthalpy fluxes named here.
+
 ## Scene: air leaving the wire
 
 The thermal camera from Part III showed the wire hot; now widen the frame. Still air in the lab carries heat away from the surface by natural convection — no fan, just buoyancy-driven flow. A CFD practitioner does not start by writing Navier–Stokes at a single point in the room. She tiles the air volume into control volumes, each a small box surrounding a node, and asks a bookkeeping question: **how much enthalpy flows in through each face, and how much flows out?**

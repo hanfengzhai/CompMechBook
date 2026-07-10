@@ -2,6 +2,18 @@
 
 Matrices act on column vectors. Differential operators act on functions. Dual spaces act on vectors and functions alike through pairing — the language of loads, constraints, and virtual work. This chapter develops the operator vocabulary that makes weak formulations, mixed finite elements, and convergence under mesh refinement precise. When the copper wire's displacement field \(u_h\) changes with mesh size, we ask not only whether \(\|u_h - u\|\) shrinks, but in what **sense** the sequence approaches the limit. Strong convergence in norm is the strongest answer; weak convergence is often enough, and sometimes all that holds.
 
+## Story so far (Parts I–II.3)
+
+| Stage | What the wire became | Key object |
+|-------|----------------------|------------|
+| Part I | \(\mathbf{K}_N\mathbf{u}=\mathbf{f}\); eigenmodes; \(N\to\infty\) | Matrices as shadows of operators |
+| [II.1](01-motivation.md) | Weak form motivates \(H^1\) | Corners break \(C^2\) |
+| [II.2](02-normed-spaces.md) | Banach/Hilbert completeness | Cauchy sequences stay in the space |
+| [II.3](03-hilbert-spaces.md) | Inner product; Lax–Milgram | Galerkin projection is honest |
+| **II.4 (here)** | Bounded operators; dual loads \(\ell(v)\) | Maps between Hilbert spaces; weak convergence |
+
+The [prologue](../../prologue/00-many-scales.md) mounted the wire in grips and warned that concentrated loads and mesh refinement make convergence a **sense** question, not just a smaller \(h\). Part I's nodal forces become functionals here; Part IV's assembly scatters those forces only because duality and weak* limits make the limit honest.
+
 ## Scene: the load is not a vector of numbers
 
 The grip applies a fixed displacement; gravity pulls downward with a force per unit volume; a contact constraint pushes only where the wire touches the wedge. In the weak form, each load becomes a linear functional on the displacement space — not an entry in a column vector until we choose a basis. Dual spaces are where virtual work lives: they translate physical loads into data the weak form can consume, and they explain why refining the mesh changes the discrete vector but not the underlying load object.
@@ -222,5 +234,14 @@ Return to the [prologue](../../prologue/00-many-scales.md): **Act III — Pullin
 | Stiffness operator on \(H^1_0\) | \(-\nabla\cdot(k\nabla\cdot)\) on the heated wire | Element stiffness \(\mathbf{K}^e\) from \(\int k\nabla N_i\cdot\nabla N_j\) |
 | Mass operator on \(L^2\) | Inertia term in vibration | Lumped or consistent mass matrix |
 | Trace / dual load \(\ell\in H^{-1}\) | Point force or concentrated flux | Nodal force vector \(\mathbf{f}\) |
+
+[II.3](03-hilbert-spaces.md) supplied angles and projection; this chapter named the **maps** between Hilbert spaces. [II.5](05-spectral-theorem.md) will close Part II by diagonalizing the self-adjoint operators whose boundedness and compactness you met here — then hand the **well-posedness triangle** to Part III.
+
+| Duality object in Part II | Continuum load on the wire | Discrete FEM shadow |
+|---------------------------|---------------------------|---------------------|
+| \(\ell(v)=\int f v\,d\Omega\) | Distributed body force | Consistent nodal loads |
+| \(\ell(v)=\int t v\,dS\) | Grip traction | Boundary force vector |
+| Weak* limit of \(\ell_n\) | Concentrated end load | Single nodal force as \(h\to 0\) |
+| Adjoint operator \(A^*\) | Sensitivity of tip displacement | Adjoint FEM solve |
 
 Turn the page when operator language feels natural — PDEs in Part III are where those operators finally have names like \(-\Delta\) and \(-\nabla\cdot(k\nabla\cdot)\).

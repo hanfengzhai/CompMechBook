@@ -6,6 +6,17 @@ Parts IV and V discretized PDEs on meshes. Part VI asks what those PDEs mean phy
 
 The copper wire under tension is our recurring specimen — at the continuum scale, it is a cylinder of copper with a displacement field and a deformation gradient that Part IV's elasticity code approximates node by node, while the air cooling it (Part V) carries a velocity field whose gradient enters the rate-of-deformation tensor in the fluid stress.
 
+## Story so far (Parts I–V)
+
+| Stage | What the wire became | Key object |
+|-------|----------------------|------------|
+| Parts I–III | Fields, weak forms, PDEs on domains | \(u(x)\), \(T(x)\) as continuum objects |
+| Part IV | Nodal \(\mathbf{U}\); \(B\)-matrix strain | Discrete shadow of displacement |
+| Part V | Cell-averaged velocity \(\bar{\mathbf{v}}\) | Discrete shadow of fluid motion |
+| **VI.1 (here)** | \(\mathbf{F}\), \(\boldsymbol{\varepsilon}\), \(\mathbf{E}\), \(\mathbf{D}\) | Continuous maps both discretizations sample |
+
+Parts IV and V computed numbers on meshes; Part VI names the **continuous objects** those numbers approximate. The [prologue](../../prologue/00-many-scales.md) **Act III — Pulling** ramped grip displacement — kinematics records **how** each material point moved and stretched so stress and balance laws in [VI.2](02-stress-balance.md) have geometric input.
+
 ## Scene: the wire in the tensile frame
 
 Picture a 1 mm diameter copper wire, 100 mm gauge length, gripped at both ends in a tensile frame. A 50 N axial load produces a modest engineering strain \(\varepsilon \approx \sigma/E \sim 10^{-4}\) — well within the linear elastic range Part IV assumed when assembling \(\mathbf{K}\). Every node on the FEM mesh carries a displacement vector; kinematics asks what **continuous map** those nodal values sample.
@@ -195,5 +206,11 @@ Return to the prologue's **Act III — Pulling**: grip displacement ramps, and t
 | V — Notch (preview) | Refined mesh at stress concentrator | Finite-strain \(\mathbf{E}\) where \(\|\nabla\mathbf{u}\|\) is no longer small |
 
 [I.2](../part01-linear-algebra/02-linear-maps.md) taught change of basis on elements; [III.2](../part03-pdes/02-weak-form.md) wrote virtual work in test functions; this chapter is where those habits acquire **tensor names** on the same copper wire. [VI.2](02-stress-balance.md) completes the picture with Cauchy stress, Piola–Kirchhoff stress, and balance laws that FEM and FVM discretize.
+
+| Discretization (Parts IV–V) | Continuum object (this chapter) | Balance law (VI.2) |
+|-----------------------------|--------------------------------|-------------------|
+| Nodal \(\mathbf{U}_i\) | \(\mathbf{u}(\mathbf{X})\), \(\mathbf{F}=\mathbf{I}+\nabla\mathbf{u}\) | \(\nabla\cdot\boldsymbol{\sigma}=\mathbf{0}\) |
+| \(B\)-matrix strain at Gauss points | \(\boldsymbol{\varepsilon}\), Green–Lagrange \(\mathbf{E}\) | \(\boldsymbol{\sigma}=\mathbb{C}:\boldsymbol{\varepsilon}\) |
+| FVM \(\bar{\mathbf{v}}_j\) | Velocity \(\mathbf{v}(\mathbf{x})\), rate \(\mathbf{D}\) | \(\rho(\dot{\mathbf{v}}+\mathbf{v}\cdot\nabla\mathbf{v})=\nabla\cdot\boldsymbol{\sigma}\) |
 
 Turn the page when displacement fields need a stress conjugate — kinematics without balance is geometry without physics.
