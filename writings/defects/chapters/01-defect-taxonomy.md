@@ -158,4 +158,15 @@ The scale hierarchy is not a one-way street. Coarse models suggest where fine mo
 
 Dislocation dynamics simulates line defects directly — too coarse for every atom, too fine for pure FEM. It is the mesoscale chapter of our copper wire story: the place where work hardening becomes geometry and statistics rather than a fitted curve.
 
+| What the taxonomy named | What [VII.2](02-dislocation-dynamics.md) will simulate |
+|-------------------------|--------------------------------------------------------|
+| Point defects (vacancies, interstitials) | Thermal recovery and climb kinetics feeding forest evolution |
+| Line defects (edge, screw, mixed) | Peach–Köhler motion, multiplication, junction reactions |
+| Surface defects (GBs, stacking faults) | Barriers to slip; sources for new segments |
+| Scalar \(\rho\) as internal variable | Taylor \(\tau \propto \sqrt{\rho}\) from line statistics, not fitted \(H\) |
+
 The taxonomy above named what broke the smooth continuum picture: point defects (vacancies from annealing), line defects (dislocations from cold drawing), and surface defects (grain boundaries, stacking faults). The next chapter follows those **lines** as they move under Peach–Köhler forces, multiply through Frank–Read sources, and tangle into the forest whose density \(\rho\) makes Taylor hardening \(\tau \propto \sqrt{\rho}\) — the mesoscale origin of the \(H\) and \(\sigma_{y0}\) that Part VI's J₂ preview borrowed without derivation.
+
+Return to the [prologue](../../prologue/00-many-scales.md): **Act IV — Hardening** is when the load cell curve bends upward after yield. Part VI fitted that bend with phenomenological plasticity; Part VII explains the **geometry** cold drawing wrote into the wire before the test began. When mobility laws or core energies are still adjustable knobs, the signal to descend further is Part VIII — atomistics at the notch root and dislocation core.
+
+Turn the page when \(\rho\) is a label on an input deck rather than a count of moving lines — dislocation dynamics is where the forest becomes computable geometry.

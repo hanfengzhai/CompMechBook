@@ -182,4 +182,15 @@ With that map in hand, we turn to the first technical layer: how to measure dist
 
 ## Bridge
 
-With motivation in place, we begin where all analysis begins: measuring distance and size. Metric spaces formalize convergence before norms specialize the notion of length. Normed spaces carry the energy and mean-square measures that mechanics demands; completeness — the property that Cauchy sequences converge inside the space — distinguishes the function spaces where finite element limits live from spaces where discrete solutions could converge to something outside the admissible class. Inner products and Hilbert geometry follow in Chapter 03. The next chapter builds the normed-space foundation.
+With motivation in place, we begin where all analysis begins: measuring distance and size. Metric spaces formalize convergence before norms specialize the notion of length. Normed spaces carry the energy and mean-square measures that mechanics demands; completeness — the property that Cauchy sequences converge inside the space — distinguishes the function spaces where finite element limits live from spaces where discrete solutions could converge to something outside the admissible class.
+
+| What this chapter argued | What [II.2](02-normed-spaces.md) will formalize |
+|--------------------------|------------------------------------------------|
+| \(N\to\infty\) needs a limit object \(u(x)\), not a longer vector | Norms \(\|\cdot\|\) as rulers for energy and mean-square error |
+| Pipeline: physics → weak form → discretization → algebra | Metric topology: what "converges" means before inner products |
+| Four questions: existence, uniqueness, stability, convergence | Banach completeness: Cauchy sequences stay inside the admissible class |
+| \(\mathbf{K}\) as shadow of bilinear form \(a(\cdot,\cdot)\) | Equivalent norms and why FEM error measures do not depend on one choice |
+
+Return to the [prologue](../../prologue/00-many-scales.md): the weak form was introduced there as a **recurring character** that outlives every mesh. Part I gave it a finite-dimensional prelude — nodal equilibrium — and [I.4](../part01-linear-algebra/04-toward-infinity.md) showed refinement sending \(N\) without bound. This chapter named **why** that limit must live in a function space before Part III writes weak PDEs and Part IV assembles \(\mathbf{K}\) from shape functions. Inner products and Hilbert geometry follow in [II.3](03-hilbert-spaces.md); the next chapter builds the normed-space foundation they rest on.
+
+Turn the page when "the mesh looks smooth" is not yet a theorem — norms and completeness are what make that visual judgment honest.
