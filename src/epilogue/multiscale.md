@@ -281,6 +281,23 @@ The prologue opened with one copper wire and four questions — state, equations
 
 The weak form appeared in Part III as a mathematical convenience, became Galerkin assembly in Part IV, reappeared as virtual work in Part VI, and found its electronic analogue in the Hohenberg–Kohn variational principle of Part IX. Eigenmodes that decoupled the spring network in Part I reappear as Kohn–Sham orbitals at the finest scale. The story is not a catalog of methods; it is one specimen traced from \(\mathbb{R}^N\) to function spaces to meshes to defects to atoms to electrons — and back upward through homogenization.
 
+## Lab act reunion: six acts, one afternoon
+
+The [prologue](../prologue/00-many-scales.md#the-experiment-as-plot) framed the copper wire as one lab session in six acts. The epilogue is where those acts meet in **workflow time** — not reading order, but the afternoon the operator and the compute cluster share:
+
+| Act | Lab moment | Parts that justified it | Multiscale handshake |
+|-----|------------|-------------------------|---------------------|
+| **I — Mounting** | Grips close; load cell zeros | I | BC tags on the FEM mesh; rigid-body removal |
+| **II — Warming** | Current on; thermocouple climbs | III–V | FEM conduction ↔ FVM convection at wall |
+| **III — Pulling** | Displacement ramps; curve linear | II–IV, VI | \(\mathbf{K}\) from Galerkin; Cauchy stress from virtual work |
+| **IV — Hardening** | Curve bends; slip lines appear | VII | Taylor \(\tau(\gamma)\) from DDD → crystal plasticity → FEM |
+| **V — Notch** | Optional stress concentration | VI, VIII | Atomistic nucleation where continuum regularizes |
+| **VI — Foundation** | Parameters in every input deck | IX → VIII → VII | DFT exports → EAM fit → mobility tables |
+
+No single executable runs all six acts unattended. The discipline is **traceability**: each arrow in the handshake column carries units, convergence logs, and the four questions — state, equations, discretization, upward export — asked at every interface. When a new project starts, locate it in this table before opening a terminal: *Which act am I simulating, and which finer rung supplies the numbers I am about to trust?*
+
+The multiscale afternoon in the opening **Scene** is this table running in parallel — QE logs beside LAMMPS beside OpenDiS beside the same tet mesh from Part IV. Reading order taught the grammar; workflow order pays the bills.
+
 ## Closing
 
 Computational mechanics is not a bag of tricks. It is one conversation about representation — how we translate nature into equations, equations into algebra, and algebra into insight. The mathematics in Parts I and II is not separate from the MD integrator or the Riemann solver. It is the same ladder viewed from different heights.
