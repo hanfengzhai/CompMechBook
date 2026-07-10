@@ -308,6 +308,17 @@ The wire does not care which chapter we finished last. It responds to physics. O
 
 ## Bridge
 
-The ladder ends here, but the references do not. The [Sources appendix](../appendix/sources.md) lists the PDF notes, coursework repositories, and external texts behind each part. The [Final Memory Sheet](../appendix/memory-sheet.md) collects the book-wide habits and traps in the ME 412 style. When `Writings.git` is linked, canonical chapter markdown lives under `writings/` in the Functional Analysis Notes layout; run `./scripts/sync-writings.sh` after upstream edits to refresh this book.
+The ladder ends here, but the references do not — and the copper wire does not vanish when the book closes. Every part from linear algebra through DFT was one continuous story: the same specimen, the same four questions, the same export discipline at every interface.
 
-Return to the [prologue](../prologue/00-many-scales.md) whenever a new project needs scale discipline — the four questions (state, equations, discretization, upward exports) apply to every material, not only copper.
+| Where to go next | What it gives you |
+|------------------|-------------------|
+| [Prologue](../prologue/00-many-scales.md) | Scale discipline for a new project — state, equations, discretization, upward export |
+| [Sources appendix](../appendix/sources.md) | PDF notes, coursework repos, and chapter roadmap behind each part |
+| [Final Memory Sheet](../appendix/memory-sheet.md) | Book-wide habits and traps in the ME 412 concept-map style |
+| [Glossary](../appendix/glossary.md) | Cross-scale index when \(\mathbf{K}\) becomes an operator, then a bilinear form, then \(\mathbb{C}\) |
+
+Return to the [**Lab act reunion**](#lab-act-reunion-six-acts-one-afternoon) whenever workflow order and reading order disagree: **Act VI** supplies the numbers; **Acts I–V** spend them on the same afternoon. Part I began with \(\mathbf{K}\mathbf{u}=\mathbf{f}\) on a spring chain; Part IX ended with SCF on \(\rho(\mathbf{r})\); this epilogue is the handshake that makes both ends of the ladder talk without unit mistakes or unconverged exports.
+
+When `Writings.git` is linked, canonical chapter markdown lives under `writings/` in the Functional Analysis Notes layout; run `./scripts/sync-writings.sh` after upstream edits to refresh this book.
+
+Turn the page to the appendix when you need a symbol or a source — turn back to the prologue when you need the plot. The wire is still under tension; only the vocabulary changed from electrons to engineering and back again.

@@ -190,10 +190,24 @@ The copper wire's tensile equilibrium, steady heating, and elastic step all occu
 
 ## Bridge: two doors from here
 
-Part IV answered *how* to discretize elliptic problems on meshes. Two natural continuations follow — and both converge on the same continuum vocabulary of Part VI.
+Part IV answered *how* to discretize elliptic problems on meshes. Céa lemma and the convergence rates in this chapter are the numerical proof that Part II's function-space promise was honest: as \(h \to 0\), the discrete minimizer tracks the continuous one in the energy norm. Two natural continuations follow — and both converge on the same continuum vocabulary of Part VI before the book descends to dislocations, atoms, and electrons.
+
+| Door | Next part | Copper wire story beat | When to choose it |
+|------|-----------|------------------------|-------------------|
+| **A** | [Part V](../part05-fvm/00-opening.md) — conservation on cells | **Act II — Warming**: Joule heat in the solid (Part IV) meets convection in the air (Part V); conjugate heat transfer at the wall | Fluids, CFD, shocks, or the full wire-plus-air multiphysics arc |
+| **B** | [Part VI](../part06-continuum/00-opening.md) — continuum mechanics | **Act III — Pulling**: name \(\mathbf{F}\), \(\boldsymbol{\sigma}\), virtual work behind the load cell's linear elastic climb | Solid-dominated tension/bending first; return to Part V for cooling later |
 
 **Door A — Part V (conservation on cells).** Fluids at high Reynolds number, shocks, and steep advection fronts favor a different philosophy from Galerkin trial functions: integrate conservation laws over control volumes and balance **fluxes** across faces. The finite volume method is that story — complementary to FEM, not competing with it. When the copper wire heats in air, Part V discretizes the cooling flow; Part IV discretizes conduction in the solid; a fixed-point loop at the wall couples them (conjugate heat transfer). Read Part V next if fluids and CFD are your immediate goal.
 
 **Door B — Part VI (continuum mechanics).** If your specimen is solid-dominated — tension, bending, thermal strain without resolving the surrounding fluid — you may skip Part V on first reading and go directly to Part VI. There we name the fields Part IV's code already approximates: deformation gradient, strain, Cauchy stress, virtual work. The stiffness matrix from Chapter 2 is the discrete shadow of a hyperelastic energy; convergence rates from this chapter justify trusting that shadow as \(h \to 0\).
 
-Either path is valid. Part V ends with its own bridge into Part VI; the epilogue later treats both discretizations as dialects of one multiphysics story. What matters is not the order of Doors A and B, but that you eventually reach Part VI before descending to dislocations and atoms — continuum stress and balance language is the shared floor under both FEM and FVM.
+Return to the [prologue](../../prologue/00-many-scales.md): the six-act lab session was always one afternoon — mounting, warming, pulling, hardening, notch, foundation — even though the book teaches grammar before multiphysics and descent before audit. **Door A** keeps **Act II** honest (thermocouple climb needs air, not only a Robin coefficient). **Door B** keeps **Act III** honest (the load cell curve needs Cauchy stress, not only nodal \(\mathbf{U}\)). Either path is valid; Part V ends with its own bridge into Part VI; the [epilogue](../../epilogue/multiscale.md#lab-act-reunion-six-acts-one-afternoon) later reunites both doors in workflow time.
+
+| Part I (springs on the wire) | Part IV closing (meshed wire) | Door A (fluid) | Door B (continuum) |
+|------------------------------|-------------------------------|----------------|---------------------|
+| \(\mathbf{K}\mathbf{u}=\mathbf{f}\) at equilibrium | \(\mathbf{K}\mathbf{U}=\mathbf{F}\) with Céa justification | Face flux balances beside the same \(\mathbf{K}\mathbf{T}=\mathbf{q}\) | \(\boldsymbol{\sigma}\), \(\boldsymbol{\varepsilon}\) behind the same \(\mathbf{K}\) |
+| Mesh refinement sends \(N\to\infty\) | \(h\to 0\) error rates in energy norm | CFL + limiters on the air grid | Virtual work as force balance, not array exercise |
+
+What matters is not the order of Doors A and B, but that you eventually reach Part VI before Parts VII–IX — continuum stress and balance language is the shared floor under both FEM and FVM, and the mesoscale descent assumes you can name what the mesh already computed.
+
+Turn the page through **Door A** when the thermocouple climbs and Robin fluxes feel like placeholders; turn through **Door B** when the load cell reads force but \(\boldsymbol{\sigma}\) is still unnamed — both doors lead to the same copper wire, told in complementary discretization dialects.

@@ -253,4 +253,15 @@ The export table above is where the **downward derivation** of the ladder begins
 
 We have reached the finest rung of the spatial ladder for equilibrium properties of bulk copper: electrons, orbitals, self-consistency, convergence, exports. The copper wire at human scale — sag, Joule heat, work hardening, possible fracture — never lives here. It lives in the **coupling** of what each part computes.
 
-The epilogue gathers sequential homogenization, concurrent handshakes, and surrogate acceleration into workflows that respect the rituals of this chapter: converged DFT feeds potentials; potentials feed MD; MD feeds mobilities; DDD feeds hardening; FEM and CFD feed design. The story that opened with a single material at many scales closes with how disciplined teams make those scales converse — with archived inputs, stated tolerances, and honest error bars. Read the epilogue's [**Closing the arc from Part IX**](../epilogue/multiscale.md#closing-the-arc-from-part-ix) first if you want the export table above mapped directly onto one multiscale afternoon before the general coupling patterns.
+| What Part IX exported | What the epilogue must wire together |
+|-----------------------|--------------------------------------|
+| \(E_{\text{coh}}\), \(C_{ij}\), \(\gamma_{\text{sf}}\) from converged SCF | Sequential DFT → MD → DDD → FEM chains with archived inputs |
+| Phonons and thermal expansion checks | Concurrent handshakes at interfaces (wall flux, mobility tables) |
+| Defect formation energies | Surrogate acceleration without losing functional pedigree |
+| Reproducibility rituals (cutoff, k-mesh, `README`) | The four questions at every scale change: state, equations, discretization, upward export |
+
+Return to the [prologue](../../prologue/00-many-scales.md): **Act VI — Foundation** ran in parallel with Acts I–V — someone chose Young's modulus and a yield stress before the operator mounted the wire. That invisible afternoon is now explicit in the export tables above; the epilogue reunites it with **Acts I–V** in workflow time so reading order and laboratory order finally share one table. Part I's eigenvalue loop began on springs; it ends here as Kohn–Sham SCF — and climbs back upward through homogenization the epilogue names.
+
+The epilogue gathers sequential homogenization, concurrent handshakes, and surrogate acceleration into workflows that respect the rituals of this chapter: converged DFT feeds potentials; potentials feed MD; MD feeds mobilities; DDD feeds hardening; FEM and CFD feed design. The story that opened with a single material at many scales closes with how disciplined teams make those scales converse — with archived inputs, stated tolerances, and honest error bars. Read the epilogue's [**Lab act reunion**](../epilogue/multiscale.md#lab-act-reunion-six-acts-one-afternoon) and [**Closing the arc from Part IX**](../epilogue/multiscale.md#closing-the-arc-from-part-ix) when you want the export table above mapped directly onto one multiscale afternoon before the general coupling patterns.
+
+Turn the page when every number in the input deck has a pedigree but no workflow connects them — the epilogue is where the ladder becomes an afternoon, not a catalog of methods.

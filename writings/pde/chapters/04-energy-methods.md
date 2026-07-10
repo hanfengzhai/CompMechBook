@@ -179,13 +179,7 @@ The copper wire's tensile equilibrium, steady heating, and low-Re cooling flow e
 
 ## Bridge to Part IV
 
-We have:
-
-- Weak forms from integration by parts
-- Sobolev spaces for admissible fields
-- Energy principles for well-posedness and algorithms
-
-Part IV asks: how do we choose \(V_h\), compute integrals, and assemble \(\mathbf{K}\)? The finite element method is the answer — weighted residuals, element-by-element assembly, quadrature rules, and convergence theory that make the copper wire’s discrete model faithful to the continuum energy we minimized here.
+Part III closes the analytical arc the [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) promised: strong form for intuition, weak form for computation, Sobolev spaces for regularity, energy methods for existence and algorithms. Part IV is where that pipeline becomes **code** — weighted residuals, element loops, quadrature, and convergence rates on the copper wire's mesh.
 
 | What Part III completed | What Part IV opens |
 |-------------------------|-------------------|
@@ -195,6 +189,8 @@ Part IV asks: how do we choose \(V_h\), compute integrals, and assemble \(\mathb
 | Sobolev \(H^1\) regularity | \(H^1\)-conforming shape functions (continuous across elements) |
 | [III.4 checkpoint](#concept-map-checkpoint-part-iii) energy pipeline | [IV opening](../part04-fem/00-opening.md#closing-the-arc-from-part-iii) **Closing the arc from Part III** |
 
-If you need the fluid fork after FEM, [IV.5](../part04-fem/05-convergence.md#bridge-two-doors-from-here) names **Door A** (Part V: FVM and conjugate heat transfer) and **Door B** (Part VI: continuum stress–strain vocabulary) — the canonical place to choose, so this chapter can stay focused on energy → assembly.
+Return to the [prologue](../../prologue/00-many-scales.md): **Act III — Pulling** will ramp grip displacement on the load cell, but the operator cannot trust that linear elastic climb until the energy minimum defined here has a discrete search space \(V_h \subset H^1\). Part I's \(\mathbf{K}\mathbf{u}=\mathbf{f}\) was nodal equilibrium without integration by parts; Part II's completeness made mesh refinement meaningful; this chapter showed why minimizing \(\Pi[u]\) and solving \(a(u,v)=\ell(v)\) are the same statement for coercive problems. Part IV's assembly is not a new subject — it is Rayleigh–Ritz on the wire's tensile and thermal energies, one element at a time.
 
-Turn the page. Assembly awaits: the same \(\mathbf{K}\mathbf{U}=\mathbf{F}\) from Part I, now built from shape functions, Jacobians, and the bilinear forms defined in Part III.
+The [prologue](../../prologue/00-many-scales.md) named the weak form a **recurring character** — born in [III.2](02-weak-form.md), dressed as energy in this chapter, destined to become Galerkin orthogonality in Part IV, virtual work in Part VI, and a variational principle on \(\rho(\mathbf{r})\) in Part IX. If you need the fluid fork after FEM, [IV.5](../part04-fem/05-convergence.md#bridge-two-doors-from-here) names **Door A** (Part V: FVM and conjugate heat transfer) and **Door B** (Part VI: continuum stress–strain vocabulary) — the canonical place to choose, so this chapter can stay focused on energy → assembly.
+
+Turn the page when "minimize energy" and "solve \(\mathbf{K}\mathbf{U}=\mathbf{F}\)" still feel like separate subjects — assembly is where Part III's variational statement becomes the sparse matrix Part I taught you to trust.
