@@ -81,4 +81,13 @@ In [laboratory time](../prologue/00-many-scales.md#the-experiment-as-plot), the 
 
 The prologue introduced the copper wire at every scale and named the four questions every rung must answer. Part I begins at the rung every simulation shares — degrees of freedom collected into vectors, evolution and equilibrium written as linear systems — before the wire becomes a field, a mesh, or an electron density.
 
+| Prologue device | Part I chapter that delivers it |
+|-----------------|--------------------------------|
+| Six-act lab session, **Act I — Mounting** | [I.1](01-vectors-matrices.md): first \(\mathbf{K}\mathbf{u}=\mathbf{f}\) with grips fixed |
+| Four questions: state / equations / discretization / export | [I.1–I.4](04-toward-infinity.md): vector → map → modes → limit \(N\to\infty\) |
+| Ladder of scales (preview) | [I.4](04-toward-infinity.md): fields replace vectors; operators replace matrices |
+| Weak form as recurring character (named, not yet spoken) | [I.4 Bridge](04-toward-infinity.md#bridge-to-part-ii): three-step handoff to Part II |
+
 The first chapter refreshes the language — inner products, norms, matrix structure — that Parts II through IX will generalize to functions and operators. Read it as the opening sentence of the novel after the prologue's panoramic view: the grips are still open, the load cell still reads zero, and the first honest model is already a sparse matrix waiting to be assembled.
+
+Turn the page when the prologue's ladder feels like a menu of methods — Part I is where every later scale reveals the same \(\mathbf{A}\mathbf{x}=\mathbf{b}\) grammar underneath.

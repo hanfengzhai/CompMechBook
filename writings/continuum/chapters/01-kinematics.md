@@ -181,9 +181,11 @@ Kinematics names the geometric objects — \(\mathbf{F}\), \(\boldsymbol{\vareps
 
 | What Parts IV–V computed | What this chapter names |
 |--------------------------|-------------------------|
-| Nodal displacements \(\mathbf{U}\) on a mesh | \(\mathbf{u}(\mathbf{x})\) and deformation gradient \(\mathbf{F}\) |
-| Strain from the \(B\)-matrix | \(\boldsymbol{\varepsilon}\), \(\mathbf{E}\), rate \(\mathbf{D}\) |
-| Thermal expansion in the Joule-heating scene | Volumetric part \(J = \det\mathbf{F}\); Poisson lateral contraction |
+| Nodal \(\mathbf{U}\) from Galerkin assembly | \(\mathbf{u}(\mathbf{x})\), \(\mathbf{F} = \mathbf{I} + \nabla\mathbf{u}\) |
+| Strain from the \(B\)-matrix | \(\boldsymbol{\varepsilon}\), Green–Lagrange \(\mathbf{E}\), rate \(\mathbf{D}\) |
+| Thermal expansion in Act II (Joule heating) | Volumetric \(J = \det\mathbf{F}\); Poisson lateral contraction |
 | FVM velocity field in the cooling air | \(\mathbf{D}\) as symmetric part of \(\nabla\mathbf{v}\) |
 
-Return to the prologue's **Act III — Pulling**: grip displacement ramps, and the load cell records force. Parts IV and VI already computed that curve from weak forms and assembly; this chapter explains **what was being measured** — axial stretch \(\lambda = 1 + u'/L\), lateral contraction from \(\nu\), and the finite-strain objects that nonlinear extensions in [VI.4](04-nonlinear-plasticity-preview.md) require. The next chapter completes the continuum picture: Cauchy stress, Piola–Kirchhoff stress, conservation of mass and momentum, and constitutive relations that FEM and FVM discretize. Turn the page when displacement fields need a stress conjugate — kinematics without balance is geometry without physics.
+Return to the prologue's **Act III — Pulling**: grip displacement ramps, and the load cell records force. Parts IV and V already computed temperature and flux fields on their respective meshes; Part IV assembled nodal displacements from shape functions. This chapter explains **what those numbers mean geometrically** — axial stretch \(\lambda = 1 + u'/L\), lateral contraction from \(\nu\), and the finite-strain objects that nonlinear extensions in [VI.4](04-nonlinear-plasticity-preview.md) require. The \(B\)-matrix in every FEM code is the discrete shadow of \(\boldsymbol{\varepsilon}(\mathbf{u})\) defined here; the FVM velocity field in the cooling air is the rate counterpart \(\mathbf{D}\).
+
+The next chapter completes the continuum picture: Cauchy stress, Piola–Kirchhoff stress, conservation of mass and momentum, and constitutive relations that FEM and FVM discretize. Turn the page when displacement fields need a stress conjugate — kinematics without balance is geometry without physics.
