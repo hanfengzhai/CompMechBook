@@ -212,4 +212,11 @@ Weak derivatives make sense in **Sobolev spaces**. The next chapter defines \(H^
 
 The [prologue](../../prologue/00-many-scales.md) named this formulation a **recurring character** — born here as integration by parts, returning as Galerkin orthogonality in Part IV, virtual work in Part VI, and a variational statement on electron density in Part IX. Part II built the room (\(H^1\), dual loads, completeness); this chapter gave the character its first lines on stage. When the grip corner breaks classical \(C^2\) smoothness, the weak form still balances virtual work — that is the plot hinge the rest of the book assumes you will trust.
 
-Energy methods ([III.4](04-energy-methods.md)) then recast \(a(u,v)=\ell(v)\) as minimization or saddle-point principles — the variational backbone of FEM and, in nonlinear settings, of hyperelastic and phase-field solvers. Turn the page when "test function" still feels informal — Sobolev spaces are the contract that makes FEM assembly honest.
+| Prologue act | Strong form that breaks at corners | Weak form statement this chapter writes |
+|--------------|-------------------------------------|----------------------------------------|
+| II — Warming | \(-\nabla\cdot(k\nabla T)=q_J\) pointwise | Find \(T\in H^1\) s.t. \(\int k\nabla T\cdot\nabla v = \int q_J v\) for all \(v\in H^1_0\) |
+| III — Pulling | \(-\nabla\cdot(EA\nabla u)=f\) pointwise | Find \(u\in H^1_0\) s.t. \(\int EA u' v' = \int f v\) for all \(v\in H^1_0\) |
+| IV — Hardening (preview) | Nonlinear stress–strain history | Virtual work with evolving \(\boldsymbol{\sigma}\); Newton at each increment |
+| V — Notch (preview) | Concentrated traction at a scratch | Point load as \(\ell\in H^{-1}\), not an \(L^2\) density |
+
+[III.1](01-strong-form.md) named the blackboard physics; this chapter is the **honest continuum contract** Part IV will discretize. Energy methods ([III.4](04-energy-methods.md)) then recast \(a(u,v)=\ell(v)\) as minimization or saddle-point principles — the variational backbone of FEM and, in nonlinear settings, of hyperelastic and phase-field solvers. Turn the page when "test function" still feels informal — Sobolev spaces are the contract that makes FEM assembly honest.

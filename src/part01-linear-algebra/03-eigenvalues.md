@@ -165,6 +165,13 @@ We have stayed in finite dimensions: \(\mathbf{A}\mathbf{v} = \lambda \mathbf{v}
 
 The [prologue](../../prologue/00-many-scales.md) introduced the specimen as one ladder with many rungs; eigenmodes are the **first time decoupling appears** in the book — a preview of orthogonality in Hilbert space and of dominant modes in molecular dynamics. [I.2](02-linear-maps.md) showed change of coordinates; eigenvectors are the coordinates in which the stiffness map acts by pure scaling — the last finite-dimensional change of basis before [I.4](04-toward-infinity.md) sends \(N\to\infty\) and Part II replaces matrices with operators whose spectra no longer fit in any fixed \(\mathbb{R}^N\).
 
+| Prologue act | Discrete eigenstructure on the wire | What I.4 + Part II take to the limit |
+|--------------|-------------------------------------|--------------------------------------|
+| I — Mounting | Rigid-body modes removed by grip BCs | Essential BCs as subspaces \(H^1_0\) |
+| II — Warming (preview) | Thermal decay rates from discrete Laplacian | Heat operator spectrum; Fourier modes in \(L^2\) |
+| III — Pulling (preview) | Axial vibration modes before plasticity | Stiffness operator eigenvalues; mesh \(\omega_{h,j}\to\omega_j\) |
+| VI — Foundation (preview) | Phonon frequencies as atomic eigenmodes | Same Rayleigh quotient loop at electronic scale (Part IX) |
+
 The next chapter takes the first step from \(\mathbb{R}^N\) toward function spaces: inner products become integrals, matrices become operators, and the eigenvalue problem becomes a spectral problem for differential operators. Part II makes that transition rigorous; Part III writes down the PDEs those operators encode.
 
 Turn the page when the wire's modes outgrow any fixed mesh count — that is the signal that vectors are no longer enough.

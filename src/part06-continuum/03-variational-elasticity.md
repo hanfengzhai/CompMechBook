@@ -212,4 +212,11 @@ Variational elasticity closes the loop the book has traced since Part I's spring
 
 Return to the [prologue](../../prologue/00-many-scales.md): **Act III** measured the linear elastic climb on the load cell; **Act IV** is the upward bend that variational elasticity cannot explain with a quadratic \(\psi\) alone. Part IV assembled \(\mathbf{K}\) from bilinear forms; this chapter named the stress and strain those forms integrate. [VI.4](04-nonlinear-plasticity-preview.md) is the last continuum stop — phenomenological hardening without dislocations, a fitted curve waiting for Part VII's forest to supply \(\sigma_{y0}\) and \(H\).
 
+| Prologue act | Variational statement on the wire | Where the energy picture breaks |
+|--------------|-----------------------------------|--------------------------------|
+| III — Pulling | Minimize \(\Pi[\mathbf{u}]=\int\psi(\boldsymbol{\varepsilon})\,\mathrm{d}V\); \(\delta\Pi=0\) | Still valid in the linear elastic regime |
+| II — Warming | Coupled thermal–mechanical energy (preview) | Temperature enters moduli and thermal strain |
+| IV — Hardening | Path-dependent dissipation; no single \(\psi\) | History and defects require internal variables |
+| V — Notch | Concentrated energy at a scratch | Finite-strain and damage force descent to Part VII |
+
 Turn the page when the wire's stress–strain curve bends upward after cold drawing but your elastic energy minimization still returns a straight line — that is the signal history and mesoscale defects have entered the story.

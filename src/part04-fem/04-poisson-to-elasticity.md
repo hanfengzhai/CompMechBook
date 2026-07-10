@@ -206,4 +206,11 @@ Poisson's equation and linear elasticity share one assembly loop — scalar vers
 
 Return to the [prologue](../../prologue/00-many-scales.md): **Act III** ramps grip displacement on a mesh whose axial displacement field is now a vector-valued Poisson story — three components, one assembly habit. The load cell curve in the linear elastic regime is trustworthy only if refinement studies show the discrete solution converging to the weak solution Part III wrote. [II.3](../part02-functional-analysis/03-hilbert-spaces.md) and [III.3](../part03-pdes/03-sobolev-spaces.md) supplied the norms; the next chapter closes the loop between theory and mesh refinement on the copper wire and beyond.
 
+| Prologue act | FEM output on the wire | Convergence question the next chapter answers |
+|--------------|------------------------|-----------------------------------------------|
+| II — Warming | Scalar temperature field on the same mesh | Does \(\|T-T_h\|_{H^1}\to 0\) as \(h\to 0\)? |
+| III — Pulling | Vector \(\mathbf{U}\) from block \(\mathbf{K}\) assembly | Céa's lemma: energy error \(\le C h^p \|u\|_{H^{p+1}}\) |
+| IV — Hardening (preview) | Linear elastic slope before yield | When does \(p\)-refinement beat \(h\)-refinement at the grip corner? |
+| V — Notch (preview) | Refined mesh at stress concentrator | A posteriori estimators and adaptive \(h\)-refinement |
+
 Turn the page when patch tests pass but the grip displacement still changes when you halve \(h\) — that is the signal that convergence theory, not intuition, must certify the answer.

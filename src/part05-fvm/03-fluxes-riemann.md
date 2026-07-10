@@ -194,4 +194,11 @@ The copper wire heated by current needs air to carry heat away — a fluid probl
 
 Prologue **Act II — Warming** is where that handshake first matters in the lab: the thermocouple on the wire reports solid temperature; the air film carries enthalpy away at a rate set by Reynolds number and the Robin coefficient Part VI's thermal balance will write as a boundary condition. Part V supplies the flux vocabulary; Part VI names the coupled energy balance; the epilogue shows how teams partition solid and fluid solvers without breaking conservation.
 
+| Prologue act | Hyperbolic piece (this chapter) | What Navier–Stokes (next chapter) adds |
+|--------------|--------------------------------|--------------------------------------|
+| II — Warming | Upwind fluxes for enthalpy advection in air | Viscous and heat fluxes; low-Re film around the wire |
+| III — Pulling (preview) | — | FVM velocity field feeds \(\mathbf{D}\) in Part VI kinematics |
+| V — Notch (preview) | Shock-capturing for impulsive loads | Transient coupling with solid wave propagation |
+| VI — Foundation (preview) | Consistent fluxes as conservation contract | Same handshake pattern as DFT→MD→FEM in the epilogue |
+
 The next chapter situates the full fluid mechanics pipeline, from Reynolds number to turbulence models, with the copper wire's cooling flow as motivation. Turn the page when Sod passes but the wire still runs hot — that is the signal to add viscosity, conduction, and the shared continuum vocabulary Part VI will name.
