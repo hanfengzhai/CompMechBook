@@ -207,4 +207,11 @@ On the copper wire, the stiffness operator from Part I's spring network becomes 
 
 Return to the [prologue](../../prologue/00-many-scales.md): **Act III — Pulling** will ramp grip displacement on the load cell, but the operator cannot trust that curve until the **Galerkin projector** and **dual loads** defined here make mesh refinement honest. Part I's concentrated nodal forces were finite-dimensional shadows of functionals \(\ell(v)\); Part IV's assembly will scatter those loads into \(\mathbf{f}\) only because Riesz representation and weak* convergence justify the limit. When sensitivity analysis asks how the wire's tip displacement responds to a perturbation in grip load, the adjoint solution is the duality pattern this chapter named.
 
+| Prologue act | Operator/duality object on the wire | Why the mesh can trust it |
+|--------------|-------------------------------------|---------------------------|
+| I — Mounting | Grip displacement as boundary functional | Trace operators restrict \(H^1\) fields at supports |
+| II — Warming | Joule source as \(L^2\) density or dual load | Riesz pairs heating with test temperatures |
+| III — Pulling | Stiffness operator \(A: H^1\to H^1\) | Galerkin projection is bounded; \(\mathbf{K}\) is its shadow |
+| V — Notch (preview) | Concentrated traction in \(H^{-1}\) | Weak* limits justify nodal force refinement |
+
 Turn the page when operator language feels natural — PDEs in Part III are where those operators finally have names like \(-\Delta\) and \(-\nabla\cdot(k\nabla\cdot)\).

@@ -185,4 +185,11 @@ Recall the pipeline from [Part III.4](../part03-pdes/04-energy-methods.md#bridge
 
 Return to the [prologue](../../prologue/00-many-scales.md): **Act III — Pulling** is where grip displacement becomes numbers on the load cell. Assembly is the backstage step that makes that act honest — each `scatter` into \(\mathbf{K}\) and \(\mathbf{f}\) is the finite-dimensional echo of the energy inner product Part II defined and Part III minimized. Part I taught the pattern as \(\mathbf{L}_e^T \mathbf{k}_e \mathbf{L}_e\); here the same map runs on millions of elements. When the linear elastic climb on the force–displacement trace disagrees with experiment, check assembly before blaming constitutive physics — a transposed connectivity array or wrong DOF map corrupts the story before dislocations or yield enter.
 
+| Prologue act | Assembly artifact on the wire | Upstream chapter that defined it |
+|--------------|-------------------------------|----------------------------------|
+| I — Mounting | Global DOF map and BC rows | Part I scatter maps; Part III Dirichlet tags |
+| II — Warming | Thermal \(\mathbf{K}_T\), \(\mathbf{f}_q\) from Joule source | Part III.4 energy minimum on \(V_h\) |
+| III — Pulling | Mechanical \(\mathbf{K}\), \(\mathbf{f}\) from end displacement | Part IV.1 Galerkin orthogonality |
+| VI — Foundation (preview) | Mass matrix \(\mathbf{M}\) for dynamics | Part I eigenmodes; Part II spectral theory |
+
 Turn the page when assembly feels like bookkeeping but the stress contour still jumps between meshes — the fault is usually element order or quadrature, not the scatter loop.

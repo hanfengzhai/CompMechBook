@@ -91,3 +91,12 @@ Part I showed that every mesh gives linear algebra; Part II names the **limit ob
 Part I ended with a promise: as the mesh refines, the copper wire's displacement and temperature fields live in infinite-dimensional spaces, not in \(\mathbb{R}^N\) for any fixed \(N\). [I.4](../part01-linear-algebra/04-toward-infinity.md#bridge-to-part-ii) named the three-step bridge — weak form, subspace \(V_h \subset H^1\), matrix system — and deferred steps 1–2 to this part. The first chapter below makes that promise precise: why weak forms appear, why classical smoothness fails at corners, and why the stiffness matrix is a Galerkin projection rather than an arbitrary sparse array.
 
 The [prologue](../../prologue/00-many-scales.md) introduced the weak form as a **recurring character** that will outlive every mesh. Part I gave it a finite-dimensional prelude — \(\mathbf{K}\mathbf{u}=\mathbf{f}\) as nodal equilibrium — and Chapter 4 showed that prelude converges toward a field \(u(x)\) as \(h \to 0\). Part II is where that field acquires a norm, an inner product, and a completeness theorem worth trusting. When Act III in the lab session ramps grip displacement, the load cell curve is honest only because the limit object defined here makes mesh refinement meaningful.
+
+| Prologue act | Field Part II must host | What breaks without this part |
+|--------------|-------------------------|-------------------------------|
+| II — Warming | Temperature \(T(x)\in H^1\) | Mesh refinement has no \(L^2\) target for gradients |
+| III — Pulling | Displacement \(u(x)\in H^1\) | \(\mathbf{K}_N\) has no operator limit as \(N\to\infty\) |
+| IV — Hardening (preview) | Dual loads for concentrated forces | Point constraints are not honest \(L^2\) sources |
+| VI — Foundation (preview) | Spectral convergence of eigenmodes | Discrete modes have no continuum normal modes |
+
+Turn the page when Part I's matrices feel finite but the wire's temperature and displacement refuse to live in \(\mathbb{R}^N\) — function spaces are where that refusal becomes a theorem.

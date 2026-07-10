@@ -186,4 +186,13 @@ Discretizing the integral form on a 1D grid yields the classic FVM update: cell 
 
 Return to the prologue's **Act II — Warming**: current switched on, the wire surface runs hot, and air carries heat away by convection. Part IV computed conduction inside the solid from weak forms; this chapter states the **conservation contract** for the fluid side — what enters a control volume must equal what leaves plus what accumulates. [V.2](02-fvm-1d.md) is where that contract becomes an update loop the conjugate heat-transfer scene in [V.4](04-navier-stokes-cfd.md) will handshake with FEM temperature fields.
 
-Part III's weak forms minimized energy on trial spaces; FVM **balances fluxes** on control volumes — the discretization philosophy Part IV's elliptic FEM does not automatically guarantee for advection. Turn the page when the integral balance is clear but no cell-averaged update exists yet — that is the signal that conservation wants a mesh of volumes, not a mesh of trial functions.
+Part III's weak forms minimized energy on trial spaces; FVM **balances fluxes** on control volumes — the discretization philosophy Part IV's elliptic FEM does not automatically guarantee for advection.
+
+| Prologue act | Conservation object on the wire | FEM partner at the interface |
+|--------------|--------------------------------|------------------------------|
+| II — Warming | Enthalpy flux from air to wire surface | FEM Robin BC / wall temperature handshake |
+| III — Pulling (preview) | Momentum flux in cooling jet | Solid traction BC from Part IV |
+| V — Notch (preview) | Shock-capturing if flow separates | Stress concentrator in solid mesh |
+| VI — Foundation (preview) | Same integral contract from shock tubes to CFD | Shared \(\boldsymbol{\sigma}\mathbf{n}\) language in Part VI |
+
+Turn the page when the integral balance is clear but no cell-averaged update exists yet — that is the signal that conservation wants a mesh of volumes, not a mesh of trial functions.

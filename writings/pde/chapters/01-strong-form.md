@@ -174,4 +174,13 @@ The copper wire's tensile equilibrium and steady heating look elliptic and innoc
 
 Return to this chapter's opening **Scene**: the thermal camera in prologue **Act II — Warming** demands a strong-form equation at every interior point — and previews why the weak form in [III.2](02-weak-form.md) is the honest continuum statement at the thermocouple weld and insulator corner. Part I's nodal balance laws were the finite-dimensional prelude; Part II's Sobolev spaces are the limit room; this chapter is the blackboard physics both must approximate.
 
-The [prologue](../../prologue/00-many-scales.md) introduced the weak form as a **recurring character**. It first speaks in full sentences in [III.2](02-weak-form.md); Sobolev spaces in [III.3](03-sobolev-spaces.md) make "test function" precise; energy methods in [III.4](04-energy-methods.md) recast the same balance as minimization. Turn the page when the strong form feels correct but the mesh refuses to converge — that is the signal that pointwise derivatives were the wrong contract.
+The [prologue](../../prologue/00-many-scales.md) introduced the weak form as a **recurring character**. It first speaks in full sentences in [III.2](02-weak-form.md); Sobolev spaces in [III.3](03-sobolev-spaces.md) make "test function" precise; energy methods in [III.4](04-energy-methods.md) recast the same balance as minimization.
+
+| Prologue act | Strong form on the wire | Where it breaks without weak form |
+|--------------|-------------------------|-----------------------------------|
+| II — Warming | \(-\nabla\cdot(k\nabla T)=q_J\) pointwise | Thermocouple weld: no classical \(C^2\) temperature |
+| III — Pulling | \(-\nabla\cdot\boldsymbol{\sigma}=\mathbf{0}\) pointwise | Grip corner: stress singularities, no smooth \(u\) |
+| IV — Hardening (preview) | Yield surface in stress space | History and defects leave smooth elasticity |
+| V — Notch (preview) | Concentrated traction at a scratch | Point load needs a dual, not an \(L^2\) density |
+
+Turn the page when the strong form feels correct but the mesh refuses to converge — that is the signal that pointwise derivatives were the wrong contract.
