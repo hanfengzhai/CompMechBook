@@ -4,6 +4,18 @@ Molecular dynamics (MD) treats atoms as classical particles interacting through 
 
 When continuum fields smear atoms into density, MD puts them back. When DFT tracks electrons explicitly, MD assumes nuclei move on a **potential energy surface** those electrons define. Part VIII lives in that middle ground: classical mechanics with quantum-informed forces.
 
+## Story so far (Parts I–VII)
+
+| Stage | Scale | Wire instance |
+|-------|-------|---------------|
+| Parts I–VI | Continuum fields and meshes | Tensile + thermal FEM/FVM |
+| Part VII | Dislocation lines; forest density \(\rho\) | Hardening curve from cold draw |
+| **VIII.1 (here)** | Atomic positions \(\{\mathbf{r}_i\}\); potential \(V\) | Notch root under the microscope |
+| [VIII.2](02-ensembles-integrators.md) (next) | Verlet; NVT/NPT ensembles | Laboratory temperature in the box |
+| [VIII.3](03-ab-initio-and-coarse-graining.md) | EAM fits; export tables | Parameters climb back to FEM and DDD |
+
+Part VII's [Bridge](03-polycrystal-and-fem-handoff.md#bridge) named the **ink** behind dislocation lines — atomic bonding. This chapter is the first atomistic page: phase space, Hamiltonian structure, EAM potentials, and the LAMMPS mindset. The [two clocks note](00-opening.md#two-clocks-reading-order-vs-foundation-pedigree) at the Part VIII opening explains why workflow order may have already fit EAM parameters from Part IX; linear readers arrive correctly after DDD and should treat this chapter as **resolving the core** the mesoscale model regularized with a cutoff.
+
 ## Scene: the notch under the microscope
 
 Part VII explained that a stress concentration at a notch root is where continuum elasticity hands off to dislocation nucleation. Zoom one more step. A molecular dynamics simulation boxes a few nanometers of copper around the notch tip: tens of thousands of fcc lattice sites, periodic or fixed boundaries on the sides, atoms pulled on the top layer to mimic the far-field tension from the tensile frame.

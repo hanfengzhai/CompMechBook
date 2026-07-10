@@ -4,6 +4,17 @@ Kohn–Sham DFT turns the abstract Hohenberg–Kohn energy functional into a **s
 
 For copper, a typical calculation fits in a few hundred atoms' worth of plane-wave coefficients — yet supplies the cohesive energy and elastic constants that anchor every coarser model of the wire.
 
+## Story so far (Parts I–IX.1)
+
+| Stage | Electronic object | Wire instance |
+|-------|-------------------|---------------|
+| Parts I–VIII | Atoms on empirical \(V(\{\mathbf{r}_i\})\) | EAM LAMMPS deck on trust |
+| [IX.1](01-born-oppenheimer.md) | BO separation; HK theorems; \(E[\rho]\) | Why energy is a density functional |
+| **IX.2 (here)** | Kohn–Sham orbitals; SCF cycle | QE log: `convergence has been achieved` |
+| [IX.3](03-dft-workflows.md) (next) | Input decks; convergence sweeps | Reproducible foundation afternoon |
+
+[IX.1](01-born-oppenheimer.md) justified treating nuclei on a Born–Oppenheimer surface and energy as a functional of \(\rho(\mathbf{r})\). This chapter is the **practitioner's loop** — self-consistent field, plane waves, pseudopotentials, and the convergence discipline that separates physics from numerical artifact. Every Young's modulus and stacking-fault energy Part VII imports assumes this loop finished honestly.
+
 ## Scene: the self-consistent loop
 
 A Quantum ESPRESSO run on fcc copper begins with a guess for the electron density \(\rho(\mathbf{r})\). From that guess, build an effective potential; solve single-particle Schrödinger-like equations for orbitals; reconstruct a new density from occupied states; mix old and new densities; repeat until \(\rho\) stops changing — the **SCF cycle**. Each iteration is linear algebra on orbital coefficients; convergence is the signal that the Kohn–Sham equations are satisfied.
@@ -250,3 +261,5 @@ The [epilogue](../../epilogue/multiscale.md) reunites this foundation with the v
 [IX.3](03-dft-workflows.md) walks through reproducible workflows — cutoff and k-mesh convergence, relaxation, equations of state, bands and phonons, defect supercells — using the MSE 5720 homework archive as a template. Those workflows produce the numbers Parts VI–VIII import before the [epilogue](../../epilogue/multiscale.md) wires DFT → MD → DDD → FEM into one multiscale afternoon.
 
 Turn the page when the SCF loop converges in principle but no input file exists yet — that is the signal that reproducibility, not theory, is what separates research from folklore.
+
+The [epilogue](../../epilogue/multiscale.md#lab-act-reunion-six-acts-one-afternoon) reunites this foundation with the visible lab session: **Act VI** supplies the numbers archived here; **Acts I–V** spend them on the same afternoon. Reading order ends at electrons; workflow order begins with them — both are valid when the export contract is documented.

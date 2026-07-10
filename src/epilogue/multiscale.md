@@ -325,6 +325,17 @@ The ladder ends here, but the references do not — and the copper wire does not
 
 Return to the [**Lab act reunion**](#lab-act-reunion-six-acts-one-afternoon) whenever workflow order and reading order disagree: **Act VI** supplies the numbers; **Acts I–V** spend them on the same afternoon. Part I began with \(\mathbf{K}\mathbf{u}=\mathbf{f}\) on a spring chain; Part IX ended with SCF on \(\rho(\mathbf{r})\); this epilogue is the handshake that makes both ends of the ladder talk without unit mistakes or unconverged exports.
 
+| Prologue act | Reading-order climax | Workflow-order foundation |
+|--------------|---------------------|---------------------------|
+| I — Mounting | Part IV mesh + BC tags | FEM deck built from homogenized moduli |
+| II — Warming | Part III–V conjugate heat loop | Robin coefficient from FVM film solve |
+| III — Pulling | Part II–IV Galerkin convergence | \(\mathbf{K}\) from audited \(E\), \(\nu\) |
+| IV — Hardening | Part VII Taylor law | DDD yaml fed by MD mobility |
+| V — Notch | Part VIII atomistic box | Nucleation barriers from DFT + MD |
+| VI — Foundation | Part IX SCF (last in reading order) | DFT first in workflow order |
+
+The weak form that appeared in Part III as integration by parts, became Galerkin assembly in Part IV, reappeared as virtual work in Part VI, and found its electronic analogue in the Hohenberg–Kohn variational principle — is the same recurring character the prologue promised. Eigenmodes that decoupled the spring network in Part I reappear as Kohn–Sham orbitals at the finest scale. The story is not a catalog of methods; it is one specimen traced from \(\mathbb{R}^N\) to function spaces to meshes to defects to atoms to electrons — and back upward through homogenization.
+
 When `Writings.git` is linked, canonical chapter markdown lives under `writings/` in the Functional Analysis Notes layout; run `./scripts/sync-writings.sh` after upstream edits to refresh this book.
 
 Turn the page to the appendix when you need a symbol or a source — turn back to the prologue when you need the plot. The wire is still under tension; only the vocabulary changed from electrons to engineering and back again.

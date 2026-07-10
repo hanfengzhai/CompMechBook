@@ -6,6 +6,18 @@ Static equilibrium of an elastic body is equivalent to minimizing total potentia
 
 The copper wire under tension minimizes (or rather, stationarizes) elastic energy stored in its stretched atomic lattice — a minimization FEM approximates on a mesh. When the load exceeds yield, minimization gives way to incremental variational inequalities; when deformation grows large, the energy depends on \(\mathbf{F}\), not \(\boldsymbol{\varepsilon}\). This chapter walks that path.
 
+## Story so far (Parts I–VI.2)
+
+| Stage | Continuum object | Wire instance |
+|-------|------------------|---------------|
+| Parts I–IV | \(\mathbf{K}\mathbf{U}=\mathbf{F}\) from Galerkin | Meshed tensile + thermal solve |
+| Part V | FVM fluxes; conjugate heat transfer | Cooling air beside the wire |
+| [VI.1](01-kinematics.md) | \(\mathbf{F}\), \(\boldsymbol{\varepsilon}\), stretch \(\lambda\) | Grip displacement → deformation gradient |
+| [VI.2](02-stress-balance.md) | Cauchy stress; balance laws | Axial force on the load cell |
+| **VI.3 (here)** | Total potential energy \(\Pi[\mathbf{u}]\); virtual work | Why \(\mathbf{K}\) is Rayleigh–Ritz on energy |
+
+Parts IV and V computed fields on meshes; [VI.1](01-kinematics.md)–[VI.2](02-stress-balance.md) named the **tensor vocabulary** those fields carry. This chapter unifies the discrete and continuum pictures: equilibrium is stationary energy, virtual work is the first variation, and FEM assembly is Rayleigh–Ritz on the same functional Part III minimized. [VI.4](04-nonlinear-plasticity-preview.md) is where the energy picture breaks — yield, history, and the upward bend on the load cell.
+
 ## Scene: energy stored in the stretch
 
 Return to the tensile frame with the load cell climbing. Below yield, the wire lengthens elastically: each increment of grip displacement adds work, and most of that work is **stored** as elastic strain energy recoverable on unloading. Plot \(\Pi(\mathbf{u})\) — total potential energy as a functional of the displacement field — and the equilibrium path is the trajectory that keeps \(\Pi\) stationary under admissible variations.

@@ -4,6 +4,17 @@ At a discontinuity, pointwise PDEs fail but integral conservation holds. The fin
 
 The Sod shock tube — a diaphragm separating high- and low-pressure gas, ruptured at \(t = 0\) — is the canonical verification problem in the author's [FVM notes](https://hanfengzhai.github.io/note/FVM.pdf). It is to CFD what the patch test is to FEM: if your code fails Sod, nothing else matters.
 
+## Story so far (Parts I–V.2)
+
+| Stage | FVM milestone | Wire instance |
+|-------|---------------|---------------|
+| Parts I–IV | FEM conduction on the solid | Joule heating in the wire |
+| [V.1](01-conservation-integral.md) | Integral conservation laws | Mass, momentum, energy balances |
+| [V.2](02-fvm-1d.md) | Cell-average update; CFL; ghost cells | 1D cooling slice beside the wire |
+| **V.3 (here)** | Riemann solvers; shock capturing | Nonlinear fluxes when \(\mathbf{U}_L \neq \mathbf{U}_R\) |
+
+[V.2](02-fvm-1d.md) taught the conservation rhythm on uniform 1D grids — fluxes at faces, explicit stability, ghost-cell boundaries. This chapter supplies the **nonlinear engines** at each face: Godunov, Roe, HLL, limiters. Part IV's Galerkin method lacks built-in upwinding for advection; that split is why the book teaches FEM and FVM as complementary dialects on the same copper wire. [V.4](04-navier-stokes-cfd.md) adds viscosity, heat conduction, and the low-Re cooling flow around the specimen.
+
 ## Scene: a rupture in the cooling duct
 
 Imagine a shock tube test bench beside the wire experiment: a diaphragm bursts, pressure jumps, a contact discontinuity races down the tube. Pointwise derivatives fail at the jump, but the integral form still balances mass and momentum. Riemann solvers are how a cell face asks, "Given gas on my left and right, what flux crosses me?" The copper wire's cooling air can stay subsonic, but the same machinery governs supersonic jets and, in other contexts, shock heating that changes annealing behavior.

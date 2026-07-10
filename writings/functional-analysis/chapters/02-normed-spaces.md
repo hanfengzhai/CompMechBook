@@ -4,6 +4,16 @@ When the copper wire heats under current, we may ask how far its temperature fie
 
 We begin with metric spaces, because convergence is fundamentally about distance. Norms are the most important way mechanics assigns distance, but not the only one.
 
+## Story so far (Parts I–II.1)
+
+| Stage | Vocabulary | Wire instance |
+|-------|------------|---------------|
+| Part I | \(\mathbf{K}\mathbf{u}=\mathbf{f}\); eigenmodes; \(N\to\infty\) | Spring chain → fields \(u(x)\), \(T(x)\) |
+| [II.1](01-motivation.md) | Weak-form pipeline; Galerkin as projection | Mesh refines forever; corners break \(C^2\) |
+| **II.2 (here)** | Norms, completeness, Banach hierarchy | Rulers for thermal and elastic FEM convergence |
+
+[II.1](01-motivation.md) named the **limit problem** — the boundary value problem behind every mesh — and showed why classical smoothness fails at the grip corner. This chapter supplies the **rulers** that judge whether discrete solutions approach that limit: \(\|T\|_{H^1}\) for thermal gradients, energy norms for displacement, completeness so Cauchy sequences of mesh solutions stay inside the admissible class. [II.3](03-hilbert-spaces.md) will add inner-product geometry and prove Galerkin optimality in those norms.
+
 ## Scene: how wrong is "wrong enough"?
 
 Two temperature fields along the heated wire can disagree by at most 0.1 K everywhere, or agree on average yet differ by 5 K at the clamp. Those are different notions of "close" — sup norm versus \(L^2\). When the engineer asks whether the thermal FEM is converged, the answer depends on which ruler we use. Normed spaces name those rulers and let mesh-refinement arguments conclude in the norm the physics actually cares about.

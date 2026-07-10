@@ -4,6 +4,17 @@ An finite element is three things bundled together: a **reference domain** with 
 
 Chapter 2 showed assembly as a scatter of local matrices. This chapter explains what happens inside the element loop — how geometry enters through the Jacobian, how polynomial order controls accuracy, and why bad elements (slivers, nearly incompressible materials on Q1 meshes) produce bad answers even when the assembly code is correct.
 
+## Story so far (Parts I–IV.2)
+
+| Stage | FEM milestone | Wire instance |
+|-------|---------------|---------------|
+| Parts I–III | \(\mathbf{K}\mathbf{U}=\mathbf{F}\) from weak form | Thermal + elastic PDEs in \(H^1\) |
+| [IV.1](01-weighted-residuals.md) | Weighted residuals; Galerkin orthogonality | Residual vanishes on trial space |
+| [IV.2](02-galerkin-assembly.md) | Global scatter of \(\mathbf{K}^e\), \(\mathbf{f}^e\) | Load cell curve from assembled system |
+| **IV.3 (here)** | Shape functions, Jacobian, quadrature | P1 triangles on the heated cross-section |
+
+[IV.2](02-galerkin-assembly.md) closed the loop from Part III's bilinear form to Part I's sparse matrix. This chapter opens the **element loop** — the machinery inside every `scatter`: reference elements, isoparametric maps, quadrature points. The copper wire's mesh is only as trustworthy as the P1 triangles and Gauss rules that define \(V_h\); [IV.4](04-poisson-to-elasticity.md) extends the same loop from scalar heat to vector elasticity under end load.
+
 ## Scene: the mesh becomes tiny shapes
 
 Zoom into the copper wire model until individual elements fill the screen: small triangles or bricks, each with the same reference template, stretched and rotated to fit the local geometry. Shape functions interpolate temperature and displacement inside each patch; quadrature integrates the weak form as a weighted sum of point values. A coarse mesh captures bulk stretch; a fine mesh resolves the hot spot where current density peaks — same element library, different resolution.

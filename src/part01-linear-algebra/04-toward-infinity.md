@@ -4,6 +4,19 @@ So far our state vectors have had finite length \(N\). A temperature field on a 
 
 Heat the copper wire at one end and wait: the temperature is not a vector of three numbers unless we pretend there are only three sensors. It is a function \(T(x)\) for \(x\) along the wire. Discretize that function finely enough and \(\mathbf{T} \in \mathbb{R}^N\) becomes a good proxy; coarsen the mesh and the proxy lies. The **true** state, in the continuum model, is the function itself — or rather, an element of an infinite-dimensional vector space equipped with norms that make the approximation problem well posed.
 
+## Story so far (Part I)
+
+Part I built the finite-dimensional grammar every later scale inherits — on the same copper wire, first as a spring chain:
+
+| Chapter | What we learned | Wire instance |
+|---------|-----------------|---------------|
+| [I.1](01-vectors-matrices.md) | \(\mathbf{K}\mathbf{u}=\mathbf{f}\); energy \(\mathbf{u}^T\mathbf{K}\mathbf{u}\) | Coupled springs under end load |
+| [I.2](02-linear-maps.md) | Assembly as change of basis; \(\mathbf{L}_e^T\mathbf{k}_e\mathbf{L}_e\) | Local element axes → global DOF map |
+| [I.3](03-eigenvalues.md) | Eigenmodes decouple vibration; spectral theorem preview | Normal modes of the spring network |
+| **I.4 (here)** | \(N\to\infty\); fields replace vectors | \(u(x)\), \(T(x)\) as limits of mesh refinement |
+
+The [Part I opening](00-opening.md#story-so-far-prologue) replayed the prologue's four questions in \(\mathbb{R}^N\). This chapter is Part I's last move: show why refinement sends \(N\) without bound and why the limit is a **function**, not a longer vector. Part II names the space that limit lives in; Part III writes the weak PDE; Part IV assembles \(\mathbf{K}\) from shape functions on that space.
+
 ## Scene: the sensors multiply
 
 Return to the spring network from Chapters 1–3, now with a twist in the experiment. An engineer places thermocouples along the copper wire — first three, then ten, then forty, then a hundred — each reading \(T(x_i)\) at a node of a finer mesh. Every refinement produces a longer column vector \(\mathbf{T}_N\), yet the plotted profile along the axis stops changing shape once the spacing is fine enough. The family of vectors is not converging to a **longer** vector; it is converging to a **function** \(T(x)\) defined at every \(x\), the limit object Part II will name.

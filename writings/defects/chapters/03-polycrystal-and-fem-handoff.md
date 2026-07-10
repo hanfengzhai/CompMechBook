@@ -4,6 +4,17 @@ Dislocation dynamics resolves individual lines in an elastic medium — powerful
 
 The cold-drawn copper wire is not a single crystal. It is thousands of grains, each with its own slip systems, dislocation content, and orientation. DDD on one crystal explains one mechanism; engineering FEM needs **texture**, **hardening laws**, and **internal state variables** that summarize what DDD (or experiment) teaches.
 
+## Story so far (Parts I–VII.2)
+
+| Stage | Mesoscale object | Wire instance |
+|-------|------------------|---------------|
+| Parts I–VI | Continuum FEM; \(\boldsymbol{\sigma}\), virtual work | Load cell curve in elastic regime |
+| [VII.1](01-defect-taxonomy.md) | Point, line, surface defects | Cold-drawn forest before the test |
+| [VII.2](02-dislocation-dynamics.md) | Peach–Köhler motion; Taylor \(\tau(\rho)\) | Act IV hardening from line statistics |
+| **VII.3 (here)** | Polycrystal homogenization; FEM handoff | Texture + internal variables on the mesh |
+
+[VII.2](02-dislocation-dynamics.md) followed individual lines under resolved shear. This chapter closes Part VII by asking how DDD statistics **export upward** — crystal plasticity, internal state variables, Peierls parameters borrowed from MD — and where homogenization fails at notches. Part VIII supplies the atomic **ink** behind mobility tables and stacking-fault energies.
+
 ## Scene: from one crystal to a spool of wire
 
 A single-crystal DDD run explains how one slip system hardens under shear. The cold-drawn wire on the bench is thousands of grains twisted by drawing dies — texture, misorientation, grain-boundary barriers. This chapter asks how DDD statistics export upward: hardening laws for crystal plasticity, internal state variables for FEM, Peierls parameters borrowed from MD. The wire experiment is polycrystalline; the multiscale pipeline must be too.

@@ -8,6 +8,17 @@ Part II's operators and dual loads supplied the vocabulary for that move: the we
 
 If the copper wire is fixed at both ends and loaded in the middle, the displacement field may be continuous but not twice differentiable at the load point — the strong form \(-EA u'' = f\) fails classically at a point force. The weak form still asks: for all admissible virtual displacements, is internal virtual work equal to external virtual work? That question has an answer in \(H^1\), and Galerkin discretization turns it into \(\mathbf{K}\mathbf{U}=\mathbf{F}\).
 
+## Story so far (Parts I–III.1)
+
+| Stage | What the wire became | Key object |
+|-------|----------------------|------------|
+| Part I | Spring network; \(\mathbf{K}\mathbf{u}=\mathbf{f}\) | Discrete equilibrium |
+| Part II | Fields in \(H^1\), \(L^2\); Lax–Milgram | Convergence target for refinement |
+| [III.1](01-strong-form.md) | Pointwise PDEs for heat and elasticity | Strong form — valid where \(C^2\) holds |
+| **III.2 (here)** | Virtual work at corners and welds | Weak form — honest at singularities |
+
+The [prologue](../../prologue/00-many-scales.md) introduced the weak form as a **recurring character**. Part I gave it a finite-dimensional prelude (nodal balance laws); Part II built \(H^1\) and dual loads; [III.1](01-strong-form.md) wrote the blackboard physics that breaks at the grip corner and thermocouple weld. This chapter is where the character speaks in full sentences — integration by parts, test functions, and the Galerkin system \(\mathbf{K}\mathbf{U}=\mathbf{F}\) that Part IV will assemble.
+
 ## Scene: the grip corner
 
 Mount the copper wire in a rigid bracket with a reentrant corner — an L-shaped steel jaw gripping a cylindrical specimen. Under tension, the displacement field is visually smooth: the wire elongates, the bracket barely flexes. But zoom into the corner where copper meets steel: finite element post-processing shows stress components spiking, and a curious analyst asks whether \(-\nabla\cdot\boldsymbol{\sigma} = \mathbf{0}\) holds **pointwise** in classical sense.
