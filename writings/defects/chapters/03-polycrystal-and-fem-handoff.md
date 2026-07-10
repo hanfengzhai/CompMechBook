@@ -238,6 +238,20 @@ DDD assumes **closed cores** and empirical short-range rules. When dislocations 
 
 The wire's strength is a story written in dislocation lines; the **ink** is atomic bonding. We have named the lines and their statistics. Next we resolve the atoms that give those lines their mobility.
 
-## Bridge to Part VIII
+## Bridge
 
-Crystal plasticity and calibrated DDD close the mesoscale chapter: they explain why the copper wire yields and hardens without resolving every atom. But mobility laws, stacking-fault energies, and crack-tip bond breaking are not adjustable forever — they are measured or computed at the atomic scale. Part VIII follows the same copper lattice with Newton's equations and empirical or fitted potentials, supplying the parameters DDD and FEM inherit.
+Crystal plasticity and calibrated DDD close the mesoscale chapter: they explain why the drawn copper wire yields and hardens without resolving every atom. The OpenDiS → DAMASK → polycrystal FEM pipeline above is the **export discipline** the prologue promised — statistics become internal state variables on the mesh Part IV taught us to assemble. But mobility laws, Peierls thresholds, and stacking-fault energies in that pipeline are not adjustable forever.
+
+| What Part VII exported upward | What Part VIII must supply downward |
+|-------------------------------|-------------------------------------|
+| Taylor hardening from forest density \(\rho\) | Stacking-fault energy \(\gamma_{\text{SF}}\) from atomic bonding |
+| Mobility \(M(\tau, T)\) in DDD segment laws | Phonon drag, cross-slip rates, core structure from MD |
+| Junction strength and short-range rules | Nucleation barriers at grain boundaries and crack tips |
+| Calibrated \(h_0\), \(g_{\text{sat}}\) in DAMASK | EAM or MEAM parameters fit to DFT elastic constants |
+| FE² at notches when homogenization fails | Bond breaking and chemistry (e.g. surface oxidation) |
+
+Return to the [prologue](../../prologue/00-many-scales.md): **Act IV** hardening and **Act V** notch stress concentration both lean on parameters whose **ink** is atomic — the same copper lattice Part VIII will traverse with Newton's equations and empirical or *ab initio* potentials. Part IX follows when even EAM parameters need first-principles validation of formation energies and band structure.
+
+The wire's strength is a story written in dislocation lines; the lines borrow their mobility from phonons and cores the mesoscale cannot resolve. [VIII.1](../part08-md/01-potentials-phase-space.md) begins with interatomic potentials and phase space — the next rung down on the ladder, same specimen, stricter export contract.
+
+Turn the page when Peierls stress or mobility tables feel like magic numbers — molecular dynamics is where those numbers acquire a temperature and a crystal structure.

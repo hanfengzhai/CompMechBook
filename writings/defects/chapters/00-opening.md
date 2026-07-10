@@ -93,4 +93,17 @@ Part IV assembled \(\mathbf{K}\) from element matrices; Part VII assembles **har
 
 ## Bridge
 
-Part VI closed with variational elasticity: energy minimization and virtual work for smooth fields. The drawn copper wire violates that smoothness at the mesoscale — dislocation lines, grain boundaries, and vacancy clusters are the mechanisms behind yield and work hardening. The next chapter names those structures; the one after simulates their motion.
+Part VI closed with variational elasticity: energy minimization and virtual work for **smooth** fields. The drawn copper wire violates that smoothness at the mesoscale — dislocation lines, grain boundaries, and vacancy clusters are the mechanisms behind **Act IV** hardening on the load cell. Part VII is the first **descent** on the prologue ladder: the same specimen, a smaller state variable, export discipline unchanged.
+
+| What Part VI left phenomenological | What Part VII makes computable |
+|------------------------------------|--------------------------------|
+| \(J_2\) yield surface with fitted \(H\), \(\sigma_{y0}\) | Forest density \(\rho\); Taylor \(\tau \propto \sqrt{\rho}\) hardening |
+| Isotropic hardening internal variable \(\alpha\) | Link-length statistics from DDD time integration |
+| Cutoff-regularized singularities at notches | Line defects with Burgers vector \(\mathbf{b}\) and mobility law |
+| [VI.4 Bridge](../part06-continuum/04-nonlinear-plasticity-preview.md#bridge-to-part-vii) names the hinge | OpenDiS → DAMASK → polycrystal FEM handoff in [VII.3](03-polycrystal-and-fem-handoff.md) |
+
+The three chapters below follow the **Defects Notes** layout: [VII.1](01-defect-taxonomy.md) names point, line, and surface defects on the wire's polycrystal; [VII.2](02-dislocation-dynamics.md) simulates Peach–Köhler glide and forest evolution; [VII.3](03-polycrystal-and-fem-handoff.md) exports hardening laws to the same mesh Part IV assembled. Cold drawing did not change Young's modulus; it **stored** lines whose collective motion bends the force–displacement curve upward.
+
+Return to **Act IV** in the [prologue](../../prologue/00-many-scales.md): the bend is not a magic constant in a yield surface — it is dislocation motion under the stress field Part IV computed. Parts VIII–IX will ask what sets mobility and stacking-fault energy; Part VII asks how plasticity **propagates** before we shrink to atoms and electrons.
+
+Turn the page when phenomenological hardening feels like curve-fitting — defect taxonomy is where the wire's strength acquires a geometry.

@@ -195,4 +195,15 @@ When extending a Poisson solver to elasticity:
 
 ## Bridge
 
-A FEM solution that passes patch tests and looks smooth is not necessarily accurate. Convergence theory — Céa's lemma, approximation rates in \(H^1\) and \(L^2\), a posteriori error estimators — ties mesh size \(h\) and polynomial order \(p\) to quantifiable error bounds. Those norms were introduced in Part I and Part II; the next chapter closes the loop between theory and mesh refinement studies on the copper wire and beyond.
+Poisson's equation and linear elasticity share one assembly loop — scalar versus vector unknowns, gradient versus strain, the same \(\mathbf{K}\mathbf{U}=\mathbf{F}\) pattern Part I introduced on springs. A solver that passes patch tests and looks smooth on the copper wire is not necessarily **accurate**: convergence theory ties mesh size \(h\) and polynomial order \(p\) to quantifiable error bounds in the norms Part II named.
+
+| What this chapter established | What convergence theory (next chapter) supplies |
+|--------------------------------|------------------------------------------------|
+| Vector P1 elements; block \(\mathbf{B}^T\mathbb{C}\mathbf{B}\) assembly | Céa's lemma: discrete energy tracks continuous minimizer in \(H^1\) |
+| 1D bar = Poisson with \(EA\) stiffness; worked three-node wire | Approximation rates \(O(h^p)\) in \(H^1\) and \(L^2\); role of \(H^2\) regularity |
+| Thermoelastic coupling: scalar heat + vector displacement on one mesh | A posteriori estimators and adaptive refinement at grip corners |
+| Nonlinear hyperelastic preview (Part VI pointer) | When \(p\)-refinement beats \(h\)-refinement; locking at \(\nu \to 1/2\) |
+
+Return to the [prologue](../../prologue/00-many-scales.md): **Act III** ramps grip displacement on a mesh whose axial displacement field is now a vector-valued Poisson story — three components, one assembly habit. The load cell curve in the linear elastic regime is trustworthy only if refinement studies show the discrete solution converging to the weak solution Part III wrote. [II.3](../part02-functional-analysis/03-hilbert-spaces.md) and [III.3](../part03-pdes/03-sobolev-spaces.md) supplied the norms; the next chapter closes the loop between theory and mesh refinement on the copper wire and beyond.
+
+Turn the page when patch tests pass but the grip displacement still changes when you halve \(h\) — that is the signal that convergence theory, not intuition, must certify the answer.
