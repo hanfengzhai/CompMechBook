@@ -248,3 +248,7 @@ The EAM-fit checklist and handoff table above already named the quantities MD ex
 | \(E_f^v\) (vacancy formation) | Diffusion and creep parameters at high \(T\) | Supercell with one removed atom; total-energy difference |
 
 Part VIII assumed Born–Oppenheimer surfaces and fit potentials to match these numbers. Part IX is the **audit chapter** — the same copper cell Part VIII vibrated, now solved for \(\rho(\mathbf{r})\) before the epilogue climbs back up the ladder. See also the [two clocks note](../part08-md/00-opening.md#two-clocks-reading-order-vs-foundation-pedigree): chapter order descends VII → VIII → IX; workflow order builds input decks IX → VIII → VII → IV.
+
+Return to the prologue's **Act VI — Foundation**: before any wire-scale FEM run, someone chose Young's modulus, stacking-fault energy, and a mobility table — parameters whose pedigree this chapter traced to EAM fits and coarse-grained exports. Part IX re-derives each from first principles so the ladder has a floor, not folklore. The [Part IX opening](../part09-dft/00-opening.md) frames that descent explicitly; [IX.1](../part09-dft/01-born-oppenheimer.md) separates fast electrons from slow nuclei before the Kohn–Sham machinery begins.
+
+Turn the page when the EAM potential matches bulk moduli but no one can cite the DFT input deck that produced it — that is the signal the foundation run is missing, and Part IX is where the audit starts.

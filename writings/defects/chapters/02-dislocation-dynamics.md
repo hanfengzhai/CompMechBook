@@ -216,3 +216,14 @@ The load cell's post-yield bend is not a fitted Voce slope alone — it is a for
 ## Bridge
 
 Single-crystal DDD explains how lines move, multiply, and harden a crystal — but the copper wire is polycrystalline and structural models speak crystal plasticity and FEM, not segment networks alone. The next chapter follows how DDD statistics export upward to constitutive laws and where Peierls barriers and grain boundaries still demand finer-scale input.
+
+| What VII.2 simulated | What [VII.3](03-polycrystal-and-fem-handoff.md) must homogenize |
+|------------------------|----------------------------------------------------------------|
+| Segment network on one slip system | Texture and grain orientation across thousands of crystals |
+| \(\tau(\gamma)\), \(\rho(\gamma)\), link-length histograms | Internal state variables on a crystal plasticity mesh |
+| Mobility \(M(\tau,T)\) from MD tables | Peierls thresholds and grain-boundary barriers |
+| OpenDiS export yaml for one crystal | DAMASK / FEM handoff for the full wire spool |
+
+Return to the prologue's **Act IV — Hardening**: the load cell curve bent upward after yield because lines multiplied and tangled — DDD made that forest visible as moving segments. Part VI's J₂ plasticity fitted the bend with a scalar hardening modulus \(H\); this chapter showed where \(H\) hides its physics in \(\rho\) and link statistics. [VII.3](03-polycrystal-and-fem-handoff.md) closes the mesoscale arc by asking how those statistics survive **drawing dies and grain boundaries** — the organizational scale the cold-drawn wire on the bench actually has.
+
+Parts VIII–IX supply the mobility and elastic constants this chapter consumed; VII.3 is where DDD stops being a single-crystal movie and becomes **input for the same FEM mesh Part IV taught us to assemble**. Turn the page when OpenDiS converges on one orientation but the wire's macroscopic hardening still disagrees with experiment — that is the signal that polycrystal texture, not segment timestep, is the missing physics.

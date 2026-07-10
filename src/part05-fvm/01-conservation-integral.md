@@ -176,3 +176,14 @@ where the sum is over faces \(f\) with area \(A_f\) and outward normal. Unstruct
 ## Bridge
 
 Discretizing the integral form on a 1D grid yields the classic FVM update: cell averages change by net flux through faces. The next chapter writes that algorithm explicitly — semi-discrete form, time stepping, CFL stability, and the conservative property that makes global balances exact on any mesh.
+
+| What the integral form established | What [V.2](02-fvm-1d.md) must implement |
+|------------------------------------|------------------------------------------|
+| \(\frac{d}{dt}\int_{\Omega_i} U\, dV + \oint_{\partial\Omega_i} \mathbf{F}\cdot\mathbf{n}\, dS = 0\) | Semi-discrete flux difference on a 1D grid |
+| Rankine–Hugoniot jump conditions for shocks | Numerical flux functions at cell interfaces |
+| Discrete conservation vs. Galerkin drift | Exact global balance of mass/energy on any mesh |
+| Same contract from shock tubes to Illustris | CFL stability and time marching for the wire's boundary layer |
+
+Return to the prologue's **Act II — Heating**: current switched on, the wire surface runs hot, and air carries heat away by convection. Part IV computed conduction inside the solid from weak forms; this chapter states the **conservation contract** for the fluid side — what enters a control volume must equal what leaves plus what accumulates. [V.2](02-fvm-1d.md) is where that contract becomes an update loop the conjugate heat-transfer scene in [V.4](04-navier-stokes-cfd.md) will handshake with FEM temperature fields.
+
+Part III's weak forms minimized energy on trial spaces; FVM **balances fluxes** on control volumes — the discretization philosophy Part IV's elliptic FEM does not automatically guarantee for advection. Turn the page when the integral balance is clear but no cell-averaged update exists yet — that is the signal that conservation wants a mesh of volumes, not a mesh of trial functions.
