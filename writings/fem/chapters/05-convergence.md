@@ -4,6 +4,16 @@ A finite element mesh of the copper wire can look impressively fine — thousand
 
 This chapter connects Part I's discrete norms, Part II's function-space error analysis, and Part IV's implementation choices (\(h\), \(p\), element type) into a coherent refinement strategy.
 
+## Story so far (Prologue & Parts I–IV)
+
+| Stage | What the wire became | Key object |
+|-------|----------------------|------------|
+| Parts I–II | Norms on vectors and fields; Galerkin best approximation | \(\|u-u_h\|_a\); Céa's lemma preview |
+| [IV.1–IV.4](01-weighted-residuals.md) | Full FEM pipeline: residual → assembly → elasticity | \(\mathbf{K}\mathbf{U}=\mathbf{F}\) on the wire mesh |
+| **IV.5 (here)** | Refinement strategy with a certificate | Error norms; expected \(O(h^p)\) decay |
+
+A fine mesh with pretty contours is not verification. This chapter closes Part IV by answering the question every computational mechanician must ask before trusting **Act III — Pulling**: if I refine \(h\), does error fall at a predictable rate? Part II's Céa's lemma and Part III's Sobolev regularity supply the theory; this chapter connects them to element choice and boundary modeling on the copper wire.
+
 ## Scene: finer mesh, same answer?
 
 The analyst refines the wire mesh once, twice, five times — stress contour colors shift, peak values creep downward, then stabilize. Is the solution converged, or merely pretty? Without a norm and an expected decay rate, refinement is guesswork dressed as diligence. This chapter gives the wire plot a certificate: in the energy norm, error should fall like \(h^p\), and when it does not, the element type or boundary model — not the solver — is suspect.

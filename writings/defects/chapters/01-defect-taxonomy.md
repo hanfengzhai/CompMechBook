@@ -4,6 +4,15 @@ Perfect crystals exist in textbooks. Real materials carry **defects** — locali
 
 Continuum elasticity in Part VI describes smooth displacement fields. Defects are where that smoothness fails — and where mesoscale models begin.
 
+## Story so far (Prologue & Parts I–VI)
+
+| Stage | What the wire became | Key object |
+|-------|----------------------|------------|
+| Parts I–VI | Continuum fields; FEM assembly; yield knee on load cell | \(\boldsymbol{\sigma}\), J₂ hardening parameters \(\sigma_{y0}\), \(H\) |
+| **VII.1 (here)** | Slip lines on the wire surface; Burgers circuits | Point, line, surface defect taxonomy |
+
+Part VI fitted hardening with a single modulus \(H\) but did not explain **where** \(\sigma_{y0}\) and \(H\) come from. The [prologue](../../prologue/00-many-scales.md) promised a ladder of scales; Part VII descends from continuum smoothness to the **localized disruptions** — vacancies, dislocations, grain boundaries — that make cold-drawn copper stronger and the yield knee inevitable. This chapter names what broke the smooth picture.
+
 ## Scene: the wire yields
 
 Part VI ended with J₂ plasticity and isotropic hardening — \(\sigma_y = \sigma_{y0} + H\alpha\) — parameters that made the return-mapping loop converge but did not explain **where** \(H\) and \(\sigma_{y0}\) came from. The force–displacement curve from Part I finally bends at the same yield knee those parameters were fitted to mimic. The load cell still reads force, but the slope drops: the wire is **plastic**. A polished surface that was mirror-smooth now shows faint **slip lines** — traces of dislocation motion on {111} planes. Continuum FEM with isotropic elasticity predicted a straight elastic segment forever; the experiment crossed a yield point that lives not in \(\mathbb{C}\) alone but in a **forest of line defects** stored by cold drawing.

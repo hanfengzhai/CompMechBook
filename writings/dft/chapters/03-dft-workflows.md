@@ -4,6 +4,16 @@ Part IX, Chapters 1–2, derived the Kohn–Sham equations and explained why con
 
 The narrative thread remains the copper wire. We will not simulate the whole wire in Quantum ESPRESSO — no cluster has that memory — but we **will** walk through the same workflows used to produce the bulk properties that a wire model assumes: lattice constant, bulk modulus, elastic tensor, phonon check, and defect formation energy in a supercell. The homework archive for Cornell MSE 5720 ([MSE5720-HW](https://github.com/hanfengzhai/MSE5720-HW)) supplies worked examples; this chapter distills their logic into a reproducible ritual.
 
+## Story so far (Prologue & Parts I–IX)
+
+| Stage | What the wire became | Key object |
+|-------|----------------------|------------|
+| Parts I–VIII | Continuum to atomistic; EAM MD; coarse-graining | \(\mathbb{C}\), \(\rho\), \(E(\{\mathbf{R}_I\})\) |
+| [IX.1–IX.2](01-born-oppenheimer.md) | Born–Oppenheimer; Hohenberg–Kohn; Kohn–Sham equations | Electron density \(\rho(\mathbf{r})\); KS orbitals |
+| **IX.3 (here)** | Bulk copper properties from a workstation supercell | Input decks, SCF convergence, property extraction |
+
+**Act VI — Foundation** in the [prologue](../../prologue/00-many-scales.md) promised the electronic floor beneath every upstream model. Parts VI–VIII assumed bulk moduli, cohesive energies, and vacancy formation energies without deriving them. This chapter closes the book's descent to the finest scale: the repeatable DFT ritual that turns Quantum ESPRESSO output into the numbers every upstream part types into its input deck.
+
 ## Scene: bulk copper in a workstation
 
 No cluster will ever run DFT on the full wire. Instead, a small fcc supercell on a workstation yields lattice constant, bulk modulus, elastic constants, vacancy formation energy — the bulk numbers every upstream model assumes. Input files, cutoff convergence, k-mesh tests, relaxation, SCF cycle, property extraction: this chapter is the repeatable ritual that turns Quantum ESPRESSO output into parameters for Parts VI–VIII.

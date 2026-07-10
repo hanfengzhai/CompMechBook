@@ -4,6 +4,16 @@ The copper wire from the prologue was never purely elastic. Cold drawing pushed 
 
 This chapter is not a full treatise on plasticity theory — that would require its own book. It is the **bridge** between variational elasticity and the defect mechanics of Part VII: what changes when displacements are large, when energy is no longer quadratic, and when history matters.
 
+## Story so far (Prologue & Parts I–VI)
+
+| Stage | What the wire became | Key object |
+|-------|----------------------|------------|
+| Parts I–V | FEM/FVM discretizations; linear \(\mathbf{K}\mathbf{u}=\mathbf{f}\) | Small-strain bilinear forms |
+| [VI.1–VI.3](01-kinematics.md) | Kinematics, stress balance, variational elasticity | \(\boldsymbol{\sigma}\), \(\Pi[\mathbf{u}]\), \(\mathbb{C}\) |
+| **VI.4 (here)** | Yield knee on the load cell trace | Nonlinear energy; J₂ plasticity preview |
+
+The force–displacement curve from Part I bent at **Act IV — Hardening** — a knee linear elasticity cannot explain. This chapter names what changes when the tangent stiffness stops being constant: large strain, path-dependent hardening, return-mapping loops. Part VII will show that the knee's microscale reason is **dislocation motion**, not a magic adjustment to \(\mathbb{C}\).
+
 ## Scene: the curve bends, the model must follow
 
 Return to the force–displacement trace from Part I: linear climb, then yield knee, then hardening plateau. Linear elasticity explains only the first segment. Large strain, necking, and path-dependent hardening live outside the quadratic energy landscape — yet the same wire, same grips, same experiment. This chapter names what changes when the tangent stiffness stops being constant and points toward Part VII's defects as the microscale reason for the knee.

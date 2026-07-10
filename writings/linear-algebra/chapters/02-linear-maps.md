@@ -6,6 +6,16 @@ A matrix is not merely a table of numbers. It is a **linear map** expressed in a
 
 When we mesh the copper wire for a tensile test, each bar element has a **local** coordinate system aligned with the element axis. The global displacement vector lives in a **global** basis tied to node numbering. Assembly is the book-keeping that says: "this local degree of freedom is global degree of freedom 17." That book-keeping is a linear map.
 
+## Story so far (Prologue & I.1)
+
+| Stage | What the wire became | Key object |
+|-------|----------------------|------------|
+| [Prologue](../../prologue/00-many-scales.md) | Six-act lab session; multiscale ladder | Four questions: state, equations, discretization, export |
+| [I.1](01-vectors-matrices.md) | Spring chain under mounting; \(\mathbf{K}\mathbf{u}=\mathbf{f}\) | State vector, stiffness matrix, sparsity |
+| **I.2 (here)** | Local element axes ↔ global node numbering | Linear maps, change of basis, assembly scatter |
+
+Part I's opening [**concept map**](00-opening.md#the-concept-map) asked what breaks when structure is missing — here, a wrong assembly map makes the wire stretch when only one grip moves. Every later part inherits this habit: reference element to physical element in Part IV, cell face to global flux in Part V, crystal frame to sample frame in Part VII. The map is intrinsic; the matrix is its coordinate representation.
+
 ## Scene: two languages for the same grip load
 
 **Act I — Mounting** has not yet turned on current or ramped grip displacement, but the operator has already chosen a coordinate language: the tensile frame displays grip displacement in millimeters; the finite element deck stores it as degree of freedom 1. Each bar element on the wire axis carries its own local axis; the global stiffness matrix sees a completely different numbering. Same physics, three coordinate systems — and the prologue's four questions already have a finite-dimensional answer: **state** = nodal vector, **equations** = \(\mathbf{K}\mathbf{u}=\mathbf{f}\), **discretization** = assembly maps \(\mathbf{L}_e\), **export** = moduli extracted after the solve.

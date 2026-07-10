@@ -4,6 +4,16 @@ Classical molecular dynamics of Part VIII assumes nuclei move on a **potential e
 
 The copper wire at laboratory scale will never be a full DFT supercell. The wire at atomic scale **must** be described quantum mechanically when bonds rearrange, chemistry appears, or empirical potentials have never been validated. The art is knowing when ab initio MD is mandatory, when classical MD suffices, and how to compress atomistic trajectories into numbers the mesoscale accepts.
 
+## Story so far (Prologue & Parts I–VIII)
+
+| Stage | What the wire became | Key object |
+|-------|----------------------|------------|
+| Parts VII–VIII | Dislocation dynamics; EAM potentials; MD integrators | \(\rho\), \(E(\{\mathbf{R}_I\})\), phase-space trajectories |
+| [VIII.1–VIII.2](01-potentials-phase-space.md) | Classical MD on fitted EAM; NVT/NPT ensembles | Lennard-Jones/EAM; Verlet integrator |
+| **VIII.3 (here)** | When EAM trust fails; ladder back to DFT | Born–Oppenheimer MD; coarse-graining |
+
+Classical MD of copper trusts an EAM potential fit once to quantum data. At crack tips, surfaces, or bond rearrangement, that trust may fail. This chapter closes Part VIII by making the potential-energy assumption explicit and showing how **ab initio MD** and **coarse-graining** connect atomistic trajectories to the moduli and defect energies Parts VI–VII consume — and to the DFT workflows Part IX develops.
+
 ## Scene: when EAM is not enough
 
 Most MD of copper uses an EAM potential fit once to DFT data and then trusted for millions of timesteps. At a crack tip where bonds stretch until rupture, or at a surface where oxidation nucleates, that trust may fail. Born–Oppenheimer MD recomputes forces from DFT each step; coarse-graining distills those trajectories into tables the mesoscale can afford. The wire's fracture strain is either validated at this scale or assumed.

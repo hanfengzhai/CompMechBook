@@ -4,6 +4,16 @@ Sobolev spaces measure how much smoothness a function has in an \(L^2\) sense. T
 
 When we approximate the temperature on the copper wire with piecewise-linear hat functions, the discrete field is continuous but has kinks at nodes. It is not twice differentiable in the classical sense — yet finite element solutions of Poisson's equation are meaningful because kinks are allowed in \(H^1\): only the **first** weak derivative must live in \(L^2\). Sobolev spaces encode exactly that level of regularity.
 
+## Story so far (Prologue & Parts I–III)
+
+| Stage | What the wire became | Key object |
+|-------|----------------------|------------|
+| Parts I–II | Function spaces \(H^1\), \(L^2\); weak forms as integration by parts | Norms, completeness, Lax–Milgram |
+| [III.1–III.2](01-strong-form.md) | Strong PDEs at points; weak forms with test functions | Bilinear form \(a(u,v)=\ell(v)\) |
+| **III.3 (here)** | Piecewise-linear \(T(x)\) with kinks at nodes | Sobolev membership: \(\nabla u \in L^2\) |
+
+The [prologue](../../prologue/00-many-scales.md) promised the weak form as a **recurring character**. Parts I–II built the room; III.1–III.2 gave it lines on stage. This chapter names the **regularity contract** FEM codes assume: conforming elements live in \(H^1\), concentrated loads live in \(H^{-1}\), and optimal \(O(h^2)\) rates need \(H^2\) on the true solution — not on the mesh field itself.
+
 ## Scene: kinks at the nodes
 
 Mesh the copper wire for steady Joule heating with ten linear bar elements. Plot the temperature: a continuous broken line, slope changing abruptly at each node, nowhere twice differentiable in the classical sense. A mathematician trained on \(C^2\) solutions might reject the picture; a finite element practitioner recognizes it as a **conforming \(H^1\)** approximation — continuous across elements, square-integrable gradient piecewise constant.

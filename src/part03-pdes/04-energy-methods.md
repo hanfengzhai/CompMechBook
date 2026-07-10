@@ -4,6 +4,15 @@ Many PDEs of mechanics are Euler–Lagrange equations of an energy functional. M
 
 Pull the copper wire in tension: in linear elasticity, equilibrium minimizes stored elastic energy minus work done by the load. Heat the wire: steady conduction minimizes a thermal dissipation functional subject to boundary data. Even when the physics is not literally "energy" (electrostatics, Darcy flow), a convex functional often lurks behind the PDE — and convexity is what makes minimizers unique and computable.
 
+## Story so far (Prologue & Parts I–III)
+
+| Stage | What the wire became | Key object |
+|-------|----------------------|------------|
+| [III.1–III.3](01-strong-form.md) | Strong and weak PDEs; \(H^1\) membership for mesh fields | Weak derivatives, Dirichlet BC in \(H^1_0\) |
+| **III.4 (here)** | Equilibrium as energy minimization | Dirichlet principle; \(\delta\Pi[u]=0\) |
+
+Part III closes by packaging every weak form from [III.2](02-weak-form.md) as a **variational statement**: find the field that minimizes (or stationarizes) an energy functional. That is the same pattern Part IV will discretize as Rayleigh–Ritz on \(V_h\) — and the same pattern Part VI will extend to nonlinear elasticity and Part IX will meet again on electron density.
+
 ## Scene: the wire finds its rest
 
 Load the copper wire in the tensile frame and hold the grip displacement fixed. Microscopically, atoms rearrange for milliseconds; macroscopically, the wire **settles** to an equilibrium shape that minimizes total potential energy — elastic stored energy minus work done by the grips. Plot energy versus a trial displacement field: the true equilibrium sits at the bottom of a bowl; perturb it slightly and the energy rises, a sign of stability.

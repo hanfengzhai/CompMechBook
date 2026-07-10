@@ -8,6 +8,16 @@ The integral form of a conservation law balances fluxes through control volume b
 
 The author's FVM notes and CFD curriculum treat 1D advection and the Sod shock tube as mandatory verification cases before advancing to 2D grids and Navier–Stokes. This chapter follows that path.
 
+## Story so far (Prologue & Parts I–V)
+
+| Stage | What the wire became | Key object |
+|-------|----------------------|------------|
+| Parts III–IV | Elliptic PDEs; FEM energy minimization on the solid | \(\mathbf{K}\mathbf{u}=\mathbf{f}\); trial functions |
+| [V.1](01-conservation-integral.md) | Conservation as integral balance on control volumes | Flux through faces; cell averages |
+| **V.2 (here)** | 1D thermal boundary layer normal to the wire | Cell updates; numerical flux at interfaces |
+
+Part IV meshed the wire for conduction inside the solid. Part V asks how heat leaves the surface into moving air — a problem governed by **flux balance**, not energy minimization. The 1D algorithm here is the clean milestone: partition a boundary-layer slice, store cell averages, balance fluxes at faces. The conjugate heat transfer handshake in [V.4](04-navier-stokes-cfd.md) will exchange these fluxes with FEM nodal temperatures.
+
 ## Scene: hot wire, cool air
 
 The copper wire from the prologue carries current; its surface runs hotter than the surrounding air. Along a one-dimensional slice through the boundary layer — distance measured normal to the wire — temperature and heat flux obey a conservation law: what enters a control volume must equal what leaves plus what accumulates. Partition that slice into cells, store **cell averages** instead of point values, and balance fluxes at interfaces.
