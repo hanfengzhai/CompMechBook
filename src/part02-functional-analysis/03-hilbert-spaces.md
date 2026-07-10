@@ -8,6 +8,17 @@ Pull the copper wire again and consider two displacement fields \(u\) and \(v\) 
 
 Clamp the wire and strike it softly: the fundamental bend and the second bend do not exchange energy arbitrarily — their displacements integrate to orthogonal patterns over the length. That decoupling is Hilbert geometry: an inner product turns mode orthogonality into a theorem, and Galerkin projection into best approximation in energy. The wire's vibration spectrum is a Hilbert-space story told before any tetrahedral mesh exists.
 
+## Story so far (Parts I–II.2)
+
+| Stage | Finite \(N\) (Part I) | Infinite limit (Parts II.1–II.2) | This chapter adds |
+|-------|----------------------|----------------------------------|-------------------|
+| State | \(\mathbf{u}\in\mathbb{R}^N\) | \(u(x)\in H^1\) | Inner product \((u,v)\); energy norm \(\|u\|_a\) |
+| Energy | \(\mathbf{u}^T\mathbf{K}\mathbf{u}\) | \(\|u\|_{H^1}^2\), strain-energy seminorm | Angles, orthogonality, best approximation |
+| Modes | \(\mathbf{K}\mathbf{v}=\lambda\mathbf{M}\mathbf{v}\) | Eigenfunctions of stiffness operator (preview) | Modal orthogonality in Hilbert space |
+| Convergence | Mesh \(N\to\infty\) without target | Banach completeness; equivalent norms | Galerkin projection is optimal in energy |
+
+[II.1](01-motivation.md) named the limit room; [II.2](02-normed-spaces.md) installed the ruler. Hilbert geometry is where **Act II — Warming** and **Act III — Pulling** share one mathematical habit — minimize a quadratic functional or solve the equivalent weak form — before Part III writes the PDEs both acts need.
+
 ## Definition
 
 An **inner product** on a real vector space \(V\) is a map \((\cdot,\cdot): V \times V \to \mathbb{R}\) such that for all \(u,v,w \in V\) and \(\alpha \in \mathbb{R}\):

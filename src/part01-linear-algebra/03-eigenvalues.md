@@ -6,6 +6,17 @@ Clamp one end of the copper wire and pull the other rhythmically: the wire does 
 
 [I.2](02-linear-maps.md) showed that the same linear map wears different matrices in different bases; eigenvectors are the **privileged basis** in which the map acts by pure scaling alone. The spring network's coupled equations become independent scalar oscillators once written in modal coordinates, and the pitches the load cell hears during **Act III — Pulling** are eigenvalues of \(\mathbf{K}\) against mass \(\mathbf{M}\) — discrete previews of the continuum spectra Part II will treat as operator eigenproblems.
 
+## Story so far (Part I)
+
+| Chapter | What the wire became | What decoupling needs next |
+|---------|---------------------|---------------------------|
+| [I.1](01-vectors-matrices.md) | \(\mathbf{K}\mathbf{u}=\mathbf{f}\) on \(N\) springs | A basis where coupled DOFs stop talking |
+| [I.2](02-linear-maps.md) | Assembly maps \(\mathbf{L}_e\); local/global frames | The intrinsic map behind every \(\mathbf{K}_N\) |
+| **I.3 (here)** | Eigenmodes; \(\mathbf{K}\mathbf{v}=\lambda\mathbf{M}\mathbf{v}\) | Spectra that survive mesh refinement |
+| [I.4](04-toward-infinity.md) (next) | \(N\to\infty\); fields replace vectors | Operators and Hilbert spaces in Part II |
+
+The [prologue](../../prologue/00-many-scales.md) promised that the same four questions recur at every scale; eigenvalues are the first time **structure** (symmetry, SPD) buys a **theorem** (orthogonal modes, real spectra) that engineers use before any continuum proof exists.
+
 ## Scene: the wire hums at one pitch
 
 Tap the clamped copper wire and listen: it rings at a handful of distinct frequencies, not a continuous blur. Each pitch is an eigenmode — a pattern of motion along the length that repeats in phase at its own rate. Modal analysis is how we predict which frequencies will fatigue the wire at a fastener and which a damping pad can suppress. The spring-network matrices from Part I carry those pitches in their spectra long before any continuum model is written down.

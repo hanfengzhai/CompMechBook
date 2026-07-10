@@ -8,6 +8,17 @@ Resume the tensile test where Part VI left it — load increasing, stress beyond
 
 A DDD simulation represents that forest as a network of segments, each feeling Peach–Köhler forces from external load and from every other segment. Timestep by timestep, the network evolves; the accumulated obstacle strength passes upward as a **hardening law** for crystal plasticity and, eventually, for continuum FEM. This scene is why Part VII exists: the wire's cold-drawn strength and its post-yield curve are **histories written in line defects**, not numbers we may choose arbitrarily at the continuum scale.
 
+## Story so far (Parts I–VI → VII)
+
+| Part | What the load cell saw | What Part VII now resolves |
+|------|------------------------|---------------------------|
+| I–IV | Linear elastic climb; \(\mathbf{K}\mathbf{u}=\mathbf{f}\) | Stiffness before yield; mesh habits unchanged |
+| VI | J₂ plasticity; hardening modulus \(H\) | \(H\) hides in dislocation density \(\rho\) and link statistics |
+| VII.1 | Taxonomy: point, line, surface defects | Which defect class carries each phenomenological knob |
+| **VII.2 (here)** | Post-yield bend in **Act IV — Hardening** | Moving segments, not fitted Voce slopes alone |
+
+The [prologue](../../prologue/00-many-scales.md) table promised that **upward export** at every scale carries units and pedigree; DDD's export is \(\tau(\gamma)\) and \(\rho(\gamma)\) — internal variables a crystal plasticity or FEM run can consume only if mobility and elastic constants from Parts VIII–IX are archived with convergence logs.
+
 ## From elasticity to line defects
 
 In Part VI, equilibrium satisfied a virtual work equation with smooth displacement fields. Dislocations introduce **topological** content: the displacement field is multi-valued, and the Burgers vector \(\mathbf{b}\) quantifies the jump. DDD replaces the singular continuum field with a **discrete network** of line segments, each carrying \(\mathbf{b}\) and a line direction \(\boldsymbol{\xi}\).

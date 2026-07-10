@@ -190,17 +190,17 @@ Return to the prologue's **Act II — Warming**: current switched on, the wire s
 
 Part III's weak forms minimized energy on trial spaces; FVM **balances fluxes** on control volumes — the discretization philosophy Part IV's elliptic FEM does not automatically guarantee for advection.
 
-| Prologue act | Conservation object on the wire | FEM partner at the interface |
-|--------------|--------------------------------|------------------------------|
-| II — Warming | Enthalpy flux from air to wire surface | FEM Robin BC / wall temperature handshake |
-| III — Pulling (preview) | Momentum flux in cooling jet | Solid traction BC from Part IV |
-| V — Notch (preview) | Shock-capturing if flow separates | Stress concentrator in solid mesh |
-| VI — Foundation (preview) | Same integral contract from shock tubes to CFD | Shared \(\boldsymbol{\sigma}\mathbf{n}\) language in Part VI |
-
-Turn the page when the integral balance is clear but no cell-averaged update exists yet — that is the signal that conservation wants a mesh of volumes, not a mesh of trial functions.
+| Prologue act | Conservation object on the wire | FEM partner at the interface | Proof style |
+|--------------|--------------------------------|------------------------------|-------------|
+| II — Warming | Enthalpy flux from air to wire surface | FEM Robin BC / wall temperature handshake | Céa energy norm (Part IV) + exact flux balance (Part V) |
+| III — Pulling (preview) | Momentum flux in cooling jet | Solid traction BC from Part IV | Shared \(\boldsymbol{\sigma}\mathbf{n}\) in Part VI |
+| V — Notch (preview) | Shock-capturing if flow separates | Stress concentrator in solid mesh | Limiters + CFL, not finer \(\Delta x\) alone |
+| VI — Foundation (preview) | Same integral contract from shock tubes to CFD | Shared \(\boldsymbol{\sigma}\mathbf{n}\) language in Part VI | Conservation as multiscale handshake habit |
 
 | Part IV FEM artifact | Part V FVM counterpart | Interface handshake |
 |---------------------|------------------------|---------------------|
 | Nodal temperature \(T_i\) | Cell-average enthalpy \(\bar{h}_j\) | Wall Robin BC / flux matching |
 | \(\mathbf{K}_T \mathbf{T}=\mathbf{q}\) | Face flux sum \(\sum_f F_f A_f\) | Conjugate heat transfer loop |
 | Energy norm convergence (Céa) | Discrete conservation + CFL stability | Same wire, complementary proofs |
+
+Turn the page when the integral balance is clear but no cell-averaged update exists yet — that is the signal that conservation wants a mesh of volumes, not a mesh of trial functions.

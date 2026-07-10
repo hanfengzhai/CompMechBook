@@ -168,17 +168,11 @@ Return to the [prologue](../../prologue/00-many-scales.md): **Act I — Mounting
 
 The eigenvectors of \(\mathbf{K}\) (with appropriate mass weighting) are standing-wave patterns on the mesh; their eigenvalues are squared natural frequencies. Part I's opening [**concept map**](00-opening.md#the-concept-map) asked what breaks if structure is missing — here, rank deficiency signals rigid-body modes the grips must remove. [I.3](03-eigenvalues.md) makes decoupling explicit before [I.4](04-toward-infinity.md) sends \(N\to\infty\) and Part II names the operator behind every assembled matrix.
 
-| Prologue act | Coordinate languages on the wire | What this chapter's maps must get right |
-|--------------|----------------------------------|----------------------------------------|
-| I — Mounting | Grip DOF vs. element local axes | \(\mathbf{L}_e^T \mathbf{k}_e \mathbf{L}_e\) scatter without double counting |
-| II — Warming (preview) | Nodal \(T\) vs. quadrature-point gradients | Jacobian of the isoparametric map in every conductivity integral |
-| III — Pulling (preview) | Global \(\mathbf{U}\) vs. bar axial stretch | Rotation \(\mathbf{R}(\theta)\) for off-axis members |
+| Prologue act | Coordinate languages on the wire | What this chapter's maps must get right | Failure mode if wrong |
+|--------------|----------------------------------|----------------------------------------|----------------------|
+| I — Mounting | Grip DOF vs. element local axes | \(\mathbf{L}_e^T \mathbf{k}_e \mathbf{L}_e\) scatter without double counting | Wire stretches when only one grip moves |
+| II — Warming (preview) | Nodal \(T\) vs. quadrature-point gradients | Isoparametric Jacobian in every conductivity integral | Wrong heat flux at quadrature points |
+| III — Pulling (preview) | Global \(\mathbf{U}\) vs. bar axial stretch | Rotation \(\mathbf{R}(\theta)\) for off-axis members | Nonsymmetric \(\mathbf{K}\) from transposed connectivity |
+| VII — Texture (preview) | Crystal frame vs. sample frame for \(\mathbb{C}\) | Same change-of-basis habit on anisotropic stiffness | Texture misaligned with mesh axes |
 
 Turn the page when assembly feels like bookkeeping rather than geometry — eigenvalues are the coordinate system in which the map tells its simplest story.
-
-| Prologue act | What I.2's maps enable downstream | Failure mode if coordinates disagree |
-|--------------|-----------------------------------|--------------------------------------|
-| I — Mounting | \(\mathbf{L}_e^T \mathbf{k}_e \mathbf{L}_e\) scatter without double counting | Wire stretches when only one grip moves |
-| II — Warming (preview) | Isoparametric Jacobian in conductivity integrals | Wrong heat flux at quadrature points |
-| III — Pulling (preview) | Global \(\mathbf{U}\) vs. bar axial stretch | Nonsymmetric \(\mathbf{K}\) from transposed connectivity |
-| VII — Foundation (preview) | Crystal frame to sample frame for \(\mathbb{C}\) | Texture misaligned with mesh axes |
