@@ -1,5 +1,7 @@
 # From Poisson to Elasticity
 
+[IV.3](03-elements-quadrature.md) named the machinery inside every element integral — shape functions, isoparametric Jacobians, quadrature rules — and showed why conforming P1 elements on the copper wire's mesh are the honest first discretization for both heat and displacement. [IV.2](02-galerkin-assembly.md) already assembled scalar \(\mathbf{K}\mathbf{T}=\mathbf{q}\) for Joule heating during **Act II — Warming**. This chapter carries the **same assembly loop** to vector unknowns: block stiffness from \(\mathbb{C}:\boldsymbol{\varepsilon}(\mathbf{v})\), traction integrals on Neumann boundaries, and the tensile specimen whose load cell trace **Act III — Pulling** will measure.
+
 Poisson's equation taught us the FEM pipeline: weak form, shape functions, assembly, solve. Linear elasticity is not a new method — it is the same pipeline with vector-valued fields, tensor constitutive laws, and a bilinear form built from strain rather than gradient.
 
 The copper wire under tension illustrates the transition cleanly. Steady Joule heating gives a scalar temperature field governed by \(-\Delta T = q\); mechanical loading gives a vector displacement field governed by \(-\nabla\cdot\boldsymbol{\sigma} = \mathbf{f}\). Both problems assemble into \(\mathbf{K}\mathbf{U} = \mathbf{F}\). The difference is in the size of \(\mathbf{U}\), the block structure of \(\mathbf{K}\), and the physical meaning of the entries.
@@ -214,3 +216,9 @@ Return to the [prologue](../../prologue/00-many-scales.md): **Act III** ramps gr
 | V — Notch (preview) | Refined mesh at stress concentrator | A posteriori estimators and adaptive \(h\)-refinement |
 
 Turn the page when patch tests pass but the grip displacement still changes when you halve \(h\) — that is the signal that convergence theory, not intuition, must certify the answer.
+
+| Scalar Poisson (prior chapters) | Vector elasticity (this chapter) | Same wire, two fields |
+|--------------------------------|----------------------------------|----------------------|
+| \(\int k\nabla T\cdot\nabla v\) | \(\int \mathbb{C}:\boldsymbol{\varepsilon}(\mathbf{u}):\boldsymbol{\varepsilon}(\mathbf{v})\) | Joule heat + tension |
+| Dirichlet \(T\) on grips | Displacement \(\mathbf{u}\) on grips | Act II + Act III on one mesh |
+| Scalar P1 elements | Vector P1 (3 DOFs/node in 3D) | Block sparsity pattern |

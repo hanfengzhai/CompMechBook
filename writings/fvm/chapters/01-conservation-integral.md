@@ -1,5 +1,7 @@
 # Integral Forms of Conservation Laws
 
+[IV.5](../fem/chapters/05-convergence.md) closed Part IV with Céa's lemma — proof that the Galerkin mesh converges to the weak solution Part II promised — and offered **Door A** to this part: when the thermocouple climbs and Robin fluxes at the wire surface feel like placeholders, the surrounding air needs its own discretization. Part IV meshed conduction **inside** the solid; Part V begins **outside** it, with a different philosophy that respects the same physics.
+
 Where FEM whispers "multiply by a test function and integrate by parts," FVM declares "integrate the conservation law over a control volume and balance fluxes." Both respect the same physics; the bookkeeping differs. Part III wrote PDEs in strong form; Part IV discretized elliptic operators with trial functions. Part V begins with the form that hyperbolic and conservation-law physics prefer: **integral balance** on control volumes.
 
 The copper wire reappears in a different guise. Solid mechanics on the wire still favors FEM, but imagine air cooling the heated specimen, or a shock tube test validating a CFD code before it simulates that cooling jet. Those flows are governed by conservation of mass, momentum, and energy — laws that make sense even when the pointwise PDE breaks down at shocks.
@@ -196,3 +198,9 @@ Part III's weak forms minimized energy on trial spaces; FVM **balances fluxes** 
 | VI — Foundation (preview) | Same integral contract from shock tubes to CFD | Shared \(\boldsymbol{\sigma}\mathbf{n}\) language in Part VI |
 
 Turn the page when the integral balance is clear but no cell-averaged update exists yet — that is the signal that conservation wants a mesh of volumes, not a mesh of trial functions.
+
+| Part IV FEM artifact | Part V FVM counterpart | Interface handshake |
+|---------------------|------------------------|---------------------|
+| Nodal temperature \(T_i\) | Cell-average enthalpy \(\bar{h}_j\) | Wall Robin BC / flux matching |
+| \(\mathbf{K}_T \mathbf{T}=\mathbf{q}\) | Face flux sum \(\sum_f F_f A_f\) | Conjugate heat transfer loop |
+| Energy norm convergence (Céa) | Discrete conservation + CFL stability | Same wire, complementary proofs |

@@ -1,5 +1,7 @@
 # Galerkin's Method and Global Assembly
 
+[IV.1](01-weighted-residuals.md) posed the operational question Part III deferred: given a weak form, how do we approximate the solution on a mesh? Weighted residuals answered with a family of methods; Galerkin chose test functions from the same space as trials — the orthogonal projection of the true solution onto \(V_h\) in the energy inner product Part II named. This chapter is where that projection becomes **code**: loop over elements, form local contributions, scatter into global sparse structure.
+
 Weighted residuals gave us the logic: enforce \(\int r\, w_i = 0\) for chosen weights. Galerkin chose \(w_i = \phi_i\). The finite element method chooses the \(\phi_i\) to be local, piecewise-polynomial **shape functions** on a mesh. What remains is the algorithm that every FEM code shares — from a twenty-line Matlab script for a homework bar problem to Abaqus assembling a million-element turbine disk.
 
 That algorithm is **global assembly**: loop over elements, compute local contributions, scatter into a global sparse matrix. It is structured linear algebra — the change-of-basis story from Part I, executed millions of times with a sparsity pattern dictated by mesh connectivity.
@@ -193,3 +195,9 @@ Return to the [prologue](../../prologue/00-many-scales.md): **Act III — Pullin
 | VI — Foundation (preview) | Mass matrix \(\mathbf{M}\) for dynamics | Part I eigenmodes; Part II spectral theory |
 
 Turn the page when assembly feels like bookkeeping but the stress contour still jumps between meshes — the fault is usually element order or quadrature, not the scatter loop.
+
+| Prologue act | Assembly output | Next chapter's element question |
+|--------------|-----------------|--------------------------------|
+| II — Warming | Thermal \(\mathbf{K}_T\), \(\mathbf{f}_q\) | P1 triangles vs. quadrature on \(\int k\|\nabla T\|^2\) |
+| III — Pulling | Mechanical \(\mathbf{K}\), \(\mathbf{f}\) | Block \(\mathbf{B}^T\mathbb{C}\mathbf{B}\) at Gauss points |
+| IV — Hardening (preview) | Same mesh, evolving \(\mathbb{C}\) | Anisotropic texture from cold-drawn wire |

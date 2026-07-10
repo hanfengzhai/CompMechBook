@@ -1,5 +1,7 @@
 # Variational Elasticity and Nonlinear Extensions
 
+[VI.2](02-stress-balance.md) named the forces that kinematics alone could not supply — Cauchy stress, Piola–Kirchhoff stress, balance laws that constrain how stress varies in space and time. Parts III and IV already solved the discrete shadow of those laws as \(\mathbf{K}\mathbf{U}=\mathbf{F}\); this chapter explains **why** that linear system is the first variation of an energy functional, and when the energy picture survives load increments versus when history and defects force a different story.
+
 Static equilibrium of an elastic body is equivalent to minimizing total potential energy — or finding a saddle point when constraints appear. This is where continuum theory and FEM meet on equal footing: the weak form Part III derived is the first variation of an energy; the assembly loop Part IV implemented is Rayleigh–Ritz on that energy.
 
 The copper wire under tension minimizes (or rather, stationarizes) elastic energy stored in its stretched atomic lattice — a minimization FEM approximates on a mesh. When the load exceeds yield, minimization gives way to incremental variational inequalities; when deformation grows large, the energy depends on \(\mathbf{F}\), not \(\boldsymbol{\varepsilon}\). This chapter walks that path.
@@ -220,3 +222,9 @@ Return to the [prologue](../../prologue/00-many-scales.md): **Act III** measured
 | V — Notch | Concentrated energy at a scratch | Finite-strain and damage force descent to Part VII |
 
 Turn the page when the wire's stress–strain curve bends upward after cold drawing but your elastic energy minimization still returns a straight line — that is the signal history and mesoscale defects have entered the story.
+
+| Energy picture (this chapter) | Where it stops being enough | Part that continues the plot |
+|------------------------------|----------------------------|------------------------------|
+| Quadratic \(\psi(\boldsymbol{\varepsilon})\) | Yield and path dependence | [VI.4](04-nonlinear-plasticity-preview.md) |
+| Path-independent hyperelasticity | Dislocation forest from cold work | [Part VII](../part07-defects/00-opening.md) |
+| Virtual work \(\delta\Pi=0\) | Atomistic nucleation at a notch | [Part VIII](../part08-md/00-opening.md) |

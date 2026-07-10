@@ -1,5 +1,7 @@
 # Linear Maps, Bases, and Change of Coordinates
 
+[I.1](01-vectors-matrices.md) reduced the copper wire to \(\mathbf{K}\mathbf{u}=\mathbf{f}\) — equilibrium as a linear system, energy as \(\mathbf{u}^T\mathbf{K}\mathbf{u}\), sparsity from local spring coupling. That chapter treated \(\mathbf{K}\) as a finished object. This chapter asks the question assembly codes answer every day: **how does a local stiffness become a global matrix**, and why does the answer depend on which coordinate system we write it in?
+
 A matrix is not merely a table of numbers. It is a **linear map** expressed in a particular basis. Change the basis and the matrix changes; the map itself does not. This distinction — coordinate representation versus intrinsic object — runs through every scale of computational mechanics.
 
 When we mesh the copper wire for a tensile test, each bar element has a **local** coordinate system aligned with the element axis. The global displacement vector lives in a **global** basis tied to node numbering. Assembly is the book-keeping that says: "this local degree of freedom is global degree of freedom 17." That book-keeping is a linear map.
@@ -173,3 +175,10 @@ The eigenvectors of \(\mathbf{K}\) (with appropriate mass weighting) are standin
 | III — Pulling (preview) | Global \(\mathbf{U}\) vs. bar axial stretch | Rotation \(\mathbf{R}(\theta)\) for off-axis members |
 
 Turn the page when assembly feels like bookkeeping rather than geometry — eigenvalues are the coordinate system in which the map tells its simplest story.
+
+| Prologue act | What I.2's maps enable downstream | Failure mode if coordinates disagree |
+|--------------|-----------------------------------|--------------------------------------|
+| I — Mounting | \(\mathbf{L}_e^T \mathbf{k}_e \mathbf{L}_e\) scatter without double counting | Wire stretches when only one grip moves |
+| II — Warming (preview) | Isoparametric Jacobian in conductivity integrals | Wrong heat flux at quadrature points |
+| III — Pulling (preview) | Global \(\mathbf{U}\) vs. bar axial stretch | Nonsymmetric \(\mathbf{K}\) from transposed connectivity |
+| VII — Foundation (preview) | Crystal frame to sample frame for \(\mathbb{C}\) | Texture misaligned with mesh axes |

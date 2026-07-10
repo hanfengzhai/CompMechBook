@@ -317,6 +317,12 @@ The ladder ends here, but the references do not — and the copper wire does not
 | [Final Memory Sheet](../appendix/memory-sheet.md) | Book-wide habits and traps in the ME 412 concept-map style |
 | [Glossary](../appendix/glossary.md) | Cross-scale index when \(\mathbf{K}\) becomes an operator, then a bilinear form, then \(\mathbb{C}\) |
 
+| Reading order (Parts I → IX) | Workflow order (Acts VI → I) | What reunites them |
+|------------------------------|------------------------------|-------------------|
+| Grammar before multiphysics | Foundation before mounting | [Lab act reunion](#lab-act-reunion-six-acts-one-afternoon) |
+| Descent after continuum | DFT before FEM input deck | Export tables with archived convergence logs |
+| Weak form before electrons | Parameters before load ramp | Four questions at every interface |
+
 Return to the [**Lab act reunion**](#lab-act-reunion-six-acts-one-afternoon) whenever workflow order and reading order disagree: **Act VI** supplies the numbers; **Acts I–V** spend them on the same afternoon. Part I began with \(\mathbf{K}\mathbf{u}=\mathbf{f}\) on a spring chain; Part IX ended with SCF on \(\rho(\mathbf{r})\); this epilogue is the handshake that makes both ends of the ladder talk without unit mistakes or unconverged exports.
 
 When `Writings.git` is linked, canonical chapter markdown lives under `writings/` in the Functional Analysis Notes layout; run `./scripts/sync-writings.sh` after upstream edits to refresh this book.

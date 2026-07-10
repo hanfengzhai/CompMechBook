@@ -1,5 +1,7 @@
 # Compactness and the Spectral Theorem
 
+[II.4](04-operators-duality.md) named stiffness as a bounded operator, loads as elements of the dual \(H^*\), and weak convergence as the limit behavior norms alone miss — the vocabulary Part III needs when concentrated forces and oscillatory residuals appear at grip corners. This chapter closes Part II by asking what happens when that operator is **self-adjoint and compact**: eigenvalues become real, eigenmodes become orthogonal, and the discrete spectra from Part I's spring network acquire a continuum limit worth trusting.
+
 Eigenvalues decouple finite-dimensional vibration problems. A symmetric stiffness matrix diagonalizes in orthonormal modes; each mode oscillates at its own frequency, independently of the others. The **spectral theorem** for self-adjoint operators on Hilbert spaces is the same story without a fixed matrix size. It governs the normal modes of a copper wire, the buckling loads of a slender column, the diffusion rates of heat along that wire, and the convergence of finite element eigenvalues as the mesh refines. Part II has built the spaces, the inner products, and the compactness that make this theorem true. Here we state it, apply it, and hand the toolkit to Part III.
 
 ## Scene: the wire sings
@@ -214,3 +216,10 @@ The [prologue](../../prologue/00-many-scales.md) named the weak form a **recurri
 | VI — Foundation (preview) | Phonon frequencies feeding MD and elasticity | Same eigenvalue loop, now on atomic cells from Part IX |
 
 Part I's discrete eigenmodes on the spring chain were the finite-dimensional rehearsal of this chapter's spectral theorem. Part III will write the PDEs whose eigenfunctions those modes approximate as \(h \to 0\). Turn the page when modal analysis on a mesh still feels like linear algebra with extra steps — strong forms first: what the blackboard demands at every point, and where that demand breaks.
+
+| Part II chapter | Operator vocabulary on the wire | Part III chapter that uses it |
+|-----------------|--------------------------------|------------------------------|
+| II.2 Normed spaces | \(\|u\|_{H^1}\), completeness | III.3 Sobolev spaces |
+| II.3 Hilbert spaces | Lax–Milgram, Galerkin orthogonality | III.2 Weak form, III.4 Energy methods |
+| II.4 Operators/duality | Dual loads, weak convergence | III.2 Point forces as \(\ell \in H^{-1}\) |
+| II.5 Spectral theorem (here) | Normal modes, Rayleigh quotients | III.1 Heat/wave eigenstructure |

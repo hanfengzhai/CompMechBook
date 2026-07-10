@@ -214,6 +214,13 @@ Turn the page. The copper wire is waiting — first as vectors and matrices, eve
 | Weak form as recurring character (preview only) | Nodal equilibrium as finite-dimensional prelude; \(N\to\infty\) deferred to I.4 |
 | One specimen, many scales | Same wire as \(N\) coupled springs — the discrete shadow every mesh refines |
 
+| Vocabulary at prologue scale | First finite-dimensional home (Part I) | Limit object (Parts II–III preview) |
+|------------------------------|------------------------------------------|-------------------------------------|
+| State | Nodal vector \(\mathbf{u}\) | Field \(u(x)\) in \(H^1\) |
+| Equations | \(\mathbf{K}\mathbf{u}=\mathbf{f}\) | Weak form \(a(u,v)=\ell(v)\) |
+| Discretization | Assembly scatter maps \(\mathbf{L}_e\) | Galerkin on \(V_h \subset H^1\) |
+| Upward export | Moduli from calibration fit | Convergent limit as \(h\to 0\) |
+
 Part I opens with [**Closing the arc from the Prologue**](../part01-linear-algebra/00-opening.md#closing-the-arc-from-the-prologue) — the same four questions replayed in finite-dimensional vocabulary before Part II replaces vectors with functions. Read the prologue's panoramic ladder once; then let Part I make the bottom rung explicit in the syntax every simulation shares.
 
 The [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) organize each part as a **concept map** — object, structure, theorem, failure mode — with representative schematics at every opening. This book inherits that layout so the copper wire story and the ME 412 roadmap read as one continuous text: when a chapter feels abstract, ask which act you are in, which of the four questions it answers, and what breaks if the structure named in the concept map is missing.
