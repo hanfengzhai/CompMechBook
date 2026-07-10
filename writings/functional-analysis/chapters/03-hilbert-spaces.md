@@ -215,6 +215,13 @@ Hilbert spaces give us angles, projections, and representations of loads. The ne
 | Riesz representation of loads \(\ell(v)=(f,v)\) | Dual spaces \(H^*\); point forces as functionals, not \(L^2\) functions |
 | Céa's lemma: best approximation in energy | Compact embeddings \(H^1 \hookrightarrow L^2\); Aubin–Nitsche preview |
 
-Return to the [prologue](../../prologue/00-many-scales.md): **Act II — Warming** turns on current through the copper wire, and the temperature field \(T(x)\) that Joule heating creates is not a vector in \(\mathbb{R}^N\) — it is an element of \(H^1\) whose gradient square-integrates. Lax–Milgram and Riesz in this chapter are why a mesh of piecewise linears can approximate that field without demanding classical \(C^2\) smoothness at the thermocouple weld. Part I's energy \(\mathbf{u}^T\mathbf{K}\mathbf{u}\) reappears here as \(\|u\|_a^2 = a(u,u)\); Part IV's assembly will be the Gram matrix of the same bilinear form restricted to \(V_h\).
+Return to the [prologue](../../prologue/00-many-scales.md): **Act II — Warming** turns on current through the copper wire, and the temperature field \(T(x)\) that Joule heating creates is not a vector in \(\mathbb{R}^N\) — it is an element of \(H^1\) whose gradient square-integrates. **Act III — Pulling** will ramp grip displacement on the same specimen; the axial displacement \(u(x)\) lives in the same Hilbert room with a different bilinear form. Lax–Milgram and Riesz in this chapter are why a mesh of piecewise linears can approximate both fields without demanding classical \(C^2\) smoothness at the thermocouple weld or grip corner. Part I's energy \(\mathbf{u}^T\mathbf{K}\mathbf{u}\) reappears here as \(\|u\|_a^2 = a(u,u)\); Part IV's assembly will be the Gram matrix of the same bilinear form restricted to \(V_h\).
+
+| Act on the wire | Field in \(H^1\) | Energy norm in this chapter |
+|-----------------|------------------|-----------------------------|
+| II — Warming | Temperature \(T(x)\) | \(\int (T')^2\) from Fourier conduction |
+| III — Pulling | Axial displacement \(u(x)\) | \(\int (EA u'^2)\) from elastic strain energy |
+
+The two acts share one mathematical habit: minimize a quadratic functional (or solve the equivalent weak form) in a complete inner-product space. Part III will write the PDEs both acts need; Part IV will discretize them on the same P1 elements with the same quadrature loop.
 
 [II.2](02-normed-spaces.md) measured size; this chapter added **angles** — orthogonality, projection, and the representation theorem that turns loads into inner products. [II.4](04-operators-duality.md) names the maps between Hilbert spaces: stiffness as an operator, loads in the dual, weak convergence when norms alone miss oscillations. Turn the page when projection feels geometric but the word "operator" still sounds abstract — that is the signal Hilbert space is ready to host matrices that never fit in \(\mathbb{R}^{N \times N}\).

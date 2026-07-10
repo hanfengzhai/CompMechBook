@@ -161,6 +161,19 @@ These notes represent the author's understanding of the material and are intende
 
 The preface is the table of contents in prose. The **prologue** is the first scene: one copper wire, many scales, and the four questions — state, equations, discretization, upward export — that every chapter will answer in its own language. Read it before Part I if you want the plot before the grammar; read it after Part VI if you prefer to meet the wire first as a meshed solid and then learn why the mesh had to exist.
 
+The prologue's **six-act lab session** is the dramatic spine the parts follow — not in strict reading order, but as recurring beats you will recognize in every Bridge:
+
+| Act | Lab moment | Where the book teaches it |
+|-----|------------|---------------------------|
+| **I — Mounting** | Grips close; load cell zeros | Part I: first \(\mathbf{K}\mathbf{u}=\mathbf{f}\) |
+| **II — Warming** | Current on; thermocouple climbs | Parts III–V: PDEs, FEM conduction, FVM convection |
+| **III — Pulling** | Displacement ramps; linear elastic climb | Parts II–IV, VI: function spaces, Galerkin, Cauchy stress |
+| **IV — Hardening** | Curve bends; slip lines appear | Part VII: dislocations and Taylor hardening |
+| **V — Notch** | Stress concentration; optional crack | Parts VI, VIII: continuum regularization, MD nucleation |
+| **VI — Foundation** | Parameters in every input deck | Parts IX → VIII → VII: DFT, EAM fit, mobility tables |
+
+**Reading order** (Parts I → IX) teaches grammar before multiphysics and descent before audit. **Workflow order** (Act VI before Act I) is how practitioners actually build input decks. Both orders are valid; the [epilogue](../epilogue/multiscale.md#lab-act-reunion-six-acts-one-afternoon) reunites them. When a chapter feels abstract, ask which act you are in and which of the four questions that chapter answers for the same piece of copper.
+
 Turn the page when ready. The ladder begins with a specimen under tension and a question that will not go away: *what is the minimal description at this scale, and what do we pass to the scale above?*
 
 ---

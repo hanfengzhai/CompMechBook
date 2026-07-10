@@ -204,6 +204,14 @@ Verlet integrators and NVT/NPT ensembles make classical MD a controlled experime
 | Reproducibility checklist (cutoff, \(\Delta t\), drift) | Coarse-graining: export \(C_{ij}\), \(\gamma_{\text{sf}}\), mobility to Part VII |
 | Time-scale gap (creep, rare events) | Handoff table linking Part VIII exports to Part IV/VII consumers |
 
-Return to the [prologue](../../prologue/00-many-scales.md): the wire's strength at the engineering scale still depends on a potential someone fit from quantum data. Part VII's dislocations move on surfaces MD integrates; Part IV's elastic step uses moduli MD or DFT averaged over a polycrystal. [VIII.3](03-ab-initio-and-coarse-graining.md) is the **export chapter** — the rung where atomistics stops being a standalone movie and becomes input for coarser models, while naming what only Part IX can re-derive from \(\rho(\mathbf{r})\).
+Return to the [prologue](../../prologue/00-many-scales.md): **Act IV — Hardening** bent the load cell curve because dislocation lines moved on a potential surface whose parameters were fit at laboratory temperature — the NVT and NPT ensembles named in this chapter are how that temperature enters the simulation, not as a comment line in an input deck. **Act V — Notch** concentrates stress where continuum meshes regularize singularities; MD's representative volume at the notch root is the atomistic witness those regularized fields cannot supply alone.
 
-Turn the page when the EAM curve matches experiment in bulk but fails at the notch root — that is the signal to audit the potential against electronic structure.
+**Act VI — Foundation** runs offline before any grip closes: DFT bulk energies, EAM fits, mobility tables. Part VII's dislocations move on surfaces MD integrates; Part IV's elastic step uses moduli MD or DFT averaged over a polycrystal. [VIII.3](03-ab-initio-and-coarse-graining.md) is the **export chapter** — the rung where atomistics stops being a standalone movie and becomes input for coarser models, while naming what only Part IX can re-derive from \(\rho(\mathbf{r})\).
+
+| Prologue act | What VIII.2 makes computable | What VIII.3 exports upward |
+|--------------|------------------------------|----------------------------|
+| IV — Hardening | NVT shear at 300–600 K for drag and cross-slip statistics | Mobility \(M(\tau,T)\) tables for OpenDiS |
+| V — Notch | Stable Verlet trajectories at the stress concentrator | Nucleation barriers and cohesive response |
+| VI — Foundation | Reproducible LAMMPS decks with documented drift | \(C_{ij}\), \(\gamma_{\text{sf}}\), EAM parameters for FEM and DDD |
+
+Turn the page when the EAM curve matches experiment in bulk but fails at the notch root — that is the signal to audit the potential against electronic structure in Part IX.

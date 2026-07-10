@@ -113,4 +113,11 @@ Part II ended with a promise: the copper wire's displacement and temperature liv
 
 The first chapter below writes **strong forms** — what the blackboard demands at every point — and names where classical \(C^2\) smoothness fails on the wire's grip corner, insulator interface, and mid-span load. That failure is not a bug in the physics; it is the plot hinge the prologue's recurring character has been walking toward since Part I's nodal balance laws. [III.2](02-weak-form.md) gives the character its first lines; [III.4](04-energy-methods.md) closes the analytical pipeline before FEM and FVM turn weak forms into code.
 
+| Prologue act | Strong form on the wire | Weak form destination in this part |
+|--------------|-------------------------|-------------------------------------|
+| II — Warming | \(-k\Delta T = q\) with Joule source \(q\) | Steady heat in \(H^1\); natural BC at the air interface |
+| III — Pulling | \(-\nabla\cdot(EA\nabla u) = f\) axial elasticity | Virtual work in \(H^1_0\) on the tensile bar |
+
+Both acts share one pipeline: strong form for intuition, weak form for computation, energy method for existence. Part IV will discretize the same weak statements on P1 elements; Part V will discretize the fluid-side heat equation on control volumes when conjugate transfer couples Act II to the air around the wire.
+
 Turn the page when you are ready to see where pointwise PDEs break — and why the weak form is the correct continuum statement, not a numerical convenience.
