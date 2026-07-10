@@ -207,4 +207,10 @@ Part III applies this toolkit to **partial differential equations** directly. We
 
 The [prologue](../../prologue/00-many-scales.md) named the weak form a **recurring character** — born here as integration by parts, destined to become Galerkin assembly in Part IV, virtual work in Part VI, and a variational statement on electron density in Part IX. Part II built the room that character speaks in: \(H^1\) for admissible fields, dual spaces for concentrated loads, compact embeddings so Galerkin projections have targets. Part III is the act where the character first has lines on stage: multiply by a test function, integrate by parts, and ask whether internal and external virtual work balance for every admissible virtual displacement. The copper wire at the grip corner — where Part III opens — is where that character stops pretending every field is \(C^2\).
 
-Turn the page. Strong forms first: what the blackboard demands at every point, and where that demand breaks.
+| Prologue act | Spectral object on the wire | Part II theorem that certifies it |
+|--------------|----------------------------|-----------------------------------|
+| II — Warming | Thermal modes of the 1D rod; decay rates of Fourier harmonics | Self-adjoint heat operator; Rayleigh quotients for \(T(x)\) |
+| III — Pulling | Axial vibration modes before plasticity | Stiffness operator on \(H^1_0\); Galerkin eigenvalue convergence |
+| VI — Foundation (preview) | Phonon frequencies feeding MD and elasticity | Same eigenvalue loop, now on atomic cells from Part IX |
+
+Part I's discrete eigenmodes on the spring chain were the finite-dimensional rehearsal of this chapter's spectral theorem. Part III will write the PDEs whose eigenfunctions those modes approximate as \(h \to 0\). Turn the page when modal analysis on a mesh still feels like linear algebra with extra steps — strong forms first: what the blackboard demands at every point, and where that demand breaks.

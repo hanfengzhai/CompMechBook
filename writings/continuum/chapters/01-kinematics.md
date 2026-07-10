@@ -188,4 +188,12 @@ Kinematics names the geometric objects — \(\mathbf{F}\), \(\boldsymbol{\vareps
 
 Return to the prologue's **Act III — Pulling**: grip displacement ramps, and the load cell records force. Parts IV and V already computed temperature and flux fields on their respective meshes; Part IV assembled nodal displacements from shape functions. This chapter explains **what those numbers mean geometrically** — axial stretch \(\lambda = 1 + u'/L\), lateral contraction from \(\nu\), and the finite-strain objects that nonlinear extensions in [VI.4](04-nonlinear-plasticity-preview.md) require. The \(B\)-matrix in every FEM code is the discrete shadow of \(\boldsymbol{\varepsilon}(\mathbf{u})\) defined here; the FVM velocity field in the cooling air is the rate counterpart \(\mathbf{D}\).
 
-The next chapter completes the continuum picture: Cauchy stress, Piola–Kirchhoff stress, conservation of mass and momentum, and constitutive relations that FEM and FVM discretize. Turn the page when displacement fields need a stress conjugate — kinematics without balance is geometry without physics.
+| Prologue act | Mesh output from Parts IV–V | Continuum object named here |
+|--------------|----------------------------|-----------------------------|
+| II — Warming | Nodal temperatures; enthalpy flux at the wall | Thermal strain \(\alpha\Delta T\); volumetric \(J\) from heating |
+| III — Pulling | Nodal \(\mathbf{U}\); axial force from \(\mathbf{K}\mathbf{U}=\mathbf{F}\) | \(\mathbf{F}\), \(\boldsymbol{\varepsilon}\), axial stretch \(\lambda\) |
+| V — Notch (preview) | Refined mesh at stress concentrator | Finite-strain \(\mathbf{E}\) where \(\|\nabla\mathbf{u}\|\) is no longer small |
+
+[I.2](../part01-linear-algebra/02-linear-maps.md) taught change of basis on elements; [III.2](../part03-pdes/02-weak-form.md) wrote virtual work in test functions; this chapter is where those habits acquire **tensor names** on the same copper wire. [VI.2](02-stress-balance.md) completes the picture with Cauchy stress, Piola–Kirchhoff stress, and balance laws that FEM and FVM discretize.
+
+Turn the page when displacement fields need a stress conjugate — kinematics without balance is geometry without physics.

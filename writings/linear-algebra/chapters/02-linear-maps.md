@@ -6,7 +6,9 @@ When we mesh the copper wire for a tensile test, each bar element has a **local*
 
 ## Scene: two languages for the same grip load
 
-The tensile frame displays grip displacement in millimeters; the finite element deck stores it as degree of freedom 1. The bar element on the wire axis has its own local axis; the global stiffness matrix sees a completely different numbering. Same physics, three coordinate systems. Assembly is the map that declares them equivalent — and if that map is wrong, the wire appears to stretch when only one end moves.
+**Act I — Mounting** has not yet turned on current or ramped grip displacement, but the operator has already chosen a coordinate language: the tensile frame displays grip displacement in millimeters; the finite element deck stores it as degree of freedom 1. Each bar element on the wire axis carries its own local axis; the global stiffness matrix sees a completely different numbering. Same physics, three coordinate systems — and the prologue's four questions already have a finite-dimensional answer: **state** = nodal vector, **equations** = \(\mathbf{K}\mathbf{u}=\mathbf{f}\), **discretization** = assembly maps \(\mathbf{L}_e\), **export** = moduli extracted after the solve.
+
+Assembly is the linear map that declares those languages equivalent. If the map is wrong, the wire appears to stretch when only one end moves; if the basis is ill-chosen, \(\mathbf{K}\) is dense and ill-conditioned even though the physics is local. Every later scale inherits this habit — reference element to physical element in Part IV, cell face to global flux in Part V, crystal frame to sample frame in Part VII — but the grammar is the same change-of-coordinates story told here in \(\mathbb{R}^N\).
 
 ## Linear maps and their matrix representations
 
@@ -163,5 +165,11 @@ Not every linear map is best viewed in the standard basis. The modes of vibratio
 Return to the [prologue](../../prologue/00-many-scales.md): **Act I — Mounting** fixes the wire in grips whose displacement is a single global degree of freedom, yet every bar element still carries its own local axis. Assembly is the map that declares those languages equivalent — the same book-keeping Part IV will automate on millions of elements. When the map is wrong, the wire appears to stretch when only one end moves; when the basis is ill-chosen, \(\mathbf{K}\) is dense and ill-conditioned even though the physics is local.
 
 The eigenvectors of \(\mathbf{K}\) (with appropriate mass weighting) are standing-wave patterns on the mesh; their eigenvalues are squared natural frequencies. Part I's opening [**concept map**](00-opening.md#the-concept-map) asked what breaks if structure is missing — here, rank deficiency signals rigid-body modes the grips must remove. [I.3](03-eigenvalues.md) makes decoupling explicit before [I.4](04-toward-infinity.md) sends \(N\to\infty\) and Part II names the operator behind every assembled matrix.
+
+| Prologue act | Coordinate languages on the wire | What this chapter's maps must get right |
+|--------------|----------------------------------|----------------------------------------|
+| I — Mounting | Grip DOF vs. element local axes | \(\mathbf{L}_e^T \mathbf{k}_e \mathbf{L}_e\) scatter without double counting |
+| II — Warming (preview) | Nodal \(T\) vs. quadrature-point gradients | Jacobian of the isoparametric map in every conductivity integral |
+| III — Pulling (preview) | Global \(\mathbf{U}\) vs. bar axial stretch | Rotation \(\mathbf{R}(\theta)\) for off-axis members |
 
 Turn the page when assembly feels like bookkeeping rather than geometry — eigenvalues are the coordinate system in which the map tells its simplest story.

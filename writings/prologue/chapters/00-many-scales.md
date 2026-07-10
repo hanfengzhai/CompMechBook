@@ -215,3 +215,7 @@ Turn the page. The copper wire is waiting — first as vectors and matrices, eve
 | One specimen, many scales | Same wire as \(N\) coupled springs — the discrete shadow every mesh refines |
 
 Part I opens with [**Closing the arc from the Prologue**](../part01-linear-algebra/00-opening.md#closing-the-arc-from-the-prologue) — the same four questions replayed in finite-dimensional vocabulary before Part II replaces vectors with functions. Read the prologue's panoramic ladder once; then let Part I make the bottom rung explicit in the syntax every simulation shares.
+
+The [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) organize each part as a **concept map** — object, structure, theorem, failure mode — with representative schematics at every opening. This book inherits that layout so the copper wire story and the ME 412 roadmap read as one continuous text: when a chapter feels abstract, ask which act you are in, which of the four questions it answers, and what breaks if the structure named in the concept map is missing.
+
+Turn the page when the ladder feels like a catalog of methods — Part I is where every rung reveals the same \(\mathbf{A}\mathbf{x}=\mathbf{b}\) grammar underneath, long before fields, weak forms, or electrons enter the plot.

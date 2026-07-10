@@ -148,4 +148,13 @@ Read the [prologue](../prologue/00-many-scales.md#the-experiment-as-plot) for th
 
 The memory sheet closes the book the way ME 412 closes the Functional Analysis Notes — habits and traps, not proofs. Return to the [glossary](glossary.md) when a symbol reappears under new vocabulary; return to [sources](sources.md) when you need the PDF behind a part; return to the [prologue](../prologue/00-many-scales.md) when a new project needs scale discipline from day one.
 
+| When you need | Where to turn |
+|---------------|---------------|
+| The six-act plot in narrative form | [Prologue: The experiment as plot](../prologue/00-many-scales.md#the-experiment-as-plot) |
+| Workflow order vs. reading order | [Epilogue: Lab act reunion](../epilogue/multiscale.md#lab-act-reunion-six-acts-one-afternoon) |
+| Concept-map questions (object / structure / theorem / breaks) | Any part opening from I through IX |
+| Export pedigree before trusting an input deck | [Part IX workflows](../part09-dft/03-dft-workflows.md) and the one-page recap table above |
+
 The copper wire does not care which chapter you finished last. It responds to physics. Your craft is to make that physics computable, connected, and credible — one continuous story from \(\mathbb{R}^N\) to \(\rho(\mathbf{r})\) and back upward through homogenization.
+
+Turn the page to the [glossary](glossary.md) when a symbol changed meaning between parts; turn back to the [prologue](../prologue/00-many-scales.md) when a new specimen needs the same four questions from day one.
