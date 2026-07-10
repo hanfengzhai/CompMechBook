@@ -230,4 +230,6 @@ The [prologue](../../prologue/00-many-scales.md) named this formulation a **recu
 | IV — Hardening (preview) | Nonlinear stress–strain history | Virtual work with evolving \(\boldsymbol{\sigma}\); Newton at each increment |
 | V — Notch (preview) | Concentrated traction at a scratch | Point load as \(\ell\in H^{-1}\), not an \(L^2\) density |
 
-[III.1](01-strong-form.md) named the blackboard physics; this chapter is the **honest continuum contract** Part IV will discretize. Energy methods ([III.4](04-energy-methods.md)) then recast \(a(u,v)=\ell(v)\) as minimization or saddle-point principles — the variational backbone of FEM and, in nonlinear settings, of hyperelastic and phase-field solvers. Turn the page when "test function" still feels informal — Sobolev spaces are the contract that makes FEM assembly honest.
+The weak form is the **honest continuum contract** every discretization in Parts IV–IX inherits — Galerkin assembly, virtual work in Part VI, and the Hohenberg–Kohn variational principle in Part IX are the same insistence that residuals vanish against admissible test functions, in different Hilbert rooms. [III.1](01-strong-form.md) named the blackboard physics; [III.3](03-sobolev-spaces.md) makes "admissible" precise; [III.4](04-energy-methods.md) recasts the balance as minimization before Part IV turns it into \(\mathbf{K}\mathbf{U}=\mathbf{F}\).
+
+Turn the page when "test function" still feels informal — Sobolev spaces are the contract that makes FEM assembly honest.

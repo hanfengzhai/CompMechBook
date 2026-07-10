@@ -190,5 +190,13 @@ The copper wire, meshed or unmeshed, is the same physical object in every basis 
 | What is the **discretization**? | Spring chain / bar elements | Part IV shape functions; Part V cell averages |
 | What **exports upward**? | Stiffness pattern, conditioning | Part II operator limit; Part VII homogenization |
 
+| Reading order (Parts I → IX) | Workflow order (Act VI → I) | Same grammar on the wire |
+|------------------------------|-----------------------------|--------------------------|
+| Part I teaches vectors first | SCF diagonalization runs last | Both end in sparse \(\mathbf{A}\mathbf{x}=\mathbf{b}\) |
+| Fields replace vectors in Part II | DFT exports moduli before mounting | Stiffness is always a bilinear form restricted to DOFs |
+| Weak forms arrive in Part III | FEM deck built from homogenized \(E,\nu\) | Assembly scatter maps from [I.2](02-linear-maps.md) |
+
+The [epilogue](../../epilogue/multiscale.md#lab-act-reunion-six-acts-one-afternoon) reunites these two clocks on one afternoon — **Act I** here is the mounting scene whose matrix every later act still spends.
+
 Turn the page when \(\mathbf{K}\mathbf{u}=\mathbf{f}\) feels like a table of numbers rather than a coordinate story — linear maps are where that table acquires geometry.
 

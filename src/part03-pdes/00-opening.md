@@ -120,4 +120,6 @@ The first chapter below writes **strong forms** — what the blackboard demands 
 
 Both acts share one pipeline: strong form for intuition, weak form for computation, energy method for existence. Part IV will discretize the same weak statements on P1 elements; Part V will discretize the fluid-side heat equation on control volumes when conjugate transfer couples Act II to the air around the wire.
 
+The [SUMMARY](../../SUMMARY.md) allows **solids-first** (IV → VI) or **fluids-first** (V → VI) through the middle acts; either path must pass through this part's weak forms before discretization splits into Galerkin trial functions or cell fluxes. The epilogue's conjugate heat-transfer handshake assumes both dialects were built from the equations written here.
+
 Turn the page when you are ready to see where pointwise PDEs break — and why the weak form is the correct continuum statement, not a numerical convenience.

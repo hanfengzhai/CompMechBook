@@ -213,4 +213,6 @@ Return to the prologue's **Act III — Pulling**: grip displacement ramps, and t
 | \(B\)-matrix strain at Gauss points | \(\boldsymbol{\varepsilon}\), Green–Lagrange \(\mathbf{E}\) | \(\boldsymbol{\sigma}=\mathbb{C}:\boldsymbol{\varepsilon}\) |
 | FVM \(\bar{\mathbf{v}}_j\) | Velocity \(\mathbf{v}(\mathbf{x})\), rate \(\mathbf{D}\) | \(\rho(\dot{\mathbf{v}}+\mathbf{v}\cdot\nabla\mathbf{v})=\nabla\cdot\boldsymbol{\sigma}\) |
 
+Part VI is the **naming chapter** for everything Parts IV–V computed without tensors: the same copper wire, the same mesh, now with Cauchy stress and balance laws that DDD (Part VII) will interrupt when lines move. When kinematics feels complete but forces are still "nodal reactions," [VI.2](02-stress-balance.md) supplies the stress conjugates.
+
 Turn the page when displacement fields need a stress conjugate — kinematics without balance is geometry without physics.

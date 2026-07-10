@@ -235,8 +235,6 @@ Return to the [prologue](../../prologue/00-many-scales.md): **Act III — Pullin
 | Mass operator on \(L^2\) | Inertia term in vibration | Lumped or consistent mass matrix |
 | Trace / dual load \(\ell\in H^{-1}\) | Point force or concentrated flux | Nodal force vector \(\mathbf{f}\) |
 
-[II.3](03-hilbert-spaces.md) supplied angles and projection; this chapter named the **maps** between Hilbert spaces. [II.5](05-spectral-theorem.md) will close Part II by diagonalizing the self-adjoint operators whose boundedness and compactness you met here — then hand the **well-posedness triangle** to Part III.
-
 | Duality object in Part II | Continuum load on the wire | Discrete FEM shadow |
 |---------------------------|---------------------------|---------------------|
 | \(\ell(v)=\int f v\,d\Omega\) | Distributed body force | Consistent nodal loads |

@@ -209,4 +209,12 @@ The [prologue](../../prologue/00-many-scales.md) introduced the weak form as a *
 | \(-\nabla\cdot\boldsymbol{\sigma}=\mathbf{0}\) | Away from grip singularities | Virtual work with \(\boldsymbol{\sigma}\in L^2\) |
 | \(-\Delta u = f\) (Poisson prototype) | Smooth domains | \(\int\nabla u\cdot\nabla v = \int f v\) |
 
+| Strong-form scene on the wire | Weak-form home in [III.2](02-weak-form.md) | FEM consumer in Part IV |
+|------------------------------|-------------------------------------------|-------------------------|
+| Joule heat \(q(x)\) in the gauge section | \(\int q v\,dx\) as source functional | Thermal load vector \(\mathbf{f}_q\) |
+| End traction on the tensile bar | \(\int t v\,dS\) on Neumann boundary | Consistent nodal forces |
+| Fixed grip displacement | Essential BC in \(H^1_0\) subspace | Penalty or elimination rows in \(\mathbf{K}\) |
+
+[III.2](02-weak-form.md) is the chapter where the prologue's recurring character speaks in full sentences — integration by parts, test functions, and the Lax–Milgram gate that Part IV will discretize as assembly.
+
 Turn the page when the strong form feels correct but the mesh refuses to converge — that is the signal that pointwise derivatives were the wrong contract.

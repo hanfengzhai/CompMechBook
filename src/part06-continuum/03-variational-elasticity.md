@@ -240,3 +240,5 @@ Turn the page when the wire's stress–strain curve bends upward after cold draw
 | Quadratic \(\psi(\boldsymbol{\varepsilon})\) | Yield and path dependence | [VI.4](04-nonlinear-plasticity-preview.md) |
 | Path-independent hyperelasticity | Dislocation forest from cold work | [Part VII](../part07-defects/00-opening.md) |
 | Virtual work \(\delta\Pi=0\) | Atomistic nucleation at a notch | [Part VIII](../part08-md/00-opening.md) |
+
+The [prologue](../../prologue/00-many-scales.md) promised one specimen through six acts: **Act III** is the linear elastic climb this chapter explains; **Act IV** is where \(\delta\Pi=0\) with a single quadratic \(\psi\) stops being enough. Part IV assembled the mesh; Part VI named the energy; Part VII will show the forest that cold drawing stored before the operator ever closed the grips.

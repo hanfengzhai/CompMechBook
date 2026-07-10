@@ -218,3 +218,12 @@ Turn the page when assembly feels like bookkeeping but the stress contour still 
 | II — Warming | Thermal \(\mathbf{K}_T\), \(\mathbf{f}_q\) | P1 triangles vs. quadrature on \(\int k\|\nabla T\|^2\) |
 | III — Pulling | Mechanical \(\mathbf{K}\), \(\mathbf{f}\) | Block \(\mathbf{B}^T\mathbb{C}\mathbf{B}\) at Gauss points |
 | IV — Hardening (preview) | Same mesh, evolving \(\mathbb{C}\) | Anisotropic texture from cold-drawn wire |
+
+When the load cell curve eventually bends upward in **Act IV**, the mesh from this chapter is reused — only the constitutive update at quadrature points changes. Part VII's DDD export and Part VI's J₂ plasticity both consume the same DOF map and scatter pattern established here; descent to finer scales changes parameters, not the assembly grammar Part I introduced as \(\mathbf{L}_e^T \mathbf{k}_e \mathbf{L}_e\).
+
+| Multiscale consumer | What this chapter's mesh supplies | What changes downstream |
+|--------------------|-----------------------------------|-------------------------|
+| Part VI virtual work | Nodal \(\mathbf{U}\), Gauss-point strains | Tensor naming of the same \(B\)-matrix |
+| Part VII crystal plasticity | Element connectivity, texture frames | Internal variables at quadrature points |
+| Part VIII atomistic RVE | Stress concentrator geometry from FEM | Finer box at the notch root |
+| Epilogue coupling | Interface DOFs and flux handshakes | Outer fixed-point loop, same sparsity pattern |

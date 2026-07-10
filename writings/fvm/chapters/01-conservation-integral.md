@@ -213,4 +213,12 @@ Part III's weak forms minimized energy on trial spaces; FVM **balances fluxes** 
 | \(\mathbf{K}_T \mathbf{T}=\mathbf{q}\) | Face flux sum \(\sum_f F_f A_f\) | Conjugate heat transfer loop |
 | Energy norm convergence (Céa) | Discrete conservation + CFL stability | Same wire, complementary proofs |
 
+Part I's **local coupling** reappears on a different stencil: face fluxes play the role of off-diagonal entries in \(\mathbf{K}\), but the contract is integral balance rather than energy minimization. [I.3](../part01-linear-algebra/03-eigenvalues.md) linked mesh eigenvalues to natural frequencies; here the eigenvalues of the flux Jacobian set the CFL timestep for explicit cooling-air updates around the wire — the same spectral habit on a hyperbolic operator.
+
+| Part I habit | FVM expression on the wire | Why Act II needs both Parts IV and V |
+|--------------|---------------------------|--------------------------------------|
+| Sparsity from neighbor coupling | Face flux depends only on adjacent cells | Solid conduction (FEM) + air transport (FVM) |
+| Eigenvalues of discrete operator | Wave speeds at cell interfaces | Stable \(\Delta t\) for transient conjugate heat transfer |
+| Global balance \(\mathbf{1}^T\mathbf{K}\mathbf{u}=\mathbf{1}^T\mathbf{f}\) | Exact sum of cell updates = domain sources | Wall flux matches Robin BC from Part IV |
+
 Turn the page when the integral balance is clear but no cell-averaged update exists yet — that is the signal that conservation wants a mesh of volumes, not a mesh of trial functions.

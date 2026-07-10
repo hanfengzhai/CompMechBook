@@ -191,6 +191,6 @@ The [prologue](../../prologue/00-many-scales.md) named the weak form a **recurri
 | III — Pulling | \(\mathbf{K}_N\) grows as the mesh refines | Stiffness operator on \(H^1_0\); Galerkin limit |
 | VI — Foundation | Discrete Laplacian eigenvalues on a chain | Spectral problem for \(-\Delta\); Part II.5 |
 
-[I.3](03-eigenvalues.md) decoupled vibration at fixed \(N\); this chapter sends \(N\) without bound. Part II is not a detour — it is the **convergence target** every mesh refinement in Acts II–III already assumes when the load cell curve is trusted.
+[I.3](03-eigenvalues.md) decoupled vibration at fixed \(N\); this chapter sends \(N\) without bound. Part II is not a detour — it is the **convergence target** every mesh refinement in Acts II–III already assumes when the load cell curve is trusted. The prologue's **Act VI — Foundation** in workflow order is the mirror image: electronic and phonon spectra supply parameters before mounting, while reading order arrives at those spectra last — both paths need the same limit-object discipline Part II formalizes.
 
 Turn the page when the wire's modes and temperatures outgrow any fixed node count — that is the signal vectors are no longer enough, and function spaces are where the limit becomes a theorem.

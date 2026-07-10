@@ -183,6 +183,6 @@ The [prologue](../../prologue/00-many-scales.md) introduced the specimen as one 
 | III — Pulling (preview) | Axial vibration modes before plasticity | Stiffness operator eigenvalues; mesh \(\omega_{h,j}\to\omega_j\) |
 | VI — Foundation (preview) | Phonon frequencies as atomic eigenmodes | Same Rayleigh quotient loop at electronic scale (Part IX) |
 
-The next chapter takes the first step from \(\mathbb{R}^N\) toward function spaces: inner products become integrals, matrices become operators, and the eigenvalue problem becomes a spectral problem for differential operators. Part II makes that transition rigorous; Part III writes down the PDEs those operators encode.
+The next chapter takes the first step from \(\mathbb{R}^N\) toward function spaces: inner products become integrals, matrices become operators, and the eigenvalue problem becomes a spectral problem for differential operators. Part II makes that transition rigorous; Part III writes down the PDEs those operators encode. When **Act III — Pulling** ramps grip displacement, the load cell trusts the curve only because the spectral and completeness tools in Part II guarantee a mesh refinement target exists.
 
 Turn the page when the wire's modes outgrow any fixed mesh count — that is the signal that vectors are no longer enough.

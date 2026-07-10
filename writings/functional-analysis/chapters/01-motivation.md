@@ -214,4 +214,6 @@ Return to the [prologue](../../prologue/00-many-scales.md): the weak form was in
 | III — Pulling | Mesh displacement vectors grow with refinement | Field \(u(x)\in H^1\) as the convergence target |
 | VI — Foundation | Eigenmodes on a fixed mesh | Spectral problem for a differential operator |
 
+Part II is the **convergence target** the prologue's six-act lab session already assumes: when the thermocouple climbs in Act II or the load cell ramps in Act III, mesh refinement only means something because the limit object defined here exists. The [epilogue](../../epilogue/multiscale.md#closing-the-full-arc) closes the same four questions at every rung; this chapter is where "discretization" acquires a limit worth trusting.
+
 Turn the page when "the mesh looks smooth" is not yet a theorem — norms and completeness are what make that visual judgment honest.
