@@ -239,6 +239,14 @@ Return to the prologue's **Act VI — Foundation**: before the operator mounted 
 
 The [epilogue](../../epilogue/multiscale.md) reunites this foundation with the visible lab session: DFT supplies the numbers, MD fits the potential, DDD calibrates mobility, FEM runs the wire-scale job — four exports from one audit trail. Part IX is the last descent rung; what follows is coupling, not new physics.
 
+| Book part | Eigenvalue / SCF analogue | Export the wire needs |
+|-----------|---------------------------|----------------------|
+| Part I | \(\mathbf{K}\mathbf{u}=\mathbf{f}\); modal \(\mathbf{K}\phi=\lambda\mathbf{M}\phi\) | Sparse solve habits |
+| Part II | Self-adjoint operators; spectral theorem | Convergence targets for refinement |
+| Part IV | Assembly loops on basis functions | Plane-wave + k-point quadrature (same philosophy) |
+| Part VIII | EAM on trust until audited | Cohesive energy, \(a_0\), \(\gamma_{\text{sf}}\) from this chapter |
+| Part VI | Young's modulus from \(C_{ij}\) | Voigt/Reuss homogenization with documented functional |
+
 [IX.3](03-dft-workflows.md) walks through reproducible workflows — cutoff and k-mesh convergence, relaxation, equations of state, bands and phonons, defect supercells — using the MSE 5720 homework archive as a template. Those workflows produce the numbers Parts VI–VIII import before the [epilogue](../../epilogue/multiscale.md) wires DFT → MD → DDD → FEM into one multiscale afternoon.
 
 Turn the page when the SCF loop converges in principle but no input file exists yet — that is the signal that reproducibility, not theory, is what separates research from folklore.

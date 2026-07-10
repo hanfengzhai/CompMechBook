@@ -199,4 +199,13 @@ Return to the prologue's **Act IV — Hardening**: the load cell curve bent beca
 
 **Act V — Notch** is the scene this chapter opened: FEM on the wire names where stress concentrates; DDD names how lines respond; MD names what happens when the smeared continuum finally resolves into neighbors swapping across a disturbed lattice. The epilogue's multiscale workflows wire those three answers together when no single code spans the ladder.
 
+| Scale on the wire | State variable | Force law | Book chapter |
+|-------------------|----------------|-----------|--------------|
+| Continuum FEM | \(\mathbf{u}(\mathbf{x})\), \(\boldsymbol{\sigma}\) | Virtual work / \(\mathbb{C}:\boldsymbol{\varepsilon}\) | Parts IV, VI |
+| DDD | Segment network \(\{\mathbf{r}_s,\boldsymbol{\xi},\mathbf{b}\}\) | Peach–Köhler + mobility | Part VII |
+| MD (this chapter) | Atomic positions \(\{\mathbf{r}_i\}\) | \(\mathbf{F}_i=-\nabla_i V\) | Part VIII |
+| DFT (preview) | \(\rho(\mathbf{r})\), orbitals | Kohn–Sham + SCF | Part IX |
+
+Part I's \(\mathbf{K}\mathbf{u}=\mathbf{f}\) is the finite-\(N\) shadow of all four rows: MD replaces springs with atoms, DFT replaces the empirical \(V\) with a self-consistent electronic energy, and the epilogue asks which row to trust at each interface.
+
 [VIII.2](02-ensembles-integrators.md) makes sampling precise: Verlet integration, NVT and NPT control, and LAMMPS workflows that connect atomistic simulation to dislocation dynamics and beyond. Turn the page when the potential is specified but the wire's laboratory temperature has not yet entered the simulation — that is the signal that phase space, not just energy minimization, is the correct stage.

@@ -175,4 +175,11 @@ Part VI will later **name** the tensors inside those integrals — Cauchy stress
 
 Part II's Hilbert-space inner product is what makes this orthogonality meaningful: \(R_{\text{weak}}(v; u-u_h)=0\) for all \(v \in V_h\) is **projection** of the true solution onto the trial subspace in the energy norm induced by \(a(\cdot,\cdot)\) — not a separate numerical recipe layered on top of Part I's \(\mathbf{K}\mathbf{u}=\mathbf{f}\). [II.3](../part02-functional-analysis/03-hilbert-spaces.md) supplied the geometry; Part III wrote the bilinear form; weighted residuals are the insistence that the discrete error is orthogonal to the trial space in that geometry.
 
+| Prologue act | Weighted residual on the wire | Assembly output in [IV.2](02-galerkin-assembly.md) |
+|--------------|----------------------------|-----------------------------------------------------|
+| II — Warming | \(R_{\text{weak}}(v;T_h)=0\) for thermal test \(v\) | \(\mathbf{K}_T\mathbf{T}=\mathbf{f}_q\) from Joule heating |
+| III — Pulling | \(R_{\text{weak}}(v;u_h)=0\) for mechanical test \(v\) | \(\mathbf{K}\mathbf{u}=\mathbf{f}\) from end load |
+| V — Notch (preview) | Concentrated traction as dual load | Nodal force scatter from \(\int \mathbf{t}\cdot\mathbf{v}\) |
+| VI — Foundation (preview) | SCF residual on Kohn–Sham orbitals | Part IX: same orthogonality on a different basis |
+
 Turn the page when the weak form is clear but no matrix exists yet — that is the signal that weighted residuals need an assembly loop.

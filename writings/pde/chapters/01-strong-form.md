@@ -182,5 +182,14 @@ The [prologue](../../prologue/00-many-scales.md) introduced the weak form as a *
 | III — Pulling | \(-\nabla\cdot\boldsymbol{\sigma}=\mathbf{0}\) pointwise | Grip corner: stress singularities, no smooth \(u\) |
 | IV — Hardening (preview) | Yield surface in stress space | History and defects leave smooth elasticity |
 | V — Notch (preview) | Concentrated traction at a scratch | Point load needs a dual, not an \(L^2\) density |
+| VI — Foundation (preview) | Electronic Poisson equation for \(\rho(\mathbf{r})\) | Part IX: strong form intuition before Kohn–Sham weak form |
+
+| Part II theorem | Strong-form equation on the wire | Weak-form home in [III.2](02-weak-form.md) |
+|-----------------|-----------------------------------|-------------------------------------------|
+| Lax–Milgram on \(H^1_0\) | Steady heat \(-(kT')'=q_J\) on the bar | \(\int k T' v'\,dx = \int q_J v\,dx\) |
+| Riesz representation of loads | End traction on the tensile specimen | \(\int f v\,dx + t v|_{\Gamma_N}\) |
+| Trace / dual loads | Thermocouple weld as flux discontinuity | Natural BC from integration by parts |
+
+[II.5](../part02-functional-analysis/05-spectral-theorem.md) closed Part II with the well-posedness triangle — strong form for intuition, weak form for computation, Sobolev spaces for regularity. This chapter is the **intuition** vertex; the next two chapters are computation and regularity. The weak form is not a numerical trick layered on physics — it is the continuum statement the thermocouple and load cell already assume when corners break classical smoothness.
 
 Turn the page when the strong form feels correct but the mesh refuses to converge — that is the signal that pointwise derivatives were the wrong contract.

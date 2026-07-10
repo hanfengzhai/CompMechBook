@@ -214,4 +214,6 @@ Return to the [prologue](../../prologue/00-many-scales.md): **Act IV — Hardeni
 | V — Notch | Stable Verlet trajectories at the stress concentrator | Nucleation barriers and cohesive response |
 | VI — Foundation | Reproducible LAMMPS decks with documented drift | \(C_{ij}\), \(\gamma_{\text{sf}}\), EAM parameters for FEM and DDD |
 
+Reading order places Part IX after this chapter; workflow order runs DFT **before** the LAMMPS deck exists. Both are valid — the [two clocks note](00-opening.md#two-clocks-reading-order-vs-foundation-pedigree) at the Part VIII opening explains why EAM parameters may already be on disk when you arrive here linearly. [VIII.3](03-ab-initio-and-coarse-graining.md) names what only Part IX can re-derive from \(\rho(\mathbf{r})\); this chapter names what MD must sample correctly before any export table is trustworthy.
+
 Turn the page when the EAM curve matches experiment in bulk but fails at the notch root — that is the signal to audit the potential against electronic structure in Part IX.

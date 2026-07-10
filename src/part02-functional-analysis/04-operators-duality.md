@@ -213,5 +213,14 @@ Return to the [prologue](../../prologue/00-many-scales.md): **Act III — Pullin
 | II — Warming | Joule source as \(L^2\) density or dual load | Riesz pairs heating with test temperatures |
 | III — Pulling | Stiffness operator \(A: H^1\to H^1\) | Galerkin projection is bounded; \(\mathbf{K}\) is its shadow |
 | V — Notch (preview) | Concentrated traction in \(H^{-1}\) | Weak* limits justify nodal force refinement |
+| VI — Foundation (preview) | Kohn–Sham Hamiltonian as self-adjoint operator on orbitals | Part IX SCF is the same fixed-point loop on a different Hilbert space |
+
+[II.3](03-hilbert-spaces.md) supplied angles and projection; this chapter named the **maps** between Hilbert spaces. [II.5](05-spectral-theorem.md) will close Part II by diagonalizing the self-adjoint operators whose boundedness and compactness you met here — then hand the **well-posedness triangle** to Part III.
+
+| Operator object in Part II | Named PDE operator in Part III | FEM shadow in Part IV |
+|-----------------------------|-------------------------------|----------------------|
+| Stiffness operator on \(H^1_0\) | \(-\nabla\cdot(k\nabla\cdot)\) on the heated wire | Element stiffness \(\mathbf{K}^e\) from \(\int k\nabla N_i\cdot\nabla N_j\) |
+| Mass operator on \(L^2\) | Inertia term in vibration | Lumped or consistent mass matrix |
+| Trace / dual load \(\ell\in H^{-1}\) | Point force or concentrated flux | Nodal force vector \(\mathbf{f}\) |
 
 Turn the page when operator language feels natural — PDEs in Part III are where those operators finally have names like \(-\Delta\) and \(-\nabla\cdot(k\nabla\cdot)\).

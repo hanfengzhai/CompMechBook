@@ -90,4 +90,13 @@ The prologue introduced the copper wire at every scale and named the four questi
 
 The first chapter refreshes the language — inner products, norms, matrix structure — that Parts II through IX will generalize to functions and operators. Read it as the opening sentence of the novel after the prologue's panoramic view: the grips are still open, the load cell still reads zero, and the first honest model is already a sparse matrix waiting to be assembled.
 
+| Part I chapter | Grammar on the wire | Upward echo in later parts |
+|----------------|---------------------|----------------------------|
+| [I.1](01-vectors-matrices.md) | \(\mathbf{K}\mathbf{u}=\mathbf{f}\), energy \(\mathbf{u}^T\mathbf{K}\mathbf{u}\) | Part II: \(a(u,u)\); Part IV: assembled \(\mathbf{K}\) |
+| [I.2](02-linear-maps.md) | Assembly scatter maps, local/global frames | Part IV: isoparametric Jacobian; Part VI: push-forward of tensors |
+| [I.3](03-eigenvalues.md) | Normal modes of the spring chain | Part II.5: spectral theorem; Part V: CFL from flux Jacobian eigenvalues |
+| [I.4](04-toward-infinity.md) | \(N\to\infty\); fields replace vectors | Part II opening: operators on \(H^1\); Part III: weak PDEs |
+
+Part I is the **Act I — Mounting** chapter in reading order and the last chapter every multiscale workflow still depends on in workflow order — SCF diagonalization in Part IX is the same eigenvalue grammar with a different operator. When a symbol reappears under new vocabulary, consult the [glossary](../appendix/glossary.md) cross-scale index.
+
 Turn the page when the prologue's ladder feels like a menu of methods — Part I is where every later scale reveals the same \(\mathbf{A}\mathbf{x}=\mathbf{b}\) grammar underneath.

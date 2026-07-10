@@ -174,6 +174,17 @@ The prologue's **six-act lab session** is the dramatic spine the parts follow �
 
 **Reading order** (Parts I → IX) teaches grammar before multiphysics and descent before audit. **Workflow order** (Act VI before Act I) is how practitioners actually build input decks. Both orders are valid; the [epilogue](../epilogue/multiscale.md#lab-act-reunion-six-acts-one-afternoon) reunites them. When a chapter feels abstract, ask which act you are in and which of the four questions that chapter answers for the same piece of copper.
 
+| Prologue act | Four questions on the wire (one-line preview) | First chapter that speaks in full sentences |
+|--------------|-----------------------------------------------|---------------------------------------------|
+| I — Mounting | State = DOFs; equations = \(\mathbf{K}\mathbf{u}=\mathbf{f}\); discretization = assembly; export = moduli from fit | [I.1](../part01-linear-algebra/01-vectors-matrices.md) |
+| II — Warming | State = \(T(x)\); equations = heat PDE; discretization = FEM/FVM; export = wall flux | [III.2](../part03-pdes/02-weak-form.md), [IV.3](../part04-fem/03-elements-quadrature.md), [V.4](../part05-fvm/04-navier-stokes-cfd.md) |
+| III — Pulling | State = \(u(x)\) or \(\mathbf{u}\); equations = elasticity; discretization = Galerkin; export = stress–strain curve | [II.3](../part02-functional-analysis/03-hilbert-spaces.md), [IV.2](../part04-fem/02-galerkin-assembly.md), [VI.2](../part06-continuum/02-stress-balance.md) |
+| IV — Hardening | State = \(\rho\) or segment network; equations = Peach–Köhler; discretization = DDD; export = Taylor \(\tau\) | [VII.2](../part07-defects/02-dislocation-dynamics.md) |
+| V — Notch | State = atomic positions; equations = Newton + EAM; discretization = MD timestep; export = nucleation barrier | [VIII.1](../part08-md/01-potentials-phase-space.md) |
+| VI — Foundation | State = \(\rho(\mathbf{r})\); equations = Kohn–Sham; discretization = plane waves + k-mesh; export = \(C_{ij}\), \(\gamma_{\text{sf}}\) | [IX.2](../part09-dft/02-kohn-sham.md), [IX.3](../part09-dft/03-dft-workflows.md) |
+
+The [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) supply the **concept-map habit** behind the four questions — object, structure, theorem, failure mode — at every part opening. Part II is where that habit becomes explicit; Parts III–IX replay it at each scale change. The [appendix memory sheet](../appendix/memory-sheet.md) compresses the same discipline into one page for rereads.
+
 Turn the page when ready. The ladder begins with a specimen under tension and a question that will not go away: *what is the minimal description at this scale, and what do we pass to the scale above?*
 
 ---

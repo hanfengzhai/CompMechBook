@@ -171,4 +171,13 @@ Return to the [prologue](../../prologue/00-many-scales.md): **Act IV — Hardeni
 
 **Act V — Notch** is the exception the taxonomy prepares for: wherever a scratch, grip corner, or grain boundary concentrates stress beyond what smooth \(\boldsymbol{\sigma}(\mathbf{x})\) can regularize, line and surface defects in the table above become the relevant state variables. The taxonomy tells you *which* defect class to simulate; [VII.2](02-dislocation-dynamics.md) follows the lines; Part VIII resolves the core.
 
+| Part VI phenomenology | Defect class that carries the physics | Finer-scale audit in Parts VIII–IX |
+|-----------------------|---------------------------------------|-------------------------------------|
+| Yield stress \(\sigma_{y0}\) | Line defects from cold drawing | Peierls barrier from DFT; core structure from MD |
+| Hardening modulus \(H\) | Dislocation forest density \(\rho\) | Taylor law from DDD; mobility from MD |
+| Texture / anisotropic \(\mathbb{C}\) | Grain boundaries, surface defects | Polycrystal homogenization in [VII.3](03-polycrystal-and-fem-handoff.md) |
+| Notch sensitivity | Surface defects + line sources | MD nucleation; DFT surface energies |
+
+Cold drawing is not a comment in the material card — it is a **history** written as dislocation density and grain structure before the operator ever mounted the wire. The taxonomy is the index that tells you which defect class to open when a phenomenological parameter in Part VI stops being trustworthy.
+
 Turn the page when \(\rho\) is a label on an input deck rather than a count of moving lines — dislocation dynamics is where the forest becomes computable geometry.

@@ -193,4 +193,11 @@ Return to the [prologue](../../prologue/00-many-scales.md): **Act III — Pullin
 
 Cold-drawn copper carries **texture**: the stiffness tensor \(\mathbb{C}\) is not isotropic on the wire cross-section even when the mesh uses isotropic material cards. P1 triangles on a circular section with centroid quadrature are the honest first mesh; anisotropic \(\mathbb{C}\) from EBSD or pole figures is the signal that element quality and constitutive orientation must be documented together, not treated as separate input-deck lines.
 
+| Element choice | Act on the wire | Failure mode if ignored |
+|----------------|-----------------|-------------------------|
+| P1 bar on 1D axis | Act II/III: quick thermal + tensile sanity check | Under-resolved gradients near grips |
+| P1 triangle on cross-section | Act II: Joule heating in 2D section | \(O(h)\) stress noise at curved boundary |
+| Quadratic tets for production | Act III–V: design-level stress | Singular \(\mathbf{K}\) from distorted tets |
+| Mixed u–p for near-incompressibility | Act III: large plastic strain preview | Locking without inf–sup stable pair |
+
 [IV.4](04-poisson-to-elasticity.md) closes the scalar-to-vector jump — the chapter where the copper wire stops being a temperature field alone and becomes the tensile bar whose stress–strain curve the prologue will track through yield. Turn the page when Poisson assembly feels routine but an elasticity run returns a singular or nonsymmetric matrix — that is the signal the block constitutive structure deserves its own chapter.

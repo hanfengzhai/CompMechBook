@@ -168,4 +168,11 @@ The copper wire's displacement minimizes elastic energy in \(H^1\); its temperat
 
 Return to the [prologue](../../prologue/00-many-scales.md): in **Act II — Warming**, the thermocouple climbs while the grips still hold fixed displacement. The temperature field \(T(x)\) that drives that reading must live in \(H^1\) — continuous across the wire, with square-integrable gradient — even though Joule heating and surface convection make \(T\) kinked at the thermocouple weld and insulator corner. Piecewise-linear FEM temperatures are globally in \(H^1\) but not in \(H^2\); that gap is exactly why optimal \(O(h^2)\) rates need smoother true solutions than the discrete fields themselves possess. Sobolev membership is not pedantry — it is the contract the thermocouple and the load cell both assume.
 
+| Sobolev symbol | FEM consumer in Part IV | FVM consumer in Part V |
+|----------------|-------------------------|------------------------|
+| \(H^1_0\) trial space | P1 shape functions; Dirichlet on grips | Cell-average temperatures with flux BCs at wall |
+| \(\|\nabla u\|_{L^2}\) seminorm | Strain energy in \(\mathbf{K}\) | Diffusive flux through faces |
+| \(H^{-1}\) loads | Nodal forces, concentrated Joule sources | Source terms in cell updates |
+| \(H^2\) regularity | \(O(h^2)\) convergence rates on Poisson | Second-order reconstruction where fields are smooth |
+
 The next chapter develops that variational picture and closes Part III with the energy pipeline that Part IV discretizes: strong PDE → weak form → energy or saddle functional → search on \(V_h\). Turn the page when you want to see why "assemble \(\mathbf{K}\) from shape functions" is Rayleigh–Ritz minimization in disguise.

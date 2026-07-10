@@ -215,4 +215,13 @@ The virtual work equation in this chapter is the same balance Part IV assembled 
 
 Prologue **Act II — Warming** re-enters here as the thermal partner of the mechanical balance: Joule heating supplies a volumetric source in the energy equation; the Robin condition at the air interface is the flux handshake Part V's Navier–Stokes chapter will compute. Parts IV and V discretized those balances; Part VI states them as field laws before Part VII asks what microstructure hides inside \(\mathbb{C}\) and \(\sigma_{y0}\).
 
+| Discretization in Parts IV–V | Continuum name in this chapter | Where the wire uses it |
+|------------------------------|-------------------------------|------------------------|
+| \(\mathbf{K}\mathbf{u}=\mathbf{f}\) from Galerkin | Momentum balance \(\nabla\cdot\boldsymbol{\sigma}+\mathbf{f}=\mathbf{0}\) | Act III — Pulling: axial stress from end load |
+| Thermal \(\mathbf{K}_T\mathbf{T}=\mathbf{f}_q\) | Energy balance with Fourier law | Act II — Warming: thermocouple climb |
+| Robin flux at wall faces | Conjugate heat transfer BC | Act II: air cooling the wire surface |
+| Traction BC integrals | Cauchy \(\boldsymbol{\sigma}\mathbf{n}=\mathbf{t}\) | Grips and optional notch loading |
+
+Part VI is the **unification part** for the two discretization philosophies: FEM and FVM both approximate the same balance laws named here. When \(\boldsymbol{\sigma}=\mathbb{C}:\boldsymbol{\varepsilon}\) is imported from a DFT-averaged polycrystal without documenting texture, the error is not in the mesh — it is in skipping the export discipline the epilogue reunites with **Act VI — Foundation**.
+
 [VI.3](03-variational-elasticity.md) makes the energy statement explicit, closes the upward arc from Part I's spring network, and previews when hyperelasticity and yield force a descent to Part VII. Turn the page when \(\boldsymbol{\sigma}=\mathbb{C}:\boldsymbol{\varepsilon}\) feels like a constitutive plug-in rather than the consequence of minimizing elastic energy — variational elasticity reunifies the story.

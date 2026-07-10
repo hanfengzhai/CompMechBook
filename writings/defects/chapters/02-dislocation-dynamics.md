@@ -226,4 +226,11 @@ Single-crystal DDD explains how lines move, multiply, and harden a crystal — b
 
 Return to the prologue's **Act IV — Hardening**: the load cell curve bent upward after yield because lines multiplied and tangled — DDD made that forest visible as moving segments. Part VI's J₂ plasticity fitted the bend with a scalar hardening modulus \(H\); this chapter showed where \(H\) hides its physics in \(\rho\) and link statistics. [VII.3](03-polycrystal-and-fem-handoff.md) closes the mesoscale arc by asking how those statistics survive **drawing dies and grain boundaries** — the organizational scale the cold-drawn wire on the bench actually has.
 
+| DDD input | Typical source in the book | What breaks if pedigree is missing |
+|-----------|---------------------------|-----------------------------------|
+| Elastic constants \(C_{ij}\) | Part VI continuum or DFT export (Part IX) | Wrong image forces on segments |
+| Mobility \(M(\tau,T)\) | MD at 300–600 K (Part VIII.2) | Spurious forest evolution rates |
+| Core cutoff radius | MD core structure (Part VIII.1) | Artificial junction reactions |
+| Initial \(\rho\) | Cold-drawn microstructure / TEM stats | Wrong hardening slope on the load cell |
+
 Parts VIII–IX supply the mobility and elastic constants this chapter consumed; VII.3 is where DDD stops being a single-crystal movie and becomes **input for the same FEM mesh Part IV taught us to assemble**. Turn the page when OpenDiS converges on one orientation but the wire's macroscopic hardening still disagrees with experiment — that is the signal that polycrystal texture, not segment timestep, is the missing physics.

@@ -99,4 +99,13 @@ The [prologue](../../prologue/00-many-scales.md) introduced the weak form as a *
 | IV — Hardening (preview) | Dual loads for concentrated forces | Point constraints are not honest \(L^2\) sources |
 | VI — Foundation (preview) | Spectral convergence of eigenmodes | Discrete modes have no continuum normal modes |
 
+| Part I vocabulary | Part II limit object | Where the wire uses it first |
+|-------------------|----------------------|------------------------------|
+| \(\mathbf{K}\mathbf{u}=\mathbf{f}\) | Operator \(A: H^1\to H^*\); weak form \(a(u,v)=\ell(v)\) | [II.1](01-motivation.md): why corners break \(C^2\) |
+| \(\mathbf{u}^T\mathbf{K}\mathbf{u}\) | Energy norm \(\|u\|_a^2=a(u,u)\) | [II.3](03-hilbert-spaces.md): Lax–Milgram on the heated bar |
+| Eigenmodes of \(\mathbf{K}\) | Normal modes of a self-adjoint operator | [II.5](05-spectral-theorem.md): vibration and buckling |
+| Mesh refinement \(N\to\infty\) | Completeness: Cauchy sequences stay in \(H^1\) | [II.2](02-normed-spaces.md): Banach/Hilbert hierarchy |
+
+The [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) are the layout model for this part and for every `writings/` subtree — numbered chapters, concept maps at openings, **Bridge** sections at handoffs. Part II is not a detour from the copper wire; it is the proof that Part I's assembly converges to something physical when the grips tighten and the thermocouple climbs.
+
 Turn the page when Part I's matrices feel finite but the wire's temperature and displacement refuse to live in \(\mathbb{R}^N\) — function spaces are where that refusal becomes a theorem.
