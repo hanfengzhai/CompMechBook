@@ -1,6 +1,6 @@
 # Integral Forms of Conservation Laws
 
-[IV.5](../fem/chapters/05-convergence.md) closed Part IV with Céa's lemma — proof that the Galerkin mesh converges to the weak solution Part II promised — and offered **Door A** to this part: when the thermocouple climbs and Robin fluxes at the wire surface feel like placeholders, the surrounding air needs its own discretization. Part IV meshed conduction **inside** the solid; Part V begins **outside** it, with a different philosophy that respects the same physics.
+[IV.5](../part04-fem/05-convergence.md) closed Part IV with Céa's lemma — proof that the Galerkin mesh converges to the weak solution Part II promised — and offered **Door A** to this part: when the thermocouple climbs and Robin fluxes at the wire surface feel like placeholders, the surrounding air needs its own discretization. Part IV meshed conduction **inside** the solid; Part V begins **outside** it, with a different philosophy that respects the same physics.
 
 Where FEM whispers "multiply by a test function and integrate by parts," FVM declares "integrate the conservation law over a control volume and balance fluxes." Both respect the same physics; the bookkeeping differs. Part III wrote PDEs in strong form; Part IV discretized elliptic operators with trial functions. Part V begins with the form that hyperbolic and conservation-law physics prefer: **integral balance** on control volumes.
 
