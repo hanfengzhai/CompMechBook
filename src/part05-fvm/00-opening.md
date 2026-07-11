@@ -129,4 +129,12 @@ Part IV assembled stiffness matrices from shape functions; [IV.5](../part04-fem/
 
 The **conjugate heat transfer** scene above is why Door A is not optional on first reading for the full wire story: Joule heating in the solid (Part IV) and convection in the air (Part V) exchange wall temperature and heat flux until both sides agree — the same fixed-point handshake the epilogue later generalizes to DFT→MD→DDD→FEM chains. Part III wrote the Navier–Stokes and energy equations; Part V discretizes them with flux balances that respect the invariants Galerkin cannot guarantee at high Reynolds number.
 
+| If you arrived from… | Read first for continuity | Then continue here |
+|----------------------|---------------------------|-------------------|
+| [IV.5 Door A](../part04-fem/05-convergence.md#bridge-two-doors-from-here) | Two-door fork after FEM convergence | [V.1](01-conservation-integral.md) |
+| [III.4 Bridge](../part03-pdes/04-energy-methods.md#bridge-to-part-iv) | Weak-form pipeline before discretization split | [V.1](01-conservation-integral.md) |
+| Solids-first path (skipped Part V) | [VI.0](../part06-continuum/00-opening.md) for stress tensors, then return here for CHT | [V.4](04-navier-stokes-cfd.md) |
+
+Skipping Part V on a first read is allowed for solids-only projects — but the full copper wire story needs the air domain before Part VI names the coupled energy balance at the fluid–solid interface.
+
 The first chapter below begins with **integral forms of conservation laws** — the FVM dialect of the same balance laws Part VI will name in Cauchy stress and rate-of-deformation language. Turn the page when the thermocouple climbs and the air around the wire needs a discretization philosophy of its own.

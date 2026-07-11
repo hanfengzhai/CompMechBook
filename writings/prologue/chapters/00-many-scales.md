@@ -225,4 +225,19 @@ Part I opens with [**Closing the arc from the Prologue**](../part01-linear-algeb
 
 The [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) organize each part as a **concept map** — object, structure, theorem, failure mode — with representative schematics at every opening. This book inherits that layout so the copper wire story and the ME 412 roadmap read as one continuous text: when a chapter feels abstract, ask which act you are in, which of the four questions it answers, and what breaks if the structure named in the concept map is missing.
 
+| Part | Copper wire scene | State / equations (one line) | Lab act |
+|------|-------------------|------------------------------|---------|
+| I | Spring chain in grips | \(\mathbf{u}\); \(\mathbf{K}\mathbf{u}=\mathbf{f}\) | I — Mounting |
+| II | Fields \(u(x)\), \(T(x)\) in \(H^1\) | Operators; Galerkin convergence | II–III (preview) |
+| III | PDEs on the bar | Weak forms; Sobolev; energy methods | II–III — Warming & pulling |
+| IV | Meshed solid | Galerkin assembly; elements; Céa | III — Pulling |
+| V | Air cooling the wire | FVM fluxes; Navier–Stokes; CHT | II — Warming |
+| VI | Stress–strain curve | \(\mathbf{F}\), \(\boldsymbol{\sigma}\); virtual work | III–V |
+| VII | Hardening bend | DDD; Taylor law; crystal plasticity | IV — Hardening |
+| VIII | Core at notch | MD; EAM; ensembles | V — Notch |
+| IX | Valence electrons | Born–Oppenheimer; Kohn–Sham; workflows | VI — Foundation |
+| Epilogue | All scales coupled | Multiscale handshakes; export discipline | Reunion |
+
+This table is the plot spine in one glance. Reading order follows the left column; workflow order often begins at Part IX and climbs upward — both paths are valid when every export carries convergence logs and the four questions are answered at each interface. The [preface](../preface.md#plot-spine-how-the-story-is-told) names the narrative devices (Scene, Bridge, Lab act, concept map) that keep the table from feeling like a syllabus.
+
 Turn the page when the ladder feels like a catalog of methods — Part I is where every rung reveals the same \(\mathbf{A}\mathbf{x}=\mathbf{b}\) grammar underneath, long before fields, weak forms, or electrons enter the plot.

@@ -223,4 +223,6 @@ Return to the [prologue](../../prologue/00-many-scales.md): **Act II — Warming
 | I — Mounting | Equivalent norms on the same spring chain | Same physics, different error constants — not different limits |
 | VI — Foundation (preview) | Phonon DOS lives in \(L^2\)-type spaces | Atomic vibration limits have a Banach/Hilbert target |
 
+Part I's eigenvalues governed spring-chain stability; Part V will show that **face flux Jacobians** have eigenvalues that set the CFL timestep for explicit updates on the air cooling the wire. The norm language in this chapter — measuring size, comparing equivalent rulers, demanding completeness — is what makes both convergence stories honest: mesh refinement in Parts III–IV and cell refinement in Part V both need a well-defined limit object, not a longer finite vector.
+
 Turn the page when you are ready to see why "Galerkin is projection" is a theorem, not a slogan.

@@ -235,4 +235,13 @@ Return to the [prologue](../../prologue/00-many-scales.md): **Act II — Warming
 
 The two acts share one mathematical habit: minimize a quadratic functional (or solve the equivalent weak form) in a complete inner-product space. Part III will write the PDEs both acts need; Part IV will discretize them on the same P1 elements with the same quadrature loop.
 
+| Part III chapter | Weak form on the wire | Hilbert tool from this chapter |
+|------------------|----------------------|--------------------------------|
+| [III.1](../part03-pdes/01-strong-form.md) | Strong forms at grip corner and thermocouple weld | Where classical \(C^2\) fails; why \(H^1\) suffices |
+| [III.2](../part03-pdes/02-weak-form.md) | Steady heat \(-kT''=q\) and axial elasticity | Lax–Milgram existence; Riesz representation of loads |
+| [III.3](../part03-pdes/03-sobolev-spaces.md) | Regularity for Joule source and traction BCs | Embedding \(H^1 \hookrightarrow L^2\); trace on boundaries |
+| [III.4](../part03-pdes/04-energy-methods.md) | Dirichlet principle before FEM assembly | Rayleigh–Ritz on \(V_h\) → Part IV's \(\mathbf{K}\) |
+
+Part III is not a detour from Hilbert geometry — it is where the inner products and projection theorems of this chapter become **equations** the copper wire obeys. When [II.4](04-operators-duality.md) names stiffness as an operator, remember that Part III will write the weak form that operator satisfies before Part IV projects it onto nodal coefficients.
+
 [II.2](02-normed-spaces.md) measured size; this chapter added **angles** — orthogonality, projection, and the representation theorem that turns loads into inner products. [II.4](04-operators-duality.md) names the maps between Hilbert spaces: stiffness as an operator, loads in the dual, weak convergence when norms alone miss oscillations. Turn the page when projection feels geometric but the word "operator" still sounds abstract — that is the signal Hilbert space is ready to host matrices that never fit in \(\mathbb{R}^{N \times N}\).

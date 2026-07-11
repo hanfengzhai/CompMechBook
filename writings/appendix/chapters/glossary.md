@@ -96,4 +96,12 @@ Chapter markdown is authored under [`writings/`](../../writings/) (Functional An
 
 This page answers *what did that symbol mean last time?* The [chapter roadmap](sources.md) answers *where does each chapter sit in reading order?* The [Final Memory Sheet](memory-sheet.md) answers *what habits and traps should I carry to the next project?*
 
-Return to the [prologue](../prologue/00-many-scales.md) when a new specimen replaces copper — the four questions and six-act lab table apply to any material. Return to the [epilogue](../epilogue/multiscale.md) when you need to wire codes together rather than recall vocabulary.
+| Appendix page | Question it answers | When to open it |
+|---------------|---------------------|-----------------|
+| Glossary (here) | What did \(\mathbf{K}\), \(a(u,v)\), or \(\rho(\mathbf{r})\) mean last time? | Mid-chapter symbol confusion |
+| [Sources](sources.md) | Which PDF note or repo backs this chapter? | Starting a new part or project |
+| [Memory sheet](memory-sheet.md) | What habits and traps span all scales? | Before running a multiscale workflow |
+
+The [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) concept-map habit applies here too: for any symbol, ask **object** (what state does it describe?), **structure** (what norm or inner product governs it?), **theorem** (what convergence or well-posedness does it enable?), and **failure mode** (what breaks if you change scale without re-deriving?). The cross-scale index above is organized by that discipline — not alphabet soup.
+
+Return to the [prologue](../prologue/00-many-scales.md) when a new specimen replaces copper — the four questions and six-act lab table apply to any material. Return to the [epilogue](../epilogue/multiscale.md) when you need to wire codes together rather than recall vocabulary. Return to the [preface](../preface.md#the-copper-wire-through-the-book) when you need the nine-part reading map in one table.
