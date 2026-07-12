@@ -12,7 +12,7 @@ The narrative thread remains the copper wire. We will not simulate the whole wir
 | [IX.1–IX.2](01-born-oppenheimer.md) | Born–Oppenheimer; Hohenberg–Kohn; Kohn–Sham equations | Electron density \(\rho(\mathbf{r})\); KS orbitals |
 | **IX.3 (here)** | Bulk copper properties from a workstation supercell | Input decks, SCF convergence, property extraction |
 
-**Act VI — Foundation** in the [prologue](../../prologue/00-many-scales.md) promised the electronic floor beneath every upstream model. Parts VI–VIII assumed bulk moduli, cohesive energies, and vacancy formation energies without deriving them. This chapter closes the book's descent to the finest scale: the repeatable DFT ritual that turns Quantum ESPRESSO output into the numbers every upstream part types into its input deck.
+**Act VI — Foundation** in the [prologue](../prologue/00-many-scales.md) promised the electronic floor beneath every upstream model. Parts VI–VIII assumed bulk moduli, cohesive energies, and vacancy formation energies without deriving them. This chapter closes the book's descent to the finest scale: the repeatable DFT ritual that turns Quantum ESPRESSO output into the numbers every upstream part types into its input deck.
 
 ## Scene: bulk copper in a workstation
 
@@ -270,7 +270,7 @@ We have reached the finest rung of the spatial ladder for equilibrium properties
 | Defect formation energies | Surrogate acceleration without losing functional pedigree |
 | Reproducibility rituals (cutoff, k-mesh, `README`) | The four questions at every scale change: state, equations, discretization, upward export |
 
-Return to the [prologue](../../prologue/00-many-scales.md): **Act VI — Foundation** ran in parallel with Acts I–V — someone chose Young's modulus and a yield stress before the operator mounted the wire. That invisible afternoon is now explicit in the export tables above; the epilogue reunites it with **Acts I–V** in workflow time so reading order and laboratory order finally share one table. Part I's eigenvalue loop began on springs; it ends here as Kohn–Sham SCF — and climbs back upward through homogenization the epilogue names.
+Return to the [prologue](../prologue/00-many-scales.md): **Act VI — Foundation** ran in parallel with Acts I–V — someone chose Young's modulus and a yield stress before the operator mounted the wire. That invisible afternoon is now explicit in the export tables above; the epilogue reunites it with **Acts I–V** in workflow time so reading order and laboratory order finally share one table. Part I's eigenvalue loop began on springs; it ends here as Kohn–Sham SCF — and climbs back upward through homogenization the epilogue names.
 
 The epilogue gathers sequential homogenization, concurrent handshakes, and surrogate acceleration into workflows that respect the rituals of this chapter: converged DFT feeds potentials; potentials feed MD; MD feeds mobilities; DDD feeds hardening; FEM and CFD feed design. The story that opened with a single material at many scales closes with how disciplined teams make those scales converse — with archived inputs, stated tolerances, and honest error bars. Read the epilogue's [**Lab act reunion**](../epilogue/multiscale.md#lab-act-reunion-six-acts-one-afternoon) and [**Closing the arc from Part IX**](../epilogue/multiscale.md#closing-the-arc-from-part-ix) when you want the export table above mapped directly onto one multiscale afternoon before the general coupling patterns.
 

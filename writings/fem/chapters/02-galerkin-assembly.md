@@ -15,7 +15,7 @@ That algorithm is **global assembly**: loop over elements, compute local contrib
 | [IV.1](01-weighted-residuals.md) | Galerkin: test = trial | Orthogonal projection in energy norm |
 | **IV.2 (here)** | Global \(\mathbf{K}\), \(\mathbf{F}\) from element loops | Assembly as structured linear algebra |
 
-The [prologue](../../prologue/00-many-scales.md) promised that **Act III — Pulling** would turn grip displacement into numbers on the load cell. Assembly is the backstage step that makes that act honest — each scatter into \(\mathbf{K}\) is the finite-dimensional echo of the energy inner product Part II defined and Part III minimized.
+The [prologue](../prologue/00-many-scales.md) promised that **Act III — Pulling** would turn grip displacement into numbers on the load cell. Assembly is the backstage step that makes that act honest — each scatter into \(\mathbf{K}\) is the finite-dimensional echo of the energy inner product Part II defined and Part III minimized.
 
 ## Scene: the mesh becomes a matrix
 
@@ -196,7 +196,7 @@ Global assembly is the map from continuum physics to \(\mathbf{K}\mathbf{U}=\mat
 
 Recall the pipeline from [Part III.4](../part03-pdes/04-energy-methods.md#bridge-to-part-iv): weak form → energy minimum → Rayleigh–Ritz on \(V_h\). Assembly is the operational half of Rayleigh–Ritz; element technology is the other half. The copper wire's tensile mesh is only as trustworthy as the P1 bar elements (1D), triangles (2D cross-section), or tets (3D grip region) that define \(V_h\).
 
-Return to the [prologue](../../prologue/00-many-scales.md): **Act III — Pulling** is where grip displacement becomes numbers on the load cell. Assembly is the backstage step that makes that act honest — each `scatter` into \(\mathbf{K}\) and \(\mathbf{f}\) is the finite-dimensional echo of the energy inner product Part II defined and Part III minimized. Part I taught the pattern as \(\mathbf{L}_e^T \mathbf{k}_e \mathbf{L}_e\); here the same map runs on millions of elements. When the linear elastic climb on the force–displacement trace disagrees with experiment, check assembly before blaming constitutive physics — a transposed connectivity array or wrong DOF map corrupts the story before dislocations or yield enter.
+Return to the [prologue](../prologue/00-many-scales.md): **Act III — Pulling** is where grip displacement becomes numbers on the load cell. Assembly is the backstage step that makes that act honest — each `scatter` into \(\mathbf{K}\) and \(\mathbf{f}\) is the finite-dimensional echo of the energy inner product Part II defined and Part III minimized. Part I taught the pattern as \(\mathbf{L}_e^T \mathbf{k}_e \mathbf{L}_e\); here the same map runs on millions of elements. When the linear elastic climb on the force–displacement trace disagrees with experiment, check assembly before blaming constitutive physics — a transposed connectivity array or wrong DOF map corrupts the story before dislocations or yield enter.
 
 | Prologue act | Assembly artifact on the wire | Upstream chapter that defined it |
 |--------------|-------------------------------|----------------------------------|

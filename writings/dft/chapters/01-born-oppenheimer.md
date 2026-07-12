@@ -13,7 +13,7 @@ For copper, DFT answers the most basic question the wire poses at the finest sca
 | Part VIII | EAM MD; LAMMPS trajectories; coarse-grained exports | Classical atoms on a BO surface |
 | **IX.1 (here)** | Born–Oppenheimer; Hohenberg–Kohn | Why energy is a functional of \(\rho(\mathbf{r})\) |
 
-Part VIII's EAM potential treated nuclei as classical particles on a fixed energy surface; this chapter asks **where that surface came from**. The [prologue](../../prologue/00-many-scales.md) **Act VI — Foundation** runs offline before any grip closes — every \(E\), \(\nu\), and stacking-fault energy in upstream parts traces to calculations whose intellectual floor is laid here.
+Part VIII's EAM potential treated nuclei as classical particles on a fixed energy surface; this chapter asks **where that surface came from**. The [prologue](../prologue/00-many-scales.md) **Act VI — Foundation** runs offline before any grip closes — every \(E\), \(\nu\), and stacking-fault energy in upstream parts traces to calculations whose intellectual floor is laid here.
 
 ## Scene: electrons adjust in a blink
 

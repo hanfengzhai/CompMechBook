@@ -6,10 +6,10 @@ Every computational mechanics code, before it knows anything about stress tensor
 
 | Stage | What the wire became | Key object |
 |-------|----------------------|------------|
-| [Prologue](../../prologue/00-many-scales.md) | Six-act lab session; multiscale ladder | Four questions: state, equations, discretization, export |
+| [Prologue](../prologue/00-many-scales.md) | Six-act lab session; multiscale ladder | Four questions: state, equations, discretization, export |
 | **I.1 (here)** | Spring chain under mounting; \(\mathbf{K}\mathbf{u}=\mathbf{f}\) | State vector, stiffness matrix, sparsity |
 
-The [prologue](../../prologue/00-many-scales.md) promised one copper wire under tension and current — and that every scale eventually reduces to arrays and solvers. Part I opens **Act I — Mounting**: grips closed, load cell zeroed, no current yet. This chapter is the first language the computer and the laboratory share before fields, weak forms, or electrons enter the story.
+The [prologue](../prologue/00-many-scales.md) promised one copper wire under tension and current — and that every scale eventually reduces to arrays and solvers. Part I opens **Act I — Mounting**: grips closed, load cell zeroed, no current yet. This chapter is the first language the computer and the laboratory share before fields, weak forms, or electrons enter the story.
 
 ## Scene: Act I — mounting
 
@@ -17,7 +17,7 @@ Picture the copper wire in the **tensile frame** of the prologue at the moment *
 
 At this beat the wire is a chain of axial bar elements: \(N\) nodes along the axis, each carrying one displacement; a sparse \(\mathbf{K}\) from element stiffnesses; a load vector \(\mathbf{f}\) encoding grip constraints and any end load. The experiment and the matrix are two languages for the same mounting scene. Part I teaches the second language first, because every finer-scale model in Parts II–IX still ends in sparse linear algebra whenever we discretize and solve.
 
-Return to the [prologue](../../prologue/00-many-scales.md): the six-act table previews warming, pulling, hardening, and foundation runs that will reuse this same grammar with richer state variables. **Act III — Pulling** will ramp grip displacement and trace force on the load cell; **Act IV — Hardening** will bend that curve when dislocations move. Those acts need the syntax established here — \(\mathbf{K}\mathbf{u}=\mathbf{f}\) before fields, weak forms, or electrons enter the story.
+Return to the [prologue](../prologue/00-many-scales.md): the six-act table previews warming, pulling, hardening, and foundation runs that will reuse this same grammar with richer state variables. **Act III — Pulling** will ramp grip displacement and trace force on the load cell; **Act IV — Hardening** will bend that curve when dislocations move. Those acts need the syntax established here — \(\mathbf{K}\mathbf{u}=\mathbf{f}\) before fields, weak forms, or electrons enter the story.
 
 At the scale of a tensile test, an engineer might model the mounted wire as a chain of axial bar elements. Each node carries one scalar displacement along the wire axis. Stack those scalars into a column vector, assemble a stiffness matrix from element contributions, and the equilibrium problem is linear algebra before it is anything else. The wire does not know it is being approximated; the code only sees numbers in \(\mathbb{R}^N\).
 
@@ -172,7 +172,7 @@ With vectors and matrices in hand, we next examine **linear maps** abstractly: c
 | Sparsity from local coupling on the spring chain | Isoparametric Jacobian preview: volume maps before Part IV |
 | Column space / null space of \(\mathbf{K}\) | Rigid-body modes the grips must constrain |
 
-Return to the [prologue](../../prologue/00-many-scales.md): **Act I — Mounting** fixes the wire in grips whose end displacement is a single global degree of freedom, yet every bar element still carries its own local axis. Assembly is the map that declares those languages equivalent — the same book-keeping Part IV will automate on millions of elements. When the map is wrong, the wire appears to stretch when only one end moves; when the basis is ill-chosen, \(\mathbf{K}\) is dense and ill-conditioned even though the physics is local.
+Return to the [prologue](../prologue/00-many-scales.md): **Act I — Mounting** fixes the wire in grips whose end displacement is a single global degree of freedom, yet every bar element still carries its own local axis. Assembly is the map that declares those languages equivalent — the same book-keeping Part IV will automate on millions of elements. When the map is wrong, the wire appears to stretch when only one end moves; when the basis is ill-chosen, \(\mathbf{K}\) is dense and ill-conditioned even though the physics is local.
 
 The copper wire, meshed or unmeshed, is the same physical object in every basis we choose. Part II will ask what happens when \(N\) grows without bound and \(\mathbf{K}\) becomes an operator on a function space; Part IV will show that the same scatter map \(\mathbf{L}_e\) on millions of elements is the assembly loop behind **Act III — Pulling**. For now, the experiment needs only a handful of nodes and one honest matrix.
 
@@ -196,7 +196,7 @@ The copper wire, meshed or unmeshed, is the same physical object in every basis 
 | Fields replace vectors in Part II | DFT exports moduli before mounting | Stiffness is always a bilinear form restricted to DOFs |
 | Weak forms arrive in Part III | FEM deck built from homogenized \(E,\nu\) | Assembly scatter maps from [I.2](02-linear-maps.md) |
 
-The [epilogue](../../epilogue/multiscale.md#lab-act-reunion-six-acts-one-afternoon) reunites these two clocks on one afternoon — **Act I** here is the mounting scene whose matrix every later act still spends.
+The [epilogue](../epilogue/multiscale.md#lab-act-reunion-six-acts-one-afternoon) reunites these two clocks on one afternoon — **Act I** here is the mounting scene whose matrix every later act still spends.
 
 Turn the page when \(\mathbf{K}\mathbf{u}=\mathbf{f}\) feels like a table of numbers rather than a coordinate story — linear maps are where that table acquires geometry.
 

@@ -17,7 +17,7 @@ A DDD simulation represents that forest as a network of segments, each feeling P
 | VII.1 | Taxonomy: point, line, surface defects | Which defect class carries each phenomenological knob |
 | **VII.2 (here)** | Post-yield bend in **Act IV — Hardening** | Moving segments, not fitted Voce slopes alone |
 
-The [prologue](../../prologue/00-many-scales.md) table promised that **upward export** at every scale carries units and pedigree; DDD's export is \(\tau(\gamma)\) and \(\rho(\gamma)\) — internal variables a crystal plasticity or FEM run can consume only if mobility and elastic constants from Parts VIII–IX are archived with convergence logs.
+The [prologue](../prologue/00-many-scales.md) table promised that **upward export** at every scale carries units and pedigree; DDD's export is \(\tau(\gamma)\) and \(\rho(\gamma)\) — internal variables a crystal plasticity or FEM run can consume only if mobility and elastic constants from Parts VIII–IX are archived with convergence logs.
 
 ## From elasticity to line defects
 

@@ -15,6 +15,14 @@ done
 
 DRIFT=0
 
+rewrite_links() {
+  # Normalize cross-part links for unified mdBook layout (src/).
+  sed -e 's|](../../prologue/|](../prologue/|g' \
+      -e 's|](../../epilogue/|](../epilogue/|g' \
+      -e 's|(../../prologue/|(../prologue/|g' \
+      -e 's|(../../epilogue/|(../epilogue/|g'
+}
+
 sync_file() {
   local src="$1" dst="$2"
   if [[ ! -f "$src" ]]; then
@@ -27,12 +35,12 @@ sync_file() {
     if [[ ! -f "$dst" ]]; then
       echo "DRIFT (missing dst): $dst"
       DRIFT=1
-    elif ! cmp -s "$src" "$dst"; then
+    elif ! cmp -s <(rewrite_links < "$src") "$dst"; then
       echo "DRIFT: $src != $dst"
       DRIFT=1
     fi
   else
-    cp "$src" "$dst"
+    rewrite_links < "$src" > "$dst"
     echo "synced: $dst"
   fi
 }

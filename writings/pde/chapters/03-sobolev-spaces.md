@@ -12,7 +12,7 @@ When we approximate the temperature on the copper wire with piecewise-linear hat
 | [III.1–III.2](01-strong-form.md) | Strong PDEs at points; weak forms with test functions | Bilinear form \(a(u,v)=\ell(v)\) |
 | **III.3 (here)** | Piecewise-linear \(T(x)\) with kinks at nodes | Sobolev membership: \(\nabla u \in L^2\) |
 
-The [prologue](../../prologue/00-many-scales.md) promised the weak form as a **recurring character**. Parts I–II built the room; III.1–III.2 gave it lines on stage. This chapter names the **regularity contract** FEM codes assume: conforming elements live in \(H^1\), concentrated loads live in \(H^{-1}\), and optimal \(O(h^2)\) rates need \(H^2\) on the true solution — not on the mesh field itself.
+The [prologue](../prologue/00-many-scales.md) promised the weak form as a **recurring character**. Parts I–II built the room; III.1–III.2 gave it lines on stage. This chapter names the **regularity contract** FEM codes assume: conforming elements live in \(H^1\), concentrated loads live in \(H^{-1}\), and optimal \(O(h^2)\) rates need \(H^2\) on the true solution — not on the mesh field itself.
 
 ## Scene: kinks at the nodes
 
@@ -176,7 +176,7 @@ Energy methods package weak forms as minimization problems. They unify FEM, prov
 
 The copper wire's displacement minimizes elastic energy in \(H^1\); its temperature minimizes a quadratic functional with conductivity \(k(x)\). Those are not separate tricks — they are the same variational pattern [III.2](02-weak-form.md) wrote as \(a(u,v)=\ell(v)\), now dressed as \(\delta\Pi[u]=0\). When incompressibility or mixed stress–displacement formulations appear, minimization alone is insufficient; saddle-point structure (LBB) enters — the same inf–sup language Part IV will meet again for Stokes.
 
-Return to the [prologue](../../prologue/00-many-scales.md): in **Act II — Warming**, the thermocouple climbs while the grips still hold fixed displacement. The temperature field \(T(x)\) that drives that reading must live in \(H^1\) — continuous across the wire, with square-integrable gradient — even though Joule heating and surface convection make \(T\) kinked at the thermocouple weld and insulator corner. Piecewise-linear FEM temperatures are globally in \(H^1\) but not in \(H^2\); that gap is exactly why optimal \(O(h^2)\) rates need smoother true solutions than the discrete fields themselves possess. Sobolev membership is not pedantry — it is the contract the thermocouple and the load cell both assume.
+Return to the [prologue](../prologue/00-many-scales.md): in **Act II — Warming**, the thermocouple climbs while the grips still hold fixed displacement. The temperature field \(T(x)\) that drives that reading must live in \(H^1\) — continuous across the wire, with square-integrable gradient — even though Joule heating and surface convection make \(T\) kinked at the thermocouple weld and insulator corner. Piecewise-linear FEM temperatures are globally in \(H^1\) but not in \(H^2\); that gap is exactly why optimal \(O(h^2)\) rates need smoother true solutions than the discrete fields themselves possess. Sobolev membership is not pedantry — it is the contract the thermocouple and the load cell both assume.
 
 | Sobolev symbol | FEM consumer in Part IV | FVM consumer in Part V |
 |----------------|-------------------------|------------------------|

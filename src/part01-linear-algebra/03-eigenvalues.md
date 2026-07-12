@@ -15,7 +15,7 @@ Clamp one end of the copper wire and pull the other rhythmically: the wire does 
 | **I.3 (here)** | Eigenmodes; \(\mathbf{K}\mathbf{v}=\lambda\mathbf{M}\mathbf{v}\) | Spectra that survive mesh refinement |
 | [I.4](04-toward-infinity.md) (next) | \(N\to\infty\); fields replace vectors | Operators and Hilbert spaces in Part II |
 
-The [prologue](../../prologue/00-many-scales.md) promised that the same four questions recur at every scale; eigenvalues are the first time **structure** (symmetry, SPD) buys a **theorem** (orthogonal modes, real spectra) that engineers use before any continuum proof exists.
+The [prologue](../prologue/00-many-scales.md) promised that the same four questions recur at every scale; eigenvalues are the first time **structure** (symmetry, SPD) buys a **theorem** (orthogonal modes, real spectra) that engineers use before any continuum proof exists.
 
 ## Scene: the wire hums at one pitch
 
@@ -174,7 +174,7 @@ We have stayed in finite dimensions: \(\mathbf{A}\mathbf{v} = \lambda \mathbf{v}
 | Lanczos on sparse \(\mathbf{K}\) for lowest modes | Spectral theory for elliptic operators (Part II.5 → Part IV.5) |
 | Resonance diagnosis on the wire fixture | Same decoupling picture at atomistic scales (Part VIII) |
 
-The [prologue](../../prologue/00-many-scales.md) introduced the specimen as one ladder with many rungs; eigenmodes are the **first time decoupling appears** in the book — a preview of orthogonality in Hilbert space and of dominant modes in molecular dynamics. [I.2](02-linear-maps.md) showed change of coordinates; eigenvectors are the coordinates in which the stiffness map acts by pure scaling — the last finite-dimensional change of basis before [I.4](04-toward-infinity.md) sends \(N\to\infty\) and Part II replaces matrices with operators whose spectra no longer fit in any fixed \(\mathbb{R}^N\).
+The [prologue](../prologue/00-many-scales.md) introduced the specimen as one ladder with many rungs; eigenmodes are the **first time decoupling appears** in the book — a preview of orthogonality in Hilbert space and of dominant modes in molecular dynamics. [I.2](02-linear-maps.md) showed change of coordinates; eigenvectors are the coordinates in which the stiffness map acts by pure scaling — the last finite-dimensional change of basis before [I.4](04-toward-infinity.md) sends \(N\to\infty\) and Part II replaces matrices with operators whose spectra no longer fit in any fixed \(\mathbb{R}^N\).
 
 | Prologue act | Discrete eigenstructure on the wire | What I.4 + Part II take to the limit |
 |--------------|-------------------------------------|--------------------------------------|

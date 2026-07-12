@@ -10,7 +10,7 @@ When we mesh the copper wire for a tensile test, each bar element has a **local*
 
 | Stage | What the wire became | Key object |
 |-------|----------------------|------------|
-| [Prologue](../../prologue/00-many-scales.md) | Six-act lab session; multiscale ladder | Four questions: state, equations, discretization, export |
+| [Prologue](../prologue/00-many-scales.md) | Six-act lab session; multiscale ladder | Four questions: state, equations, discretization, export |
 | [I.1](01-vectors-matrices.md) | Spring chain under mounting; \(\mathbf{K}\mathbf{u}=\mathbf{f}\) | State vector, stiffness matrix, sparsity |
 | **I.2 (here)** | Local element axes ↔ global node numbering | Linear maps, change of basis, assembly scatter |
 
@@ -174,7 +174,7 @@ Not every linear map is best viewed in the standard basis. The modes of vibratio
 | Energy \(\mathbf{u}^T\mathbf{K}\mathbf{u}\) | Symmetry and SPD as matrix shadows of coercivity | Squared natural frequencies as eigenvalues of \(\mathbf{K}\) with mass |
 | Sparsity from local coupling | Local/global frames, rotations, SVD principal directions | Spectral theorem preview before operators in Part II |
 
-Return to the [prologue](../../prologue/00-many-scales.md): **Act I — Mounting** fixes the wire in grips whose displacement is a single global degree of freedom, yet every bar element still carries its own local axis. Assembly is the map that declares those languages equivalent — the same book-keeping Part IV will automate on millions of elements. When the map is wrong, the wire appears to stretch when only one end moves; when the basis is ill-chosen, \(\mathbf{K}\) is dense and ill-conditioned even though the physics is local.
+Return to the [prologue](../prologue/00-many-scales.md): **Act I — Mounting** fixes the wire in grips whose displacement is a single global degree of freedom, yet every bar element still carries its own local axis. Assembly is the map that declares those languages equivalent — the same book-keeping Part IV will automate on millions of elements. When the map is wrong, the wire appears to stretch when only one end moves; when the basis is ill-chosen, \(\mathbf{K}\) is dense and ill-conditioned even though the physics is local.
 
 The eigenvectors of \(\mathbf{K}\) (with appropriate mass weighting) are standing-wave patterns on the mesh; their eigenvalues are squared natural frequencies. Part I's opening [**concept map**](00-opening.md#the-concept-map) asked what breaks if structure is missing — here, rank deficiency signals rigid-body modes the grips must remove. [I.3](03-eigenvalues.md) makes decoupling explicit before [I.4](04-toward-infinity.md) sends \(N\to\infty\) and Part II names the operator behind every assembled matrix.
 

@@ -214,7 +214,7 @@ Norms measure size; inner products measure angle and projection. When the norm c
 
 Part I diagonalized \(\mathbf{K}\) by finding orthogonal eigenvectors in \(\mathbb{R}^N\). The copper wire's vibration modes in the limit are the same idea — but orthogonality is now \((u_i, u_j) = 0\) in \(H^1\), not \(\mathbf{u}_i^T \mathbf{u}_j = 0\). The next chapter develops that geometry and connects it directly to the finite element method through best approximation and Céa's lemma.
 
-Return to the [prologue](../../prologue/00-many-scales.md): **Act II — Warming** asks which norm judges whether the thermal FEM has converged; **Act III — Pulling** asks which energy norm judges whether the displacement field is close enough for the load cell to trust. This chapter named both rulers; [II.3](03-hilbert-spaces.md) will prove that Galerkin projection is optimal in the energy norm those rulers define.
+Return to the [prologue](../prologue/00-many-scales.md): **Act II — Warming** asks which norm judges whether the thermal FEM has converged; **Act III — Pulling** asks which energy norm judges whether the displacement field is close enough for the load cell to trust. This chapter named both rulers; [II.3](03-hilbert-spaces.md) will prove that Galerkin projection is optimal in the energy norm those rulers define.
 
 | Prologue act | Norm question on the wire | What completeness guarantees |
 |--------------|---------------------------|------------------------------|

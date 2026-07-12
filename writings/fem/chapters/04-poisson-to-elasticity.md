@@ -215,7 +215,7 @@ Poisson's equation and linear elasticity share one assembly loop — scalar vers
 | Thermoelastic coupling: scalar heat + vector displacement on one mesh | A posteriori estimators and adaptive refinement at grip corners |
 | Nonlinear hyperelastic preview (Part VI pointer) | When \(p\)-refinement beats \(h\)-refinement; locking at \(\nu \to 1/2\) |
 
-Return to the [prologue](../../prologue/00-many-scales.md): **Act III** ramps grip displacement on a mesh whose axial displacement field is now a vector-valued Poisson story — three components, one assembly habit. The load cell curve in the linear elastic regime is trustworthy only if refinement studies show the discrete solution converging to the weak solution Part III wrote. [II.3](../part02-functional-analysis/03-hilbert-spaces.md) and [III.3](../part03-pdes/03-sobolev-spaces.md) supplied the norms; the next chapter closes the loop between theory and mesh refinement on the copper wire and beyond.
+Return to the [prologue](../prologue/00-many-scales.md): **Act III** ramps grip displacement on a mesh whose axial displacement field is now a vector-valued Poisson story — three components, one assembly habit. The load cell curve in the linear elastic regime is trustworthy only if refinement studies show the discrete solution converging to the weak solution Part III wrote. [II.3](../part02-functional-analysis/03-hilbert-spaces.md) and [III.3](../part03-pdes/03-sobolev-spaces.md) supplied the norms; the next chapter closes the loop between theory and mesh refinement on the copper wire and beyond.
 
 | Prologue act | FEM output on the wire | Convergence question the next chapter answers |
 |--------------|------------------------|-----------------------------------------------|

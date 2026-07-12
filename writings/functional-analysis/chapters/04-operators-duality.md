@@ -12,7 +12,7 @@ Matrices act on column vectors. Differential operators act on functions. Dual sp
 | [II.3](03-hilbert-spaces.md) | Inner product; Lax–Milgram | Galerkin projection is honest |
 | **II.4 (here)** | Bounded operators; dual loads \(\ell(v)\) | Maps between Hilbert spaces; weak convergence |
 
-The [prologue](../../prologue/00-many-scales.md) mounted the wire in grips and warned that concentrated loads and mesh refinement make convergence a **sense** question, not just a smaller \(h\). Part I's nodal forces become functionals here; Part IV's assembly scatters those forces only because duality and weak* limits make the limit honest.
+The [prologue](../prologue/00-many-scales.md) mounted the wire in grips and warned that concentrated loads and mesh refinement make convergence a **sense** question, not just a smaller \(h\). Part I's nodal forces become functionals here; Part IV's assembly scatters those forces only because duality and weak* limits make the limit honest.
 
 ## Scene: the load is not a vector of numbers
 
@@ -217,7 +217,7 @@ Operators on Hilbert spaces become transparent when they are **self-adjoint** an
 
 On the copper wire, the stiffness operator from Part I's spring network becomes a differential operator in the limit; its eigenfunctions are standing-wave patterns along the bar, its eigenvalues are squared natural frequencies. Buckling searches for \(\lambda\) where \(\mathbf{K} - \lambda \mathbf{K}_g\) loses invertibility — the same Fredholm logic previewed above. The next chapter states the spectral theorem explicitly and closes Part II with the **well-posedness triangle** that hands off to Part III: strong forms for intuition, weak forms for computation, Sobolev spaces for regularity.
 
-Return to the [prologue](../../prologue/00-many-scales.md): **Act III — Pulling** will ramp grip displacement on the load cell, but the operator cannot trust that curve until the **Galerkin projector** and **dual loads** defined here make mesh refinement honest. Part I's concentrated nodal forces were finite-dimensional shadows of functionals \(\ell(v)\); Part IV's assembly will scatter those loads into \(\mathbf{f}\) only because Riesz representation and weak* convergence justify the limit. When sensitivity analysis asks how the wire's tip displacement responds to a perturbation in grip load, the adjoint solution is the duality pattern this chapter named.
+Return to the [prologue](../prologue/00-many-scales.md): **Act III — Pulling** will ramp grip displacement on the load cell, but the operator cannot trust that curve until the **Galerkin projector** and **dual loads** defined here make mesh refinement honest. Part I's concentrated nodal forces were finite-dimensional shadows of functionals \(\ell(v)\); Part IV's assembly will scatter those loads into \(\mathbf{f}\) only because Riesz representation and weak* convergence justify the limit. When sensitivity analysis asks how the wire's tip displacement responds to a perturbation in grip load, the adjoint solution is the duality pattern this chapter named.
 
 | Prologue act | Operator/duality object on the wire | Why the mesh can trust it |
 |--------------|-------------------------------------|---------------------------|

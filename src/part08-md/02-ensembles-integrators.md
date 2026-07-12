@@ -13,7 +13,7 @@ Getting the ensemble wrong is not a small error. It is simulating the wrong expe
 | [VIII.1](01-potentials-phase-space.md) | EAM potential; phase space \((\mathbf{r},\mathbf{p})\) | Interatomic forces from fitted surfaces |
 | **VIII.2 (here)** | Verlet; NVT/NPT at 300–600 K | Controlled sampling of statistical mechanics |
 
-Part VII's dislocations move on atomistic substrates; this chapter asks whether the MD trajectory represents the **same temperature and pressure** as the laboratory wire. The [prologue](../../prologue/00-many-scales.md) **Act IV — Hardening** bent the load cell curve at laboratory temperature — NVT and NPT ensembles are how that temperature enters simulation, not as a comment line in an input deck.
+Part VII's dislocations move on atomistic substrates; this chapter asks whether the MD trajectory represents the **same temperature and pressure** as the laboratory wire. The [prologue](../prologue/00-many-scales.md) **Act IV — Hardening** bent the load cell curve at laboratory temperature — NVT and NPT ensembles are how that temperature enters simulation, not as a comment line in an input deck.
 
 ## Scene: thermometers in a nanoscale lab
 
@@ -215,7 +215,7 @@ Verlet integrators and NVT/NPT ensembles make classical MD a controlled experime
 | Reproducibility checklist (cutoff, \(\Delta t\), drift) | Coarse-graining: export \(C_{ij}\), \(\gamma_{\text{sf}}\), mobility to Part VII |
 | Time-scale gap (creep, rare events) | Handoff table linking Part VIII exports to Part IV/VII consumers |
 
-Return to the [prologue](../../prologue/00-many-scales.md): **Act IV — Hardening** bent the load cell curve because dislocation lines moved on a potential surface whose parameters were fit at laboratory temperature — the NVT and NPT ensembles named in this chapter are how that temperature enters the simulation, not as a comment line in an input deck. **Act V — Notch** concentrates stress where continuum meshes regularize singularities; MD's representative volume at the notch root is the atomistic witness those regularized fields cannot supply alone.
+Return to the [prologue](../prologue/00-many-scales.md): **Act IV — Hardening** bent the load cell curve because dislocation lines moved on a potential surface whose parameters were fit at laboratory temperature — the NVT and NPT ensembles named in this chapter are how that temperature enters the simulation, not as a comment line in an input deck. **Act V — Notch** concentrates stress where continuum meshes regularize singularities; MD's representative volume at the notch root is the atomistic witness those regularized fields cannot supply alone.
 
 **Act VI — Foundation** runs offline before any grip closes: DFT bulk energies, EAM fits, mobility tables. Part VII's dislocations move on surfaces MD integrates; Part IV's elastic step uses moduli MD or DFT averaged over a polycrystal. [VIII.3](03-ab-initio-and-coarse-graining.md) is the **export chapter** — the rung where atomistics stops being a standalone movie and becomes input for coarser models, while naming what only Part IX can re-derive from \(\rho(\mathbf{r})\).
 

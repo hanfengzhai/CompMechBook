@@ -15,7 +15,7 @@ The copper wire under tension is our recurring specimen — at the continuum sca
 | Part V | Cell-averaged velocity \(\bar{\mathbf{v}}\) | Discrete shadow of fluid motion |
 | **VI.1 (here)** | \(\mathbf{F}\), \(\boldsymbol{\varepsilon}\), \(\mathbf{E}\), \(\mathbf{D}\) | Continuous maps both discretizations sample |
 
-Parts IV and V computed numbers on meshes; Part VI names the **continuous objects** those numbers approximate. The [prologue](../../prologue/00-many-scales.md) **Act III — Pulling** ramped grip displacement — kinematics records **how** each material point moved and stretched so stress and balance laws in [VI.2](02-stress-balance.md) have geometric input.
+Parts IV and V computed numbers on meshes; Part VI names the **continuous objects** those numbers approximate. The [prologue](../prologue/00-many-scales.md) **Act III — Pulling** ramped grip displacement — kinematics records **how** each material point moved and stretched so stress and balance laws in [VI.2](02-stress-balance.md) have geometric input.
 
 ## Scene: the wire in the tensile frame
 

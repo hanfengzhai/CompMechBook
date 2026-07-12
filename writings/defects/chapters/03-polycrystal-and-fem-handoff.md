@@ -261,7 +261,7 @@ Crystal plasticity and calibrated DDD close the mesoscale chapter: they explain 
 | Calibrated \(h_0\), \(g_{\text{sat}}\) in DAMASK | EAM or MEAM parameters fit to DFT elastic constants |
 | FE² at notches when homogenization fails | Bond breaking and chemistry (e.g. surface oxidation) |
 
-Return to the [prologue](../../prologue/00-many-scales.md): **Act IV** hardening and **Act V** notch stress concentration both lean on parameters whose **ink** is atomic — the same copper lattice Part VIII will traverse with Newton's equations and empirical or *ab initio* potentials. Part IX follows when even EAM parameters need first-principles validation of formation energies and band structure.
+Return to the [prologue](../prologue/00-many-scales.md): **Act IV** hardening and **Act V** notch stress concentration both lean on parameters whose **ink** is atomic — the same copper lattice Part VIII will traverse with Newton's equations and empirical or *ab initio* potentials. Part IX follows when even EAM parameters need first-principles validation of formation energies and band structure.
 
 | Prologue act | Mesoscale export (Part VII) | Atomistic resolution (Part VIII) |
 |--------------|----------------------------|----------------------------------|

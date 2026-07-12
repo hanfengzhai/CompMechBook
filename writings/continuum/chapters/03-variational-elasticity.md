@@ -224,7 +224,7 @@ Variational elasticity closes the loop the book has traced since Part I's spring
 | Worked 1D bar: exact linear solution on P1 mesh | Newton–Raphson at every load increment |
 | Elastic springback before yield | Honest admission: smooth fields break at defects |
 
-Return to the [prologue](../../prologue/00-many-scales.md): **Act III** measured the linear elastic climb on the load cell; **Act IV** is the upward bend that variational elasticity cannot explain with a quadratic \(\psi\) alone. Part IV assembled \(\mathbf{K}\) from bilinear forms; this chapter named the stress and strain those forms integrate. [VI.4](04-nonlinear-plasticity-preview.md) is the last continuum stop — phenomenological hardening without dislocations, a fitted curve waiting for Part VII's forest to supply \(\sigma_{y0}\) and \(H\).
+Return to the [prologue](../prologue/00-many-scales.md): **Act III** measured the linear elastic climb on the load cell; **Act IV** is the upward bend that variational elasticity cannot explain with a quadratic \(\psi\) alone. Part IV assembled \(\mathbf{K}\) from bilinear forms; this chapter named the stress and strain those forms integrate. [VI.4](04-nonlinear-plasticity-preview.md) is the last continuum stop — phenomenological hardening without dislocations, a fitted curve waiting for Part VII's forest to supply \(\sigma_{y0}\) and \(H\).
 
 | Prologue act | Variational statement on the wire | Where the energy picture breaks |
 |--------------|-----------------------------------|--------------------------------|
@@ -241,4 +241,4 @@ Turn the page when the wire's stress–strain curve bends upward after cold draw
 | Path-independent hyperelasticity | Dislocation forest from cold work | [Part VII](../part07-defects/00-opening.md) |
 | Virtual work \(\delta\Pi=0\) | Atomistic nucleation at a notch | [Part VIII](../part08-md/00-opening.md) |
 
-The [prologue](../../prologue/00-many-scales.md) promised one specimen through six acts: **Act III** is the linear elastic climb this chapter explains; **Act IV** is where \(\delta\Pi=0\) with a single quadratic \(\psi\) stops being enough. Part IV assembled the mesh; Part VI named the energy; Part VII will show the forest that cold drawing stored before the operator ever closed the grips.
+The [prologue](../prologue/00-many-scales.md) promised one specimen through six acts: **Act III** is the linear elastic climb this chapter explains; **Act IV** is where \(\delta\Pi=0\) with a single quadratic \(\psi\) stops being enough. Part IV assembled the mesh; Part VI named the energy; Part VII will show the forest that cold drawing stored before the operator ever closed the grips.

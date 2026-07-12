@@ -14,7 +14,7 @@ The copper wire reappears in a different guise. Solid mechanics on the wire stil
 | Part IV | Galerkin assembly; \(\mathbf{K}\mathbf{U}=\mathbf{F}\); Céa convergence | FEM inside the copper wire |
 | **V.1 (here)** | Integral balance on control volumes | Conservation contract for the fluid side |
 
-Part IV meshed conduction **inside** the solid; this chapter states the **conservation contract** for the air **outside** it — what enters a control volume must equal what leaves plus what accumulates. The [prologue](../../prologue/00-many-scales.md) **Act II — Warming** showed the wire surface running hot; conjugate heat transfer in [V.4](04-navier-stokes-cfd.md) will handshake FEM temperature fields with FVM enthalpy fluxes named here.
+Part IV meshed conduction **inside** the solid; this chapter states the **conservation contract** for the air **outside** it — what enters a control volume must equal what leaves plus what accumulates. The [prologue](../prologue/00-many-scales.md) **Act II — Warming** showed the wire surface running hot; conjugate heat transfer in [V.4](04-navier-stokes-cfd.md) will handshake FEM temperature fields with FVM enthalpy fluxes named here.
 
 ## Scene: air leaving the wire
 

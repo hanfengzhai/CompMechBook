@@ -205,7 +205,7 @@ With motivation in place, we begin where all analysis begins: measuring distance
 | Four questions: existence, uniqueness, stability, convergence | Banach completeness: Cauchy sequences stay inside the admissible class |
 | \(\mathbf{K}\) as shadow of bilinear form \(a(\cdot,\cdot)\) | Equivalent norms and why FEM error measures do not depend on one choice |
 
-Return to the [prologue](../../prologue/00-many-scales.md): the weak form was introduced there as a **recurring character** that outlives every mesh. Part I gave it a finite-dimensional prelude — nodal equilibrium — and [I.4](../part01-linear-algebra/04-toward-infinity.md) showed refinement sending \(N\) without bound. This chapter named **why** that limit must live in a function space before Part III writes weak PDEs and Part IV assembles \(\mathbf{K}\) from shape functions. Inner products and Hilbert geometry follow in [II.3](03-hilbert-spaces.md); the next chapter builds the normed-space foundation they rest on.
+Return to the [prologue](../prologue/00-many-scales.md): the weak form was introduced there as a **recurring character** that outlives every mesh. Part I gave it a finite-dimensional prelude — nodal equilibrium — and [I.4](../part01-linear-algebra/04-toward-infinity.md) showed refinement sending \(N\) without bound. This chapter named **why** that limit must live in a function space before Part III writes weak PDEs and Part IV assembles \(\mathbf{K}\) from shape functions. Inner products and Hilbert geometry follow in [II.3](03-hilbert-spaces.md); the next chapter builds the normed-space foundation they rest on.
 
 | Prologue act | Finite-dimensional preview (Part I) | Infinite-dimensional limit (this chapter) |
 |--------------|-------------------------------------|-------------------------------------------|
@@ -214,6 +214,6 @@ Return to the [prologue](../../prologue/00-many-scales.md): the weak form was in
 | III — Pulling | Mesh displacement vectors grow with refinement | Field \(u(x)\in H^1\) as the convergence target |
 | VI — Foundation | Eigenmodes on a fixed mesh | Spectral problem for a differential operator |
 
-Part II is the **convergence target** the prologue's six-act lab session already assumes: when the thermocouple climbs in Act II or the load cell ramps in Act III, mesh refinement only means something because the limit object defined here exists. The [epilogue](../../epilogue/multiscale.md#closing-the-full-arc) closes the same four questions at every rung; this chapter is where "discretization" acquires a limit worth trusting.
+Part II is the **convergence target** the prologue's six-act lab session already assumes: when the thermocouple climbs in Act II or the load cell ramps in Act III, mesh refinement only means something because the limit object defined here exists. The [epilogue](../epilogue/multiscale.md#closing-the-full-arc) closes the same four questions at every rung; this chapter is where "discretization" acquires a limit worth trusting.
 
 Turn the page when "the mesh looks smooth" is not yet a theorem — norms and completeness are what make that visual judgment honest.

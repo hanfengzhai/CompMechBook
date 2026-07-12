@@ -15,7 +15,7 @@ Part II's closing checkpoint promised that reentrant corners and concentrated lo
 | [III opening](00-opening.md) | Domains, BC tags, well-posedness triangle | Where fields live on the wire |
 | **III.1 (here)** | Pointwise PDE for heat and elasticity | Strong form — power and failure modes |
 
-Part II built the rooms where weak solutions live; this chapter writes the **blackboard physics** those rooms serve. The [prologue](../../prologue/00-many-scales.md) introduced the weak form as a recurring character — born here as equations that hold at every interior point, broken at the grip corner and thermocouple weld where [III.2](02-weak-form.md) takes over.
+Part II built the rooms where weak solutions live; this chapter writes the **blackboard physics** those rooms serve. The [prologue](../prologue/00-many-scales.md) introduced the weak form as a recurring character — born here as equations that hold at every interior point, broken at the grip corner and thermocouple weld where [III.2](02-weak-form.md) takes over.
 
 ## Scene: heat at every point
 
@@ -185,7 +185,7 @@ The copper wire's tensile equilibrium and steady heating look elliptic and innoc
 
 Return to this chapter's opening **Scene**: the thermal camera in prologue **Act II — Warming** demands a strong-form equation at every interior point — and previews why the weak form in [III.2](02-weak-form.md) is the honest continuum statement at the thermocouple weld and insulator corner. Part I's nodal balance laws were the finite-dimensional prelude; Part II's Sobolev spaces are the limit room; this chapter is the blackboard physics both must approximate.
 
-The [prologue](../../prologue/00-many-scales.md) introduced the weak form as a **recurring character**. It first speaks in full sentences in [III.2](02-weak-form.md); Sobolev spaces in [III.3](03-sobolev-spaces.md) make "test function" precise; energy methods in [III.4](04-energy-methods.md) recast the same balance as minimization.
+The [prologue](../prologue/00-many-scales.md) introduced the weak form as a **recurring character**. It first speaks in full sentences in [III.2](02-weak-form.md); Sobolev spaces in [III.3](03-sobolev-spaces.md) make "test function" precise; energy methods in [III.4](04-energy-methods.md) recast the same balance as minimization.
 
 | Prologue act | Strong form on the wire | Where it breaks without weak form |
 |--------------|-------------------------|-----------------------------------|

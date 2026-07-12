@@ -17,7 +17,7 @@ If the copper wire is fixed at both ends and loaded in the middle, the displacem
 | [III.1](01-strong-form.md) | Pointwise PDEs for heat and elasticity | Strong form — valid where \(C^2\) holds |
 | **III.2 (here)** | Virtual work at corners and welds | Weak form — honest at singularities |
 
-The [prologue](../../prologue/00-many-scales.md) introduced the weak form as a **recurring character**. Part I gave it a finite-dimensional prelude (nodal balance laws); Part II built \(H^1\) and dual loads; [III.1](01-strong-form.md) wrote the blackboard physics that breaks at the grip corner and thermocouple weld. This chapter is where the character speaks in full sentences — integration by parts, test functions, and the Galerkin system \(\mathbf{K}\mathbf{U}=\mathbf{F}\) that Part IV will assemble.
+The [prologue](../prologue/00-many-scales.md) introduced the weak form as a **recurring character**. Part I gave it a finite-dimensional prelude (nodal balance laws); Part II built \(H^1\) and dual loads; [III.1](01-strong-form.md) wrote the blackboard physics that breaks at the grip corner and thermocouple weld. This chapter is where the character speaks in full sentences — integration by parts, test functions, and the Galerkin system \(\mathbf{K}\mathbf{U}=\mathbf{F}\) that Part IV will assemble.
 
 ## Scene: the grip corner
 
@@ -221,7 +221,7 @@ Weak derivatives make sense in **Sobolev spaces**. The next chapter defines \(H^
 | Point loads as functionals, not \(L^2\) densities | \(H^{-1}\) dual loads; concentrated forces on the wire |
 | Corners break classical \(C^2\) smoothness | Regularity ladder: \(H^1\) membership vs. \(H^2\) for optimal FEM rates |
 
-The [prologue](../../prologue/00-many-scales.md) named this formulation a **recurring character** — born here as integration by parts, returning as Galerkin orthogonality in Part IV, virtual work in Part VI, and a variational statement on electron density in Part IX. Part II built the room (\(H^1\), dual loads, completeness); this chapter gave the character its first lines on stage. When the grip corner breaks classical \(C^2\) smoothness, the weak form still balances virtual work — that is the plot hinge the rest of the book assumes you will trust.
+The [prologue](../prologue/00-many-scales.md) named this formulation a **recurring character** — born here as integration by parts, returning as Galerkin orthogonality in Part IV, virtual work in Part VI, and a variational statement on electron density in Part IX. Part II built the room (\(H^1\), dual loads, completeness); this chapter gave the character its first lines on stage. When the grip corner breaks classical \(C^2\) smoothness, the weak form still balances virtual work — that is the plot hinge the rest of the book assumes you will trust.
 
 | Prologue act | Strong form that breaks at corners | Weak form statement this chapter writes |
 |--------------|-------------------------------------|----------------------------------------|

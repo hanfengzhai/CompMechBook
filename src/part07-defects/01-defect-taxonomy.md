@@ -11,7 +11,7 @@ Continuum elasticity in Part VI describes smooth displacement fields. Defects ar
 | Parts I–VI | Continuum fields; FEM assembly; yield knee on load cell | \(\boldsymbol{\sigma}\), J₂ hardening parameters \(\sigma_{y0}\), \(H\) |
 | **VII.1 (here)** | Slip lines on the wire surface; Burgers circuits | Point, line, surface defect taxonomy |
 
-Part VI fitted hardening with a single modulus \(H\) but did not explain **where** \(\sigma_{y0}\) and \(H\) come from. The [prologue](../../prologue/00-many-scales.md) promised a ladder of scales; Part VII descends from continuum smoothness to the **localized disruptions** — vacancies, dislocations, grain boundaries — that make cold-drawn copper stronger and the yield knee inevitable. This chapter names what broke the smooth picture.
+Part VI fitted hardening with a single modulus \(H\) but did not explain **where** \(\sigma_{y0}\) and \(H\) come from. The [prologue](../prologue/00-many-scales.md) promised a ladder of scales; Part VII descends from continuum smoothness to the **localized disruptions** — vacancies, dislocations, grain boundaries — that make cold-drawn copper stronger and the yield knee inevitable. This chapter names what broke the smooth picture.
 
 ## Scene: the wire yields
 
@@ -176,7 +176,7 @@ Dislocation dynamics simulates line defects directly — too coarse for every at
 
 The taxonomy above named what broke the smooth continuum picture: point defects (vacancies from annealing), line defects (dislocations from cold drawing), and surface defects (grain boundaries, stacking faults). The next chapter follows those **lines** as they move under Peach–Köhler forces, multiply through Frank–Read sources, and tangle into the forest whose density \(\rho\) makes Taylor hardening \(\tau \propto \sqrt{\rho}\) — the mesoscale origin of the \(H\) and \(\sigma_{y0}\) that Part VI's J₂ preview borrowed without derivation.
 
-Return to the [prologue](../../prologue/00-many-scales.md): **Act IV — Hardening** is when the load cell curve bends upward after yield. Part VI fitted that bend with phenomenological plasticity; Part VII explains the **geometry** cold drawing wrote into the wire before the test began. When mobility laws or core energies are still adjustable knobs, the signal to descend further is Part VIII — atomistics at the notch root and dislocation core.
+Return to the [prologue](../prologue/00-many-scales.md): **Act IV — Hardening** is when the load cell curve bends upward after yield. Part VI fitted that bend with phenomenological plasticity; Part VII explains the **geometry** cold drawing wrote into the wire before the test began. When mobility laws or core energies are still adjustable knobs, the signal to descend further is Part VIII — atomistics at the notch root and dislocation core.
 
 **Act V — Notch** is the exception the taxonomy prepares for: wherever a scratch, grip corner, or grain boundary concentrates stress beyond what smooth \(\boldsymbol{\sigma}(\mathbf{x})\) can regularize, line and surface defects in the table above become the relevant state variables. The taxonomy tells you *which* defect class to simulate; [VII.2](02-dislocation-dynamics.md) follows the lines; Part VIII resolves the core.
 

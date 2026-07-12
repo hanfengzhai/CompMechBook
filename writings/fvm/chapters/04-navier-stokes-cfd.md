@@ -11,7 +11,7 @@ Part V built FVM for conservation laws. This chapter adds viscosity, incompressi
 | [V.1–V.3](01-conservation-integral.md) | Conservation on cells; 1D fluxes; Riemann problems | Cell averages; numerical flux functions |
 | **V.4 (here)** | Air flow that cools the heated wire | Navier–Stokes; Reynolds number; turbulence models |
 
-The [prologue](../../prologue/00-many-scales.md) ran **Act II — Warming** with Joule heating inside the wire. Whether the mid-span temperature stays below annealing range depends on **convection** in the surrounding air — a Navier–Stokes problem on an FVM grid coupled to the FEM conduction field. Part V closes here: from integral conservation to the production CFD workflow that sets the wire's thermal fate.
+The [prologue](../prologue/00-many-scales.md) ran **Act II — Warming** with Joule heating inside the wire. Whether the mid-span temperature stays below annealing range depends on **convection** in the surrounding air — a Navier–Stokes problem on an FVM grid coupled to the FEM conduction field. Part V closes here: from integral conservation to the production CFD workflow that sets the wire's thermal fate.
 
 ## Scene: air decides the wire's fate
 
@@ -227,7 +227,7 @@ Part V discretized conservation on control volumes for fluids. Part VI develops 
 
 Return to the prologue's **Act II — Warming**: current flows, the wire heats, air cools the surface. Part V named the fluxes that carry enthalpy away; Part VI names the **stress and deformation** fields that govern mechanical response when the wire yields in Acts III–IV. If you arrived via **Door A** from [IV.5](../part04-fem/05-convergence.md#bridge-two-doors-from-here), you have discretized both solids and fluids; Part VI unifies their physics in one tensor language. If you took **Door B** (FEM straight to continuum), read the conjugate heat transfer scene above as the handshake pattern Part VI generalizes — wall temperature and flux must agree before mechanical softening enters the story.
 
-The [prologue](../../prologue/00-many-scales.md) promised one specimen in two discretization languages. Part IV's \(\mathbf{K}\mathbf{U}=\mathbf{F}\) and Part V's flux balances are not competing methods; they are **adjacent chapters** in the same afternoon. Part VI is where the load cell's force–displacement curve acquires Cauchy stress behind it, and where cold-drawn strength stops being a fitted parameter and becomes a question for dislocations in Part VII. See [VI opening](../part06-continuum/00-opening.md#closing-the-arc-from-parts-iv-and-v) **Closing the arc from Parts IV and V** for the full handoff table.
+The [prologue](../prologue/00-many-scales.md) promised one specimen in two discretization languages. Part IV's \(\mathbf{K}\mathbf{U}=\mathbf{F}\) and Part V's flux balances are not competing methods; they are **adjacent chapters** in the same afternoon. Part VI is where the load cell's force–displacement curve acquires Cauchy stress behind it, and where cold-drawn strength stops being a fitted parameter and becomes a question for dislocations in Part VII. See [VI opening](../part06-continuum/00-opening.md#closing-the-arc-from-parts-iv-and-v) **Closing the arc from Parts IV and V** for the full handoff table.
 
 | Prologue act | Part V output on the wire | Part VI names the shared field |
 |--------------|---------------------------|--------------------------------|
