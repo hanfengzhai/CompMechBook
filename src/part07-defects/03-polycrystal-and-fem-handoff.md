@@ -4,6 +4,10 @@ Dislocation dynamics resolves individual lines in an elastic medium — powerful
 
 The cold-drawn copper wire is not a single crystal. It is thousands of grains, each with its own slip systems, dislocation content, and orientation. DDD on one crystal explains one mechanism; engineering FEM needs **texture**, **hardening laws**, and **internal state variables** that summarize what DDD (or experiment) teaches.
 
+## Scene: from one crystal to a spool of wire
+
+A single-crystal DDD run explains how one slip system hardens under shear. The cold-drawn wire on the bench is thousands of grains twisted by drawing dies — texture, misorientation, grain-boundary barriers. This chapter asks how DDD statistics export upward: hardening laws for crystal plasticity, internal state variables for FEM, Peierls parameters borrowed from MD. The wire experiment is polycrystalline; the multiscale pipeline must be too.
+
 ## Peierls stress and lattice resistance
 
 Before external load moves a dislocation, the lattice itself resists glide. The **Peierls–Nabarro** model estimates the stress required to move a straight screw or edge dislocation through a perfect lattice:
@@ -214,6 +218,19 @@ Cost scales with `(# active Gauss points) × (DDD timesteps per macro step)`. Fo
 | Archive | OpenDiS restart files + DAMASK yaml + FEM deck in one git commit? |
 
 When all gates pass, the drawn copper wire story closes at the mesoscale: dislocation statistics become internal state variables on the same mesh Part IV taught us to assemble.
+
+## Concept map checkpoint (Part VII)
+
+Part VII followed the Defects Notes from taxonomy through crystal plasticity handoff. The four questions summarize the mesoscale arc:
+
+| Question | Part VII answer (copper wire) |
+|----------|-------------------------------|
+| What **object**? | Dislocation lines, Burgers vector \(\mathbf{b}\), density \(\rho\), link statistics |
+| What **structure**? | Peach–Köhler forces, mobility laws, Taylor \(\sqrt{\rho}\) hardening |
+| What **theorem**? | DDD time integration; homogenization to crystal plasticity internal variables |
+| What **breaks**? | Core singularity without cutoff; wrong mobility; phenomenological yield without forest structure |
+
+The drawn copper wire's strength is a **history written in line defects** — cold work stored dislocations; loading multiplies and tangles them; the load cell curve bends upward because the forest thickens. Crystal plasticity FEM and calibrated DDD export that history as internal state variables on the same mesh Part IV taught us to assemble. When cores meet grain boundaries or crack tips, the mesoscale model needs atomic detail — the descent continues in Part VIII.
 
 ## What remains for atomistics
 

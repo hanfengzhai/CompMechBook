@@ -4,6 +4,14 @@ Molecular dynamics (MD) treats atoms as classical particles interacting through 
 
 When continuum fields smear atoms into density, MD puts them back. When DFT tracks electrons explicitly, MD assumes nuclei move on a **potential energy surface** those electrons define. Part VIII lives in that middle ground: classical mechanics with quantum-informed forces.
 
+## Scene: the notch under the microscope
+
+Part VII explained that a stress concentration at a notch root is where continuum elasticity hands off to dislocation nucleation. Zoom one more step. A molecular dynamics simulation boxes a few nanometers of copper around the notch tip: tens of thousands of fcc lattice sites, periodic or fixed boundaries on the sides, atoms pulled on the top layer to mimic the far-field tension from the tensile frame.
+
+There is no \(\boldsymbol{\sigma}(\mathbf{x})\) field in the data — only positions \(\mathbf{r}_i(t)\) and forces \(\mathbf{F}_i = -\nabla_{\mathbf{r}_i} V\). The potential \(V\) might be an EAM fit to DFT energies from Part IX; the integrator might be velocity Verlet with a femtosecond timestep. Bonds at the tip stretch; a dislocation loop nucleates; the student watches plasticity begin as coordinated atomic motion, not as a yield surface parameter.
+
+This scene is why MD exists in the ladder. FEM on the wire tells us where stress concentrates; DDD tells us how lines move in response; MD tells us what happens when the smeared continuum finally resolves into neighbors swapping across a disturbed lattice. The rest of Part VIII supplies the Hamiltonian structure, potential forms, and LAMMPS workflows that make such a box simulation reproducible rather than anecdotal.
+
 ## Phase space and the Hamiltonian
 
 For \(N\) atoms with positions \(\mathbf{r}_i\) and momenta \(\mathbf{p}_i\), the **Hamiltonian** is
@@ -26,6 +34,29 @@ m_i \ddot{\mathbf{r}}_i = -\nabla_{\mathbf{r}_i} V.
 \]
 
 The **phase space** \((\{\mathbf{r}_i\}, \{\mathbf{p}_i\})\) has dimension \(6N\). For a nanoscale cube of copper with \(10^5\) atoms, that is \(6 \times 10^5\) coupled ODEs — tractable on modern GPUs for picoseconds to nanoseconds of physical time, insufficient for wire-scale processes without coarse-graining.
+
+## Newton's equations as Part I linear algebra at every timestep
+
+Part I taught \(\mathbf{K}\mathbf{u}=\mathbf{f}\) for static equilibrium. MD is the **dynamic** analogue: at each timestep, forces \(\mathbf{F}_i = -\nabla_{\mathbf{r}_i} V\) play the role of loads, and the integrator advances positions and velocities as if solving a sparse time-stepping system millions of times.
+
+| Part I (static) | Part VIII (dynamic) |
+|-----------------|---------------------|
+| State \(\mathbf{u}\) | Phase \((\{\mathbf{r}_i\}, \{\mathbf{p}_i\})\) |
+| Stiffness \(\mathbf{K}\) from energy Hessian | Force field \(-\nabla V\) from potential |
+| Solve once for equilibrium | Integrate \(10^5\)–\(10^7\) steps |
+| Eigenmodes decouple vibration | Phonon spectrum = Hessian eigenvalues at equilibrium |
+
+Near a perfect lattice minimum, expand \(V\) to second order in displacements \(\mathbf{u}_i\). The Hessian matrix \(\mathbf{H}\) (block-sparse, local neighbors only) has eigenvalues \(\omega^2\) — phonon modes that Part I would have called normal modes of a spring network, now with \(N \sim 10^5\) degrees of freedom. MD does not diagonalize \(\mathbf{H}\) each step; it propagates the full nonlinear dynamics. But the **same linear-algebraic structure** — local coupling, sparse assembly, eigenmodes as decoupled coordinates — reappears whenever we linearize, compute elastic constants from fluctuations, or validate an EAM potential against DFT phonons.
+
+Velocity Verlet, the workhorse integrator, is a three-line recurrence:
+
+\[
+\mathbf{p}_i^{n+\frac{1}{2}} = \mathbf{p}_i^n + \frac{\Delta t}{2}\mathbf{F}_i^n, \quad
+\mathbf{r}_i^{n+1} = \mathbf{r}_i^n + \frac{\Delta t}{m_i}\mathbf{p}_i^{n+\frac{1}{2}}, \quad
+\mathbf{p}_i^{n+1} = \mathbf{p}_i^{n+\frac{1}{2}} + \frac{\Delta t}{2}\mathbf{F}_i^{n+1}.
+\]
+
+Each step is \(O(N)\) with a neighbor list — the atomistic version of sparse matrix–vector multiply. When LAMMPS reports `thermo` output every thousand steps, it is printing the trajectory of a gigantic dynamical system whose stable static limit (if one exists) would be found by Part IV's Newton–Raphson on a continuum mesh. MD and FEM are not rival philosophies; they are static and dynamic faces of the same balance laws, at different scales and state dimensions.
 
 ## Why classical MD works for copper
 

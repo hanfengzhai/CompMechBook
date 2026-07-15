@@ -4,6 +4,12 @@ Static equilibrium of an elastic body is equivalent to minimizing total potentia
 
 The copper wire under tension minimizes (or rather, stationarizes) elastic energy stored in its stretched atomic lattice — a minimization FEM approximates on a mesh. When the load exceeds yield, minimization gives way to incremental variational inequalities; when deformation grows large, the energy depends on \(\mathbf{F}\), not \(\boldsymbol{\varepsilon}\). This chapter walks that path.
 
+## Scene: energy stored in the stretch
+
+Return to the tensile frame with the load cell climbing. Below yield, the wire lengthens elastically: each increment of grip displacement adds work, and most of that work is **stored** as elastic strain energy recoverable on unloading. Plot \(\Pi(\mathbf{u})\) — total potential energy as a functional of the displacement field — and the equilibrium path is the trajectory that keeps \(\Pi\) stationary under admissible variations.
+
+Part IV assembled \(\mathbf{K}\mathbf{U}=\mathbf{F}\) from element matrices; Part VI now explains **why** that linear system is the discrete first variation of an energy. Virtual work and minimum potential energy are two views of the same equilibrium; variational elasticity makes the connection explicit before Part VII asks what happens when the stored-energy landscape develops singularities at dislocation cores.
+
 ## Principle of minimum potential energy
 
 Among **kinematically admissible** displacements \(\mathbf{u}\) — satisfying \(\mathbf{u} = \mathbf{u}_0\) on \(\Gamma_D\) — define the **total potential energy**
@@ -122,6 +128,53 @@ Remedies:
 - **Descent to defect models**: Part VII dislocation dynamics; Part VIII molecular dynamics at the core.
 
 The continuum variational framework remains valid **outside** singular sets; enrichment or homogenization patches the failure.
+
+## Worked example: the copper wire as Rayleigh–Ritz
+
+Return to the tensile frame one last time in the elastic range. A cold-drawn copper wire of length \(L = 100\,\text{mm}\), cross-section \(A = 0.785\,\text{mm}^2\) (1 mm diameter), and Young's modulus \(E = 117\,\text{GPa}\) is fixed at \(x = 0\) and stretched to \(u(L) = \delta = 0.10\,\text{mm}\). In 1D linear elasticity the strain energy density is \(\psi = \tfrac{1}{2}E (u')^2\), and the admissible field that minimizes \(\Pi\) under the essential boundary conditions is the linear profile
+
+\[
+u(x) = \frac{\delta x}{L}, \qquad \varepsilon_{xx} = \frac{\delta}{L} = 10^{-3}.
+\]
+
+The stored elastic energy is
+
+\[
+\Pi_{\text{exact}} = \int_0^L \tfrac{1}{2} E \left(\frac{\delta}{L}\right)^2 A\, dx = \tfrac{1}{2}\frac{EA\delta^2}{L} \approx 4.6\,\text{mJ},
+\]
+
+and the reaction force at the grip is \(F = EA\delta/L \approx 92\,\text{N}\) — the slope of the early linear region on the load–displacement curve from the prologue.
+
+Now discretize with **three equal bar elements** — the same assembly pattern Part I introduced and Part IV automated. Nodes at \(x_0 = 0, x_1 = L/3, x_2 = 2L/3, x_3 = L\); unknown displacements \(U_2, U_3\) with \(U_0 = 0\) and \(U_3 = \delta\) prescribed. Each element of length \(h = L/3\) contributes
+
+\[
+\mathbf{k}_e = \frac{EA}{h}\begin{bmatrix} 1 & -1 \\ -1 & 1 \end{bmatrix}.
+\]
+
+Assembly gives the \(2 \times 2\) system for the free DOFs,
+
+\[
+\frac{EA}{h}\begin{bmatrix} 2 & -1 \\ -1 & 2 \end{bmatrix}
+\begin{bmatrix} U_2 \\ U_3 \end{bmatrix}
+=
+\begin{bmatrix} 0 \\ F_3 \end{bmatrix},
+\]
+
+with \(U_3 = \delta\) enforced. Solving yields \(U_2 = \tfrac{2}{3}\delta\) and \(U_3 = \delta\) — **exact at every node**, because the true solution is linear and three linear elements reproduce any affine field on a uniform mesh.
+
+The discrete energy at the minimizing \(\mathbf{U}\) equals the continuum \(\Pi_{\text{exact}}\). That is not luck: Rayleigh–Ritz on a potential whose minimizer lies in \(V_h\) returns the **exact** energy in one solve. Refine to a nonlinear displacement profile (a wire with a notch, or thermal strain \(\alpha\Delta T\) varying along \(x\)) and the same assembly returns an approximate \(\Pi_h \ge \Pi_{\text{exact}}\) — the discrete solution sits at the bottom of a finite-dimensional energy bowl inside the infinite-dimensional one Part II defined.
+
+This example closes the loop the book has been tracing since Part I:
+
+| Step | Part | What happened on the wire |
+|------|------|---------------------------|
+| Spring network | I | \(\mathbf{K}\mathbf{U}=\mathbf{F}\) from bar elements |
+| Limit \(h \to 0\) | I–II | \(u(x)\) replaces \(\mathbf{U}\); energy norm replaces \(\|\mathbf{U}\|\) |
+| Weak form | III | Minimizing \(\Pi\) \(\Leftrightarrow\) virtual work |
+| Assembly | IV | Shape functions and quadrature build \(\mathbf{K}\) from \(\psi\) |
+| Continuum naming | VI (here) | \(\psi(\boldsymbol{\varepsilon})\) is why the matrix existed |
+
+When the load cell curve bends upward — work hardening, necking, rate effects — the energy is no longer a simple quadratic in \(\mathbf{u}\). The next chapter follows that history-dependent path to yield and explains why Part VII must introduce dislocations to supply the hardening law.
 
 ## Multiscale variational coupling
 

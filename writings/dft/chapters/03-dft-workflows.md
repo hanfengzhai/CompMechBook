@@ -4,6 +4,10 @@ Part IX, Chapters 1–2, derived the Kohn–Sham equations and explained why con
 
 The narrative thread remains the copper wire. We will not simulate the whole wire in Quantum ESPRESSO — no cluster has that memory — but we **will** walk through the same workflows used to produce the bulk properties that a wire model assumes: lattice constant, bulk modulus, elastic tensor, phonon check, and defect formation energy in a supercell. The homework archive for Cornell MSE 5720 ([MSE5720-HW](https://github.com/hanfengzhai/MSE5720-HW)) supplies worked examples; this chapter distills their logic into a reproducible ritual.
 
+## Scene: bulk copper in a workstation
+
+No cluster will ever run DFT on the full wire. Instead, a small fcc supercell on a workstation yields lattice constant, bulk modulus, elastic constants, vacancy formation energy — the bulk numbers every upstream model assumes. Input files, cutoff convergence, k-mesh tests, relaxation, SCF cycle, property extraction: this chapter is the repeatable ritual that turns Quantum ESPRESSO output into parameters for Parts VI–VIII.
+
 ## The calculation ladder inside DFT
 
 Every property calculation is a sequence of controlled approximations:
@@ -231,6 +235,19 @@ MSE5720 homeworks combine Jupyter notebooks with batch scripts for clusters (XSE
 - Plot convergence curves in supplementary material, not only final answers.
 
 Scientific machine learning surrogates (epilogue) trained on DFT data inherit these metadata requirements. A neural network predicting formation energy without functional labels is not multiscale — it is interpolation without a ladder.
+
+## Concept map checkpoint (Part IX)
+
+Part IX followed the DFT coursework arc from Born–Oppenheimer through Quantum ESPRESSO workflows. The four questions summarize the electronic scale:
+
+| Question | Part IX answer (copper wire) |
+|----------|------------------------------|
+| What **object**? | Electron density \(\rho(\mathbf{r})\), Kohn–Sham orbitals, ionic positions |
+| What **structure**? | Hohenberg–Kohn variational principle; SCF cycle; plane-wave basis, k-mesh |
+| What **theorem**? | Hohenberg–Kohn; Kohn–Sham mapping (with approximate \(E_{xc}\)) |
+| What **breaks**? | Functional dependence; metals without smearing; pseudopotential transferability |
+
+The export table above is where the **downward derivation** of the ladder begins: \(E_{\text{coh}}\), \(C_{ijkl}\), stacking-fault energies, and phonons feed MD potentials, DDD mobilities, and continuum moduli. A wire simulation that imports \(E = 120\) GPa without asking whether it came from Voigt-averaged DFT, room-temperature experiment, or cold-worked polycrystal data carries silent assumptions this part makes explicit. The epilogue asks how disciplined teams wire these exports into multiscale workflows.
 
 ## Bridge to the epilogue
 

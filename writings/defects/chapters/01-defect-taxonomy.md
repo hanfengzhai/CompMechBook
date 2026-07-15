@@ -4,6 +4,12 @@ Perfect crystals exist in textbooks. Real materials carry **defects** — locali
 
 Continuum elasticity in Part VI describes smooth displacement fields. Defects are where that smoothness fails — and where mesoscale models begin.
 
+## Scene: the wire yields
+
+The force–displacement curve from Part I finally bends. The load cell still reads force, but the slope drops: the wire is **plastic**. A polished surface that was mirror-smooth now shows faint **slip lines** — traces of dislocation motion on {111} planes. Continuum FEM with isotropic elasticity predicted a straight elastic segment forever; the experiment crossed a yield point that lives not in \(\mathbb{C}\) alone but in a **forest of line defects** stored by cold drawing.
+
+Zoom in mentally. Where Part VI saw a smooth displacement field \(\mathbf{u}(\mathbf{x})\), the mesoscale sees **Burgers circuits that fail to close** — each failure quantified by a vector \(\mathbf{b}\) and carried along a curve through the crystal. Vacancies from prior annealing cycles sit at point defects; grain boundaries from polycrystal structure block slip; the drawn wire's extra strength is not magic stiffness in \(\mathbf{K}\) but **dislocation density** \(\rho\) that Part VI's J₂ preview fitted with a single hardening modulus \(H\). This scene is the handoff from continuum to mesoscale: the same copper cylinder, now read as a catalog of defects rather than a homogeneous bar. The taxonomy below names what broke the smooth picture.
+
 ## Taxonomy by dimension
 
 Defects are classified by the dimension of the region they disrupt relative to the perfect lattice:

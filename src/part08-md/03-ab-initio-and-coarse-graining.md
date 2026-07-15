@@ -4,6 +4,10 @@ Classical molecular dynamics of Part VIII assumes nuclei move on a **potential e
 
 The copper wire at laboratory scale will never be a full DFT supercell. The wire at atomic scale **must** be described quantum mechanically when bonds rearrange, chemistry appears, or empirical potentials have never been validated. The art is knowing when ab initio MD is mandatory, when classical MD suffices, and how to compress atomistic trajectories into numbers the mesoscale accepts.
 
+## Scene: when EAM is not enough
+
+Most MD of copper uses an EAM potential fit once to DFT data and then trusted for millions of timesteps. At a crack tip where bonds stretch until rupture, or at a surface where oxidation nucleates, that trust may fail. Born–Oppenheimer MD recomputes forces from DFT each step; coarse-graining distills those trajectories into tables the mesoscale can afford. The wire's fracture strain is either validated at this scale or assumed.
+
 ## Born–Oppenheimer molecular dynamics
 
 In **Born–Oppenheimer MD (BOMD)**, nuclear positions \(\{\mathbf{R}_I\}\) evolve classically while electrons stay in the instantaneous ground state:
@@ -212,6 +216,19 @@ The intellectual contract is unchanged: **electronic structure defines the surfa
 | \(E\), \(\nu\) polycrystal average | Part VIII NPT + Part VI | Part IV elastic step |
 
 Document every conversion at the boundary: Ry → eV, Bohr → Å, metal units → SI when feeding DAMASK or Abaqus.
+
+## Concept map checkpoint (Part VIII)
+
+Part VIII followed the MD Notes from phase space through coarse-graining. The four questions summarize the atomistic arc:
+
+| Question | Part VIII answer (copper wire) |
+|----------|--------------------------------|
+| What **object**? | Positions \(\{\mathbf{r}_i\}\), momenta, interatomic potential \(V\) |
+| What **structure**? | Hamiltonian mechanics, thermostats, periodic boundaries, cutoff radius |
+| What **theorem**? | Energy conservation (symplectic integrators); ergodic sampling in NVT/NPT |
+| What **breaks**? | Energy drift; wrong ensemble; cutoff artifacts in EAM fits |
+
+The handoff table above closes the upward exports from atomistics: stacking-fault energy and core structures feed Part VII mobility; cohesive energy and moduli feed Part VI and Part IV elastic steps. What MD cannot invent — the potential surface itself — is Part IX's responsibility. Classical MD assumes Born–Oppenheimer surfaces; the next part derives them from electron density.
 
 ## Bridge
 

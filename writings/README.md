@@ -8,6 +8,8 @@ Each part is a standalone mdBook:
 
 ```
 writings/
+├── preface/                 # Preface
+├── prologue/                # Prologue — one wire, many scales
 ├── linear-algebra/          # Part I  — opening + chapters 01–04
 ├── functional-analysis/     # Part II — opening + chapters 01–05
 ├── pde/                     # Part III — opening + chapters 01–04
@@ -16,7 +18,8 @@ writings/
 ├── continuum/               # Part VI — opening + chapters 01–04
 ├── defects/                 # Part VII — opening + chapters 01–03
 ├── md/                      # Part VIII — opening + chapters 01–03
-└── dft/                     # Part IX — opening + chapters 01–03
+├── dft/                     # Part IX — opening + chapters 01–03
+└── epilogue/                # Epilogue — multiscale coupling
 ```
 
 Every subtree contains:
@@ -51,7 +54,7 @@ Every subtree contains:
    | `md/chapters/00, 01–03` | `src/part08-md/` |
    | `dft/chapters/00, 01–03` | `src/part09-dft/` |
 
-4. Book-specific material (prologue, preface, epilogue, appendix) lives only in `src/`.
+4. Front matter (preface, prologue, epilogue) is canonical under `writings/` and synced into `src/`; the appendix (`src/appendix/`) and unified `src/SUMMARY.md` live only in the main book.
 
 ## Build standalone notes
 

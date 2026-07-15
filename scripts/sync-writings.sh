@@ -61,6 +61,11 @@ sync_part() {
   done
 }
 
+# Front matter
+sync_file "$ROOT/writings/preface/chapters/preface.md" "$ROOT/src/preface.md"
+sync_file "$ROOT/writings/prologue/chapters/00-many-scales.md" "$ROOT/src/prologue/00-many-scales.md"
+sync_file "$ROOT/writings/epilogue/chapters/multiscale.md" "$ROOT/src/epilogue/multiscale.md"
+
 # Part I: Linear Algebra Notes (01–04)
 sync_part "$ROOT/writings/linear-algebra/chapters" "$ROOT/src/part01-linear-algebra" 01 02 03 04
 
@@ -87,6 +92,11 @@ sync_part "$ROOT/writings/md/chapters" "$ROOT/src/part08-md" 01 02 03
 
 # Part IX: DFT Notes (01–03)
 sync_part "$ROOT/writings/dft/chapters" "$ROOT/src/part09-dft" 01 02 03
+
+# Appendix: glossary, sources, memory sheet
+sync_file "$ROOT/writings/appendix/chapters/glossary.md" "$ROOT/src/appendix/glossary.md"
+sync_file "$ROOT/writings/appendix/chapters/sources.md" "$ROOT/src/appendix/sources.md"
+sync_file "$ROOT/writings/appendix/chapters/memory-sheet.md" "$ROOT/src/appendix/memory-sheet.md"
 
 if $CHECK_ONLY; then
   if [[ $DRIFT -ne 0 ]]; then

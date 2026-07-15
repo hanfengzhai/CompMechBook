@@ -2,6 +2,12 @@
 
 When metal yields, dislocations multiply and tangle. **Dislocation dynamics (DDD)** tracks their motion and interactions — the mesoscale engine of strain hardening. Pull a copper wire beyond its elastic limit and the stress–strain curve bends upward not because the lattice stiffens, but because an evolving **forest** of dislocation lines impedes further slip. DDD is how we simulate that forest without resolving every atom.
 
+## Scene: the forest grows
+
+Resume the tensile test where Part VI left it — load increasing, stress beyond yield. Inside the copper crystal, dislocation lines **glide** on {111} planes, **multiply** at Frank–Read sources, and **tangle** into a forest whose density rises with plastic strain. The load cell registers hardening: more stress needed for the next increment of stretch. No phenomenological law was typed in by hand; the curve bends because moving lines must push through a thickening forest.
+
+A DDD simulation represents that forest as a network of segments, each feeling Peach–Köhler forces from external load and from every other segment. Timestep by timestep, the network evolves; the accumulated obstacle strength passes upward as a **hardening law** for crystal plasticity and, eventually, for continuum FEM. This scene is why Part VII exists: the wire's cold-drawn strength and its post-yield curve are **histories written in line defects**, not numbers we may choose arbitrarily at the continuum scale.
+
 ## From elasticity to line defects
 
 In Part VI, equilibrium satisfied a virtual work equation with smooth displacement fields. Dislocations introduce **topological** content: the displacement field is multi-valued, and the Burgers vector \(\mathbf{b}\) quantifies the jump. DDD replaces the singular continuum field with a **discrete network** of line segments, each carrying \(\mathbf{b}\) and a line direction \(\boldsymbol{\xi}\).
@@ -143,18 +149,67 @@ Limitations include:
 
 Unvalidated DDD is animated elasticity with pretty lines. Convergence studies on segment length and time step — analogous to FEM mesh refinement — are mandatory.
 
-## OpenDiS workflow (conceptual)
+## Worked example: Taylor hardening on drawn copper
 
-A typical OpenDiS-style workflow for copper single-crystal shear:
+Cold-drawn copper wire carries a dislocation forest frozen by manufacturing. A scalar Taylor estimate links that forest to the extra shear stress needed for further slip — the upward bend the load cell records after yield.
 
-1. **Initialize** a dislocation network (Frank–Read sources, random loops, or imported structure).
-2. **Set material properties**: \(\mu\), \(b\), anisotropic elastic constants from DFT or experiment.
-3. **Load** via applied strain rate or stress boundary conditions.
-4. **Integrate** equations of motion for segments; remesh when curvature exceeds threshold.
-5. **Post-process**: \(\rho(\gamma)\), \(\tau(\gamma)\), link-length distributions (single vs. double exponential by slip-system activity), dislocation velocity histograms.
-6. **Export** hardening parameters to crystal plasticity or phenomenological flow laws.
+Take representative values for fcc Cu at room temperature:
 
-The copper wire's cold-worked strength is, in part, a snapshot of step 4 frozen by manufacturing — DDD helps explain what that snapshot contains.
+| Quantity | Symbol | Value | Source rung |
+|----------|--------|-------|-------------|
+| Shear modulus | \(\mu\) | \(\approx 48\,\mathrm{GPa}\) | Experiment / DFT (Part IX) |
+| Burgers vector magnitude | \(b\) | \(2.56\,\mathrm{\AA}\) | Crystal geometry |
+| Taylor factor | \(\alpha\) | \(\approx 0.3\) | Literature / DDD calibration |
+| Dislocation density (cold-drawn) | \(\rho\) | \(\sim 10^{14}\,\mathrm{m}^{-2}\) | TEM / DDD post-mortem |
+
+Taylor hardening gives
+
+\[
+\Delta\tau = \alpha\,\mu\,b\,\sqrt{\rho}
+\approx 0.3 \times 48\times10^9 \times 2.56\times10^{-10} \times \sqrt{10^{14}}
+\approx 37\,\mathrm{MPa}.
+\]
+
+Converting to uniaxial stress with Taylor factor \(M \approx 3.06\) for fcc polycrystal texture gives \(\Delta\sigma \approx 110\,\mathrm{MPa}\) — order-of-magnitude consistent with the gap between annealed and half-hard copper yield strengths. Part VI's Voce law can fit the macroscopic curve; this calculation shows **where the fitted hardening modulus hides its physics**: in \(\sqrt{\rho}\), not in an arbitrary slope typed into the input deck.
+
+A DDD run should reproduce \(\rho(\gamma)\) and \(\tau(\gamma)\) from which \(\alpha\) and the \(k_1, k_2\) evolution law are extracted — not merely match one stress–strain point.
+
+## OpenDiS workflow
+
+A reproducible OpenDiS-style workflow for copper single-crystal shear, modeled on the LAMMPS checklist in Part VIII:
+
+1. **Initialize** a dislocation network — Frank–Read sources on one active {111}\(\langle 110\rangle\) system, or an imported post-mortem structure from TEM.
+2. **Material table** — anisotropic elastic constants \(C_{ij}\) from DFT (Part IX) or experiment; Burgers vector and slip systems for fcc Cu; mobility law \(M(\tau, T)\) from MD (Part VIII) or literature tables.
+3. **Load protocol** — constant strain rate \(\dot\gamma\) matched to the prologue tensile frame (\(\dot\varepsilon \sim 10^{-3}\)–\(10^{-1}\,\mathrm{s}^{-1}\)); temperature \(T\) fixed or coupled to Joule heating later.
+4. **Integrate** — segment timestep constrained by mobility and remeshing when curvature exceeds threshold; log \(\rho\), \(\tau\), and link-length histograms each strain increment.
+5. **Convergence** — refine segment length and timestep until \(\tau(\gamma)\) at fixed \(\gamma\) changes by less than 5%; compare inactive slip systems for single-exponential link statistics.
+6. **Export** — write \(\tau(\gamma)\), \(d\rho/d\gamma\), \(\bar\ell(\gamma)\), and calibrated \(\alpha\) to a yaml or table for crystal plasticity (foreshadow Part VII.3 DAMASK handoff).
+
+The copper wire's cold-worked strength is, in part, a snapshot of step 4 frozen by manufacturing — DDD explains what that snapshot contains.
+
+## Reproducibility checklist
+
+Before exporting DDD hardening laws to crystal plasticity or FEM:
+
+1. Cite mobility table provenance (MD potential, temperature, strain rate).
+2. Converge segment length and timestep on \(\tau(\gamma)\) at fixed plastic strain.
+3. Document initial network topology (random loops vs. Frank–Read sources).
+4. Compare \(\rho\) and link-length distributions to TEM or in situ diffraction when available.
+5. Cross-check \(\alpha\) and \(C_{ij}\) against independent MD volumes on matching boundary conditions.
+6. Archive input decks, material tables, and random seeds for network initialization.
+
+Unvalidated DDD is animated elasticity with pretty lines — the same warning Part VIII repeats for unconverged MD and Part IX repeats for unconverged plane-wave cutoff.
+
+## Concept map checkpoint (Part VII)
+
+| Question | DDD answer (copper wire) |
+|----------|--------------------------|
+| What **object**? | Segment network with Burgers vector \(\mathbf{b}\) and line direction \(\boldsymbol{\xi}\) |
+| What **structure**? | Peach–Köhler forces; mobility law \(M\); elastic superposition |
+| What **theorem**? | Taylor \(\tau \propto \sqrt{\rho}\); link-statistics evolution on active slip systems |
+| What **breaks**? | Core cutoff artifacts; wrong mobility; scalar \(\rho\) collapsing texture |
+
+The load cell's post-yield bend is not a fitted Voce slope alone — it is a forest whose density and link statistics DDD can measure. Part VII.3 exports those statistics upward to polycrystal FEM; Parts VIII–IX supply the mobility and elastic constants this chapter consumes.
 
 ## Bridge
 

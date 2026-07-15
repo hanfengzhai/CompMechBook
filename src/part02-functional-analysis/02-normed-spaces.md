@@ -4,6 +4,10 @@ When the copper wire heats under current, we may ask how far its temperature fie
 
 We begin with metric spaces, because convergence is fundamentally about distance. Norms are the most important way mechanics assigns distance, but not the only one.
 
+## Scene: how wrong is "wrong enough"?
+
+Two temperature fields along the heated wire can disagree by at most 0.1 K everywhere, or agree on average yet differ by 5 K at the clamp. Those are different notions of "close" — sup norm versus \(L^2\). When the engineer asks whether the thermal FEM is converged, the answer depends on which ruler we use. Normed spaces name those rulers and let mesh-refinement arguments conclude in the norm the physics actually cares about.
+
 ## Metric spaces: convergence before length
 
 A **metric space** \((X,d)\) is a set \(X\) equipped with a distance function \(d: X \times X \to \mathbb{R}_{\ge 0}\) satisfying, for all \(x,y,z \in X\):

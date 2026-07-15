@@ -4,6 +4,10 @@ Coupled systems look complicated until we find the right coordinates. Eigenvalue
 
 Clamp one end of the copper wire and pull the other rhythmically: the wire does not respond with a single uniform stretch unless you happen to excite exactly the first mode. In general, different points oscillate out of phase, amplitudes vary along the length, and the motion looks messy in physical coordinates. In **modal coordinates** — the eigenvector basis of the stiffness and mass matrices — each mode oscillates independently at its own frequency. That decoupling is eigenvalue analysis doing its job.
 
+## Scene: the wire hums at one pitch
+
+Tap the clamped copper wire and listen: it rings at a handful of distinct frequencies, not a continuous blur. Each pitch is an eigenmode — a pattern of motion along the length that repeats in phase at its own rate. Modal analysis is how we predict which frequencies will fatigue the wire at a fastener and which a damping pad can suppress. The spring-network matrices from Part I carry those pitches in their spectra long before any continuum model is written down.
+
 ## The eigenvalue problem
 
 For \(\mathbf{A} \in \mathbb{R}^{n \times n}\), a nonzero vector \(\mathbf{v}\) is an **eigenvector** with **eigenvalue** \(\lambda\) if

@@ -4,6 +4,10 @@ A finite element mesh of the copper wire can look impressively fine — thousand
 
 This chapter connects Part I's discrete norms, Part II's function-space error analysis, and Part IV's implementation choices (\(h\), \(p\), element type) into a coherent refinement strategy.
 
+## Scene: finer mesh, same answer?
+
+The analyst refines the wire mesh once, twice, five times — stress contour colors shift, peak values creep downward, then stabilize. Is the solution converged, or merely pretty? Without a norm and an expected decay rate, refinement is guesswork dressed as diligence. This chapter gives the wire plot a certificate: in the energy norm, error should fall like \(h^p\), and when it does not, the element type or boundary model — not the solver — is suspect.
+
 ## Galerkin orthogonality and Céa's lemma
 
 Let \(u \in V\) solve the weak problem \(a(u,v) = \ell(v)\) for all \(v \in V\), and let \(u_h \in V_h \subset V\) solve the discrete problem \(a(u_h, v_h) = \ell(v_h)\) for all \(v_h \in V_h\).
@@ -165,6 +169,31 @@ Before trusting a mesh for a design decision:
 
 These habits mirror verification protocols in the FEA teaching notes and align with ASME and NASA CFD verification guidelines extended to solids.
 
-## Bridge to Part V
+## Concept map checkpoint (Part IV)
 
-Elliptic solids — the copper wire in tension, a bridge under dead load, steady heat conduction — favor FEM: global coupling, symmetric stiffness, energy minimization. Fluids at high Reynolds number, shocks, and steep advection fronts favor a different philosophy: integrate conservation laws over control volumes and balance **fluxes** across faces. The finite volume method, Part V, is that story — complementary to FEM, not competing with it. Coupled fluid–structure problems stitch the two at interfaces where the wire meets the cooling air.
+Part IV followed the FEM Notes from weighted residuals through error estimates. The four questions close the discretization arc for elliptic solids:
+
+| Question | Part IV answer (copper wire) |
+|----------|------------------------------|
+| What **object**? | Trial space \(V_h\), shape functions, assembled \(\mathbf{K}\) and \(\mathbf{f}\) |
+| What **structure**? | Galerkin orthogonality, isoparametric maps, \(h\)- and \(p\)-refinement |
+| What **theorem**? | Best approximation; Céa lemma; a priori convergence rates |
+| What **breaks**? | Locking, hourglass modes, pollution on distorted elements |
+
+The pipeline from Part III is now complete:
+
+```
+Weak form (Part III)  →  Galerkin on V_h (Part IV)  →  K U = F  →  error bounds as h → 0
+```
+
+The copper wire's tensile equilibrium, steady heating, and elastic step all occupy rows in the summary tables above. Convergence as \(h \to 0\) is the promise Part II made in function spaces, made numerical in this chapter.
+
+## Bridge: two doors from here
+
+Part IV answered *how* to discretize elliptic problems on meshes. Two natural continuations follow — and both converge on the same continuum vocabulary of Part VI.
+
+**Door A — Part V (conservation on cells).** Fluids at high Reynolds number, shocks, and steep advection fronts favor a different philosophy from Galerkin trial functions: integrate conservation laws over control volumes and balance **fluxes** across faces. The finite volume method is that story — complementary to FEM, not competing with it. When the copper wire heats in air, Part V discretizes the cooling flow; Part IV discretizes conduction in the solid; a fixed-point loop at the wall couples them (conjugate heat transfer). Read Part V next if fluids and CFD are your immediate goal.
+
+**Door B — Part VI (continuum mechanics).** If your specimen is solid-dominated — tension, bending, thermal strain without resolving the surrounding fluid — you may skip Part V on first reading and go directly to Part VI. There we name the fields Part IV's code already approximates: deformation gradient, strain, Cauchy stress, virtual work. The stiffness matrix from Chapter 2 is the discrete shadow of a hyperelastic energy; convergence rates from this chapter justify trusting that shadow as \(h \to 0\).
+
+Either path is valid. Part V ends with its own bridge into Part VI; the epilogue later treats both discretizations as dialects of one multiphysics story. What matters is not the order of Doors A and B, but that you eventually reach Part VI before descending to dislocations and atoms — continuum stress and balance language is the shared floor under both FEM and FVM.

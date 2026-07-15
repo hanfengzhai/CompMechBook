@@ -4,6 +4,10 @@ Computational fluid dynamics (CFD) solves the Navier–Stokes equations when ana
 
 Part V built FVM for conservation laws. This chapter adds viscosity, incompressibility, boundary layers, and the practical machinery of production CFD — connecting to the author's [CFD notes](https://hanfengzhai.github.io/file/CFD_note.pdf) and closing the loop toward Part VI's continuum stress and balance language.
 
+## Scene: air decides the wire's fate
+
+Heat the copper wire until it glows softly; air above it rises, pulling cooler flow across the surface. That convection sets whether the mid-span temperature stays below annealing range. Navier–Stokes is the PDE for that air — advection, viscous diffusion, pressure coupling. Part V built conservation on cells; this chapter adds viscosity, Reynolds number, turbulence models, and the practical CFD workflow that connects a wire thermal model to the fluid domain around it.
+
 ## Governing equations
 
 For a Newtonian fluid, the **incompressible Navier–Stokes equations** are
@@ -157,6 +161,48 @@ Picture the heated copper wire in cross-flow air. A minimal CFD setup requires:
 4. **Re** based on wire diameter sets laminar vs. turbulent regime; natural convection adds Grashof number via Boussinesq buoyancy if the wire is hot enough.
 
 Steady RANS with a k–ω SST model might suffice for engineering heat transfer coefficients. LES resolves vortex shedding behind the wire at higher cost. FEM conduction in the wire (Part IV) plus FVM convection in the air (Part V) exchanges wall heat flux each iteration — the multiphysics loop the book's ladder is built to support.
+
+## Multiphysics scene: conjugate heat transfer
+
+Parts IV and V use different discretizations, but the copper wire under current is **one coupled boundary-value problem** split across domains. The solid solves steady conduction; the fluid solves convection with a no-slip wall whose temperature is unknown until both sides agree on heat flux.
+
+**Solid (FEM, Part IV).** On the wire mesh \(\Omega_s\), find temperature \(T_s\) such that
+
+\[
+\int_{\Omega_s} k \nabla T_s \cdot \nabla v \, d\Omega + \int_{\Gamma_w} q_w \, v \, dS = \int_{\Omega_s} \dot{q}_{\text{Joule}} \, v \, d\Omega
+\]
+
+for all test functions \(v \in H^1(\Omega_s)\). Here \(\dot{q}_{\text{Joule}} = \sigma_e |\mathbf{J}|^2\) is volumetric heating from electrical current, and \(q_w\) is the unknown wall heat flux at the fluid interface \(\Gamma_w\).
+
+**Fluid (FVM, Part V).** In the air domain \(\Omega_f\), steady incompressible flow with energy equation gives cell-averaged \(T_f\) and velocity \(\mathbf{u}\). At the wire surface,
+
+\[
+-k \left.\frac{\partial T_s}{\partial n}\right|_{\Gamma_w} = q_w = h\,(T_w - T_\infty) \quad\text{or}\quad q_w = -k_f \left.\frac{\partial T_f}{\partial n}\right|_{\Gamma_w},
+\]
+
+with \(T_w = T_s|_{\Gamma_w} = T_f|_{\Gamma_w}\) enforced by **interface coupling**.
+
+**Partitioned coupling loop** (the story both codes tell together):
+
+1. Guess wall temperature \(T_w^{(0)}\) (or flux \(q_w^{(0)}\)).
+2. **Fluid step:** solve Navier–Stokes + energy with fixed \(T_w\); extract \(q_w^{(k)} = -k_f \partial T_f / \partial n\).
+3. **Solid step:** solve conduction with Neumann data \(q_w^{(k)}\) on \(\Gamma_w\); read updated \(T_w^{(k+1)} = T_s|_{\Gamma_w}\).
+4. Repeat until \(|T_w^{(k+1)} - T_w^{(k)}| < \varepsilon\) — a **fixed-point iteration** between sparse linear systems (solid) and nonlinear FVM updates (fluid).
+
+This is not a third method. It is Part IV and Part V **speaking at an interface** — the same weak-form / flux-balance pattern the epilogue later generalizes to DFT→MD→DDD→FEM chains. When the wire runs hot enough to soften, add thermal strain \(\alpha\Delta T\) in the solid weak form (Part VI); when Reynolds number exceeds the laminar regime, swap the RANS closure on the fluid side. The coupling skeleton stays.
+
+## Concept map checkpoint (Part V)
+
+Part V followed the FVM Notes from integral conservation through Navier–Stokes CFD. The four questions summarize the fluid discretization arc:
+
+| Question | Part V answer (copper wire) |
+|----------|----------------------------|
+| What **object**? | Cell-averaged states, face fluxes \(\mathbf{F}\cdot\mathbf{n}\), Riemann data |
+| What **structure**? | Integral conservation, upwind bias, CFL-limited time stepping |
+| What **theorem**? | Godunov-type stability; Lax–Friedrichs entropy conditions (conceptually) |
+| What **breaks**? | Shock smearing without limiters; equal-order \(P1\)–\(P1\) without inf–sup |
+
+The conjugate heat transfer scene above is Part IV and Part V **speaking at an interface** — the same pattern the epilogue generalizes to DFT→MD→DDD→FEM chains. Fluids and solids share conservation of mass and momentum; they differ in constitutive response. Part VI names the Cauchy stress and rate of deformation both discretizations approximate.
 
 ## Bridge to Part VI
 

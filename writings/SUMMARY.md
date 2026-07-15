@@ -4,6 +4,9 @@ Canonical mdBook sources for **Computational Mechanics**. Each subtree follows t
 
 | Subtree | Book part | Chapters |
 |---------|-----------|----------|
+| [preface](./preface/chapters/SUMMARY.md) | Preface | preface |
+| [prologue](./prologue/chapters/SUMMARY.md) | Prologue | 00 |
+| [epilogue](./epilogue/chapters/SUMMARY.md) | Epilogue | multiscale |
 | [linear-algebra](./linear-algebra/chapters/SUMMARY.md) | Part I | 00, 01–04 |
 | [functional-analysis](./functional-analysis/chapters/SUMMARY.md) | Part II | 00, 01–05 |
 | [pde](./pde/chapters/SUMMARY.md) | Part III | 00, 01–04 |
@@ -13,6 +16,7 @@ Canonical mdBook sources for **Computational Mechanics**. Each subtree follows t
 | [defects](./defects/chapters/SUMMARY.md) | Part VII | 00, 01–03 |
 | [md](./md/chapters/SUMMARY.md) | Part VIII | 00, 01–03 |
 | [dft](./dft/chapters/SUMMARY.md) | Part IX | 00, 01–03 |
+| [appendix](./appendix/chapters/SUMMARY.md) | Appendices | glossary, sources, memory-sheet |
 
 Sync into the main book:
 

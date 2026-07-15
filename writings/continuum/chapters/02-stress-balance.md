@@ -4,6 +4,26 @@ Kinematics describes how bodies move and deform. **Balance laws** relate stress 
 
 Part IV assembled \(\int \boldsymbol{\varepsilon}(\mathbf{u}):\mathbb{C}:\boldsymbol{\varepsilon}(\mathbf{v})\). Part V balanced fluxes of momentum. This chapter explains what \(\boldsymbol{\sigma}\) and \(\mathbb{C}\) mean, where the equilibrium equation comes from, and how copper, air, and plastic metal differ at the constitutive level.
 
+## Scene: three balances on one wire
+
+The tensile frame from Part I is still running, but the operator has raised the current. Three instruments watch the same copper cylinder:
+
+- A **load cell** reads axial force \(T\) — mechanical equilibrium in the solid.
+- A **thermocouple** at the grip reads temperature — thermal boundary data for conduction inside the wire.
+- A **thermal camera** shows a hot stripe along the narrowest cross-section — Joule heating balanced by conduction and convection to the surrounding air.
+
+None of these measurements belongs to a single code. Part IV's FEM mesh carries mechanical equilibrium; Part V's FVM mesh carries enthalpy flux in the cooling air; Part VI names the **Cauchy stress** \(\boldsymbol{\sigma}\) and **Fourier flux** \(\mathbf{q} = -\kappa \nabla T\) that tie the two discretizations together at the wire surface. This scene is continuum mechanics at the engineering scale: not one PDE in isolation, but **balance laws** — momentum, energy, charge — coupled through **constitutive relations** that say how copper responds to strain and temperature. The chapter below makes those balances precise enough to export moduli upward from DFT and hardening laws downward from DDD.
+
+## Copper wire: one specimen, three balance laws
+
+Take the cold-drawn copper wire under tension \(T\), carrying current \(I\) and cooled by air:
+
+1. **Mechanical:** static equilibrium \(\nabla\cdot\boldsymbol{\sigma} + \mathbf{f} = \mathbf{0}\) with \(\boldsymbol{\sigma}\mathbf{n} = T\mathbf{e}_x\) on the loaded end and traction-free lateral surfaces. Part IV's mesh approximates this weak form.
+2. **Thermal:** steady \(\nabla\cdot(\kappa\nabla T) + \dot{q}_{\text{Joule}} = 0\) with \(\dot{q}_{\text{Joule}} = \rho_e | \mathbf{J}|^2 / \sigma_e\). Part V's FVM balances enthalpy flux in the surrounding air; Robin coupling at the wire surface sets the heat transfer coefficient.
+3. **Constitutive:** for small strain and room temperature, \(\boldsymbol{\sigma} = \mathbb{C}:\boldsymbol{\varepsilon}\) with isotropic \(\mathbb{C}(E, \nu)\). Thermal strain adds \(\boldsymbol{\varepsilon}_{\text{th}} = \alpha (T - T_0)\mathbf{I}\); the total strain in virtual work is \(\boldsymbol{\varepsilon}(\mathbf{u}) - \boldsymbol{\varepsilon}_{\text{th}}\).
+
+None of these three problems is independent. Temperature shifts \(E\) and yield stress; tension shifts electrical resistance and Joule heating. Multiphysics is not a software feature — it is the same balance laws with coupled constitutive closures.
+
 ## Cauchy stress and traction
 
 **Cauchy stress** \(\boldsymbol{\sigma}(\mathbf{x}, t)\) is a symmetric second-order tensor mapping surface normals to traction vectors:
@@ -164,6 +184,19 @@ A complete solid mechanics problem specifies:
 4. BCs: \(\mathbf{u} = \mathbf{u}_0\) on \(\Gamma_D\), \(\boldsymbol{\sigma}\mathbf{n} = \mathbf{t}\) on \(\Gamma_N\).
 
 Well-posedness requires ellipticity of the operator (Lax–Milgram for linear elasticity) or coercivity of the energy in nonlinear settings. Ill-posed problems (insufficient constraints, soft mechanisms) produce singular \(\mathbf{K}\) in FEM.
+
+## Concept map checkpoint (balance laws)
+
+Parts I–V built the same four-question discipline the Functional Analysis Notes use — object, structure, theorem, failure mode. At the balance-law scale the answers split across the three instruments in the opening scene:
+
+| Question | Mechanical (solid wire) | Thermal (Joule heating) | Constitutive (copper) |
+|----------|-------------------------|-------------------------|------------------------|
+| **Object** | Displacement \(\mathbf{u}\), Cauchy stress \(\boldsymbol{\sigma}\) | Temperature \(T\) | Strain \(\boldsymbol{\varepsilon}\), stress \(\boldsymbol{\sigma}\) |
+| **Structure** | Balance of momentum; symmetry of \(\boldsymbol{\sigma}\) | Energy balance; Fourier law | Hooke's law \(\boldsymbol{\sigma} = \mathbb{C}:\boldsymbol{\varepsilon}\) |
+| **Theorem** | Virtual work ↔ equilibrium (Lax–Milgram for linear elasticity) | Steady diffusion with Robin BC at the fluid interface | Positive-definite \(\mathbb{C}\) ⇒ elliptic operator |
+| **Breaks if missing** | Rigid-body modes, singular \(\mathbf{K}\) | Wrong heat flux at the air boundary | Plasticity, anisotropy, temperature-dependent moduli |
+
+**Part I recap:** the wire's FEM solve is still \(\mathbf{K}\mathbf{u}=\mathbf{f}\). The entries of \(\mathbf{K}\) are integrals of \(\mathbb{C}:\boldsymbol{\varepsilon}(\mathbf{N}_I):\boldsymbol{\varepsilon}(\mathbf{N}_J)\) — the continuum tensors above, projected onto shape functions. Part VI.4 closes the part-level checkpoint with hyperelasticity, yield, and the doorway to dislocations.
 
 ## Bridge
 
