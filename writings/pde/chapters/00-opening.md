@@ -96,6 +96,23 @@ If you have read linearly since the prologue, notice how the **same four questio
 
 Part I showed that every mesh eventually gives linear algebra; Part II proved that refinement has a **target** in function space. Part III writes the **equations** that target satisfies. The copper wire that began as coupled springs is now a bar with boundary conditions — fixed grips, Joule heating, perhaps convection at the surface — still one specimen, now with PDEs that Parts IV and V will discretize. When Part IV assembles \(\mathbf{K}\) from shape functions, you will recognize the same sparse pattern Part I taught, now justified by the bilinear form defined here.
 
+## The variational ladder (ME 412 Schematic 14)
+
+Part II's opening indexed fourteen schematics from the Functional Analysis Notes. **Schematic 14** is the narrative spine of Parts III–IV — the same ladder the notes draw from strong PDE to convergent FEM:
+
+```mermaid
+flowchart TB
+  S[Strong PDE Lu = f + BCs] --> W[Weak form a u,v = F v on V]
+  W --> LM[Lax-Milgram: coercivity + continuity]
+  LM --> G[Galerkin: find u_h in S_h subset V]
+  G --> C[Cea: quasi-optimal error in V-norm]
+  C --> I[Interpolation: h^k rates via Ciarlet / Deny-Lions]
+```
+
+Read Part III as the **middle three rungs**: strong form (Chapter 1), weak form (Chapter 2), Sobolev regularity and energy methods (Chapters 3–4). Part IV completes the ladder with Galerkin assembly, Céa's lemma, and mesh refinement on the copper wire. Existence climbs upward; convergence rates come back down through interpolation — the same story whether the field is axial displacement under tension or temperature under Joule heating.
+
+When a chapter feels like a list of PDEs, return to this ladder: *where are we on the path from physics to trusted numbers on the load cell?*
+
 ## Two paths ahead (preview)
 
 Part III ends with energy methods — the last purely analytical chapter before discretization. What follows is not a single road but a **fork in the narrative**, both leading to the same continuum floor in Part VI:

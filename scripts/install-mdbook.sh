@@ -2,7 +2,7 @@
 # Install mdBook v0.4.40 to /usr/local/bin (or ~/.local/bin without sudo).
 set -euo pipefail
 
-VERSION="${MDBOOK_VERSION:-0.4.40}"
+VERSION="${MDBOOK_VERSION:-0.4.36}"
 ARCH="x86_64-unknown-linux-gnu"
 URL="https://github.com/rust-lang/mdBook/releases/download/v${VERSION}/mdbook-v${VERSION}-${ARCH}.tar.gz"
 

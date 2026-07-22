@@ -66,7 +66,7 @@ If you read only one part before writing a weak form or running a mesh convergen
 
 ## Representative schematics (ME 412)
 
-Section A of the [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) collects eight **representative schematics** — baby pictures of the same machine this part builds. Use them as a visual index while reading:
+Section A of the [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) collects **fourteen representative schematics** — baby pictures of the same machine this part builds. Use them as a visual index while reading:
 
 | Schematic | Idea | Chapter in this part |
 |-----------|------|----------------------|
@@ -78,8 +78,16 @@ Section A of the [Functional Analysis Notes](https://hanfengzhai.github.io/file/
 | 6 | Orthogonal projection; best approximation in Hilbert space | [II.3](03-hilbert-spaces.md) |
 | 7 | Duality, Riesz representation, weak convergence | [II.4](04-operators-duality.md) |
 | 8a–8b | PDE → weak form → FEM; well-posedness triangle | [II.5](05-spectral-theorem.md) → Part III |
+| 9 | Sobolev energy-space bridge; Poincaré controls \(\|u\|_{L^2}\) by \(\|\nabla u\|_{L^2}\) | [II.2](02-normed-spaces.md), [II.3](03-hilbert-spaces.md); Part III.3 |
+| 10 | Why Lebesgue and Sobolev: \(C^1\) too small; completion by integral norms | [II.2](02-normed-spaces.md); Part III.3 |
+| 11 | FEM existence in \(S_h\); Riesz gives unique \(u_h\); energy projection | [II.5](05-spectral-theorem.md) → Part IV |
+| 12 | Riemann vs Lebesgue integration; zero-measure changes | [II.2](02-normed-spaces.md) (motivation for \(L^p\)) |
+| 13 | Big 4 of FA: Baire, Open Mapping, Bounded Inverse, Banach–Steinhaus | [II.4](04-operators-duality.md) (Banach operators) |
+| 14 | Variational + FEM ladder: strong → weak → Lax–Milgram → Galerkin → Céa | [II.5](05-spectral-theorem.md) → Part III → Part IV |
 
 Each schematic answers the four concept-map questions for one layer of structure. When a proof feels abstract, return to the matching row: *what object, what structure, what theorem, what breaks?*
+
+Schematic **14** is the **plot spine** of Acts I–III in the book: existence climbs the ladder (strong PDE → weak form → coercivity → discrete Galerkin); convergence rates descend through interpolation (Céa's lemma, Aubin–Nitsche). Part II supplies the middle rungs; Part III writes the weak forms; Part IV assembles \(\mathbf{K}\). The copper wire's tensile equilibrium is one instance of that ladder — the load cell curve is trustworthy only when every rung is in place.
 
 ## Story so far (Prologue & Part I)
 
