@@ -4,6 +4,10 @@ Classical molecular dynamics of Part VIII assumes nuclei move on a **potential e
 
 The copper wire at laboratory scale will never be a full DFT supercell. The wire at atomic scale **must** be described quantum mechanically when bonds rearrange, chemistry appears, or empirical potentials have never been validated. The art is knowing when ab initio MD is mandatory, when classical MD suffices, and how to compress atomistic trajectories into numbers the mesoscale accepts.
 
+## Scene: when EAM is not enough
+
+Most MD of copper uses an EAM potential fit once to DFT data and then trusted for millions of timesteps. At a crack tip where bonds stretch until rupture, or at a surface where oxidation nucleates, that trust may fail. Born–Oppenheimer MD recomputes forces from DFT each step; coarse-graining distills those trajectories into tables the mesoscale can afford. The wire's fracture strain is either validated at this scale or assumed.
+
 ## Born–Oppenheimer molecular dynamics
 
 In **Born–Oppenheimer MD (BOMD)**, nuclear positions \(\{\mathbf{R}_I\}\) evolve classically while electrons stay in the instantaneous ground state:
@@ -107,6 +111,124 @@ When publishing parameters that cross scales:
 4. Document whether forces used in MD match finite-difference DFT forces on the same configs.
 
 Silent mismatch — PBE DFT training, LDA used in a later study — corrupts the ladder worse than a 5% force error.
+
+## Worked example: Cu EAM fit from DFT to LAMMPS
+
+This section ties Part IX outputs to Part VIII inputs for fcc copper — the same material as the wire, at the scale where potentials are built rather than assumed.
+
+### DFT reference dataset (Part IX checklist)
+
+Before fitting, converge bulk properties on fcc Cu (GGA-PBE, PAW pseudopotential — document versions):
+
+| Configuration | DFT property | Typical PBE target | Weight in fit |
+|---------------|--------------|-------------------|---------------|
+| Equilibrium fcc | \(a_0\), \(E_{\text{coh}}\) | \(a_0 \approx 3.63\) Å, \(E_{\text{coh}} \approx -3.7\) eV/atom | High |
+| Elastic strain ±0.5% | \(C_{11}, C_{12}, C_{44}\) | 170, 124, 76 GPa (order of magnitude) | High |
+| Vacancy | \(E_f^{\text{vac}}\) | \(\sim 1.2\) eV | Medium |
+| (111) stacking fault | \(\gamma_{\text{sf}}\) | \(\sim 45\) mJ/m\(^2\) | **Critical for DDD** |
+| Surface (111) | \(\gamma_{\text{surf}}\) | \(\sim 1.2\) J/m\(^2\) | Medium |
+| Core structure | Forces on atoms near dissociated core | Force-matching | High if mobility is goal |
+
+Archive Quantum ESPRESSO inputs (`pw.x`, `vc-relax`, strained cells) with k-mesh and cutoff documented — Part IX Chapter 3 ritual.
+
+### EAM fitting checklist
+
+1. **Choose functional form:** Finnis–Sinclair or DYNAMO-style EAM for monatomic Cu; cutoff radius \(r_c \approx 5\)–\(6\) Å (include 2nd-neighbor shell in fcc).
+2. **Optimization target:** weighted least squares on equation of state + elastic constants + \(\gamma_{\text{sf}}\) + optional force matching on NVT snapshots from short BOMD runs.
+3. **Reject overfit:** potential must reproduce **phonon** dispersion at \(\Gamma\) (optional ph.x check) and not blow up at high coordination defects.
+4. **Validate outside training set:**
+   - Melting point (approximate — often 10–15% low for EAM),
+   - Uniaxial tension of nanowire: Young's modulus vs Part VI,
+   - Dislocation core width and \(\gamma_{\text{sf}}\) from rigid shift vs DFT GSF curve.
+5. **Export for DDD:** fit \(M(\tau, T)\) from NVT shear simulations at several temperatures; tabulate for OpenDiS mobility input (cross-ref Part VII worked example).
+
+```text
+DFT (QE)  →  Cu_fit_data/  (EOS, GSF, vacancy, forces)
+       ↓
+optimize_eam.py  →  Cu.eam.alloy
+       ↓
+validate_lammps/  (phonon, tension, core)
+       ↓
+mobility_tables/  →  Part VII OpenDiS
+```
+
+### Minimal LAMMPS deck (metal units, NVT equilibration)
+
+After fitting `Cu.eam.alloy`, a standard sanity run before production:
+
+```lammps
+# in.lammps — 500-atom fcc Cu, NVT 300 K, sanity equilibration
+units           metal
+atom_style      atomic
+boundary        p p p
+
+lattice         fcc 3.615
+region          box block 0 5 0 5 0 5
+create_box      1 box
+create_atoms    1 box
+
+pair_style      eam/alloy
+pair_coeff      * * Cu.eam.alloy Cu
+
+mass            1 63.546
+
+velocity        all create 300.0 12345
+fix             1 all nvt temp 300.0 300.0 0.1
+
+timestep        0.001        # ps
+thermo          100
+run             10000        # 10 ps equilibration
+
+# Production: uniaxial tension along z (NPT stress control)
+unfix           1
+fix             2 all npt temp 300.0 300.0 0.1 iso 0.0 0.0 1.0
+variable        s equal step
+fix             3 all deform 1 z erate 1.0e-4 units box
+run             50000
+```
+
+**Reading the output:**
+
+- `thermo` pressure should relax to \(\sim 0\) GPa in NPT before deformation,
+- Potential energy per atom stable after equilibration (no drift → timestep OK),
+- Stress–strain from `fix deform` exports Young's modulus; compare to DFT \(C_{11}\) and Part VI \(E \approx 110\)–\(130\) GPa for polycrystalline wire.
+
+### DeepMD / ML potential workflow (when EAM is insufficient)
+
+When dislocation cores, surfaces, or crack tips dominate (notch root in the wire), extend the ladder:
+
+| Stage | Tool | Input | Output |
+|-------|------|-------|--------|
+| Active learning | DFT snapshots | Uncertain configs from short MD | Expanded training set |
+| Train | DeepMD-kit | `type.raw`, `box.raw`, forces | `graph.pb` |
+| Deploy | LAMMPS `pair deepmd` | Same `in.lammps` with `pair_style deepmd` | Large-scale trajectories |
+| Export | Coarse-grain | Core structures, \(\gamma_{\text{sf}}\), \(M(\tau)\) | Part VII mobility |
+
+The intellectual contract is unchanged: **electronic structure defines the surface; MD explores it; mesoscale inherits statistics.** ML potentials reduce the cost of exploration, not the need for DFT anchors.
+
+### Handoff summary for the copper wire
+
+| Quantity | Source chapter | Consumer |
+|----------|----------------|----------|
+| \(a_0\), \(E_{\text{coh}}\) | Part IX DFT | EAM fit, sanity checks |
+| \(\gamma_{\text{sf}}\), core width | Part VIII MD (this chapter) | Part VII Peierls, mobility |
+| \(M(\tau, T)\) | Part VIII NVT shear | OpenDiS |
+| \(E\), \(\nu\) polycrystal average | Part VIII NPT + Part VI | Part IV elastic step |
+
+Document every conversion at the boundary: Ry → eV, Bohr → Å, metal units → SI when feeding DAMASK or Abaqus.
+
+## Concept map checkpoint (Part VIII)
+
+Part VIII followed the MD Notes from phase space through coarse-graining. The four questions summarize the atomistic arc:
+
+| Question | Part VIII answer (copper wire) |
+|----------|--------------------------------|
+| What **object**? | Positions \(\{\mathbf{r}_i\}\), momenta, interatomic potential \(V\) |
+| What **structure**? | Hamiltonian mechanics, thermostats, periodic boundaries, cutoff radius |
+| What **theorem**? | Energy conservation (symplectic integrators); ergodic sampling in NVT/NPT |
+| What **breaks**? | Energy drift; wrong ensemble; cutoff artifacts in EAM fits |
+
+The handoff table above closes the upward exports from atomistics: stacking-fault energy and core structures feed Part VII mobility; cohesive energy and moduli feed Part VI and Part IV elastic steps. What MD cannot invent — the potential surface itself — is Part IX's responsibility. Classical MD assumes Born–Oppenheimer surfaces; the next part derives them from electron density.
 
 ## Bridge
 

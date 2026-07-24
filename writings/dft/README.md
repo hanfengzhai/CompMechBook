@@ -9,12 +9,13 @@ dft/
 ├── book.toml
 ├── chapters/
 │   ├── SUMMARY.md
+│   ├── 00-opening.md
 │   ├── 01-born-oppenheimer.md
 │   ├── 02-kohn-sham.md
 │   └── 03-dft-workflows.md
 ```
 
-Chapter numbering `01`–`03` matches `src/part09-dft/` in CompMechBook. Bridge sections connect atomistic potentials to Born–Oppenheimer separation and the Kohn–Sham equations; Chapter 02 hands off to reproducible QE workflows; Chapter 03 hands off to the epilogue on multiscale coupling.
+Chapter numbering `00`–`03` matches `src/part09-dft/` in CompMechBook. Bridge sections connect atomistic potentials to Born–Oppenheimer separation and the Kohn–Sham equations; Chapter 02 hands off to reproducible QE workflows; Chapter 03 hands off to the epilogue on multiscale coupling.
 
 ## Build standalone
 

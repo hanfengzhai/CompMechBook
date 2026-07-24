@@ -1,11 +1,19 @@
 #!/usr/bin/env bash
 # Sync canonical Writings markdown into CompMechBook src/ chapters.
-# Usage: ./scripts/sync-writings.sh [--dry-run]
+# Usage: ./scripts/sync-writings.sh [--dry-run|--check]
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 DRY_RUN=false
-[[ "${1:-}" == "--dry-run" ]] && DRY_RUN=true
+CHECK_ONLY=false
+for arg in "$@"; do
+  case "$arg" in
+    --dry-run) DRY_RUN=true ;;
+    --check) CHECK_ONLY=true ;;
+  esac
+done
+
+DRIFT=0
 
 sync_file() {
   local src="$1" dst="$2"
@@ -15,6 +23,14 @@ sync_file() {
   fi
   if $DRY_RUN; then
     echo "would sync: $src -> $dst"
+  elif $CHECK_ONLY; then
+    if [[ ! -f "$dst" ]]; then
+      echo "DRIFT (missing dst): $dst"
+      DRIFT=1
+    elif ! cmp -s "$src" "$dst"; then
+      echo "DRIFT: $src != $dst"
+      DRIFT=1
+    fi
   else
     cp "$src" "$dst"
     echo "synced: $dst"
@@ -45,6 +61,11 @@ sync_part() {
   done
 }
 
+# Front matter
+sync_file "$ROOT/writings/preface/chapters/preface.md" "$ROOT/src/preface.md"
+sync_file "$ROOT/writings/prologue/chapters/00-many-scales.md" "$ROOT/src/prologue/00-many-scales.md"
+sync_file "$ROOT/writings/epilogue/chapters/multiscale.md" "$ROOT/src/epilogue/multiscale.md"
+
 # Part I: Linear Algebra Notes (01–04)
 sync_part "$ROOT/writings/linear-algebra/chapters" "$ROOT/src/part01-linear-algebra" 01 02 03 04
 
@@ -71,5 +92,19 @@ sync_part "$ROOT/writings/md/chapters" "$ROOT/src/part08-md" 01 02 03
 
 # Part IX: DFT Notes (01–03)
 sync_part "$ROOT/writings/dft/chapters" "$ROOT/src/part09-dft" 01 02 03
+
+# Appendix: glossary, sources, memory sheet
+sync_file "$ROOT/writings/appendix/chapters/glossary.md" "$ROOT/src/appendix/glossary.md"
+sync_file "$ROOT/writings/appendix/chapters/sources.md" "$ROOT/src/appendix/sources.md"
+sync_file "$ROOT/writings/appendix/chapters/memory-sheet.md" "$ROOT/src/appendix/memory-sheet.md"
+
+if $CHECK_ONLY; then
+  if [[ $DRIFT -ne 0 ]]; then
+    echo "FAIL: src/ is out of sync with writings/. Run ./scripts/sync-writings.sh"
+    exit 1
+  fi
+  echo "OK: src/ matches writings/"
+  exit 0
+fi
 
 echo "Done. Run 'mdbook build' from repo root to verify."

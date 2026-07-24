@@ -4,6 +4,12 @@ Poisson's equation taught us the FEM pipeline: weak form, shape functions, assem
 
 The copper wire under tension illustrates the transition cleanly. Steady Joule heating gives a scalar temperature field governed by \(-\Delta T = q\); mechanical loading gives a vector displacement field governed by \(-\nabla\cdot\boldsymbol{\sigma} = \mathbf{f}\). Both problems assemble into \(\mathbf{K}\mathbf{U} = \mathbf{F}\). The difference is in the size of \(\mathbf{U}\), the block structure of \(\mathbf{K}\), and the physical meaning of the entries.
 
+> **Reader's note:** This chapter uses small-strain kinematics and isotropic Hooke's law in the form a FEM code expects. **Part VI** develops the same objects — deformation, stress, balance laws, and variational elasticity — from continuum mechanics first principles. Read here for assembly; return to Part VI for the physics foundation, or skim Part VI Chapters 1–3 first if you prefer definitions before discretization.
+
+## Scene: one wire, two fields
+
+Run current through the copper wire and two simulations appear on the same mesh: a scalar temperature field from Joule heating, and a vector displacement field from thermal expansion plus tension. Poisson gave us the scalar pipeline; elasticity repeats it threefold — same assembly loop, block stiffness matrix, different physics. The wire does not separate those couplings as cleanly as the FEM deck does, but recognizing the pattern saves a semester of relearning.
+
 ## Strong form of linear elasticity
 
 In small-displacement theory, the **strain tensor** is
@@ -92,6 +98,23 @@ Axial deformation of the copper wire is a 1D reduction: \(\mathbf{u} = u(x)\math
 \]
 
 identical to the bar element in Chapter 2. Three-dimensional elasticity is this idea with full tensors — no change to the assembly loop, only to the dimension of \(\mathbf{B}\) and \(\mathbb{C}\).
+
+### Worked example: three-node copper bar
+
+Fix numbers from Part I and Part IV: a \(L = 1\,\text{m}\) copper wire segment, \(A = 1\,\text{mm}^2\), \(E = 120\,\text{GPa}\), fixed at \(x = 0\), tensile load \(F = 1000\,\text{N}\) at \(x = L\). Three equally spaced nodes give two bar elements of length \(h = L/2\).
+
+Each element contributes \(k^e = EA/h = (120 \times 10^9)(10^{-6})/0.5 \approx 2.4 \times 10^8\,\text{N/m}\). The global system (DOFs \(u_1, u_2, u_3\) with \(u_1 = 0\)) is
+
+\[
+\begin{bmatrix} 2k & -k \\ -k & k \end{bmatrix}
+\begin{bmatrix} u_2 \\ u_3 \end{bmatrix}
+=
+\begin{bmatrix} 0 \\ F \end{bmatrix}.
+\]
+
+Solving gives \(u_3 = F/k \approx 4.17\,\mu\text{m}\) and \(u_2 = F/(2k) \approx 2.08\,\mu\text{m}\) — linear displacement along the bar, as expected for uniform stress \(\sigma = F/A = 1\,\text{GPa}\). Refining to five nodes halves the element length and halves the error in the energy norm at the rate Part IV Chapter 5 predicts for P1 bars.
+
+This is not a new method: it is Poisson's equation with a vector-valued unknown and a tensor stiffness. The copper wire under modest tension lives in this 1D reduction until notches, bending, or multiaxial loading demand full 3D \(\mathbf{B}\) matrices — but the assembly loop, boundary conditions, and convergence story are unchanged.
 
 ## Example: 2D plane problems
 

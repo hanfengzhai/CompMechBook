@@ -4,6 +4,10 @@ Part IX, Chapters 1–2, derived the Kohn–Sham equations and explained why con
 
 The narrative thread remains the copper wire. We will not simulate the whole wire in Quantum ESPRESSO — no cluster has that memory — but we **will** walk through the same workflows used to produce the bulk properties that a wire model assumes: lattice constant, bulk modulus, elastic tensor, phonon check, and defect formation energy in a supercell. The homework archive for Cornell MSE 5720 ([MSE5720-HW](https://github.com/hanfengzhai/MSE5720-HW)) supplies worked examples; this chapter distills their logic into a reproducible ritual.
 
+## Scene: bulk copper in a workstation
+
+No cluster will ever run DFT on the full wire. Instead, a small fcc supercell on a workstation yields lattice constant, bulk modulus, elastic constants, vacancy formation energy — the bulk numbers every upstream model assumes. Input files, cutoff convergence, k-mesh tests, relaxation, SCF cycle, property extraction: this chapter is the repeatable ritual that turns Quantum ESPRESSO output into parameters for Parts VI–VIII.
+
 ## The calculation ladder inside DFT
 
 Every property calculation is a sequence of controlled approximations:
@@ -51,6 +55,106 @@ done
 ```
 
 Archive **inputs, outputs, pseudopotential files, and code version**. Reproducibility is the multiscale contract: MD in Part VIII cannot cite "DFT said so" without a commit hash.
+
+## Worked example: fcc copper from `pw.in` to elastic constants
+
+The BAs homework pattern above is generic; this section walks **copper** end to end — the same material whose Young's modulus appears in Part VI and whose EAM fit is checked in Part VIII. We use Quantum ESPRESSO (`pw.x`) with PBE and ultrasoft pseudopotentials; the deck is abbreviated but complete enough to archive in a repository.
+
+### Step 0 — Primitive cell and pseudopotential
+
+Copper is fcc with one atom in the conventional cell (4 atoms) or one atom in the primitive cell. For bulk modulus and elastic constants, either works if Brillouin-zone sampling is consistent. Download `Cu.pbe-d-v1.0.uspp.F.UPF` from the [SSSP library](https://www.materialscloud.org/discover/sssp) or the Quantum ESPRESSO pseudopotential table; record the hash.
+
+```text
+&CONTROL
+  calculation = 'vc-relax'
+  prefix      = 'cu_bulk'
+  pseudo_dir  = './pseudo/'
+  outdir      = './tmp/'
+  forc_conv_thr = 1.0d-4
+/
+&SYSTEM
+  ibrav = 2
+  celldm(1) = 6.80   ! initial guess; Å via celldm(1)*bohr_to_ang
+  nat   = 1
+  ntyp  = 1
+  ecutwfc = 50       ! will sweep; Ry
+  occupations = 'smearing'
+  smearing = 'mp'
+  degauss = 0.02
+/
+&ELECTRONS
+  conv_thr = 1.0d-8
+  mixing_beta = 0.3
+/
+&IONS
+  ion_dynamics = 'bfgs'
+/
+ATOMIC_SPECIES
+  Cu  63.546  Cu.pbe-d-v1.0.uspp.F.UPF
+ATOMIC_POSITIONS crystal
+  Cu  0.0  0.0  0.0
+K_POINTS automatic
+  12 12 12  0 0 0
+```
+
+Run `vc-relax` first; extract converged `celldm(1)` and total energy per atom. For PBE, expect \(a \approx 3.63\text{–}3.66\) Å vs experimental \(3.615\) Å — close enough to trust **trends**, not to force experimental \(a_0\) into a DFT-derived potential without documenting strain.
+
+### Step 1 — Cutoff and k-mesh convergence (archive the curves)
+
+Fix the relaxed lattice constant. Sweep `ecutwfc` at fixed `12 12 12` k-mesh; then sweep k-density at converged cutoff. Tabulate:
+
+| `ecutwfc` (Ry) | \(E/N\) (Ry/atom) | \(\Delta E\) (meV/atom) |
+|----------------|-------------------|-------------------------|
+| 40 | (run) | — |
+| 50 | (run) | (run) |
+| 60 | (run) | (run) |
+| 70 | (run) | (run) |
+
+Stop when successive \(\Delta E < 5\) meV/atom. Repeat for k-mesh (`8×8×8`, `12×12×12`, `16×16×16`). **Plot both curves** in the study README — the epilogue's multiscale chain is only as honest as these plots.
+
+### Step 2 — Equation of state and bulk modulus
+
+With converged settings, run a series of `scf` jobs on isotropically scaled volumes \(V(\eta) = (1+\eta) V_0\) for \(\eta \in \{-0.04, -0.02, 0, 0.02, 0.04\}\). Fit \(E(V)\) to Birch–Murnaghan; extract \(B\) in GPa. Compare to experiment (\(B \approx 140\) GPa for Cu). Discrepancy is functional error, not a reason to hide the DFT value.
+
+### Step 3 — Elastic constants via stress–strain
+
+Apply small strains to the relaxed cell (±0.005 is typical). For cubic Cu, three independent deformations suffice (uniaxial, shear, volume-preserving). After each `vc-relax` or fixed-cell `scf` with `tprnfor = .true.`, read stresses and fit
+
+\[
+C_{11} = \frac{\partial \sigma_1}{\partial \varepsilon_1}\Big|_{\varepsilon=0}, \quad
+C_{12} = \frac{\partial \sigma_1}{\partial \varepsilon_2}\Big|_{\varepsilon=0}, \quad
+C_{44} = \frac{\partial \sigma_6}{\partial \varepsilon_6}\Big|_{\varepsilon=0}.
+\]
+
+Voigt averages give Young's modulus and Poisson's ratio for isotropic polycrystal estimates in Part VI:
+
+\[
+E = \frac{9B G}{3B + G}, \qquad \nu = \frac{3B - 2G}{2(3B + G)},
+\]
+
+with \(G = (C_{11} - C_{12} + 3C_{44})/5\) for cubic crystals. A typical PBE result: \(C_{11} \approx 170\) GPa, \(C_{12} \approx 120\) GPa, \(C_{44} \approx 75\) GPa — bracketing but not matching room-temperature experiment.
+
+### Step 4 — Vacancy supercell (handoff to Part VII)
+
+Build a \(3\times3\times3\) conventional cell (108 atoms). Remove one atom; relax with fixed cell shape. Formation energy:
+
+\[
+E_f^v = E_{107} - \frac{107}{108} E_{108}.
+\]
+
+Converge with respect to supercell size and k-mesh. Archive \(E_f^v\) alongside the bulk \(a_0\) and \(C_{ij}\) — Part VII's defect thermodynamics and Part VIII's EAM fitting both consume this number.
+
+### Step 5 — Export table for upstream parts
+
+| Quantity | Typical PBE value | Used in |
+|----------|-------------------|---------|
+| \(a_0\) | 3.63–3.66 Å | Part VI reference configuration |
+| \(B\) | 130–145 GPa | Part VI bulk response |
+| \(C_{11}, C_{12}, C_{44}\) | see above | Part IV anisotropic elements |
+| \(E_f^v\) | 1.0–1.3 eV | Part VII, Part VIII |
+| Phonon DOS (optional `ph.x`) | acoustic branch at \(\Gamma\) | Part VIII thermostat validation |
+
+Commit the converged `pw.in`, pseudopotential, and a one-page README with functional, cutoffs, and final numbers. That commit hash is what you cite when the copper wire FEM model uses \(E = 120\) GPa — not a vague "DFT said so."
 
 ## HW2 pattern: bands, DOS, and elasticity (Si extended to metals)
 
@@ -131,6 +235,19 @@ MSE5720 homeworks combine Jupyter notebooks with batch scripts for clusters (XSE
 - Plot convergence curves in supplementary material, not only final answers.
 
 Scientific machine learning surrogates (epilogue) trained on DFT data inherit these metadata requirements. A neural network predicting formation energy without functional labels is not multiscale — it is interpolation without a ladder.
+
+## Concept map checkpoint (Part IX)
+
+Part IX followed the DFT coursework arc from Born–Oppenheimer through Quantum ESPRESSO workflows. The four questions summarize the electronic scale:
+
+| Question | Part IX answer (copper wire) |
+|----------|------------------------------|
+| What **object**? | Electron density \(\rho(\mathbf{r})\), Kohn–Sham orbitals, ionic positions |
+| What **structure**? | Hohenberg–Kohn variational principle; SCF cycle; plane-wave basis, k-mesh |
+| What **theorem**? | Hohenberg–Kohn; Kohn–Sham mapping (with approximate \(E_{xc}\)) |
+| What **breaks**? | Functional dependence; metals without smearing; pseudopotential transferability |
+
+The export table above is where the **downward derivation** of the ladder begins: \(E_{\text{coh}}\), \(C_{ijkl}\), stacking-fault energies, and phonons feed MD potentials, DDD mobilities, and continuum moduli. A wire simulation that imports \(E = 120\) GPa without asking whether it came from Voigt-averaged DFT, room-temperature experiment, or cold-worked polycrystal data carries silent assumptions this part makes explicit. The epilogue asks how disciplined teams wire these exports into multiscale workflows.
 
 ## Bridge to the epilogue
 

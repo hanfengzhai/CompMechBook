@@ -4,6 +4,10 @@ The copper wire from the prologue was never purely elastic. Cold drawing pushed 
 
 This chapter is not a full treatise on plasticity theory — that would require its own book. It is the **bridge** between variational elasticity and the defect mechanics of Part VII: what changes when displacements are large, when energy is no longer quadratic, and when history matters.
 
+## Scene: the curve bends, the model must follow
+
+Return to the force–displacement trace from Part I: linear climb, then yield knee, then hardening plateau. Linear elasticity explains only the first segment. Large strain, necking, and path-dependent hardening live outside the quadratic energy landscape — yet the same wire, same grips, same experiment. This chapter names what changes when the tangent stiffness stops being constant and points toward Part VII's defects as the microscale reason for the knee.
+
 ## When linear elasticity breaks down
 
 Linear elasticity assumes:
@@ -139,6 +143,19 @@ Part VII introduces **dislocations** as explicit mesoscale objects — lines wit
 - Link-length statistics from DDD simulations (OpenDiS, ParaDiS) inform what phenomenological laws miss.
 
 When we later fit an EAM potential in Part VIII or compute stacking-fault energy in Part IX, we are closing the loop: electronic structure sets the energy landscape; MD sets mobility and cross-slip; DDD sets hardening; FEM sets structural response. Nonlinear continuum mechanics is the **lowest rung that still speaks the language of stress and strain tensors** familiar to structural engineers.
+
+## Concept map checkpoint (Part VI)
+
+Part VI named the fields that Parts IV and V already approximated on meshes. Before descending to defects, the four questions summarize the continuum scale:
+
+| Question | Part VI answer (copper wire) |
+|----------|------------------------------|
+| What **object**? | Deformation \(\mathbf{F}\), strain measures, Cauchy stress \(\boldsymbol{\sigma}\) |
+| What **structure**? | Balance laws; hyperelastic energy \(\psi\); yield surface and flow rules |
+| What **theorem**? | Virtual work equivalence; polyconvexity (existence in hyperelasticity); Drucker's stability postulate |
+| What **breaks**? | Crack tips and dislocation cores (singular gradients); hardening without mesoscale physics |
+
+The copper wire under rising load follows this arc: Part IV's mesh computes \(\mathbf{u}\); Part VI explains that \(\mathbf{u}\) minimizes energy until yield; this chapter adds Newton–Raphson and \(J_2\) plasticity when the load cell curve bends. When the mesh is refined but the hardening law is wrong, the fault is not discretization — it is **constitutive physics** that lives at the dislocation scale. Part VII supplies that physics.
 
 ## Bridge
 

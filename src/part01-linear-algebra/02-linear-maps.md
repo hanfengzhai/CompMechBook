@@ -4,6 +4,10 @@ A matrix is not merely a table of numbers. It is a **linear map** expressed in a
 
 When we mesh the copper wire for a tensile test, each bar element has a **local** coordinate system aligned with the element axis. The global displacement vector lives in a **global** basis tied to node numbering. Assembly is the book-keeping that says: "this local degree of freedom is global degree of freedom 17." That book-keeping is a linear map.
 
+## Scene: two languages for the same grip load
+
+The tensile frame displays grip displacement in millimeters; the finite element deck stores it as degree of freedom 1. The bar element on the wire axis has its own local axis; the global stiffness matrix sees a completely different numbering. Same physics, three coordinate systems. Assembly is the map that declares them equivalent — and if that map is wrong, the wire appears to stretch when only one end moves.
+
 ## Linear maps and their matrix representations
 
 A map \(T: \mathbb{R}^n \to \mathbb{R}^m\) is linear if
@@ -146,7 +150,7 @@ The **Jacobian** of the isoparametric map appears in every element integral; it 
 
 Finite volume methods (Part V) use different maps — cell volumes, face normals, flux integrals — but the same principle: express physics in a convenient local frame, then transform to a global conservation statement.
 
-## Bridge to the next chapter
+## Bridge
 
 Not every linear map is best viewed in the standard basis. The modes of vibration of a fixed–fixed copper wire, the principal stretches of a deformation gradient, and the normal modes of a coupled oscillator all arise from choosing a basis that **diagonalizes** the map. That is the story of eigenvalues — and the discrete preview of the spectral theorem we will meet in Part II.
 

@@ -6,6 +6,12 @@ The integral form of a conservation law balances fluxes through control volume b
 
 The author's FVM notes and CFD curriculum treat 1D advection and the Sod shock tube as mandatory verification cases before advancing to 2D grids and Navier–Stokes. This chapter follows that path.
 
+## Scene: hot wire, cool air
+
+The copper wire from the prologue carries current; its surface runs hotter than the surrounding air. Along a one-dimensional slice through the boundary layer — distance measured normal to the wire — temperature and heat flux obey a conservation law: what enters a control volume must equal what leaves plus what accumulates. Partition that slice into cells, store **cell averages** instead of point values, and balance fluxes at interfaces.
+
+A coarse partition captures the gross gradient from hot wire to cool freestream; refine the cells near the wall and the same algorithm resolves the steep thermal boundary layer without changing philosophy — only the numerical flux at each face. This is FVM in miniature: conservation first, pointwise PDE second. The wire's conjugate heat transfer loop (Part V, Chapter 4) will exchange these cell-averaged fluxes with the FEM conduction field inside the solid; the 1D algorithm here is where that handshake begins.
+
 ## Mesh and cell averages
 
 Partition \([x_{\min}, x_{\max}]\) into cells with interfaces at \(x_{j-1/2}\), centers at \(x_j\), and widths \(\Delta x_j\). The **cell average** at time \(t_n\) is
@@ -77,6 +83,50 @@ The lesson generalizes: hyperbolic operators need **directional bias** in the di
 Initialize \(U_j^0 = 1\) on \([0.2, 0.4]\) and 0 elsewhere on \([0,1]\) with periodic boundaries. Advect with \(a = 1\) for one period. Upwind moves the pulse without growth; central blows up. MUSCL with a limiter (Chapter 3) advects with less smearing than first-order upwind.
 
 This test — trivial analytically, diagnostic numerically — should run before any shock tube calculation.
+
+### Worked example: a 70-line Python advection solver
+
+The listing below implements first-order upwind FVM for \(U_t + a U_x = 0\) on \([0,1]\) with periodic boundaries. It verifies CFL stability and conservation of the pulse integral (up to quadrature error).
+
+```python
+#!/usr/bin/env python3
+"""1D periodic advection: U_t + a U_x = 0, first-order upwind FVM."""
+import numpy as np
+
+def solve_advection(a=1.0, nx=200, nt=500, t_end=1.0):
+    x = np.linspace(0, 1, nx, endpoint=False)
+    dx = x[1] - x[0]
+    dt = t_end / nt
+    cfl = abs(a) * dt / dx
+    if cfl > 1.0:
+        raise ValueError(f"CFL={cfl:.3f} > 1; reduce dt or increase nx")
+
+    U = np.zeros(nx)
+    U[(x >= 0.2) & (x < 0.4)] = 1.0
+    mass0 = U.sum() * dx
+
+    for _ in range(nt):
+        F = np.zeros(nx + 1)
+        for j in range(nx + 1):
+            jl = (j - 1) % nx
+            jr = j % nx
+            U_L = U[jl] if a >= 0 else U[jr]
+            F[j] = a * U_L
+        U = U - (dt / dx) * (F[1:] - F[:-1])
+
+    mass1 = U.sum() * dx
+    print(f"CFL={cfl:.3f}, mass drift={abs(mass1 - mass0):.2e}")
+    return x, U
+
+if __name__ == "__main__":
+    x, U = solve_advection()
+    peak = U.max()
+    print(f"peak after one period (expect ~1.0): {peak:.4f}")
+```
+
+Run with increasing `nx` at fixed CFL: the smeared pulse width should shrink as \(O(\Delta x)\). Switch the flux to central differencing (`F[j] = a * 0.5 * (U[jl] + U[jr])`) and watch instability appear within a few steps — the same directional bias Part IV's symmetric Galerkin form does not provide for hyperbolic problems.
+
+For the heated copper wire's cooling air (Part V, Chapter 4), this script is the skeleton: replace scalar \(U\) with \(\mathbf{U} = (\rho, \rho u, \rho E)\), replace upwind with an HLLC flux (Chapter 3), and add viscous fluxes implicitly when the Reynolds number is large.
 
 ## Burgers' equation: shock formation
 

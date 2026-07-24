@@ -9,13 +9,14 @@ pde/
 ├── book.toml
 ├── chapters/
 │   ├── SUMMARY.md
+│   ├── 00-opening.md
 │   ├── 01-strong-form.md
 │   ├── 02-weak-form.md
 │   ├── 03-sobolev-spaces.md
 │   └── 04-energy-methods.md
 ```
 
-Chapter numbering `01`–`04` matches `src/part03-pdes/` in CompMechBook. Bridge sections connect Part II function spaces to Part IV discretization; Chapter 04 hands off to the finite element method.
+Chapter numbering `00`–`04` matches `src/part03-pdes/` in CompMechBook. Bridge sections connect Part II function spaces to Part IV discretization; Chapter 04 hands off to the finite element method.
 
 ## Build standalone
 

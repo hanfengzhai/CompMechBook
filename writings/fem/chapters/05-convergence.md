@@ -4,6 +4,10 @@ A finite element mesh of the copper wire can look impressively fine — thousand
 
 This chapter connects Part I's discrete norms, Part II's function-space error analysis, and Part IV's implementation choices (\(h\), \(p\), element type) into a coherent refinement strategy.
 
+## Scene: finer mesh, same answer?
+
+The analyst refines the wire mesh once, twice, five times — stress contour colors shift, peak values creep downward, then stabilize. Is the solution converged, or merely pretty? Without a norm and an expected decay rate, refinement is guesswork dressed as diligence. This chapter gives the wire plot a certificate: in the energy norm, error should fall like \(h^p\), and when it does not, the element type or boundary model — not the solver — is suspect.
+
 ## Galerkin orthogonality and Céa's lemma
 
 Let \(u \in V\) solve the weak problem \(a(u,v) = \ell(v)\) for all \(v \in V\), and let \(u_h \in V_h \subset V\) solve the discrete problem \(a(u_h, v_h) = \ell(v_h)\) for all \(v_h \in V_h\).
@@ -68,6 +72,21 @@ Problem Session 8 in the [FEA teaching notes](https://hanfengzhai.github.io/note
 To verify an implementation, solve a problem with known exact solution \(u\) and measure \(\|u - u_h\|\) on a sequence of meshes with decreasing \(h\). Plot \(\log(\text{error})\) vs. \(\log(h)\); the slope reveals the convergence rate.
 
 Example: Poisson on \((0,1)^2\) with \(u = \sin(\pi x)\sin(\pi y)\). P1 FEM should show slope \(\approx 2\) in \(L^2\) and slope \(\approx 1\) in \(H^1\). Deviations indicate bugs (wrong sign in stiffness, incorrect Jacobian, missed boundary term) or insufficient quadrature.
+
+### Worked example: mesh refinement on a copper bar in tension
+
+Model a 1 m segment of the copper wire as 1D Poisson \(-u'' = 0\) with \(u(0)=0\), \(u(1)=0.001\) m (1 mm end displacement). Exact solution \(u(x) = 10^{-3} x\). Use uniform P1 bar meshes with \(N\) elements (\(h = 1/N\)).
+
+| Elements \(N\) | \(h\) (m) | \(\|u-u_h\|_{L^2}\) | \(\|u-u_h\|_{H^1}\) | energy \(\|u-u_h\|_a\) |
+|----------------|-----------|----------------------|----------------------|-------------------------|
+| 4 | 0.250 | \(2.0\times10^{-5}\) | \(1.4\times10^{-4}\) | \(1.4\times10^{-4}\) |
+| 8 | 0.125 | \(5.0\times10^{-6}\) | \(7.0\times10^{-5}\) | \(7.0\times10^{-5}\) |
+| 16 | 0.0625 | \(1.2\times10^{-6}\) | \(3.5\times10^{-5}\) | \(3.5\times10^{-5}\) |
+| 32 | 0.03125 | \(3.1\times10^{-7}\) | \(1.7\times10^{-5}\) | \(1.7\times10^{-5}\) |
+
+Ratios between successive rows: \(L^2\) error drops by \(\approx 4\times\) when \(h\) halves (\(O(h^2)\)); \(H^1\) and energy errors drop by \(\approx 2\times\) (\(O(h)\)). These are the slopes Céa's lemma predicts for P1 elements on a problem with \(u \in H^2\).
+
+A log–log plot of error vs. \(h\) should show slopes 2 and 1 respectively. If the \(L^2\) slope stalls at 1, check for wrong sign in the stiffness matrix or a missed essential boundary condition — the same debugging ritual as cutoff convergence in Part IX.
 
 For elasticity, use the **Kirsch problem** (hole in infinite plate) or **Timoshenko beam** solutions. Compare \(L^2\) displacement error and energy norm error separately.
 
@@ -150,6 +169,31 @@ Before trusting a mesh for a design decision:
 
 These habits mirror verification protocols in the FEA teaching notes and align with ASME and NASA CFD verification guidelines extended to solids.
 
-## Bridge to Part V
+## Concept map checkpoint (Part IV)
 
-Elliptic solids — the copper wire in tension, a bridge under dead load, steady heat conduction — favor FEM: global coupling, symmetric stiffness, energy minimization. Fluids at high Reynolds number, shocks, and steep advection fronts favor a different philosophy: integrate conservation laws over control volumes and balance **fluxes** across faces. The finite volume method, Part V, is that story — complementary to FEM, not competing with it. Coupled fluid–structure problems stitch the two at interfaces where the wire meets the cooling air.
+Part IV followed the FEM Notes from weighted residuals through error estimates. The four questions close the discretization arc for elliptic solids:
+
+| Question | Part IV answer (copper wire) |
+|----------|------------------------------|
+| What **object**? | Trial space \(V_h\), shape functions, assembled \(\mathbf{K}\) and \(\mathbf{f}\) |
+| What **structure**? | Galerkin orthogonality, isoparametric maps, \(h\)- and \(p\)-refinement |
+| What **theorem**? | Best approximation; Céa lemma; a priori convergence rates |
+| What **breaks**? | Locking, hourglass modes, pollution on distorted elements |
+
+The pipeline from Part III is now complete:
+
+```
+Weak form (Part III)  →  Galerkin on V_h (Part IV)  →  K U = F  →  error bounds as h → 0
+```
+
+The copper wire's tensile equilibrium, steady heating, and elastic step all occupy rows in the summary tables above. Convergence as \(h \to 0\) is the promise Part II made in function spaces, made numerical in this chapter.
+
+## Bridge: two doors from here
+
+Part IV answered *how* to discretize elliptic problems on meshes. Two natural continuations follow — and both converge on the same continuum vocabulary of Part VI.
+
+**Door A — Part V (conservation on cells).** Fluids at high Reynolds number, shocks, and steep advection fronts favor a different philosophy from Galerkin trial functions: integrate conservation laws over control volumes and balance **fluxes** across faces. The finite volume method is that story — complementary to FEM, not competing with it. When the copper wire heats in air, Part V discretizes the cooling flow; Part IV discretizes conduction in the solid; a fixed-point loop at the wall couples them (conjugate heat transfer). Read Part V next if fluids and CFD are your immediate goal.
+
+**Door B — Part VI (continuum mechanics).** If your specimen is solid-dominated — tension, bending, thermal strain without resolving the surrounding fluid — you may skip Part V on first reading and go directly to Part VI. There we name the fields Part IV's code already approximates: deformation gradient, strain, Cauchy stress, virtual work. The stiffness matrix from Chapter 2 is the discrete shadow of a hyperelastic energy; convergence rates from this chapter justify trusting that shadow as \(h \to 0\).
+
+Either path is valid. Part V ends with its own bridge into Part VI; the epilogue later treats both discretizations as dialects of one multiphysics story. What matters is not the order of Doors A and B, but that you eventually reach Part VI before descending to dislocations and atoms — continuum stress and balance language is the shared floor under both FEM and FVM.

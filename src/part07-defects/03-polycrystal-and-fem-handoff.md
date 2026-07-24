@@ -4,6 +4,10 @@ Dislocation dynamics resolves individual lines in an elastic medium — powerful
 
 The cold-drawn copper wire is not a single crystal. It is thousands of grains, each with its own slip systems, dislocation content, and orientation. DDD on one crystal explains one mechanism; engineering FEM needs **texture**, **hardening laws**, and **internal state variables** that summarize what DDD (or experiment) teaches.
 
+## Scene: from one crystal to a spool of wire
+
+A single-crystal DDD run explains how one slip system hardens under shear. The cold-drawn wire on the bench is thousands of grains twisted by drawing dies — texture, misorientation, grain-boundary barriers. This chapter asks how DDD statistics export upward: hardening laws for crystal plasticity, internal state variables for FEM, Peierls parameters borrowed from MD. The wire experiment is polycrystalline; the multiscale pipeline must be too.
+
 ## Peierls stress and lattice resistance
 
 Before external load moves a dislocation, the lattice itself resists glide. The **Peierls–Nabarro** model estimates the stress required to move a straight screw or edge dislocation through a perfect lattice:
@@ -91,6 +95,142 @@ Validation hierarchy for the wire:
 - **Continuum FEM vs. structural deflection** (Part IV elasticity with plasticity when needed).
 
 Agreement at each level does not guarantee predictive extrapolation to new processing routes — only that the ladder is internally consistent at tested conditions.
+
+## Worked example: drawn Cu wire from OpenDiS to DAMASK to FEM
+
+This section walks one **offline calibration** pipeline for cold-drawn copper wire — the strategy most teams use before attempting FE². The numbers are illustrative; the **file types, units, and verification gates** are what matter for reproducibility.
+
+### Step 0 — State the macroscopic target
+
+A 1 mm diameter copper wire, drawn 30% in area reduction, tested in tension at room temperature (\(T = 300\) K) and quasi-static strain rate \(\dot\varepsilon \approx 10^{-3}\) s\(^{-1}\). Observables to match:
+
+| Observable | Experiment (typical) | RVE DDD target | Crystal plasticity FEM |
+|------------|---------------------|----------------|------------------------|
+| Yield stress \(\sigma_y\) | 250–350 MPa (drawn) | Same order | Match within 10% |
+| Hardening modulus \(H = d\sigma/d\varepsilon\) | 1–3 GPa (early stage) | From \(\tau\)–\(\gamma\) curve | Fit \(g^{(s)}\) evolution |
+| Texture | EBSD: fiber along wire axis | Optional BC alignment | Pole figures in DAMASK |
+
+Annealed copper yields near 50 MPa; drawing raises dislocation density \(\rho\) from \(\sim 10^{12}\) m\(^{-2}\) toward \(10^{14}\)–\(10^{15}\) m\(^{-2}\). The calibration must start from a **processed** state, not a perfect crystal.
+
+### Step 1 — OpenDiS RVE simulation
+
+**Geometry:** cubic RVE, edge length \(L = 2\) µm, single fcc crystal oriented with [110] along tensile axis (simplified; polycrystal RVE adds grain boundaries).
+
+**Elasticity:** isotropic \(\mu = 48\) GPa, \(\nu = 0.34\) from Part VI / DFT (must match downstream FEM).
+
+**Initial network:** random Frank–Read sources or relaxed dislocation loops; total length density \(\Lambda_0 \approx 10^{14}\) m\(^{-2}\) to mimic drawn wire.
+
+**Loading:** periodic displacement-controlled shear/tension at \(\dot\varepsilon = 10^{3}\) s\(^{-1}\) (DDD timestep limit); **rate-dependent mobility** \(M(\tau, T)\) maps to quasi-static response via extrapolation or lower-rate runs if mobility law supports it.
+
+**OpenDiS-style inputs (conceptual):**
+
+```text
+# material.input
+shear_modulus  4.8e10
+poisson_ratio  0.34
+burgers_vector 2.56e-10
+mobility_law   BCC0  # tabulated M(tau,T) from MD fit
+
+# load.input
+strain_rate    1.0e3
+temperature    300
+max_strain     0.05
+```
+
+**Outputs to archive:**
+
+- Resolved shear stress \(\tau^{(s)}(\gamma)\) per slip system,
+- Total dislocation density \(\rho(\gamma)\),
+- Link-length distribution \(P(l)\) at selected strains (connects to link-statistics research in Chapter 2).
+
+### Step 2 — Homogenize DDD to crystal plasticity parameters
+
+Map RVE volume-averaged quantities to DAMASK internal variables:
+
+```text
+OpenDiS stress–strain (tau-gamma per system)
+        ↓  fit
+DAMASK material.yaml:
+  - slip_systems: {111}<110>  (12 systems, fcc)
+  - rho_f initial: from Lambda_0
+  - hardening law: g_dot = h0 * (1 - g/g_sat)^p * |gamma_dot|
+  - backstress: optional Armstrong–Frederick from pile-up asymmetry
+```
+
+**Calibration loop:**
+
+1. Run DDD to \(\gamma = 0\)–\(5\%\).
+2. Extract \(\tau_{\text{flow}}(\gamma)\) and \(\rho(\gamma)\).
+3. Adjust \(h_0\), \(g_{\text{sat}}\), recovery coefficients in DAMASK single-element test until \(\sigma\)–\(\varepsilon\) matches DDD homogenized curve.
+4. If Bauschinger effect matters (reverse loading after drawing), fit kinematic hardening \(\boldsymbol{\alpha}\) from forward/reverse DDD runs.
+
+| DDD export | DAMASK parameter | Unit check |
+|------------|------------------|------------|
+| \(\rho(\gamma)\) | `rho_f` or Taylor factor \(\alpha \sqrt{\rho}\) | m\(^{-2}\) |
+| \(\tau(\gamma)\) | `g^(s)` slip resistance | Pa |
+| Link density | optional damage / GND proxy | m\(^{-2}\) |
+
+### Step 3 — Polycrystal FEM of the wire (DAMASK + mesh)
+
+**Mesh:** 1 mm length, axisymmetric or 3D hex mesh (Part IV); 8–32 grains from EBSD orientation map, or synthetic Voronoi polycrystal with drawing fiber texture.
+
+**Boundary conditions:** fix one end, impose displacement \(\Delta L\) on free end at strain rate matched to lab test.
+
+**DAMASK coupling:** UMAT or DAMASK–FEM driver evaluates crystal plasticity at each Gauss point; stress update replaces linear \(\mathbf{D}\) from Part IV once \(\sigma > \sigma_y\).
+
+```text
+wire_mesh.inp          # Abaqus/CalculiX mesh + BCs
+material.yaml          # calibrated from Step 2
+DAMASK_run.sh          # driver: load mesh, orientations, history output
+postprocess.py         # compare force–displacement to tensile test
+```
+
+**Success criterion:** macroscopic \(\sigma\)–\(\varepsilon\) within agreed tolerance of experiment **and** of single-element DAMASK replay of DDD curve — three-way consistency (DDD → single element → polycrystal FEM).
+
+### Step 4 — When offline calibration fails: FE² at the notch
+
+Drawing dies and wire notches concentrate stress. Sequential homogenization with one scalar hardening law under-predicts localization. **FE²** embeds a DDD RVE at selected Gauss points:
+
+```mermaid
+flowchart TB
+  Macro[Macro FEM: wire with notch] -->|strain at Gauss pt| RVE[OpenDiS RVE 2µm cube]
+  RVE -->|homogenized stress| Macro
+```
+
+**Procedure (research workflow):**
+
+1. Coarse macro mesh of notched wire segment (Part IV).
+2. Mark Gauss points within 50 µm of notch root as **DDD-active**.
+3. Each macro increment: pass \(\bar{\boldsymbol{\varepsilon}}\) (or velocity gradient) to RVE; run OpenDiS substepping; return \(\bar{\boldsymbol{\sigma}}\).
+4. Compare to pure crystal plasticity: FE² should capture extra hardening from dislocation pile-ups at the notch.
+
+Cost scales with `(# active Gauss points) × (DDD timesteps per macro step)`. For production wire design, offline calibration (Steps 1–3) remains default; FE² validates whether the calibrated law is safe near stress concentrators.
+
+### Checklist before trusting the handoff
+
+| Gate | Question |
+|------|----------|
+| Units | Pa everywhere at FEM interface? Burgers vector in m? |
+| Temperature | 300 K mobility used, not 0 K Peierls-only? |
+| Elasticity | Same \(\mu, \nu\) in OpenDiS, DAMASK, and elastic preprocessor? |
+| Rate | DDD strain rate mapped to lab rate via \(M(\tau,T)\)? |
+| Texture | Grain orientations from EBSD or documented synthetic scheme? |
+| Archive | OpenDiS restart files + DAMASK yaml + FEM deck in one git commit? |
+
+When all gates pass, the drawn copper wire story closes at the mesoscale: dislocation statistics become internal state variables on the same mesh Part IV taught us to assemble.
+
+## Concept map checkpoint (Part VII)
+
+Part VII followed the Defects Notes from taxonomy through crystal plasticity handoff. The four questions summarize the mesoscale arc:
+
+| Question | Part VII answer (copper wire) |
+|----------|-------------------------------|
+| What **object**? | Dislocation lines, Burgers vector \(\mathbf{b}\), density \(\rho\), link statistics |
+| What **structure**? | Peach–Köhler forces, mobility laws, Taylor \(\sqrt{\rho}\) hardening |
+| What **theorem**? | DDD time integration; homogenization to crystal plasticity internal variables |
+| What **breaks**? | Core singularity without cutoff; wrong mobility; phenomenological yield without forest structure |
+
+The drawn copper wire's strength is a **history written in line defects** — cold work stored dislocations; loading multiplies and tangles them; the load cell curve bends upward because the forest thickens. Crystal plasticity FEM and calibrated DDD export that history as internal state variables on the same mesh Part IV taught us to assemble. When cores meet grain boundaries or crack tips, the mesoscale model needs atomic detail — the descent continues in Part VIII.
 
 ## What remains for atomistics
 

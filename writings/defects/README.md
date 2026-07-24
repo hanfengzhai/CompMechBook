@@ -9,11 +9,13 @@ defects/
 ├── book.toml
 ├── chapters/
 │   ├── SUMMARY.md
+│   ├── 00-opening.md
 │   ├── 01-defect-taxonomy.md
-│   └── 02-dislocation-dynamics.md
+│   ├── 02-dislocation-dynamics.md
+│   └── 03-polycrystal-and-fem-handoff.md
 ```
 
-Chapter numbering `01`–`02` matches `src/part07-defects/` in CompMechBook. Bridge sections connect continuum elasticity to mesoscale plasticity; Chapter 02 hands off to Part VIII (molecular dynamics).
+Chapter numbering `00`–`03` matches `src/part07-defects/` in CompMechBook. Bridge sections connect continuum elasticity to mesoscale plasticity; Chapter 03 hands off to Part VIII (molecular dynamics).
 
 ## Build standalone
 

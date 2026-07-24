@@ -4,6 +4,16 @@ MD is not merely integrating Newton's laws — it is **controlled sampling** of 
 
 Getting the ensemble wrong is not a small error. It is simulating the wrong experiment.
 
+## Scene: thermometers in a nanoscale lab
+
+A nanowire segment in MD cannot feel the laboratory thermostat on the wall — only the algorithm enforcing 300 K at the boundaries. NVE, NVT, NPT: each name is a contract about what is held fixed while the atoms move. Verlet integration advances positions; a Nosé–Hoover chain adds noise and drag in calibrated amounts. Get the ensemble wrong and you tensile-test frozen Cu at 0 K while believing it is room temperature.
+
+### A copper nanowire tension test (MD setup)
+
+Return to the copper wire from the prologue, now at nanometer scale. A cylindrical segment of fcc Cu — perhaps 10 nm diameter, 50 nm gauge length — carries uniaxial tension in a **NPT** ensemble at 300 K and 0 GPa hydrostatic pressure until equilibrated, then switches to **NVT** or **NPT with fixed lateral stress** for the load ramp. The state is positions and velocities of \(\sim 10^5\)–\(10^6\) atoms; the governing principle is Newton's laws with an EAM potential fit from Part IX's DFT outputs; the discretization is Verlet with \(\Delta t \approx 1\) fs and a neighbor cutoff beyond the potential range.
+
+What passes upward to Part VII or Part IV is not the raw trajectory but **effective moduli**, **stacking-fault energies**, and **fracture stress at this strain rate** — numbers that explain why the engineering wire's yield point differs from bulk DFT elasticity. If you heat the segment to mimic annealing, watch **vacancy diffusion** and **dislocation annihilation** in the trajectory; those are the atomistic events Part VII's dislocation density must summarize.
+
 ## The symplectic baseline: Verlet integration
 
 The **Verlet** algorithm advances positions from the previous two timesteps:

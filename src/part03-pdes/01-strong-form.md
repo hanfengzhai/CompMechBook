@@ -4,6 +4,18 @@ Partial differential equations are the local laws of continuum mechanics written
 
 The copper wire in the prologue reappears here as a domain — a one-dimensional interval for axial deformation, a three-dimensional body for full elasticity, a boundary in contact with a cooling fluid. At every point inside the domain, a PDE relates rates of change of field variables to sources and material response. That **strong form** is what physicists write on the blackboard; it is also what fails to have a classical solution when geometry, loads, or material behavior become rough. Understanding both its power and its limits motivates the weak form in the next chapter.
 
+## Scene: heat at every point
+
+The tensile frame from Part I is still running, but the operator has raised the current. A thermal camera shows the copper wire no longer uniform: the center runs hotter than the grips, and the hottest strip follows the narrowest cross-section where Joule heating concentrates. An engineer writes on a whiteboard:
+
+\[
+-\nabla\cdot(\kappa \nabla T) = \dot{q}_{\text{Joule}}(\mathbf{x}) \quad \text{in the wire},
+\]
+
+with \(\dot{q}_{\text{Joule}} = \rho_e |\mathbf{J}|^2 / \sigma_e\) at **every interior point** \(\mathbf{x}\). That is a strong-form PDE: the equation must hold pointwise, the temperature must be smooth enough that \(\nabla\cdot(\kappa\nabla T)\) exists everywhere, and boundary conditions must be specified on the entire surface — fixed temperature at the water-cooled grips, convective flux to air on the lateral surface.
+
+This scene is the strong form at its most honest. It names a field \(T(\mathbf{x})\), a differential operator acting on it, and sources tied to local physics. It also previews the failure mode: at a sharp corner where the wire meets a ceramic insulator, classical smoothness of \(T\) may break down; at a contact interface, the flux boundary condition itself may be ambiguous until a finer model supplies it. Part III begins with the language that works when the blackboard equation is correct; the next chapter weakens it when corners, point loads, and kinks enter the story.
+
 ## Prototype: Poisson's equation
 
 On a bounded domain \(\Omega \subset \mathbb{R}^d\),

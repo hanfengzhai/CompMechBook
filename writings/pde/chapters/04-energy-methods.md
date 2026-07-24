@@ -4,6 +4,12 @@ Many PDEs of mechanics are Euler–Lagrange equations of an energy functional. M
 
 Pull the copper wire in tension: in linear elasticity, equilibrium minimizes stored elastic energy minus work done by the load. Heat the wire: steady conduction minimizes a thermal dissipation functional subject to boundary data. Even when the physics is not literally "energy" (electrostatics, Darcy flow), a convex functional often lurks behind the PDE — and convexity is what makes minimizers unique and computable.
 
+## Scene: the wire finds its rest
+
+Load the copper wire in the tensile frame and hold the grip displacement fixed. Microscopically, atoms rearrange for milliseconds; macroscopically, the wire **settles** to an equilibrium shape that minimizes total potential energy — elastic stored energy minus work done by the grips. Plot energy versus a trial displacement field: the true equilibrium sits at the bottom of a bowl; perturb it slightly and the energy rises, a sign of stability.
+
+The same variational picture governs steady heating: among all temperature fields satisfying boundary data, the physical one minimizes a thermal functional whose Euler–Lagrange equation is Fourier's law. Part III ends here because Part IV will **discretize this minimization** — replace the infinite-dimensional search over admissible fields with a finite-dimensional search over nodal values, and call the result finite element assembly. Energy methods are the bridge from weak PDEs to algorithms.
+
 ## The Dirichlet principle
 
 For Poisson's equation with homogeneous Dirichlet data, define
@@ -28,7 +34,13 @@ This is the **Dirichlet principle** — existence of a minimizer proves existenc
 
 ### Worked example: 1D quadratic energy
 
-On \((0,L)\) with \(u(0)=u(L)=0\) and \(f=1\), \(\Pi(u) = \int \tfrac{1}{2}(u')^2 - u \, dx\). The Euler–Lagrange equation is \(-u'' = 1\), giving \(u(x) = x(L-x)/2\). Evaluate \(\Pi(u) = L^3/6 - L^3/6 = \ldots\) (direct integration confirms the minimum). Rayleigh–Ritz on a two-element mesh (Part I assembly) approximates this minimum in \(V_h\); the minimizing \(\mathbf{U}\) solves \(\mathbf{K}\mathbf{U}=\mathbf{F}\).
+On \((0,L)\) with \(u(0)=u(L)=0\) and \(f=1\), \(\Pi(u) = \int \tfrac{1}{2}(u')^2 - u \, dx\). The Euler–Lagrange equation is \(-u'' = 1\), giving \(u(x) = x(L-x)/2\). Direct integration yields
+
+\[
+\int_0^L \tfrac{1}{2}(u')^2 \, dx = \frac{L^3}{24}, \qquad \int_0^L u \, dx = \frac{L^3}{12}, \qquad \Pi(u) = -\frac{L^3}{24}.
+\]
+
+At the minimizer, \(a(u,u) = \ell(u)\), so \(\Pi(u) = \tfrac{1}{2}a(u,u) - \ell(u) = -\tfrac{1}{2}\ell(u)\) — the negative sign reflects work done by the load against the restoring stiffness. Rayleigh–Ritz on a two-element mesh (Part I assembly) approximates this minimum in \(V_h\); the minimizing \(\mathbf{U}\) solves \(\mathbf{K}\mathbf{U}=\mathbf{F}\).
 
 ## Elastic strain energy
 
@@ -146,6 +158,25 @@ Finite volume schemes often derive from **integral conservation** rather than po
 | Stokes | Saddle Lagrangian | Saddle point | Mixed FEM |
 | Navier–Stokes | Not global convex | Stationary point | FVM / stabilized FEM |
 
+## Concept map checkpoint (Part III)
+
+Part III opened with fields on domains and closes with the **energy** those fields minimize or stationarize. The [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) habit — object, structure, theorem, failure mode — summarizes the whole part in one table:
+
+| Question | Part III answer (copper wire) |
+|----------|-------------------------------|
+| What **object**? | Fields \(u\), \(\mathbf{u}\), \(T\) on the wire domain; loads as functionals |
+| What **structure**? | Weak forms in \(H^1\); bilinear forms; convex or saddle functionals |
+| What **theorem**? | Lax–Milgram (existence); Dirichlet principle (minimizers); LBB (mixed problems) |
+| What **breaks**? | Reentrant corners (no classical \(C^2\) solution); equal-order \(P1\)–\(P1\) Stokes (no inf–sup) |
+
+The pipeline is now complete from physics to algorithm:
+
+```
+Strong PDE  →  Weak form  →  Energy / saddle functional  →  (Part IV) discrete search on V_h
+```
+
+The copper wire's tensile equilibrium, steady heating, and low-Re cooling flow each occupy a row in the summary table above. Part IV does not change the physics — it chooses \(V_h\), computes integrals, and assembles the \(\mathbf{K}\) that Rayleigh–Ritz minimization demands.
+
 ## Bridge to Part IV
 
 We have:
@@ -155,6 +186,8 @@ We have:
 - Energy principles for well-posedness and algorithms
 
 Part IV asks: how do we choose \(V_h\), compute integrals, and assemble \(\mathbf{K}\)? The finite element method is the answer — weighted residuals, element-by-element assembly, quadrature rules, and convergence theory that make the copper wire’s discrete model faithful to the continuum energy we minimized here.
+
+After Part IV's convergence chapter ([IV.5 — Convergence, Norms, and Error Estimates](../part04-fem/05-convergence.md#bridge-two-doors-from-here)), you will choose **Door A** (Part V: FVM and conjugate heat transfer for the cooling air) or **Door B** (Part VI: continuum stress–strain vocabulary). Part III's energy minimum for the wire's solid is the same either way; only the fluid side is optional on first reading. Part III's opening [two paths ahead](00-opening.md#two-paths-ahead-preview) named this fork; IV.5 makes the exit doors explicit.
 
 Part V offers the alternative discretization philosophy for fluids and hyperbolic problems: balance fluxes on control volumes, Riemann solvers, and CFL-limited time stepping — still grounded in the PDEs and weak ideas from this part, but oriented toward conservation rather than trial functions in \(H^1\).
 

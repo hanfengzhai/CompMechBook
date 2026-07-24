@@ -9,6 +9,7 @@ fem/
 ├── book.toml
 ├── chapters/
 │   ├── SUMMARY.md
+│   ├── 00-opening.md
 │   ├── 01-weighted-residuals.md
 │   ├── 02-galerkin-assembly.md
 │   ├── 03-elements-quadrature.md
@@ -16,7 +17,7 @@ fem/
 │   └── 05-convergence.md
 ```
 
-Chapter numbering `01`–`05` matches `src/part04-fem/` in CompMechBook. Bridge sections connect weighted residuals to Galerkin assembly, elements, elasticity, and convergence; Chapter 05 hands off to Part V (finite volumes and conservation laws).
+Chapter numbering `00`–`05` matches `src/part04-fem/` in CompMechBook. Bridge sections connect weighted residuals to Galerkin assembly, elements, elasticity, and convergence. Chapter 05 offers **two doors**: Door A continues to Part V (finite volumes and conservation laws); Door B skips ahead to Part VI (continuum mechanics and stress–balance language). Both paths reconverge before Part VII.
 
 ## Build standalone
 

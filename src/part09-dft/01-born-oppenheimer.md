@@ -4,6 +4,12 @@ Electrons determine almost all material properties at the chemical level. Densit
 
 For copper, DFT answers the most basic question the wire poses at the finest scale: **why does the crystal cohere at all?** The answer lives in the quantum mechanical balance between kinetic energy, electrostatic attraction, and exchange–correlation — not in a spring constant inserted by hand.
 
+## Scene: electrons adjust in a blink
+
+Freeze a snapshot from Part VIII's molecular dynamics: copper nuclei mid-vibration, positions \(\{\mathbf{R}_I\}\) changing on picosecond timescales. The electrons that bind those nuclei respond in **femtoseconds** — three orders of magnitude faster because \(m_e \ll m_{\text{Cu}}\). In the laboratory frame, nuclei appear nearly stationary while the electron cloud rearranges around each geometry almost instantly.
+
+That separation is the **Born–Oppenheimer** picture this chapter opens with. Part VIII's EAM potential treated nuclei as classical particles on a fixed energy surface; Part IX asks where that surface came from. The answer is not a fitted spline through experimental data alone — it is the **ground-state electron density** \(\rho(\mathbf{r})\) that minimizes total energy for each nuclear configuration. The copper wire at this scale is a periodic lattice of nuclei immersed in a sea of valence electrons; cohesive energy, elastic constants, and vacancy formation enthalpies are all consequences of that quantum balance. The sections below make the separation and the density functional theorems precise enough to run in Quantum ESPRESSO and export numbers upward to MD, DDD, and FEM.
+
 ## Born–Oppenheimer approximation
 
 The full molecular Hamiltonian includes kinetic energy of \(N_n\) nuclei and \(N_e\) electrons, electron–nuclear attraction, electron–electron repulsion, and nuclear–nuclear repulsion. Mass scales differ dramatically: \(m_e \ll m_{\text{nucleon}}\).
@@ -64,6 +70,29 @@ HK **does** justify searching for the best \(\rho\) rather than the best \(3N_e\
 HK **does not** provide the form of \(F[\rho]\) — only its existence. All practical DFT is **approximate DFT**, defined by how we model the unknown pieces.
 
 HK applies to ground states. **Excited states**, **band gaps**, and **spectroscopy** require extensions (Δ-SCF, GW, TDDFT) beyond standard ground-state DFT — relevant when the copper wire's electrical conductivity (Fermi surface) is discussed, but ground-state DFT still supplies cohesive energy and elastic constants.
+
+### HK as a compression theorem (Part II returns)
+
+Part II asked what **state variable** carries enough information for well-posed mechanics. For interacting electrons, the naive answer is the full many-body wavefunction \(\Psi(\mathbf{r}_1,\ldots,\mathbf{r}_{N_e})\) — a function on \(3N_e\) dimensions. Hohenberg–Kohn is a stunning compression: the **ground-state** energy depends only on \(\rho(\mathbf{r})\), a scalar field on three dimensions.
+
+| Part II habit | Electronic-scale analogue |
+|---------------|---------------------------|
+| Choose a minimal state in a function space | \(\rho \in L^1\) (or finer Sobolev classes in Kohn–Sham) |
+| Energy as a functional of that state | \(E[\rho] = F[\rho] + \int v_{\text{ext}}\rho\) |
+| Minimizer exists under structure | HK2: ground-state \(\rho_0\) minimizes \(E[\rho]\) |
+| Approximation = projection / trial subspace | LDA, GGA, hybrids are **ansätze** for unknown \(E_{\text{xc}}\) |
+
+The copper wire's Joule heating (Part V) and elastic stiffness (Part VI) ultimately trace to how \(\rho(\mathbf{r})\) binds nuclei. HK does not tell us how to compute \(F[\rho]\) — that is the exchange–correlation approximation — but it tells us **what object** every DFT code is optimizing. When Quantum ESPRESSO reports `convergence has been achieved`, it has found a self-consistent \(\rho\) that minimizes an approximate \(E[\rho]\) on a periodic cell representing a tiny patch of the wire's crystal.
+
+## Copper valence: what DFT sees in the wire
+
+Bulk copper is fcc with one valence electron per atom in the metallic picture: a filled \(3d^{10}\) core and a partially delocalized \(4s\) band crossing the Fermi level. DFT does not need chemists' orbital cartoons to run, but the picture explains exports upward:
+
+- **Metallic cohesion** comes from the balance of electron kinetic energy (Pauli pressure) and electrostatic attraction to ion cores — not from pairwise springs.
+- **Near-incompressibility** at small strain (bulk modulus \(B \approx 140\) GPa) is the curvature of \(E(V)\) around equilibrium volume — the same second-derivative habit as Part I's stiffness matrix \(\mathbf{K}\), now on a unit cell.
+- **Electrical conductivity** of the wire under current (prologue Act II) is a **Fermi-surface** property: partially occupied bands at \(E_F\). Ground-state DFT locates \(E_F\) qualitatively; quantitative resistivity often needs beyond-DFT or Boltzmann transport — but lattice constant and elastic constants from the same run still anchor multiscale workflows.
+
+A DFT unit cell of four Cu atoms is not the wire. It is a **representative volume** whose intensive outputs (eV/atom, GPa moduli) scale upward through homogenization — the same export discipline the prologue's four questions demanded at every rung.
 
 ## Decomposing the energy functional
 

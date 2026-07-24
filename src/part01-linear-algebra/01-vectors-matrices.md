@@ -2,6 +2,12 @@
 
 Every computational mechanics code, before it knows anything about stress tensors or Navier–Stokes, knows about arrays. A displacement field on a mesh is a vector of nodal values. A stiffness matrix is a sparse array coupling degrees of freedom. Even the most exotic multiscale scheme eventually calls a linear solver. Linear algebra is not a prerequisite chapter we endure on the way to "real" mechanics — it is the grammar in which mechanics is written once discretized.
 
+## Scene: the grips tighten
+
+Picture the copper wire in the **tensile frame** of the prologue. The operator zeros the load cell, tightens the wedge grips, and clicks **Start**. For the next hour the full multiscale story is invisible: no mesh of tetrahedra, no Kohn–Sham cycle, no dislocation network — only a curve on a screen, **force versus displacement**, climbing almost linearly, then bending upward as the forest of line defects locked in by cold drawing resists further slip.
+
+Before any of that complexity enters the model, the first honest approximation is simpler: \(N\) nodes along the wire axis, each carrying one axial displacement; a sparse \(\mathbf{K}\) assembled from bar elements; a load vector \(\mathbf{f}\) encoding the grip displacement. The experiment and the matrix are two languages for the same scene. Part I teaches the second language first, because every finer-scale model in Parts II–IX still ends in sparse linear algebra whenever we discretize and solve.
+
 Return to the copper wire from the prologue. At the scale of a tensile test, an engineer might model it as a chain of axial bar elements. Each node carries one scalar displacement along the wire axis. Stack those scalars into a column vector, assemble a stiffness matrix from element contributions, and the equilibrium problem is linear algebra before it is anything else. The wire does not know it is being approximated; the code only sees numbers in \(\mathbb{R}^N\).
 
 ## Vectors as state
