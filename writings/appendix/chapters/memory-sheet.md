@@ -131,6 +131,20 @@ flowchart TB
 22. **Surrogates** trained on one loading path fail on another — frame indifference and thermodynamic consistency are not optional.
 23. **Skipping manufacturing history** (draw, anneal, service) predicts the wrong wire even with perfect DFT moduli.
 
+## One-line course summaries (ME 412 style)
+
+The [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) close with compressed sentences that fit on an index card. This book extends that habit across scales:
+
+| Scope | One-line summary |
+|-------|------------------|
+| **Parts I–III** | Linear algebra → operator equations → well-posedness → weak PDE. |
+| **Parts I–IV** | Choose the right space → prove the weak solution exists → approximate it by Galerkin projection. |
+| **Parts I–VI** | Norm = ruler, Banach = no holes, Hilbert = geometry, Sobolev = PDE-ready; continuum stress names what FEM already meshed. |
+| **Parts I–IX** | Same ladder from \(\mathbb{R}^N\) to \(\rho(\mathbf{r})\); homogenize upward with documented handshakes. |
+| **Whole book** | One copper wire, four questions at every scale: state, equations, discretization, upward export. |
+
+When a chapter feels abstract, pick the row that matches your reading position and read it aloud — it is the plot spine in one breath.
+
 ## One-page copper wire recap
 
 | Act | Lab beat | Part | State on the wire | Upward export |
