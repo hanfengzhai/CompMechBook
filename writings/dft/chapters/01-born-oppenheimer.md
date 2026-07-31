@@ -194,6 +194,31 @@ DFT does not run a whole wire. It runs **small cells** with careful convergence 
 
 Born–Oppenheimer and Hohenberg–Kohn justify the **bottom** of the ladder: why energy is a functional of \(\rho\), and why nuclear motion can be separated. Kohn–Sham DFT (next chapter) is how that functional is minimized in practice — in Quantum ESPRESSO, VASP, GPAW, and the workflows taught in courses like MSE 5720.
 
+## Lab act: Murnaghan fit on fcc Cu (Act VI — Foundation)
+
+**Act VI** runs in parallel with the wire-scale afternoon — someone must produce the **foundation deck** before \(E\), \(\nu\), and \(E_{\text{coh}}\) enter Part IV's input file. Born–Oppenheimer justifies treating nuclear coordinates as parameters; this Lab act is the first DFT calculation on the copper ladder.
+
+**Quantum ESPRESSO-style workflow** (4-atom fcc primitive cell, PBE functional, ultrasoft pseudopotential):
+
+| Step | Input | Output to archive |
+|------|-------|-------------------|
+| 1. Volume scan | Scale lattice \(a = 3.50\)–\(3.70\,\text{Å}\) (7 points) | `scf_*.out` total energies \(E(a)\) |
+| 2. Murnaghan fit | Fit \(E(V)\) to equation of state | Equilibrium \(a_0\), bulk modulus \(B_0\) |
+| 3. Cohesive energy | \(E_{\text{coh}} = (E_{\text{tot}} - N E_{\text{atom}})/N\) | eV/atom for EAM target |
+| 4. Convergence log | \(E_{\text{cut}}\), k-mesh (\(6\times6\times6\) minimum for fcc Cu) | Document in `README_DFT.md` |
+
+Example acceptance gates (typical literature values for PBE Cu):
+
+| Quantity | Expected (PBE) | Your run |
+|----------|----------------|----------|
+| \(a_0\) | ~3.64 Å | Fill after SCF |
+| \(B_0\) | ~140 GPa | From Murnaghan |
+| \(E_{\text{coh}}\) | ~3.7 eV/atom | Sign and magnitude check |
+
+**Born–Oppenheimer in practice:** each volume point holds nuclei fixed while SCF finds the electronic ground state — that is the BO surface Part VIII's MD trajectories slide on. Do not mix volumes from under-converged SCF (energy drift \(> 10^{-4}\,\text{Ry/atom}\) between iterations).
+
+When `README_DFT.md` accompanies the wire project's git commit, the foundation run is **citable** — the same audit Part VIII's EAM-fit Lab act demands. [IX.2](02-kohn-sham.md) adds the SCF cycle details; [IX.3](03-dft-workflows.md) wires this deck into the full multiscale export.
+
 ## Bridge
 
 Born–Oppenheimer separation and Hohenberg–Kohn existence theorems justify treating **energy as a functional of electron density** while nuclei evolve on a slower surface — the intellectual floor under every copper cohesive-energy calculation in this book.

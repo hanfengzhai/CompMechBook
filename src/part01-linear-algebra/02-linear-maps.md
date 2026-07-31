@@ -175,6 +175,26 @@ The **Jacobian** of the isoparametric map appears in every element integral; it 
 
 Finite volume methods (Part V) use different maps — cell volumes, face normals, flux integrals — but the same principle: express physics in a convenient local frame, then transform to a global conservation statement.
 
+## The transpose as adjoint: loads meet duals early
+
+Every linear map \(\mathbf{A}: \mathbb{R}^n \to \mathbb{R}^m\) has a **transpose** \(\mathbf{A}^T: \mathbb{R}^m \to \mathbb{R}^n\). In mechanics, transposes are not abstract — they convert **forces to nodal loads** and **displacements to strains**:
+
+\[
+\mathbf{f} = \mathbf{A}^T \boldsymbol{\sigma}, \qquad \boldsymbol{\varepsilon} = \mathbf{B}\mathbf{u}.
+\]
+
+Virtual work \(\mathbf{u}^T \mathbf{f} = \boldsymbol{\varepsilon}^T \boldsymbol{\sigma}\) is the statement that \(\mathbf{B}^T\) is the **adjoint** of the strain operator with respect to the standard inner products — the discrete shadow of integration by parts in Part III.
+
+| Operation | Map | Transpose / adjoint | Mechanical meaning |
+|-----------|-----|---------------------|-------------------|
+| Equilibrium | \(\mathbf{K}\mathbf{u} = \mathbf{f}\) | \(\mathbf{f}^T \mathbf{u}\) is work | Bilinear form \(a(u,v)\) in Part II |
+| Assembly scatter | \(\mathbf{L}_e\) maps local → global | \(\mathbf{L}_e^T\) gathers element forces | Same connectivity, reverse direction |
+| Least squares fit | \(\mathbf{A}\mathbf{x} \approx \mathbf{b}\) | Normal equations \(\mathbf{A}^T\mathbf{A}\) | Material calibration from test data |
+
+When \(\mathbf{K}\) is symmetric, the map and its adjoint coincide — the same symmetry Part III demands for the energy bilinear form. Non-symmetric maps (convection operators in Part V, unsymmetric contact Jacobians) break this identity; their adjoints appear in **sensitivity analysis** and **a posteriori error estimation** (dual-weighted residuals in Part IV.5).
+
+**Preview for Part II:** a load functional \(\ell(v) = \int f v\) is not a vector in the same space as displacement — it lives in the **dual** \(V^*\). The Riesz representation theorem (Part II.3) identifies dual objects with vectors only in Hilbert space. Until then, remember: \(\mathbf{f}\) enters equilibrium through \(\mathbf{K}^T = \mathbf{K}\), but Neumann data and traction loads are always "adjoint-side" objects paired with test functions.
+
 ## Bridge
 
 Not every linear map is best viewed in the standard basis. The modes of vibration of a fixed–fixed copper wire, the principal stretches of a deformation gradient, and the normal modes of a coupled oscillator all arise from choosing a basis that **diagonalizes** the map. That is the story of eigenvalues — and the discrete preview of the spectral theorem we will meet in Part II.

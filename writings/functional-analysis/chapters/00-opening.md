@@ -50,6 +50,20 @@ flowchart LR
 
 **Baby picture:** first build the room (vector space), then add a ruler (norm), then close the holes (Banach/Hilbert completeness), then add angles (inner product), then write weak PDEs and trust that FEM is projection, not guesswork. The copper wire's displacement lives in that room long before any mesh assigns it node values.
 
+## How Part II connects to Parts III–IV
+
+Part II is the **analytical contract** every discretization in later parts must honor:
+
+| Part II chapter | Theorem or structure | Where it reappears |
+|-----------------|---------------------|-------------------|
+| II.1 Motivation | Weak forms replace pointwise derivatives | Part III.2 weak Poisson; Part IV Galerkin |
+| II.2 Normed spaces | Energy norm \(\|u\|_a\); completeness | Part IV.5 convergence in energy |
+| II.3 Hilbert spaces | Lax–Milgram; best approximation | Part IV.2 Céa's lemma |
+| II.4 Operators | Dual loads; weak\* convergence | Part IV grip BCs; Part III point loads |
+| II.5 Spectral | Rayleigh–Ritz; modal convergence | Part I.3 eigenmodes; dynamic FEM |
+
+If you read only one part before writing a weak form or running a mesh convergence study, read this one. Part III writes the PDEs; Part IV assembles the matrices — but Part II proves the limit exists and the discrete solution is optimal in \(V_h\).
+
 ## Representative schematics (ME 412)
 
 Section A of the [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) collects eight **representative schematics** — baby pictures of the same machine this part builds. Use them as a visual index while reading:

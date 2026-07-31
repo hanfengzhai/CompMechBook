@@ -194,6 +194,27 @@ Strong PDE  →  Weak form  →  Energy / saddle functional  →  (Part IV) disc
 
 The copper wire's tensile equilibrium, steady heating, and low-Re cooling flow each occupy a row in the summary table above. Part IV does not change the physics — it chooses \(V_h\), computes integrals, and assembles the \(\mathbf{K}\) that Rayleigh–Ritz minimization demands.
 
+## Lab act: minimize thermal energy on two bar elements (Act II — Warming)
+
+**Act II** holds grip displacement fixed while current heats the wire. Part III closes with the variational statement that steady temperature **minimizes** a quadratic functional — the thermal analogue of elastic energy minimization in Act III.
+
+Model steady conduction on \((0,L)\), \(L = 1\,\text{m}\), with conductivity \(k = 400\,\text{W/m·K}\), uniform Joule source \(q = 10^6\,\text{W/m}^3}\), and \(T(0) = T(L) = 300\,\text{K}\). The Dirichlet functional is
+
+\[
+\Pi(T) = \int_0^L \left[\tfrac{k}{2}(T')^2 - q T\right] dx.
+\]
+
+Discretize with **two equal bar elements** (three nodes). Use linear hat functions; unknowns are \(T_1 = 300\) (fixed), \(T_2\) at mid-span, \(T_3 = 300\) (fixed).
+
+| Step | Rayleigh–Ritz move | Result |
+|------|-------------------|--------|
+| 1 | Express \(T_h = N_1 T_1 + N_2 T_2 + N_3 T_3\) with \(T_1 = T_3 = 300\) | One free DOF: \(T_2\) |
+| 2 | Substitute into \(\Pi(T_h)\); set \(\partial \Pi / \partial T_2 = 0\) | Scalar equation \(K_{22} T_2 = F_2\) |
+| 3 | Compare to weak form \(\int k T' v' = \int q v\) with test hat at node 2 | **Same** \(K_{22}\) and \(F_2\) — Galerkin = energy minimization |
+| 4 | Solve for \(T_2\); compare to analytical \(T(L/2) = 300 + qL^2/(8k)\) | Coarse mesh underestimates peak; refine \(h\) |
+
+The mid-span temperature you read on the thermocouple is the **minimizer** of \(\Pi\) in \(V_h\). When Part IV assembles \(\mathbf{K}\mathbf{T} = \mathbf{F}\) for the coupled thermoelastic wire, the mechanical block minimizes elastic energy and the thermal block minimizes this functional — two bowls, one afternoon. If you add thermal expansion \(\varepsilon_{\text{th}} = \alpha(T - T_{\text{ref}})\) before Act III ramps load, the two functionals **couple**: heat lowers effective stress at fixed grip displacement, previewing the thermoelastic energy in the worked example above.
+
 ## Bridge to Part IV
 
 We have:

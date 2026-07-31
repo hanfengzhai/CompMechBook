@@ -178,6 +178,23 @@ Use this checklist before committing to an element family:
 
 For introductory work and course problem sessions, P1 triangles in 2D remain the right default. For production analysis of the copper wire with contact, plasticity, or fine stress gradients, P2 or hexahedral elements with selective \(p\)-refinement are typical.
 
+## Lab act: patch test on two bar elements before Act III meshing
+
+**Act III** will mesh the tensile specimen — but a two-element bar is enough to verify that shape functions, quadrature, and assembly obey the **patch test** before trusting a 3D mesh at the grip corner.
+
+Problem: \( -u'' = 0\) on \((0,L)\) with \(u(0)=0\), \(u(L)=1\). Exact solution \(u(x) = x/L\) lies in the **P1 bar** space on any uniform partition.
+
+| Check | Two equal elements | Pass criterion |
+|-------|-------------------|----------------|
+| Partition of unity | \(\sum_i N_i(x) = 1\) on each element | Exact at any \(x\) |
+| Kronecker property | \(N_j(x_i) = \delta_{ij}\) at nodes | Exact |
+| Patch test | Assemble \(\mathbf{K}\), apply BCs, solve | \(u_h(x_i) = x_i/L\) at **every** node |
+| Quadrature | 1-point Gauss on \([0,1]\) reference bar | Exact for constant \(u''\) integrand |
+
+Implement the 2×2 global system by hand or in NumPy: element stiffness \(k_e = \frac{EA}{h}\begin{bmatrix}1&-1\\-1&1\end{bmatrix}\), scatter into \(\mathbf{K}\), impose Dirichlet rows. If the patch test fails, no amount of \(h\)-refinement in Act III will rescue the load cell curve — the bug is in shape functions or BC enforcement, not mesh density.
+
+Optional extension: repeat with a **distorted** two-element partition (lengths \(0.3L\) and \(0.7L\)). P1 bars still pass the patch test for linear solutions — a reminder that element quality matters for **higher-order** accuracy, not for representing linear fields exactly.
+
 ## Bridge
 
 Poisson's equation — scalar, symmetric, coercive — is the training ground where elements and quadrature behave well. Vector elasticity adds tensor constitutive laws, block stiffness structure, and traction boundary integrals. The assembly loop is unchanged; the integrand grows richer.

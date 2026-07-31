@@ -184,6 +184,24 @@ A minimal 1D Euler solver requires:
 
 Under 100 lines in Python or C for first-order HLL flux — enough to reproduce Sod's solution and build intuition before OpenFOAM.
 
+## Lab act: 1D diffusion on the wire's boundary layer (Act II warmup)
+
+Before shock tubes and Navier–Stokes, the air film cooling the hot wire in **Act II** is often modeled as a **thin diffusive boundary layer** — the scalar limit of FVM where flux is proportional to gradient. Discretize steady 1D diffusion \(-\nu u'' = 0\) on \([0,1]\) with \(u(0)=T_{\text{wire}}\), \(u(1)=T_{\infty}\):
+
+\[
+F_{j+1/2} = -\nu \frac{u_{j+1} - u_j}{\Delta x}, \quad u_j^{n+1} = u_j^n - \frac{\Delta t}{\Delta x}(F_{j+1/2} - F_{j-1/2})
+\]
+
+For steady state, the cell update reduces to **harmonic averaging** of face fluxes — discrete conservation with zero net flux at interior faces.
+
+| Cells \(N\) | \(u\) at mid-domain | Max face flux error vs. analytical |
+|-------------|---------------------|-------------------------------------|
+| 5 | record | baseline |
+| 20 | record | should decrease |
+| 80 | record | should plateau |
+
+Analytical solution: \(u(x) = T_{\text{wire}} + (T_{\infty} - T_{\text{wire}})\, x\). Verify **exact** linear profile on any uniform mesh (FVM diffusion is conservative and second-order for smooth solutions). This is the fluid-side counterpart to Part IV's patch test — if linear temperature fails, the face flux routine is wrong before coupling to the solid in [V.4](04-navier-stokes-cfd.md).
+
 ## Source terms and splitting
 
 Many applications add stiff source terms \(S(U)\) — chemical reaction, gravity, friction. **Operator splitting** advances advection and sources separately: Strang splitting for second-order accuracy, or implicit treatment of stiff sources (IMEX) while keeping advection explicit under CFL. The 1D update becomes

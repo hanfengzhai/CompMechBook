@@ -197,6 +197,27 @@ This is a linear system \(\mathbf{K}\mathbf{U} = \mathbf{F}\) with \(K_{ij} = a(
 
 The weak residual \(R(u_h; v) = a(u_h,v) - \ell(v)\) must vanish for all \(v \in V_h\). Galerkin chooses test functions equal to trial basis functions — the orthogonal projection of the solution onto \(V_h\) in the energy inner product. Part IV’s first chapter makes this equivalence explicit for self-adjoint elliptic problems.
 
+## Lab act: integrate by parts on the heated wire (Act II — Warming)
+
+**Act II** in the lab switches on current; the thermocouple at mid-span begins to climb. The strong form \(-(k T')' = q(x)\) on \((0,L)\) is awkward at the grip corners — \(T\) is continuous but \(T'\) may jump where contact resistance concentrates heat. The weak form is the contract the FEM code will enforce.
+
+Model steady Joule heating on the copper wire as a 1D bar with \(k = 400\,\text{W/m·K}\), length \(L = 1\,\text{m}\), uniform volumetric source \(q = 10^6\,\text{W/m}^3\), and \(T(0) = T(L) = 300\,\text{K}\). Seek \(T \in H^1_0(0,L)\) such that
+
+\[
+\int_0^L k T' v' \, dx = \int_0^L q v \, dx \quad \forall v \in H^1_0(0,L).
+\]
+
+| Step | By hand | What the weak form buys |
+|------|---------|-------------------------|
+| 1 | Choose test \(v = x(L-x)\) (bubble, zero at ends) | One equation without assuming \(T \in C^2\) |
+| 2 | Integrate by parts on \(\int k T' v'\) | Derivatives on **test** function only |
+| 3 | Substitute constant \(q\), evaluate integrals | \(\int_0^L q x(L-x)\, dx = q L^3/6\) |
+| 4 | For trial \(T_h = \alpha x(L-x)\), solve for \(\alpha\) | \(\alpha = q/(6k) \approx 417\,\text{K/m}^2\) → \(T(L/2) \approx 300 + 104\,\text{K}\) |
+
+The mid-span rise is crude (one quadratic mode) but **honest**: no second derivatives of \(T\) appear anywhere. When Part IV assembles \(\mathbf{K}\mathbf{T}=\mathbf{F}\) on ten line elements, it repeats this integration for every hat test function — the same move, automated.
+
+Compare to the strong-form particular solution \(T(x) = 300 + q x(L-x)/(2k)\), which gives \(T(L/2) = 300 + q L^2/(8k) \approx 300 + 156\,\text{K}\). The single-mode Galerkin underestimate previews Céa's lemma: refine \(V_h\), and the weak solution converges to the strong one where it exists. The thermocouple in Act II reports the experiment; this weak form is the first mesh-independent statement the simulation must match.
+
 ## Bridge
 
 Weak derivatives make sense in **Sobolev spaces**. The next chapter defines \(H^1\) rigorously enough to code with confidence — and explains why conforming finite elements must be continuous across element boundaries (for standard Lagrange elements). Without \(H^1\), we cannot state what "\(\nabla u\)" means when \(u\) is only piecewise smooth; with \(H^1\), the weak form of the copper wire's conduction and elasticity problems is not a hack but the correct continuum statement.

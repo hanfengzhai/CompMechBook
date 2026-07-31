@@ -169,6 +169,23 @@ Continuum mechanics does not announce "switch to dislocations" with a banner. Th
 
 If only signal 1 appears, phenomenological \(J_2\) plasticity may suffice for engineering design. If signals 2 or 3 appear on the same specimen, the narrative descends — not because continuum mechanics failed, but because its **homogenization assumption** (smooth fields, no explicit defects) was never meant to hold at the mesoscale. Part VII is the first part that simulates the objects Part VI homogenized.
 
+## Lab act: return-mapping on the load cell knee (Act IV — Hardening)
+
+**Act IV** is the upward bend on the force–displacement trace — the moment phenomenological plasticity replaces pure energy minimization. This Lab act walks one **return-mapping** increment on the copper wire in uniaxial tension so the load cell curve acquires history.
+
+Material: annealed copper at room temperature, \(\sigma_{y0} = 70\,\text{MPa}\), isotropic hardening \(H = 500\,\text{MPa}\), elastic \(E = 120\,\text{GPa}\). Trial elastic strain increment \(\Delta\varepsilon = 10^{-4}\) from a grip ramp step.
+
+| Return-map step | Formula | This increment |
+|-----------------|---------|----------------|
+| 1. Trial stress | \(\sigma^{\text{trial}} = \sigma_n + E \Delta\varepsilon\) | Start from \(\sigma_n = 69\,\text{MPa}\) (near yield) |
+| 2. Yield test | \(f = |\sigma^{\text{trial}}| - (\sigma_{y0} + H \alpha_n)\) | If \(f > 0\), plastic correction needed |
+| 3. Plastic multiplier | \(\Delta\gamma = f / (E + H)\) | Updates \(\alpha_{n+1} = \alpha_n + \Delta\gamma\) |
+| 4. Return stress | \(\sigma_{n+1} = \sigma^{\text{trial}} - E \,\Delta\gamma \,\text{sign}(\sigma^{\text{trial}})\) | Stress on expanded yield surface |
+
+Plot ten such increments: the **secant slope** (load cell stiffness) drops after the first yield crossing even though \(E\) is unchanged — that is work hardening in a scalar model. Compare cold-drawn wire (higher \(\sigma_{y0}\), larger initial \(H\)) to annealed wire on the same plot; Part VI fits both curves with two parameter sets, but only Part VII explains **why** drawing raised \(\sigma_{y0}\) via forest density.
+
+**Signal to descend:** halve the FEM mesh at the grip corner and the post-yield slope is unchanged — discretization is converged, but the hardening law is still a fit. That is the cue for Part VII's dislocation forest.
+
 ## Bridge to Part VII
 
 Linear and nonlinear elasticity — geometric and material — exhaust what a **continuum field** can say before its assumptions fail at defects. The copper wire's cold-worked strength is not in \(\mathbb{C}\); it is in the dislocation forest frozen by manufacturing. Part VII names those defects, simulates their motion, and exports the hardening laws that make nonlinear FEM honest.

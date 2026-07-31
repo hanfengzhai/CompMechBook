@@ -219,6 +219,29 @@ Cost scales with `(# active Gauss points) × (DDD timesteps per macro step)`. Fo
 
 When all gates pass, the drawn copper wire story closes at the mesoscale: dislocation statistics become internal state variables on the same mesh Part IV taught us to assemble.
 
+## Lab act: archive the OpenDiS → DAMASK → FEM handoff (Act IV–V)
+
+**Act IV** hardening and **Act V** notch concentration both consume parameters that Part VII exports from dislocation statistics. This Lab act is the **folder discipline** — one git commit that lets a colleague reproduce the load cell curve without rerunning every scale.
+
+Create a handoff bundle for the drawn copper wire notch specimen:
+
+| File | Minimum contents | Downstream consumer |
+|------|------------------|---------------------|
+| `opendis.restart` | Final link-length distribution, forest density \(\rho\) | Taylor hardening input |
+| `mobility.yaml` | \(M(\tau, T=300\,\text{K})\) from NVT shear (Part VIII) | OpenDiS segment law |
+| `damask.yaml` | `h_0`, `g_sat`, initial CRSS per slip system from DDD averages | Crystal plasticity FEM |
+| `fem.inp` | Polycrystal RVE mesh, grain orientations (EBSD or synthetic) | Abaqus/DAMASK driver |
+| `units.txt` | Pa, m, s; Burgers vector \(b = 2.56 \times 10^{-10}\,\text{m}\) for Cu | Prevents silent unit bugs |
+
+**Verification loop** (matches the checklist above):
+
+1. Run OpenDiS to fixed strain \(\bar\varepsilon = 0.02\); export \(\bar\tau(\dot\varepsilon)\) and \(\rho\).
+2. Fit Taylor law \(\tau = \alpha \mu b \sqrt{\rho}\) with \(\alpha \approx 0.3\); compare to DAMASK initial hardening rate.
+3. Run polycrystal FEM with exported yaml; compare force–displacement to the **Act IV** load cell trace within 10%.
+4. If FE² is needed at the notch root, mark Gauss points within 50 µm as DDD-active and repeat only there.
+
+When the archived bundle reproduces the hardening knee without refitting \(H\) by hand, the mesoscale chapter has done its job — statistics became internal state variables on Part IV's mesh. If step 3 fails while step 1 passes, the fault is almost always **texture** (wrong grain orientations) or **elastic mismatch** (\(\mu, \nu\) inconsistent between OpenDiS and FEM), not insufficient mesh refinement.
+
 ## Concept map checkpoint (Part VII)
 
 Part VII followed the Defects Notes from taxonomy through crystal plasticity handoff. The four questions summarize the mesoscale arc:

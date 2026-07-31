@@ -173,6 +173,26 @@ In 2D, control volumes are polygonal cells; in 3D, polyhedral cells (hexes, tets
 
 where the sum is over faces \(f\) with area \(A_f\) and outward normal. Unstructured FVM stores face–cell connectivity and face normals; the 1D flux-difference logic is unchanged — only geometry bookkeeping grows. A triangular mesh around the copper wire in cross-flow uses the same conservation statement as the 1D shock tube, with face fluxes computed along each edge normal.
 
+## Lab act: global heat balance on a 1D wire segment (Act II side channel)
+
+**Act II** heats the copper wire; conduction inside the solid (Part IV) must **balance** with convection at the surface (Part V). Before building a 3D CFD mesh, verify the **integral conservation contract** on a 1D slab:
+
+Steady energy balance on control volume \([x_{i-1/2}, x_{i+1/2}]\):
+
+\[
+q_{i-1/2} - q_{i+1/2} + \int_{x_{i-1/2}}^{x_{i+1/2}} \dot{q}_{\text{Joule}}\, dx = 0
+\]
+
+| Face flux | Physical meaning on the wire |
+|-----------|------------------------------|
+| \(q_{i-1/2}\) | Heat leaving left face (W/m² in 1D flux form) |
+| \(q_{i+1/2}\) | Heat entering right face |
+| Source integral | Joule heating \(\dot{q} = \sigma |J|^2\) from Act II current |
+
+Discretize three cells with uniform \(h\), constant \(k\), and known interior source. Sum the three cell balances: **interior face fluxes cancel**, leaving global balance \(q_{\text{in}} - q_{\text{out}} + Q_{\text{total}} = 0\). This is discrete conservation — the property FVM guarantees but Galerkin does not automatically enforce for hyperbolic fluxes.
+
+When a conjugate heat-transfer run in [V.4](04-navier-stokes-cfd.md) couples FEM temperature to FVM fluid, this 1D check is the sanity test: if global energy is not conserved at the discrete level, the handshake at the wire surface is broken before Navier–Stokes enters the story.
+
 ## Bridge
 
 Discretizing the integral form on a 1D grid yields the classic FVM update: cell averages change by net flux through faces. The next chapter writes that algorithm explicitly — semi-discrete form, time stepping, CFL stability, and the conservative property that makes global balances exact on any mesh.

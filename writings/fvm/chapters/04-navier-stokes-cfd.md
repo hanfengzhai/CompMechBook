@@ -191,6 +191,31 @@ with \(T_w = T_s|_{\Gamma_w} = T_f|_{\Gamma_w}\) enforced by **interface couplin
 
 This is not a third method. It is Part IV and Part V **speaking at an interface** — the same weak-form / flux-balance pattern the epilogue later generalizes to DFT→MD→DDD→FEM chains. When the wire runs hot enough to soften, add thermal strain \(\alpha\Delta T\) in the solid weak form (Part VI); when Reynolds number exceeds the laminar regime, swap the RANS closure on the fluid side. The coupling skeleton stays.
 
+## Lab act: natural convection Nusselt number on the heated wire (Act II — Warming)
+
+**Act II** heats the wire until air above it rises. Navier–Stokes plus the energy equation determines whether convection or conduction dominates cooling — and whether the mid-span temperature stays below annealing range before **Act III** ramps load.
+
+Set up a **minimal conjugate heat transfer** problem (no commercial code required for the estimate):
+
+| Parameter | Value | Role |
+|-----------|-------|------|
+| Wire diameter \(d\) | 1 mm | Length scale \(L\) |
+| Wire surface \(T_w\) | 400 K | Hot wall (post-Joule heating) |
+| Ambient \(T_\infty\) | 300 K | Far-field air |
+| Air properties at 350 K | \(\nu \approx 2.2 \times 10^{-5}\,\text{m}^2/\text{s}\), \(\alpha \approx 3.0 \times 10^{-5}\,\text{m}^2/\text{s}\) | Kinematic viscosity, thermal diffusivity |
+| Grashof number | \(\text{Gr} = g \beta \Delta T d^3 / \nu^2 \approx 10^4\) | Natural convection regime |
+| Rayleigh number | \(\text{Ra} = \text{Gr} \cdot \text{Pr} \approx 7 \times 10^3\) | Laminar vertical-cylinder correlation applies |
+
+For a vertical cylinder in natural convection, a textbook correlation gives \(\text{Nu}_d = h d / k \approx 0.6\,\text{Ra}_d^{1/4}\) in the laminar range. With \(\text{Ra}_d \sim 10^3\), \(\text{Nu}_d \sim 5\)–\(10\), so \(h \sim 10\)–\(30\,\text{W/m}^2\text{K}\).
+
+**Partitioned coupling checklist** (matches the multiphysics scene above):
+
+1. **Solid FEM:** solve \(-k T'' = q(x)\) with Neumann flux \(q_w = h(T_w - T_\infty)\) on the surface — the wall heat flux the fluid demands.
+2. **Fluid estimate:** compute \(\text{Nu}\) from \(\text{Ra}\); update \(h\); repeat until \(T_w\) is consistent.
+3. **Sanity check:** compare total heat out \(\int q_w \, dS\) to integrated Joule input \(\int q \, dV\) at steady state — conservation, not grid convergence alone.
+
+If \(\text{Re} > 10^5\) (forced cross-flow over the wire), swap the natural-convection correlation for a cylinder cross-flow \(\text{Nu}(\text{Re}, \text{Pr})\) and note when RANS replaces laminar estimates. Part IV's wire mesh and Part V's air domain share one interface temperature; this Lab act is the hand calculation that tells you whether cooling is fast enough before the load cell ramps in Act III.
+
 ## Concept map checkpoint (Part V)
 
 Part V followed the FVM Notes from integral conservation through Navier–Stokes CFD. The four questions summarize the fluid discretization arc:

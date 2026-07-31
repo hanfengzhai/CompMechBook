@@ -84,6 +84,20 @@ If you have read the prologue straight through, the copper wire has already appe
 
 The prologue asked *what is the minimal description at each scale?* Part I answers for the rung every code shares: **finite-dimensional algebra** with energy norms, symmetry, and sparsity. When Part II replaces vectors with functions, the moves learned here remain — inner products become \(L^2\) pairings, stiffness matrices become operators, and eigenmodes become normal modes in \(H^1\). The [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) replay this same table in infinite dimensions; Part I is the finite-dimensional rehearsal.
 
+## How Part I connects to the full ladder
+
+The prologue's ladder is not nine unrelated subjects — it is one specimen with the same computational skeleton repeated at every scale:
+
+| Later part | Part I move it inherits | Copper wire instance |
+|------------|-------------------------|----------------------|
+| Part II (function spaces) | \(N \to \infty\); eigenmodes → normal modes | Axial \(u(x)\) as limit of nodal values |
+| Part IV (FEM) | \(\mathbf{K}\mathbf{u}=\mathbf{f}\) assembly | Meshed bar under end load |
+| Part VII (dislocations) | Sparse local coupling; eigenstructure of stiffness | Forest stiffens effective \(\mathbf{K}\) |
+| Part VIII (MD) | State vector + time-step update | Atomic positions as a long vector |
+| Part IX (DFT) | Self-consistent linear solve on coefficients | Kohn–Sham as repeated \(\mathbf{H}\psi = \varepsilon\mathbf{S}\psi\) |
+
+Reading Part I is therefore not a detour before "real" mechanics — it is the **grammar** every later chapter speaks. When molecular dynamics integrates forces or DFT diagonalizes a Hamiltonian, the pattern is still: collect degrees of freedom, apply a linear map, iterate until balance.
+
 ## Lab act: I — Mounting
 
 In [laboratory time](../prologue/00-many-scales.md#the-experiment-as-plot), the operator has not yet switched on current or ramped grip displacement. The wire sits in wedge jaws; the load cell reads zero; the first honest model is a chain of bar elements with boundary conditions at the grips. **Act I** is where every later scale hides its linear algebra: \(\mathbf{K}\mathbf{u}=\mathbf{f}\) before fields, weak forms, or electrons enter the story. When a chapter in Part I feels abstract, return to the mounting scene — a cylinder gripped, a sparse matrix waiting to be assembled.

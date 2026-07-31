@@ -183,6 +183,23 @@ Nearly incompressible materials respond stiffly to volumetric strain — the kin
 
 For small strain, the trace \(\text{tr}(\boldsymbol{\varepsilon}) = \nabla\cdot\mathbf{u}\) plays the same volumetric role. Poisson's ratio \(\nu\) controls how axial stretch of the copper wire couples to lateral contraction — a kinematic constraint encoded in the elastic tensor.
 
+## Lab act: read lateral contraction from grip displacement (Act III)
+
+**Act III** prescribes axial end displacement; a caliper on the wire diameter tells a kinematic story Part IV's 1D bar model ignores. Continuum kinematics names that story before Part VI.2 adds stress.
+
+Take uniaxial tension along the wire axis \(\mathbf{e}_1\), small strain, isotropic copper with \(\nu = 0.34\). The grip holds \(\varepsilon_{11} = \Delta L/L = 10^{-4}\) (10 microstrain on a 1 m gauge length — still in the linear elastic climb before Act IV hardening).
+
+| Object | Formula | Numeric value |
+|--------|---------|---------------|
+| Axial stretch | \(\lambda_1 = 1 + \varepsilon_{11}\) | \(1.0001\) |
+| Lateral strains | \(\varepsilon_{22} = \varepsilon_{33} = -\nu \varepsilon_{11}\) | \(-3.4 \times 10^{-5}\) |
+| Diameter change | \(\Delta D/D \approx \varepsilon_{22}\) (small strain) | \(-34\,\mu\text{m}\) on \(D = 1\,\text{mm}\) |
+| Volume change (small strain) | \(\varepsilon_v = \varepsilon_{11} + \varepsilon_{22} + \varepsilon_{33} = (1-2\nu)\varepsilon_{11}\) | \(\approx 3.2 \times 10^{-5}\) |
+
+Measure with a micrometer (or simulate a 3D hex mesh with one constrained face): if \(\varepsilon_{22} \approx 0\) while \(\varepsilon_{11} > 0\), the material model is **not** isotropic Hooke — or the \(B\)-matrix is wrong. If \(\varepsilon_{22}/\varepsilon_{11} \approx -\nu\) within experimental noise, the kinematic half of Hooke's law is consistent with the load cell reading from Act III.
+
+For finite strain preview: \(\mathbf{F} = \text{diag}(\lambda_1, \lambda_2, \lambda_2)\) with \(\lambda_2 = 1 + \varepsilon_{22}\) gives \(J = \lambda_1 \lambda_2^2 \approx 1 + (1-2\nu)\varepsilon_{11}\) to first order — the same volume change. When Act IV later ramps into plasticity, \(J\) and deviatoric \(\bar{\mathbf{F}}\) split in [VI.4](04-nonlinear-plasticity-preview.md); this Lab act is the linear elastic baseline those splits generalize.
+
 ## Bridge
 
 Kinematics names the geometric objects — \(\mathbf{F}\), \(\boldsymbol{\varepsilon}\), \(\mathbf{E}\), \(\mathbf{D}\). Forces enter through **stress tensors** and **balance laws** that constrain how stress varies in space and time.

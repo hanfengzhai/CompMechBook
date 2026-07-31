@@ -215,6 +215,77 @@ The wire's **manufacturing history** (draw, anneal, redraw) is itself a multisca
 
 Skipping history and jumping from bulk DFT modulus to in-service performance predicts the wrong wire. Internal state variables exist to carry **path dependence** upward when pure elasticity cannot.
 
+## Worked example: one service load, four handshakes
+
+The copper wire from the prologue — 1 mm diameter, 100 mm gauge, cold-drawn OFHC copper — makes a concrete multiscale afternoon if we trace **one** engineering question: *At 5 A DC and 50 N tension, does thermal softening change the elastic stiffness enough to matter before the load cell reaches yield?*
+
+No single code answers that. A disciplined workflow chains four handshakes with archived inputs at every arrow.
+
+### Handshake 1 — DFT → continuum elastic constants (Part IX → VI)
+
+A Quantum ESPRESSO `vc-relax` on fcc Cu with PBE pseudopotentials (documented in [IX.3](../part09-dft/03-dft-workflows.md)) yields:
+
+| Export | DFT (GGA-PBE) | Experiment | Used in FEM |
+|--------|---------------|------------|-------------|
+| Lattice \(a_0\) | 3.55 Å | 3.61 Å | Reference only; do not silently overwrite |
+| Bulk modulus \(B\) | \(\sim 140\) GPa | \(\sim 140\) GPa | Sanity check |
+| \(C_{11}, C_{12}, C_{44}\) | 168, 122, 75 GPa | 168, 121, 75 GPa | Voigt \(E \approx 130\) GPa, \(\nu \approx 0.34\) |
+
+Voigt averaging gives \(E = 130\,\text{GPa}\), \(\nu = 0.34\) for the isotropic elastic step in Part IV — **not** because copper is isotropic (cold drawing breaks symmetry), but because the first elastic FEM pass needs a documented starting point. Texture from drawing enters later via crystal plasticity (Part VII handoff).
+
+### Handshake 2 — Joule heating → conjugate heat transfer (Part IV ↔ V)
+
+Steady current \(I = 5\,\text{A}\) in a 1 mm wire with resistivity \(\rho_e \approx 1.7 \times 10^{-8}\,\Omega\cdot\text{m}\) gives volumetric heating
+
+\[
+q = \frac{I^2 \rho_e}{\pi (d/2)^2} \approx 2.2 \times 10^7\,\text{W/m}^3.
+\]
+
+Part IV's FEM solves \(-k\nabla^2 T = q\) in the solid with \(k \approx 400\,\text{W/m·K}\). Part V's FVM (or a correlation from [V.4](../part05-fvm/04-navier-stokes-cfd.md)) supplies \(h \approx 15\,\text{W/m}^2\text{K}\) on the surface. **Partitioned fixed-point loop:**
+
+1. Guess wall temperature \(T_w = 350\,\text{K}\); apply \(q_w = h(T_w - T_\infty)\) with \(T_\infty = 300\,\text{K}\).
+2. Solve solid conduction; read new \(T_w\) from surface nodes.
+3. Repeat until \(|T_w^{(k+1)} - T_w^{(k)}| < 0.5\,\text{K}\).
+
+Typical convergence: \(T_w \approx 385\)–\(395\,\text{K}\) at mid-span — warm to the touch, consistent with Act II in the prologue. **Sanity check:** integrated surface heat flux equals integrated Joule source (Part V Lab act).
+
+### Handshake 3 — Thermal strain → mechanical stiffness (Part VI → IV)
+
+Mechanical load 50 N gives engineering stress \(\sigma \approx 6.4\,\text{MPa}\) — far below yield (\(\sim 200\,\text{MPa}\)). Thermal expansion adds
+
+\[
+\varepsilon_{\text{th}} = \alpha \Delta T \approx 17 \times 10^{-6}\,\text{K}^{-1} \times 90\,\text{K} \approx 1.5 \times 10^{-3},
+\]
+
+while elastic strain from load is \(\varepsilon_{\text{m}} \sim 5 \times 10^{-5}\). Thermal strain dominates **displacement** but not **stress** in a free-expansion sense; in the fixed-grip tensile frame, thermal stress is tens of MPa and can shift the effective tangent stiffness the load cell sees.
+
+A coupled thermoelastic FEM (Part IV mesh + Part VI virtual work with \(\boldsymbol{\varepsilon} = \boldsymbol{\varepsilon}_{\text{m}} + \alpha\Delta T\,\mathbf{I}\)) reports whether the 50 N ramp remains in the linear regime. **Export upward to Part VII:** if \(\sigma + \sigma_{\text{th}}\) approaches yield, dislocation sources activate — the hardening curve in Act IV is no longer optional.
+
+### Handshake 4 — When continuum fails: notch and MD (Part VI → VIII)
+
+If the wire has a micro-notch (Act V), continuum FEM gives stress concentration \(K_t \approx 3\) at the root. Peak stress \(\sim 20\,\text{MPa}\) still looks elastic — but **gradient** of stress over atomic spacing matters for nucleation. A concurrent MD/FEM domain hands atomistic resolution within 2 nm of the notch tip while FEM carries the bulk field (Part VIII, [VIII.3](../part08-md/03-ab-initio-and-coarse-graining.md)).
+
+The handshake table:
+
+| Region | Model | State | Export across interface |
+|--------|-------|-------|-------------------------|
+| Bulk | FEM | \(\mathbf{u}\), \(T\) | Displacement BC to MD box |
+| Notch tip | MD (EAM from DFT) | \(\{\mathbf{r}_i\}\) | Traction on FEM boundary |
+| Defect kinetics (optional) | DDD | Dislocation density | Hardening if cyclic load |
+
+### What this example teaches
+
+The four handshakes reuse the **same four questions** from the prologue at every interface:
+
+| Interface | State | Equations | Discretization | Export |
+|-----------|-------|-----------|----------------|--------|
+| DFT → FEM | \(\rho(\mathbf{r})\) | Kohn–Sham | Plane waves | \(C_{ij}\), \(E\), \(\nu\) |
+| FEM ↔ FVM | \(T\) | Heat + convection | Tet mesh + cell averages | \(T_w\), \(q_w\) |
+| Thermal → mechanical | \(\mathbf{u}\), \(T\) | Thermoelasticity | Same FEM mesh | Effective stiffness, yield margin |
+| FEM → MD | \(\mathbf{u}\) near notch | Newton + EAM | Atomistic subdomain | Nucleation criterion |
+
+None of this runs unattended in one executable. The discipline is **traceability**: each number in the table carries a convergence log, a functional choice, and a unit check. That is multiscale computational mechanics in practice — not a longer single-scale run, but a **composed** story the epilogue's opening Scene already sketched on four screens.
+
 ## Handshake mechanics: what crosses interfaces
 
 Successful coupling specifies **consistent** quantities at interfaces:
