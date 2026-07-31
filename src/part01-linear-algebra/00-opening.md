@@ -88,6 +88,19 @@ The prologue asked *what is the minimal description at each scale?* Part I answe
 
 In [laboratory time](../prologue/00-many-scales.md#the-experiment-as-plot), the operator has not yet switched on current or ramped grip displacement. The wire sits in wedge jaws; the load cell reads zero; the first honest model is a chain of bar elements with boundary conditions at the grips. **Act I** is where every later scale hides its linear algebra: \(\mathbf{K}\mathbf{u}=\mathbf{f}\) before fields, weak forms, or electrons enter the story. When a chapter in Part I feels abstract, return to the mounting scene — a cylinder gripped, a sparse matrix waiting to be assembled.
 
+### What you should be able to do after Part I
+
+Each chapter adds one move to a minimal workflow you can run on paper or in NumPy before opening Part II:
+
+| After chapter | Skill on the copper wire | Minimal artifact |
+|---------------|--------------------------|------------------|
+| I.1 | Name state, stiffness, load for a spring chain | \(\mathbf{K}\mathbf{u}=\mathbf{f}\) with numbers |
+| I.2 | Rotate a bar element; assemble a global matrix | \(4 \times 4\) block from \(\mathbf{R}^T\mathbf{k}\mathbf{R}\) |
+| I.3 | Tap the wire; read fundamental frequency | `eigh(K, M)` → Hz, compare to \(f_1 \approx 4.6\,\text{kHz}\) |
+| I.4 | Refine mesh; watch nodal values become a field | \(N = 5, 20, 100\) → plot \(u(x)\) approaching smooth curve |
+
+None of these require functional analysis — but each one is the finite-dimensional shadow of something Part II names rigorously. If you can assemble a three-node bar, solve for displacement, and extract a fundamental frequency, you have already done 80% of what a linear static/dynamic FEM code does on the first timestep. Parts II–IV replace vectors with functions and loops with weak forms; the **moves** stay the same.
+
 ## Bridge
 
 The prologue introduced the copper wire at every scale and named the four questions every rung must answer. Part I begins at the rung every simulation shares — degrees of freedom collected into vectors, evolution and equilibrium written as linear systems — before the wire becomes a field, a mesh, or an electron density.

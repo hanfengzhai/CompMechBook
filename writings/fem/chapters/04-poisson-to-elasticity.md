@@ -193,6 +193,32 @@ When extending a Poisson solver to elasticity:
 5. Verify patch test with uniform strain fields.
 6. Compare against analytical solutions (Kirsch hole, Timoshenko beam) before trusting the mesh.
 
+## Lab act: one mesh, two fields (Act II–III on the copper wire)
+
+When current flows through the wire (Act II — warming), Joule heating produces a scalar temperature field; when grips ramp displacement (Act III — pulling), a vector displacement field appears on the **same** mesh. This lab act walks through coupling both on a minimal 1D bar mesh — the same infrastructure Part IV uses for 3D thermoelasticity.
+
+**Setup.** Three-node bar from the worked example above: \(L = 1\,\text{m}\), \(A = 1\,\text{mm}^2\), copper properties \(E = 120\,\text{GPa}\), \(\nu = 0.34\), \(\alpha = 17 \times 10^{-6}\,\text{K}^{-1}\), thermal conductivity \(k_{\text{th}} = 400\,\text{W/(m·K)}\). Uniform Joule heating \(q = 10^7\,\text{W/m}^3\) (order of magnitude for a thin wire carrying a few amperes).
+
+**Pass 1 — scalar heat (Poisson pipeline).** Solve \(-k_{\text{th}} T'' = q\) with \(T(0) = T(L) = 293\,\text{K}\). On three nodes the discrete system is the same tridiagonal pattern as the bar stiffness but with \(k_{\text{th}}/h\) replacing \(EA/h\). The mid-node temperature rises above the grips — parabolic profile, maximum at center.
+
+**Pass 2 — vector elasticity with thermal strain.** Insert thermal eigenstrain \(\varepsilon_{\text{th}} = \alpha \Delta T\) into Hooke's law:
+
+\[
+\sigma = E(\varepsilon_{\text{mech}} - \alpha \Delta T).
+\]
+
+With grips fixed (\(u = 0\) at both ends), the wire cannot expand freely: thermal strain becomes **compressive stress** even without mechanical load. The weak form right-hand side picks up a thermal load term proportional to \(\int \alpha \Delta T\, \varepsilon(v)\, d\Omega\) — no external force, yet nonzero stress.
+
+| Pass | Unknown | Governing operator | Copper-wire observation |
+|------|---------|--------------------|-------------------------|
+| 1 (heat) | Scalar \(T\) | \(-k_{\text{th}}\Delta T = q\) | Mid-span hotter than grips |
+| 2 (elastic) | Vector \(\mathbf{u}\) | \(-\nabla\cdot\boldsymbol{\sigma} = \mathbf{0}\) with thermal strain | Compressive stress at fixed grips |
+| Coupled | Both | Alternating or monolithic solve | Load cell reads tension + thermal compression |
+
+**Pass 3 — mechanical load on top.** Add tensile force \(F = 1000\,\text{N}\) at \(x = L\) (Act III). The total stress is superposition of thermal compression and mechanical tension. If \(F\) is small, the wire remains in net compression; above a threshold, the load cell shows tension — the same superposition Part VI writes as total strain splitting.
+
+**What this lab act teaches:** Poisson and elasticity are not two solvers — they are one assembly loop with different DOF counts and constitutive tensors. Multiphysics codes (CalculiX, FEniCS, MOOSE) alternate Pass 1 and Pass 2 on the same mesh; the copper wire in the lab never separates heating from stretching, and neither should the FEM deck. When Part V adds air cooling at the surface, the heat pass gains a Robin boundary flux; the elastic pass is unchanged — same pattern, richer boundary data.
+
 ## Bridge
 
 Poisson's equation and linear elasticity share one assembly loop — scalar versus vector unknowns, gradient versus strain, the same \(\mathbf{K}\mathbf{U}=\mathbf{F}\) pattern Part I introduced on springs. A solver that passes patch tests and looks smooth on the copper wire is not necessarily **accurate**: convergence theory ties mesh size \(h\) and polynomial order \(p\) to quantifiable error bounds in the norms Part II named.

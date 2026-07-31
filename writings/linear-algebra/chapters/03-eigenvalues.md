@@ -150,6 +150,36 @@ Hyperbolic problems (wave propagation, advection) involve non-normal operators; 
 
 Industrial codes rarely form dense \(\mathbf{K}^{-1}\mathbf{M}\). **Lanczos** and **Arnoldi** methods build Krylov subspaces \(\{\mathbf{v}, \mathbf{K}^{-1}\mathbf{M}\mathbf{v}, \ldots\}\) and extract Ritz pairs — approximate eigenvalues from a small projected matrix. For the lowest modes of a fine copper-wire mesh, only a handful of iterations on the sparse \(\mathbf{K}\) solve are needed. Part IV's dynamics chapter and Part VIII's normal-mode analysis of atomic systems both rely on this same pattern: physics lives in a few dominant modes; the rest of the spectrum sets stability limits, not engineering response.
 
+## Lab act: tap the wire and read the spectrum
+
+Clamp the copper wire at one grip (Act I mounting) and assign a lumped mass \(m\) at each of \(N = 5\) equally spaced nodes along a \(L = 1\,\text{m}\) segment. Use the bar stiffness from [I.2](02-linear-maps.md): element stiffness \(k^e = EA/h\) with \(E = 120\,\text{GPa}\), \(A = 1\,\text{mm}^2\), \(h = L/(N-1)\). The global mass matrix is diagonal, \(M_{ii} = m\).
+
+**Step 1 — build \(\mathbf{K}\) and \(\mathbf{M}\).** Five nodes give a tridiagonal \(\mathbf{K}\) with \(2k\) on interior diagonals and \(k\) on the off-diagonals (fixed–free chain). This is the same pattern Part IV assembles from bar elements; here we read it directly for modal analysis.
+
+**Step 2 — solve the generalized problem.** In Python/NumPy:
+
+```python
+import numpy as np
+N, L, E, A = 5, 1.0, 120e9, 1e-6
+h = L / (N - 1)
+k = E * A / h
+K = k * (np.diag(2*np.ones(N)) - np.diag(np.ones(N-1),1) - np.diag(np.ones(N-1),-1))
+K[0,0] = k  # fixed end: only one spring on node 0
+M = np.eye(N) * (7850 * A * h)  # lumped mass from copper density
+w2, V = np.linalg.eigh(K, M)
+freq = np.sqrt(w2) / (2*np.pi)
+```
+
+**Step 3 — compare to continuum.** For a fixed–free bar, the continuum frequencies are \(f_n \approx n/(4L)\sqrt{E/\rho}\) (longitudinal modes). With \(\rho = 8960\,\text{kg/m}^3\), the fundamental is \(f_1 \approx 4.6\,\text{kHz}\). The five-node model captures the first two or three modes within a few percent; refining to \(N = 20\) closes the gap — the same mesh-refinement story Part IV Chapter 5 formalizes.
+
+| Mode index | Shape (qualitative) | Engineering use on the wire |
+|------------|---------------------|-----------------------------|
+| 1 | All nodes same sign | Resonance with grip vibration; fatigue at clamp |
+| 2 | One interior node stationary | Higher harmonics; acoustic radiation |
+| 3+ | Increasing oscillations | Explicit dynamics stability (Part V CFL) |
+
+**Step 4 — connect to the lab session.** When the operator taps the mounted wire before ramping load (Act I), the audible pitch is dominated by mode 1. If the frequency matches the table within measurement noise, the spring-network model is calibrated; if not, check boundary conditions (slip in the wedge grip adds effective compliance — a softer \(\mathbf{K}\), lower frequencies). Modal analysis is the first time the book's **decoupling** theme appears in a computation you can run in ten lines.
+
 ## Bridge
 
 We have stayed in finite dimensions: \(\mathbf{A}\mathbf{v} = \lambda \mathbf{v}\), finitely many modes, matrices we can factor. The copper wire's ringing pitches — normal modes of the spring network — live entirely in that world for fixed \(N\). Yet mechanics specifies fields at every point: temperature along the wire, displacement in every direction, pressure in every fluid cell. Refining the mesh adds eigenvalues without bound; their limit is a **spectrum** of a differential operator, not a longer list in \(\mathbb{R}^N\).
