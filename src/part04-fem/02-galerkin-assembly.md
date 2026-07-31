@@ -148,6 +148,32 @@ A minimal FEM implementation stores:
 
 High-level frameworks — **FEniCS**, **Firedrake**, **deal.II** — accept UFL/Symbolic weak forms and generate assembly loops automatically. The FEA notes include FEniCS and Firedrake tutorials for 2D Poisson; understanding the generated loop remains essential for debugging wrong boundary conditions, incorrect Jacobians, and locking in nearly incompressible materials.
 
+## CSR sparsity pattern from the mesh graph
+
+Before filling \(\mathbf{K}\), production codes **preallocate** a compressed sparse row (CSR) structure from mesh connectivity alone — no quadrature required. The rule is simple: global entry \(K_{ij}\) can be nonzero only if nodes \(i\) and \(j\) share at least one element.
+
+For the three-node bar mesh, the mesh graph has edges \((1,2)\) and \((2,3)\). The sparsity pattern is tridiagonal:
+
+| Row | Column indices with possible nonzeros |
+|-----|---------------------------------------|
+| 1 | 1, 2 |
+| 2 | 1, 2, 3 |
+| 3 | 2, 3 |
+
+Assembly then **scatters** into fixed locations: a wrong connectivity array writes \(k_{ab}^e\) to the wrong \((i,j)\) slot without changing the sparsity count — the matrix looks structurally fine but the physics is wrong. This is why the Lab act below verifies the middle diagonal entry \(2k\) before trusting a load–displacement curve.
+
+For a 2D P1 triangle mesh on the wire cross-section, each interior node typically couples to six neighbors (the discrete Laplacian stencil). Vector elasticity multiplies by \(d^2\) block entries per node pair but preserves the same graph. Precomputing CSR once and reusing it across Newton iterations (nonlinear elasticity) or time steps (transient heat) avoids repeated allocation — the scatter loop is \(O(\text{nonzeros})\) per assembly pass.
+
+```mermaid
+flowchart LR
+  mesh[Mesh connectivity] --> graph[Mesh graph]
+  graph --> csr[CSR row pointers / col indices]
+  csr --> scatter[Element scatter into fixed slots]
+  scatter --> solve[Linear solve K U = F]
+```
+
+The pipeline mirrors Part I's sparse matrix story: topology determines **where** entries may live; element integrals determine **what** values they carry. When debugging the copper wire model, print the sparsity pattern before the first quadrature call — if row 2 has only two neighbors on a three-node bar, the connectivity file is wrong before any constitutive law is tested.
+
 ## Assembly for time-dependent and nonlinear problems
 
 For parabolic problems \(u_t - \Delta u = f\), backward Euler gives

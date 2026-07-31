@@ -183,6 +183,27 @@ Nearly incompressible materials respond stiffly to volumetric strain — the kin
 
 For small strain, the trace \(\text{tr}(\boldsymbol{\varepsilon}) = \nabla\cdot\mathbf{u}\) plays the same volumetric role. Poisson's ratio \(\nu\) controls how axial stretch of the copper wire couples to lateral contraction — a kinematic constraint encoded in the elastic tensor.
 
+## Polar decomposition: stretch and rotation on the wire
+
+The polar decomposition \(\mathbf{F} = \mathbf{R}\mathbf{U}\) separates **how much** a material line stretches from **how much** it rotates. For the copper wire in a tensile frame with negligible grip misalignment, \(\mathbf{R} \approx \mathbf{I}\) and \(\mathbf{U} \approx \mathbf{I} + \boldsymbol{\varepsilon}\) in the linear elastic regime — but the split becomes essential when torsion, bending, or large rigid-body motion enters the story.
+
+Take uniaxial tension along \(\mathbf{e}_1\) with small engineering strain \(\varepsilon_{11} = 10^{-3}\) and Poisson contraction \(\varepsilon_{22} = \varepsilon_{33} = -\nu\varepsilon_{11}\). In matrix form (Voigt-style ordering for intuition):
+
+\[
+\mathbf{F} \approx \begin{bmatrix} 1.001 & 0 & 0 \\ 0 & 0.99966 & 0 \\ 0 & 0 & 0.99966 \end{bmatrix}, \qquad \mathbf{R} \approx \mathbf{I}.
+\]
+
+The stretch tensor \(\mathbf{U} = \sqrt{\mathbf{F}^T\mathbf{F}}\) has eigenvalues \(\lambda_i = 1 + \varepsilon_{ii}\) on the principal axes — the same numbers Part IV's \(B\)-matrix assembles from shape-function gradients. If the grips introduce a 0.1° misalignment, a small rotation \(\mathbf{R}\) appears; subtracting it before comparing to a 1D bar model prevents attributing geometric tilt to material nonlinearity.
+
+| Object | Role on the wire | FEM/FVM counterpart |
+|--------|------------------|----------------------|
+| \(\mathbf{R}\) | Rigid rotation of the specimen in the frame | Rigid-body mode removal in assembly |
+| \(\mathbf{U}\) | Symmetric stretch from reference to current | Strain at Gauss points from \(\mathbf{F}\) |
+| \(J = \det\mathbf{F}\) | Volume ratio | Volumetric locking checks (\(\nu \to 1/2\)) |
+| \(\bar{\mathbf{F}} = J^{-1/d}\mathbf{F}\) | Isochoric (shape) part | Split formulations in hyperelasticity |
+
+When the wire necks in **Act IV**, \(\mathbf{F}\) is no longer diagonal: \(\mathbf{U}\) captures the local axial thinning and circumferential contraction, while \(\mathbf{R}\) tracks how material lines rotate into the neck. Part IV's nonlinear extensions evaluate \(\mathbf{F}\) at quadrature points and pass \(\mathbf{U}\) or \(\mathbf{E} = \tfrac{1}{2}(\mathbf{F}^T\mathbf{F}-\mathbf{I})\) to the constitutive routine — the polar split is the geometric sanity check that rigid motion does not generate spurious stress.
+
 ## Lab act: read lateral contraction from grip displacement (Act III)
 
 **Act III** prescribes axial end displacement; a caliper on the wire diameter tells a kinematic story Part IV's 1D bar model ignores. Continuum kinematics names that story before Part VI.2 adds stress.

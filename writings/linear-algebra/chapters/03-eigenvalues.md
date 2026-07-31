@@ -150,6 +150,22 @@ Hyperbolic problems (wave propagation, advection) involve non-normal operators; 
 
 Industrial codes rarely form dense \(\mathbf{K}^{-1}\mathbf{M}\). **Lanczos** and **Arnoldi** methods build Krylov subspaces \(\{\mathbf{v}, \mathbf{K}^{-1}\mathbf{M}\mathbf{v}, \ldots\}\) and extract Ritz pairs — approximate eigenvalues from a small projected matrix. For the lowest modes of a fine copper-wire mesh, only a handful of iterations on the sparse \(\mathbf{K}\) solve are needed. Part IV's dynamics chapter and Part VIII's normal-mode analysis of atomic systems both rely on this same pattern: physics lives in a few dominant modes; the rest of the spectrum sets stability limits, not engineering response.
 
+### Modal analysis workflow on the wire fixture
+
+The Lab act below uses dense `eigh` for transparency. A production modal study on the same copper wire in 3D follows the same logic at scale:
+
+| Step | Operation | Output | Copper-wire use |
+|------|-----------|--------|-----------------|
+| 1 | Assemble sparse \(\mathbf{K}\), \(\mathbf{M}\) from mesh | CSR matrices | Same scatter loop as static FEM |
+| 2 | Apply BCs (fixed grip → eliminate rows/cols) | Reduced system | Removes rigid modes except intended free ends |
+| 3 | Lanczos on \(\mathbf{K}^{-1}\mathbf{M}\) or shift-invert | Ritz pairs \((\omega_j^2, \mathbf{v}_j)\) | Lowest 10–20 modes for fatigue |
+| 4 | Orthonormalize modes: \(\mathbf{v}_i^T \mathbf{M} \mathbf{v}_j = \delta_{ij}\) | Mass-normalized basis | Modal superposition for damping |
+| 5 | Compare \(\omega_{h,j}\) vs. mesh-refined \(\omega_{h/2,j}\) | Convergence table | Part IV.5 certificate before trusting resonance |
+
+**Mass matrix choice matters.** Consistent mass (same shape functions as stiffness) vs. lumped mass (diagonal from row sum) shifts higher modes by a few percent — usually acceptable for the fundamental frequency of the wire, but not for explicit dynamics stability analysis where \(\mathbf{M}^{-1}\mathbf{K}\) sets the CFL-like limit on \(\Delta t\).
+
+**Shift-invert** targets modes near a frequency band (e.g., 1–5 kHz for audible ringing). Instead of forming \(\mathbf{K}^{-1}\mathbf{M}\), solve \((\mathbf{K} - \sigma \mathbf{M})\mathbf{x} = \mathbf{M}\mathbf{y}\) repeatedly — each solve reuses the sparse factorization from static analysis. The same \(\mathbf{K}\) that Part IV assembled for Act III tension now supplies resonance diagnostics without a separate physics model.
+
 ## Lab act: tap the wire and read the spectrum
 
 Clamp the copper wire at one grip (Act I mounting) and assign a lumped mass \(m\) at each of \(N = 5\) equally spaced nodes along a \(L = 1\,\text{m}\) segment. Use the bar stiffness from [I.2](02-linear-maps.md): element stiffness \(k^e = EA/h\) with \(E = 120\,\text{GPa}\), \(A = 1\,\text{mm}^2\), \(h = L/(N-1)\). The global mass matrix is diagonal, \(M_{ii} = m\).
