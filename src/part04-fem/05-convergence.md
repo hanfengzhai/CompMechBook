@@ -169,6 +169,20 @@ Before trusting a mesh for a design decision:
 
 These habits mirror verification protocols in the FEA teaching notes and align with ASME and NASA CFD verification guidelines extended to solids.
 
+## Lab act: \(h\)-refinement at the grip corner during Act III
+
+**Act III** records force versus displacement on the load cell. Before declaring the linear elastic segment trustworthy, run a **three-mesh convergence study** on the same tensile bar — the empirical face of Céa's lemma.
+
+| Mesh | Characteristic \(h\) | Tip displacement \(u_{\text{tip}}\) | Energy error indicator (if available) |
+|------|---------------------|-------------------------------------|---------------------------------------|
+| Coarse | \(L/5\) | record | — |
+| Medium | \(L/20\) | record | should move toward limit |
+| Fine | \(L/80\) | record | changes \(< 1\%\) → acceptable for Act III |
+
+Use P1 bar or axisymmetric solid elements with fixed grip displacement BC. Plot \(u_{\text{tip}}\) versus \(h\) on log–log axes; expect slope \(\approx 2\) in \(L^2\) quantities and \(\approx 1\) in energy norm for smooth problems. If the curve **does not stabilize**, check: (1) insufficient quadrature on curved grips, (2) locking in nearly incompressible models, (3) linear solver tolerance looser than discretization error.
+
+Refine locally at the grip corner if stress concentrations matter — but for Act III's **global** load cell reading, a uniform bar mesh often suffices once the three-row table plateaus. This is the verification habit the chapter advocates, tied to the prologue scene: the operator trusts the ramp when refining the mesh stops moving the answer in a predictable way.
+
 ## Concept map checkpoint (Part IV)
 
 Part IV followed the FEM Notes from weighted residuals through error estimates. The four questions close the discretization arc for elliptic solids:

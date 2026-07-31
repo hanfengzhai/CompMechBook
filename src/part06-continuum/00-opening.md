@@ -98,6 +98,19 @@ Part II taught that the limit \(N\to\infty\) lives in \(H^1\); Part III wrote th
 
 The copper wire that began as a chain of coupled springs is now a cylinder with a stress tensor — still finite-dimensional on any mesh, still infinite-dimensional in the continuum limit, and still one specimen in a single story. Part VII will explain why cold-drawn strength is not in \(\mathbb{C}\) alone; Parts VIII–IX will ask where \(\mathbb{C}\) itself comes from.
 
+## How Part VI connects to the descent in scale
+
+Part VI is the **last continuum stop** before the book descends to mesoscale and atomistic models. Every field named here has a coarser or finer avatar:
+
+| Field / law (Part VI) | Part IV–V discretization | Part VII+ origin |
+|-----------------------|--------------------------|------------------|
+| Cauchy stress \(\boldsymbol{\sigma}\) | Nodal stress from shape-function gradients | Dislocation density and forest hardening |
+| Elastic tensor \(\mathbb{C}\) | Material card in \(\mathbf{B}^T\mathbb{C}\mathbf{B}\) | Polycrystal texture; MD/DFT moduli |
+| Virtual work | Galerkin \(\mathbf{K}\mathbf{U}=\mathbf{F}\) | Same principle at every scale |
+| Yield surface | Phenomenological \(J_2\) fit in VI.4 | DDD and crystal plasticity in Part VII |
+
+When the load cell curve bends upward in **Act IV**, Part VI's plasticity preview names the phenomenon — but Part VII will show the **mechanism**. When **Act V** needs atomistic resolution at a notch, Part VI explains why smooth \(\boldsymbol{\sigma}(\mathbf{x})\) was never sufficient there.
+
 ## Lab act: III–V — Pulling, hardening preview, and the notch
 
 **Act III** names what the load cell measures — Cauchy stress and virtual work behind the linear elastic climb. **Act IV** is the upward bend in the curve; Part VI's plasticity preview admits that bend without yet simulating the dislocation forest (Part VII). **Act V** is the optional scratch or grip corner where smooth fields break down and atomistic resolution may be needed (Part VIII). Part VI is the continuum floor where all three lab acts meet the same vocabulary: \(\mathbf{F}\), \(\boldsymbol{\sigma}\), and balance laws that make FEM and FVM approximations physically meaningful.

@@ -204,6 +204,21 @@ has unique solution \(T \in H^1_0\) by Lax–Milgram. Riesz (or the energy minim
 
 Convection–diffusion \(-\varepsilon u'' + b u' = f\) produces a nonsymmetric bilinear form. Lax–Milgram still applies under coercivity and boundedness, but the energy is not a simple quadratic functional — Galerkin orthogonality holds in the bilinear form, not in a symmetric inner product. Petrov–Galerkin methods choose test spaces different from trial spaces to improve stability; the Hilbert geometry becomes a Banach-space story with different norms on trial and test sides. Part V on finite volumes treats advection-dominated problems with related stability concerns.
 
+## Lab act: project the grip load onto two bar modes (Act III prelude)
+
+**Act III** ramps grip displacement, but the load cell reading is a **single number** — total axial force — while the wire's displacement field lives in an infinite-dimensional space. Hilbert geometry explains how a scalar measurement relates to a field: the discrete load vector \(\mathbf{f}\) is a **Riesz representative** of a linear functional on \(V_h\), and Galerkin orthogonality says the FEM solution is the best approximation in energy norm.
+
+Take the fixed-fixed bar from [I.3](../part01-linear-algebra/03-eigenvalues.md) with two mode shapes \(\phi_1, \phi_2\) (fundamental and first harmonic, orthonormal in the mass inner product). A uniform end traction is not orthogonal to higher modes — but a **concentrated grip load** projects heavily onto \(\phi_1\).
+
+| Step | Operation | What Hilbert geometry buys |
+|------|-----------|----------------------------|
+| 1 | Form load functional \(\ell(v) = \int_0^L f v\, dx\) or nodal equivalent | Riesz: \(\ell(v) = (g, v)_M\) for some \(g\) |
+| 2 | Expand \(g = c_1 \phi_1 + c_2 \phi_2 + \cdots\) | Bessel: \(\|g\|^2 \ge c_1^2 + c_2^2\) |
+| 3 | Solve in 2-mode subspace \(W = \mathrm{span}\{\phi_1, \phi_2\}\) | Projection theorem: unique minimizer of \(\tfrac{1}{2}a(v,v) - \ell(v)\) |
+| 4 | Compare to full FEM on 20 elements | Céa: error \(\le C \inf_{w \in W} \|u - w\|_a\) |
+
+In NumPy, build \(\mathbf{K}\) and \(\mathbf{M}\) for a 10-element bar, extract the first two eigenvectors, and solve the 2×2 reduced system \(\mathbf{K}_r \mathbf{c} = \mathbf{f}_r\). The tip displacement from two modes should capture most of the Act III linear elastic response — the same reason commercial codes offer **modal superposition** for small-amplitude vibration. When the operator later trusts a coarse mesh near the grips, this table is the Hilbert justification: the error is projection error, not guesswork.
+
 ## Bridge
 
 Hilbert spaces give us angles, projections, and representations of loads. The next step is **operators**: linear maps between such spaces that generalize matrices. Dual spaces generalize row vectors and Lagrange multipliers; weak and weak* convergence describe limits when norms alone fail to detect oscillations — the behavior we see near shocks, fine-scale microstructure, and unresolved boundary layers. Operators, duality, and compactness complete the analytic toolkit before spectral theory decouples time-dependent and vibration problems into modes.

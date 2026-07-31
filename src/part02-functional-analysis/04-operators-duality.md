@@ -192,6 +192,21 @@ For \(I - K\) with compact \(K\), the Fredholm alternative states: either \(I - 
 
 Buckling analysis searches for \(\lambda\) where stiffness loses ellipticity; the lowest such \(\lambda\) is the critical load factor. On a mesh, \(\det(\mathbf{K} - \lambda \mathbf{K}_g) = 0\); in the limit, eigenvalues of a compact operator. The spectral chapter ahead makes the connection explicit.
 
+## Lab act: nodal force versus distributed weight (Act III load handling)
+
+**Act III** applies force through wedge grips — a **distributed contact pressure** in reality, a **few nodal forces** in FEM. Operators and duality make that replacement honest: as the mesh refines, equivalent nodal loads must converge **weak\*** to the continuum functional they represent.
+
+Model a simply supported bar of length \(L = 1\,\text{m}\) with self-weight: body force \(b = \rho g\) (N/m³ × m/s² along \(-\mathbf{e}_y\)). Two discretizations:
+
+| Loading model | Functional \(\ell(v)\) | Expected weak* limit |
+|---------------|------------------------|----------------------|
+| Distributed | \(\ell(v) = \int_0^L (\rho g A)\, v\, dx\) | Exact continuum load |
+| \(N\) equal nodal forces | \(\ell_N(v) = \sum_{i=1}^{N} w_i v(x_i)\) with \(w_i = (\rho g A)\,\Delta x_i\) | Same \(\ell(v)\) as \(N \to \infty\) |
+
+For \(N = 5, 20, 100\), assemble \(\mathbf{K}\mathbf{u} = \mathbf{f}\) and record midspan displacement. The sequence \(u_N\) should stabilize — not because "more nodes is always better," but because \(\ell_N \to \ell\) weakly and the solution operator \(S: \ell \mapsto u\) is stable (Lax–Milgram). If midspan displacement **oscillates** without trend as \(N\) grows, suspect a load lumping scheme that does not converge weak* (e.g., all weight on a single node regardless of mesh).
+
+This is the backstage check for Act III: before trusting the load cell curve, confirm that grip boundary conditions and equivalent nodal forces are consistent with the dual load functional Part IV will scatter into \(\mathbf{f}\). Sensitivity to grip modeling is adjoint territory — perturb \(\ell\) and observe how tip displacement responds; the pattern is the same duality this chapter named.
+
 ## Bridge
 
 Operators on Hilbert spaces become transparent when they are **self-adjoint** and **compact**: spectra decompose into real eigenvalues and orthonormal eigenvectors. The spectral theorem is the infinite-dimensional generalization of diagonalizing a symmetric matrix.

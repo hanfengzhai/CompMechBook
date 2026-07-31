@@ -159,6 +159,20 @@ For \(-\Delta u = f\) with \(f \ge 0\) and \(u = 0\) on \(\partial\Omega\), the 
 | Point load at a point? | Requires delta source | Functional on test space |
 | FEM assembly entry point? | Differentiate twice | One integration by parts |
 
+## Lab act: write the strong form at three points on the heated wire (Act II)
+
+**Act II — Warming** switches on current. The thermal camera shows a hot center and cooler ends — but the **strong-form Laplacian** \(-k\Delta T = q\) is only meaningful where \(T \in C^2\). At three locations on the copper wire, decide whether the strong form applies pointwise:
+
+| Location | Strong form valid? | Why |
+|----------|-------------------|-----|
+| Midspan, smooth interior | Yes (if \(q\) smooth) | \(T\) is \(C^\infty\) in ideal 1D Joule heating |
+| Thermocouple weld (point sensor) | No — kink in BC data | Welded probe imposes a mixed/constrained patch; corners in 2D cross-section |
+| Insulator–grip interface | No — material jump | \(k\) discontinuous; flux continuous, \(\Delta T\) not classical |
+
+For each row, write the **strong-form equation** you would put on a blackboard (steady heat: \(-\frac{d}{dx}\left(k\frac{dT}{dx}\right) = q(x)\) in 1D; full \(-k\Delta T = q\) in 3D). Then note what breaks: second derivatives at the weld, coefficient jump at the interface, or nothing at midspan.
+
+This 5-minute table is the experiment-facing version of the decision matrix above. Part III.2 replaces pointwise Laplacians with **weak forms** precisely because rows two and three fail the \(C^2\) contract while row one succeeds. When a thermal FEM run converges under mesh refinement despite a thermocouple weld in the model, the weak form — not the strong form at every point — is the honest continuum statement.
+
 ## Bridge
 
 The strong form is what physicists write. The weak form is what variational algorithms implement. Multiplying by a test function, integrating over \(\Omega\), and integrating by parts moves derivatives from the unknown onto smooth test functions — trading pointwise \(C^2\) requirements for integral balance in \(H^1\).

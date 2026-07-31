@@ -168,6 +168,22 @@ where \(a\) is stiffness and \(m\) is mass — both symmetric, \(a\) coercive, \
 
 For the wire with non-uniform cross-section, \(a\) and \(m\) vary spatially through elastic modulus and density. The spectral theorem applies to the operator \(\mathbf{M}^{-1}\mathbf{K}\) on the discrete side and to the continuous generalized problem on \(H^1_0\). Orthogonality of modes is with respect to both forms: \(a(\phi_i, \phi_j) = \lambda_i m(\phi_i, \phi_j)\) and \(m(\phi_i, \phi_j) = 0\) for \(i \ne j\) after scaling.
 
+## Lab act: discrete bar eigenvalues versus the analytical spectrum (Act III vibration check)
+
+Before **Act III** ramps displacement, the operator may tap the wire and listen — a quick sanity check that the meshed bar still **rings at the right pitch**. Part I extracted \((\mathbf{K}, \mathbf{M})\) eigenpairs; this chapter says those discrete values converge to eigenvalues of a **self-adjoint compact operator** as \(h \to 0\).
+
+For a uniform fixed-fixed bar of length \(L\), the \(n\)-th bending-mode angular frequency (Euler–Bernoulli idealization) scales as \(\omega_n \propto n^2\). A spring-network or 1D bar-element mesh gives a **finite** spectrum \(\omega_{1,h}, \ldots, \omega_{N,h}\).
+
+| Mesh | DOFs \(N\) | \(\omega_{1,h}/(2\pi)\) (Hz) | Relative error vs. coarse analytical estimate |
+|------|------------|-------------------------------|-----------------------------------------------|
+| 5 elements | 6 | (compute) | baseline |
+| 20 elements | 21 | (compute) | should decrease |
+| 100 elements | 101 | (compute) | should plateau |
+
+Run `scipy.linalg.eigh(K, M)` (or the Part I workflow) on three refinements. Plot \(\omega_{1,h}\) versus \(h\): Rayleigh–Ritz theory guarantees \(\omega_{1,h} \ge \omega_1^{\text{exact}}\) for fixed-end string models discretized with conforming \(H^1\) elements — the discrete spectrum **approaches from above**. If the fundamental frequency **drops** with refinement, check mass matrix lumping, boundary condition tags, or a non-self-adjoint damping term sneaking into the eigenproblem.
+
+When the tap test and the FEM eigenvalue agree within a few percent, Act III's linear elastic ramp starts on trustworthy modal ground — the same spectral theorem that will later connect heat decay modes and buckling loads to operator eigenvalues.
+
 ## Concept map checkpoint (Part II)
 
 Part II followed the Functional Analysis Notes concept map chapter by chapter. Before Part III writes weak PDEs, the four questions summarize the whole part:
