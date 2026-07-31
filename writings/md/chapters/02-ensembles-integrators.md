@@ -180,6 +180,47 @@ Wire creep over years involves vacancy diffusion and dislocation climb at strain
 
 For crack nucleation, **transition path sampling** finds rare barrier-crossing trajectories. The copper wire epilogue will return to these coupling strategies; here we note MD supplies **barriers and mechanisms**, not always **timescales**.
 
+## Lab act: NPT tension on a copper nanowire segment
+
+This Lab act runs the nanowire tension test described in the opening scene — the atomistic counterpart to Part IV's elastic step and Part VII's mobility calibration.
+
+**Step 1 — build and equilibrate.** Create an fcc Cu lattice (\(a_0 \approx 3.615\,\text{Å}\)), carve a cylindrical segment (\(\sim 10\,\text{nm}\) diameter, \(\sim 50\,\text{nm}\) length), assign Mishin EAM (`pair_style eam/alloy`), minimize, then equilibrate in **NPT** at 300 K and 0 GPa for at least 50 ps (\(\Delta t = 1\,\text{fs}\)):
+
+```
+units           metal
+atom_style      atomic
+pair_style      eam/alloy
+pair_coeff      * * Cu_mishin.eam.alloy Cu
+minimize        1e-12 1e-12 1000 10000
+velocity        all create 300.0 12345 dist gaussian
+fix             1 all npt temp 300 300 0.1 iso 0 0 1
+run             50000
+```
+
+Verify: potential energy per atom stable; pressure tensor relaxes to \(\sim 0\); lattice parameter within 1% of DFT/experiment.
+
+**Step 2 — uniaxial tension at fixed temperature.** Switch to **NPT with fixed lateral stress** (or `fix deform` with NVT thermostat on lateral faces). Ramp engineering strain at \(\dot\varepsilon \sim 10^8\,\text{s}^{-1}\) (MD time scales — not the lab frame's \(10^{-3}\,\text{s}^{-1}\), but comparable to high-rate impact):
+
+```
+unfix           1
+fix             2 all npt temp 300 300 0.1 y 0 0 1 z 0 0 1
+fix             3 all deform 1 z erate 1.0e-4 units box
+compute         s all stress/atom NULL
+run             100000
+```
+
+**Step 3 — read stress–strain and compare scales.** Extract engineering stress from the pressure tensor; compare Young's modulus to Part VI (\(E \approx 110\)–\(130\,\text{GPa}\) polycrystal) and Part IX DFT \(C_{11}\). Yield and fracture stress at this strain rate explain why the engineering wire's strength differs from bulk elasticity — dislocation nucleation at the surface, not a fitted yield surface.
+
+**Step 4 — export upward.** Archive: (i) \(E\), \(\nu\) from small-strain NPT; (ii) stress at first plastic event; (iii) dislocation density from OVITO DXA if available. These feed Part VII mobility tables and Part IV constitutive sanity checks. Document potential version, cutoff, \(\Delta t\), and random seed — the reproducibility checklist below is not optional.
+
+| Check | Pass criterion | Failure mode |
+|-------|----------------|--------------|
+| NVE drift test | \(|H(t)-H(0)|/H(0) < 10^{-4}\) over 10 ps | \(\Delta t\) too large or bad neighbor skin |
+| Temperature | \(\langle T \rangle = 300 \pm 10\,\text{K}\) in production | Wrong ensemble (NVE during loading) |
+| Modulus | Within 10% of DFT/experiment | Bad EAM or unconverged equilibration |
+
+When bulk modulus matches but yield stress is half the experimental wire value, suspect **surface nucleation and strain rate**, not the integrator — the same scale-separation warning Part VII repeats for DDD.
+
 ## Reproducibility checklist
 
 Before publishing MD results on copper (or any metal):

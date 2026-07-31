@@ -192,6 +192,51 @@ Example logic for Cu bulk modulus:
 
 Archive inputs, pseudopotential files, and commit hash of the code — reproducibility is non-negotiable in multiscale research.
 
+## SCF as a generalized eigenvalue problem (Part I returns)
+
+The Kohn–Sham cycle is Part I's eigenvalue story in orbital clothing. In a plane-wave basis, each k-point Hamiltonian is a large Hermitian matrix \(\mathbf{H}[\rho]\) whose entries depend on the current density through \(V_{\text{eff}}[\rho]\). Solving
+
+\[
+\mathbf{H}[\rho]\,\mathbf{c}_n = \epsilon_n \,\mathbf{S}\,\mathbf{c}_n
+\]
+
+is a **generalized eigenvalue problem** — the same mathematical species as vibration modes \(\mathbf{K}\mathbf{v} = \omega^2 \mathbf{M}\mathbf{v}\) from [I.3](../part01-linear-algebra/03-eigenvalues.md), now with overlap matrix \(\mathbf{S}\) from non-orthogonal plane waves (often \(\mathbf{S} = \mathbf{I}\) after orthonormalization).
+
+| Part I (springs on the wire) | Part IX (electrons in Cu) |
+|------------------------------|---------------------------|
+| Stiffness \(\mathbf{K}\) | Kohn–Sham \(\mathbf{H}[\rho]\) |
+| Mass \(\mathbf{M}\) | Overlap \(\mathbf{S}\) (or identity in orthonormal PW basis) |
+| Eigenvectors \(\mathbf{v}\) | Orbital coefficients \(\mathbf{c}_n\) |
+| Eigenvalues \(\omega^2\) | Kohn–Sham energies \(\epsilon_n\) |
+| Fixed matrix | **Self-consistent** matrix: \(\mathbf{H}\) rebuilt each SCF iteration |
+
+Self-consistency is the new ingredient: eigenvectors from step \(k\) build a new density, which rebuilds \(\mathbf{H}\) for step \(k+1\). Convergence means the eigenpairs stop changing — the infinite-dimensional analogue of mesh refinement reaching a limit in Part II.
+
+Part IV's assembly loop and Part IX's SCF loop share the same engineering instinct: **do not trust outputs until the discrete system has converged**. Ill-conditioned \(\mathbf{K}\) and unconverged \(E_{\text{cut}}\) both produce structured noise dressed as physics.
+
+## Lab act: converge cutoff before trusting cohesive energy (Act VI)
+
+**Act VI** runs in parallel with the visible lab session — someone must choose moduli and potentials before the wire-scale job starts. This Lab act is the minimum DFT audit for fcc Cu: converge plane-wave cutoff on total energy per atom.
+
+**Step 1 — fixed geometry, sweep \(E_{\text{cut}}\).** Use experimental lattice constant \(a = 3.615\,\text{Å}\), PBE functional with matching pseudopotential, and a dense k-mesh (e.g. \(12\times12\times12\) Monkhorst–Pack). Run `scf` calculations at \(E_{\text{cut}} = 30, 40, 50, 60, 80\) Ry. Plot total energy per atom versus \(1/E_{\text{cut}}\) — the curve should flatten.
+
+**Step 2 — choose cutoff.** Pick the **smallest** \(E_{\text{cut}}\) where consecutive energy changes are below 1 meV/atom (tighter for forces and elastic constants). Document the choice in the project README — the same discipline Part IV demands for mesh size \(h\).
+
+**Step 3 — cross-check k-mesh.** At the chosen cutoff, repeat with k-meshes \(8^3\), \(10^3\), \(12^3\), \(14^3\). Metals require dense k-sampling because Fermi-surface integrals converge slowly; under-sampled k-meshes are the DFT analogue of too-coarse FEM on a reentrant corner.
+
+**Step 4 — export one number upward.** Report cohesive energy \(E_{\text{coh}} = (E_{\text{tot}}/N_{\text{atoms}}) - E_{\text{atom}}\) with documented cutoff, k-mesh, and functional. Part VIII's EAM fit and Part VI's sanity checks inherit this number — if no QE log exists, the multiscale chain has no floor.
+
+Example convergence table (illustrative — always run your own sweep):
+
+| \(E_{\text{cut}}\) (Ry) | \(E/N\) (eV/atom) | \(\Delta E\) (meV/atom) |
+|-------------------------|-------------------|-------------------------|
+| 40 | −3.724 | — |
+| 50 | −3.726 | 2 |
+| 60 | −3.726 | 0.3 |
+| 80 | −3.726 | 0.1 |
+
+When \(\Delta E < 1\) meV/atom, proceed to `vc-relax` and elastic-constant calculations in [IX.3](03-dft-workflows.md). Unconverged cutoff is structured noise — the DFT version of an unrefined mesh.
+
 ## Common failure modes
 
 | Symptom | Likely cause |

@@ -146,6 +146,24 @@ Point loads on the copper wire (a force at a node) are not functions in \(L^2\);
 
 Given basis functions \(\{\phi_j\}\) on a mesh, the **Gram matrix** \(G_{ij} = (\phi_i, \phi_j)_{L^2}\) is the mass matrix before assembly into physical units. Orthonormalizing the basis (via Gram–Schmidt or QR on sampled values) produces a condition-number-friendly coordinate system — the same idea as orthonormal eigenvectors, now on function spaces. Isoparametric maps (Part IV) generalize this: the Jacobian determinant weights integrals so that reference-element orthogonality becomes physical-space coupling.
 
+## Lab act: thermocouples converge to a temperature field
+
+Return to the heated copper wire from the opening scene. Steady one-dimensional conduction along the axis (no Joule heating yet — that is Act II in Part VI) satisfies \(-k T''(x) = 0\) with \(T(0) = T_L\) and \(T(L) = T_R\). The exact solution is the linear profile \(T(x) = T_L + (T_R - T_L)\, x/L\).
+
+**Step 1 — discretize with finite differences.** Place \(N\) nodes at \(x_i = i h\) with \(h = L/(N-1)\). The discrete equations are the tridiagonal system \(\mathbf{K}_T \mathbf{T} = \mathbf{b}\) with \(K_{ii} = 2k/h\), \(K_{i,i\pm1} = -k/h\), and Dirichlet rows replacing the first and last equations. This is the same tridiagonal pattern as the bar stiffness in [I.2](02-linear-maps.md) — heat and mechanics share assembly grammar.
+
+**Step 2 — refine and watch the profile stop changing.** With \(T_L = 100\,^\circ\text{C}\), \(T_R = 25\,^\circ\text{C}\), \(L = 0.5\,\text{m}\), and \(k = 400\,\text{W/(m·K)}\) for copper, solve for \(N = 3, 5, 11, 21\). Plot \(T_i\) versus \(x_i\): the broken line segments straighten toward the same linear graph. The nodal values are not converging to a **longer** vector; they are converging to a **function** \(T(x)\).
+
+**Step 3 — read the inner product.** The discrete energy \(\mathbf{T}^T \mathbf{K}_T \mathbf{T}\) approximates \(k \int_0^L (T')^2 \, dx\) — the same "energy norm" Part II will name for \(H^1\). Refining the mesh reduces the gap between discrete and continuum energy; that gap is the FEM error Part IV bounds with Céa's lemma.
+
+| \(N\) | Max error \(\max_i |T(x_i) - T_{\text{exact}}(x_i)|\) | Story beat |
+|-------|-------------------------------------|------------|
+| 3 | \(\sim 0\) (exact on linear profile for linear elements) | Three thermocouples suffice for this simple field |
+| 5 | still \(\sim 0\) for linear \(T(x)\) | More sensors, same answer — redundancy, not new physics |
+| 11+ | machine precision | The limit object is the function, not the vector length |
+
+**Step 4 — connect to the lab session.** Act II (Part VI) adds Joule heating \(\dot{q}(x)\) and makes \(T(x)\) nonlinear; Act I's mounting (Part I) already placed the first thermocouple at the grip. This exercise shows why Part II must exist: without a named space for \(T(x)\), mesh refinement is "more numbers" with no convergence target. When the profile stops changing as \(N\) grows, you have found the continuum state variable the prologue promised.
+
 ## Concept map checkpoint (Part I)
 
 Part I opened with the four questions the [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) later formalize for infinite dimensions. Before leaving \(\mathbb{R}^N\), summarize the grammar every later part inherits:

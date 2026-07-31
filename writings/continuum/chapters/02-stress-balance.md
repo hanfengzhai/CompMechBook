@@ -185,6 +185,28 @@ A complete solid mechanics problem specifies:
 
 Well-posedness requires ellipticity of the operator (Lax–Milgram for linear elasticity) or coercivity of the energy in nonlinear settings. Ill-posed problems (insufficient constraints, soft mechanisms) produce singular \(\mathbf{K}\) in FEM.
 
+## Lab act: three instruments, one wire (Act II — Warming)
+
+**Act II** is the moment the operator raises current through the mounted wire. Three instruments read three balance laws on the same specimen — mechanical, thermal, and constitutive — and Part VI is where those readings become tensors instead of dashboard numbers.
+
+**Setup.** Copper cylinder: gauge length \(L = 0.5\,\text{m}\), diameter \(d = 1\,\text{mm}\), resistivity \(\rho_e \approx 1.7\times 10^{-8}\,\Omega\cdot\text{m}\), thermal conductivity \(\kappa \approx 400\,\text{W/(m·K)}\), Young's modulus \(E = 120\,\text{GPa}\), coefficient of thermal expansion \(\alpha \approx 17\times 10^{-6}\,\text{K}^{-1}\). Current \(I = 5\,\text{A}\); ambient air \(T_\infty = 25\,^\circ\text{C}\); heat transfer coefficient \(h \approx 10\,\text{W/(m}^2\cdot\text{K)}\) on the lateral surface.
+
+**Step 1 — mechanical balance (load cell).** Before current, axial tension \(T\) gives \(\sigma_{xx} = T/A\) with \(A = \pi d^2/4\). The load cell reads force; Cauchy stress is the continuum name for that reading divided by area. Part IV's FEM mesh assembles the same equilibrium weak form this section wrote in tensor notation.
+
+**Step 2 — thermal balance (thermocouple + camera).** Joule heating per unit volume is \(\dot{q} = \rho_e J^2 = \rho_e (I/A)^2 \approx 1.1\times 10^8\,\text{W/m}^3\). For a long thin wire in steady state with lateral convection, a lumped estimate gives mid-span excess temperature \(\Delta T \sim \dot{q} d / (4 h) \approx 30\)–\(40\,^\circ\text{C}\) — order-of-magnitude consistent with the hot stripe the thermal camera shows. The thermocouple at the grip reads boundary data; the 1D profile \(T(x)\) is what Part III's weak heat equation and Part V's FVM air mesh approximate on either side of the interface.
+
+**Step 3 — constitutive coupling (why one code is not enough).** Thermal strain \(\varepsilon_{\text{th}} = \alpha \Delta T\) adds to mechanical strain. If the grips are fixed, \(\sigma_{xx} \approx E \alpha \Delta T \approx 60\)–\(80\,\text{MPa}\) of compressive thermal stress — enough to shift the load cell reading even without changing the applied end load. Multiphysics is this coupling: temperature from energy balance changes stress through Hooke's law; stress changes resistance and therefore Joule heating.
+
+| Instrument | Balance law | Continuum object | Part that discretizes |
+|------------|-------------|------------------|------------------------|
+| Load cell | Momentum | Cauchy stress \(\boldsymbol{\sigma}\) | Part IV FEM |
+| Thermocouple | Energy (boundary) | Temperature \(T\) | Part IV coupled / Part V FVM |
+| Thermal camera | Energy (field) | Heat flux \(\mathbf{q} = -\kappa \nabla T\) | Part V FVM on air domain |
+
+**Step 4 — export discipline.** Write down which quantities pass between codes: Robin BC \( - \kappa \partial T / \partial n = h(T - T_\infty)\) at the wire surface links Part IV's solid mesh to Part V's fluid mesh; \(\varepsilon_{\text{th}}(T)\) links the thermal solution back to mechanical equilibrium. This is the same upward/downward contract the epilogue will formalize — here at the engineering scale, before dislocations or atoms enter the story.
+
+When the three instruments disagree (hot stripe but cold grip, or load cell drift without applied force change), the fault is usually **missing coupling**, not a bad sensor. That diagnostic habit survives every scale descent in Parts VII–IX.
+
 ## Concept map checkpoint (balance laws)
 
 Parts I–V built the same four-question discipline the Functional Analysis Notes use — object, structure, theorem, failure mode. At the balance-law scale the answers split across the three instruments in the opening scene:

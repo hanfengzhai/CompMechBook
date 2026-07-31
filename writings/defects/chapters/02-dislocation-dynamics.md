@@ -200,6 +200,40 @@ Before exporting DDD hardening laws to crystal plasticity or FEM:
 
 Unvalidated DDD is animated elasticity with pretty lines — the same warning Part VIII repeats for unconverged MD and Part IX repeats for unconverged plane-wave cutoff.
 
+## Lab act: read the hardening bend from forest density (Act IV)
+
+**Act IV** is the upward bend on the force–displacement trace after yield. Part VI fitted it with a scalar hardening modulus \(H\); this Lab act estimates the same bend from **dislocation forest density** — the mesoscale object DDD simulates.
+
+**Step 1 — Taylor hardening on paper.** For fcc copper, Taylor's relation gives critical resolved shear stress \(\tau = \tau_0 + \alpha \mu b \sqrt{\rho}\), with shear modulus \(\mu \approx 48\,\text{GPa}\), Burgers magnitude \(b \approx 2.5\times 10^{-10}\,\text{m}\), and \(\alpha \approx 0.3\). Cold-drawn wire often carries \(\rho \sim 10^{14}\)–\(10^{15}\,\text{m}^{-2}\); annealed copper starts near \(\rho \sim 10^{12}\,\text{m}^{-2}\).
+
+**Step 2 — convert to uniaxial stress.** With Taylor factor \(M \approx 3.06\) for typical polycrystal texture, uniaxial yield rise is \(\Delta\sigma \approx M \Delta\tau \approx M \alpha \mu b (\sqrt{\rho_{\text{drawn}}} - \sqrt{\rho_{\text{annealed}}})\). Using \(\rho_{\text{drawn}} = 5\times 10^{14}\,\text{m}^{-2}\) and \(\rho_{\text{annealed}} = 10^{12}\,\text{m}^{-2}\):
+
+\[
+\Delta\sigma \approx 3.06 \times 0.3 \times 48\times 10^9 \times 2.5\times 10^{-10} \times (7.1\times 10^7 - 3.2\times 10^6) \approx 80\,\text{MPa}.
+\]
+
+That order-of-magnitude matches the gap between annealed (\(\sim 70\,\text{MPa}\)) and half-hard (\(\sim 150\)–\(200\,\text{MPa}\)) copper — the same bend the load cell showed in the prologue.
+
+**Step 3 — OpenDiS-style simulation checklist.** On a single crystal with one active slip system:
+
+1. Initialize Frank–Read sources or a relaxed random loop network.
+2. Load elastic constants from Part IX DFT (or handbook \(C_{ij}\)).
+3. Apply constant strain rate \(\dot\gamma\) matched to the tensile frame.
+4. Log \(\rho(\gamma)\) and resolved stress \(\tau(\gamma)\) each increment.
+5. Refine segment length until \(\tau\) at fixed \(\gamma\) changes by \(< 5\%\).
+
+Plot \(\tau\) versus \(\sqrt{\rho}\): a straight line confirms Taylor hardening; curvature signals link-length effects or inactive slip systems waking up.
+
+**Step 4 — connect to Part VI.** Export \(\tau(\gamma)\) and \(d\rho/d\gamma\) to replace fitted \(H\) in the return-mapping loop. The load cell bend is no longer a magic constant — it is forest statistics you can simulate, archive, and trace to mobility tables from Part VIII MD.
+
+| Quantity | Phenomenological (Part VI) | DDD (this Lab act) |
+|----------|---------------------------|---------------------|
+| Hardening | \(\sigma_y = \sigma_{y0} + H\alpha\) | \(\tau(\rho)\) from line motion |
+| History | Internal variable \(\alpha\) | Link-length histograms, \(\rho(\gamma)\) |
+| Calibration | One tensile test | Mobility + \(C_{ij}\) + network topology |
+
+Turn back to the mounted wire when the FEM curve matches experiment in bulk but the hardening slope changes with mesh refinement — that is the signal Part VII exists to answer.
+
 ## Concept map checkpoint (dislocation dynamics)
 
 This chapter's four questions — scoped to **segment-network simulation**, not the full Part VII arc:
