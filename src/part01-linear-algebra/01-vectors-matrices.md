@@ -150,6 +150,23 @@ Computational mechanics does not replace linear algebra with something exotic. I
 
 Finite volume methods (Part V) assemble conservation balances that also reduce to sparse linear systems — different discretization philosophy, same \(\mathbf{A}\mathbf{x}=\mathbf{b}\) at the end of the day. Molecular dynamics integrators advance a state vector by matrix–vector products with the Hessian of an interatomic potential. The copper wire at every scale eventually asks: what is the state vector, and what matrix maps it forward or toward equilibrium? Part I answers that question in finite dimensions; Part II and Part III lift it to fields.
 
+## Lab act: three nodes, one load cell reading (Act I — Mounting)
+
+**Act I** in the lab is mounting: the wire sits in wedge grips, the load cell reads zero, and the first honest model is a chain of bar elements. Before any current flows or any grip displacement ramps, write the numbers that a code would assemble on the first timestep.
+
+Take a 1 m segment of the copper wire modeled as **three axial bar nodes** at \(x = 0, 0.5, 1.0\,\text{m}\). Cross-section \(A = 1\,\text{mm}^2\), Young's modulus \(E = 120\,\text{GPa}\). Each half-meter element has stiffness \(k = EA/L = 2.4 \times 10^8\,\text{N/m}\). With the left grip fixed (\(u_1 = 0\)) and a prescribed end displacement \(u_3 = 10\,\mu\text{m}\) at the right grip (still zero force on the load cell until the ramp begins — this is the **boundary data** the matrix will enforce):
+
+| Step | Action | Result |
+|------|--------|--------|
+| 1 | Write \(\mathbf{K}\) for three nodes (two elements) | Tridiagonal pattern from the worked example above |
+| 2 | Apply BCs: eliminate row/col 1; move \(u_3\) to the load side | Reduced system for \(u_2\) only, or full system with constraint |
+| 3 | Solve \(\mathbf{K}\mathbf{u}=\mathbf{f}\) | Middle node displacement \(u_2 \approx 5\,\mu\text{m}\) (halfway, by symmetry of uniform bar) |
+| 4 | Recover reaction force \(F = k(u_3 - u_2)\) | \(\approx 1.2\,\text{kN}\) — the number the load cell will read when the grip holds \(10\,\mu\text{m}\) |
+
+In NumPy, the pattern is `K = k * np.array([[1,-1,0],[-1,2,-1],[0,-1,1]])` followed by `np.linalg.solve` on the reduced system. No FEM package required — only the grammar this chapter names.
+
+When the operator later clicks **Start** and the force–displacement trace begins its linear climb, every point on that curve is a sequence of solves exactly like this one, with \(\mathbf{K}\) growing from three nodes to millions. Part I teaches the three-node version so the million-node version is recognizable, not magic.
+
 ## Bridge
 
 With vectors and matrices in hand, we next examine **linear maps** abstractly: change of basis, coordinate transformations, and the assembly operators that translate element-level physics into global systems. The bar element stiffness in the worked example above was written in local node coordinates; connecting two elements requires a change of coordinates — the subject of the next chapter.

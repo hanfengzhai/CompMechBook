@@ -170,6 +170,35 @@ Assembly is where the abstract meets the concrete:
 
 The copper wire's displacement field, once meshed, is a vector \(\mathbf{U} \in \mathbb{R}^N\). Assembly is the map from continuum physics to that vector equation.
 
+## Lab act: scatter one bar element into global \(\mathbf{K}\) (Act III — Pulling)
+
+**Act III** is where grip displacement becomes numbers on the load cell. Assembly is the backstage step — each `scatter` into \(\mathbf{K}\) and \(\mathbf{f}\) is the finite-dimensional echo of the energy inner product Part II defined and Part III minimized.
+
+Reproduce the three-node bar from [I.1](../part01-linear-algebra/01-vectors-matrices.md) in **assembly language**:
+
+| Object | Symbol | Value for one element \((1 \to 2)\) |
+|--------|--------|--------------------------------------|
+| Local stiffness | \(\mathbf{k}^e\) | \(k\begin{bmatrix}1&-1\\-1&1\end{bmatrix}\) |
+| Local DOF map | \(\mathbf{L}_e\) | Maps local \((u_1, u_2)\) to global indices |
+| Global contribution | \(\mathbf{K} \mathrel{+}= \mathbf{L}_e^T \mathbf{k}^e \mathbf{L}_e\) | Adds into rows/cols 1–2 of global \(\mathbf{K}\) |
+
+For **two elements** on three nodes, run the scatter twice — element \((1,2)\) then \((2,3)\) — and verify the middle row of \(\mathbf{K}\) has coefficient \(2k\) on the diagonal (node 2 feels both neighbors). This is the same tridiagonal pattern Part I derived by hand; here it is the **scatter loop** every commercial code runs.
+
+Optional check in Python:
+
+```python
+import numpy as np
+k = 2.4e8
+ke = k * np.array([[1, -1], [-1, 1]])
+K = np.zeros((3, 3))
+for (i, j) in [(0, 1), (1, 2)]:
+    L = np.zeros((3, 2)); L[i, 0] = L[j, 1] = 1
+    K += L.T @ ke @ L
+# K matches the tridiagonal from I.1
+```
+
+When the linear elastic climb on the force–displacement trace disagrees with experiment, check this scatter before blaming constitutive physics — a transposed connectivity array or wrong DOF map corrupts the story before dislocations or yield enter.
+
 ## Bridge
 
 Global assembly is the map from continuum physics to \(\mathbf{K}\mathbf{U}=\mathbf{F}\) — but the integrals inside each element depend on **shape functions**, **reference-to-physical maps**, and **quadrature rules**. The accuracy, cost, and robustness of the method — whether P1 triangles suffice or Q2 elements are needed, whether reduced integration causes hourglassing — are determined in the next chapter.

@@ -180,6 +180,22 @@ The chapters ahead do not ask you to memorize abstract definitions for their own
 
 With that map in hand, we turn to the first technical layer: how to measure distance, size, and convergence in spaces of functions.
 
+## Lab act: refine the bar mesh and watch a field appear (Act III prelude)
+
+**Act III** in the lab is the force–displacement ramp — but the operator cannot trust that curve until mesh refinement has a **limit object** to converge toward. This chapter's argument is not abstract: you can run it on the same three-node bar from [I.1](../part01-linear-algebra/01-vectors-matrices.md) in five minutes.
+
+Fix the left end (\(u=0\)), prescribe \(u=10\,\mu\text{m}\) at the right, and solve for \(N = 5, 20, 100\) equally spaced nodes along the 1 m wire. Plot nodal displacement \(u_i\) against node position \(x_i\):
+
+| Mesh size \(N\) | What you see | What Part II names |
+|-----------------|--------------|-------------------|
+| 5 | Piecewise linear, kinks at nodes | \(u_h \in V_h\), a finite-dimensional subspace |
+| 20 | Smoother polyline, same end values | Finer \(V_h\), same boundary data |
+| 100 | Visually indistinguishable from a straight line | \(u_h \to u\) in \(H^1\) for this uniform bar |
+
+The **limit** \(u(x) = 10x\,\mu\text{m}\) is a function, not a longer vector. The energy \(\mathbf{u}^T\mathbf{K}\mathbf{u}\) on each mesh approximates \(\int_0^1 \frac{1}{2} E A (u')^2\, dx\) — the strain-energy norm Part II will write as \(\|u\|_{H^1}\). When two meshes with the same \(N\) but different connectivity give different curves, the relevant question is not "how many DOFs?" but "how well does \(V_h\) approximate the energy space?" — exactly the distinction this chapter draws between engineering vectors and continuum fields.
+
+Run this experiment before reading [II.2](02-normed-spaces.md). Norms and completeness are the theorems that make the visual convergence judgment honest.
+
 ## Bridge
 
 With motivation in place, we begin where all analysis begins: measuring distance and size. Metric spaces formalize convergence before norms specialize the notion of length. Normed spaces carry the energy and mean-square measures that mechanics demands; completeness — the property that Cauchy sequences converge inside the space — distinguishes the function spaces where finite element limits live from spaces where discrete solutions could converge to something outside the admissible class.

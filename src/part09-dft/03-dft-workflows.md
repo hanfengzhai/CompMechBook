@@ -249,6 +249,23 @@ Part IX followed the DFT coursework arc from Born–Oppenheimer through Quantum 
 
 The export table above is where the **downward derivation** of the ladder begins: \(E_{\text{coh}}\), \(C_{ijkl}\), stacking-fault energies, and phonons feed MD potentials, DDD mobilities, and continuum moduli. A wire simulation that imports \(E = 120\) GPa without asking whether it came from Voigt-averaged DFT, room-temperature experiment, or cold-worked polycrystal data carries silent assumptions this part makes explicit. The epilogue asks how disciplined teams wire these exports into multiscale workflows.
 
+## Lab act: archive the foundation run before the wire-scale solve (Act VI — Foundation)
+
+**Act VI** in the lab is the offline foundation run — the DFT calculation that must finish before anyone trusts the EAM potential, the mobility table, or the Young's modulus in the FEM input deck. This chapter's workflow discipline is not bureaucracy; it is the audit trail the epilogue's multiscale afternoon will ask you to produce.
+
+Before closing Part IX, create one folder — paper or digital — for bulk fcc Cu with this minimum metadata:
+
+| File / record | Must contain | Feeds |
+|---------------|--------------|-------|
+| `cu.scf.in` | Functional (PBE), cutoff (Ry), k-mesh, converged total energy | \(E_{\text{coh}}\), \(a_0\) |
+| `cu.relax.out` | Final forces \(< 10^{-4}\) Ry/Bohr, relaxed \(a\) | Equilibrium lattice for MD box |
+| `cu.elastic/` | ±0.5% strain cells, symmetric \(C_{ij}\) | Part VI moduli; Part IV elastic step |
+| `README.md` | Pseudo version, QE version, date, who ran it | Team audit; epilogue handoff |
+
+The pedigree checklist in [VIII.3](../part08-md/03-ab-initio-and-coarse-graining.md#bridge-to-part-ix) maps each row to a Part VIII use. If your project folder has only "EAM fit to experiment" with no `pw.x` log, **Act VI is missing** — and the wire-scale FEM run carries silent assumptions this chapter makes explicit.
+
+Run one convergence check before archiving: double the plane-wave cutoff and confirm \(E_{\text{tot}}\) changes by less than 1 meV/atom. Part II taught that honest FEM requires a convergence target in \(H^1\); Part IX teaches the same instinct at the electronic scale — SCF energy must settle before any number climbs the ladder.
+
 ## Bridge to the epilogue
 
 We have reached the finest rung of the spatial ladder for equilibrium properties of bulk copper: electrons, orbitals, self-consistency, convergence, exports. The copper wire at human scale — sag, Joule heat, work hardening, possible fracture — never lives here. It lives in the **coupling** of what each part computes.

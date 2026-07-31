@@ -98,6 +98,20 @@ Part I showed that every mesh gives linear algebra; Part II names the **limit ob
 
 **Act III** in the lab is the force–displacement ramp — but the operator cannot trust that curve until **Act III in the book** has a convergence target. Part II supplies the function spaces (\(H^1\), \(L^2\)) and the theorems (Lax–Milgram, Galerkin best approximation) that make mesh refinement honest. When the grips tighten in Part IV, every node value is a projection of a field defined here. Read Part II as the backstage justification for the linear elastic climb on the load cell.
 
+### What you should be able to do after Part II
+
+Each chapter adds one move to a workflow that turns "the mesh looks smooth" into a theorem:
+
+| After chapter | Skill on the copper wire | Minimal artifact |
+|---------------|--------------------------|------------------|
+| II.1 | Argue why \(N\to\infty\) needs a function \(u(x)\), not a longer vector | Mesh-refinement plot from [I.1](../part01-linear-algebra/01-vectors-matrices.md) Lab act |
+| II.2 | Name the norm that measures elastic energy; state what completeness buys | \(\|u\|_{H^1}\) vs \(\|u\|_{L^2}\) on a hat function |
+| II.3 | Project a load onto a subspace; cite Riesz for "load as functional" | Best approximation in a 2-D subspace of \(H^1\) |
+| II.4 | Distinguish strong, weak, and weak\* convergence | Sequence of hat functions on refining meshes |
+| II.5 | Connect discrete eigenvalues to operator spectrum | \((\mathbf{K},\mathbf{M})\) eigenvalues vs bending-mode limit |
+
+None of these require running a commercial FEM code — but each one is the infinite-dimensional justification for what Part IV assembles. If you can state the weak form of \(-u''=f\) on \((0,1)\), name the space \(u \in H^1_0\), and explain why Galerkin is projection rather than guesswork, you have the core of ME 412 on the copper wire. Parts III–IV replace definitions with PDEs and loops; the **moves** stay the same.
+
 ## Bridge
 
 Part I ended with a promise: as the mesh refines, the copper wire's displacement and temperature fields live in infinite-dimensional spaces, not in \(\mathbb{R}^N\) for any fixed \(N\). [I.4](../part01-linear-algebra/04-toward-infinity.md#bridge-to-part-ii) named the three-step bridge — weak form, subspace \(V_h \subset H^1\), matrix system — and deferred steps 1–2 to this part. The first chapter below makes that promise precise: why weak forms appear, why classical smoothness fails at corners, and why the stiffness matrix is a Galerkin projection rather than an arbitrary sparse array.

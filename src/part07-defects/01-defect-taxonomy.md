@@ -154,6 +154,22 @@ Elastic fields of dislocations assume a known **core structure** — the arrange
 
 The scale hierarchy is not a one-way street. Coarse models suggest where fine models must focus; fine models supply parameters coarse models cannot compute from first principles alone.
 
+## Lab act: read the slip lines before the load cell bends (Act IV — Hardening)
+
+**Act IV** in the lab is when the force–displacement trace bends upward after yield. Part VI fitted that bend with phenomenological \(H\) and \(\sigma_{y0}\); this chapter names the **objects** that bend was homogenizing.
+
+Before running DDD, inspect the cold-drawn copper wire under a low-power microscope (or a published EBSD micrograph of drawn copper):
+
+| Defect class | What to look for on the wire | What the taxonomy calls it |
+|--------------|----------------------------|----------------------------|
+| **Line** | Faint parallel streaks on the surface — slip traces on {111} planes | Edge/screw dislocations; forest density \(\rho\) |
+| **Surface** | Grain boundaries visible as etched lines if polycrystalline | Barriers to slip; sources for new segments |
+| **Point** | Not visible optically; inferred from resistivity drop after anneal | Vacancies frozen by drawing; recovery on heating |
+
+Counting lines is not required — **classifying** is. Ask: which defect type carries the history cold drawing wrote into the wire before the test began? The answer is **line defects**: a forest whose density \(\rho\) makes Taylor hardening \(\tau \propto \sqrt{\rho}\) the mesoscale origin of the \(H\) that Part VI borrowed without derivation.
+
+When \(\rho\) is only a label on an FEM input deck, the taxonomy has not yet become geometry. [VII.2](02-dislocation-dynamics.md) is where the forest becomes computable lines.
+
 ## Bridge
 
 Dislocation dynamics simulates line defects directly — too coarse for every atom, too fine for pure FEM. It is the mesoscale chapter of our copper wire story: the place where work hardening becomes geometry and statistics rather than a fitted curve.
