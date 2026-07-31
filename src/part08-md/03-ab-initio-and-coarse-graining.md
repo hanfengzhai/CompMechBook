@@ -251,4 +251,18 @@ Part VIII assumed Born–Oppenheimer surfaces and fit potentials to match these 
 
 Return to the prologue's **Act VI — Foundation**: before any wire-scale FEM run, someone chose Young's modulus, stacking-fault energy, and a mobility table — parameters whose pedigree this chapter traced to EAM fits and coarse-grained exports. Part IX re-derives each from first principles so the ladder has a floor, not folklore. The [Part IX opening](../part09-dft/00-opening.md) frames that descent explicitly; [IX.1](../part09-dft/01-born-oppenheimer.md) separates fast electrons from slow nuclei before the Kohn–Sham machinery begins.
 
+### Pedigree checklist before the epilogue
+
+Linear readers should carry this checklist into Part IX — each row is a **contract** the epilogue's multiscale afternoon will ask you to honor:
+
+| Export upward | Minimum DFT evidence (Part IX) | Typical MD use (Part VIII) |
+|---------------|-------------------------------|----------------------------|
+| Lattice parameter \(a_0\) | SCF energy vs volume (Murnaghan fit) | EAM equilibrium box in LAMMPS |
+| \(E_{\text{coh}}\) | Total energy per atom at equilibrium | Bulk modulus sanity check on EAM |
+| \(C_{11}, C_{12}\) | Strained fcc cells (±0.5% uniaxial) | NPT elastic response vs DFT |
+| \(\gamma_{\text{sf}}\) | Relaxed stacking-fault slab | Partial dislocation separation in DDD |
+| \(E_f^v\) | 3×3×3 supercell, one vacancy removed | Diffusion/creep at high \(T\) |
+
+If a row in your project folder has only "EAM fit to experiment" with no QE `pw.x` log, Part IX is the audit chapter that closes the loop. Part II taught that honest FEM requires a convergence target in \(H^1\); Part IX teaches that honest multiscale mechanics requires a **convergence target in SCF energy** — same instinct, finer rung.
+
 Turn the page when the EAM potential matches bulk moduli but no one can cite the DFT input deck that produced it — that is the signal the foundation run is missing, and Part IX is where the audit starts.

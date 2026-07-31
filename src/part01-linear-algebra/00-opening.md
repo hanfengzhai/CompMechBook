@@ -6,6 +6,17 @@ We begin where most readers already have intuition: vectors, matrices, linear ma
 
 Four chapters follow the **Linear Algebra Notes** in [`writings/linear-algebra/`](../../writings/linear-algebra/): numbered files, mechanics examples, and **Bridge** sections at each handoff. Nothing here requires functional analysis; everything here prepares for it.
 
+## Chapter guide
+
+| Chapter | Wire story beat | Core object | Handoff |
+|---------|-----------------|-------------|---------|
+| [I.1](01-vectors-matrices.md) | Grips fixed, load cell at zero | \(\mathbf{u}\), \(\mathbf{K}\), \(\mathbf{f}\); energy \(\mathbf{u}^T\mathbf{K}\mathbf{u}\) | Sparsity from local coupling → assembly in I.2 |
+| [I.2](02-linear-maps.md) | Element local axes vs global numbering | Linear maps, bases, \(\mathbf{L}_e^T \mathbf{k}_e \mathbf{L}_e\) | Symmetry and SPD → eigenmodes in I.3 |
+| [I.3](03-eigenvalues.md) | Tap the wire; it rings at discrete pitches | \(\mathbf{K}\mathbf{v} = \omega^2 \mathbf{M}\mathbf{v}\); modal superposition | Decoupled modes → limit \(N\to\infty\) in I.4 |
+| [I.4](04-toward-infinity.md) | Mesh refines; fields replace nodal values | Operators, Gram matrices, preview of \(L^2\), \(H^1\) | [Bridge to Part II](04-toward-infinity.md#bridge-to-part-ii) |
+
+Read in order. Each chapter ends with a **Bridge** that states why the next chapter must exist; skipping ahead to eigenvalues without assembly is like listening to the wire's vibration modes before naming the springs that carry tension.
+
 ## Scene
 
 The prologue placed a cold-drawn copper wire under tension — heated by current, cooled by air, strengthened by a dislocation forest invisible at the engineering scale. Before we climb that ladder rung by rung, we need the **syntax** every rung shares: states collected into vectors, equilibrium written as linear systems, complexity decoupled by eigenmodes.

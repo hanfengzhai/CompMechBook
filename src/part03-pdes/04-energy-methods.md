@@ -66,6 +66,23 @@ Hyperelastic materials use nonlinear strain energy \(\psi(\mathbf{F})\); Neo-Hoo
 | Neo-Hookean | \(\tfrac{\mu}{2}(I_1 - 3) - \mu\ln J + \tfrac{\lambda}{2}(J-1)^2\) | Moderate rubber-like stretch |
 | Phase-field fracture | \(\psi(\boldsymbol{\varepsilon}) + G_c \gamma(\phi)\) | Crack on wire surface |
 
+### Worked example: thermoelastic energy on the wire
+
+Return to prologue **Act II — Heating**: steady current raises the copper wire's temperature above room value, and thermal expansion adds strain even before the grips ramp load. The coupled stationary problem minimizes a **sum of energies** — mechanical plus thermal — subject to the heat equation as a constraint (or solved in staggered fashion).
+
+For a 1D bar of length \(L\), cross-section \(A\), fixed at \(x=0\), free at \(x=L\) with tensile traction \(F\), and Joule heating \(q(x)\):
+
+\[
+\Pi(u, T) = \int_0^L \left[\tfrac{EA}{2}\left(u' - \alpha(T - T_{\text{ref}})\right)^2 + \tfrac{kA}{2}(T')^2\right] dx - F\, u(L).
+\]
+
+Stationarity in \(u\) at fixed \(T\) gives the mechanical equilibrium with thermal eigenstrain \(\varepsilon_{\text{th}} = \alpha(T - T_{\text{ref}})\). Stationarity in \(T\) gives steady conduction \(-(kT')' = q(x)/A\) with natural boundary conditions at the ends. The two fields **talk through \(\alpha\)**:
+
+1. Heat raises \(T\); thermal strain lowers effective mechanical strain and stress at fixed grip displacement.
+2. Mechanical work done at \(x=L\) does not appear in the heat equation at steady state — but transient heating (Act II in lab time) couples through \(\rho c_p \partial T/\partial t\).
+
+Numbers for copper at modest \(\Delta T = 50\,\text{K}\): \(\alpha \approx 17 \times 10^{-6}\,\text{K}^{-1}\), so \(\varepsilon_{\text{th}} \approx 8.5 \times 10^{-4}\). With \(E = 120\,\text{GPa}\), the thermal stress if expansion were fully constrained would be \(\sigma_{\text{th}} \approx E \varepsilon_{\text{th}} \approx 100\,\text{MPa}\) — comparable to yield in annealed copper and a reminder that **Act II and Act III are not independent** on the same specimen. Part IV's thermoelastic assembly (Chapter 4) and Part V's conjugate heat transfer implement this split functional on the same mesh; Part VI names the tensors inside the integrand.
+
 ## Rayleigh–Ritz method
 
 The **Rayleigh–Ritz** method minimizes \(\Pi\) over a finite-dimensional subspace \(V_h\):

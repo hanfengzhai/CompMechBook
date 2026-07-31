@@ -157,6 +157,18 @@ Part VI named the fields that Parts IV and V already approximated on meshes. Bef
 
 The copper wire under rising load follows this arc: Part IV's mesh computes \(\mathbf{u}\); Part VI explains that \(\mathbf{u}\) minimizes energy until yield; this chapter adds Newton–Raphson and \(J_2\) plasticity when the load cell curve bends. When the mesh is refined but the hardening law is wrong, the fault is not discretization — it is **constitutive physics** that lives at the dislocation scale. Part VII supplies that physics.
 
+### Three signals to descend from Part VI to Part VII
+
+Continuum mechanics does not announce "switch to dislocations" with a banner. The copper wire gives three practical signals that the smooth-field picture has reached its honest limit — the same signals an operator notices at the load cell:
+
+| Signal | What you observe | What Part VI can do | What Part VII must add |
+|--------|------------------|---------------------|------------------------|
+| **1. History** | Cold-drawn wire yields higher than annealed wire at the same geometry | Fit \(\sigma_{y0}\) and \(H\) from one test | Forest density \(\rho\) frozen by drawing; Taylor hardening from line statistics |
+| **2. Mesh independence failure** | Halving \(h\) does not fix the hardening slope after yield | Refine constitutive parameters \(H(\dot\varepsilon, T)\) | DDD link-length distributions that generate \(H\), not fit it |
+| **3. Geometry at the core** | Notch root stress blows up; crack tip needs regularization | Cutoff radius or phase-field regularization | Burgers circuit and dislocation core structure from atomistics (Part VIII) |
+
+If only signal 1 appears, phenomenological \(J_2\) plasticity may suffice for engineering design. If signals 2 or 3 appear on the same specimen, the narrative descends — not because continuum mechanics failed, but because its **homogenization assumption** (smooth fields, no explicit defects) was never meant to hold at the mesoscale. Part VII is the first part that simulates the objects Part VI homogenized.
+
 ## Bridge to Part VII
 
 Linear and nonlinear elasticity — geometric and material — exhaust what a **continuum field** can say before its assumptions fail at defects. The copper wire's cold-worked strength is not in \(\mathbb{C}\); it is in the dislocation forest frozen by manufacturing. Part VII names those defects, simulates their motion, and exports the hardening laws that make nonlinear FEM honest.
