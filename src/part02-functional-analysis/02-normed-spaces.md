@@ -191,6 +191,30 @@ When \(k\) is bounded above and below by positive constants, \(\|\cdot\|_a\) is 
 
 **Maximum principle and \(L^\infty\).** Elliptic maximum principles bound \(\|u\|_{L^\infty}\) by boundary data and source terms for classical solutions. Weak solutions in \(H^1\) do not automatically lie in \(L^\infty\) in high dimension — another instance where the chosen norm encodes what we can guarantee. For the wire in one space dimension, \(H^1(0,L) \hookrightarrow L^\infty(0,L)\), so pointwise values along the specimen are well-defined without extra regularity.
 
+## Lab act: compare energy norms on a hat function (Act III prelude)
+
+**Act III** in the lab will ramp grip displacement and record force on the load cell. Before that ramp, Part II must answer a quieter question: *when two meshes disagree slightly, which norm tells us they disagree?* The answer is not "maximum nodal difference" alone — it is the **energy norm** tied to the bilinear form the wire obeys.
+
+Take the 1D bar from [I.1](../part01-linear-algebra/01-vectors-matrices.md) with \(L = 1\,\text{m}\), fixed left end, and a **hat function** trial displacement on a uniform mesh with spacing \(h\):
+
+\[
+u_h(x) = \begin{cases} x/h & 0 \le x \le h \\ 1 & h \le x \le L \end{cases}
+\]
+
+(Dirichlet \(u(0)=0\), \(u(L)=1\) enforced at nodes; the kink at \(x=h\) is the whole point.)
+
+| Quantity | Formula on one element | What it measures |
+|----------|------------------------|------------------|
+| \(\|u_h\|_{L^2}^2\) | \(\int_0^L u_h^2 \, dx\) | Mean-square displacement — smooth-looking error |
+| \(\|u_h\|_{H^1}^2\) | \(\int_0^L (u_h')^2 \, dx + \|u_h\|_{L^2}^2\) | Strain energy plus \(L^2\) content |
+| \(\|u_h'\|_{L^2}^2\) | Spike \(\sim 1/h\) at the kink | **Dominates** as \(h \to 0\) — the norm sees the corner |
+
+Compute \(\|u_h'\|_{L^2}^2 \approx 1/h\) from the slope jump: one element carries gradient \(1/h\), width \(h\), so the integral of \((u')^2\) is \(\mathcal{O}(1/h)\). Refining the mesh **without** smoothing the kink does not drive the energy norm to zero — completeness in \(H^1\) guarantees a limit exists, but a sequence of kinky hats is not Cauchy in the **energy** norm unless the kink moves toward a smooth target.
+
+In Python or a spreadsheet, plot \(\|u_h\|_{L^2}\) and \(\|u_h'\|_{L^2}\) versus \(h\) for three mesh sizes (\(h = 0.25, 0.1, 0.05\,\text{m}\)). The \(L^2\) norm changes slowly; the \(H^1\) seminorm blows up as the kink sharpens. That is the numerical face of "classical \(C^2\) smoothness fails at corners" from [II.1](01-motivation.md) — and the reason Act III's linear elastic climb is trustworthy only after weak forms (Part III) replace pointwise derivatives with norms that measure strain, not just nodal values.
+
+When the operator later reads a converged FEM log reporting "energy error," this table is what the code is counting.
+
 ## Bridge
 
 Norms measure size; inner products measure angle and projection. When the norm comes from an inner product via \(\|u\| = \sqrt{(u,u)}\), geometry enters: orthogonality, best approximation, Riesz representation. **Hilbert spaces** — complete inner-product spaces — are where Galerkin orthogonality and energy minimization become rigorous.

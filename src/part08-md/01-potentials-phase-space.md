@@ -182,6 +182,28 @@ run             50000
 
 Potentials define forces; integrators and statistical ensembles define how trajectories sample the correct thermodynamic state — the subject of the next chapter.
 
+## Lab act: EAM lattice constant from energy minimization (Act V — Notch prelude)
+
+**Act V** in the lab is the notch — stress concentration at a geometric defect. MD resolves the atomic distortion that continuum \(\mathbf{F}\) smooths over. Before running dynamics, **calibrate the ink**: the EAM lattice parameter \(a_0\) and cohesive energy must match bulk copper at 300 K.
+
+Build a minimal FCC copper supercell (4×4×4 conventional cells, 256 atoms) in LAMMPS with `pair_style eam/alloy` and a published `Cu.eam.alloy` file:
+
+| Step | LAMMPS command / action | Expected outcome |
+|------|-------------------------|------------------|
+| 1 | `units metal`; `atom_style atomic` | Å, ps, eV consistent |
+| 2 | `lattice fcc 3.615` (initial guess); `create_box` | Starting geometry |
+| 3 | `minimize 1e-12 1e-12 1000 10000` at 0 K | Relaxed \(a_0 \approx 3.615\,\text{Å}\) (potential-dependent) |
+| 4 | Read `pe` per atom; multiply by atoms/mol | Cohesive energy \(\approx 3.5\,\text{eV/atom}\) (literature ballpark) |
+| 5 | `compute pe/atom`; dump core region at future notch site | Baseline before any defect is introduced |
+
+Sanity checks before exporting to Part VII or Part IX:
+
+- **Pressure** after minimization: \(\langle p \rangle \approx 0\) in NPT-ready cell (use `fix npt` in [VIII.2](02-ensembles-integrators.md) for finite-T).
+- **Bulk modulus**: small volumetric strain \(\pm 0.5\%\), fit \(dP/dV\) — compare to experimental \(\sim 140\,\text{GPa}\) order-of-magnitude.
+- **Units**: eV/Å³ vs GPa conversion documented in the run log (see [IX.3](../part09-dft/03-dft-workflows.md) unit table).
+
+This 256-atom minimization runs in seconds on a laptop — it is the **foundation archive** Part IX's DFT run will supersede when ab initio parameters are available. Part VII's OpenDiS simulation does not need the full supercell, but its Burgers vector magnitude \(b = a_0/\sqrt{2}\) for FCC must match the \(a_0\) trusted here. When the notch MD run in Act V nucleates dislocations, the core structure is this potential's responsibility — not the Peach–Köhler law alone.
+
 ## Bridge
 
 Potentials define forces; integrators and statistical ensembles define how trajectories sample the correct thermodynamic state. A copper wire at 300 K is not a zero-Kelvin energy minimum — it is a canonical or isothermal–isobaric sample of phase space.

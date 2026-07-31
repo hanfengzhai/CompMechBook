@@ -171,4 +171,33 @@ Recall Part III's closing pipeline: strong PDE → weak form → **energy minimu
 
 Return to the [prologue](../../prologue/00-many-scales.md): **Act III — Pulling** turns abstract Galerkin orthogonality into numbers the load cell trusts. Part I named \(\mathbf{K}\mathbf{u}=\mathbf{f}\); Part II proved the limit lives in \(H^1\); Part III wrote the bilinear form. [IV.2](02-galerkin-assembly.md) is where the operator becomes code — the stiffness matrix is not magic, but the Gram matrix of the energy inner product on \(V_h\).
 
+## Lab act: weighted residual on two bar elements (Act III — Pulling)
+
+**Act III** ramps end displacement; the load cell reads reaction force. Weighted residuals are the **orthogonality condition** that turns that ramp into a matrix system before any industrial assembly loop obscures the pattern.
+
+Reuse the three-node bar from [I.1](../part01-linear-algebra/01-vectors-matrices.md): \(L = 1\,\text{m}\), \(EA = 2.4 \times 10^8\,\text{N·m}\), \(u(0)=0\), prescribed \(u(1)=10\,\mu\text{m}\). Discretize with **two linear hat functions** \(\phi_1(x)\) on \([0,0.5]\), \(\phi_2(x)\) on \([0.5,1]\) (standard FEM basis).
+
+Weak form for \(-(EA u')' = 0\):
+
+\[
+\int_0^L EA u_h' v' \, dx = 0 \quad \forall v \in V_h.
+\]
+
+With \(u_h = U_1 \phi_1 + U_2 \phi_2\) and Galerkin test \(v = \phi_i\):
+
+| Index \(i\) | Residual equation | Physical meaning |
+|-------------|-------------------|------------------|
+| \(i=1\) | \(K_{11} U_1 + K_{12} U_2 = 0\) | Force balance at interior node |
+| \(i=2\) | \(K_{21} U_1 + K_{22} U_2 = F_2\) | Prescribed displacement enters as load |
+
+Element stiffness contributions (each half-meter bar, \(k = EA/L_e\)):
+
+\[
+\mathbf{K}^e = k \begin{bmatrix} 1 & -1 \\ -1 & 1 \end{bmatrix}.
+\]
+
+Scatter into global \(\mathbf{K}\), apply \(U_1=0\) and \(U_2=10\,\mu\text{m}\) (or eliminate DOF 1), solve for the free unknown — recover the same \(u_2 = 5\,\mu\text{m}\) and reaction \(\approx 1.2\,\text{kN}\) from the Lab act in I.1.
+
+The weighted residual **is** the assembly loop in embryo: for each test function \(\phi_i\), enforce \(\int (EA u_h' \phi_i' - 0)\, dx = 0\). Part IV.2 automates the scatter; Part IV.3 adds quadrature on general elements. When the load cell trace is linear in Act III, every point is this two-equation system with a larger \(\mathbf{K}\).
+
 Turn the page when the weak form is clear but no matrix exists yet — that is the signal that weighted residuals need an assembly loop.

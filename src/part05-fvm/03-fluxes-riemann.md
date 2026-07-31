@@ -179,6 +179,41 @@ When a shock tube run fails, check in this order:
 
 Passing Sod at reasonable resolution is the gateway to 2D Riemann problems, nozzle flow, and eventually Navier–Stokes with viscous regularization of shocks.
 
+## Lab act: Sod shock tube sanity check (Act II — Warming side channel)
+
+**Act II** heats the wire; air around it carries heat away — a flow problem even if the operator only watches the thermocouple. Before coupling conjugate heat transfer in [V.4](04-navier-stokes-cfd.md), verify that your **hyperbolic kernel** is correct on the canonical 1D test every CFD course uses.
+
+Run a Sod shock tube (Toro, *Riemann Solvers*, Example 4.1.1) with domain \([0,1]\), diaphragm at \(x = 0.5\), and initial left/right states:
+
+| Quantity | Left (\(x < 0.5\)) | Right (\(x > 0.5\)) |
+|----------|-------------------|---------------------|
+| \(\rho\) | 1.0 | 0.125 |
+| \(u\) | 0.0 | 0.0 |
+| \(p\) | 1.0 | 0.1 |
+| \(\gamma\) | 1.4 | 1.4 |
+
+Use a first-order FVM with **HLLC** (or Roe + entropy fix) and CFL \(\approx 0.4\). At \(t = 0.2\):
+
+| Check | Pass criterion | If it fails |
+|-------|----------------|-------------|
+| Mass | \(\sum_j \rho_j \Delta x_j\) constant to machine precision | Flux not conservative — check face indexing |
+| Positivity | \(\rho > 0\), \(p > 0\) everywhere | Reduce CFL; switch to HLL |
+| Shock position | Contact near \(x \approx 0.68\), shock near \(x \approx 0.85\) | Wrong \(\gamma\) or ghost cells |
+| vs exact | L¹ error on \(\rho, u, p\) vs Toro reference \(< 5\%\) at 100 cells | Entropy fix or limiter missing |
+
+Conceptual Python/pseudocode skeleton:
+
+```python
+for n in range(n_steps):
+    for j in range(n_cells):
+        UL, UR = left_state(j), right_state(j)
+        F_star = hllc_flux(UL, UR, gamma=1.4)
+        dU[j] = -(F_star[j+1] - F_star[j]) / dx
+    U += dt * dU
+```
+
+This test has nothing to do with copper chemistry — it is the **trust gate** for the Riemann machinery that will later advect temperature in a boundary layer around the wire. Passing Sod at 100–200 cells takes minutes; failing it silently poisons every coupled solid–fluid run in Act II. Log the L¹ errors in a one-line regression test before touching wall heat flux handshakes with Part IV.
+
 ## Bridge
 
 Navier–Stokes adds viscous fluxes, heat conduction, and the incompressibility constraint. CFD combines hyperbolic advection — FVM's strength — with parabolic diffusion and elliptic pressure fields that resemble Part IV's Stokes solvers.
