@@ -199,6 +199,21 @@ Variational structure (conservative forces from potentials) aids stable coupling
 
 The prologue's copper wire: DFT gives cohesion; MD gives thermal motion; DDD gives work hardening; FEM (Part IV) gives bending and tension; CFD (Part V) gives cooling; Part VI explains why those simulations are minimizing energy or balancing virtual work — until they are not, and we descend further.
 
+## Lab act: virtual work equals load cell reading (Act III — Pulling)
+
+**Act III** ramps grip displacement and the load cell reports force. Variational elasticity states that equilibrium is \(\delta \Pi = 0\) — virtual work done by internal stress equals virtual work done by external loads. This Lab act verifies that statement on the same three-element bar Part IV will mesh.
+
+Fixed end at \(x = 0\), prescribed displacement \(\delta = 0.1\,\text{mm}\) at \(x = L = 1\,\text{m}\), \(EA = 120\,\text{GPa} \times 10^{-6}\,\text{m}^2 = 120\,\text{kN}\). The exact axial force is \(F = EA\,\delta/L = 12\,\text{N}\).
+
+| Virtual work check | Statement | Numeric |
+|--------------------|-----------|---------|
+| External virtual work | \(\delta W_{\text{ext}} = F_{\text{applied}} \,\delta u(L)\) with virtual \(\delta u(L) = 1\) | \(F = 12\,\text{N}\) |
+| Internal virtual work | \(\delta W_{\text{int}} = \int_0^L \sigma \,\delta\varepsilon \, A \, dx = \sigma A \,\delta u(L)\) for uniform bar | Same \(12\,\text{N}\) when \(\sigma = E\delta/L\) |
+| Energy minimizer | \(\Pi = \tfrac{1}{2}EA(\delta/L)^2 L - F\delta\); \(\partial \Pi / \partial \delta = 0\) | \(F = EA\delta/L\) |
+| Discrete (3 P1 elements) | Rayleigh–Ritz on \(V_h\) from [VI.3 worked example](#worked-example-three-element-bar) | **Exact** at nodes because \(u(x)\) is linear |
+
+Plot force versus \(\delta\) from the load cell against the analytical line — slope \(EA/L\). Before yield (Act IV), the curve should be straight; variational elasticity explains **why** Part IV's \(\mathbf{K}\mathbf{U}=\mathbf{F}\) is force balance, not merely matrix algebra. When thermal strain \(\alpha \Delta T\) from Act II is present, subtract it from mechanical strain in \(\Pi\): the load cell reads lower force at the same grip displacement because the wire already expanded.
+
 ## Bridge
 
 Variational elasticity closes the loop the book has traced since Part I's spring network: minimize energy in \(H^1\), derive virtual work, assemble \(\mathbf{K}\) — and recognize the discrete solve as Rayleigh–Ritz on the same functional Part III named.

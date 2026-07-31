@@ -153,6 +153,27 @@ Piecewise-linear finite element fields on the copper wire are globally in \(H^1\
 | \(H^{-1}\) load | Point forces, concentrated fluxes |
 | \(H^2\) regularity | Enables \(O(h^2)\) convergence for P1 on Poisson |
 
+## Lab act: patch-test \(H^1\) membership on the heated wire (Act II — Warming)
+
+**Act II** reports a thermocouple climb while the grips stay fixed. The FEM temperature you will assemble in Part IV is not a smooth \(C^2\) curve — it is a broken line of hat functions, kinked at every node. Sobolev spaces are the contract that makes those kinks legal.
+
+Take the copper wire segment \((0,L)\) with \(L = 1\,\text{m}\) and a **three-node** mesh: nodes at \(0\), \(L/2\), and \(L\), with \(T(0) = T(L) = 300\,\text{K}\). Approximate the interior rise with a single hat function \(\phi_1(x)\) peaked at mid-span:
+
+\[
+T_h(x) = 300 + \Delta T \,\phi_1(x), \qquad \phi_1(x) = \begin{cases} 2x/L & x \le L/2 \\ 2(L-x)/L & x \ge L/2 \end{cases}
+\]
+
+| Check | Computation | Verdict |
+|-------|-------------|---------|
+| \(T_h \in L^2\)? | \(\|T_h\|_{L^2}^2 = \int (300 + \Delta T \phi_1)^2 < \infty\) | Yes — bounded on finite domain |
+| Weak derivative \(T_h' \in L^2\)? | \(T_h' = \Delta T \cdot (\pm 2/L)\) piecewise constant | Yes — jump at \(L/2\) is fine in \(L^2\) |
+| \(T_h \in H^2\)? | \(T_h''\) is a delta at the node, not an \(L^2\) function | **No** — explains why P1 gives \(O(h)\), not \(O(h^2)\), without extra regularity |
+| Dirichlet trace | \(T_h(0) = T_h(L) = 300\) | Satisfied — \(H^1\) conformity for scalar Lagrange elements |
+
+Now refine to ten equal elements and plot \(\|T_h'\|_{L^2}^2 = \int (T_h')^2 \, dx\) versus mesh size \(h\). The gradient energy should stabilize toward the true \(\int (T')^2\) as \(h \to 0\) even though kinks persist at nodes — completeness (Part II) guarantees the limit stays in \(H^1\).
+
+**Failure mode to watch:** if you accidentally allow a temperature **jump** across an element interface (discontinuous \(T_h\)), the weak derivative produces a delta-like distribution and \(T_h \notin H^1\). Conforming FEM avoids this by enforcing \(C^0\) continuity — the same reason Part IV's shape functions share nodes. When the thermocouple reading disagrees with a coarse three-node mesh, the fix is refinement in \(H^1\), not higher classical smoothness.
+
 ## Bridge
 
 Energy methods package weak forms as minimization problems. They unify FEM, provide physical intuition, and extend naturally to nonlinear elasticity where the energy functional may be polyconvex rather than quadratic. The Dirichlet principle identifies weak solutions of Poisson with minimizers of \(\Pi(u)\); coercivity on \(H^1_0\) is the same hypothesis as in Lax–Milgram.

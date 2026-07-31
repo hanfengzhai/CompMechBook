@@ -221,6 +221,24 @@ The intellectual contract is unchanged: **electronic structure defines the surfa
 
 Document every conversion at the boundary: Ry → eV, Bohr → Å, metal units → SI when feeding DAMASK or Abaqus.
 
+## Lab act: EAM-fit audit before the notch MD run (Act V — Notch)
+
+**Act V** concentrates stress at the notch root where dislocation nucleation begins. Before launching a million-atom LAMMPS run, this Lab act **audits** the EAM potential against the DFT pedigree checklist — the same contract Part IX will enforce from first principles.
+
+For fcc Cu, minimum acceptance tests on a 500-atom NPT cell at 300 K:
+
+| Test | EAM target | Pass criterion | Failure action |
+|------|------------|----------------|----------------|
+| Lattice constant \(a_0\) | DFT Murnaghan minimum (IX.1) | \(|a_{\text{EAM}} - a_{\text{DFT}}| < 0.01\,\text{Å}\) | Refit embedding/density functions |
+| Cohesive energy | DFT \(E_{\text{coh}}\) per atom | Within 5% | Check cutoff radius and fitting set |
+| \(C_{11}\) | DFT elastic constant | Within 10% via small-strain NPT | Add compressed/stretched configs to fit set |
+| Stacking fault \(\gamma_{\text{sf}}\) | DFT generalized SF surface | Same order of magnitude at intrinsic fault | Part VII partial separation wrong if this fails |
+| Melting point (optional) | Experiment ~1358 K | EAM within ~100 K | Note if high-\(T\) creep studies are planned |
+
+Run a **short** NVT shear cell (\(\dot\gamma \sim 10^8\,\text{s}^{-1}\)) to extract a trial \(M(\tau)\) curve for OpenDiS. Document metal units → SI conversion in `units.txt` beside the handoff bundle from [VII.3](../part07-defects/03-polycrystal-and-fem-handoff.md).
+
+If any row fails, do **not** proceed to notch nucleation MD — fix the potential or train a DeepMD model on DFT snapshots (table in this chapter). The notch root is where EAM cutoff artifacts and wrong \(\gamma_{\text{sf}}\) first appear as spurious dislocation loops; Act V is too expensive to run on an un-audited surface.
+
 ## Concept map checkpoint (Part VIII)
 
 Part VIII followed the MD Notes from phase space through coarse-graining. The four questions summarize the atomistic arc:
