@@ -1,0 +1,248 @@
+# Navier–Stokes and Computational Fluid Dynamics
+
+Computational fluid dynamics (CFD) solves the Navier–Stokes equations when analytical solutions fail — under nonlinearity, complex geometry, turbulence, or multiphysics coupling. The copper wire heated by current sits in air; the cooling flow determines whether temperature stays below the annealing point. That flow is Navier–Stokes: advection, diffusion, pressure, and possibly turbulence.
+
+Part V built FVM for conservation laws. This chapter adds viscosity, incompressibility, boundary layers, and the practical machinery of production CFD — connecting to the author's [CFD notes](https://hanfengzhai.github.io/file/CFD_note.pdf) and closing the loop toward Part VI's continuum stress and balance language.
+
+## Scene: air decides the wire's fate
+
+Heat the copper wire until it glows softly; air above it rises, pulling cooler flow across the surface. That convection sets whether the mid-span temperature stays below annealing range. Navier–Stokes is the PDE for that air — advection, viscous diffusion, pressure coupling. Part V built conservation on cells; this chapter adds viscosity, Reynolds number, turbulence models, and the practical CFD workflow that connects a wire thermal model to the fluid domain around it.
+
+## Governing equations
+
+For a Newtonian fluid, the **incompressible Navier–Stokes equations** are
+
+\[
+\rho\left(\frac{\partial \mathbf{v}}{\partial t} + \mathbf{v}\cdot\nabla \mathbf{v}\right) = -\nabla p + \mu \nabla^2 \mathbf{v} + \mathbf{f}, \qquad \nabla\cdot\mathbf{v} = 0.
+\]
+
+Here \(\mathbf{v}\) is velocity, \(p\) is pressure, \(\mu\) is dynamic viscosity, and \(\mathbf{f}\) is body force (gravity, buoyancy from thermal expansion).
+
+In **conservative form** (compressible formulation), mass, momentum, and energy are conserved quantities with convective and viscous fluxes. The incompressible limit \(\rho = \text{const}\) decouples energy in isothermal flows but retains nonlinear advection.
+
+**Reynolds number** \(\text{Re} = \rho U L / \mu\) measures inertial-to-viscous force ratio. Low Re: laminar, diffusion-dominated. High Re: turbulent, advection-dominated, stiff boundary layers. The copper wire in slow natural convection might be Re \(\sim 10^2\); a jet impinging on it might be Re \(\sim 10^4\)–\(10^5\), demanding turbulence modeling or LES.
+
+## Nondimensional groups and similitude
+
+CFD notes emphasize nondimensionalization:
+
+| Group | Definition | Role |
+|-------|------------|------|
+| Re | \(\rho U L / \mu\) | Laminar vs. turbulent |
+| Ma | \(U / c\) | Compressibility |
+| Pr | \(\mu c_p / k\) | Thermal vs. momentum diffusion |
+| Gr | \(g \beta \Delta T L^3 / \nu^2\) | Natural convection |
+
+Matching similitude groups links experiments to simulations — wind tunnel to full scale, water table to flight.
+
+## Finite volume discretization of Navier–Stokes
+
+On a cell-centered FVM mesh:
+
+1. Store \(\mathbf{v}\) and \(p\) (or \(\rho\), \(\mathbf{v}\), \(E\) for compressible).
+2. **Convective fluxes**: upwind or Riemann-based (Chapters 2–3) for \(\mathbf{v}\otimes\mathbf{v}\) and energy advection.
+3. **Diffusive fluxes**: centered differences for viscous stress \(\boldsymbol{\tau} = 2\mu\mathbf{D}\), heat conduction \(-k\nabla T\).
+4. **Pressure–velocity coupling**: enforce \(\nabla\cdot\mathbf{v} = 0\) via fractional-step or coupled solvers.
+
+**Staggered grids** (MAC layout) store normal velocity components at face centers — natural divergence and pressure gradient operators. **Collocated grids** store all variables at cell centers but require **Rhie–Chow interpolation** to avoid checkerboard pressure modes.
+
+## Pressure–velocity splitting: SIMPLE and PISO
+
+Incompressibility is a constraint, not an evolution equation. **Projection methods** advance velocity, then project onto the divergence-free subspace:
+
+**SIMPLE (Semi-Implicit Method for Pressure-Linked Equations)**:
+
+1. Guess pressure \(p^*\).
+2. Solve momentum equations for intermediate velocity \(\mathbf{v}^*\) (treating \(p^*\) explicitly).
+3. Solve a **Poisson equation** for pressure correction \(p'\): \(\nabla^2 p' = \frac{\rho}{\Delta t}\nabla\cdot\mathbf{v}^*\).
+4. Update \(\mathbf{v}^{n+1} = \mathbf{v}^* - \Delta t/\rho\, \nabla p'\), correct pressure.
+
+**PISO** repeats the correction step for tighter coupling within a time step — common in transient flows.
+
+The Poisson solve is elliptic — FEM or multigrid FVM handles it efficiently (Part IV's territory). CFD is inherently **mixed**: hyperbolic advection + elliptic pressure.
+
+## Finite element for Stokes and Navier–Stokes
+
+Part IV's mixed FEM applies directly to **Stokes flow** (\(\mathbf{v}\cdot\nabla\mathbf{v} = 0\)):
+
+Find \((\mathbf{v}, p) \in V \times Q\) such that
+
+\[
+\int \mu \nabla \mathbf{v} : \nabla \mathbf{w} - \int p \nabla\cdot\mathbf{w} - \int q \nabla\cdot\mathbf{v} = \int \mathbf{f}\cdot\mathbf{w}
+\]
+
+for all \((\mathbf{w}, q)\). **Taylor–Hood** elements (\(P2\) velocity, \(P1\) pressure) satisfy the LBB inf–sup condition from Part III.
+
+For Navier–Stokes, convective term \(\mathbf{v}\cdot\nabla\mathbf{v}\) is handled by Newton linearization or explicit advection. **Stabilized equal-order** elements (SUPG/PSPG) avoid inf–sup restrictions at the cost of user-tuned stabilization parameters.
+
+FEM CFD excels on complex geometries and viscous-dominated flows; FVM CFD excels on high-Re compressible flows with shocks. Modern codes offer both.
+
+## Boundary conditions
+
+| Boundary | Condition | CFD note |
+|----------|-----------|----------|
+| Inflow | \(\mathbf{v} = \mathbf{v}_{\text{in}}\) or total pressure | Specify turbulence quantities for RANS |
+| Outflow | \(\partial \mathbf{v}/\partial n = 0\), \(p = p_{\text{ref}}\) | Convective outflow for vortices leaving domain |
+| Wall (no-slip) | \(\mathbf{v} = 0\) | Resolves boundary layer if mesh fine enough |
+| Wall (slip) | \(\mathbf{v}\cdot\mathbf{n} = 0\) | Free surfaces, symmetry |
+| Symmetry | \(\mathbf{v}\cdot\mathbf{n} = 0\), \(\partial(\mathbf{v}\cdot\mathbf{t})/\partial n = 0\) | Half-domain savings |
+
+The copper wire surface: no-slip on the solid, specified or convective conditions at far-field boundaries for the air domain.
+
+## Turbulence modeling
+
+Direct numerical simulation (DNS) resolves all scales — feasible only at low Re. Engineering CFD uses:
+
+- **RANS** (Reynolds-averaged Navier–Stokes): time-averaged equations with closure models (k–ε, k–ω, SST). Eddy viscosity \(\mu_t\) augments laminar viscosity.
+- **LES** (large eddy simulation): resolves large eddies, models subgrid stress. Expensive but more accurate for unsteady separation.
+- **DNS**: no model; grid must resolve Kolmogorov scale — research tool.
+
+Turbulence models add transport equations for \(k\), \(\varepsilon\), or \(\omega\), discretized by the same FVM machinery as momentum.
+
+## Heat transfer and buoyancy
+
+Coupled energy equation:
+
+\[
+\rho c_p\left(\frac{\partial T}{\partial t} + \mathbf{v}\cdot\nabla T\right) = \nabla\cdot(k\nabla T) + \Phi,
+\]
+
+where \(\Phi\) is viscous dissipation. **Boussinesq approximation** for natural convection: density varies only in buoyancy term, \(\mathbf{f} = \rho_0 \mathbf{g} \beta (T - T_0)\).
+
+Thermoelastic coupling on the copper wire: CFD supplies surface heat flux; FEM solves thermal stress (Part IV, Chapter 4). Monolithic or partitioned coupling exchanges boundary data each time step or iteration.
+
+## Verification and validation
+
+The CFD notes distinguish:
+
+**Verification** — Is the code solving the equations correctly?
+
+- Method of manufactured solutions (MMS): insert a source term so a known \(\mathbf{v}\) is exact.
+- Grid convergence study: refine mesh; check that error decreases at expected rate in smooth regions.
+- Conservation checks: mass flux in equals mass flux out at steady state.
+
+**Validation** — Does the model match reality?
+
+- Benchmark cases: lid-driven cavity, backward-facing step, flat-plate boundary layer.
+- Experimental data: PIV velocity fields, pressure taps, heat transfer coefficients.
+
+Both are necessary. A converged simulation of the wrong equations — wrong turbulence model, wrong boundary condition — is worthless.
+
+## From shock tubes to cosmological hydrodynamics
+
+The same FVM kernel that passes Sod's shock tube scales to problems with vastly larger domains. The **Illustris** and **IllustrisTNG** cosmological simulations solve magnetohydrodynamics on moving Voronoi meshes with second-order finite-volume discretization — storing volume-averaged \(\rho\), \(\mathbf{u}\), and magnetic field at cell centers, as described in the author's FVM notes. The update for a primitive variable \(\phi \in \{\rho, \mathbf{u}, p\}\) at second order takes the schematic form
+
+\[
+\phi^{n+1} = \phi^n - \tfrac{1}{2}\Delta t\left(\phi^n \nabla\cdot\mathbf{u} + \mathbf{u}\cdot\nabla\phi^n\right),
+\]
+
+with analogous pressure and momentum terms. The copper wire's cooling jet and a galaxy cluster's intracluster medium share the same conservation structure; only the Reynolds number, geometry, and closure models change. Passing Sod on a 200-cell grid is the sanity check before trusting any of it.
+
+## Software landscape
+
+Open-source: **OpenFOAM** (FVM, C++), **SU2** (FVM, adjoints), **FEniCS/Firedrake** (FEM, Stokes/Navier–Stokes). Commercial: Fluent, STAR-CCM+, COMSOL. Choice depends on physics (compressible vs. incompressible), geometry, HPC needs, and coupling to structural FEM for the wire problem.
+
+## Connection to Parts I–III and Part VI
+
+- Part I: discrete systems from FVM are sparse ODEs; pressure Poisson is a sparse linear system.
+- Part II: weak form of Stokes connects FEM CFD to Hilbert space theory.
+- Part III: mixed formulations, LBB stability, energy methods for parabolic energy decay.
+- Part VI: Cauchy stress, rate of deformation \(\mathbf{D}\), and balance laws are the continuum objects that Navier–Stokes discretizes.
+
+Fluids and solids share conservation of mass and momentum; they differ in constitutive response — \(\boldsymbol{\tau} = 2\mu\mathbf{D}\) for Newtonian fluids vs. \(\boldsymbol{\sigma} = \mathbb{C}:\boldsymbol{\varepsilon}\) for linear elastic solids.
+
+## A copper-wire cooling scenario
+
+Picture the heated copper wire in cross-flow air. A minimal CFD setup requires:
+
+1. **Fluid domain**: channel or external flow with far-field boundaries.
+2. **Solid domain** (optional conjugate heat transfer): wire mesh with conduction, coupled to fluid via interface heat flux continuity.
+3. **No-slip** on the wire surface; **inflow** temperature and velocity specified upstream.
+4. **Re** based on wire diameter sets laminar vs. turbulent regime; natural convection adds Grashof number via Boussinesq buoyancy if the wire is hot enough.
+
+Steady RANS with a k–ω SST model might suffice for engineering heat transfer coefficients. LES resolves vortex shedding behind the wire at higher cost. FEM conduction in the wire (Part IV) plus FVM convection in the air (Part V) exchanges wall heat flux each iteration — the multiphysics loop the book's ladder is built to support.
+
+## Multiphysics scene: conjugate heat transfer
+
+Parts IV and V use different discretizations, but the copper wire under current is **one coupled boundary-value problem** split across domains. The solid solves steady conduction; the fluid solves convection with a no-slip wall whose temperature is unknown until both sides agree on heat flux.
+
+**Solid (FEM, Part IV).** On the wire mesh \(\Omega_s\), find temperature \(T_s\) such that
+
+\[
+\int_{\Omega_s} k \nabla T_s \cdot \nabla v \, d\Omega + \int_{\Gamma_w} q_w \, v \, dS = \int_{\Omega_s} \dot{q}_{\text{Joule}} \, v \, d\Omega
+\]
+
+for all test functions \(v \in H^1(\Omega_s)\). Here \(\dot{q}_{\text{Joule}} = \sigma_e |\mathbf{J}|^2\) is volumetric heating from electrical current, and \(q_w\) is the unknown wall heat flux at the fluid interface \(\Gamma_w\).
+
+**Fluid (FVM, Part V).** In the air domain \(\Omega_f\), steady incompressible flow with energy equation gives cell-averaged \(T_f\) and velocity \(\mathbf{u}\). At the wire surface,
+
+\[
+-k \left.\frac{\partial T_s}{\partial n}\right|_{\Gamma_w} = q_w = h\,(T_w - T_\infty) \quad\text{or}\quad q_w = -k_f \left.\frac{\partial T_f}{\partial n}\right|_{\Gamma_w},
+\]
+
+with \(T_w = T_s|_{\Gamma_w} = T_f|_{\Gamma_w}\) enforced by **interface coupling**.
+
+**Partitioned coupling loop** (the story both codes tell together):
+
+1. Guess wall temperature \(T_w^{(0)}\) (or flux \(q_w^{(0)}\)).
+2. **Fluid step:** solve Navier–Stokes + energy with fixed \(T_w\); extract \(q_w^{(k)} = -k_f \partial T_f / \partial n\).
+3. **Solid step:** solve conduction with Neumann data \(q_w^{(k)}\) on \(\Gamma_w\); read updated \(T_w^{(k+1)} = T_s|_{\Gamma_w}\).
+4. Repeat until \(|T_w^{(k+1)} - T_w^{(k)}| < \varepsilon\) — a **fixed-point iteration** between sparse linear systems (solid) and nonlinear FVM updates (fluid).
+
+This is not a third method. It is Part IV and Part V **speaking at an interface** — the same weak-form / flux-balance pattern the epilogue later generalizes to DFT→MD→DDD→FEM chains. When the wire runs hot enough to soften, add thermal strain \(\alpha\Delta T\) in the solid weak form (Part VI); when Reynolds number exceeds the laminar regime, swap the RANS closure on the fluid side. The coupling skeleton stays.
+
+## Lab act: natural convection Nusselt number on the heated wire (Act II — Warming)
+
+**Act II** heats the wire until air above it rises. Navier–Stokes plus the energy equation determines whether convection or conduction dominates cooling — and whether the mid-span temperature stays below annealing range before **Act III** ramps load.
+
+Set up a **minimal conjugate heat transfer** problem (no commercial code required for the estimate):
+
+| Parameter | Value | Role |
+|-----------|-------|------|
+| Wire diameter \(d\) | 1 mm | Length scale \(L\) |
+| Wire surface \(T_w\) | 400 K | Hot wall (post-Joule heating) |
+| Ambient \(T_\infty\) | 300 K | Far-field air |
+| Air properties at 350 K | \(\nu \approx 2.2 \times 10^{-5}\,\text{m}^2/\text{s}\), \(\alpha \approx 3.0 \times 10^{-5}\,\text{m}^2/\text{s}\) | Kinematic viscosity, thermal diffusivity |
+| Grashof number | \(\text{Gr} = g \beta \Delta T d^3 / \nu^2 \approx 10^4\) | Natural convection regime |
+| Rayleigh number | \(\text{Ra} = \text{Gr} \cdot \text{Pr} \approx 7 \times 10^3\) | Laminar vertical-cylinder correlation applies |
+
+For a vertical cylinder in natural convection, a textbook correlation gives \(\text{Nu}_d = h d / k \approx 0.6\,\text{Ra}_d^{1/4}\) in the laminar range. With \(\text{Ra}_d \sim 10^3\), \(\text{Nu}_d \sim 5\)–\(10\), so \(h \sim 10\)–\(30\,\text{W/m}^2\text{K}\).
+
+**Partitioned coupling checklist** (matches the multiphysics scene above):
+
+1. **Solid FEM:** solve \(-k T'' = q(x)\) with Neumann flux \(q_w = h(T_w - T_\infty)\) on the surface — the wall heat flux the fluid demands.
+2. **Fluid estimate:** compute \(\text{Nu}\) from \(\text{Ra}\); update \(h\); repeat until \(T_w\) is consistent.
+3. **Sanity check:** compare total heat out \(\int q_w \, dS\) to integrated Joule input \(\int q \, dV\) at steady state — conservation, not grid convergence alone.
+
+If \(\text{Re} > 10^5\) (forced cross-flow over the wire), swap the natural-convection correlation for a cylinder cross-flow \(\text{Nu}(\text{Re}, \text{Pr})\) and note when RANS replaces laminar estimates. Part IV's wire mesh and Part V's air domain share one interface temperature; this Lab act is the hand calculation that tells you whether cooling is fast enough before the load cell ramps in Act III.
+
+## Concept map checkpoint (Part V)
+
+Part V followed the FVM Notes from integral conservation through Navier–Stokes CFD. The four questions summarize the fluid discretization arc:
+
+| Question | Part V answer (copper wire) |
+|----------|----------------------------|
+| What **object**? | Cell-averaged states, face fluxes \(\mathbf{F}\cdot\mathbf{n}\), Riemann data |
+| What **structure**? | Integral conservation, upwind bias, CFL-limited time stepping |
+| What **theorem**? | Godunov-type stability; Lax–Friedrichs entropy conditions (conceptually) |
+| What **breaks**? | Shock smearing without limiters; equal-order \(P1\)–\(P1\) without inf–sup |
+
+The conjugate heat transfer scene above is Part IV and Part V **speaking at an interface** — the same pattern the epilogue generalizes to DFT→MD→DDD→FEM chains. Fluids and solids share conservation of mass and momentum; they differ in constitutive response. Part VI names the Cauchy stress and rate of deformation both discretizations approximate.
+
+## Bridge to Part VI
+
+Part V discretized conservation on control volumes for fluids. Part VI develops the **kinematics and stress measures** that both FEM solid codes and FVM fluid codes ultimately approximate — deformation gradient and strain for solids, rate of deformation for fluids, Cauchy stress and balance laws for both. The copper wire under tension and the air cooling it are one multiphysics story told in two discretization languages; Part VI supplies the shared continuum vocabulary.
+
+| What Part V completed | What Part VI opens |
+|-----------------------|-------------------|
+| Cell-averaged \(T_f\), \(\mathbf{u}\) on the fluid mesh | Temperature and velocity fields \(T(\mathbf{x})\), \(\mathbf{v}(\mathbf{x})\) |
+| Face fluxes \(\mathbf{F}\cdot\mathbf{n}\) balancing enthalpy transport | Cauchy traction \(\boldsymbol{\sigma}\mathbf{n}\) on boundaries |
+| Conjugate heat transfer loop with Part IV FEM | Thermal strain \(\alpha\Delta T\) in virtual work; coupled multiphysics vocabulary |
+| Navier–Stokes + energy (this chapter) | Balance laws \(\nabla\cdot\boldsymbol{\sigma}+\mathbf{b}=\mathbf{0}\) and constitutive response |
+| RANS/LES closures for engineering heat transfer | Rate of deformation \(\mathbf{D}\); objectivity and frame indifference |
+
+Return to the prologue's **Act II — Warming**: current flows, the wire heats, air cools the surface. Part V named the fluxes that carry enthalpy away; Part VI names the **stress and deformation** fields that govern mechanical response when the wire yields in Acts III–IV. If you arrived via **Door A** from [IV.5](../part04-fem/05-convergence.md#bridge-two-doors-from-here), you have discretized both solids and fluids; Part VI unifies their physics in one tensor language. If you took **Door B** (FEM straight to continuum), read the conjugate heat transfer scene above as the handshake pattern Part VI generalizes — wall temperature and flux must agree before mechanical softening enters the story.
+
+The [prologue](../../prologue/00-many-scales.md) promised one specimen in two discretization languages. Part IV's \(\mathbf{K}\mathbf{U}=\mathbf{F}\) and Part V's flux balances are not competing methods; they are **adjacent chapters** in the same afternoon. Part VI is where the load cell's force–displacement curve acquires Cauchy stress behind it, and where cold-drawn strength stops being a fitted parameter and becomes a question for dislocations in Part VII. See [VI opening](../part06-continuum/00-opening.md#closing-the-arc-from-parts-iv-and-v) **Closing the arc from Parts IV and V** for the full handoff table.
+
+Turn the page when sparse linear systems and face fluxes feel like the whole story — continuum mechanics is what makes \(\mathbf{K}\mathbf{U}=\mathbf{F}\) a force-balance statement rather than an array exercise.
