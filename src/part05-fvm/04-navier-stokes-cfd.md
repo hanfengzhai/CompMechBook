@@ -191,6 +191,39 @@ with \(T_w = T_s|_{\Gamma_w} = T_f|_{\Gamma_w}\) enforced by **interface couplin
 
 This is not a third method. It is Part IV and Part V **speaking at an interface** — the same weak-form / flux-balance pattern the epilogue later generalizes to DFT→MD→DDD→FEM chains. When the wire runs hot enough to soften, add thermal strain \(\alpha\Delta T\) in the solid weak form (Part VI); when Reynolds number exceeds the laminar regime, swap the RANS closure on the fluid side. The coupling skeleton stays.
 
+### Worked example: Picard iterations on a lumped wire
+
+Strip the full Navier–Stokes mesh for a moment and model the **1 mm copper wire** from Act II as a lumped solid with a single unknown surface temperature \(T_w\). Joule heating holds the volume-averaged core at \(T_{\text{core}} = 400\,\text{K}\); conduction through a thin oxide or varnish layer supplies thermal resistance \(R_s = 5\,\text{K/W}\) from core to wall; natural convection supplies \(hA = 0.05\,\text{W/K}\) (with \(h \approx 20\,\text{W/m}^2\text{K}\) and surface area \(A \approx 2.5 \times 10^{-3}\,\text{m}^2\) on a 10 cm segment).
+
+The partitioned loop reduces to alternating:
+
+\[
+q_w^{(k)} = \frac{T_{\text{core}} - T_w^{(k)}}{R_s}, \qquad
+T_w^{\text{new}} = T_\infty + \frac{q_w^{(k)}}{hA},
+\]
+
+with \(T_\infty = 300\,\text{K}\). At convergence, \(q_w = (T_{\text{core}} - T_w)/R_s = hA\,(T_w - T_\infty)\), giving the exact solution \(T_w = 380\,\text{K}\), \(q_w = 4\,\text{W}\).
+
+Raw Picard iteration **oscillates** when \(R_s hA\) is stiff. Production codes add **under-relaxation** \(\omega \in (0,1]\):
+
+\[
+T_w^{(k+1)} = (1-\omega)\, T_w^{(k)} + \omega \, T_w^{\text{new}}.
+\]
+
+With \(\omega = 0.3\) and initial guess \(T_w^{(0)} = 350\,\text{K}\):
+
+| Iteration \(k\) | \(T_w^{(k)}\) [K] | \(q_w^{(k)}\) [W] | \(T_w^{\text{new}}\) [K] | Under-relaxed \(T_w^{(k+1)}\) [K] |
+|-----------------|-------------------|-------------------|--------------------------|-----------------------------------|
+| 0 | 350 | 10.0 | 500 | 395 |
+| 1 | 395 | 1.0 | 320 | 373 |
+| 2 | 373 | 5.5 | 410 | 384 |
+| 3 | 384 | 3.3 | 365 | 378 |
+| 4 | 378 | 4.4 | 388 | 381 |
+| 5 | 381 | 3.8 | 376 | 380 |
+| 6 | 380 | 4.1 | 382 | **380** (converged) |
+
+The lesson transfers directly to production coupling: Part IV's solid solve and Part V's fluid solve are two black boxes exchanging \((T_w, q_w)\); convergence is a fixed-point problem, not a finer mesh. Before trusting Act II's thermocouple reading, verify **energy balance** — integrated Joule input \(\dot{Q}_{\text{Joule}} \approx \int_{\Gamma_w} q_w \, dS\) at the converged row — not merely that each solver converges internally.
+
 ## Lab act: natural convection Nusselt number on the heated wire (Act II — Warming)
 
 **Act II** heats the wire until air above it rises. Navier–Stokes plus the energy equation determines whether convection or conduction dominates cooling — and whether the mid-span temperature stays below annealing range before **Act III** ramps load.
