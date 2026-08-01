@@ -201,6 +201,63 @@ in a supercell with \(N\) atoms, fully relaxed with fixed cell shape or `vc-rela
 
 Compare to experiment (~1.17 eV for Cu at 0 K, order-of-magnitude) and to EAM/MEAM values used in Part VIII MD. Discrepancy is not failure — it documents functional and pseudo error budgets.
 
+## Worked example: generalized stacking-fault energy (handoff to Part VII)
+
+Part VII's dislocation dynamics consumed a **stacking-fault energy** \(\gamma_{\text{sf}}\) when partial dislocations separated on {111} planes — the energy cost of making a faulted region one atomic layer thick. That number entered mobility tables and hardening curves without a full derivation. Here we close the loop: DFT computes \(\gamma_{\text{sf}}\) from first principles, and Part VII imports it with a pedigree.
+
+### The faulted-supercell construction
+
+Copper is fcc. A stacking fault on {111} shifts every plane above the cut by a partial Burgers vector \(\mathbf{b}_p = \mathbf{a}/6\langle 112\rangle\), creating a local hcp-like stacking sequence (ABC**A**BC instead of ABCABC). The **generalized stacking-fault (GSF) surface** \(\gamma(\mathbf{u})\) maps shear displacement \(\mathbf{u}\) in the fault plane to energy per unit area; the value at the unstable stacking fault (USF) configuration sets the Peierls barrier scale, and the value at the stable fault (SF) configuration is the quantity DDD codes tabulate.
+
+For a first-principles estimate of the stable fault energy:
+
+1. **Build a slab supercell** with at least 12–16 atomic layers along [111], separated by vacuum (or use periodic images with sufficient layer count to suppress interaction).
+2. **Cut and shift** the upper half of the slab by the stable-fault displacement — typically implemented as a rigid shift followed by atomic relaxation in the fault plane only (fix bottom layers, relax top layers).
+3. **Run `relax` or `vc-relax`** with fixed in-plane cell vectors; total energy minus the perfect-crystal reference gives fault energy.
+4. **Divide by fault area** \(A = |\mathbf{a}_1 \times \mathbf{a}_2|\) in the {111} plane.
+
+```text
+E_gsf = (E_faulted - E_perfect) / A_fault    [eV/Å²]
+γ_sf  = E_gsf × (16.02 / 1.602)             [mJ/m²]
+```
+
+The unit conversion (eV/Å² → mJ/m²) is a recurring arithmetic trap — archive the conversion factor in the README beside the raw numbers.
+
+### Convergence checklist specific to GSF
+
+| Parameter | Typical starting value (Cu {111}) | Convergence test |
+|-----------|-----------------------------------|------------------|
+| Slab layers | 12–16 along [111] | Double layer count; \(\gamma_{\text{sf}}\) should stabilize within 5% |
+| k-mesh in plane | \(12 \times 12 \times 1\) Monkhorst–Pack | Increase to \(16 \times 16 \times 1\) |
+| Vacuum gap (if non-periodic) | 10–15 Å | Double gap; energy change < 1 meV/atom |
+| Relaxation depth | Top 4–6 layers free | Compare to full-slab relaxation |
+| Functional | PBE (document choice) | Compare to LDA or SCAN if time permits |
+
+Under-converged slabs produce \(\gamma_{\text{sf}}\) that drifts with layer count — the DFT analogue of a DDD simulation whose box is too small for image forces to decay. Part VII's [Lab act on forest hardening](../part07-defects/02-dislocation-dynamics.md) assumed a tabulated \(\gamma_{\text{sf}}\); this workflow is where that table entry should originate.
+
+### Full GSF curve (optional but illuminating)
+
+A single stable-fault energy is enough for DDD mobility tables, but the **full \(\gamma(\mathbf{u})\) curve** explains why partials dissociate and how cross-slip competes with glide. Sweep in-plane displacements \(\mathbf{u} = \alpha \mathbf{b}_p\) for \(\alpha \in [0, 1]\) (and beyond for the unstable fault):
+
+| \(\alpha\) | Physical meaning | Expected energy trend (Cu) |
+|------------|------------------|----------------------------|
+| 0 | Perfect crystal | \(\gamma = 0\) (reference) |
+| 0.5 | Unstable stacking fault (USF) | Local maximum (~200–300 mJ/m² for Cu) |
+| 1.0 | Stable intrinsic fault | Local minimum (~40–50 mJ/m² for Cu, experiment ~45) |
+
+Plot \(\gamma(\alpha)\) and archive the curve — Part VII's partial-dislocation separation width scales as \(\propto \mu \mathbf{b}_p / \gamma_{\text{sf}}\), and the USF peak sets the barrier for cross-slip during cold drawing. When the epilogue wires DFT → MD → DDD → FEM, this curve is the **first handshake** between electronic structure and line-defect mechanics.
+
+### Bridge table: DFT GSF → Part VII DDD
+
+| DFT export | Part VII consumer | Copper wire context |
+|------------|-------------------|---------------------|
+| \(\gamma_{\text{sf}}\) at stable fault | Partial separation width in DDD | Cold-drawn wire's forest density |
+| \(\gamma_{\text{USF}}\) at unstable fault | Cross-slip activation scale | Recovery annealing kinetics |
+| \(\mathrm{d}^2\gamma/\mathrm{d}u^2\) at minimum | Dislocation core structure models | Notch tip plastic zone size |
+| Full \(\gamma(\mathbf{u})\) surface | Mobility law fitting in DDD | Work-hardening curve in Act IV |
+
+If your project folder contains `cu.gsf/` with converged slab calculations but Part VII's DDD input still cites "literature value 45 mJ/m²" without a path, **Act VI is incomplete** — the downward derivation stopped one rung above where it should have.
+
 ## From DFT outputs to the rest of the book
 
 | DFT workflow output | Used in | Copper wire context |
