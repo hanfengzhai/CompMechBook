@@ -106,6 +106,26 @@ T = \frac{1}{3N k_B} \sum_i m_i \|\mathbf{v}_i\|^2
 
 (excluding constrained or frozen degrees of freedom). In NVT, \(T\) fluctuates around the target; block averages report meaningful values only after autocorrelation time of kinetic energy.
 
+### Worked example: equilibration length for a copper nanowire
+
+How long must an NPT run run before stress–strain data from the Lab act below are trustworthy? The answer is not "50 ps because the input deck says so" — it is tied to **autocorrelation time** \(\tau\) of the observable you will average.
+
+For a 50 nm fcc Cu segment (\(\sim 10^5\) atoms) at 300 K:
+
+1. **Thermalize** with Langevin or Berendsen for 10–20 ps — fast relaxation of kinetic temperature toward 300 K.
+2. **Equilibrate** with Nosé–Hoover NPT until the **pressure tensor** \(\langle P_{ij} \rangle\) and **box dimensions** fluctuate around stable means. For metals, 50–100 ps is often sufficient; for polymers or nanostructures with slow rearrangement, multiply by 10.
+3. **Estimate \(\tau\)** for the stress component you will report (e.g. \(\sigma_{zz}\) during tension). Compute the autocorrelation function \(C(t) = \langle \sigma_{zz}(0)\sigma_{zz}(t)\rangle - \langle\sigma_{zz}\rangle^2\) and find the first zero crossing or exponential decay time. Block averages with block length \(\gg \tau\) are approximately independent.
+4. **Production** length: at least \(10\tau\) per block, with \(\ge 5\) blocks for error bars on modulus.
+
+| Observable | Typical \(\tau\) (Cu, 300 K, \(\sim 10^5\) atoms) | Minimum production |
+|------------|--------------------------------------------------|--------------------|
+| Kinetic temperature | 0.1–0.5 ps | 5 ps after thermostat settles |
+| Hydrostatic pressure | 0.5–2 ps | 20 ps NPT equilibration |
+| \(\sigma_{zz}\) under tension | 1–5 ps (depends on strain rate) | 50–100 ps ramp + blocks |
+| Mean-square displacement (diffusion) | 10–100 ps | nanoseconds |
+
+If you export Young's modulus from a 5 ps tension ramp without checking \(\tau\), you are reporting **noise dressed as mechanics** — the MD analogue of reporting FEM stress before mesh convergence. Part IV's refinement study and Part IX's k-mesh convergence ask the same question: *has the discretization (here, time sampling) converged for the quantity I need?*
+
 ### Elastic constants
 
 Two routes:
