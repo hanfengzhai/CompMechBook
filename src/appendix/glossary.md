@@ -72,6 +72,37 @@ The [prologue](../prologue/00-many-scales.md#the-experiment-as-plot) maps the sa
 
 Every numbered chapter also ends with its own **Bridge** section — the primary narrative hinge within a part.
 
+## Symbol collision guide
+
+The same letter often means different physics in adjacent parts. Before trusting a number in an input deck, locate the row below and read the **first appearance** link — the book reuses symbols deliberately, but never without a Bridge explaining the handoff.
+
+| Symbol | Collision | Disambiguation rule | First appearance |
+|--------|-----------|---------------------|------------------|
+| \(\rho\) | Dislocation density (Part VII) vs mass density (Part V/VI) vs electron density (Part IX) | Check subscript and part: \(\rho_{\text{disl}}\), \(\rho\) kg/m³, \(\rho(\mathbf{r})\) e/Å³ | [VII.2](../part07-defects/02-dislocation-dynamics.md) vs [IX.0](../part09-dft/00-opening.md) |
+| \(\mathbf{K}\) | Stiffness matrix vs thermal conductivity vs kinetic energy | Stiffness is a matrix; conductivity is a scalar field \(k\) or \(\kappa\); kinetic energy is \(K\) in Hamiltonian | [I.1](../part01-linear-algebra/01-vectors-matrices.md) |
+| \(\gamma\) | Surface energy / GSF (Part IX) vs shear strain (Part VI) vs heat capacity ratio (Part V) | GSF is \(\gamma_{\text{sf}}\) in mJ/m²; strain is tensor component; CFD \(\gamma\) is \(c_p/c_v\) | [IX.3](../part09-dft/03-dft-workflows.md) vs [VI.1](../part06-continuum/01-kinematics.md) |
+| \(E\) | Young's modulus vs total energy vs electric field | Modulus has GPa units; DFT energy is eV/cell; field is V/m in Joule heating | [IV.4](../part04-fem/04-poisson-to-elasticity.md) vs [IX.1](../part09-dft/01-born-oppenheimer.md) |
+| \(\alpha\) | Thermal expansion coefficient vs Rayleigh–Ritz parameter vs dislocation–dislocation spacing factor | Thermal \(\alpha\) is K⁻¹; Taylor hardening uses \(\alpha\) in \(\Delta\tau = \alpha \mu b \sqrt{\rho}\) | [VI.2](../part06-continuum/02-stress-balance.md) vs [VII.2](../part07-defects/02-dislocation-dynamics.md) |
+| \(a(u,v)\) | Bilinear form (Part II–IV) vs lattice parameter (Part VIII–IX) | Weak-form \(a(\cdot,\cdot)\) takes two functions; lattice \(a_0\) is Å | [II.3](../part02-functional-analysis/03-hilbert-spaces.md) vs [IX.3](../part09-dft/03-dft-workflows.md) |
+| \(\psi\) | Test function (Part III) vs wavefunction (Part IX) vs strain energy density (Part VI) | Test functions are \(v\) or \(\psi\) in weighted residuals; KS orbitals are \(\psi_i(\mathbf{r})\) | [III.2](../part03-pdes/02-weak-form.md) vs [IX.2](../part09-dft/02-kohn-sham.md) |
+| \(\tau\) | Shear stress (Part VI–VII) vs autocorrelation time (Part VIII) vs resolved shear on slip systems (DDD) | Stress has Pa; autocorrelation time has ps; hardening \(\tau(\gamma)\) is a curve | [VI.2](../part06-continuum/02-stress-balance.md) vs [VIII.2](../part08-md/02-ensembles-integrators.md) |
+
+**Habit:** when a symbol feels overloaded, ask the four concept-map questions for the **current part** before searching the whole book. The collision is usually a feature — the same mathematical move (inner product, minimization, eigenvalue loop) wearing different physical units.
+
+## Continuity threads (same story, new vocabulary)
+
+Three threads stitch Parts I–IX into one novel rather than nine courses. Follow a thread when a chapter feels disconnected from the copper wire:
+
+| Thread | Opens | Recurs | Closes | Wire beat |
+|--------|-------|--------|--------|-----------|
+| **Equilibrium as linear solve** | [I.1](../part01-linear-algebra/01-vectors-matrices.md) \(\mathbf{K}\mathbf{u}=\mathbf{f}\) | [IV.2](../part04-fem/02-galerkin-assembly.md) assembly; [IX.2](../part09-dft/02-kohn-sham.md) SCF | [Epilogue](../epilogue/multiscale.md) pedigree | Load cell reading at every scale |
+| **Weak form / virtual work** | [II.1](../part02-functional-analysis/01-motivation.md) corners break strong form | [III.2](../part03-pdes/02-weak-form.md); [VI.3](../part06-continuum/03-variational-elasticity.md) | [IV.1](../part04-fem/01-weighted-residuals.md) Galerkin | Grips apply traction without pointwise smoothness |
+| **Energy minimization** | [I.1](../part01-linear-algebra/01-vectors-matrices.md) \(\mathbf{u}^T\mathbf{K}\mathbf{u}\) | [III.4](../part03-pdes/04-energy-methods.md) Dirichlet principle | [IX.1](../part09-dft/01-born-oppenheimer.md) Hohenberg–Kohn | Wire settles to a minimum (elastic, thermal, electronic) |
+| **Refinement / convergence** | [I.4](../part01-linear-algebra/04-toward-infinity.md) \(N\to\infty\) | [IV.5](../part04-fem/05-convergence.md) mesh; [V.2](../part05-fvm/02-fvm-1d.md) CFL | [VIII.2](../part08-md/02-ensembles-integrators.md) autocorrelation; [IX.2](../part09-dft/02-kohn-sham.md) cutoff/k-mesh | Thermocouples multiply until profile stops changing |
+| **Export upward** | [Prologue](../prologue/00-many-scales.md) four questions | [VII.3](../part07-defects/03-polycrystal-and-fem-handoff.md) hardening law | [IX.3](../part09-dft/03-dft-workflows.md) → [Epilogue](../epilogue/multiscale.md) handshakes | Act VI foundation before Act III pull |
+
+When two parts feel adjacent but unrelated — say FEM (IV) and DDD (VII) — trace the **export upward** thread: Part IV's yield stress is a number in a constitutive file; Part VII explains why that number bends with strain; Part IX explains where elastic constants in the file originated.
+
 ## Abbreviations
 
 | Term | Meaning | First major appearance |

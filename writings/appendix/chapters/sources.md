@@ -44,6 +44,27 @@ flowchart BT
 
 Each arrow needs a convergence log and a unit check — the epilogue's four-handshake sensitivity table ranks which exports dominate for a given question. **Mathematical order** teaches why the ladder exists; **pedigree order** fills the input deck before the grips close.
 
+## Narrative beat map (mathematical order × lab act)
+
+The book reads in mathematical order (Part I before Part IX), but the copper wire lives in laboratory time. Use this table when you want **both** clocks at once — the story beat that should feel familiar when the symbols change.
+
+| Chapter | Lab act | Narrative beat (one sentence) |
+|---------|---------|--------------------------------|
+| Prologue | Preview | One wire, eight scales, four questions |
+| I.1–I.3 | I — Mounting | Springs, assembly, the wire rings |
+| I.4 | I → II | Thermocouples multiply; vectors become fields |
+| II.1–II.5 | III (preview) | The room where weak forms live |
+| III.1–III.4 | II–III | Strong form fails; energy chooses the solution |
+| IV.1–IV.5 | I, III | Mesh the solid; choose FEM or FVM door |
+| V.1–V.4 | II | Cool the wire; balance fluxes in air |
+| VI.1–VI.4 | II–IV | Name stress; yield preview forces descent |
+| VII.1–VII.3 | IV | Forest hardens; export \(\tau(\gamma)\) |
+| VIII.1–VIII.3 | V–VI | Atoms at the notch; fit potential |
+| IX.1–IX.3 | VI | Electrons; archive pedigree |
+| Epilogue | All six | Wire the rungs; sensitivity ranks |
+
+When a chapter's **Bridge** names the next part, cross-check this table — the laboratory beat may lag or lead the mathematics by one part (Act II warming appears in Part III–V prose while Act III pulling is Part IV–VI). That offset is intentional: the wire heats before it yields.
+
 ## Chapter roadmap (one continuous arc)
 
 Read in order for the full narrative. Each row is one chapter; **Bridge** sections at chapter ends explain the handoff to the next row.
