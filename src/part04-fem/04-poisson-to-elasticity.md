@@ -126,6 +126,28 @@ When geometry and loading have translational symmetry, 3D elasticity reduces to 
 
 For a circular copper wire cross-section under uniform tension, plane strain gives an axisymmetric displacement field; exploiting symmetry reduces the problem further to a 1D radial ODE — but a full 2D FEM mesh validates the implementation and handles non-axisymmetric defects (notches, scratches) that break symmetry.
 
+## Cubic copper: when isotropic elasticity is enough
+
+Cold-drawn copper wire is **polycrystalline**: thousands of grains with random orientations. At the engineering scale of a tensile test, the wire looks isotropic — Young's modulus \(E \approx 120\,\text{GPa}\) and Poisson's ratio \(\nu \approx 0.34\) enter the Lamé formulas above. At the crystal scale, copper is **cubic** with three independent elastic constants \(C_{11}\), \(C_{12}\), \(C_{44}\) that Part IX's DFT workflows compute from strained unit cells.
+
+The bridge between scales is a **Voigt average** over grain orientations. For a random polycrystal, the isotropic moduli are
+
+\[
+E = \frac{9K\mu}{3K + \mu}, \qquad \nu = \frac{3K - 2\mu}{2(3K + \mu)},
+\]
+
+with bulk modulus \(K = (C_{11} + 2C_{12})/3\) and shear modulus \(\mu = C_{44}\) for cubic symmetry. Typical DFT values (PBE, room-temperature reference) give \(C_{11} \approx 170\,\text{GPa}\), \(C_{12} \approx 124\,\text{GPa}\), \(C_{44} \approx 76\,\text{GPa}\) — Voigt-averaged \(E \approx 130\,\text{GPa}\), close to but not identical to the 120 GPa used in earlier chapters (cold work, temperature, and functional choice shift the number).
+
+| Modeling choice | Constitutive input | When to use on the wire |
+|-----------------|-------------------|-------------------------|
+| Isotropic \(E\), \(\nu\) | Two scalars at each Gauss point | Uniform tension, bending, Joule heating on a drawn wire |
+| Cubic \(\mathbb{C}\) with texture | \(C_{ijkl}\) + orientation field | Textured cable, drawn single-crystal filament |
+| Polycrystal RVE | Grain-level \(\mathbb{C}\) per element | Notch nucleation where grain boundaries matter |
+
+In the FEM assembly loop, the only change for cubic elasticity is the **quadrature-point tensor** \(\mathbb{C}\): instead of contracting with \(\lambda\) and \(\mu\) scalars, \(\mathbf{B}^T \mathbb{C} \mathbf{B}\) uses the full \(6 \times 6\) Voigt form. The weak form, shape functions, and scatter map are unchanged — the same lesson Part I taught when a bar element's stiffness was a \(1 \times 1\) block inside a larger \(\mathbf{K}\).
+
+For the copper wire through Act III, isotropic \(E\) and \(\nu\) are honest: the cold-drawn specimen's texture is weak enough that a 10% spread in local stiffness averages out over the gauge length. When Act V introduces a notch or Act VII activates slip on preferred {111} planes, the isotropic shortcut becomes the **first failure mode** of the multiscale story — and the DFT-derived \(C_{ij}\) from Part IX supply the anisotropic correction. Document which row of the table your input deck uses; the epilogue's sensitivity analysis ranks elastic constants third in the linear regime but first near yield.
+
 ## Thermal and multiphysics coupling
 
 Joule heating raises temperature; thermal expansion generates strain. The **total strain** splits as
