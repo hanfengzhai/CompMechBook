@@ -196,6 +196,19 @@ freq = np.sqrt(w2) / (2*np.pi)
 
 **Step 4 — connect to the lab session.** When the operator taps the mounted wire before ramping load (Act I), the audible pitch is dominated by mode 1. If the frequency matches the table within measurement noise, the spring-network model is calibrated; if not, check boundary conditions (slip in the wedge grip adds effective compliance — a softer \(\mathbf{K}\), lower frequencies). Modal analysis is the first time the book's **decoupling** theme appears in a computation you can run in ten lines.
 
+## Concept map checkpoint (eigenvalues)
+
+Decoupling is the first time the book's recurring theme appears in computation. Before the mesh limit sends modes to a spectrum, summarize:
+
+| Question | Eigenvalue answer (copper wire) |
+|----------|--------------------------------|
+| What **object**? | Generalized pair \((\mathbf{K}, \mathbf{M})\); mode shapes \(\mathbf{v}_j\) |
+| What **structure**? | Symmetry → real \(\omega_j^2\); orthogonality in mass inner product |
+| What **theorem**? | Spectral theorem (finite); modal superposition for small-amplitude dynamics |
+| What **breaks**? | Missing mass matrix; inconsistent BCs (spurious modes); coarse mesh missing higher frequencies |
+
+Tapping the mounted wire before Act III's ramp is a physical eigenvalue experiment: the audible pitch is mode 1 of the same operator Part IV assembles for static tension.
+
 ## Bridge
 
 We have stayed in finite dimensions: \(\mathbf{A}\mathbf{v} = \lambda \mathbf{v}\), finitely many modes, matrices we can factor. The copper wire's ringing pitches — normal modes of the spring network — live entirely in that world for fixed \(N\). Yet mechanics specifies fields at every point: temperature along the wire, displacement in every direction, pressure in every fluid cell. Refining the mesh adds eigenvalues without bound; their limit is a **spectrum** of a differential operator, not a longer list in \(\mathbb{R}^N\).

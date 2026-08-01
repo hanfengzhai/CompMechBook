@@ -219,6 +219,19 @@ Take the fixed-fixed bar from [I.3](../part01-linear-algebra/03-eigenvalues.md) 
 
 In NumPy, build \(\mathbf{K}\) and \(\mathbf{M}\) for a 10-element bar, extract the first two eigenvectors, and solve the 2×2 reduced system \(\mathbf{K}_r \mathbf{c} = \mathbf{f}_r\). The tip displacement from two modes should capture most of the Act III linear elastic response — the same reason commercial codes offer **modal superposition** for small-amplitude vibration. When the operator later trusts a coarse mesh near the grips, this table is the Hilbert justification: the error is projection error, not guesswork.
 
+## Concept map checkpoint (Hilbert spaces)
+
+Hilbert geometry turns loads into projections. Before operators generalize matrices, summarize:
+
+| Question | Hilbert-space answer (copper wire) |
+|----------|-------------------------------------|
+| What **object**? | Complete inner-product space; trial field \(u\) and test space \(V\) |
+| What **structure**? | Orthogonality, best approximation, Riesz representation of loads |
+| What **theorem**? | Lax–Milgram existence; Céa's lemma (FEM error is projection error) |
+| What **breaks**? | Non-coercive forms; wrong trial/test pairing for advection |
+
+Galerkin orthogonality \(a(u-u_h, v_h)=0\) is not a coding trick — it is the statement that the discrete solution is the energy-best approximation in \(V_h\). Act III's load cell reading is a single functional on this geometry.
+
 ## Bridge
 
 Hilbert spaces give us angles, projections, and representations of loads. The next step is **operators**: linear maps between such spaces that generalize matrices. Dual spaces generalize row vectors and Lagrange multipliers; weak and weak* convergence describe limits when norms alone fail to detect oscillations — the behavior we see near shocks, fine-scale microstructure, and unresolved boundary layers. Operators, duality, and compactness complete the analytic toolkit before spectral theory decouples time-dependent and vibration problems into modes.

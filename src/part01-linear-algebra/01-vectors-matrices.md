@@ -167,6 +167,19 @@ In NumPy, the pattern is `K = k * np.array([[1,-1,0],[-1,2,-1],[0,-1,1]])` follo
 
 When the operator later clicks **Start** and the force–displacement trace begins its linear climb, every point on that curve is a sequence of solves exactly like this one, with \(\mathbf{K}\) growing from three nodes to millions. Part I teaches the three-node version so the million-node version is recognizable, not magic.
 
+## Concept map checkpoint (vectors and matrices)
+
+This chapter is where the copper wire first becomes a computer object. Before linear maps change coordinates, summarize what the matrix grammar established:
+
+| Question | Part I answer (copper wire) |
+|----------|----------------------------|
+| What **object**? | State vector \(\mathbf{u}\), stiffness \(\mathbf{K}\), load \(\mathbf{f}\) |
+| What **structure**? | Inner product (energy), symmetry (reciprocity), sparsity (local coupling) |
+| What **theorem**? | SPD \(\mathbf{K}\) \(\Rightarrow\) unique equilibrium; spectral decomposition preview |
+| What **breaks**? | Ill-conditioning; rank deficiency (rigid modes); treating \(\mathbf{K}\) as arbitrary data |
+
+The prologue's Act I mounting is already a solve: three nodes, one prescribed displacement, one reaction force on the load cell. Every later method — FEM, FVM, MD — returns to state plus update rule; Part I names that pattern in \(\mathbb{R}^N\).
+
 ## Bridge
 
 With vectors and matrices in hand, we next examine **linear maps** abstractly: change of basis, coordinate transformations, and the assembly operators that translate element-level physics into global systems. The bar element stiffness in the worked example above was written in local node coordinates; connecting two elements requires a change of coordinates — the subject of the next chapter.

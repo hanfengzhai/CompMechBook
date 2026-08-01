@@ -196,6 +196,19 @@ The **limit** \(u(x) = 10x\,\mu\text{m}\) is a function, not a longer vector. Th
 
 Run this experiment before reading [II.2](02-normed-spaces.md). Norms and completeness are the theorems that make the visual convergence judgment honest.
 
+## Concept map checkpoint (motivation)
+
+This chapter names the limit object behind every mesh. Before norms measure distance in function space, summarize:
+
+| Question | Motivation answer (copper wire) |
+|----------|--------------------------------|
+| What **object**? | Field \(u(x)\), not vector \(\mathbf{u}\in\mathbb{R}^N\) for fixed \(N\) |
+| What **structure**? | Nested subspaces \(V_h \subset H^1\); bilinear form \(a(\cdot,\cdot)\) as continuous limit of \(\mathbf{K}\) |
+| What **theorem**? | Well-posedness pipeline: existence, uniqueness, stability, convergence |
+| What **breaks**? | Refining \(N\) without a target space; incompatible BCs; coarse mesh on gradients |
+
+The Lab act's bar refinement experiment is the numerical proof sketch: piecewise linears approach a straight line because the energy space is \(H^1\), not because "more nodes look smoother."
+
 ## Bridge
 
 With motivation in place, we begin where all analysis begins: measuring distance and size. Metric spaces formalize convergence before norms specialize the notion of length. Normed spaces carry the energy and mean-square measures that mechanics demands; completeness — the property that Cauchy sequences converge inside the space — distinguishes the function spaces where finite element limits live from spaces where discrete solutions could converge to something outside the admissible class.

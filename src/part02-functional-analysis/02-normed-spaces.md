@@ -215,6 +215,19 @@ In Python or a spreadsheet, plot \(\|u_h\|_{L^2}\) and \(\|u_h'\|_{L^2}\) versus
 
 When the operator later reads a converged FEM log reporting "energy error," this table is what the code is counting.
 
+## Concept map checkpoint (normed spaces)
+
+Norms are the rulers that make convergence honest. Before Hilbert geometry adds angles, summarize:
+
+| Question | Normed-space answer (copper wire) |
+|----------|-----------------------------------|
+| What **object**? | Functions measured by \(L^2\), \(H^1\), or energy norm \(\|\cdot\|_a\) |
+| What **structure**? | Complete metric spaces (Banach); equivalent norms |
+| What **theorem**? | Cauchy sequences converge inside the space; Banach fixed point for coupled iterations |
+| What **breaks**? | Judging error by nodal max alone; kinks invisible to \(L^2\) but loud in \(H^1\) |
+
+The hat-function Lab act is the numerical face of "corners break classical smoothness": \(\|u_h'\|_{L^2}\) spikes at a kink even when nodal values look reasonable.
+
 ## Bridge
 
 Norms measure size; inner products measure angle and projection. When the norm comes from an inner product via \(\|u\| = \sqrt{(u,u)}\), geometry enters: orthogonality, best approximation, Riesz representation. **Hilbert spaces** — complete inner-product spaces — are where Galerkin orthogonality and energy minimization become rigorous.

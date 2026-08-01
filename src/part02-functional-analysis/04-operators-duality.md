@@ -207,6 +207,19 @@ For \(N = 5, 20, 100\), assemble \(\mathbf{K}\mathbf{u} = \mathbf{f}\) and recor
 
 This is the backstage check for Act III: before trusting the load cell curve, confirm that grip boundary conditions and equivalent nodal forces are consistent with the dual load functional Part IV will scatter into \(\mathbf{f}\). Sensitivity to grip modeling is adjoint territory — perturb \(\ell\) and observe how tip displacement responds; the pattern is the same duality this chapter named.
 
+## Concept map checkpoint (operators and duality)
+
+Operators are infinite matrices; duals are where loads live. Before the spectral theorem decouples modes, summarize:
+
+| Question | Operator answer (copper wire) |
+|----------|------------------------------|
+| What **object**? | Bounded operator \(A: H \to H\); load functional \(\ell \in H^*\) |
+| What **structure**? | Adjoint \(A^*\); compact embedding \(H^1 \hookrightarrow L^2\) |
+| What **theorem**? | Weak* convergence of nodal loads; stability \(S(\ell_n) \to S(\ell)\) |
+| What **breaks**? | Load lumping that does not converge weak*; oscillating mesh solutions |
+
+Part I's nodal force vector was always a shadow of \(\ell(v)=\int f v\). Part IV scatters loads into \(\mathbf{f}\) only because this chapter justifies the limit.
+
 ## Bridge
 
 Operators on Hilbert spaces become transparent when they are **self-adjoint** and **compact**: spectra decompose into real eigenvalues and orthonormal eigenvectors. The spectral theorem is the infinite-dimensional generalization of diagonalizing a symmetric matrix.

@@ -195,6 +195,19 @@ When \(\mathbf{K}\) is symmetric, the map and its adjoint coincide — the same 
 
 **Preview for Part II:** a load functional \(\ell(v) = \int f v\) is not a vector in the same space as displacement — it lives in the **dual** \(V^*\). The Riesz representation theorem (Part II.3) identifies dual objects with vectors only in Hilbert space. Until then, remember: \(\mathbf{f}\) enters equilibrium through \(\mathbf{K}^T = \mathbf{K}\), but Neumann data and traction loads are always "adjoint-side" objects paired with test functions.
 
+## Concept map checkpoint (linear maps)
+
+Assembly is geometry, not bookkeeping. Before eigenvalues diagonalize the map, summarize:
+
+| Question | Linear-map answer (copper wire) |
+|----------|--------------------------------|
+| What **object**? | Linear map \(\mathbf{A}\): local element data → global equilibrium |
+| What **structure**? | Change of basis, scatter/gather, transpose as adjoint |
+| What **theorem**? | SVD reveals principal response directions; symmetry \(\Leftrightarrow\) self-adjoint bilinear form |
+| What **breaks**? | Wrong Jacobian (ill-shaped elements); rank deficiency; non-symmetric maps without adjoint care |
+
+Part IV's pipeline — reference element → physical element → B-matrix → assembly — is the same map story at million-node scale. When the grip applies a global displacement, local element axes must agree on what "stretch" means.
+
 ## Bridge
 
 Not every linear map is best viewed in the standard basis. The modes of vibration of a fixed–fixed copper wire, the principal stretches of a deformation gradient, and the normal modes of a coupled oscillator all arise from choosing a basis that **diagonalizes** the map. That is the story of eigenvalues — and the discrete preview of the spectral theorem we will meet in Part II.

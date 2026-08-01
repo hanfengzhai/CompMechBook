@@ -216,6 +216,19 @@ where \(\mathcal{A}_{\Delta t}\) is the source integrator. Splitting errors appe
 
 On uniform grids, first-order FVM with upwind flux equals first-order finite differences on cell averages. The FVM framework generalizes naturally to unstructured meshes via face areas and cell volumes, whereas classical FD stencils assume structured topology. For CFD on complex domains (cooling channels around the copper wire), FVM or FV-based DG on general meshes is the practical choice.
 
+## Concept map checkpoint (1D FVM)
+
+This chapter is where conservation replaces minimization as the organizing principle. Before Riemann solvers handle discontinuities, summarize what the 1D algorithm established:
+
+| Question | 1D FVM answer (copper wire) |
+|----------|----------------------------|
+| What **object**? | Cell averages \(U_j\), face fluxes \(F_{j+1/2}\) |
+| What **structure**? | Discrete conservation: net flux = rate of change + source |
+| What **theorem**? | CFL stability from flux Jacobian eigenvalues; patch test on linear profiles |
+| What **breaks**? | \(\rho < 0\) from explicit overshoot; first-order smearing at shocks; ghost-cell BC errors |
+
+The boundary-layer Lab act is the fluid-side patch test: linear temperature must be exact on any uniform mesh before coupling to Part IV's solid conduction in Act II. Conjugate heat transfer is a handshake between this rhythm and Galerkin assembly — not two unrelated solvers.
+
 ## Bridge
 
 First-order FVM on cell averages taught the **conservation rhythm** Part V builds on: fluxes at faces, CFL limits, ghost cells at boundaries. That rhythm is exact on uniform 1D grids — but Sod's shock tube and the copper wire's supersonic cooling jet are **nonlinear**, and a first-order upwind flux smears discontinuities over \(O(\Delta x)\) cells without physical fidelity.
