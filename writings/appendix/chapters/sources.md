@@ -19,6 +19,31 @@ The book reads in **mathematical order** (Part I before Part IX), but the copper
 
 Act VI runs **in parallel** with Acts I–V in real projects: no FEM deck starts without moduli whose pedigree traces to finer models or calibration. The [epilogue](../epilogue/multiscale.md) reunites all six acts in one multiscale afternoon.
 
+## Parameter pedigree path (Act VI reading order)
+
+The book reads **mathematically** from Part I to Part IX — grammar before descent. Real projects often read **downward** when building an input deck: start at electrons, export numbers, climb until FEM has honest moduli. Act VI is that reverse ladder on the same copper wire:
+
+```mermaid
+flowchart BT
+  DFT[IX.3 DFT workflows: C_ij, gamma_sf, E_coh]
+  MD[VIII.2-3 MD: EAM fit, mobility M(tau,T)]
+  DDD[VII.2 DDD: tau(rho), hardening laws]
+  FEM[IV.4 FEM: Voigt E, nu in assembly]
+  DFT --> MD
+  MD --> DDD
+  DDD --> FEM
+```
+
+| Step | Read | Export | Wire-scale consumer |
+|------|------|--------|---------------------|
+| 1 | [IX.3](../part09-dft/03-dft-workflows.md) | \(C_{ij}\), \(\gamma_{\text{sf}}\), cohesive energy | Elastic constants, partial separation in DDD |
+| 2 | [VIII.3](../part08-md/03-ab-initio-and-coarse-graining.md) | EAM table, phonon check | Production MD and mobility fitting |
+| 3 | [VIII.2](../part08-md/02-ensembles-integrators.md) | \(M(\tau, T)\) from constrained shear | OpenDiS mobility law |
+| 4 | [VII.2](../part07-defects/02-dislocation-dynamics.md) | \(\tau(\gamma)\), \(\rho(\gamma)\), \(\alpha\) | Crystal plasticity / Voce hardening |
+| 5 | [IV.4](../part04-fem/04-poisson-to-elasticity.md) | \(\mathbf{K}\) with documented \(E\), \(\nu\) | Load-cell linear regime in Act III |
+
+Each arrow needs a convergence log and a unit check — the epilogue's four-handshake sensitivity table ranks which exports dominate for a given question. **Mathematical order** teaches why the ladder exists; **pedigree order** fills the input deck before the grips close.
+
 ## Chapter roadmap (one continuous arc)
 
 Read in order for the full narrative. Each row is one chapter; **Bridge** sections at chapter ends explain the handoff to the next row.

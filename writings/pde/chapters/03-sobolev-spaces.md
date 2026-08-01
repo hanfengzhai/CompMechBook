@@ -174,6 +174,19 @@ Now refine to ten equal elements and plot \(\|T_h'\|_{L^2}^2 = \int (T_h')^2 \, 
 
 **Failure mode to watch:** if you accidentally allow a temperature **jump** across an element interface (discontinuous \(T_h\)), the weak derivative produces a delta-like distribution and \(T_h \notin H^1\). Conforming FEM avoids this by enforcing \(C^0\) continuity — the same reason Part IV's shape functions share nodes. When the thermocouple reading disagrees with a coarse three-node mesh, the fix is refinement in \(H^1\), not higher classical smoothness.
 
+## Concept map checkpoint (Sobolev spaces)
+
+Sobolev spaces are the **room** where the weak form from [III.2](02-weak-form.md) lives. Before energy methods package existence as minimization, name what \(H^1\) and \(L^2\) buy on the copper wire:
+
+| Question | Sobolev answer (copper wire) |
+|----------|------------------------------|
+| What **object**? | Fields \(u \in H^1(\Omega)\) with \(\nabla u \in L^2\); temperature \(T \in H^1\), flux in \(L^2\) |
+| What **structure**? | Weak derivatives; trace theorem (boundary values); Poincaré inequality on \(H^1_0\) |
+| What **theorem**? | Rellich–Kondrachov compactness in 2D/3D; embedding \(H^1 \hookrightarrow L^2\) |
+| What **breaks**? | Discontinuous \(T_h\) across elements (\(T_h \notin H^1\)); assuming \(H^2\) when only \(H^1\) is guaranteed |
+
+The thermocouple in Act II measures a **continuous** temperature field even when Joule heating kinks the gradient at weld points — that is \(H^1\) membership, not classical \(C^2\) smoothness. Part IV's conforming shape functions are designed to stay inside this room; Part V's cell averages live in a different room (conservation-first, not variational). When mesh refinement stalls, ask whether the discrete field still belongs to the Sobolev space the weak form assumed — the same audit Part II taught for completeness.
+
 ## Bridge
 
 Energy methods package weak forms as minimization problems. They unify FEM, provide physical intuition, and extend naturally to nonlinear elasticity where the energy functional may be polyconvex rather than quadratic. The Dirichlet principle identifies weak solutions of Poisson with minimizers of \(\Pi(u)\); coercivity on \(H^1_0\) is the same hypothesis as in Lax–Milgram.

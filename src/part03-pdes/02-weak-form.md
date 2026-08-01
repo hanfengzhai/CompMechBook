@@ -218,6 +218,19 @@ The mid-span rise is crude (one quadratic mode) but **honest**: no second deriva
 
 Compare to the strong-form particular solution \(T(x) = 300 + q x(L-x)/(2k)\), which gives \(T(L/2) = 300 + q L^2/(8k) \approx 300 + 156\,\text{K}\). The single-mode Galerkin underestimate previews Céa's lemma: refine \(V_h\), and the weak solution converges to the strong one where it exists. The thermocouple in Act II reports the experiment; this weak form is the first mesh-independent statement the simulation must match.
 
+## Concept map checkpoint (weak form)
+
+This chapter is the hinge where Part II's function spaces meet the copper wire's physics. Before Sobolev spaces formalize regularity, summarize what the weak form established:
+
+| Question | Weak-form answer (copper wire) |
+|----------|-------------------------------|
+| What **object**? | Trial field \(u\) (displacement or temperature) and test functions \(v\) in an admissible space |
+| What **structure**? | Bilinear form \(a(u,v)\) and linear functional \(\ell(v)\); integration by parts moves derivatives to tests |
+| What **theorem**? | Lax–Milgram (next chapter): if \(a\) is coercive and continuous, a unique weak solution exists |
+| What **breaks**? | Strong form at corners and point loads; discontinuous trial fields; wrong test space for advection |
+
+The prologue named the weak form a **recurring character**. Here it first speaks in full sentences: \(a(u,v)=\ell(v)\) for all admissible \(v\). Part IV will assemble \(\mathbf{K}\) from this identity; Part VI will call it virtual work; Part IX will recast electron density as a variational functional. The character does not change — only the space and the bilinear form do.
+
 ## Bridge
 
 Weak derivatives make sense in **Sobolev spaces**. The next chapter defines \(H^1\) rigorously enough to code with confidence — and explains why conforming finite elements must be continuous across element boundaries (for standard Lagrange elements). Without \(H^1\), we cannot state what "\(\nabla u\)" means when \(u\) is only piecewise smooth; with \(H^1\), the weak form of the copper wire's conduction and elasticity problems is not a hack but the correct continuum statement.
