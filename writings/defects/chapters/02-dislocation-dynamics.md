@@ -14,6 +14,43 @@ In Part VI, equilibrium satisfied a virtual work equation with smooth displaceme
 
 The long-range elastic stress from a segment is computed via **isotropic or anisotropic elasticity** (often precomputed Green's functions). Short-range **core** interactions — when segments pass within ~1–5 nm — require empirical rules or tables from molecular dynamics. The mesoscale model lives in the gap: elastic everywhere else, phenomenological at the core.
 
+### Partial dislocations and the GSF handshake (Part IX → VII)
+
+In fcc copper, a perfect dislocation with Burgers vector \(\mathbf{b} = a_0/2\langle 110\rangle\) is energetically unfavorable as a single line on {111}. It **dissociates** into two Shockley partials:
+
+\[
+\mathbf{b} = \mathbf{b}_1 + \mathbf{b}_2, \qquad |\mathbf{b}_p| = \frac{a_0}{\sqrt{6}} \approx 0.147\,\text{nm},
+\]
+
+separated by a **stacking-fault ribbon** whose energy per unit area \(\gamma_{\text{sf}}\) is exactly the quantity [Part IX.3](../part09-dft/03-dft-workflows.md) computes from a faulted DFT supercell — not a literature constant pasted into OpenDiS without pedigree.
+
+Isotropic elasticity gives an equilibrium separation (order of magnitude)
+
+\[
+d \;\sim\; \frac{2-\nu}{1-\nu}\,\frac{\mu\,|\mathbf{b}_p|}{4\pi\,\gamma_{\text{sf}}},
+\]
+
+where \(\mu\) is shear modulus and \(\nu\) is Poisson's ratio. For copper at room temperature:
+
+| Input | Source | Typical value |
+|-------|--------|---------------|
+| \(\mu\) | Voigt average of Part IX \(C_{ij}\) | \(\sim 48\,\text{GPa}\) |
+| \(\gamma_{\text{sf}}\) | DFT stable fault (IX.3 GSF workflow) | \(\sim 40\)–\(50\,\text{mJ/m}^2\) (experiment \(\sim 45\)) |
+| \(|\mathbf{b}_p|\) | Lattice constant \(a_0 \approx 3.61\,\text{Å}\) | \(0.147\,\text{nm}\) |
+| \(d\) | Formula above | \(\sim 5\)–\(8\,\text{nm}\) |
+
+The ribbon width sets three DDD parameters that mobility tables alone cannot supply:
+
+| GSF export | DDD consumer | Wire-scale consequence |
+|------------|--------------|------------------------|
+| \(\gamma_{\text{sf}}\) at stable fault | Partial separation \(d\) | Core cutoff radius in segment rules |
+| \(\gamma_{\text{USF}}\) at unstable fault | Cross-slip barrier scale | Recovery during annealing (Act IV) |
+| \(\mathrm{d}^2\gamma/\mathrm{d}u^2\) at minimum | Peierls stress estimate | Initial yield in cold-drawn wire |
+
+**Sensitivity check.** Because \(d \propto 1/\gamma_{\text{sf}}\), a DFT functional that overestimates \(\gamma_{\text{sf}}\) by 10% **underestimates** separation by 10% — segments interact as if partials were closer, cross-slip activates earlier, and the hardening curve from OpenDiS shifts even when mobility tables are unchanged. This is the mesoscale analogue of the epilogue's Handshake 1 sensitivity: elastic constants matter in the linear regime, but **\(\gamma_{\text{sf}}\) pedigree** matters the moment Act IV's load cell bends.
+
+If your `cu.gsf/` folder from Part IX converges but OpenDiS still cites "literature 45 mJ/m²" without a path, the downward derivation stopped one rung above where it should have — the same audit the [IX.3 GSF bridge table](../part09-dft/03-dft-workflows.md#bridge-table-dft-gsf--part-vii-ddd) flags for Act VI.
+
 ## Peach–Köhler forces and mobility
 
 Each dislocation segment experiences a **Peach–Köhler** force per unit length:
