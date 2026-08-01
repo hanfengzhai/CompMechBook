@@ -168,6 +168,8 @@ Compare DFT \(C_{ijkl}\) to Part VIII MD estimates via fluctuation formulas at f
 
 Phonon calculations (`ph.x`, `q2r.x`, `matdyn.x` in the HW2 scripts) linearize DFT around equilibrium. **Imaginary frequencies** signal instability — wrong structure, bad k-mesh, or a phase that is not the ground state. For copper at equilibrium, acoustic branches should pass through zero at \(\Gamma\); optical modes lie at higher frequency. Phonon DOS validates MD thermostats and thermal conductivity estimates downstream.
 
+**Scale-boundary handshake (DFT → MD).** Archive the converged `ph.x` output beside the bulk SCF deck. Part VIII's [phonon validation Lab act](../part08-md/02-ensembles-integrators.md#scale-boundary-handshake-phonons-from-dft-to-md-validation) compares these frequencies to MD velocity-autocorrelation spectra on the same supercell with the production EAM potential. If optical branches shift by more than 10% while bulk modulus still matches, the potential is tuned to elasticity but wrong for core structures — fix the fit before exporting \(\gamma_{\text{sf}}\) or mobility to Part VII. The handshake is the electronic-to-classical counterpart of Part IV's mesh-refinement plot: two discretizations of the same copper lattice must agree on the same observable before coarser models inherit the numbers.
+
 ## HW3 pattern: phase stability under pressure
 
 Homework 3 pushes silicon through pressure-induced phase transitions — diamond vs \(\beta\)-Sn structure — by comparing **enthalpies** \(H = E + PV\) at competing phases. The critical pressure where enthalpies cross (order 10 GPa in the homework narrative) is a DFT prediction testable against experiment.

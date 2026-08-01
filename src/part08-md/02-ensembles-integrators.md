@@ -200,6 +200,34 @@ Wire creep over years involves vacancy diffusion and dislocation climb at strain
 
 For crack nucleation, **transition path sampling** finds rare barrier-crossing trajectories. The copper wire epilogue will return to these coupling strategies; here we note MD supplies **barriers and mechanisms**, not always **timescales**.
 
+### Scale-boundary handshake: phonons from DFT to MD validation
+
+Part IX will compute phonon dispersions from density-functional perturbation theory (DFPT) or finite differences of forces. Part VIII can **validate** the EAM potential before any notch or dislocation run by comparing those frequencies to MD spectra — the atomistic analogue of mesh convergence in Part IV.
+
+**Downward export (DFT).** Relax a 2×2×2 fcc Cu supercell in Quantum ESPRESSO; run `ph.x` (or equivalent) on the converged geometry. Archive the \(\Gamma\)-point optical and acoustic branches at low \(|q|\):
+
+| Mode (illustrative, PBE Cu) | DFT frequency (THz) | Physical meaning |
+|-----------------------------|---------------------|------------------|
+| TA (transverse acoustic) | ~0 at \(\Gamma\) | Goldstone; slope sets sound speed |
+| LA (longitudinal acoustic) | ~0 at \(\Gamma\) | Bulk modulus check via \(c = \omega/k\) |
+| TO (transverse optical) | ~7–8 | Zone-boundary character at finite \(q\) |
+| LO (longitudinal optical) | ~8–9 | Optical branch; EAM often softens here first |
+
+**Upward test (MD).** Minimize the same supercell in LAMMPS with the EAM file intended for production runs. Run a short **NVE** trajectory (\(\Delta t = 1\,\text{fs}\), 20 ps) and compute the **velocity autocorrelation function** (VACF) or take the Fourier transform of the mass-weighted velocity spectrum. Peaks in the VACF spectrum should align with DFT phonon frequencies at the same \(q\)-points within 5–10% for a well-fit EAM; larger shifts at optical branches signal the potential is wrong for core structures even if bulk modulus matches.
+
+**Handshake checklist** (archive beside `README_DFT.md` and the LAMMPS input deck):
+
+| Check | DFT artifact | MD artifact | Pass criterion |
+|-------|--------------|-------------|----------------|
+| Equilibrium \(a_0\) | `vc-relax.out` | `minimize` log | \(\|a_{\text{DFT}} - a_{\text{EAM}}\| < 0.02\,\text{Å}\) |
+| Cohesive energy | SCF total energy per atom | `pe/atom` after minimize | Same sign, within 10% |
+| LA sound speed along [100] | Phonon slope from DFPT | Long-wavelength VACF peak | Within 10% |
+| Optical branch at zone boundary | `ph.x` output | VACF peak assignment | Same order; note EAM softness |
+
+**What breaks without the handshake.** A potential tuned only to bulk modulus and lattice constant can reproduce NPT elastic constants ([Lab act below](#lab-act-npt-tension-on-a-copper-nanowire-segment)) yet fail at dislocation cores — where optical-mode character matters for stacking-fault energy. Part VII's mobility tables inherit that error silently. The phonon handshake is cheap (256-atom supercell, minutes of MD) compared to a million-atom notch run; it is the **scale boundary** where electronic-structure exports first meet classical trajectories.
+
+When DFT phonons and MD spectra disagree, fix the potential before exporting \(b = a_0/\sqrt{2}\) to OpenDiS. Part IX's [phonon workflow](../part09-dft/03-dft-workflows.md) supplies the reference; this section supplies the acceptance test on the MD side.
+
 ## Lab act: NPT tension on a copper nanowire segment
 
 This Lab act runs the nanowire tension test described in the opening scene — the atomistic counterpart to Part IV's elastic step and Part VII's mobility calibration.
