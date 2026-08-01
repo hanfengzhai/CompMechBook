@@ -219,6 +219,19 @@ Example acceptance gates (typical literature values for PBE Cu):
 
 When `README_DFT.md` accompanies the wire project's git commit, the foundation run is **citable** — the same audit Part VIII's EAM-fit Lab act demands. [IX.2](02-kohn-sham.md) adds the SCF cycle details; [IX.3](03-dft-workflows.md) wires this deck into the full multiscale export.
 
+## Concept map checkpoint (Born–Oppenheimer and Hohenberg–Kohn)
+
+This chapter is where the multiscale ladder receives its **intellectual floor** — why energy is a functional of electron density. Before Kohn–Sham implements the minimization, summarize what the theorems established:
+
+| Question | Part IX answer (copper wire) |
+|----------|------------------------------|
+| What **object**? | Electron density \(\rho(\mathbf{r})\); Born–Oppenheimer energy surface \(E_{\text{BO}}(\{\mathbf{R}_I\})\) |
+| What **structure**? | Fast electrons / slow nuclei separation; HK universal functional \(F[\rho]\) |
+| What **theorem**? | Hohenberg–Kohn: ground-state energy uniquely determined by \(\rho\); variational principle |
+| What **breaks**? | BO breakdown (light H); strong correlation; van der Waals with plain GGA |
+
+The Murnaghan-fit Lab act is Act VI's foundation deck: each volume point holds nuclei fixed while SCF finds the electronic ground state — the BO surface Part VIII's MD trajectories slide on. Small-cell DFT computes **intensive** quantities (\(a_0\), \(B_0\), \(E_{\text{coh}}\)) that propagate upward through the entire book.
+
 ## Bridge
 
 Born–Oppenheimer separation and Hohenberg–Kohn existence theorems justify treating **energy as a functional of electron density** while nuclei evolve on a slower surface — the intellectual floor under every copper cohesive-energy calculation in this book.

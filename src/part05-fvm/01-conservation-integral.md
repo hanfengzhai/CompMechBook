@@ -193,6 +193,19 @@ Discretize three cells with uniform \(h\), constant \(k\), and known interior so
 
 When a conjugate heat-transfer run in [V.4](04-navier-stokes-cfd.md) couples FEM temperature to FVM fluid, this 1D check is the sanity test: if global energy is not conserved at the discrete level, the handshake at the wire surface is broken before Navier–Stokes enters the story.
 
+## Concept map checkpoint (integral conservation)
+
+This chapter is where Part III's variational forms meet their **conservation-first** counterpart. Before 1D FVM implements the update loop, summarize what the integral form established:
+
+| Question | Part V answer (copper wire) |
+|----------|-----------------------------|
+| What **object**? | Cell average \(U_i\); face flux \(F_{i+1/2}\); source integral |
+| What **structure**? | Control volume \(\Omega_i\); divergence theorem on fluxes |
+| What **theorem**? | Discrete global conservation: interior face fluxes cancel in sum |
+| What **breaks**? | Galerkin drift for hyperbolic fluxes; non-conservative splitting schemes |
+
+The three-cell heat-balance Lab act verified that Joule heating and face fluxes sum to global balance — the contract conjugate heat transfer in [V.4](04-navier-stokes-cfd.md) must honor at the wire surface. Part IV minimizes energy on trial spaces; FVM **balances fluxes** on volumes.
+
 ## Bridge
 
 Discretizing the integral form on a 1D grid yields the classic FVM update: cell averages change by net flux through faces. The next chapter writes that algorithm explicitly — semi-discrete form, time stepping, CFL stability, and the conservative property that makes global balances exact on any mesh.

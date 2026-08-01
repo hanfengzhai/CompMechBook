@@ -214,6 +214,19 @@ Fixed end at \(x = 0\), prescribed displacement \(\delta = 0.1\,\text{mm}\) at \
 
 Plot force versus \(\delta\) from the load cell against the analytical line — slope \(EA/L\). Before yield (Act IV), the curve should be straight; variational elasticity explains **why** Part IV's \(\mathbf{K}\mathbf{U}=\mathbf{F}\) is force balance, not merely matrix algebra. When thermal strain \(\alpha \Delta T\) from Act II is present, subtract it from mechanical strain in \(\Pi\): the load cell reads lower force at the same grip displacement because the wire already expanded.
 
+## Concept map checkpoint (variational elasticity)
+
+This chapter is where FEM's matrix equation receives its continuum philosophical source. Before nonlinear plasticity admits history, summarize what variational elasticity established:
+
+| Question | Part VI answer (copper wire) |
+|----------|------------------------------|
+| What **object**? | Strain energy density \(\psi(\boldsymbol{\varepsilon})\); total potential \(\Pi\) |
+| What **structure**? | Virtual work \(\delta\Pi=0\); path independence in hyperelasticity |
+| What **theorem**? | Dirichlet principle: equilibrium = energy minimum in \(H^1\) |
+| What **breaks**? | Dissipation (plasticity, viscosity); non-conservative loading; fitted \(H\) without dislocations |
+
+The three-element bar worked example closed the loop from Part I's springs through Part IV's assembly: Rayleigh–Ritz on a quadratic energy returns exact linear solutions when \(u(x)\in V_h\). Act IV's upward bend signals the energy is no longer a simple quadratic in \(\mathbf{u}\) — the cue for [VI.4](04-nonlinear-plasticity-preview.md) and Part VII's forest.
+
 ## Bridge
 
 Variational elasticity closes the loop the book has traced since Part I's spring network: minimize energy in \(H^1\), derive virtual work, assemble \(\mathbf{K}\) — and recognize the discrete solve as Rayleigh–Ritz on the same functional Part III named.

@@ -201,3 +201,16 @@ Scatter into global \(\mathbf{K}\), apply \(U_1=0\) and \(U_2=10\,\mu\text{m}\) 
 The weighted residual **is** the assembly loop in embryo: for each test function \(\phi_i\), enforce \(\int (EA u_h' \phi_i' - 0)\, dx = 0\). Part IV.2 automates the scatter; Part IV.3 adds quadrature on general elements. When the load cell trace is linear in Act III, every point is this two-equation system with a larger \(\mathbf{K}\).
 
 Turn the page when the weak form is clear but no matrix exists yet — that is the signal that weighted residuals need an assembly loop.
+
+## Concept map checkpoint (weighted residuals)
+
+This chapter is where Part III's weak form becomes an **operational** approximation rule. Before assembly automates the scatter, summarize what weighted residuals established:
+
+| Question | Part IV answer (copper wire) |
+|----------|------------------------------|
+| What **object**? | Residual \(r = f - \mathcal{L}u_h\); weak residual \(R_{\text{weak}}(v; u_h)\) |
+| What **structure**? | Trial space \(V_h\), test space \(W_h\); Galerkin: \(W_h = V_h\) |
+| What **theorem**? | Rayleigh–Ritz equivalence for coercive self-adjoint problems; virtual work for elasticity |
+| What **breaks**? | Collocation on non-smooth \(u_h\); Petrov–Galerkin needed for advection; penalty ill-conditioning |
+
+The two-element bar Lab act is Galerkin in miniature: enforce \(\int (EA u_h' \phi_i' - 0)\, dx = 0\) for each hat function. Every industrial FEM code is this orthogonality condition with millions of test directions — the same character Part III introduced as \(a(u,v)=\ell(v)\), now restricted to \(V_h\).

@@ -170,6 +170,19 @@ Counting lines is not required — **classifying** is. Ask: which defect type ca
 
 When \(\rho\) is only a label on an FEM input deck, the taxonomy has not yet become geometry. [VII.2](02-dislocation-dynamics.md) is where the forest becomes computable lines.
 
+## Concept map checkpoint (defect taxonomy)
+
+This chapter is where Part VI's fitted hardening parameters receive a geometric inventory. Before DDD simulates moving lines, summarize what the taxonomy established:
+
+| Question | Part VII answer (copper wire) |
+|----------|-------------------------------|
+| What **object**? | Point (vacancy, interstitial), line (dislocation), surface (GB, SF) defects |
+| What **structure**? | Burgers vector \(\mathbf{b}\); slip systems {111}\(\langle 110 \rangle\) in FCC Cu |
+| What **theorem**? | Taylor hardening \(\tau \propto \sqrt{\rho}\) from forest statistics |
+| What **breaks**? | Scalar \(\rho\) when link topology matters; continuum elasticity at the core (\(<1\) nm) |
+
+The Act IV Lab act classified slip traces on cold-drawn copper before the load cell bent — line defects carry the history drawing wrote into the wire. When \(\rho\) is only a label on an input deck, the taxonomy has not yet become geometry; [VII.2](02-dislocation-dynamics.md) is where the forest becomes computable lines.
+
 ## Bridge
 
 Dislocation dynamics simulates line defects directly — too coarse for every atom, too fine for pure FEM. It is the mesoscale chapter of our copper wire story: the place where work hardening becomes geometry and statistics rather than a fitted curve.

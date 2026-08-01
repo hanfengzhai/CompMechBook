@@ -237,6 +237,19 @@ Example convergence table (illustrative — always run your own sweep):
 
 When \(\Delta E < 1\) meV/atom, proceed to `vc-relax` and elastic-constant calculations in [IX.3](03-dft-workflows.md). Unconverged cutoff is structured noise — the DFT version of an unrefined mesh.
 
+## Concept map checkpoint (Kohn–Sham DFT)
+
+This chapter is where Part I's eigenvalue story reappears as self-consistent electronic structure. Before workflow chapters archive reproducible decks, summarize what Kohn–Sham established:
+
+| Question | Part IX answer (copper wire) |
+|----------|------------------------------|
+| What **object**? | Kohn–Sham orbitals \(\psi_n\); density \(\rho = \sum f_n |\psi_n|^2\); \(\mathbf{H}[\rho]\), \(\mathbf{S}\) |
+| What **structure**? | SCF loop: orbitals → density → potential → new \(\mathbf{H}\); plane-wave / k-point quadrature |
+| What **theorem**? | KS equations exact if \(E_{\text{xc}}[\rho]\) exact; variational principle on \(\rho\) |
+| What **breaks**? | Approximate XC (PBE); under-converged \(E_{\text{cut}}\) or k-mesh; SCF oscillation in metals |
+
+The cutoff-sweep Lab act is the DFT analogue of Part IV's \(h\)-refinement: pick the smallest \(E_{\text{cut}}\) where energy changes fall below 1 meV/atom before exporting \(E_{\text{coh}}\) to Part VIII's EAM fit. Generalized eigenvalue \(\mathbf{H}\mathbf{c}=\epsilon\mathbf{S}\mathbf{c}\) is Part I.3 with a self-consistent matrix.
+
 ## Common failure modes
 
 | Symptom | Likely cause |

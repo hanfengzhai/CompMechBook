@@ -214,6 +214,19 @@ for n in range(n_steps):
 
 This test has nothing to do with copper chemistry — it is the **trust gate** for the Riemann machinery that will later advect temperature in a boundary layer around the wire. Passing Sod at 100–200 cells takes minutes; failing it silently poisons every coupled solid–fluid run in Act II. Log the L¹ errors in a one-line regression test before touching wall heat flux handshakes with Part IV.
 
+## Concept map checkpoint (Riemann fluxes)
+
+This chapter is where hyperbolic conservation laws receive **upwind stability**. Before Navier–Stokes adds viscous partners, summarize what Riemann solvers established:
+
+| Question | Part V answer (copper wire) |
+|----------|-----------------------------|
+| What **object**? | Left/right states \(U_L, U_R\); numerical flux \(F^*_{i+1/2}\); wave speeds |
+| What **structure**? | Godunov / Roe / HLLC flux functions; CFL limit \(\Delta t \sim \Delta x / \lambda_{\max}\) |
+| What **theorem**? | Rankine–Hugoniot jump conditions; discrete conservation with conservative flux differencing |
+| What **breaks**? | Entropy violations (expansion shocks); \(\rho<0\) or \(p<0\) without limiters; wrong ghost cells |
+
+The Sod shock-tube Lab act is the fluid-side patch test: mass conserved to machine precision, shock positions within 5% at 100 cells. Passing Sod before coupling FEM wall temperature to FVM air is the same discipline as Part IV's patch test before trusting Act II conjugate heat transfer.
+
 ## Bridge
 
 Navier–Stokes adds viscous fluxes, heat conduction, and the incompressibility constraint. CFD combines hyperbolic advection — FVM's strength — with parabolic diffusion and elliptic pressure fields that resemble Part IV's Stokes solvers.

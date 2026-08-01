@@ -204,6 +204,19 @@ Sanity checks before exporting to Part VII or Part IX:
 
 This 256-atom minimization runs in seconds on a laptop — it is the **foundation archive** Part IX's DFT run will supersede when ab initio parameters are available. Part VII's OpenDiS simulation does not need the full supercell, but its Burgers vector magnitude \(b = a_0/\sqrt{2}\) for FCC must match the \(a_0\) trusted here. When the notch MD run in Act V nucleates dislocations, the core structure is this potential's responsibility — not the Peach–Köhler law alone.
 
+## Concept map checkpoint (interatomic potentials)
+
+This chapter is where Part VII's dislocation lines receive their **ink** — atomic bonding on a Born–Oppenheimer surface. Before integrators sample phase space at lab temperature, summarize what potentials established:
+
+| Question | Part VIII answer (copper wire) |
+|----------|--------------------------------|
+| What **object**? | Potential energy \(V(\{\mathbf{r}_i\})\); forces \(\mathbf{F}_i = -\nabla_i V\) |
+| What **structure**? | EAM decomposition into pair + embedding terms; cutoff radius |
+| What **theorem**? | Newton's equations on BO surface; energy conserved in NVE |
+| What **breaks**? | Empirical fit away from training data; core structure wrong → bad mobility |
+
+The EAM minimization Lab act calibrated \(a_0\) and cohesive energy before any dynamics — the same foundation archive Part IX's DFT will supersede. Burgers vector \(b = a_0/\sqrt{2}\) links this chapter to Part VII's line geometry.
+
 ## Bridge
 
 Potentials define forces; integrators and statistical ensembles define how trajectories sample the correct thermodynamic state. A copper wire at 300 K is not a zero-Kelvin energy minimum — it is a canonical or isothermal–isobaric sample of phase space.

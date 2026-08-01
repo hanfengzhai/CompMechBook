@@ -221,6 +221,19 @@ Measure with a micrometer (or simulate a 3D hex mesh with one constrained face):
 
 For finite strain preview: \(\mathbf{F} = \text{diag}(\lambda_1, \lambda_2, \lambda_2)\) with \(\lambda_2 = 1 + \varepsilon_{22}\) gives \(J = \lambda_1 \lambda_2^2 \approx 1 + (1-2\nu)\varepsilon_{11}\) to first order — the same volume change. When Act IV later ramps into plasticity, \(J\) and deviatoric \(\bar{\mathbf{F}}\) split in [VI.4](04-nonlinear-plasticity-preview.md); this Lab act is the linear elastic baseline those splits generalize.
 
+## Concept map checkpoint (kinematics)
+
+This chapter is where Part IV's nodal displacements acquire geometric meaning. Before stress balance adds forces, summarize what kinematics established:
+
+| Question | Part VI answer (copper wire) |
+|----------|------------------------------|
+| What **object**? | Deformation gradient \(\mathbf{F}\); strain \(\boldsymbol{\varepsilon}\), \(\mathbf{E}\), rate \(\mathbf{D}\) |
+| What **structure**? | Polar decomposition \(\mathbf{F}=\mathbf{R}\mathbf{U}\); volumetric/deviatoric split |
+| What **theorem**? | Objectivity: constitutive laws depend on stretch, not rigid rotation |
+| What **breaks**? | Infinitesimal \(\boldsymbol{\varepsilon}\) when \(\|\nabla\mathbf{u}\|\) is not small; 1D bar ignores lateral contraction |
+
+The Lab act linked grip displacement to measurable diameter change via \(\varepsilon_{22} = -\nu\varepsilon_{11}\). Part IV's \(B\)-matrix is the discrete shadow of \(\boldsymbol{\varepsilon}(\mathbf{u})\) defined here; Part V's velocity field is the rate counterpart \(\mathbf{D}\).
+
 ## Bridge
 
 Kinematics names the geometric objects — \(\mathbf{F}\), \(\boldsymbol{\varepsilon}\), \(\mathbf{E}\), \(\mathbf{D}\). Forces enter through **stress tensors** and **balance laws** that constrain how stress varies in space and time.

@@ -241,7 +241,18 @@ With grips fixed (\(u = 0\) at both ends), the wire cannot expand freely: therma
 
 **What this lab act teaches:** Poisson and elasticity are not two solvers — they are one assembly loop with different DOF counts and constitutive tensors. Multiphysics codes (CalculiX, FEniCS, MOOSE) alternate Pass 1 and Pass 2 on the same mesh; the copper wire in the lab never separates heating from stretching, and neither should the FEM deck. When Part V adds air cooling at the surface, the heat pass gains a Robin boundary flux; the elastic pass is unchanged — same pattern, richer boundary data.
 
-## Bridge
+## Concept map checkpoint (Poisson to elasticity)
+
+This chapter is where the copper wire gains vector degrees of freedom and thermoelastic coupling. Before convergence theory certifies mesh refinement, summarize what the scalar-to-vector jump established:
+
+| Question | Part IV answer (copper wire) |
+|----------|------------------------------|
+| What **object**? | Displacement \(\mathbf{u}\); strain \(\boldsymbol{\varepsilon}(\mathbf{u})\); stress \(\boldsymbol{\sigma} = \mathbb{C}:\boldsymbol{\varepsilon}\) |
+| What **structure**? | Block \(\mathbf{B}^T\mathbb{C}\mathbf{B}\) at quadrature points; \(d\) DOFs per node |
+| What **theorem**? | Virtual work = Galerkin weak form; thermal eigenstrain enters as load, not new operator |
+| What **breaks**? | Isotropic \(E,\nu\) when texture matters; singular \(\mathbf{K}\) from unconstrained rigid modes |
+
+The one-mesh-two-fields Lab act showed Act II (Joule heating) and Act III (tension) on the same connectivity — the multiphysics pattern conjugate heat transfer in Part V will extend to the fluid boundary. Part IV's closing checkpoint in [IV.5](05-convergence.md) adds Céa's lemma; this chapter supplies the **physics** those error bounds bound.
 
 Poisson's equation and linear elasticity share one assembly loop — scalar versus vector unknowns, gradient versus strain, the same \(\mathbf{K}\mathbf{U}=\mathbf{F}\) pattern Part I introduced on springs. A solver that passes patch tests and looks smooth on the copper wire is not necessarily **accurate**: convergence theory ties mesh size \(h\) and polynomial order \(p\) to quantifiable error bounds in the norms Part II named.
 

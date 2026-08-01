@@ -225,6 +225,19 @@ for (i, j) in [(0, 1), (1, 2)]:
 
 When the linear elastic climb on the force–displacement trace disagrees with experiment, check this scatter before blaming constitutive physics — a transposed connectivity array or wrong DOF map corrupts the story before dislocations or yield enter.
 
+## Concept map checkpoint (Galerkin assembly)
+
+This chapter is where the copper wire's weak form becomes \(\mathbf{K}\mathbf{U}=\mathbf{F}\). Before element technology refines the integrands, summarize what assembly established:
+
+| Question | Part IV answer (copper wire) |
+|----------|------------------------------|
+| What **object**? | Global stiffness \(\mathbf{K}\), load \(\mathbf{F}\); local \(\mathbf{k}^e\), \(\mathbf{f}^e\) |
+| What **structure**? | Scatter map \(\mathbf{L}_e\); mesh graph → CSR sparsity pattern |
+| What **theorem**? | \(\mathbf{K}\) is Gram matrix of energy inner product on \(V_h\); Galerkin orthogonality of error |
+| What **breaks**? | Wrong connectivity (correct sparsity, wrong physics); missing BC rows; duplicated Neumann loads |
+
+The scatter Lab act verified that node 2 feels both neighbors (\(2k\) on the diagonal) — the same tridiagonal Part I derived by hand, now produced by a loop every commercial code runs. Assembly is not bookkeeping separate from physics; it is how Part III's bilinear form becomes Part I's matrix.
+
 ## Bridge
 
 Global assembly is the map from continuum physics to \(\mathbf{K}\mathbf{U}=\mathbf{F}\) — but the integrals inside each element depend on **shape functions**, **reference-to-physical maps**, and **quadrature rules**. The accuracy, cost, and robustness of the method — whether P1 triangles suffice or Q2 elements are needed, whether reduced integration causes hourglassing — are determined in the next chapter.

@@ -195,7 +195,18 @@ Implement the 2×2 global system by hand or in NumPy: element stiffness \(k_e = 
 
 Optional extension: repeat with a **distorted** two-element partition (lengths \(0.3L\) and \(0.7L\)). P1 bars still pass the patch test for linear solutions — a reminder that element quality matters for **higher-order** accuracy, not for representing linear fields exactly.
 
-## Bridge
+## Concept map checkpoint (elements and quadrature)
+
+This chapter is where mesh geometry enters the energy integrals. Before vector elasticity extends the same loop, summarize what element technology established:
+
+| Question | Part IV answer (copper wire) |
+|----------|------------------------------|
+| What **object**? | Shape functions \(N_a\); reference element \(\hat{\Omega}\); Jacobian \(\mathbf{J}\) |
+| What **structure**? | Partition of unity; Kronecker property; isoparametric map \(\mathbf{x}(\xi)\) |
+| What **theorem**? | Patch test: exact when solution \(\in V_h\); \(O(h^p)\) rates for smooth fields |
+| What **breaks**? | Locking (\(\nu \to 1/2\)); hourglassing (reduced integration); distorted elements reduce order |
+
+The patch-test Lab act is the FEM analogue of Part I's three-node sanity check: if linear \(u(x)=x/L\) is not exact on two P1 bars, no amount of \(h\)-refinement in Act III will rescue the load cell curve. Quadrature and element order determine **accuracy**; assembly determines **structure**.
 
 Poisson's equation — scalar, symmetric, coercive — is the training ground where elements and quadrature behave well. Vector elasticity adds tensor constitutive laws, block stiffness structure, and traction boundary integrals. The assembly loop is unchanged; the integrand grows richer.
 

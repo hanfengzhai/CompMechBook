@@ -254,6 +254,19 @@ Before publishing MD results on copper (or any metal):
 
 Unconverged MD is structured noise — the same warning we will repeat for DFT cutoff energy.
 
+## Concept map checkpoint (ensembles and integrators)
+
+This chapter is where the copper wire's laboratory temperature enters simulation. Before coarse-graining exports parameters upward, summarize what MD integration established:
+
+| Question | Part VIII answer (copper wire) |
+|----------|--------------------------------|
+| What **object**? | Phase-space trajectory \(\{\mathbf{r}_i(t), \mathbf{p}_i(t)\}\); state vector in \(\mathbb{R}^{6N}\) |
+| What **structure**? | Symplectic Verlet; thermostats (NVT) and barostats (NPT) |
+| What **theorem**? | NVE energy drift as timestep audit; ergodic sampling in equilibrium ensembles |
+| What **breaks**? | \(\Delta t\) too large; wrong ensemble during loading; strain-rate gap vs lab frame |
+
+The NVE drift and NPT modulus checks in the Lab act mirror Part IV's mesh refinement and Part IX's cutoff convergence — do not export \(E\), \(\nu\), or yield stress until the integrator and ensemble are audited. Part I's pattern returns: state plus update rule, now at \(10^5\)–\(10^9\) atoms.
+
 ## Bridge
 
 Verlet integrators and NVT/NPT ensembles make classical MD a controlled experiment on the potential energy surface — but that surface is usually **empirical**. The next chapter asks when **ab initio** forces replace EAM, how DFT data are compressed into potentials and mobility tables, and how atomistic simulations hand parameters upward before we descend to electrons in Part IX.
