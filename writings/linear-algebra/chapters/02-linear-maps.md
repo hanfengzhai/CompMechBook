@@ -70,13 +70,29 @@ Two bar elements connect nodes 1–2 and 2–3 with the same \(k = EA/L\). The l
 \mathbf{k} = k\begin{bmatrix} 1 & -1 \\ -1 & 1 \end{bmatrix}.
 \]
 
-Element 1 maps local DOFs \((u_1, u_2)\) to global indices; element 2 maps \((u_2, u_3)\). Assembly gives
+Element 1 maps local DOFs \((u_1, u_2)\) to global indices; element 2 maps \((u_2, u_3)\). Write the scatter maps explicitly:
 
 \[
-\mathbf{K} = k\begin{bmatrix} 1 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 1 \end{bmatrix}.
+\mathbf{L}_1 = \begin{bmatrix} 1 & 0 \\ 0 & 1 \\ 0 & 0 \end{bmatrix}, \qquad
+\mathbf{L}_2 = \begin{bmatrix} 0 & 0 \\ 1 & 0 \\ 0 & 1 \end{bmatrix},
 \]
 
-The middle row reflects that node 2 feels stiffness from both elements — superposition in the global basis. This \(3 \times 3\) pattern is the one-dimensional prototype of the sparse assembly loops in Part IV.
+each a \(3 \times 2\) matrix that embeds local DOFs into global indices \((1,2)\) and \((2,3)\). Then assembly is the formula from above:
+
+\[
+\mathbf{K} = \mathbf{L}_1^T \mathbf{k} \mathbf{L}_1 + \mathbf{L}_2^T \mathbf{k} \mathbf{L}_2
+= k\begin{bmatrix} 1 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 1 \end{bmatrix}.
+\]
+
+The middle row reflects that node 2 feels stiffness from both elements — superposition in the global basis. Each \(\mathbf{L}_e\) has exactly two ones per column (one per local DOF); multiplying \(\mathbf{L}_e^T \mathbf{k}_e \mathbf{L}_e\) **plants** the \(2 \times 2\) element block into the global positions without ever forming a dense global matrix in a production code — the scatter loop in Part IV is this multiply, repeated for millions of elements.
+
+| Operation | Matrix form | What a FEM code does |
+|-----------|-------------|----------------------|
+| Gather | \(\mathbf{u}_e = \mathbf{L}_e^T \mathbf{u}\) | Read nodal values for element nodes |
+| Local multiply | \(\mathbf{f}_e = \mathbf{k}_e \mathbf{u}_e\) | Element stiffness times local displacement |
+| Scatter | \(\mathbf{f} \mathrel{+}= \mathbf{L}_e \mathbf{f}_e\) | Add element forces into global residual |
+
+The transpose pattern is not accidental: gathering local DOFs uses \(\mathbf{L}_e^T\); scattering element forces uses \(\mathbf{L}_e\). Virtual work \(\mathbf{u}^T \mathbf{f}\) is invariant under this change of coordinates — the discrete shadow of the adjoint relationship developed in Part II. This \(3 \times 3\) pattern is the one-dimensional prototype of the sparse assembly loops in Part IV.
 
 ## Lab act: rotation when the wire is not aligned with the global axis
 

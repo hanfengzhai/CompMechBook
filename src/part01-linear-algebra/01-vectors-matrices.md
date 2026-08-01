@@ -100,6 +100,30 @@ Fix node 1 (\(u_1 = 0\)) and apply force \(F\) at node 3. After eliminating the 
 
 Solution gives \(u_3 = 3FL/(2EA)\): the end displacement predicted by a two-element model. Refining the mesh (increasing \(N\)) converges toward the continuum solution \(u(x) = Fx/(EA)\) — the first hint that \(\mathbb{R}^N\) approximates a function space as \(N\) grows.
 
+### Mesh refinement: the first convergence study
+
+The continuum solution for a fixed end load \(F\) at \(x = L\) with \(u(0) = 0\) is \(u(L) = FL/(EA)\). A uniform mesh of \(N\) nodes and \(N-1\) equal bar elements gives end displacement \(u_N(L)\) that **approaches** this limit as \(N\) grows — not because the vector gets longer in a meaningful physical sense, but because the discrete model approximates a function \(u(x)\) more faithfully.
+
+Take \(L = 1\,\text{m}\), \(EA = 1.2 \times 10^5\,\text{N}\), \(F = 100\,\text{N}\), so \(u(L) = 8.33 \times 10^{-4}\,\text{m}\). Assemble the tridiagonal \(\mathbf{K}\) for \(N\) nodes (fixed left end, force at right end) and solve:
+
+| \(N\) | Element count | \(h = L/(N-1)\) | \(u_N(L)\) | Relative error \(|u_N - u(L)|/u(L)\) | \(\kappa(\mathbf{K})\) (reduced) |
+|-------|---------------|-----------------|------------|--------------------------------------|----------------------------------|
+| 3 | 2 | 0.500 m | \(1.25 \times 10^{-3}\) m | 50% | 4.0 |
+| 5 | 4 | 0.250 m | \(9.38 \times 10^{-4}\) m | 12.5% | 16.0 |
+| 11 | 10 | 0.100 m | \(8.47 \times 10^{-4}\) m | 1.7% | 100.0 |
+| 21 | 20 | 0.050 m | \(8.37 \times 10^{-4}\) m | 0.4% | 400.0 |
+| 101 | 100 | 0.010 m | \(8.33 \times 10^{-4}\) m | \(\sim 0.01\%\) | 10,000 |
+
+Three observations matter for the rest of the book:
+
+1. **Convergence target.** The nodal values are not converging to a longer vector — they are converging to a **function** \(u(x)\). Part II names the space that function lives in; Part IV bounds how fast the error drops with \(h\).
+
+2. **Conditioning grows with refinement.** \(\kappa(\mathbf{K})\) scales like \(\mathcal{O}(N^2)\) for this 1D chain — a discrete echo of the fact that finer meshes resolve more modes and the stiffness operator has an unbounded spectrum in the limit. Ill-conditioning is not a bug in the solver; it is physics plus discretization. Preconditioners (Part IV) and appropriate norms (Part II) manage it.
+
+3. **The coarse mesh is not wrong — it is incomplete.** The two-element model overestimates end displacement by 50% because it assumes strain is piecewise constant. That is the same modeling error an operator would see if the load cell reading were compared to a three-node spring model before mesh convergence. Refinement is the first **verification** step in computational mechanics: hold the physics fixed, increase \(N\), watch a scalar quantity stabilize.
+
+In NumPy, the refinement loop is ten lines: build tridiagonal \(\mathbf{K}\) with `2k` on the diagonal and `-k` on off-diagonals, eliminate the fixed row, solve, compare to `F*L/(E*A)`. No FEM package required — only the grammar this chapter names. [I.4](04-toward-infinity.md) returns to this table when \(N \to \infty\) becomes a function-space limit; [I.3](03-eigenvalues.md) uses the same mesh to study how natural frequencies converge.
+
 ## Matrix decompositions: previews that matter
 
 Full factorizations are standard in ME 300A; in computational mechanics we meet them constantly:
@@ -188,7 +212,8 @@ With vectors and matrices in hand, we next examine **linear maps** abstractly: c
 |-------------------------------|----------------------------------------|
 | State vector \(\mathbf{u}\) and equilibrium \(\mathbf{K}\mathbf{u}=\mathbf{f}\) | Linear maps as the rules behind assembly and coordinate change |
 | Inner product \(\mathbf{u}^T\mathbf{v}\) as energy pairing | Rotations, local/global frames, scatter maps \(\mathbf{L}_e\) |
-| Sparsity from local coupling on the spring chain | Isoparametric Jacobian preview: volume maps before Part IV |
+| Sparsity from local coupling on the spring chain | Explicit gather/scatter: \(\mathbf{K} = \sum_e \mathbf{L}_e^T \mathbf{k}_e \mathbf{L}_e\) |
+| Mesh refinement convergence toward \(u(x)\) | Isoparametric Jacobian preview: volume maps before Part IV |
 | Column space / null space of \(\mathbf{K}\) | Rigid-body modes the grips must constrain |
 
 Return to the [prologue](../../prologue/00-many-scales.md): **Act I — Mounting** fixes the wire in grips whose end displacement is a single global degree of freedom, yet every bar element still carries its own local axis. Assembly is the map that declares those languages equivalent — the same book-keeping Part IV will automate on millions of elements. When the map is wrong, the wire appears to stretch when only one end moves; when the basis is ill-chosen, \(\mathbf{K}\) is dense and ill-conditioned even though the physics is local.
