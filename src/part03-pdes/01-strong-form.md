@@ -173,6 +173,19 @@ For each row, write the **strong-form equation** you would put on a blackboard (
 
 This 5-minute table is the experiment-facing version of the decision matrix above. Part III.2 replaces pointwise Laplacians with **weak forms** precisely because rows two and three fail the \(C^2\) contract while row one succeeds. When a thermal FEM run converges under mesh refinement despite a thermocouple weld in the model, the weak form — not the strong form at every point — is the honest continuum statement.
 
+## Concept map checkpoint (strong form)
+
+Part II built the function spaces; this chapter names the PDEs those spaces will serve. Before integration by parts in the next chapter, summarize what the strong form demands and where it fails on the wire:
+
+| Question | Part III.1 answer (copper wire) |
+|----------|--------------------------------|
+| What **object**? | Fields \(T(\mathbf{x})\), \(\mathbf{u}(\mathbf{x})\) satisfying PDEs **pointwise** in \(\Omega\) |
+| What **structure**? | Elliptic / parabolic / hyperbolic classification; Dirichlet, Neumann, Robin BCs on \(\partial\Omega\) |
+| What **theorem**? | Maximum principle (elliptic); classical existence when data and domain are smooth enough for \(C^2\) |
+| What **breaks**? | Grip corners; thermocouple welds; material interfaces; point loads — all fail the \(C^2\) contract |
+
+The Lab act's three-point table is the operational version of this checkpoint: midspan obeys the strong form; weld and interface do not. Part III.2's weak form is not a numerical compromise — it is the correct continuum statement when rows two and three apply. Every numbered chapter in Parts I–IX now ends with this four-question summary before its Bridge; use it to audit whether you are discretizing the right formulation.
+
 ## Bridge
 
 The strong form is what physicists write. The weak form is what variational algorithms implement. Multiplying by a test function, integrating over \(\Omega\), and integrating by parts moves derivatives from the unknown onto smooth test functions — trading pointwise \(C^2\) requirements for integral balance in \(H^1\).
