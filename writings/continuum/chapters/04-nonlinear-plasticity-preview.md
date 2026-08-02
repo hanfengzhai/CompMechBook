@@ -126,6 +126,42 @@ The continuum plasticity chapter in a standard course stops at phenomenological 
 
 The table is not a menu of unrelated codes. It is the same question — what state variable carries history upward? — with different answers at different scales.
 
+## Scale-boundary handshake: Taylor hardening from DDD to \(J_2\) plasticity
+
+Part [VI.3](03-variational-elasticity.md#scale-boundary-handshake-mathbbc-from-dftmd-to-variational-elasticity) traced the elastic tensor \(\mathbb{C}\) from DFT/MD upward. This section traces **hardening history** downward from dislocation dynamics (Part VII) into the scalar internal variable \(\alpha\) that \(J_2\) plasticity updates at each Gauss point.
+
+**Downward export (DDD → continuum).** OpenDiS (or ParaDiS) on a representative copper volume returns forest density \(\rho\) and link-length statistics. Taylor's relation maps forest to critical resolved shear stress:
+
+\[
+\tau_c = \tau_0 + \alpha_\text{Taylor}\, \mu b \sqrt{\rho},
+\]
+
+where \(\mu\) is shear modulus, \(b\) is Burgers vector magnitude, and \(\alpha_\text{Taylor} \approx 0.2\)–\(0.5\) for fcc metals. Uniaxial tension relates \(\tau_c\) to yield stress \(\sigma_y\) through the Schmid factor for dominant slip systems. The **handoff** to phenomenological plasticity is:
+
+| DDD export | \(J_2\) parameter | Pass criterion on drawn wire |
+|------------|-------------------|------------------------------|
+| \(\rho\) after simulated drawing pass | Initial \(\alpha_0 \propto \sqrt{\rho}\) or elevated \(\sigma_{y0}\) | Cold-drawn \(\sigma_y\) exceeds annealed at same geometry |
+| Link-length distribution \(L(\ell)\) | Hardening modulus \(H(\dot\varepsilon)\) or kinematic back stress | Post-yield slope stable when \(h\) refines (signal 2 in table below) |
+| Dislocation source density at notch | Nucleation criterion in crystal plasticity FEM | First plastic event location matches DDD/MD, not mesh artifact |
+
+**Upward import (FEM calibration → DDD audit).** When a tensile test fits \(\sigma_{y0} = 70\,\text{MPa}\) and \(H = 500\,\text{MPa}\) for annealed copper but the drawn wire needs \(\sigma_{y0} = 250\,\text{MPa}\) with no change in mesh, the **mesoscale explanation** is frozen forest density — not a different \(\mathbb{C}\). Archive `hardening.yaml` beside `elastic_constants/`:
+
+```yaml
+# Example handoff bundle (Act IV — Hardening)
+annealed:
+  sigma_y0_MPa: 70
+  H_MPa: 500
+  source: "J2 fit, mesh-converged FEM"
+drawn:
+  sigma_y0_MPa: 250
+  H_MPa: 800
+  rho_m2: 1.2e14          # from DDD after virtual drawing pass
+  taylor_alpha: 0.3
+  source: "OpenDiS export + Schmid mapping"
+```
+
+**What breaks without the handshake.** Fitting \(H\) from one macroscopic curve while DDD runs with a different \(\mu b\) product produces hardening that **looks** right on the load cell but predicts wrong springback after bending — history lives in \(\rho\), not in a scalar fit alone. Halving the FEM mesh and seeing unchanged post-yield slope (signal 2 below) means discretization converged but **constitutive physics did not**; that is the cue to descend to Part VII rather than refine \(H(T, \dot\varepsilon)\) further.
+
 ## Coupling back to Parts IV and V
 
 **Part IV** assembled linear \(\mathbf{K}\). Nonlinear solid mechanics replaces it with \(\mathbf{K}_T\) that changes every iteration and every increment. Mesh refinement studies from Part IV still apply: h-adaptivity near notches, p-refinement for smooth bulk fields, error indicators based on energy norms — now on incremental work conjugates rather than quadratic energy alone.

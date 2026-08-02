@@ -58,6 +58,30 @@ flowchart LR
 
 **Baby picture:** write Newton's equations for nuclei on a potential surface, choose an ensemble (NVT, NPT), integrate with a stable timestep, then fit EAM parameters and export moduli to continuum models. The copper lattice vibrates here; DDD mobility and FEM stiffness inherit the averages.
 
+## How Part VIII connects to Parts II–IX
+
+Part VIII is the **finest discrete scale** before electrons enter explicitly. Like Part II's contract for FEM, each export upward must name its consumer and its audit downward:
+
+| Part VIII chapter | Structure or theorem | Where it reappears |
+|-------------------|---------------------|-------------------|
+| VIII.1 Potentials | Hamiltonian on BO surface; EAM cutoff | Part VII core width; Part IX \(E_{\text{coh}}\) audit |
+| VIII.2 Ensembles | Symplectic Verlet; NVT/NPT sampling | Part VI thermal expansion; Part V boundary \(T\) |
+| VIII.3 Coarse-graining | Handoff tables; EAM-fit acceptance | Part IV \(\mathbb{C}\); Part VII \(M(\tau,T)\), \(\gamma_{\text{sf}}\) |
+
+**Mathematical lineage (Part I → Part VIII).** Part I's \(\mathbf{K}\mathbf{u}=\mathbf{f}\) becomes dynamic Newton's laws: forces from \(\nabla V\), equilibrium from \(\nabla V = 0\), normal modes from the Hessian eigensystem. Part II's completeness instinct reappears as **RVE convergence** — halving the simulation cell and checking \(a_0\), \(\kappa\), or \(\gamma_{\text{sf}}\) is the atomistic mesh-refinement study. Part IV's scatter loop is the static limit; velocity Verlet is the same sparsity pattern executed \(10^7\) times per nanosecond of physical time.
+
+**Scale-boundary discipline.** Every quantity MD exports must carry a pedigree row in the foundation folder (see [Act VI in the sources appendix](../appendix/sources.md#six-acts--parts-laboratory-time)):
+
+| Export | Minimum MD evidence | Downstream consumer |
+|--------|---------------------|---------------------|
+| \(a_0\), \(E_{\text{coh}}\) | Minimized bulk cell; pressure \(\approx 0\) | EAM sanity; Burgers \(b = a_0/\sqrt{2}\) for DDD |
+| \(\mathbb{C}_{ij}\) or \(E, \nu\) | NPT small-strain response | Part IV elastic step; Part VI.3 handshake |
+| \(\gamma_{\text{sf}}\) | Generalized stacking-fault slab | Part VII partial separation; Peierls stress |
+| \(\kappa(T)\) | Green–Kubo or NEMD | Part III/V thermal fields on heated wire |
+| \(M(\tau, T)\) | NVT shear on dislocation core | OpenDiS mobility tables |
+
+If a row lists only "Mishin EAM, 2001" with no phonon or DFT cross-check, Part IX is the audit chapter — the same role Part II played when Part I's stiffness matrix needed an \(H^1\) limit. Linear readers arrive here after DDD; workflow readers may have run EAM fits before OpenDiS — both paths converge when the handoff table is populated before the epilogue's multiscale afternoon.
+
 ## Representative schematics (Atomistic Modeling Notes)
 
 The [Atomistic Modeling Notes](https://hanfengzhai.github.io/file/AtomModel_note.pdf) follow the same ME 412 habit: each schematic is a baby picture of the atomistic pipeline. Use them as a visual index while reading:

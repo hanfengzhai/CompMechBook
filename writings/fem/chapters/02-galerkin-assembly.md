@@ -186,6 +186,40 @@ where \(\mathbf{M}\) is the **mass matrix** \(M_{ij} = \int \phi_i \phi_j\, d\Om
 
 For nonlinear problems, assembly runs inside Newton iterations. The **tangent stiffness** \(\mathbf{K}_T = \partial \mathbf{R}/\partial \mathbf{U}\) is assembled from derivatives of the weak form with respect to nodal values — conceptually the same loop, with a different integrand.
 
+## Operator handshake (Part II.4 → assembly)
+
+Part [II.4](../../part02-functional-analysis/04-operators-duality.md) named the continuous objects assembly discretizes. This section is the **acceptance test** for Act III: every row in the scatter loop must represent the same operator story Part II proved on \(H^1\).
+
+| Part II.4 object | Discrete assembly object | Copper wire instance |
+|------------------|--------------------------|----------------------|
+| Stiffness operator \(A: H \to H'\) via \(a(u,v)\) | Global \(\mathbf{K}\) with \(K_{ij} = a(\phi_j, \phi_i)\) | Axial bar: tridiagonal from \(-(EA u')'\) |
+| Load functional \(\ell \in H'\) | Nodal load \(\mathbf{F}\) with \(F_i = \ell(\phi_i)\) | Body weight \(\int f \phi_i\) plus grip traction |
+| Galerkin projector \(P_h: H \to V_h\) | Solve \(\mathbf{K}\mathbf{U}=\mathbf{F}\) for coefficients of \(u_h = \sum U_j \phi_j\) | Best energy-norm approximation before yield |
+| Weak\* convergence \(\ell_N \to \ell\) | Consistent load lumping as mesh refines | Midspan deflection stabilizes under \(h\)-refinement |
+
+**Downward import (continuous → discrete).** The bilinear form from Part III becomes element integrals:
+
+\[
+K_{ij} = \sum_e \int_{\Omega_e} \nabla \phi_j \cdot \nabla \phi_i \, d\Omega, \qquad F_i = \ell(\phi_i) = \int_\Omega f \phi_i \, d\Omega + \int_{\Gamma_N} t \phi_i \, dS.
+\]
+
+The scatter loop is bookkeeping for these sums — not a separate physics layer.
+
+**Upward export (discrete → continuous).** When \(h \to 0\) with \(V_h \subset H^1_0\) conforming, Céa's lemma ([IV.5](05-convergence.md)) guarantees \(\|u - u_h\|_a \le C \inf_{v \in V_h} \|u - v\|_a\). The assembled \(\mathbf{K}\) is therefore a **stable discretization** of the operator Part II.4 bounded — provided loads enter through \(\ell(\phi_i)\), not ad hoc point forces that fail to converge weakly.
+
+**What breaks without the handshake.** A transposed connectivity array produces a structurally valid \(\mathbf{K}\) with wrong physics — the CSR pattern looks fine while the load cell trace is nonsense. A duplicated Neumann contribution double-counts boundary traction. A penalty Dirichlet row with huge \(\alpha\) mimics a constraint but destroys conditioning — the discrete analogue of an unbounded operator. Part II.4's Lab act (distributed body load versus equivalent nodal forces on a simply supported bar) is the one-dimensional audit: run it before trusting the three-node scatter Lab act below.
+
+```mermaid
+flowchart LR
+  ell[Load functional ell in H prime] --> Fi[F_i = ell phi_i]
+  A[Operator A via a u,v] --> Kij[K_ij = a phi_j, phi_i]
+  Fi --> sys[K U = F]
+  Kij --> sys
+  sys --> Ph[Galerkin u_h = P_h u]
+```
+
+When midspan displacement **oscillates** without trend as \(h\) halves, suspect \(\ell_N \not\to \ell\) before blaming quadrature — the same diagnostic [II.4](../../part02-functional-analysis/04-operators-duality.md) named for operators, now visible on the copper wire's load–displacement trace.
+
 ## Connection to Part I and Part III
 
 Assembly is where the abstract meets the concrete:
