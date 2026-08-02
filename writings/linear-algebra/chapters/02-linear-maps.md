@@ -176,6 +176,75 @@ Any matrix \(\mathbf{A} \in \mathbb{R}^{m \times n}\) admits an SVD \(\mathbf{A}
 
 Mechanically, SVD identifies **principal response directions**: which displacement patterns produce the largest forces, and which load patterns excite the largest displacements. Reduced-order models for the copper wire might retain only the first few singular modes — a low-rank approximation of a high-dimensional map. The SVD also quantifies **rank deficiency**: near-zero \(\sigma_i\) signal mechanisms or ill-conditioning.
 
+## Sparse storage: the scatter map in computer memory
+
+The assembly formula \(\mathbf{K} = \sum_e \mathbf{L}_e^T \mathbf{k}_e \mathbf{L}_e\) is a mathematical sum of rank-one (or low-rank) updates planted at sparse index pairs. A production FEM code never forms the dense \(N \times N\) matrix — it stores only the **nonzero entries** and the **row/column indices** that tell the solver where each stiffness contribution lives.
+
+The **compressed sparse row (CSR)** format is the standard encoding:
+
+| Array | Length | Meaning |
+|-------|--------|---------|
+| `values` | nnz | Nonzero entries of \(\mathbf{K}\) in row-major order |
+| `col_indices` | nnz | Column index of each entry |
+| `row_ptr` | \(N+1\) | Start index in `values` for each row |
+
+For the three-node bar from the worked example, \(\mathbf{K} = k\begin{bmatrix} 1 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 1 \end{bmatrix}\) with seven nonzeros:
+
+```text
+values      = [ k, -k, -k, 2k, -k, -k, k ]
+col_indices = [ 0,  1,  0,  1,  2,  1,  2 ]
+row_ptr     = [ 0,  2,  5,  7 ]
+```
+
+Matrix–vector multiply \(\mathbf{y} = \mathbf{K}\mathbf{x}\) becomes a loop over rows: for each row \(i\), accumulate `values[j] * x[col_indices[j]]` for \(j\) from `row_ptr[i]` to `row_ptr[i+1]-1`. No dense storage, no wasted multiplies by zero — the same sparsity pattern Part I.1 attributed to **local coupling** is now a data structure.
+
+The scatter map \(\mathbf{L}_e\) is what the assembly loop implements without ever building \(\mathbf{L}_e\) explicitly:
+
+```text
+for each element e:
+    gather u_e from global u using connectivity table
+    f_e = k_e @ u_e
+    for each local DOF i:
+        global_I = connectivity[e, i]
+        for each local DOF j:
+            global_J = connectivity[e, j]
+            K[global_I, global_J] += k_e[i, j]   # scatter-add
+```
+
+The connectivity table is the sparse index map; the scatter-add is the CSR update. When two elements share a node (node 2 in the two-element example), their contributions **add** at the same matrix entry — superposition in the global basis, implemented as `+=` in the assembly loop.
+
+| Concept (this chapter) | CSR / assembly equivalent |
+|--------------------------|---------------------------|
+| Change of basis \(\mathbf{L}_e\) | Connectivity table: local DOF → global index |
+| \(\mathbf{L}_e^T \mathbf{k}_e \mathbf{L}_e\) | Scatter-add of element block into global `values` |
+| Sparsity from local coupling | `nnz` grows \(\mathcal{O}(N)\) for 1D bars, \(\mathcal{O}(N)\)–\(\mathcal{O}(N \log N)\) for 3D tetrahedra |
+| Symmetry \(\mathbf{K} = \mathbf{K}^T\) | Store upper triangle only; mirror on scatter, or store full with duplicate entries |
+
+**Why this matters for the copper wire.** A million-node 3D mesh might have \(N \sim 10^6\) DOFs but only \(\text{nnz} \sim 10^7\)–\(10^8\) — a fill ratio of 0.01% or less. Conjugate gradient (Part I.1) and algebraic multigrid preconditioners operate on CSR arrays, not dense matrices. Ill-conditioning from material contrast ([I.1](01-vectors-matrices.md)) shows up in the **condition number of the sparse system**, not in the storage format — but the format is what makes solving a million-DOF wire mesh feasible on a workstation.
+
+Direct sparse solvers (Cholesky on SPD systems) exploit the same sparsity pattern for fill-reducing reorderings (Cuthill–McKee, nested dissection). The reordering is a **permutation** of the basis — another change of coordinates that reduces fill-in during factorization. Part IV's mesh generators and Part VII's polycrystal meshes both produce connectivity patterns whose quality (bandwidth, element aspect ratio) directly affects solver cost.
+
+## Lab act: verify strain energy invariance under rotation
+
+The rotated bar in the Lab act above must store the **same elastic energy** in local and global frames. This is the numerical check that assembly and rotation are implemented consistently — a one-line test every element routine should pass.
+
+Take the \(4 \times 4\) global stiffness \(\mathbf{k}_{\text{global}}\) for a bar at \(\theta = 30^\circ\) and a displacement vector \(\mathbf{u}_{\text{global}}\) that corresponds to pure axial stretch \(\delta\) in the local frame: \(u_{\text{local}} = [\delta, 0]^T\) at each end, mapped through \(\mathbf{R}\). Compute:
+
+\[
+W_{\text{global}} = \tfrac{1}{2}\, \mathbf{u}_{\text{global}}^T \mathbf{k}_{\text{global}} \mathbf{u}_{\text{global}}, \qquad
+W_{\text{local}} = \tfrac{1}{2}\, \mathbf{u}_{\text{local}}^T \mathbf{k}_{\text{local}} \mathbf{u}_{\text{local}}.
+\]
+
+These must agree to machine precision. If \(W_{\text{global}} \neq W_{\text{local}}\), the rotation matrix \(\mathbf{R}\) is wrong, the local stiffness is not symmetric, or the gather/scatter map permutes DOFs incorrectly.
+
+| Test | Expected | Failure mode |
+|------|----------|--------------|
+| Energy invariance | \(\|W_{\text{global}} - W_{\text{local}}\| < 10^{-12}\) | Wrong \(\cos\theta/\sin\theta\) in \(\mathbf{R}\) |
+| Symmetry | \(\mathbf{k}_{\text{global}} = \mathbf{k}_{\text{global}}^T\) | Missing scatter-add on off-diagonal coupling |
+| Axial load path | Global force aligns with bar axis after \(\mathbf{k}\mathbf{u}\) | Connectivity table transposed |
+
+For \(\delta = 10\,\mu\text{m}\), \(EA/L = 2.4 \times 10^8\,\text{N/m}\), the stored energy is \(W = \tfrac{1}{2}(EA/L)\delta^2 \approx 1.2 \times 10^{-2}\,\text{J}\) per element — the same number the load cell integrates over the full wire when all elements agree on what "stretch" means. Part IV's isoparametric elements pass the same test in 3D: strain energy computed in reference or physical coordinates must match; failure is the first sign of a bad Jacobian or inconsistent quadrature.
+
 ## Linear maps in the FEM pipeline (forward connection)
 
 Part IV implements the following chain, each step a linear map (possibly composed with nonlinear constitutive updates):
