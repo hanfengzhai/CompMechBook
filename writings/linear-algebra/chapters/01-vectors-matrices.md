@@ -193,6 +193,80 @@ With \(k_2/k_1 \approx 3.3\), \(\kappa\) is modest in this tiny system — but t
 
 When the operator reports "solver did not converge," the first diagnostic is not mystical: compute \(\mathbf{u}^T \mathbf{K} \mathbf{u}\) for the current iterate — if energy is negative or wildly oscillatory, check constraints before blaming the load cell. Conditioning is the finite-dimensional shadow of **coercivity** in Part II: an operator without a uniform lower bound on energy behaves like an ill-conditioned matrix at every mesh size.
 
+## Iterative solvers: conjugate gradient on the spring chain
+
+Direct factorization of \(\mathbf{K}\) is \(\mathcal{O}(N^3)\) dense or fill-dependent sparse — acceptable for the three-node Lab act, prohibitive for a million-node wire bundle. **Iterative methods** build \(\mathbf{u}\) as a combination of matrix–vector products \(\mathbf{K}\mathbf{p}\), exploiting sparsity at \(\mathcal{O}(\text{nnz})\) per product. For symmetric positive definite \(\mathbf{K}\), the **conjugate gradient (CG)** method is the workhorse: it minimizes the energy \(\Pi(\mathbf{u}) = \tfrac{1}{2}\mathbf{u}^T \mathbf{K}\mathbf{u} - \mathbf{f}^T\mathbf{u}\) over expanding Krylov subspaces without ever forming \(\mathbf{K}^{-1}\).
+
+### The CG algorithm (SPD systems)
+
+Given \(\mathbf{K}\mathbf{u}=\mathbf{f}\) with \(\mathbf{K}\) symmetric positive definite, initialize \(\mathbf{u}_0 = \mathbf{0}\), \(\mathbf{r}_0 = \mathbf{f}\), \(\mathbf{p}_0 = \mathbf{r}_0\). For \(k = 0, 1, 2, \ldots\) until \(\|\mathbf{r}_k\|\) is small:
+
+\[
+\alpha_k = \frac{\mathbf{r}_k^T \mathbf{r}_k}{\mathbf{p}_k^T \mathbf{K} \mathbf{p}_k}, \qquad
+\mathbf{u}_{k+1} = \mathbf{u}_k + \alpha_k \mathbf{p}_k,
+\]
+\[
+\mathbf{r}_{k+1} = \mathbf{r}_k - \alpha_k \mathbf{K} \mathbf{p}_k, \qquad
+\beta_k = \frac{\mathbf{r}_{k+1}^T \mathbf{r}_k}{\mathbf{r}_k^T \mathbf{r}_k}, \qquad
+\mathbf{p}_{k+1} = \mathbf{r}_{k+1} + \beta_k \mathbf{p}_k.
+\]
+
+Each iteration needs one sparse matrix–vector product and a handful of dot products. The search directions \(\mathbf{p}_k\) are **K-conjugate**: \(\mathbf{p}_i^T \mathbf{K} \mathbf{p}_j = 0\) for \(i \neq j\), so CG reaches the exact solution in at most \(N\) steps — in exact arithmetic. In floating point, CG stops when the **relative residual** \(\|\mathbf{r}_k\| / \|\mathbf{f}\|\) falls below a tolerance, typically \(10^{-6}\) to \(10^{-10}\) for engineering models.
+
+| Quantity | Role in CG | Copper-wire diagnostic |
+|----------|------------|------------------------|
+| \(\mathbf{r}_k = \mathbf{f} - \mathbf{K}\mathbf{u}_k\) | Residual (unbalanced force) | Load cell vs. internal equilibrium |
+| \(\mathbf{p}_k^T \mathbf{K} \mathbf{p}_k\) | Curvature along search direction | Energy landscape steepness |
+| \(\alpha_k\) | Optimal step along \(\mathbf{p}_k\) | How far to move before rebalancing |
+| \(\kappa(\mathbf{K})\) | Iteration count scales as \(\mathcal{O}(\sqrt{\kappa})\) | Why fine meshes need preconditioners |
+
+### Worked example: CG on the fixed–free bar chain
+
+Return to the uniform bar mesh from the mesh-refinement table: \(N\) nodes, tridiagonal \(\mathbf{K}\) with fixed left end and unit load at the right. With \(N = 21\), \(\kappa(\mathbf{K}) \approx 400\), CG typically converges in \(\sim 20\)–\(40\) iterations to relative residual \(10^{-8}\) — versus one Cholesky factorization that costs \(\mathcal{O}(N)\) fill but \(\mathcal{O}(N^{3/2})\) to \(O(N^2)\) depending on ordering.
+
+**NumPy sketch** (for transparency; production codes call `scipy.sparse.linalg.cg`):
+
+```python
+import numpy as np
+
+def cg(K, f, tol=1e-8, maxiter=500):
+    u = np.zeros_like(f)
+    r = f.copy()
+    p = r.copy()
+    rsold = r @ r
+    for _ in range(maxiter):
+        Kp = K @ p
+        alpha = rsold / (p @ Kp)
+        u += alpha * p
+        r -= alpha * Kp
+        rsnew = r @ r
+        if np.sqrt(rsnew) < tol * np.linalg.norm(f):
+            break
+        p = r + (rsnew / rsold) * p
+        rsold = rsnew
+    return u
+```
+
+Run CG for \(N = 21, 101, 401\) and tabulate iteration counts at fixed tolerance:
+
+| \(N\) | \(\kappa(\mathbf{K})\) (approx.) | CG iterations to \(10^{-8}\) | Cholesky cost (qualitative) |
+|-------|----------------------------------|------------------------------|----------------------------|
+| 21 | 400 | \(\sim 25\) | negligible either way |
+| 101 | 10,000 | \(\sim 100\) | CG still wins |
+| 401 | 160,000 | \(\sim 400\) | direct fill grows; CG + preconditioner standard |
+
+Three observations connect CG to the rest of the book:
+
+1. **CG is energy minimization.** Each step reduces \(\Pi(\mathbf{u}_k)\) over the span of previous search directions — the same energy Part II lifts to \(H^1\) and Part IV minimizes on \(V_h\). A CG iteration that stalls while energy drops is a sign of non-SPD physics (contact, buckling) or a constraint bug.
+
+2. **Conditioning controls iteration count.** Refining the mesh improves displacement accuracy but worsens \(\kappa\), exactly as the mesh-refinement table warned. **Preconditioners** — Jacobi (diagonal scaling), incomplete Cholesky, algebraic multigrid — cluster eigenvalues so CG converges in \(\mathcal{O}(1)\) iterations independent of \(N\). Part IV's multigrid solvers are CG with a geometrically informed preconditioner built from the same mesh graph sparsity encodes.
+
+3. **The same pattern appears at every scale.** Kohn–Sham SCF (Part IX) is a nonlinear CG-like fixed-point iteration on orbital coefficients; Lanczos eigensolvers (Part I.3) build the same Krylov subspace for eigenvalues instead of linear systems. The grammar is always: start from a guess, apply a linear map, orthogonalize, repeat until residual falls.
+
+### When CG is not enough
+
+CG requires **symmetry and positive definiteness**. Nonsymmetric systems (convection–diffusion, unsymmetric contact Jacobians) use **GMRES** or **BiCGSTAB**; indefinite saddle-point systems (mixed velocity–pressure in Part V) use block preconditioners with MINRES or GMRES on the Schur complement. The diagnostic habit from this section survives: plot residual versus iteration before trusting the solution — the same verification instinct as mesh refinement in the table above.
+
 ## Why this matters for the story
 
 Computational mechanics does not replace linear algebra with something exotic. It **lifts** linear algebra to functions, then **projects** back to finite dimensions. The stiffness matrix is not an ad hoc data structure; it is the Riesz representation of a bilinear form restricted to a finite-dimensional subspace.

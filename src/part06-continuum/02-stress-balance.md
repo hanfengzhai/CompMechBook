@@ -200,6 +200,44 @@ For axisymmetric or full 3D meshes, the same \((E,\nu)\) populate \(\mathbb{C}_{
 
 **What breaks without the handshake.** A wire FEM model that imports \(E = 120\,\text{GPa}\) from a handbook without citing whether it came from DFT Voigt averaging, MD at 300 K, or a tensile test on cold-drawn stock carries **silent temperature, texture, and defect assumptions**. When DDD (Part VII) or MD (Part VIII) export moduli that disagree with the FEM card by 15%, the fault is usually missing homogenization — not a bug in OpenDiS or LAMMPS. This section is the engineering-scale counterpart of Part VIII's phonon handshake: two discretizations of the same copper lattice must agree on the observable the load cell measures before coarser models inherit the numbers.
 
+### Scale-boundary handshake: thermal expansion coefficient \(\alpha\) (DFT phonons → MD NPT → FEM thermal strain)
+
+The elastic handshake above sets \(E\) and \(\nu\) on the FEM card. **Act II — Warming** also needs the **coefficient of thermal expansion** \(\alpha\) that converts Joule-heated temperature rise into thermal strain \(\varepsilon_{\text{th}} = \alpha \Delta T\) and, with fixed grips, into compressive stress \(\sigma_{\text{th}} \approx E \alpha \Delta T\). That number appears in every coupled thermoelastic deck — yet teams often import \(\alpha = 17 \times 10^{-6}\,\text{K}^{-1}\) from a handbook without tracing it to the same DFT foundation run that supplied \(C_{ij}\).
+
+**Step 1 — DFT phonon Grüneisen route (Part IX).** From converged bulk Cu with `ph.x` output, extract the **Grüneisen parameter** \(\gamma\) relating phonon frequency shifts to volume strain, or compute \(\alpha\) directly from the quasiharmonic approximation: run `vc-relax` at several volumes (or temperatures via phonon free energy), fit the equilibrium lattice parameter \(a(T)\), and differentiate:
+
+\[
+\alpha = \frac{1}{a}\frac{da}{dT}\Big|_{P=0}.
+\]
+
+Typical PBE results for fcc Cu: \(\alpha \approx 15\)–\(18 \times 10^{-6}\,\text{K}^{-1}\) at 300 K (anharmonic corrections matter; 0 K DFT alone underestimates \(\alpha\)). Archive the phonon DOS and the \(a(T)\) table beside `cu.elastic/` — the epilogue's **Handshake 3** sensitivity analysis assumes this pedigree.
+
+**Step 2 — MD NPT validation (Part VIII).** Equilibrate a bulk Cu supercell in **NPT** at 300 K and 600 K (Joule-heated wire mid-span order-of-magnitude). Measure \(\alpha_{\text{MD}} = \frac{1}{L}\frac{dL}{dT}\) from the mean box length in production runs:
+
+| Source | \(\alpha\) (\(10^{-6}\,\text{K}^{-1}\)) | Temperature | Wire context |
+|--------|------------------------------------------|-------------|--------------|
+| Experiment (polycrystal Cu) | \(\sim 16.5\)–\(17.0\) | 300 K | Handbook default |
+| DFT quasiharmonic (PBE) | \(\sim 15\)–\(18\) | 300 K | Foundation run export |
+| MD NPT with Mishin EAM | \(\sim 16\)–\(19\) | 300–600 K | Finite-T anharmonicity |
+| FEM deck (often uncited) | \(\sim 17\) | 300 K | Act II thermal strain load |
+
+**Step 3 — FEM thermal strain (Part IV).** Map \(\alpha\) into the coupled block system from [I.4](../part01-linear-algebra/04-toward-infinity.md): thermal load vector \(\mathbf{f}_u^{\text{th}} = \int \alpha E (T - T_{\text{ref}}) \mathbf{B}^T \mathbf{1}\, d\Omega\) on the wire mesh. For the Lab act in this chapter (\(\Delta T \approx 35\,^\circ\text{C}\), fixed grips):
+
+\[
+\varepsilon_{\text{th}} = \alpha \Delta T \approx 17 \times 10^{-6} \times 35 \approx 6 \times 10^{-4}, \qquad
+\sigma_{\text{th}} \approx E \varepsilon_{\text{th}} \approx 120 \times 10^9 \times 6 \times 10^{-4} \approx 72\,\text{MPa}.
+\]
+
+A **10% error in \(\alpha\)** shifts \(\sigma_{\text{th}}\) by \(\sim 7\,\text{MPa}\) — comparable to the 6.4 MPa tensile stress from a 50 N load on the 1 mm wire. When the load cell drifts during Act II without applied force change, the first suspect is missing or inconsistent thermal expansion, not a bad sensor.
+
+**Acceptance test** (archive beside the elastic handshake checklist):
+
+1. DFT phonon or quasiharmonic \(\alpha\) within 10% of experiment at 300 K.
+2. MD NPT \(\alpha\) within 10% of DFT at the same potential used for production runs.
+3. FEM `*EXPANSION` or equivalent card cites the same \(\alpha\) with temperature reference \(T_{\text{ref}}\) matching the pre-heating state (Act I mounting temperature).
+
+**What breaks without the handshake.** Importing handbook \(\alpha\) while using DFT-derived \(E\) mixes pedigree levels: the thermal stress scale is wrong even when elastic stiffness is right. Fixed-grip multiphysics runs then over- or under-predict load-cell drift during Joule heating — the epilogue ranks this among the **dominant sensitivities** when mechanical strain is small compared to thermal strain. The phonon handshake in Part VIII validates the potential; this handshake validates the **thermal eigenstrain** that potential implies at finite temperature.
+
 ## Plasticity and inelasticity
 
 Beyond elastic yield, copper **work-hardens**: dislocations multiply and impede further slip (Part VII). Phenomenological **J2 plasticity** uses

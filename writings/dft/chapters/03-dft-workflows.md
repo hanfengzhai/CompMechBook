@@ -151,8 +151,9 @@ Converge with respect to supercell size and k-mesh. Archive \(E_f^v\) alongside 
 | \(a_0\) | 3.63–3.66 Å | Part VI reference configuration |
 | \(B\) | 130–145 GPa | Part VI bulk response |
 | \(C_{11}, C_{12}, C_{44}\) | see above | Part IV anisotropic elements; [Part VI Voigt/Reuss handshake](../part06-continuum/02-stress-balance.md#scale-boundary-handshake-dft-elastic-tensor-to-fem-material-card) |
+| \(\alpha(300\,\text{K})\) | 15–18 × 10⁻⁶ K⁻¹ | [Part VI thermal expansion handshake](../part06-continuum/02-stress-balance.md#scale-boundary-handshake-thermal-expansion-coefficient-alpha-dft-phonons--md-npt--fem-thermal-strain); Part IV coupled thermoelastic |
 | \(E_f^v\) | 1.0–1.3 eV | Part VII, Part VIII |
-| Phonon DOS (optional `ph.x`) | acoustic branch at \(\Gamma\) | Part VIII thermostat validation |
+| Phonon DOS (optional `ph.x`) | acoustic branch at \(\Gamma\) | Part VIII thermostat validation; \(\alpha(T)\) workflow below |
 
 Commit the converged `pw.in`, pseudopotential, and a one-page README with functional, cutoffs, and final numbers. That commit hash is what you cite when the copper wire FEM model uses \(E = 120\) GPa — not a vague "DFT said so."
 
@@ -169,6 +170,40 @@ Compare DFT \(C_{ijkl}\) to Part VIII MD estimates via fluctuation formulas at f
 Phonon calculations (`ph.x`, `q2r.x`, `matdyn.x` in the HW2 scripts) linearize DFT around equilibrium. **Imaginary frequencies** signal instability — wrong structure, bad k-mesh, or a phase that is not the ground state. For copper at equilibrium, acoustic branches should pass through zero at \(\Gamma\); optical modes lie at higher frequency. Phonon DOS validates MD thermostats and thermal conductivity estimates downstream.
 
 **Scale-boundary handshake (DFT → MD).** Archive the converged `ph.x` output beside the bulk SCF deck. Part VIII's [phonon validation Lab act](../part08-md/02-ensembles-integrators.md#scale-boundary-handshake-phonons-from-dft-to-md-validation) compares these frequencies to MD velocity-autocorrelation spectra on the same supercell with the production EAM potential. If optical branches shift by more than 10% while bulk modulus still matches, the potential is tuned to elasticity but wrong for core structures — fix the fit before exporting \(\gamma_{\text{sf}}\) or mobility to Part VII. The handshake is the electronic-to-classical counterpart of Part IV's mesh-refinement plot: two discretizations of the same copper lattice must agree on the same observable before coarser models inherit the numbers.
+
+### Worked example: thermal expansion from phonons (handoff to Part VI)
+
+Part VI's [thermal expansion handshake](../part06-continuum/02-stress-balance.md#scale-boundary-handshake-thermal-expansion-coefficient-alpha-dft-phonons--md-npt--fem-thermal-strain) needs \(\alpha(T)\) with the same audit trail as \(C_{ij}\). Phonons supply it through the **quasiharmonic approximation**: treat phonon frequencies as functions of volume, compute the Helmholtz free energy \(F(V,T)\), and minimize over \(V\) at each temperature to obtain \(a(T)\).
+
+**Workflow on bulk fcc Cu:**
+
+1. **Converged ground state.** Start from the same `vc-relax` geometry as the elastic-constant run — same functional, cutoff, and k-mesh documented in `README.md`.
+2. **Phonon calculation.** Run `ph.x` on a dense q-mesh (or finite-difference forces on supercell displacements). Confirm acoustic branches go to zero at \(\Gamma\); archive `cu.phonon/` beside `cu.elastic/`.
+3. **Volume–temperature scan.** For each temperature \(T \in \{100, 200, 300, 400, 500\}\,\text{K}\), compute \(F(V,T)\) from phonon DOS (or run `vc-relax` at fixed \(T\) with Mermin smearing in advanced workflows). Extract equilibrium volume \(V(T)\) and lattice parameter \(a(T) = (4V/N_{\text{atoms}})^{1/3}\).
+4. **Differentiate.** Fit \(a(T)\) locally around 300 K:
+
+\[
+\alpha = \frac{1}{a}\frac{da}{dT}\Big|_{300\,\text{K}}.
+\]
+
+Typical PBE quasiharmonic results: \(\alpha \approx 15\)–\(18 \times 10^{-6}\,\text{K}^{-1}\) at 300 K vs. experimental \(\sim 16.7 \times 10^{-6}\,\text{K}^{-1}\). Anharmonicity at high \(T\) (relevant to Joule-heated wire mid-span) may require MD NPT cross-check from Part VIII — document both numbers.
+
+| Export | DFT artifact | Part VI / IV consumer |
+|--------|--------------|------------------------|
+| \(\alpha(300\,\text{K})\) | `cu.phonon/` + \(a(T)\) fit | FEM `*EXPANSION`; thermal strain \(\varepsilon_{\text{th}}\) |
+| \(C_p(T)\) (optional) | Phonon DOS integration | Transient heat capacity in coupled runs |
+| Linear thermal expansion range | \(a(T)\) table 100–500 K | Act II \(\Delta T \sim 35\,^\circ\text{C}\) sanity check |
+
+**Convergence checklist for \(\alpha\):**
+
+| Parameter | Starting value | Test |
+|-----------|----------------|------|
+| Phonon q-mesh | \(8\times8\times8\) | Double mesh; \(\alpha\) stable within 5% |
+| Volume points for \(F(V,T)\) | 5 volumes ±2% around equilibrium | Add points; check \(\partial F/\partial V\) smoothness |
+| Temperature spacing | 100 K steps | Refine near 300 K if Act II uses narrow \(\Delta T\) band |
+| Functional | PBE (document) | Note LDA often overbinds; SCAN if budget allows |
+
+**Bridge to the epilogue.** Handshake 3 in the multiscale afternoon uses \(\alpha \Delta T\) to estimate fixed-grip thermal stress against the 50 N mechanical load. If `cu.phonon/` exists but the FEM deck cites "handbook 17e-6" without a path, Act VI is **partially complete** — elastic moduli are audited but thermal eigenstrain is folklore. Archive \(\alpha\) in the same foundation folder as \(C_{11}\) and \(E_f^v\).
 
 ## HW3 pattern: phase stability under pressure
 
