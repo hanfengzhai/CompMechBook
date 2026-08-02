@@ -248,6 +248,31 @@ Reuse the three-node bar from [IV.4](../part04-fem/04-poisson-to-elasticity.md):
 
 Plot \(\omega_{n,h}\) versus \(h\) on log–log axes — the slope should match the \(H^1\) approximation rate for the same elements. If static displacement converges but \(\omega_1\) does not, check **mass matrix assembly** (consistent vs lumped) before refining further. This is the dynamic counterpart to the Act III grip refinement Lab act below.
 
+### Modal handshake expansion: static, dynamic, and multiscale (Handshake 4 preview)
+
+The epilogue's **Handshake 4** couples rate-dependent plasticity to the load-cell curve — but the same copper wire also **vibrates** when the grip fixture is tapped or when a harmonic shaker runs a fatigue screen. Static FEM (Act III) and dynamic FEM (this section) share one mesh and one modal basis; the handshakes below show how that basis propagates upward and downward.
+
+**Handshake 4a — Static preload → dynamic perturbation.** Act III's grip displacement \(\delta\) preloads the wire; Act II's thermal strain \(\varepsilon_{\text{th}} = \alpha \Delta T\) adds a second preload. In modal coordinates, each mode's equilibrium offset is
+
+\[
+q_n^{(0)} = \frac{\boldsymbol{\phi}_n^T (\mathbf{K}\boldsymbol{\delta} + \mathbf{f}_{\text{th}})}{\omega_n^2 m_n},
+\]
+
+and small-amplitude vibration about that offset satisfies \(\ddot{q}_n + \omega_n^2 q_n = 0\) with shifted center. The load cell reading in Act III is the **static** sum \(\sum_n q_n^{(0)} \boldsymbol{\phi}_n\); a tap on the fixture excites **dynamic** \(q_n(t)\) on top — same \(\boldsymbol{\phi}_n\), different physics.
+
+| Quantity | Static FEM (Act III) | Dynamic FEM (tap / shaker) | Shared object |
+|----------|----------------------|----------------------------|---------------|
+| Primary output | Tip force \(F = \mathbf{k}^T \mathbf{U}\) | Resonance peak at \(\omega \approx \omega_n\) | Modal basis \(\{\boldsymbol{\phi}_n\}\) |
+| Convergence target | \(\|u - u_h\|_{H^1}\) | \(\|\omega_{n,h} - \omega_n\|\) | Same mesh refinement |
+| Part I link | \(\mathbf{K}\mathbf{u}=\mathbf{f}\) | \(\mathbf{K}\boldsymbol{\phi}=\omega^2\mathbf{M}\boldsymbol{\phi}\) | Same \(\mathbf{K}\) assembly |
+| Part II link | Céa's lemma | Rayleigh–Ritz eigenvalue convergence | Same \(V_h \subset H^1\) |
+
+**Handshake 4b — Modal → rate plasticity (epilogue).** When Act IV turns on Perzyna viscoplasticity, the tangent stiffness \(\mathbf{K}_T\) shifts with strain rate — but the **mass matrix \(\mathbf{M}\)** and the first few eigenvectors often remain stable until necking localizes. Explicit dynamics with rate-dependent \(\mathbf{K}_T(\dot\varepsilon)\) uses the same Newmark integrator as linear dynamics; the modal decoupling is approximate once plasticity enters, but tracking \(\omega_1(t)\) during a tensile ramp flags **geometric softening** before the load cell drops.
+
+**Handshake 4c — FEM modes → MD phonons (Part VIII audit).** The continuum limit of the bar's first bending mode is a Laplacian eigenfunction ([I.4](../part01-linear-algebra/04-toward-infinity.md)). Part VIII's [phonon validation Lab act](../part08-md/02-ensembles-integrators.md#scale-boundary-handshake-phonons-from-dft-to-md-validation) compares DFT phonon frequencies to MD velocity-autocorrelation spectra. For a 1D wire mesh, plot \(\omega_{n,h}\) versus \(n\) alongside the MD acoustic branch — agreement within 10% at long wavelength confirms the elastic constants and mass density fed into \(\mathbf{K}\) and \(\mathbf{M}\) are consistent with the atomistic foundation.
+
+**Archive discipline.** Store `modal_eigenvalues.dat` (columns: \(n, \omega_{n,h}, h\)) beside the Act III static convergence table and the Act IV Perzyna increment log. The epilogue's multiscale afternoon asks whether static, dynamic, and rate-dependent solves share one pedigree — this file is the dynamic row in that audit.
+
 ## Software verification habits
 
 Before trusting a mesh for a design decision:

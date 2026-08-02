@@ -503,6 +503,8 @@ A single stable-fault energy is enough for DDD mobility tables, but the **full \
 
 Plot \(\gamma(\alpha)\) and archive the curve — Part VII's partial-dislocation separation width scales as \(\propto \mu \mathbf{b}_p / \gamma_{\text{sf}}\), and the USF peak sets the barrier for cross-slip during cold drawing. When the epilogue wires DFT → MD → DDD → FEM, this curve is the **first handshake** between electronic structure and line-defect mechanics.
 
+**Automation.** After a DFT displacement sweep or a metadynamics run (Part VIII.3 Lab act), tabulate \((\alpha, E, \gamma)\) in `gsf_cu111.dat` and run `./scripts/parse_gsf.sh gsf_cu111.dat` to extract \(\gamma_{\text{sf}}\), \(\gamma_{\text{USF}}\), partial separation, and an OpenDiS-ready yaml snippet — the GSF analogue of `./scripts/parse_elastic.sh` for elastic constants.
+
 ### Bridge table: DFT GSF → Part VII DDD
 
 | DFT export | Part VII consumer | Copper wire context |

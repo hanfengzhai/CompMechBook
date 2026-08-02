@@ -261,6 +261,42 @@ Partial separation d ∝ 1/γ_sf  →  Part VII segment rules
 
 **What breaks without metadynamics discipline.** A single constrained MD snapshot at one \(u\) reports an energy, not a **free energy** — entropic contributions at finite \(T\) shift \(\gamma_{\text{sf}}\) by several mJ/m\(^2\) for some metals. Depositing hills too aggressively fills the well before the system visits the unstable fault; the resulting \(\gamma_{\text{USF}}\) is a numerical artifact, not a barrier Part VII can use for recovery during annealing.
 
+### Lab act: GSF free-energy surface via well-tempered metadynamics (Act VI scout — Foundation)
+
+**Act VI** runs in parallel with the wire-scale afternoon — someone must supply \(\gamma_{\text{sf}}\) and \(\gamma_{\text{USF}}\) before OpenDiS imports stacking-fault numbers. DFT (Part IX) is the audit; **metadynamics on an audited EAM** is the fast scout that tells you where to place DFT single points on the \(\gamma(\mathbf{u})\) grid. This Lab act builds the full GSF curve in hours, not days.
+
+**Step 1 — bicrystal geometry.** Build a {111} slab with 24–32 atomic layers and in-plane dimensions \(\geq 8\,a_0\) (same slab template as [IX.3 GSF workflow](../../part09-dft/03-dft-workflows.md)). Fix the bottom four layers; allow the top half to relax in-plane. Define CV \(s = u / b_p\) where \(u\) is rigid shear displacement along \(\langle 112\rangle\) in the fault plane and \(b_p = a_0/\sqrt{6}\).
+
+**Step 2 — PLUMED / LAMMPS setup.** Use the same EAM potential from [VIII.1 Lab act](../part08-md/01-potentials-phase-space.md#lab-act-eam-lattice-constant-from-energy-minimization-act-v--notch-prelude). Well-tempered metadynamics parameters (Cu, illustrative):
+
+| Parameter | Value | Rationale |
+|-----------|-------|-----------|
+| Hill height \(\omega\) | \(1.2\,k_B T\) | Fills wells without overwhelming barriers |
+| Hill width \(\sigma\) | \(0.08\,b_p\) | Resolves USF peak without over-smoothing |
+| Well-tempered \(\Delta T\) | 400 K | Prevents over-filling of stable fault well |
+| Bias factor | 10–15 | Standard for metal surfaces |
+| Deposition pace | Every 500 fs | Balance exploration vs wall time |
+
+**Step 3 — run and monitor.** Equilibrate 50 ps at 300 K with `fix nvt`, then enable metadynamics for 2–5 ns until \(F(s)\) plateaus. Plot \(F(s)\) versus \(s\); identify:
+
+| Feature | CV location \(s\) | Export |
+|---------|-------------------|--------|
+| Stable fault minimum | \(s \approx 1.0\) | \(\gamma_{\text{sf}} = F(s_{\min}) / A_{\text{fault}}\) |
+| Unstable fault maximum | \(s \approx 0.5\) | \(\gamma_{\text{USF}} = F(s_{\max}) / A_{\text{fault}}\) |
+| Perfect crystal reference | \(s = 0\) | Set \(F(0) = 0\) by subtracting reference |
+
+**Step 4 — cross-check against DFT.** Run Quantum ESPRESSO single-point energies at \(s \in \{0, 0.5, 1.0\}\) using the IX.3 slab template. Pass criterion: EAM metadynamics and DFT agree on \(\gamma_{\text{sf}}\) within 15% before exporting to Part VII. If disagreement exceeds 15%, the EAM fit is wrong for faulted configurations — refit with GSF points in the training set ([EAM-fit audit below](#lab-act-eam-fit-audit-before-the-notch-md-run-act-v--notch)).
+
+**Step 5 — archive and export.** Write `gsf_metadynamics_cu111.dat` with columns \((s, F(s)\,\text{eV}, \gamma(s)\,\text{mJ/m}^2)\) and `README_GSF.md` documenting potential version, hill parameters, and DFT cross-check status. Run `./scripts/parse_gsf.sh gsf_metadynamics_cu111.dat` to extract tabulated values for OpenDiS input. The script converts units and flags non-monotonic segments that indicate incomplete sampling.
+
+```text
+Metadynamics F(s)  →  parse_gsf.sh  →  gsf_export.yaml
+       ↓                                      ↓
+DFT audit at s_min, s_max (IX.3)      Part VII partial separation d
+```
+
+When `gsf_export.yaml` sits beside `mobility_cu_screw_300K.yaml` in the project folder, Act VI's foundation deck is **complete at the atomistic scout level** — DFT audit remains mandatory before production DDD, but the metadynamics curve tells you which DFT points matter and catches EAM failures before expensive slab calculations.
+
 ### Parallel tempering: replica exchange across temperature
 
 **Parallel tempering** (replica exchange MD) runs \(N_{\text{rep}}\) copies of the same system at temperatures \(T_1 < T_2 < \cdots < T_{N_{\text{rep}}}\). Periodically, adjacent replicas attempt to swap configurations with Metropolis acceptance

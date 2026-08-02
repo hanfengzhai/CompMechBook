@@ -69,6 +69,43 @@ where \(M\) may be anisotropic and thermally activated. In fcc crystals, screw d
 
 Mobility parameters for copper are fit to MD simulations or experiments. A DDD simulation is only as credible as its mobility table — another instance of the ladder: fine scale informs coarse scale.
 
+### NEB/KMC cross-links: climb, recovery, and the time-scale gap (Part VIII → VII)
+
+Glide-dominated DDD timesteps advance microseconds of physical time — long enough for forest hardening in Act IV, but not for **dislocation climb** during annealing or **void growth** during electromigration. Those processes require vacancy diffusion at rates MD cannot reach directly at room temperature. Part VIII.2 and VIII.3 supply the barriers and rate tables; Part VII consumes them as **kinetic boundary conditions** on the DDD clock.
+
+| Process | DDD limitation | Part VIII source | Part VII consumer |
+|---------|----------------|------------------|-------------------|
+| Screw cross-slip at 400–500 K | Rare event; zero counts in short runs | [VIII.3 parallel tempering](../../part08-md/03-ab-initio-and-coarse-graining.md#parallel-tempering-replica-exchange-across-temperature) | Recovery rate in hardening law |
+| Vacancy-assisted climb | Requires point-defect flux to jogs | [VIII.2 NEB vacancy hop](../../part08-md/02-ensembles-integrators.md#neb-workflow-vacancy-hop-in-copper) → Arrhenius \(D(T)\) | Climb velocity \(v_c \propto D(T)\) on edge segments |
+| Grain-boundary void nucleation | No atomistic resolution in DDD | [VIII.2 KMC grain boundary](../../part08-md/02-ensembles-integrators.md#kmc-workflow-grain-boundary-vacancy-exchange) | Reduced cross-section → stress concentration handoff to Part IV |
+| Stacking-fault energy at elevated \(T\) | Static \(\gamma_{\text{sf}}\) at 0 K | [VIII.3 metadynamics GSF Lab act](../../part08-md/03-ab-initio-and-coarse-graining.md#lab-act-gsf-free-energy-surface-via-well-tempered-metadynamics-act-vi-scout--foundation) | Temperature-dependent partial separation |
+
+**Cross-slip barrier from GSF surface.** The unstable stacking fault energy \(\gamma_{\text{USF}}\) from Part IX.3 (or the metadynamics scout in Part VIII.3) sets the activation scale for screw cross-slip:
+
+\[
+\tau_{\text{cross-slip}} \;\sim\; \frac{2\gamma_{\text{USF}}}{b_p},
+\]
+
+where \(b_p = a_0/\sqrt{6}\) is the Shockley partial magnitude. When \(\tau_{\text{resolved}} > \tau_{\text{cross-slip}}\), screw segments leave their glide plane — forest density drops, and the hardening curve **recovers** during annealing (Act II heating). OpenDiS mobility tables that omit cross-slip rules at elevated \(T\) will over-predict hardening after the wire is heated.
+
+**Climb rate from NEB barriers.** Vacancy migration barrier \(\Delta E_m\) from [VIII.2 NEB Lab act](../../part08-md/02-ensembles-integrators.md#lab-act-neb-barrier-for-cu-vacancy-migration-act-ii-anneal-preview) gives diffusivity:
+
+\[
+D(T) = a^2 \nu_0 \exp(-\Delta E_m / k_B T),
+\]
+
+and climb velocity on an edge dislocation with jog spacing \(h\):
+
+\[
+v_c \;\approx\; \frac{D(T)\, c_v^{\text{eq}}}{h},
+\]
+
+where \(c_v^{\text{eq}}\) is equilibrium vacancy concentration (from Part IX formation energy \(E_f^v\)). At 300 K, \(D \sim 10^{-30}\,\text{m}^2/\text{s}\) — DDD cannot resolve this; but at 900 K anneal, \(D\) rises enough that climb competes with glide on the same Act IV timescale. Export `cu_vac_migration_rates.yaml` from VIII.2 beside the mobility table so OpenDiS climb rules inherit the same pedigree.
+
+**KMC void growth → continuum damage.** When electromigration drives vacancy flux to grain boundaries, [VIII.2 KMC](../../part08-md/02-ensembles-integrators.md#kmc-workflow-grain-boundary-vacancy-exchange) reaches milliseconds where DDD stops at microseconds. The time-averaged void area fraction \(\phi(t)\) feeds Part VI damage mechanics as an effective diffusivity — not a number chosen by hand. The [VII.3 handoff Lab act](03-polycrystal-and-fem-handoff.md#lab-act-archive-the-opendis--damask--fem-handoff-act-ivv) expects `kmc_void_growth.dat` in the same folder as DDD outputs when the wire's service-life story requires void nucleation.
+
+**What breaks without these cross-links.** Running OpenDiS with 300 K mobility at 400 K wire temperature (Joule heating from Act II) misses thermally activated cross-slip. Using literature \(D(T)\) without the VIII.2 NEB pedigree shifts climb rates by orders of magnitude. Pasting \(\gamma_{\text{sf}}\) from IX.3 while ignoring \(\gamma_{\text{USF}}\) leaves recovery kinetics unconstrained — the hardening curve after annealing has no barrier scale. Each failure is the mesoscale analogue of exporting FEM stress before mesh convergence: the code runs, but the story is wrong.
+
 ### Lab act: calibrate screw mobility from MD shear (Act IV — mobility prelude)
 
 **Act IV** bends the load cell curve because lines move under Peach–Köhler forces. Before OpenDiS can reproduce that bend, the mobility law \(M(\tau, T)\) must be calibrated — not copied from a literature table without pedigree. This Lab act extracts \(M\) from a Part VIII MD shear test on a dislocation-containing supercell, then exports a yaml table OpenDiS consumes.
