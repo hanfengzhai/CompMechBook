@@ -75,7 +75,7 @@ Glide-dominated DDD timesteps advance microseconds of physical time — long eno
 
 | Process | DDD limitation | Part VIII source | Part VII consumer |
 |---------|----------------|------------------|-------------------|
-| Screw cross-slip at 400–500 K | Rare event; zero counts in short runs | [VIII.3 parallel tempering](../../part08-md/03-ab-initio-and-coarse-graining.md#parallel-tempering-replica-exchange-across-temperature) | Recovery rate in hardening law |
+| Screw cross-slip at 400–500 K | Rare event; zero counts in short runs | [VIII.3 parallel tempering Lab act](../../part08-md/03-ab-initio-and-coarse-graining.md#lab-act-parallel-tempering-for-screw-cross-slip-at-joule-heated-temperature-act-ii--iv-bridge) | Recovery rate in hardening law |
 | Vacancy-assisted climb | Requires point-defect flux to jogs | [VIII.2 NEB vacancy hop](../../part08-md/02-ensembles-integrators.md#neb-workflow-vacancy-hop-in-copper) → Arrhenius \(D(T)\) | Climb velocity \(v_c \propto D(T)\) on edge segments |
 | Grain-boundary void nucleation | No atomistic resolution in DDD | [VIII.2 KMC grain boundary](../../part08-md/02-ensembles-integrators.md#kmc-workflow-grain-boundary-vacancy-exchange) | Reduced cross-section → stress concentration handoff to Part IV |
 | Stacking-fault energy at elevated \(T\) | Static \(\gamma_{\text{sf}}\) at 0 K | [VIII.3 metadynamics GSF Lab act](../../part08-md/03-ab-initio-and-coarse-graining.md#lab-act-gsf-free-energy-surface-via-well-tempered-metadynamics-act-vi-scout--foundation) | Temperature-dependent partial separation |

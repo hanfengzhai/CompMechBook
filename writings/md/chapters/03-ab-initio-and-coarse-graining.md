@@ -327,7 +327,80 @@ For the copper wire's **annealing** and **cross-slip** stories, parallel temperi
 
 Attempt swaps every 1000 MD steps; run 5–20 ns per replica before expecting converged swap rates. Export **reweighted** observables at \(T = 300\,\text{K}\) using the multicanonical weights — raw cold-replica time series alone under-samples barriers.
 
-**Handshake to Part VII.** Parallel tempering at \(T_w\) from Part V conjugate heat transfer supplies **temperature-matched** core structures and cross-slip counts for mobility tables — not extrapolated from 300 K MD alone. Document the replica ladder beside `mobility_cu_screw_300K.yaml`; OpenDiS at 400 K needs \(M(\tau, 400\,\text{K})\), not a Arrhenius guess from one cold run.
+**Handshake to Part VII.** Parallel tempering at \(T_w\) from Part V conjugate heat transfer supplies **temperature-matched** core structures and cross-slip counts for mobility tables — not extrapolated from 300 K MD alone. Document the replica ladder beside `mobility_cu_screw_300K.yaml`; OpenDiS at 400 K needs \(M(\tau, 400\,\text{K})\), not an Arrhenius guess from one cold run. The [Lab act below](#lab-act-parallel-tempering-for-screw-cross-slip-at-joule-heated-temperature-act-ii--iv-bridge) walks through a minimal LAMMPS replica-exchange run that exports those temperature-matched counts.
+
+### Lab act: parallel tempering for screw cross-slip at Joule-heated temperature (Act II–IV bridge)
+
+**Act II** raises wall temperature toward 380 K ([V.4 conjugate heat transfer](../../part05-fvm/04-navier-stokes-cfd.md#lab-act-extension-two-domain-picard-loop-with-a-1d-fem-solid)); **Act IV** hardening depends on whether screw dislocations **cross-slip** and annihilate forest segments during recovery. Plain NVT MD at 400 K rarely observes cross-slip in nanoseconds — the event is activated. **Parallel tempering** lets hot replicas visit cross-slipped cores while a cold replica at \(T_w\) inherits sampled structures with correct Boltzmann weights. This Lab act is the atomistic counterpart of Part VII's [mobility calibration](../part07-defects/02-dislocation-dynamics.md#lab-act-calibrate-screw-mobility-from-md-shear-act-iv--mobility-prelude), but targets **rare reorientation** rather than glide on a straight line.
+
+**Step 1 — system and potential.** Use the audited EAM from [VIII.1 Lab act](../part08-md/01-potentials-phase-space.md#lab-act-eam-lattice-constant-from-energy-minimization-act-v--notch-prelude). Build a periodic cell (\(\geq 10\,000\) atoms) containing one straight screw dislocation on {111}\(\langle 110\rangle\) — the same Volterra geometry as the mobility Lab act, but **without** applied shear: the goal is spontaneous cross-slip, not driven glide.
+
+| Parameter | Value | Role |
+|-----------|-------|------|
+| Box | \(20\,b \times 20\,b \times 10\,b\) | Suppress spurious image interactions |
+| Dislocation line | Along \(z\), screw character | Cross-slip reorients line direction |
+| Bottom 4 layers | Fixed | Anchor the crystal |
+| Thermostat | Nose–Hoover per replica | Independent \(T_i\) on each replica |
+
+**Step 2 — replica ladder.** Match temperatures to the wire's operating range, not an arbitrary MD default:
+
+| Replica | \(T\) [K] | Wire story link |
+|---------|-----------|-----------------|
+| 1 | 300 | Room-temperature reference mobility |
+| 2 | 380 | \(T_w\) from Part V Picard loop (Joule-heated wall) |
+| 3 | 450 | Recovery onset for cold-drawn copper |
+| 4 | 600 | Accelerated cross-slip sampling |
+| 5 | 900 | Rare core reconstructions |
+
+In LAMMPS, use `fix nvt` on each replica group and `fix atom/swap` or the `temper` fix for Metropolis exchange attempts every 1000 steps. Target swap acceptance 20–40% between adjacent replicas; if acceptance is below 10%, tighten the geometric spacing (e.g., use ratio \(T_{i+1}/T_i \approx 1.15\) instead of 1.25).
+
+**Step 3 — run and monitor.** Equilibrate all replicas 100 ps at their respective \(T_i\), then enable exchanges for 10–20 ns wall time per replica.
+
+| Observable | How to measure | Pass criterion |
+|------------|----------------|----------------|
+| Swap acceptance | Log `temper` output | 20–40% between neighbors |
+| Cross-slip events | Track line direction (CNA or DXA) | \(\geq 1\) event per replica 4–5 trajectory |
+| Core energy drift | Potential energy per atom at \(T_2\) | Stable within 2 meV/atom after 5 ns |
+| Reweighted \(T = 380\,\text{K}\) density | WHAM or LAMMPS `fix wham` | Converged within 5% between 10 and 20 ns |
+
+**Step 4 — export to Part VII.** Count cross-slip events on replica 2 (\(T = 380\,\text{K}\)) using dislocation extraction (OVITO DXA or LAMMPS `compute dislocation/atom`). Define recovery rate
+
+\[
+\dot{n}_{\text{cs}} = \frac{N_{\text{cross-slip}}}{t_{\text{eff}} \cdot \rho_{\text{line}}},
+\]
+
+where \(t_{\text{eff}}\) is the reweighted simulation time at 380 K and \(\rho_{\text{line}}\) is dislocation line length per volume. Export to `cross_slip_380K.yaml`:
+
+```yaml
+# parallel_tempering_handoff (archive beside mobility tables)
+temperature_K: 380
+source: "Part V T_w from Picard loop"
+replica_ladder_K: [300, 380, 450, 600, 900]
+cross_slip_events: 3          # illustrative — replace with run data
+effective_time_ns: 12.5
+recovery_rate_m-2s-1: 1.2e14  # illustrative
+potential: "EAM Cu — commit hash"
+wham_converged: true
+```
+
+**Step 5 — handshake checks.**
+
+| Check | Criterion | Failure action |
+|-------|-----------|----------------|
+| Temperature pedigree | Replica 2 matches Part V \(T_w \pm 5\,\text{K}\) | Re-run Picard loop; do not use 300 K tables |
+| vs plain NVT | Cross-slip count at 380 K ≥ 10× plain NVT at same wall time | Increase highest replica or extend run |
+| vs Part VII | Recovery rate enters forest evolution, not glide mobility alone | Split yaml: `mobility_*.yaml` vs `recovery_*.yaml` |
+| vs metadynamics GSF | \(\gamma_{\text{sf}}(380\,\text{K})\) within 10% of 300 K value or refit | Run metadynamics Lab act at elevated \(T\) |
+
+When `cross_slip_380K.yaml` sits beside `mobility_cu_screw_300K.yaml`, Part VII's hardening Lab act can distinguish **forest generation** (glide) from **forest annihilation** (cross-slip recovery) at the temperature the wire actually reaches during Act II — not an Arrhenius extrapolation from a cold shear cell.
+
+```text
+Part V T_w (379 K)  →  replica 2 in parallel tempering
+       ↓
+Cross-slip counts at T_w  →  recovery rate in OpenDiS
+       ↓
+Act IV hardening knee  ←  forest ρ evolution with source + sink terms
+```
 
 ### Kinetic Monte Carlo (KMC)
 
