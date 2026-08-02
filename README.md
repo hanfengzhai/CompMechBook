@@ -2,7 +2,7 @@
 
 A continuous narrative from linear algebra through functional analysis, finite elements and volumes, continuum mechanics, dislocation dynamics, molecular dynamics, and density functional theory — told as one story about a copper wire at every scale.
 
-**~156,100 words** · **35 numbered chapters** · **9 parts** · built with [mdBook](https://github.com/rust-lang/mdBook)
+**~156,650 words** · **35 numbered chapters** · **9 parts** · built with [mdBook](https://github.com/rust-lang/mdBook)
 
 ## Read the book
 
