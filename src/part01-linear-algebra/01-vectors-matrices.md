@@ -263,6 +263,44 @@ Three observations connect CG to the rest of the book:
 
 3. **The same pattern appears at every scale.** Kohn–Sham SCF (Part IX) is a nonlinear CG-like fixed-point iteration on orbital coefficients; Lanczos eigensolvers (Part I.3) build the same Krylov subspace for eigenvalues instead of linear systems. The grammar is always: start from a guess, apply a linear map, orthogonalize, repeat until residual falls.
 
+### Jacobi preconditioner: rescaling the spectrum
+
+A **preconditioner** \(\mathbf{M}\) approximates \(\mathbf{K}^{-1}\) cheaply so that CG applied to the **preconditioned system** \(\mathbf{M}^{-1}\mathbf{K}\mathbf{u} = \mathbf{M}^{-1}\mathbf{f}\) converges in far fewer iterations. The simplest choice is **Jacobi** (diagonal) preconditioning:
+
+\[
+\mathbf{M} = \text{diag}(\mathbf{K}), \qquad \tilde{\mathbf{K}} = \mathbf{M}^{-1/2}\mathbf{K}\mathbf{M}^{-1/2}.
+\]
+
+Each CG step on the symmetrically scaled system costs one diagonal solve (elementwise division) plus the usual sparse product. For a tridiagonal bar stiffness, \(\mathbf{M}\) captures the local spring stiffness at each node; off-diagonal coupling becomes a perturbation on a nearly diagonal operator — exactly the spectral clustering CG needs.
+
+**Worked example: Jacobi on the \(N = 401\) bar chain.** Return to the fixed–free mesh with unit end load. Plain CG at tolerance \(10^{-8}\) typically needs \(\sim 400\) iterations when \(\kappa(\mathbf{K}) \approx 1.6 \times 10^5\). With Jacobi preconditioning:
+
+| Solver | \(N = 401\) iterations to \(10^{-8}\) | Effective \(\kappa\) (qualitative) |
+|--------|---------------------------------------|-----------------------------------|
+| Unpreconditioned CG | \(\sim 400\) | \(\mathcal{O}(N^2)\) |
+| Jacobi-preconditioned CG | \(\sim 25\)–\(40\) | Clustered; weak \(N\) dependence |
+| Cholesky (direct) | 1 factorization | exact (modulo roundoff) |
+
+The iteration ratio tracks \(\sqrt{\kappa}\): halving the effective condition number cuts iterations by roughly half. **Algebraic multigrid** (Part IV) extends the same idea across mesh levels — coarsen the spring network, solve a cheap correction on a coarse graph, prolongate back to fine nodes. Multigrid is Jacobi with geometry: the coarse level is not arbitrary diagonal scaling but a physically meaningful coarser spring chain on the same copper wire.
+
+**NumPy sketch** (Jacobi left/right scaling for SPD \(\mathbf{K}\)):
+
+```python
+import numpy as np
+
+def jacobi_precond_cg(K, f, tol=1e-8, maxiter=200):
+    d = np.diag(K)
+    Dinv = 1.0 / d
+    Khat = (Dinv[:, None] ** 0.5) * K * (Dinv[None, :] ** 0.5)
+    fhat = (Dinv ** 0.5) * f
+    uhat = cg(Khat, fhat, tol, maxiter)  # reuse cg() from above
+    return (Dinv ** 0.5) * uhat
+```
+
+Run both solvers on the same \(\mathbf{K}\) and plot \(\|\mathbf{r}_k\| / \|\mathbf{f}\|\) versus iteration on a log scale. The unpreconditioned curve decays linearly on the semilog plot with slope set by \(\sqrt{\kappa}\); the Jacobi curve drops steeply in the first ten iterations — the same diagnostic habit Part IV recommends before trusting a million-node wire solve.
+
+**Scale-boundary handshake (Part I → Part IV).** When Act III's FEM mesh refines from \(h = 0.05\,\text{m}\) to \(h = 0.0125\,\text{m}\), displacement accuracy improves but CG iteration counts grow unless a preconditioner travels with the mesh. Archive both the mesh convergence table and the solver iteration count in the same run log: if \(u_h\) converges but iterations explode, the physics discretization is fine and the **linear algebra layer** needs the rescaling this section names. Part IV's multigrid solvers are the production implementation of that rescaling.
+
 ### When CG is not enough
 
 CG requires **symmetry and positive definiteness**. Nonsymmetric systems (convection–diffusion, unsymmetric contact Jacobians) use **GMRES** or **BiCGSTAB**; indefinite saddle-point systems (mixed velocity–pressure in Part V) use block preconditioners with MINRES or GMRES on the Schur complement. The diagnostic habit from this section survives: plot residual versus iteration before trusting the solution — the same verification instinct as mesh refinement in the table above.

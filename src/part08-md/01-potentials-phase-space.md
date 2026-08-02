@@ -145,9 +145,49 @@ A single MD run of a copper nanowire under tension yields a stress–strain curv
 
 ## Thermal conductivity and phonons
 
-Beyond mechanics, MD of copper computes **thermal transport** via Green–Kubo relations from heat current autocorrelation functions, or nonequilibrium MD with imposed temperature gradients. Phonon lifetimes from MD validate **DFT phonon** calculations (Part IX) and explain why ultra-pure copper wire conducts heat and current efficiently — defect scattering reduces both.
+Beyond mechanics, MD of copper computes **thermal transport** — the property that lets Joule-heated electrons deposit energy the wire must conduct to ambient air (Part VI, Act II). Continuum FEM imports a scalar **thermal conductivity** \(k \approx 400\,\text{W/(m·K)}\) for OFHC copper at room temperature; MD can **derive** that number from atomic vibrations rather than a handbook, and flag when defects or grain boundaries reduce it.
 
-Anharmonicity at high temperature (approaching melt) pushes MD beyond quasi-harmonic DFT; the wire's operating temperature stays well below melt, but **Joule heating** locally raises \(T\) and softens response — coupling MD-derived thermal properties to continuum electro-thermal FEM.
+### Green–Kubo: conductivity from equilibrium fluctuations
+
+In the **NVE** ensemble, energy diffuses even without an imposed temperature gradient. The **heat current operator** (microscopic definition, Irving–Kirkwood form) fluctuates around zero; its autocorrelation integrates to thermal conductivity via the **Green–Kubo relation**:
+
+\[
+\kappa = \frac{V}{k_B T^2} \int_0^\infty \langle J(0)\, J(t) \rangle \, dt,
+\]
+
+where \(V\) is system volume, \(T\) is temperature, and \(J(t)\) is the instantaneous heat flux. Intuitively: fast-decaying correlations mean efficient transport (high \(\kappa\)); long-lived correlations or frequent scattering events lower \(\kappa\). The integral is estimated from a long NVE trajectory by averaging over time origins — the atomistic analogue of estimating a diffusion coefficient from mean-square displacement.
+
+**Nonequilibrium MD (NEMD)** offers an alternative: impose \(\Delta T\) across a slab with fixed hot and cold regions (`fix heat`), measure steady heat flux \(J\), and apply Fourier's law \(\kappa = -J / (\nabla T)\). NEMD is easier to visualize; Green–Kubo is often preferred for bulk properties because it avoids artificial thermostat boundaries in the flux path.
+
+| Method | Ensemble | Observable | Typical Cu supercell |
+|--------|----------|------------|---------------------|
+| Green–Kubo | NVE after NVT equilibration | \(\langle J(0)J(t)\rangle\) integral | 256–2048 atoms, 100 ps–1 ns |
+| NEMD | Steady \(\Delta T\) across slab | \(J\) vs \(\nabla T\) | Same; watch finite-size effects |
+| Phonon lifetime (BTE) | Harmonic + anharmonic MD | Mode relaxation times | Links to DFT phonons (Part IX) |
+
+### Scale-boundary handshake: \(\kappa\) from MD to continuum heat equation
+
+Part III wrote steady conduction as \(-k T''(x) = \dot{q}(x)\); Part VI couples that field to Joule heating when current flows through the wire. The FEM thermal step needs \(k(T)\) with the same audit trail as Young's modulus — not a handbook value pasted without pedigree.
+
+**Downward export (MD).** Equilibrate bulk fcc Cu (same 256-atom cell as the EAM Lab act) in **NVT** at 300 K, then switch to **NVE** for 500 ps. Compute heat current autocorrelation with LAMMPS `compute heat/flux` (or post-process from atomic velocities and pairwise energies). Integrate to obtain \(\kappa_{\text{MD}}\):
+
+| Quantity | MD artifact | Pass criterion vs experiment |
+|----------|-------------|------------------------------|
+| \(\kappa\) at 300 K | `heatflux.dat` + Kubo integral | Within 20% of \(\sim 400\,\text{W/(m·K)}\) for pure Cu |
+| Phonon lifetime at LA mode | VACF peak width or spectral decomposition | Same order as DFT `ph.x` (Part VIII.2 handshake) |
+| Defected \(\kappa\) | Vacancy or grain-boundary supercell | \(\kappa_{\text{defect}} < \kappa_{\text{bulk}}\) — explains hot spots |
+
+**Upward import (FEM / FVM).** Map \(\kappa_{\text{MD}}\) into the thermal conductivity field in the continuum model:
+
+\[
+k(x) = \kappa_{\text{MD}} \quad \text{(bulk)}, \qquad k(x) = \kappa_{\text{GB}} \quad \text{(grain boundary regions from polycrystal mesh)}.
+\]
+
+Part V's finite-volume diffusion schemes and Part IV's coupled thermoelastic steps consume the same scalar — the discretization philosophy changes, not the physical number. Archive `kappa_md_300K.txt` beside `cu.elastic/` and `cu.phonon/` in the foundation folder; the epilogue's electro-thermal sensitivity analysis assumes this file exists when Joule heating raises local \(T\) near the grip.
+
+**What breaks without the handshake.** Importing handbook \(k = 400\,\text{W/(m·K)}\) while using DFT-derived elastic moduli and MD-derived stacking-fault energies mixes pedigree levels. A wire whose thermal run predicts grip temperatures 15% too high may have correct mechanics but wrong \(\kappa(T)\) — especially after cold drawing introduces vacancy clusters that scatter phonons. Green–Kubo on a defected supercell quantifies that reduction; skipping it leaves hot-spot predictions un-audited.
+
+Phonon lifetimes from MD validate **DFT phonon** calculations (Part IX) and explain why ultra-pure copper wire conducts heat and current efficiently — defect scattering reduces both. Anharmonicity at high temperature (approaching melt) pushes MD beyond quasi-harmonic DFT; the wire's operating temperature stays well below melt, but **Joule heating** locally raises \(T\) and softens response — coupling MD-derived thermal properties to continuum electro-thermal FEM is the upward path this handshake names.
 
 ## Alloyed and impure wire
 
