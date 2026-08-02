@@ -287,7 +287,13 @@ C_{11} \approx \frac{\sigma_{11}(+\delta) - \sigma_{11}(-\delta)}{2\delta}.
 | `Total force` | \(< 10^{-4}\) Ry/Bohr | Cell not relaxed before fixed-cell strain |
 | SCF iterations | \(< 30\) with `mixing_beta = 0.3` | Add smearing; reduce `mixing_beta` |
 
-Archive [`parse_elastic.sh`](../../scripts/parse_elastic.sh) beside the six strain decks in `cu.elastic/` — the epilogue's Handshake 1 cites this script's output, not a spreadsheet typed from memory.
+Archive [`parse_elastic.sh`](../../scripts/parse_elastic.sh) beside the six strain decks in `cu.elastic/` — the epilogue's Handshake 1 cites this script's output, not a spreadsheet typed from memory. Run the full Act VI audit with:
+
+```bash
+./scripts/parse_dft_workflow.sh cu.foundation/
+```
+
+The workflow script checks `README.md`, optional `cu.relax.out` / `cu.phonon/` / `cu.gsf/`, runs `parse_elastic.sh` when `cu.elastic/` is complete, and emits `foundation_export.yaml` for the epilogue handshake table. A fixture study folder lives at [`fixtures/cu.foundation/`](../../fixtures/cu.foundation/) for CI smoke tests via [`test-fixtures.sh`](../../scripts/test-fixtures.sh).
 
 #### `ph.x` input deck (phonon check before Part VIII)
 
