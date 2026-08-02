@@ -361,9 +361,16 @@ In LAMMPS, use `fix nvt` on each replica group and `fix atom/swap` or the `tempe
 | Swap acceptance | Log `temper` output | 20–40% between neighbors |
 | Cross-slip events | Track line direction (CNA or DXA) | \(\geq 1\) event per replica 4–5 trajectory |
 | Core energy drift | Potential energy per atom at \(T_2\) | Stable within 2 meV/atom after 5 ns |
-| Reweighted \(T = 380\,\text{K}\) density | WHAM or LAMMPS `fix wham` | Converged within 5% between 10 and 20 ns |
+| Reweighted \(T = 380\,\text{K}\) density | WHAM or LAMMPS `fix wham`; verify with [`parse_wham.sh`](../../scripts/parse_wham.sh) | Converged within 5% between 10 and 20 ns |
 
-**Step 4 — export to Part VII.** Count cross-slip events on replica 2 (\(T = 380\,\text{K}\)) using dislocation extraction (OVITO DXA or LAMMPS `compute dislocation/atom`). Define recovery rate
+**Step 4 — export to Part VII.** Count cross-slip events on replica 2 (\(T = 380\,\text{K}\)) using dislocation extraction (OVITO DXA or LAMMPS `compute dislocation/atom`). Before exporting rates, reweight the replica-exchange histogram at the Part V wall temperature:
+
+```bash
+# Histogram columns: T_K  E_eV_per_atom  count  (from LAMMPS fix wham or post-processed logs)
+./scripts/parse_wham.sh replica_10ns.hist --target 380 --compare replica_20ns.hist
+```
+
+The script reports `wham_converged_5pct=yes` when the reweighted mean energy at 380 K is stable within 5% between 10 and 20 ns wall time — the same pass criterion in the table above. Define recovery rate
 
 \[
 \dot{n}_{\text{cs}} = \frac{N_{\text{cross-slip}}}{t_{\text{eff}} \cdot \rho_{\text{line}}},

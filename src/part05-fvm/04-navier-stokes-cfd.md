@@ -300,6 +300,61 @@ At convergence, mid-radius temperature \(\bar{T} \approx 395\,\text{K}\) — sti
 
 This extension closes the loop the prologue promised: Part IV assembles the solid operator, Part V supplies the fluid flux, and the interface handshake is a **fixed-point problem with physics constraints** — the template the epilogue generalizes to DFT → MD → DDD → FEM chains.
 
+### When Picard stalls: monolithic coupling
+
+The Picard loop above is a **partitioned** (staggered) scheme: solve the solid with frozen fluid data, then update the fluid with the new wall temperature, repeat. It is the default in many conjugate heat transfer workflows because each physics domain keeps its native discretization — Part IV's \(\mathbf{K}_T\) and Part V's FVM face fluxes — and legacy codes couple through a thin interface layer.
+
+Partitioned coupling fails when the interface Jacobian is stiff. For the lumped model \(q_w = (T_{\text{core}} - T_w)/R_s = hA\,(T_w - T_\infty)\), Picard oscillates when \(R_s hA\) is large (the table in [Lab act: natural convection Nusselt number](#lab-act-natural-convection-nusselt-number-on-the-heated-wire-act-ii--warming) already showed under-relaxation curing the oscillation). In production multiphysics, the same symptom appears when:
+
+| Symptom | Physical cause | First remedy |
+|---------|----------------|--------------|
+| \(T_w\) oscillates iteration to iteration | Strong two-way coupling; comparable solid and fluid thermal resistances | Under-relaxation \(\omega \in [0.3, 0.6]\) |
+| Picard needs \(> 20\) outer iterations | Stiff interface; temperature-dependent \(h(T_w)\) | Aitken \(\Delta^2\) acceleration on \(T_w\) |
+| Outer loop diverges despite relaxation | Comparable time scales (transient CHT) or equal-order equal-interpolation without inf–sup | **Monolithic** coupled solve |
+
+**Monolithic coupling** assembles one sparse system for solid and fluid unknowns simultaneously. Strip the wire problem to its algebraic skeleton: unknowns \(\mathbf{x} = [T_{\text{solid}}, T_w]^\top\). The coupled steady conduction–convection problem is
+
+\[
+\begin{bmatrix}
+  \mathbf{K}_T & \mathbf{b}_\Gamma \\
+  \mathbf{c}^\top & d
+\end{bmatrix}
+\begin{bmatrix}
+  \mathbf{T} \\ T_w
+\end{bmatrix}
+=
+\begin{bmatrix}
+  \mathbf{f}_J + \mathbf{0} \\
+  hA\, T_\infty
+\end{bmatrix},
+\]
+
+where \(\mathbf{K}_T\) is the solid conduction stiffness from Part IV, \(\mathbf{b}_\Gamma\) distributes the interface flux to surface nodes, \(\mathbf{c}\) extracts the wall temperature from the solid solution, and \(d\) collects the fluid-side conductance \(hA\) plus any solid-side interface row. One linear solve replaces the Picard loop; for this linear steady problem the monolithic answer **is** the fixed point.
+
+Nonlinear Navier–Stokes coupling is the same idea with a Newton outer loop on the monolithic residual instead of Picard on interface data alone:
+
+\[
+\mathbf{R}(\mathbf{x}) =
+\begin{bmatrix}
+  \mathbf{K}_T \mathbf{T} - \mathbf{f}_J - q_w \mathbf{b}_\Gamma \\
+  q_w - h(\|\mathbf{u}\|, T_w)\, A\,(T_w - T_\infty) \\
+  \mathbf{F}_{\text{NS}}(\mathbf{u}, p, T) - \mathbf{0}
+\end{bmatrix}
+= \mathbf{0}.
+\]
+
+Each Newton step solves \(\mathbf{J}\,\delta\mathbf{x} = -\mathbf{R}\) with block structure — the same block-sparse pattern Part I.4 previewed for coupled thermoelasticity ([IV.4 monolithic thermoelasticity](../part04-fem/04-poisson-to-elasticity.md#coupled-thermoelasticity)). OpenFOAM `chtMultiRegionFoam`, ANSYS System Coupling, and FEniCS `MixedElement` implementations differ in mesh and discretization, but the **structure** is identical: one residual, one Jacobian, interface rows enforcing continuity of temperature and heat flux.
+
+| Strategy | Unknowns per step | Interface guarantee | Typical use |
+|----------|-------------------|---------------------|-------------|
+| Picard (partitioned) | One domain at a time | Converged only at outer fixed point | Legacy codes, weak coupling, prototyping |
+| Aitken-accelerated Picard | One domain at a time | Faster fixed point, same limit | Moderate CHT stiffness |
+| Monolithic Newton | All domains | Enforced each Newton step | Strong coupling, transient CHT, equal-order schemes |
+
+**When to reach for monolithic coupling on the copper wire.** Act II steady Joule heating with laminar natural convection rarely needs it — the Picard table above converges in four iterations with mild under-relaxation. Monolithic coupling earns its keep when (i) **transient** heating competes with fluid response time, (ii) **temperature-dependent** properties make \(h = h(T_w)\) strongly nonlinear, or (iii) **equal-order** \(P1\)–\(P1\) fluid–solid interpolation violates inf–sup without a stabilized monolithic form. The epilogue's multiscale handshakes inherit the same decision rule: partitioned DFT→MD→DDD chains are Picard at the workflow level; when one interface carries exponential sensitivity (barrier heights, unit mismatches), tighten the coupling — monolithic in code, or converged reweighting in WHAM — before exporting numbers downstream.
+
+The Part VIII.3 [parallel tempering Lab act](../part08-md/03-ab-initio-and-coarse-graining.md#lab-act-parallel-tempering-for-screw-cross-slip-at-joule-heated-temperature-act-ii--iv-bridge) is the atomistic analogue: raw cold-replica samples are a **partitioned** estimate of the \(380\,\text{K}\) distribution; WHAM reweighting is the monolithic correction that enforces detailed balance across the full replica ladder before cross-slip counts feed Part VII.
+
 ## Concept map checkpoint (Part V)
 
 Part V followed the FVM Notes from integral conservation through Navier–Stokes CFD. The four questions summarize the fluid discretization arc:
