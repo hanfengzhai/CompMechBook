@@ -210,6 +210,62 @@ When dislocation cores, surfaces, or crack tips dominate (notch root in the wire
 
 The intellectual contract is unchanged: **electronic structure defines the surface; MD explores it; mesoscale inherits statistics.** ML potentials reduce the cost of exploration, not the need for DFT anchors.
 
+## Accelerated methods: when MD time runs out
+
+Classical MD integrates femtosecond timesteps for nanoseconds of physical time. The copper wire's **creep**, **slow vacancy diffusion at room temperature**, and **rare cross-slip events** live at seconds to years — scales no direct MD trajectory can span. Accelerated methods do not remove the time-scale gap; they **concentrate sampling** on the events that matter and export rates or barriers the mesoscale can use.
+
+### Nudged elastic band (NEB) for migration barriers
+
+Vacancy diffusion and dislocation glide require **activated hops** over energy barriers. **Nudged elastic band** methods find minimum-energy paths between two relaxed configurations (initial and final states) and estimate the barrier height \(\Delta E\):
+
+\[
+D \approx a^2 \nu_0 \exp(-\Delta E / k_B T),
+\]
+
+where \(a\) is hop distance and \(\nu_0\) is an attempt frequency (\(\sim 10^{12}\)–\(10^{13}\,\text{s}^{-1}\) for metals). NEB on a vacancy hop in Cu with EAM or a DeepMD potential replaces guessing \(\Delta E\) from a misfit MSD slope at 300 K.
+
+| Method | Input | Output | Consumer |
+|--------|-------|--------|----------|
+| NEB / CI-NEB | Relaxed initial/final configs | \(\Delta E\), MEP | Arrhenius \(D(T)\); KMC rates |
+| Metadynamics | Collective variables (CVs) | Free-energy surface | Phase transitions, stacking faults |
+| Parallel tempering | Replica exchange at multiple \(T\) | Enhanced sampling at low \(T\) | Complex energy landscapes |
+
+For the wire's **annealing** story (Act II heating), NEB barriers for vacancy formation (\(E_f^v\)) and migration (\(\Delta E_m\)) connect Part IX DFT totals to Part VII dislocation climb rates without simulating every hop explicitly.
+
+### Kinetic Monte Carlo (KMC)
+
+**Kinetic Monte Carlo** replaces continuous Newtonian integration with discrete events drawn from a rate table:
+
+\[
+P_i = \nu_i \exp(-\Delta E_i / k_B T), \qquad \text{select event } i \text{ with probability } P_i / \sum_j P_j.
+\]
+
+MD supplies the rates; KMC advances **clock time** by orders of magnitude. A copper grain boundary with vacancy exchange events can reach milliseconds where MD stops at nanoseconds — the upward path for **electromigration void growth** models that Part VI continuum damage mechanics cannot resolve atomistically.
+
+**Scale-boundary handshake (MD → KMC → continuum).**
+
+| Rung | Delivers | Requires |
+|------|----------|----------|
+| DFT (IX) | \(\Delta E_i\) for hop events | Converged SCF on initial/final states |
+| MD (VIII) | Validation of \(\nu_0\), local barrier from NEB | Audited EAM or ML potential |
+| KMC | Time-averaged \(\rho_{\text{vac}}(t)\), void growth | Rate table + consistent \(T\) |
+| Continuum (VI) | Effective diffusivity in damage law | \(D(T)\) from Arrhenius fit to KMC/MD |
+
+**What breaks without the handshake.** KMC with barriers from a different functional than the MD that validated \(\nu_0\) produces void growth rates wrong by exponentials — worse than any linear elasticity error. Room-temperature \(D\) from a 5 ps MSD fit plugged into a year-long creep model is the same category error at the other extreme.
+
+### Parallel MD and domain decomposition
+
+Production copper simulations (millions of atoms, notch root boxes) use **domain decomposition**: each MPI rank owns a spatial subdomain; ghost atoms replicate neighbor layers across rank boundaries. Force computation remains \(O(N)\) per rank with balanced load; communication cost scales with surface area of subdomain partitions.
+
+| Concern | Practice on LAMMPS/GPUMD | Wire-scale implication |
+|---------|--------------------------|------------------------|
+| Load balance | `processors * * *` grid matches geometry | Long thin nanowires need aspect-aware decomposition |
+| Neighbor skin | Rebuild list when any atom crosses skin | Too small → missed pairs; too large → slow rebuild |
+| GPU offload | `package gpu` or native GPU codes | 10–100× speedup for EAM on large cells |
+| I/O bottleneck | Dump every 1000 steps, not every step | Trajectory size dominates wall time for long NVT |
+
+Parallel scaling does not change the **physics exports** — only how quickly you reach converged MSD, stress–strain, or Green–Kubo integrals. The reproducibility checklist still applies: same potential, same \(\Delta t\), same ensemble, documented seed, whether the run used 1 or 1024 ranks.
+
 ### Handoff summary for the copper wire
 
 | Quantity | Source chapter | Consumer |

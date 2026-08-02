@@ -154,6 +154,20 @@ Multiply \(u_t - \alpha \Delta u = f\) by test \(v \in H^1_0(\Omega)\) and integ
 
 Semidiscretization: \(u_h = \sum_j U_j(t) \phi_j\) gives \(\mathbf{M}\dot{\mathbf{U}} + \alpha \mathbf{K}\mathbf{U} = \mathbf{F}\). The mass matrix \(\mathbf{M}\) comes from \(\int \phi_i \phi_j\); the stiffness from \(\int \nabla\phi_i \cdot \nabla\phi_j\). Time discretization (backward Euler, BDF, Runge–Kutta) is layered on top — Part IV for FEM, Part V for FVM flux differencing in fluids.
 
+### Scale-boundary handshake: weak form meets Part I's block system
+
+Part I.4 previewed the coupled thermo-mechanical block matrix. Part III now states the **continuum weak forms** those blocks discretize:
+
+| Continuum weak form | Discrete block (Part I / IV) | Copper wire field |
+|---------------------|------------------------------|-------------------|
+| \(\int EA u' v' = \int f v\) | \(\mathbf{K}_{uu}\mathbf{u} = \mathbf{f}_u\) | Axial displacement under grip load |
+| \(\int k T' w' = \int \dot{q} w\) | \(\mathbf{K}_{TT}\mathbf{T} = \mathbf{f}_T\) | Joule heating along axis (Act II) |
+| \(\alpha E A \int T' v'\) (coupling) | \(\mathbf{K}_{uT}\mathbf{T}\) in load vector | Thermal strain blocked by fixed grips |
+
+The handshake is bidirectional: **downward**, Part III tells Part IV which integrals to assemble; **upward**, Part I's Lab act convergence tables certify that \(\mathbf{K}_{uu}\) approximates the bar operator in \(H^1_0\). If the heat weak form uses natural convection at the wire surface (Robin term from Part V.4), \(\mathbf{f}_T\) receives boundary contributions Part I's 1D toy omitted — the scale boundary is explicit about which physics each block carries.
+
+**What breaks without the handshake.** Solving \(\mathbf{K}_{uu}\mathbf{u} = \mathbf{f}_u\) with a temperature field from a separate conduction code that used different mesh or BCs violates the weak form's coupled structure — grip reaction from thermal stress will not match Part VI's \(\sigma = E\alpha\Delta T\) check. Monolithic assembly (single weak form for \((u,T)\)) or a documented staggered Picard loop with convergence tolerance is mandatory when Act II and Act III run together.
+
 ## Integration by parts in higher dimensions
 
 Green's first identity:

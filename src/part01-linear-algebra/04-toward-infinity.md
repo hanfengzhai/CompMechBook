@@ -206,6 +206,81 @@ Return to the heated copper wire from the opening scene. Steady one-dimensional 
 
 **Step 4 — connect to the lab session.** Act II (Part VI) adds Joule heating \(\dot{q}(x)\) and makes \(T(x)\) nonlinear; Act I's mounting (Part I) already placed the first thermocouple at the grip. This exercise shows why Part II must exist: without a named space for \(T(x)\), mesh refinement is "more numbers" with no convergence target. When the profile stops changing as \(N\) grows, you have found the continuum state variable the prologue promised.
 
+## Scale-boundary handshake: displacement convergence toward \(H^1\)
+
+The thermocouple Lab act above treated **temperature** — a scalar field whose continuum limit is clear once nodal values stabilize. **Displacement** under end load tells the same story with a richer norm: the copper wire in Act III stretches along its axis, and mesh refinement must converge not only in pointwise elongation but in **strain energy**, the quantity Part II will name \(\|u\|_{H^1}\).
+
+Return to the fixed–free bar from [I.1](01-vectors-matrices.md): unit load at the free end, \(EA = 120\,\text{kN}\), \(L = 1\,\text{m}\). The exact continuum solution is linear, \(u(x) = x/L\), with constant strain \(u' = 1/L\). Discretize with \(N\) nodes and linear bar elements; solve \(\mathbf{K}_N \mathbf{u}_N = \mathbf{f}\).
+
+### Discrete energy versus continuum energy
+
+For piecewise-linear \(u_h\) on a uniform mesh with spacing \(h = L/(N-1)\), the **discrete strain-energy proxy** is
+
+\[
+E_h = \frac{1}{2}\, \mathbf{u}_N^T \mathbf{K}_N \mathbf{u}_N
+= \frac{EA}{2L^2} \sum_{e=1}^{N-1} h\, (\Delta u_e)^2,
+\]
+
+where \(\Delta u_e\) is the element elongation. For linear \(u(x) = x/L\), **P1 elements reproduce the exact solution on every mesh** — the discrete profile is exact at nodes, and \(E_h = EA/(2L)\) for all \(N \ge 2\). That is the happy case: refinement changes nothing because the trial space already contains the truth.
+
+Now introduce a **nonlinear manufactured test** that P1 cannot represent exactly: impose a body force \(f(x) = \sin(\pi x/L)\) with fixed ends \(u(0) = u(L) = 0\). The strong solution is
+
+\[
+u(x) = \frac{L^2}{\pi^2 E A}\, \sin\!\left(\frac{\pi x}{L}\right),
+\qquad
+\|u'\|_{L^2}^2 = \frac{L^3}{2\pi^2 E^2 A^2}.
+\]
+
+Assemble \(\mathbf{K}_N \mathbf{u}_N = \mathbf{f}_N\) with consistent nodal loads from \(f(x)\). Track two scalars as \(N\) grows:
+
+| \(N\) | \(h\) (m) | \(\max_i |u_h(x_i) - u(x_i)|\) | Relative energy error \(|E_h - E_{\text{exact}}|/E_{\text{exact}}\) |
+|-------|-----------|--------------------------------------|---------------------------------------------------------------------|
+| 5 | 0.250 | \(\mathcal{O}(h^2)\) | \(\mathcal{O}(h^2)\) |
+| 11 | 0.100 | decreases | decreases |
+| 21 | 0.050 | decreases | decreases |
+| 41 | 0.025 | \(\sim 0.1\%\) | \(\sim 0.1\%\) |
+
+The energy error is the discrete face of \(\|u - u_h\|_{H^1}\): Part II.2's hat-function exercise showed that **kinks** dominate the \(H^1\) seminorm; here the trial space is smooth enough that convergence is second-order in \(L^2\) and first-order in energy for P1 — the rates Part IV.5 will prove as Céa's lemma.
+
+### What crosses the boundary to Part II
+
+Part I can compute tables; Part II names the **target**:
+
+| Part I artifact | Part II name | Part IV consumer |
+|-----------------|--------------|------------------|
+| \(\mathbf{u}_N^T \mathbf{K}_N \mathbf{u}_N\) | Bilinear form \(a(u_h, u_h) = \int (EA) (u_h')^2 \, dx\) | Element stiffness assembly |
+| \(\max_i |u_h(x_i) - u(x_i)|\) | \(L^\infty\) or nodal sampling of \(H^1\) error | Post-processing only — misleading alone |
+| Energy error vs \(h\) | \(\|u - u_h\|_{H^1} \to 0\) as \(h \to 0\) | Mesh refinement certificate |
+| \(\mathbf{K}_N \to \infty\) | Operator \(K u = -(EA u')'\) on \(H^1_0\) | Weak form in Part III.2 |
+
+**What breaks without the handshake.** Refining a mesh while watching only maximum nodal displacement can declare "converged" when strain energy is still 5% high — the wire plot looks smooth, but Act III's load cell prediction is wrong. Conversely, chasing energy convergence without checking boundary conditions (slip in the grip adds effective compliance) refines toward the wrong limit operator. The handshake is: **track energy and displacement together; name the continuum operator the matrix approximates.**
+
+### Python sketch (manufactured solution)
+
+```python
+import numpy as np
+
+def bar_energy_error(N, L=1.0, EA=120e3):
+    h = L / (N - 1)
+    K = (EA / h) * (np.diag(2*np.ones(N)) - np.diag(np.ones(N-1),1) - np.diag(np.ones(N-1),-1))
+    K[0,0] = K[-1,-1] = EA/h  # fixed ends
+    x = np.linspace(0, L, N)
+    f = np.sin(np.pi * x / L)
+    f[0] = f[-1] = 0
+    f_nodal = f * h  # consistent load vector (trapezoidal lump)
+    u_h = np.linalg.solve(K, f_nodal)
+    E_h = 0.5 * u_h @ K @ u_h
+    u_exact = (L**2 / (np.pi**2 * EA)) * np.sin(np.pi * x / L)
+    E_exact = 0.5 * EA * np.trapz(np.gradient(u_exact, x)**2, x)
+    return np.max(np.abs(u_h - u_exact)), abs(E_h - E_exact) / E_exact
+
+for N in [5, 11, 21, 41, 81]:
+    err_u, err_E = bar_energy_error(N)
+    print(f"N={N:3d}  max|u| err={err_u:.2e}  rel energy err={err_E:.2e}")
+```
+
+Run the loop before opening Part II: when both errors fall predictably with \(h\), you have evidence that \(\mathbf{K}_N\) is approximating an operator on a function space, not merely returning a longer vector. Part II supplies the completeness theorem that makes the limit honest; Part III writes the weak form of \(-(EA u')' = f\); Part IV assembles the same \(\mathbf{K}_N\) from shape functions. The copper wire's Act III ramp inherits every row of the handshake table above.
+
 ## Concept map checkpoint (Part I)
 
 Part I opened with the four questions the [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) later formalize for infinite dimensions. Before leaving \(\mathbb{R}^N\), summarize the grammar every later part inherits:

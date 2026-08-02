@@ -137,6 +137,116 @@ Two routes:
 
 Constrained MD applies shear stress \(\tau\) on a simulation cell containing a dislocation. Steady-state velocity \(v(\tau, T)\) is extracted and tabulated for **OpenDiS** mobility laws. This closes the loop between Part VIII and Part VII: atoms inform lines.
 
+## Einstein relation and vacancy diffusion on the wire
+
+Room-temperature copper wire does not creep on laboratory time scales — but **electromigration** and **high-temperature annealing** make vacancy diffusion a first-class export from atomistics. The continuum picture is Fick's law \(J = -D \nabla c\); MD supplies \(D(T)\) from trajectories without fitting a phenomenological prefactor.
+
+### Mean-square displacement
+
+Track a tagged atom (or all atoms in a dilute vacancy supercell) in **NVT** at temperature \(T\). The **mean-square displacement** (MSD) is
+
+\[
+\text{MSD}(t) = \left\langle \|\mathbf{r}_i(t) - \mathbf{r}_i(0)\|^2 \right\rangle,
+\]
+
+where the average is over time origins and, for self-diffusion in a periodic bulk cell, over equivalent atoms. In three dimensions, Fickian diffusion gives
+
+\[
+\text{MSD}(t) = 6 D t \quad \text{(long-time limit)}.
+\]
+
+The **Einstein relation** extracts \(D\) from the slope:
+
+\[
+D = \lim_{t \to \infty} \frac{\text{MSD}(t)}{6t}.
+\]
+
+In practice, fit MSD versus \(t\) over a window where the slope is linear — after ballistic short-time motion (\(t < 1\) ps) and before sublinear caging at very long times in small cells.
+
+| Stage | MSD behavior | Physical meaning |
+|-------|--------------|------------------|
+| \(t < 0.5\) ps | \(\sim t^2\) (ballistic) | Not diffusive — exclude from fit |
+| 1–50 ps | \(\sim t\) (linear) | Diffusive regime; fit \(D\) here |
+| \(t > 100\) ps (small cell) | sublinear | Periodic image correlation; enlarge cell |
+
+### Worked example: Cu self-diffusion at 900 K
+
+Annealing cold-drawn wire at \(900\,\text{K}\) activates vacancy hops MD can resolve. A minimal LAMMPS workflow on a 256-atom fcc supercell with one vacancy:
+
+```lammps
+# in.diffusion — Cu vacancy diffusion, NVT 900 K
+units           metal
+atom_style      atomic
+read_data       cu_vac_256.data
+pair_style      eam/alloy
+pair_coeff      * * Cu.eam.alloy Cu
+group           vac type 1
+compute         msd all msd com yes
+fix             1 all nvt temp 900 900 0.1
+timestep        0.001
+thermo          100
+run             500000    # 500 ps
+```
+
+Post-process `msd.txt`: plot \(\text{MSD}(t)\) versus \(t\); linear regression on \(t \in [10, 200]\,\text{ps}\) yields \(D \approx 10^{-12}\)–\(10^{-11}\,\text{m}^2/\text{s}\) (order of magnitude — potential and \(T\) dependent). Compare to experimental Cu self-diffusion \(\sim 10^{-13}\,\text{m}^2/\text{s}\) at 900 K: EAM often overestimates \(D\) by factors of 2–10 unless vacancy formation and migration barriers were in the fit set.
+
+**Scale-boundary handshake (MD → continuum creep models).**
+
+| MD export | Continuum consumer | Pass criterion |
+|-----------|-------------------|----------------|
+| \(D(T)\) from MSD slope | Arrhenius fit \(D = D_0 e^{-Q/RT}\) in creep law | Activation energy \(Q\) within 20% of experiment |
+| Vacancy hop rate | Kinetic Monte Carlo (Part VIII.3) | Same \(D\) at long times |
+| MSD at 300 K (negligible) | "No creep on lab times" in Part VI | Slope \(\approx 0\) over accessible MD window |
+
+**What breaks without the handshake.** Exporting a 5 ps MSD slope from ballistic motion inflates \(D\) by orders of magnitude — the atomistic analogue of reporting FEM stress before mesh convergence. Using NVE during a heating ramp (instead of NVT) changes the effective temperature and corrupts \(D(T)\) tables fed to mesoscale kinetics.
+
+### Green–Kubo alternative for diffusion
+
+The **velocity autocorrelation function** (VACF) integrates to \(D\) via
+
+\[
+D = \frac{1}{3N} \int_0^\infty \sum_i \langle \mathbf{v}_i(0) \cdot \mathbf{v}_i(t) \rangle \, dt.
+\]
+
+MSD and Green–Kubo must agree within statistical error when both are converged — cross-checking them is standard practice before archiving `D_cu_900K.txt` for the foundation folder.
+
+## Phonon density of states from velocity autocorrelation
+
+Thermal expansion, heat capacity, and thermal conductivity all depend on how atoms vibrate. DFT phonons (Part IX) compute harmonic modes on a grid in **k**-space; MD can estimate the **phonon density of states** (DOS) from equilibrium **NVT** trajectories without a separate phonon code — a downward-friendly audit when DFT `ph.x` is unavailable.
+
+### VACF → spectral density
+
+In NVT at 300 K, record atomic velocities every \(\Delta t_{\text{sample}}\). The VACF is
+
+\[
+C_v(t) = \frac{1}{N} \sum_i \langle \mathbf{v}_i(0) \cdot \mathbf{v}_i(t) \rangle.
+\]
+
+Its Fourier transform (discrete cosine transform on a long trajectory) gives a spectral density \(g(\omega)\) proportional to the phonon DOS up to normalization:
+
+\[
+g(\omega) \propto \int_0^\infty C_v(t) \cos(\omega t) \, dt.
+\]
+
+Peaks in \(g(\omega)\) at \(\omega \sim 10^{13}\,\text{rad/s}\) match the highest frequencies that set the Verlet timestep limit from [VIII.1](01-potentials-phase-space.md).
+
+| Peak location | Mode type | Link to Part I / IX |
+|---------------|-----------|---------------------|
+| Low \(\omega\) | Acoustic branches | Long-wavelength sound speed; bulk modulus check |
+| Mid \(\omega\) | Optical-like | Timestep stability; heat capacity |
+| High \(\omega\) | Short-wavelength | \(\omega_{\max}\) sets \(\Delta t \lesssim 2\pi/(10\,\omega_{\max})\) |
+
+### Scale-boundary handshake (MD phonons → Part IX → Part VI \(\alpha\))
+
+Part IX.3 computes quasi-harmonic thermal expansion \(\alpha(T)\) from DFT phonon free energy. MD phonon DOS from VACF is a **cross-check**, not a replacement:
+
+1. Run 100 ps NVT on 256-atom bulk Cu at 300 K; dump velocities every 10 fs.
+2. Compute VACF; FFT to \(g(\omega)\).
+3. Compare peak positions to DFT `ph.x` dispersion along high-symmetry lines — shifts \(> 5\%\) flag a bad EAM fit before exporting \(\alpha\) to Part VI thermoelasticity.
+4. Archive `phonon_dos_md.dat` beside `cu.phonon/` in the foundation folder.
+
+**What breaks without the handshake.** A potential that reproduces bulk modulus but shifts optical peaks by 15% will predict wrong heat capacity and, through quasi-harmonic coupling, wrong thermal expansion — the same \(\alpha\) that enters Part I.3's thermal eigenstrain and Part VI's coupled thermomechanical block system. Phonon DOS is the vibration spectrum the wire's eigenmodes from [I.3](../part01-linear-algebra/03-eigenvalues.md) approach as \(N \to \infty\); MD and DFT are two ways to name that spectrum at atomic scale.
+
 ## LAMMPS workflow in practice
 
 [LAMMPS](https://www.lammps.org/) organizes simulation into **styles**: units, atom_style, pair_style, fix, compute, dump. A reproducible copper wire fragment study might follow:

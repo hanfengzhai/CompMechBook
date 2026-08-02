@@ -214,6 +214,20 @@ for n in range(n_steps):
 
 This test has nothing to do with copper chemistry — it is the **trust gate** for the Riemann machinery that will later advect temperature in a boundary layer around the wire. Passing Sod at 100–200 cells takes minutes; failing it silently poisons every coupled solid–fluid run in Act II. Log the L¹ errors in a one-line regression test before touching wall heat flux handshakes with Part IV.
 
+### Scale-boundary handshake: hyperbolic fluxes meet FEM wall temperature
+
+Act II couples **solid conduction** (Part IV Galerkin on the wire) to **fluid advection–diffusion** (Part V FVM in the surrounding air). The handshake is not "run both solvers" — it is **consistent fluxes at the interface**:
+
+| Interface quantity | FEM side (wire surface) | FVM side (first fluid cell) | Failure mode |
+|--------------------|-------------------------|----------------------------|--------------|
+| Wall temperature \(T_w\) | Dirichlet or Robin from solid solve | Ghost-cell \(T_{\text{ghost}}\) for advection | 1–2 K mismatch → wrong Biot number |
+| Heat flux \(q''\) | \(-k_s \partial T / \partial n\) from solid | Convection \(h(T_w - T_\infty)\) in fluid | Flux imbalance → drifting \(T_w\) in Picard loop |
+| Mass flux (if blowing) | Usually zero for passive wire | Normal velocity at wall | Spurious mass source if not conservative |
+
+The Sod shock-tube test certifies the **Riemann kernel** in isolation; the 1D boundary-layer Lab act in [V.2](02-fvm-1d.md) certifies **diffusive fluxes** on linear profiles. Only after both pass should Part V.4's conjugate heat transfer Picard loop exchange \(T_w\) and \(q''\) with Part IV — the same staggered discipline Part I.4 named for thermo-mechanical blocks and Part III.2 named for coupled weak forms.
+
+**What breaks without the handshake.** A converged FEM solid mesh with an FVM air mesh that fails Sod conserves energy in the solid while **advecting negative density** in the fluid — the coupled run looks stable until the boundary layer temperature is wrong by 20 K and Joule heating predictions fail Act II validation.
+
 ## Concept map checkpoint (Riemann fluxes)
 
 This chapter is where hyperbolic conservation laws receive **upwind stability**. Before Navier–Stokes adds viscous partners, summarize what Riemann solvers established:

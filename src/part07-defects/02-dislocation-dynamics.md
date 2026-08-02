@@ -224,6 +224,21 @@ A reproducible OpenDiS-style workflow for copper single-crystal shear, modeled o
 
 The copper wire's cold-worked strength is, in part, a snapshot of step 4 frozen by manufacturing — DDD explains what that snapshot contains.
 
+### Scale-boundary handshake: DDD exports to FEM crystal plasticity
+
+OpenDiS produces **dislocation density evolution** \(\rho(\gamma, t)\) and **resolved shear stress** \(\tau(\gamma)\) on a single-crystal RVE. FEM crystal plasticity (Part VI, Part IV user subroutines) consumes **hardening moduli** and **yield surface parameters** — not raw segment coordinates.
+
+| DDD export | Transformation | FEM / continuum input |
+|------------|----------------|----------------------|
+| \(\rho(t)\) at several strains | Fit Taylor \(\Delta\tau = \alpha\mu b\sqrt{\rho}\) | Voce hardening modulus \(k_1\) |
+| \(v(\tau, T)\) from MD-informed mobility | Tabulate \(\dot\gamma(\tau, T)\) | Flow rule in crystal plasticity |
+| Line-length distribution | Average obstacle spacing \(L \sim 1/\sqrt{\rho}\) | Internal length in gradient plasticity (optional) |
+| Stress–strain curve on RVE | Homogenize \(\bar\sigma\), \(\bar\varepsilon\) | Validate against Part IV tensile run |
+
+**Downward import (FEM → DDD).** The far-field strain rate \(\dot\varepsilon\) from a Part IV tensile simulation sets the loading column in OpenDiS — DDD is a **local RVE calculator** for a material point on the wire mesh.
+
+**What breaks without the handshake.** Pasting literature \(\alpha = 0.3\) while DDD predicts \(\rho\) a factor of three too low doubles Taylor hardening and shifts the load cell curve in Act IV — the mesoscale analogue of mixing handbook \(E\) with DFT \(\gamma_{\text{sf}}\). Archive `ddd_rho_vs_strain.csv` beside `mobility_cu_300K.yaml` and the Part IV `.inp` that supplied boundary strain rate; the epilogue's multiscale afternoon treats missing files as failed audits.
+
 ## Reproducibility checklist
 
 Before exporting DDD hardening laws to crystal plasticity or FEM:
