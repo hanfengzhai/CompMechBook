@@ -8,6 +8,7 @@
 #   cu.elastic/        optional — six strain pw.x outputs for parse_elastic.sh
 #   cu.phonon/         optional — phonon dispersion archive
 #                      optional — phonon_dos_md.dat (VACF cross-check via parse_vacf.sh)
+#                      optional — phonon_lifetime.dat (LA linewidth via parse_lifetime.sh)
 #   cu.gsf/            optional — stacking-fault slab calculations
 #
 # Emits foundation_export.yaml for epilogue multiscale handshakes.
@@ -102,6 +103,26 @@ if [[ -f "$DIR/cu.phonon/a_vs_T.dat" ]]; then
   echo ""
 fi
 
+LIFETIME_OK=0
+LA_LIFETIME="NA" LA_LINEWIDTH="NA" LA_LIFETIME_SRC="none"
+LIFETIME_INPUT=""
+if [[ -f "$DIR/cu.phonon/phonon_lifetime.dat" ]]; then
+  LIFETIME_INPUT="$DIR/cu.phonon/phonon_lifetime.dat"
+elif [[ -f "$DIR/phonon_lifetime.dat" ]]; then
+  LIFETIME_INPUT="$DIR/phonon_lifetime.dat"
+fi
+if [[ -n "$LIFETIME_INPUT" ]]; then
+  LIFETIME_OK=1
+  echo "# Running parse_lifetime.sh on phonon_lifetime.dat"
+  (
+    "$ROOT/scripts/parse_lifetime.sh" "$LIFETIME_INPUT"
+  ) | tee /tmp/parse_lifetime_out.txt
+  LA_LIFETIME=$(grep '^lifetime_primary_ps = ' /tmp/parse_lifetime_out.txt | awk '{print $3}')
+  LA_LINEWIDTH=$(grep '^linewidth_primary_GHz = ' /tmp/parse_lifetime_out.txt | awk '{print $3}')
+  LA_LIFETIME_SRC=$(grep '^source_primary = ' /tmp/parse_lifetime_out.txt | awk '{print $3}')
+  echo ""
+fi
+
 VACF_OK=0
 ACOUSTIC_PEAK="NA" ACOUSTIC_SHIFT="NA" ACOUSTIC_OK="unknown"
 VACF_INPUT=""
@@ -151,6 +172,7 @@ echo "  relax_converged: $RELAX_OK"
 echo "  elastic_complete: $([ "$ELASTIC_OK" -eq 1 ] && echo yes || echo no)"
 echo "  phonon_archived: $([ -d "$DIR/cu.phonon" ] && echo yes || echo no)"
 echo "  vacf_dos_archived: $([ "$VACF_OK" -eq 1 ] && echo yes || echo no)"
+echo "  phonon_lifetime_archived: $([ "$LIFETIME_OK" -eq 1 ] && echo yes || echo no)"
 echo "  gsf_archived: $([ -d "$DIR/cu.gsf" ] && echo yes || echo no)"
 echo ""
 
@@ -196,6 +218,13 @@ md_phonon_dos:
   handshake: MD-phonon
   parser_vacf: parse_vacf.sh
   source_file: ${VACF_INPUT:-none}
+phonon_lifetime:
+  LA_lifetime_ps: ${LA_LIFETIME}
+  LA_linewidth_GHz: ${LA_LINEWIDTH}
+  source: ${LA_LIFETIME_SRC}
+  handshake: MD-phonon-lifetime
+  parser_lifetime: parse_lifetime.sh
+  source_file: ${LIFETIME_INPUT:-none}
 gsf_archived: $([ "$GSF_OK" -eq 1 ] && echo yes || echo no)
 parser_elastic: parse_elastic.sh
 parser_workflow: parse_dft_workflow.sh
