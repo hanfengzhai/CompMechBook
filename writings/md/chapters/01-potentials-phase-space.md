@@ -178,6 +178,37 @@ In the **NVE** ensemble, energy diffuses even without an imposed temperature gra
 
 where \(V\) is system volume, \(T\) is temperature, and \(J(t)\) is the instantaneous heat flux. Intuitively: fast-decaying correlations mean efficient transport (high \(\kappa\)); long-lived correlations or frequent scattering events lower \(\kappa\). The integral is estimated from a long NVE trajectory by averaging over time origins — the atomistic analogue of estimating a diffusion coefficient from mean-square displacement.
 
+### Green–Kubo in the Part II vocabulary
+
+Part II taught that honest discretization needs a **complete space** and a **norm that measures what physics cares about**. Green–Kubo is the same contract at atomistic scale: the heat flux \(J(t)\) is a random process on a trajectory; its autocorrelation is an inner product in time, and conductivity is a linear functional of that correlation. Read the four concept-map questions from [Part II.2](../../part02-functional-analysis/02-normed-spaces.md) again — they apply without modification:
+
+| Question | Green–Kubo answer (copper wire) |
+|----------|--------------------------------|
+| What **object**? | Heat current \(J(t)\) along the wire axis (scalar component of Irving–Kirkwood flux) |
+| What **structure**? | Stationarity in NVE; time-translation invariance of \(\langle J(0)J(t)\rangle\) |
+| What **theorem**? | Fluctuation–dissipation: \(\kappa\) from equilibrium correlations (Onsager reciprocity in linear response) |
+| What **breaks**? | Too-short trajectories (incomplete time average); finite-size \(V\); anharmonicity at high \(T\) |
+
+**Correlation as an \(L^2\) inner product.** For a stationary process, define the autocorrelation at lag \(\tau\):
+
+\[
+C(\tau) = \langle J(0)\, J(\tau) \rangle = \lim_{T_{\text{run}} \to \infty} \frac{1}{T_{\text{run}}} \int_0^{T_{\text{run}}} J(t)\, J(t+\tau)\, dt.
+\]
+
+The time average is the ergodic substitute for an ensemble average — the same move Part II made when replacing nodal values with fields: a **limit** must exist and stay in the admissible class. Here the admissible class is "long enough NVE after NVT equilibration," and the limit is \(C(\tau)\) itself. Green–Kubo then writes
+
+\[
+\kappa = \frac{V}{k_B T^2} \int_0^\infty C(\tau)\, d\tau,
+\]
+
+which is a **Riesz-style pairing**: the transport coefficient is a linear functional of the correlation function, exactly as Part II.3 paired loads with test functions through \(\ell(v) = \int f v\).
+
+**Connection to Part I eigenmodes.** Near equilibrium, expand the potential to second order — the Hessian \(\mathbf{H}\) from [above](#newtons-equations-as-part-i-linear-algebra-at-every-timestep). Phonon modes diagonalize \(\mathbf{H}\); each mode contributes to \(J(t)\) with a characteristic decay time (phonon lifetime). In the harmonic limit, \(C(\tau)\) is a sum of exponentials \(\sum_n A_n e^{-|\tau|/\tau_n}\); the integral \(\int C(\tau)\, d\tau\) is dominated by long-lived acoustic modes — the same normal modes Part I.3 decoupled on the spring network, now with \(N \sim 10^5\) degrees of freedom. Anharmonicity broadens peaks and shortens lifetimes; defect scattering (vacancies from cold drawing) adds faster-decaying channels — lowering \(\kappa\) exactly as the handbook warns for impure wire.
+
+**Completeness analogue.** Part II.2's Cauchy sequences needed Banach completeness so FEM limits stayed in \(H^1\). Green–Kubo needs **statistical completeness**: the time integral of \(C(\tau)\) must converge before the trajectory ends. Diagnostic: plot \(C(\tau)\) and the running integral \(\kappa(T_{\text{cut}}) = \int_0^{T_{\text{cut}}} C(\tau)\, d\tau\) versus \(T_{\text{cut}}\). If \(\kappa(T_{\text{cut}})\) still drifts at the end of the run, the simulation is the thermal analogue of an unconverged mesh — extend \(T_{\text{run}}\) or increase cell size until the plateau stabilizes within 10%.
+
+**Downward link to Part III.** Part III wrote steady conduction \(-k T'' = \dot{q}\) in strong form; Part II placed \(T \in H^1\). Green–Kubo derives the scalar \(k\) that Part III assumed — closing the loop from fluctuation at atomistic scale to the coefficient in the weak thermal form Part IV and Part V discretize. When Joule heating raises local temperature near the grip (Part VI, Act II), the FEM thermal step needs \(k(T)\) with this pedigree, not a handbook paste.
+
 **Nonequilibrium MD (NEMD)** offers an alternative: impose \(\Delta T\) across a slab with fixed hot and cold regions (`fix heat`), measure steady heat flux \(J\), and apply Fourier's law \(\kappa = -J / (\nabla T)\). NEMD is easier to visualize; Green–Kubo is often preferred for bulk properties because it avoids artificial thermostat boundaries in the flux path.
 
 | Method | Ensemble | Observable | Typical Cu supercell |

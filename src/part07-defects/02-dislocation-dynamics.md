@@ -69,6 +69,52 @@ where \(M\) may be anisotropic and thermally activated. In fcc crystals, screw d
 
 Mobility parameters for copper are fit to MD simulations or experiments. A DDD simulation is only as credible as its mobility table — another instance of the ladder: fine scale informs coarse scale.
 
+### Lab act: calibrate screw mobility from MD shear (Act IV — mobility prelude)
+
+**Act IV** bends the load cell curve because lines move under Peach–Köhler forces. Before OpenDiS can reproduce that bend, the mobility law \(M(\tau, T)\) must be calibrated — not copied from a literature table without pedigree. This Lab act extracts \(M\) from a Part VIII MD shear test on a dislocation-containing supercell, then exports a yaml table OpenDiS consumes.
+
+**Step 1 — build the MD cell.** Use the same EAM potential and \(a_0\) from [Part VIII.1 Lab act](../../part08-md/01-potentials-phase-space.md#lab-act-eam-lattice-constant-from-energy-minimization-act-v--notch-prelude). Insert a straight screw dislocation on one {111}\(\langle 110\rangle\) system (Volterra construction or `dislocate` in LAMMPS). Cylindrical geometry: radius \(\geq 10\,b\), glide length \(\geq 20\,b\), flexible outer shell or fixed bottom layers to suppress spurious drift.
+
+**Step 2 — NVT shear protocol at 300 K.** Equilibrate in NVT, then apply constant resolved shear stress \(\tau\) via `fix addforce` on a top layer (or `fix deform` with stress control). Log dislocation position \(x(t)\) and average glide velocity \(v = \dot{x}\) over 50–200 ps once transients decay.
+
+| Applied \(\tau\) (MPa) | Expected regime (Cu screw, 300 K) | Observable |
+|------------------------|-----------------------------------|------------|
+| 5–15 | Thermally activated, low stress | \(v \approx 0\) or sporadic bursts |
+| 20–40 | Glide-dominated | Steady \(v \propto \tau\) (mobility linear) |
+| 60+ | High-stress; watch cross-slip | \(v\) saturates or oscillates |
+
+**Step 3 — fit mobility.** In the linear regime, \(v = M\,\tau\,b\) (units: m/(Pa·s) when \(b\) is Burgers magnitude). Fit \(M\) from the slope of \(v\) vs \(\tau\). Repeat at \(T = 400\,\text{K}\) and \(500\,\text{K}\) to capture thermal activation:
+
+\[
+M(T) = M_0 \exp\!\left(-\frac{Q}{k_B T}\right)
+\]
+
+Archive fitted \(M_0\), \(Q\), and the raw \((\tau, v)\) pairs in `mobility_cu_screw_300K.yaml`.
+
+**Step 4 — export to OpenDiS.** Map the yaml into OpenDiS material input:
+
+```yaml
+# mobility_cu_screw_300K.yaml (illustrative)
+material: Cu
+temperature_K: 300
+potential: Mishin_EAM_2001
+burgers_m: 2.556e-10
+mobility_law: linear
+M_m_per_Pa_s: 4.5e-11   # fit from Step 3
+activation_eV: 0.15     # optional Arrhenius tail
+source_md: shear_supercell_256atoms.lammps
+```
+
+**Step 5 — cross-check against Part VII hardening Lab act.** Run OpenDiS with the calibrated table (not literature defaults) on the Frank–Read source setup from [below](#lab-act-read-the-hardening-bend-from-forest-density-act-iv). Compare \(\tau(\gamma)\) at fixed \(\gamma\): if mobility is wrong by a factor of two, the hardening slope shifts even when \(\gamma_{\text{sf}}\) from Part IX is correct — the same sensitivity the [GSF handshake](#partial-dislocations-and-the-gsf-handshake-part-ix--vii) flags for partial separation.
+
+| Quantity | Literature paste | MD-calibrated (this Lab act) |
+|----------|------------------|------------------------------|
+| \(M(300\,\text{K})\) | Tabulated in OpenDiS examples | Fit from shear supercell |
+| \(\tau(\gamma)\) at \(\gamma = 0.01\) | May match by accident | Reproducible with archived yaml |
+| Hardening slope | Wrong if \(M\) wrong | Traces to Part VIII potential |
+
+**What breaks without calibration.** OpenDiS examples ship default copper mobility from papers whose EAM potential, temperature, and strain rate differ from yours. A DDD run that reproduces forest density but not flow stress is usually a **mobility pedigree error**, not a segment-mesh bug — the mesoscale mirror of Part VIII's phonon handshake: two discretizations of the same copper lattice must agree on the same observable before coarser models inherit the numbers.
+
 ## Discrete dislocation dynamics algorithms
 
 Each dislocation is a curve (or network of segments) in an elastic medium. Time integration proceeds:

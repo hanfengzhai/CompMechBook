@@ -171,6 +171,51 @@ Phonon calculations (`ph.x`, `q2r.x`, `matdyn.x` in the HW2 scripts) linearize D
 
 **Scale-boundary handshake (DFT → MD).** Archive the converged `ph.x` output beside the bulk SCF deck. Part VIII's [phonon validation Lab act](../part08-md/02-ensembles-integrators.md#scale-boundary-handshake-phonons-from-dft-to-md-validation) compares these frequencies to MD velocity-autocorrelation spectra on the same supercell with the production EAM potential. If optical branches shift by more than 10% while bulk modulus still matches, the potential is tuned to elasticity but wrong for core structures — fix the fit before exporting \(\gamma_{\text{sf}}\) or mobility to Part VII. The handshake is the electronic-to-classical counterpart of Part IV's mesh-refinement plot: two discretizations of the same copper lattice must agree on the same observable before coarser models inherit the numbers.
 
+### Phonon pedigree map (cross-scale index)
+
+Phonons are not a Part IX side quest — they are the **vibration thread** that ties eigenmodes (Part I), function-space convergence (Part II), thermal eigenstrain (Part VI), MD validation (Part VIII), and electronic-structure exports (Part IX) into one audit trail. Use this map when any downstream model cites a thermal or elastic number without naming which phonon workflow produced it:
+
+```mermaid
+flowchart TB
+  subgraph IX["Part IX — DFT"]
+    phx["ph.x / DFPT"]
+    qha["Quasiharmonic a(T)"]
+  end
+  subgraph VIII["Part VIII — MD"]
+    vacf["VACF phonon DOS"]
+    gk["Green–Kubo κ"]
+    npt["NPT α check"]
+  end
+  subgraph VI["Part VI — Continuum"]
+    alpha["Thermal strain ε_th = α ΔT"]
+    kappa["Conductivity k in heat balance"]
+  end
+  subgraph I["Part I — Linear algebra"]
+    modes["Hessian eigenmodes ω²"]
+  end
+  phx --> vacf
+  phx --> qha
+  qha --> alpha
+  qha --> npt
+  vacf --> modes
+  vacf --> gk
+  gk --> kappa
+  npt --> alpha
+```
+
+| Phonon quantity | Origin workflow | Archive file | Downstream consumer | Cross-link |
+|-----------------|-----------------|--------------|---------------------|------------|
+| \(\omega(q)\) at \(\Gamma\), LA branch | IX: `ph.x` on converged bulk | `cu.phonon/dispersion.dat` | VIII: VACF peak positions | [VIII.2 handshake](../part08-md/02-ensembles-integrators.md#scale-boundary-handshake-phonons-from-dft-to-md-validation) |
+| Phonon DOS \(g(\omega)\) | VIII: Fourier transform of VACF | `phonon_dos_md.dat` | I.3 eigenmode intuition; mobility phonon drag | [VIII.2 VACF section](../part08-md/02-ensembles-integrators.md#scale-boundary-handshake-md-phonons--part-ix--part-vi-alpha) |
+| \(\alpha(T)\) | IX: quasiharmonic \(a(T)\) fit | `cu.phonon/a_vs_T.dat` | VI: thermal eigenstrain; IV coupled thermoelastic | [VI.2 α handshake](../part06-continuum/02-stress-balance.md#scale-boundary-handshake-thermal-expansion-coefficient-alpha-dft-phonons--md-npt--fem-thermal-strain) |
+| \(\alpha(T)\) cross-check | VIII: NPT lattice parameter vs \(T\) | `alpha_npt_md.dat` | Same as above — 10% agreement with IX | [VIII.2](../part08-md/02-ensembles-integrators.md) |
+| \(\kappa(T)\) | VIII: Green–Kubo NVE integral | `kappa_md_300K.txt` | VI: Joule heating; V: thermal diffusion | [VIII.1 Green–Kubo](../part08-md/01-potentials-phase-space.md#thermal-conductivity-and-phonons) |
+| Phonon lifetime \(\tau_n\) | IX: anharmonic `ph.x` or VIII: VACF width | `phonon_lifetime.dat` | VII: mobility drag; VIII: κ reduction | [VII.2 mobility Lab act](../part07-defects/02-dislocation-dynamics.md#lab-act-calibrate-screw-mobility-from-md-shear-act-iv--mobility-prelude) |
+
+**Reading order vs foundation order.** Linear readers meet phonons here in Part IX after MD and DDD; workflow readers may have run VACF checks in Part VIII first. Both paths are valid if the **foundation folder** contains matching rows: `cu.phonon/` from DFT, `phonon_dos_md.dat` from MD, and explicit pass/fail against the 10% optical-branch criterion before exporting \(\gamma_{\text{sf}}\), mobility, or \(\alpha\) upstream.
+
+**Part II contract.** Part II asked: what object, what structure, what theorem, what breaks? For phonons: object = normal mode coordinates; structure = harmonic Hamiltonian \(H = \sum_n \hbar\omega_n (n_n + \tfrac{1}{2})\); theorem = equipartition and quasiharmonic free energy; breaks = imaginary modes (wrong structure), anharmonicity at high \(T\), defect scattering. When `ph.x` returns imaginary frequencies at \(\Gamma\), the fix is the same instinct as Part II completeness — refine the discretization (relaxation, k-mesh) until the limit object is admissible.
+
 ### Worked example: thermal expansion from phonons (handoff to Part VI)
 
 Part VI's [thermal expansion handshake](../part06-continuum/02-stress-balance.md#scale-boundary-handshake-thermal-expansion-coefficient-alpha-dft-phonons--md-npt--fem-thermal-strain) needs \(\alpha(T)\) with the same audit trail as \(C_{ij}\). Phonons supply it through the **quasiharmonic approximation**: treat phonon frequencies as functions of volume, compute the Helmholtz free energy \(F(V,T)\), and minimize over \(V\) at each temperature to obtain \(a(T)\).
