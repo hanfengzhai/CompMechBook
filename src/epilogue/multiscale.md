@@ -448,7 +448,7 @@ The repository ships small parsers beside the Lab acts so handshake exports are 
 
 | Handshake | Script | Input artifact | Export |
 |-----------|--------|----------------|--------|
-| 1 — DFT → FEM | [`parse_dft_workflow.sh`](../scripts/parse_dft_workflow.sh) | `cu.foundation/` folder | `foundation_export.yaml` with \(C_{ij}\), Voigt \(E\), \(\nu\), optional `md_phonon_dos:` |
+| 1 — DFT → FEM | [`parse_dft_workflow.sh`](../scripts/parse_dft_workflow.sh) | `cu.foundation/` folder | `foundation_export.yaml` with \(C_{ij}\), Voigt \(E\), \(\nu\), optional `md_phonon_dos:`, `phonon_lifetime:`, `ddd_rate_extrapolation:` |
 | 1 — elastic only | [`parse_elastic.sh`](../scripts/parse_elastic.sh) | six `pw.x` strain logs in `cu.elastic/` | `C11`, `C12`, `C44`, \(B\), \(G\) |
 | 2 — Joule ↔ CHT | [`parse_cht.sh`](../scripts/parse_cht.sh) | wire geometry + load config (`cht_wire.conf`) | `cht_export.yaml` with \(T_w\), flux balance, iteration count |
 | 3 — Thermal → FEM | [`parse_alpha.sh`](../scripts/parse_alpha.sh) | `cu.phonon/a_vs_T.dat` from quasiharmonic scan | `alpha_export.yaml` with \(\alpha\), \(\varepsilon_{\text{th}}\), fixed-grip \(\sigma_{\text{th}}\) |

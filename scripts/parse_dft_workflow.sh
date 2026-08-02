@@ -10,8 +10,11 @@
 #                      optional — phonon_dos_md.dat (VACF cross-check via parse_vacf.sh)
 #                      optional — phonon_lifetime.dat (LA linewidth via parse_lifetime.sh)
 #   cu.gsf/            optional — stacking-fault slab calculations
+#   ddd_tau_vs_rate.dat optional — OpenDiS rate sweep (Handshake 4a via parse_rate.sh)
+#   cu.ddd/ddd_tau_vs_rate.dat  optional — same, nested layout
 #
 # Emits foundation_export.yaml for epilogue multiscale handshakes.
+# When DDD rate data is archived, Handshake 4a fields merge into the same yaml.
 
 set -euo pipefail
 
@@ -106,20 +109,30 @@ fi
 LIFETIME_OK=0
 LA_LIFETIME="NA" LA_LINEWIDTH="NA" LA_LIFETIME_SRC="none"
 LIFETIME_INPUT=""
-if [[ -f "$DIR/cu.phonon/phonon_lifetime.dat" ]]; then
+LIFETIME_SWEEP=0
+LIFETIME_T_LIST="NA" LIFETIME_DRAG_SLOPE="NA"
+if [[ -f "$DIR/cu.phonon/phonon_lifetime_vs_T.dat" ]]; then
+  LIFETIME_INPUT="$DIR/cu.phonon/phonon_lifetime_vs_T.dat"
+  LIFETIME_SWEEP=1
+elif [[ -f "$DIR/cu.phonon/phonon_lifetime.dat" ]]; then
   LIFETIME_INPUT="$DIR/cu.phonon/phonon_lifetime.dat"
 elif [[ -f "$DIR/phonon_lifetime.dat" ]]; then
   LIFETIME_INPUT="$DIR/phonon_lifetime.dat"
 fi
 if [[ -n "$LIFETIME_INPUT" ]]; then
   LIFETIME_OK=1
-  echo "# Running parse_lifetime.sh on phonon_lifetime.dat"
+  echo "# Running parse_lifetime.sh on $(basename "$LIFETIME_INPUT")"
   (
-    "$ROOT/scripts/parse_lifetime.sh" "$LIFETIME_INPUT"
+    "$ROOT/scripts/parse_lifetime.sh" "$LIFETIME_INPUT" --target-t 300
   ) | tee /tmp/parse_lifetime_out.txt
   LA_LIFETIME=$(grep '^lifetime_primary_ps = ' /tmp/parse_lifetime_out.txt | awk '{print $3}')
   LA_LINEWIDTH=$(grep '^linewidth_primary_GHz = ' /tmp/parse_lifetime_out.txt | awk '{print $3}')
   LA_LIFETIME_SRC=$(grep '^source_primary = ' /tmp/parse_lifetime_out.txt | awk '{print $3}')
+  if grep -q '^sweep_mode = yes' /tmp/parse_lifetime_out.txt; then
+    LIFETIME_SWEEP=1
+    LIFETIME_T_LIST=$(grep '^temperature_list_K = ' /tmp/parse_lifetime_out.txt | sed 's/temperature_list_K = //')
+    LIFETIME_DRAG_SLOPE=$(grep '^ln_tau_vs_T_slope = ' /tmp/parse_lifetime_out.txt | awk '{print $3}')
+  fi
   echo ""
 fi
 
@@ -165,6 +178,28 @@ if [[ -n "$GSF_INPUT" ]]; then
   echo ""
 fi
 
+RATE_OK=0
+RATE_M="NA" RATE_TAU_LAB="NA" RATE_TAU_REF="NA" RATE_OVERPRED="NA" RATE_SIGMA_LAB="NA"
+RATE_INPUT=""
+if [[ -f "$DIR/ddd_tau_vs_rate.dat" ]]; then
+  RATE_INPUT="$DIR/ddd_tau_vs_rate.dat"
+elif [[ -f "$DIR/cu.ddd/ddd_tau_vs_rate.dat" ]]; then
+  RATE_INPUT="$DIR/cu.ddd/ddd_tau_vs_rate.dat"
+fi
+if [[ -n "$RATE_INPUT" ]]; then
+  RATE_OK=1
+  echo "# Running parse_rate.sh on ddd_tau_vs_rate.dat (Handshake 4a)"
+  (
+    "$ROOT/scripts/parse_rate.sh" "$RATE_INPUT" --lab-rate 1e-3
+  ) | tee /tmp/parse_rate_out.txt
+  RATE_M=$(grep '^rate_sensitivity_m = ' /tmp/parse_rate_out.txt | awk '{print $3}')
+  RATE_TAU_LAB=$(grep '^tau_flow_extrapolated_MPa = ' /tmp/parse_rate_out.txt | awk '{print $3}')
+  RATE_TAU_REF=$(grep '^tau_flow_DDD_at_1e3_s-1_MPa = ' /tmp/parse_rate_out.txt | awk '{print $3}')
+  RATE_OVERPRED=$(grep '^direct_import_overprediction_pct = ' /tmp/parse_rate_out.txt | awk '{print $3}')
+  RATE_SIGMA_LAB=$(grep '^sigma_y_extrapolated_MPa = ' /tmp/parse_rate_out.txt | awk '{print $3}')
+  echo ""
+fi
+
 echo "foundation_audit:"
 echo "  directory: $DIR"
 echo "  readme_present: yes"
@@ -173,6 +208,7 @@ echo "  elastic_complete: $([ "$ELASTIC_OK" -eq 1 ] && echo yes || echo no)"
 echo "  phonon_archived: $([ -d "$DIR/cu.phonon" ] && echo yes || echo no)"
 echo "  vacf_dos_archived: $([ "$VACF_OK" -eq 1 ] && echo yes || echo no)"
 echo "  phonon_lifetime_archived: $([ "$LIFETIME_OK" -eq 1 ] && echo yes || echo no)"
+echo "  ddd_rate_archived: $([ "$RATE_OK" -eq 1 ] && echo yes || echo no)"
 echo "  gsf_archived: $([ -d "$DIR/cu.gsf" ] && echo yes || echo no)"
 echo ""
 
@@ -222,9 +258,22 @@ phonon_lifetime:
   LA_lifetime_ps: ${LA_LIFETIME}
   LA_linewidth_GHz: ${LA_LINEWIDTH}
   source: ${LA_LIFETIME_SRC}
+  temperature_sweep: $([ "$LIFETIME_SWEEP" -eq 1 ] && echo yes || echo no)
+  temperature_list_K: ${LIFETIME_T_LIST}
+  ln_tau_vs_T_slope: ${LIFETIME_DRAG_SLOPE}
   handshake: MD-phonon-lifetime
   parser_lifetime: parse_lifetime.sh
   source_file: ${LIFETIME_INPUT:-none}
+ddd_rate_extrapolation:
+  archived: $([ "$RATE_OK" -eq 1 ] && echo yes || echo no)
+  rate_sensitivity_m: ${RATE_M}
+  tau_flow_extrapolated_MPa: ${RATE_TAU_LAB}
+  tau_flow_DDD_at_1e3_s-1_MPa: ${RATE_TAU_REF}
+  sigma_y_extrapolated_MPa: ${RATE_SIGMA_LAB}
+  direct_import_overprediction_pct: ${RATE_OVERPRED}
+  handshake: 4a
+  parser_rate: parse_rate.sh
+  source_file: ${RATE_INPUT:-none}
 gsf_archived: $([ "$GSF_OK" -eq 1 ] && echo yes || echo no)
 parser_elastic: parse_elastic.sh
 parser_workflow: parse_dft_workflow.sh

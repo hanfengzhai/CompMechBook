@@ -47,12 +47,25 @@ grep -q 'md_phonon_dos:' "$TMP"
 grep -q 'acoustic_peak_ok: yes' "$TMP"
 grep -q 'phonon_lifetime:' "$TMP"
 grep -q 'LA_lifetime_ps: 15.4' "$TMP"
+grep -q 'ddd_rate_extrapolation:' "$TMP"
+grep -q 'rate_sensitivity_m: 0.022' "$TMP"
+grep -q 'tau_flow_extrapolated_MPa: 33.20' "$TMP"
+grep -q 'temperature_sweep: yes' "$TMP"
+grep -q 'ln_tau_vs_T_slope: -0.002' "$TMP"
 
 echo "--- parse_lifetime.sh (MD phonon lifetime) ---"
 ./scripts/parse_lifetime.sh fixtures/cu.foundation/cu.phonon/phonon_lifetime.dat \
   --compare 5 --expected 15.4 > "$TMP" 2>&1
 grep -q 'lifetime_export.yaml' "$TMP"
 grep -q 'lifetime_primary_ps = 15.4' "$TMP"
+grep -q 'PASS: phonon lifetime export complete' "$TMP"
+
+echo "--- parse_lifetime.sh (temperature sweep) ---"
+./scripts/parse_lifetime.sh fixtures/cu.foundation/cu.phonon/phonon_lifetime_vs_T.dat \
+  --target-t 380 --compare 5 --expected 12.2 > "$TMP" 2>&1
+grep -q 'sweep_mode = yes' "$TMP"
+grep -q 'lifetime_primary_ps = 12.2' "$TMP"
+grep -q 'ln_tau_vs_T_slope = -0.002' "$TMP"
 grep -q 'PASS: phonon lifetime export complete' "$TMP"
 
 echo "--- parse_rate.sh (Handshake 4a) ---"
