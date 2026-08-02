@@ -177,6 +177,34 @@ DFT does not run a whole wire. It runs **small cells** with careful convergence 
 
 **Force matching** minimizes \(\sum_i \|\mathbf{F}_i^{\text{DFT}} - \mathbf{F}_i^{\text{EAM}}\|^2\) over training structures including surfaces, liquids, and compressed/distorted lattices — so the MD potential inherits BO physics where it matters.
 
+### Scale-boundary handshake: Fermi surface and resistivity → Part V Joule heating
+
+The prologue's Act II turns on current: electrons deposit heat along the wire, and Part V's energy equation needs a **volumetric source** \(\dot{q}(x)\). In the continuum model that source comes from **Joule heating** \(\dot{q} = \rho_e J^2\), where \(\rho_e\) is electrical resistivity and \(J\) is current density. Born–Oppenheimer DFT does not compute \(\rho_e\) directly in a ground-state `scf` run — but it supplies the **electronic structure** from which resistivity models are built, and it anchors the **lattice geometry** that sets the Drude scattering length.
+
+Ground-state DFT on fcc Cu locates the **Fermi level** \(E_F\) inside partially filled 4s–4p bands. The Fermi surface — the iso-energy surface in \(\mathbf{k}\)-space at \(E_F\) — determines how many electronic states participate in conduction at 0 K. Qualitative features DFT exports upward:
+
+| DFT output | Physical meaning | Continuum / FVM consumer (Part V–VI) |
+|------------|------------------|--------------------------------------|
+| Band structure along high-symmetry lines | Number of carriers, Fermi velocity \(v_F\) | Drude model \(\rho_e \sim 1/(n e^2 \tau v_F)\) |
+| Density of states at \(E_F\) | \(N(E_F)\) for Sommerfeld heat capacity | Transient heating capacity in coupled runs |
+| Equilibrium \(a_0\) from Murnaghan fit | Atomic density \(n\) in Drude formula | Same \(a_0\) as EAM and MD |
+| Phonon spectrum ([IX.3](03-dft-workflows.md)) | Electron–phonon scattering timescale \(\tau\) | Temperature-dependent \(\rho_e(T)\) |
+
+**Downward import (experiment).** OFHC copper at 300 K has \(\rho_e \approx 1.7\times 10^{-8}\,\Omega\cdot\text{m}\). A 5 A current in a 1 mm² wire gives \(J = 5\times 10^6\,\text{A/m}^2\) and \(\dot{q} = \rho_e J^2 \approx 4.3\times 10^8\,\text{W/m}^3\) — the order of magnitude Part V's FVM heat source uses in Act II. DFT does not replace that handbook number in a production wire-scale run; it **audits** whether the electronic structure is metallic (Fermi surface crosses \(E_F\)), whether the lattice constant matches the resistivity model's atomic density, and whether phonon modes from the same foundation deck support the temperature dependence of \(\rho_e\) at elevated current.
+
+**Boltzmann transport (beyond this chapter).** Quantitative resistivity requires **linearized Boltzmann transport** on the DFT band structure — codes such as BoltzTraP2 or Wannier90-based workflows compute \(\sigma_{ij}\) and hence \(\rho_e\) from the same converged `scf` as the elastic constants. The workflow pattern mirrors Part VIII's Green–Kubo thermal conductivity: DFT supplies the microscopic input, a transport code integrates over the Brillouin zone, and Part V imports a scalar \(\rho_e\) or \(\kappa\) into the continuum energy equation.
+
+**Handshake checklist** (archive beside `README_DFT.md`):
+
+| Check | DFT artifact | Part V / VI consumer | Pass criterion |
+|-------|--------------|----------------------|----------------|
+| Metallic character | Band structure plot; \(E_F\) crosses bands | Joule heating model valid | No band gap at \(E_F\) |
+| \(a_0\) | `vc-relax.out` | Atomic density in Drude formula | Matches MD EAM \(a_0\) within 0.02 Å |
+| Phonons | `ph.x` output | \(\rho_e(T)\) via electron–phonon coupling | Acoustic branches at \(\Gamma\) |
+| Resistivity (optional) | BoltzTraP2 \(\sigma\) | \(\dot{q} = \rho_e J^2\) in FVM source | Within 30% of experiment at 300 K |
+
+**What breaks without the handshake.** Using Joule heating in Part V with a resistivity from a handbook while DFT on the same project predicts a non-metallic gap (wrong functional, broken symmetry) is physics inconsistency — the heat source assumes delocalized carriers the electronic structure does not support. Using DFT \(a_0\) for elasticity but a different lattice constant for carrier density double-counts or under-counts \(\dot{q}\). The handshake is: **one foundation deck, one \(a_0\), one band-structure plot** before Act II's coupled run claims multiscale pedigree.
+
 ## Limitations and extensions
 
 - **Van der Waals** interactions: standard GGA misses long-range dispersion; add DFT-D3 or vdW-DF for layered or weakly bound systems (less critical for bulk Cu–Cu).

@@ -49,6 +49,41 @@ T = -\sum_i f_i \langle \psi_i | \nabla^2 | \psi_i \rangle.
 
 Unconverged SCF is **structured noise** — energies and forces are meaningless. Metals like copper require **smearing** of occupations (Gaussian, Methfessel–Paxton) because Fermi surface crossings make zero-temperature SCF oscillate.
 
+### SCF as fixed-point iteration — the Part I eigenvalue loop with feedback
+
+The SCF cycle is a **fixed-point problem**: find \(\rho^\star\) such that \(\rho^\star = \mathcal{G}(\rho^\star)\), where \(\mathcal{G}\) maps an old density through build-potential → solve orbitals → construct new density. Each inner step — diagonalizing the Kohn–Sham Hamiltonian — is the **generalized eigenvalue problem** from [Part I.3](../../part01-linear-algebra/03-eigenvalues.md):
+
+\[
+\mathbf{H}[\rho]\,\mathbf{c}_n = \epsilon_n\,\mathbf{S}\,\mathbf{c}_n,
+\]
+
+with overlap matrix \(\mathbf{S}\) from non-orthogonal plane-wave or PAW bases. The outer loop is what Part I did not have: the matrix \(\mathbf{H}\) depends on the eigenvectors through the density, so the spectrum and the operator co-evolve until self-consistency.
+
+| Part I object | Kohn–Sham analogue | What changes in SCF |
+|---------------|---------------------|---------------------|
+| Fixed \(\mathbf{K}\) | \(\mathbf{H}[\rho]\) from converged density | \(\mathbf{H}\) updated each outer iteration |
+| CG on \(\mathbf{K}\mathbf{u}=\mathbf{f}\) | Pulay/Broyden mixing on \(\rho\) | Nonlinear fixed-point acceleration |
+| Jacobi preconditioner ([I.1](../../part01-linear-algebra/01-vectors-matrices.md)) | Kerker preconditioner on \(\delta\rho\) | Damp long-wavelength charge sloshing in metals |
+| Residual \(\|\mathbf{r}_k\|\) vs iteration | \(\|\rho_{\text{new}} - \rho_{\text{old}}\|\), \(\Delta E\) | Same diagnostic habit: plot until flat |
+| Ill-conditioned \(\mathbf{K}\) | SCF oscillation near \(E_F\) | Smearing replaces sharp Fermi step |
+
+**Kerker mixing as preconditioner.** In metals, low-\(\mathbf{G}\) components of \(\delta\rho = \rho_{\text{new}} - \rho_{\text{old}}\) oscillate slowly and destabilize linear mixing. Kerker scaling attenuates those components — the electronic analogue of Jacobi rescaling diagonal entries before CG. The engineering instinct is identical: identify the stiff modes (long-wavelength charge transfer), damp them, iterate on the well-conditioned remainder.
+
+**Convergence plot discipline.** Archive two curves for every production run:
+
+1. Total energy \(E[\rho_n]\) vs SCF iteration \(n\) — should decrease then flatten.
+2. Maximum residual force \(\max_I \|\mathbf{F}_I\|\) vs \(n\) — should fall below threshold (often 0.001 Ry/Bohr) before exporting elastic constants.
+
+If energy flattens but forces remain large, the calculation is **not converged** — the same trap as stopping CG when the residual looks small but the solution has not reached the true \(\mathbf{u}\). Part IV's mesh-refinement certificate and Part IX's SCF certificate are the same verification culture at different scales.
+
+**Smearing and the Fermi step.** At 0 K, occupation numbers are Heaviside functions: states below \(E_F\) are filled, above are empty. For copper, bands cross \(E_F\) at many \(\mathbf{k}\)-points; a sharp step makes \(\rho(\mathbf{k})\) discontinuous and SCF oscillates. **Gaussian smearing** replaces the step with a smooth Fermi–Dirac-like broadening:
+
+\[
+f(\epsilon_{n\mathbf{k}}) = \frac{1}{2}\left[1 - \mathrm{erf}\left(\frac{\epsilon_{n\mathbf{k}} - \mu}{\sigma}\right)\right],
+\]
+
+with smearing width \(\sigma\) (often 0.01–0.05 Ry). Too large \(\sigma\) blurs the Fermi surface and over-stabilizes SCF; too small \(\sigma\) restores oscillation. Converge \(\sigma\) downward: start with 0.02 Ry for fcc Cu bulk, halve until energy changes fall below 1 meV/atom — the electronic analogue of mesh refinement.
+
 ## Plane-wave basis and periodic crystals
 
 Copper wire bulk interior has **periodic** crystal symmetry. Bloch's theorem expands orbitals as

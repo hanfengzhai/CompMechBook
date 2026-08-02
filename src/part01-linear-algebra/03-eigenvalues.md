@@ -166,6 +166,37 @@ The Lab act below uses dense `eigh` for transparency. A production modal study o
 
 **Shift-invert** targets modes near a frequency band (e.g., 1–5 kHz for audible ringing). Instead of forming \(\mathbf{K}^{-1}\mathbf{M}\), solve \((\mathbf{K} - \sigma \mathbf{M})\mathbf{x} = \mathbf{M}\mathbf{y}\) repeatedly — each solve reuses the sparse factorization from static analysis. The same \(\mathbf{K}\) that Part IV assembled for Act III tension now supplies resonance diagnostics without a separate physics model.
 
+### Scale-boundary handshake: thermal eigenstrain as static load on modes
+
+Act II heats the wire with current while the grips stay fixed. Part VI will write that heating as **thermal strain** \(\varepsilon_{\text{th}} = \alpha\,\Delta T\) blocked by the boundary conditions — a static problem, not a vibration problem. Yet the eigenmodes from this chapter are exactly the coordinates in which that blocked expansion becomes visible as **stress**.
+
+For a fixed–fixed bar with uniform temperature rise \(\Delta T\) and no mechanical load, the thermal load vector is
+
+\[
+\mathbf{f}_{\text{th}} = \int_\Omega \mathbf{B}^T \mathbb{D}\,\alpha\,\Delta T\,\mathbf{1}\, d\Omega,
+\]
+
+which in the discrete spring-chain model reduces to a vector proportional to \(\mathbf{K}\boldsymbol{\alpha}\), where \(\boldsymbol{\alpha}\) is the thermal eigenstrain pattern (uniform in the simplest 1D case). The **static displacement** is \(\mathbf{u}_{\text{th}} = \mathbf{K}^{-1}\mathbf{f}_{\text{th}}\); the **stress** is what the grips resist.
+
+Project onto mass-normalized modes \(\mathbf{v}_j\):
+
+\[
+c_j = \frac{\mathbf{v}_j^T \mathbf{M}\,\mathbf{u}_{\text{th}}}{\mathbf{v}_j^T \mathbf{M}\,\mathbf{v}_j}, \qquad
+\sigma_j = \frac{\mathbf{v}_j^T \mathbf{f}_{\text{th}}}{\mathbf{v}_j^T \mathbf{M}\,\mathbf{v}_j}.
+\]
+
+For uniform \(\Delta T\) on a symmetric fixed–fixed bar, only the **symmetric** modes carry thermal stress; antisymmetric modes have zero projection — the same decoupling that makes modal dynamics tractable now classifies which vibration shapes participate in thermal grip reaction.
+
+| Quantity | Modal view (this chapter) | Continuum view (Part VI) | FEM consumer (Part IV) |
+|----------|---------------------------|--------------------------|------------------------|
+| Blocked expansion | \(\mathbf{f}_{\text{th}}\) projected on \(\mathbf{v}_j\) | \(\sigma = \mathbb{C}(\varepsilon - \alpha\Delta T\mathbf{1})\) | `*EXPANSION` + fixed BCs |
+| Grip reaction | Sum of modal contributions at constrained DOFs | Integral of \(\sigma\) over grip face | Reaction force in load cell |
+| \(\alpha\) pedigree | Enters through \(\mathbf{f}_{\text{th}}\) magnitude | From DFT phonons / MD NPT ([IX.3](../part09-dft/03-dft-workflows.md)) | Must match foundation deck |
+
+**Worked check on the five-node chain.** With fixed ends, \(\Delta T = 35\,^\circ\text{C}\), and \(\alpha = 17\times 10^{-6}\,\text{K}^{-1}\), the wire wants to expand by \(\alpha L \Delta T \approx 0.6\,\text{mm}\) but the grips allow none. The resulting axial stress is \(\sigma \approx E\,\alpha\,\Delta T \approx 71\,\text{MPa}\) — comparable to the 50 N mechanical load on a 1 mm² cross-section (\(\sim 50\,\text{MPa}\)). Modal projection confirms that mode 1 (all nodes same sign) carries essentially all of this stress; mode 2 (one node stationary) contributes negligibly. The epilogue's multiscale afternoon uses this comparison to ask whether thermal stress or mechanical load dominates failure — and the answer begins in the eigenbasis computed here.
+
+**What breaks without the handshake.** Using handbook \(\alpha\) in the FEM deck while DFT phonons in `cu.phonon/` predict a different value shifts \(\mathbf{f}_{\text{th}}\) by a few percent — small for elasticity, large for fatigue life when thermal cycles accumulate. Using the wrong boundary condition (one free end) removes the modal projection onto symmetric modes and underestimates grip reaction by a factor of two. The handshake is: **compute modes once, project thermal load once, compare to Part VI's closed-form \(\sigma = E\alpha\Delta T\)** before trusting coupled thermomechanical runs in Act II.
+
 ## Lab act: tap the wire and read the spectrum
 
 Clamp the copper wire at one grip (Act I mounting) and assign a lumped mass \(m\) at each of \(N = 5\) equally spaced nodes along a \(L = 1\,\text{m}\) segment. Use the bar stiffness from [I.2](02-linear-maps.md): element stiffness \(k^e = EA/h\) with \(E = 120\,\text{GPa}\), \(A = 1\,\text{mm}^2\), \(h = L/(N-1)\). The global mass matrix is diagonal, \(M_{ii} = m\).
