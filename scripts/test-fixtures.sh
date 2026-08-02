@@ -41,6 +41,8 @@ echo "--- parse_dft_workflow.sh ---"
 ./scripts/parse_dft_workflow.sh fixtures/cu.foundation > "$TMP" 2>&1
 grep -q 'foundation_export.yaml' "$TMP"
 grep -q 'relax_converged: yes' "$TMP"
+grep -q 'gsf_archived: yes' "$TMP"
+grep -q 'gamma_sf_mJ_m2: 45.0' "$TMP"
 
 echo ""
 echo "PASS: all fixture tests succeeded."

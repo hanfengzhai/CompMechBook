@@ -9,3 +9,4 @@ relaxed_a_angstrom: 3.630
 ecutwfc_ry: 60
 k_mesh: 12 12 12
 notes: Illustrative metadata for parse_dft_workflow.sh --check
+gsf_fixture: cu.gsf/gsf_cu111.dat (parse_gsf.sh → Handshake 4)

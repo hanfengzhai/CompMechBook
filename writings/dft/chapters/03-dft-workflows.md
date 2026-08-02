@@ -293,7 +293,7 @@ Archive [`parse_elastic.sh`](../../scripts/parse_elastic.sh) beside the six stra
 ./scripts/parse_dft_workflow.sh cu.foundation/
 ```
 
-The workflow script checks `README.md`, optional `cu.relax.out` / `cu.phonon/` / `cu.gsf/`, runs `parse_elastic.sh` when `cu.elastic/` is complete, runs `parse_alpha.sh` when `cu.phonon/a_vs_T.dat` exists, and emits `foundation_export.yaml` for the epilogue handshake table. A fixture study folder lives at [`fixtures/cu.foundation/`](../../fixtures/cu.foundation/) for CI smoke tests via [`test-fixtures.sh`](../../scripts/test-fixtures.sh).
+The workflow script checks `README.md`, optional `cu.relax.out` / `cu.phonon/` / `cu.gsf/`, runs `parse_elastic.sh` when `cu.elastic/` is complete, runs `parse_alpha.sh` when `cu.phonon/a_vs_T.dat` exists, runs `parse_gsf.sh` when `cu.gsf/gsf_cu111.dat` (or `gsf.dat`) exists, and emits `foundation_export.yaml` for the epilogue handshake table — including `stacking_fault:` with \(\gamma_{\text{sf}}\) for Part VII OpenDiS handoff. A fixture study folder lives at [`fixtures/cu.foundation/`](../../fixtures/cu.foundation/) for CI smoke tests via [`test-fixtures.sh`](../../scripts/test-fixtures.sh).
 
 #### `ph.x` input deck (phonon check before Part VIII)
 

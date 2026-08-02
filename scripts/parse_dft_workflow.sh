@@ -101,6 +101,26 @@ if [[ -f "$DIR/cu.phonon/a_vs_T.dat" ]]; then
   echo ""
 fi
 
+GAMMA_SF="NA" GAMMA_USF="NA" PARTIAL_SEP="NA"
+GSF_OK=0
+GSF_INPUT=""
+if [[ -f "$DIR/cu.gsf/gsf_cu111.dat" ]]; then
+  GSF_INPUT="$DIR/cu.gsf/gsf_cu111.dat"
+elif [[ -f "$DIR/cu.gsf/gsf.dat" ]]; then
+  GSF_INPUT="$DIR/cu.gsf/gsf.dat"
+fi
+if [[ -n "$GSF_INPUT" ]]; then
+  GSF_OK=1
+  echo "# Running parse_gsf.sh on cu.gsf/"
+  (
+    "$ROOT/scripts/parse_gsf.sh" "$GSF_INPUT"
+  ) | tee /tmp/parse_gsf_out.txt
+  GAMMA_SF=$(grep '^gamma_sf_mJ_m2   = ' /tmp/parse_gsf_out.txt | awk '{print $3}')
+  GAMMA_USF=$(grep '^gamma_usf_mJ_m2  = ' /tmp/parse_gsf_out.txt | awk '{print $3}')
+  PARTIAL_SEP=$(grep '^partial_separation_nm = ' /tmp/parse_gsf_out.txt | awk '{print $3}')
+  echo ""
+fi
+
 echo "foundation_audit:"
 echo "  directory: $DIR"
 echo "  readme_present: yes"
@@ -136,8 +156,16 @@ thermal_expansion:
   sigma_thermal_fixed_grip_MPa: ${SIGMA_TH}
   handshake: 3
   parser_alpha: parse_alpha.sh
+stacking_fault:
+  gamma_sf_mJ_m2: ${GAMMA_SF}
+  gamma_usf_mJ_m2: ${GAMMA_USF}
+  partial_separation_nm: ${PARTIAL_SEP}
+  handshake: 4
+  parser_gsf: parse_gsf.sh
+  source_file: ${GSF_INPUT:-none}
 relaxation_converged: ${RELAX_OK}
 phonon_quasiharmonic: $([ "$PHONON_OK" -eq 1 ] && echo yes || echo no)
+gsf_archived: $([ "$GSF_OK" -eq 1 ] && echo yes || echo no)
 parser_elastic: parse_elastic.sh
 parser_workflow: parse_dft_workflow.sh
 YAML
