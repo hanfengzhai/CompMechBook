@@ -170,6 +170,44 @@ DAMASK material.yaml:
 | \(\tau(\gamma)\) | `g^(s)` slip resistance | Pa |
 | Link density | optional damage / GND proxy | m\(^{-2}\) |
 
+### Scale-boundary handshake: DDD strain rate to quasi-static FEM
+
+OpenDiS timesteps and mobility-table resolution limit accessible RVE strain rates to \(\dot\varepsilon_{\text{DDD}} \sim 10^2\)–\(10^4\,\text{s}^{-1}\). The tensile frame in the prologue runs at \(\dot\varepsilon_{\text{lab}} \sim 10^{-3}\)–\(10^{-1}\,\text{s}^{-1}\) — three to six orders of magnitude slower. The handshake is not "run DDD slower until it matches"; it is a **documented extrapolation** through rate-dependent mobility and slip resistance before homogenized curves enter DAMASK or continuum FEM.
+
+**Step A — measure rate sensitivity in DDD.** Run the same RVE at two or three strain rates bracketing the accessible window (e.g. \(\dot\varepsilon = 10^2, 10^3, 10^4\,\text{s}^{-1}\) at fixed \(T = 300\,\text{K}\)). Extract flow stress \(\tau_{\text{flow}}\) at fixed \(\gamma = 0.01\). Fit a power law or sinh law:
+
+\[
+\tau_{\text{flow}}(\dot\varepsilon) = \tau_0 \left(\frac{\dot\varepsilon}{\dot\varepsilon_0}\right)^m, \qquad
+\text{or} \quad \dot\gamma = \dot\gamma_0 \sinh\left(\frac{\tau V}{k_B T}\right),
+\]
+
+where \(m\) is the strain-rate sensitivity exponent (copper fcc: \(m \approx 0.01\)–\(0.05\) at room temperature, higher near melt) and \(\tau_0\) is reference flow stress at \(\dot\varepsilon_0\).
+
+**Step B — extrapolate to lab rate.** Evaluate \(\tau_{\text{flow}}(\dot\varepsilon_{\text{lab}})\) from the fit — **not** by running OpenDiS at \(10^{-3}\,\text{s}^{-1}\) unless the mobility law is validated there:
+
+| Quantity | DDD at \(\dot\varepsilon = 10^3\,\text{s}^{-1}\) | Extrapolated to \(\dot\varepsilon = 10^{-3}\,\text{s}^{-1}\) | Typical shift (Cu, 300 K) |
+|----------|---------------------------------------------------|--------------------------------------------------------------|---------------------------|
+| \(\tau_{\text{flow}}\) at \(\gamma = 1\%\) | 45 MPa (illustrative) | 38–42 MPa for \(m = 0.02\) | 5–15% lower at lab rate |
+| Hardening slope \(H\) | from \(\tau\)–\(\gamma\) curve | same curve scaled by rate factor | Often weakly rate-dependent |
+| \(\rho(\gamma)\) | forest density at 1% strain | **not** rate-extrapolated | density is state, not rate |
+
+**Step C — export to FEM with provenance.** The DAMASK `material.yaml` and the continuum FEM deck must record:
+
+```text
+# rate_handoff.txt (archive beside opendis.restart)
+ddd_strain_rates_used: [1.0e2, 1.0e3, 1.0e4]  # s^-1
+lab_target_strain_rate: 1.0e-3                   # s^-1
+rate_sensitivity_m: 0.022                        # from DDD fit
+tau_flow_extrapolated_MPa: 40.2                  # at lab rate, gamma=0.01
+extrapolation_method: power_law                  # not direct DDD run
+temperature_K: 300
+mobility_table_source: MD_NVT_shear_PartVIII     # git commit hash
+```
+
+**What breaks without the handshake.** Importing a DDD stress–strain curve run at \(10^3\,\text{s}^{-1}\) directly into a quasi-static FEM run at \(10^{-3}\,\text{s}^{-1}\) **overpredicts** flow stress by 5–20% for rate-sensitive fcc metals — enough to miss yield in the load-cell comparison of Act III while still looking "physically reasonable" on a plot. The error is worse at elevated temperature (Joule heating in Act II), where \(m\) grows and mobility tables from Part VIII must be evaluated at the **same** \(T\) as the DDD run, not at 300 K by default.
+
+The rate handshake is the mesoscale counterpart of Part VI's [Voigt/Reuss elastic handshake](../part06-continuum/02-stress-balance.md#scale-boundary-handshake-dft-elastic-tensor-to-fem-material-card): two discretizations (DDD timestep vs. lab grip speed) must agree on the **observable** the load cell measures before crystal plasticity FEM inherits the curve. When in doubt, bracket: run DAMASK at both \(\tau_{\text{flow}}(\dot\varepsilon_{\text{DDD}})\) and \(\tau_{\text{flow}}(\dot\varepsilon_{\text{lab}})\) and report the band as uncertainty on the macroscopic prediction.
+
 ### Step 3 — Polycrystal FEM of the wire (DAMASK + mesh)
 
 **Mesh:** 1 mm length, axisymmetric or 3D hex mesh (Part IV); 8–32 grains from EBSD orientation map, or synthetic Voronoi polycrystal with drawing fiber texture.
