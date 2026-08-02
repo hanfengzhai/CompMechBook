@@ -2,7 +2,7 @@
 
 A continuous narrative from linear algebra through functional analysis, finite elements and volumes, continuum mechanics, dislocation dynamics, molecular dynamics, and density functional theory — told as one story about a copper wire at every scale.
 
-**~155,800 words** · **35 numbered chapters** · **9 parts** · built with [mdBook](https://github.com/rust-lang/mdBook)
+**~156,100 words** · **35 numbered chapters** · **9 parts** · built with [mdBook](https://github.com/rust-lang/mdBook)
 
 ## Read the book
 
@@ -65,8 +65,8 @@ Output appears in `book/`. Build standalone part notes with `./scripts/build-all
 ```
 writings/          # Canonical markdown (Functional Analysis Notes layout)
 src/               # Unified book (synced from writings/)
-scripts/           # sync-writings.sh, install-mdbook.sh, word-count.sh, parse_*.sh
-fixtures/          # Illustrative inputs for parse script smoke tests
+scripts/           # sync-writings.sh, install-mdbook.sh, word-count.sh, parse_*.sh (elastic, gsf, wham, dft, cht)
+fixtures/          # Illustrative inputs for parse script smoke tests (elastic, GSF, WHAM, CHT, DFT foundation)
 book.toml          # mdBook configuration
 theme/             # Custom CSS
 ```
