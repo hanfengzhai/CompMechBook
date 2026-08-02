@@ -65,8 +65,8 @@ Output appears in `book/`. Build standalone part notes with `./scripts/build-all
 ```
 writings/          # Canonical markdown (Functional Analysis Notes layout)
 src/               # Unified book (synced from writings/)
-scripts/           # sync-writings.sh, install-mdbook.sh, word-count.sh, parse_*.sh (elastic, gsf, wham, dft, cht)
-fixtures/          # Illustrative inputs for parse script smoke tests (elastic, GSF, WHAM, CHT, DFT foundation)
+scripts/           # sync-writings.sh, install-mdbook.sh, word-count.sh, parse_*.sh (elastic, gsf, wham, dft, cht, alpha)
+fixtures/          # Illustrative inputs for parse script smoke tests (elastic, GSF, WHAM, CHT, DFT foundation, phonon α)
 book.toml          # mdBook configuration
 theme/             # Custom CSS
 ```

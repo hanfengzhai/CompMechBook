@@ -293,7 +293,7 @@ Archive [`parse_elastic.sh`](../../scripts/parse_elastic.sh) beside the six stra
 ./scripts/parse_dft_workflow.sh cu.foundation/
 ```
 
-The workflow script checks `README.md`, optional `cu.relax.out` / `cu.phonon/` / `cu.gsf/`, runs `parse_elastic.sh` when `cu.elastic/` is complete, and emits `foundation_export.yaml` for the epilogue handshake table. A fixture study folder lives at [`fixtures/cu.foundation/`](../../fixtures/cu.foundation/) for CI smoke tests via [`test-fixtures.sh`](../../scripts/test-fixtures.sh).
+The workflow script checks `README.md`, optional `cu.relax.out` / `cu.phonon/` / `cu.gsf/`, runs `parse_elastic.sh` when `cu.elastic/` is complete, runs `parse_alpha.sh` when `cu.phonon/a_vs_T.dat` exists, and emits `foundation_export.yaml` for the epilogue handshake table. A fixture study folder lives at [`fixtures/cu.foundation/`](../../fixtures/cu.foundation/) for CI smoke tests via [`test-fixtures.sh`](../../scripts/test-fixtures.sh).
 
 #### `ph.x` input deck (phonon check before Part VIII)
 
@@ -429,6 +429,8 @@ Typical PBE quasiharmonic results: \(\alpha \approx 15\)–\(18 \times 10^{-6}\,
 | Functional | PBE (document) | Note LDA often overbinds; SCAN if budget allows |
 
 **Bridge to the epilogue.** Handshake 3 in the multiscale afternoon uses \(\alpha \Delta T\) to estimate fixed-grip thermal stress against the 50 N mechanical load. If `cu.phonon/` exists but the FEM deck cites "handbook 17e-6" without a path, Act VI is **partially complete** — elastic moduli are audited but thermal eigenstrain is folklore. Archive \(\alpha\) in the same foundation folder as \(C_{11}\) and \(E_f^v\).
+
+**Automation.** Tabulate quasiharmonic \(a(T)\) in `cu.phonon/a_vs_T.dat` and run `./scripts/parse_alpha.sh cu.phonon/` to emit `alpha_export.yaml` with \(\alpha(300\,\text{K})\), \(\varepsilon_{\text{th}} = \alpha \Delta T\), and fixed-grip \(\sigma_{\text{th}} = E \alpha \Delta T\). The script writes `alpha_cu_300K.dat` beside the phonon archive — the thermal-expansion analogue of `./scripts/parse_elastic.sh` for \(C_{ij}\). When `parse_dft_workflow.sh` finds `cu.phonon/a_vs_T.dat`, it runs `parse_alpha.sh` automatically and merges Handshake 3 exports into `foundation_export.yaml`.
 
 ## HW3 pattern: phase stability under pressure
 

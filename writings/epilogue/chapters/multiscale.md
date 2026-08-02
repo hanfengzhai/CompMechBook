@@ -451,10 +451,11 @@ The repository ships small parsers beside the Lab acts so handshake exports are 
 | 1 — DFT → FEM | [`parse_dft_workflow.sh`](../scripts/parse_dft_workflow.sh) | `cu.foundation/` folder | `foundation_export.yaml` with \(C_{ij}\), Voigt \(E\), \(\nu\) |
 | 1 — elastic only | [`parse_elastic.sh`](../scripts/parse_elastic.sh) | six `pw.x` strain logs in `cu.elastic/` | `C11`, `C12`, `C44`, \(B\), \(G\) |
 | 2 — Joule ↔ CHT | [`parse_cht.sh`](../scripts/parse_cht.sh) | wire geometry + load config (`cht_wire.conf`) | `cht_export.yaml` with \(T_w\), flux balance, iteration count |
+| 3 — Thermal → FEM | [`parse_alpha.sh`](../scripts/parse_alpha.sh) | `cu.phonon/a_vs_T.dat` from quasiharmonic scan | `alpha_export.yaml` with \(\alpha\), \(\varepsilon_{\text{th}}\), fixed-grip \(\sigma_{\text{th}}\) |
 | 4 — GSF → DDD | [`parse_gsf.sh`](../scripts/parse_gsf.sh) | `gsf_cu111.dat` from DFT sweep or metadynamics | `gsf_export.yaml` with \(\gamma_{\text{sf}}\), partial separation |
 | 4 — replica MD | [`parse_wham.sh`](../scripts/parse_wham.sh) | replica-exchange histogram | `wham_export.yaml` at target \(T\) |
 
-Illustrative inputs live under [`fixtures/`](../fixtures/); verify the chain with `./scripts/test-fixtures.sh` before trusting a new parser version. Handshake 3 (thermal expansion) still uses solver-specific phonon workflows — archive `alpha_cu_300K.dat` beside `cu.phonon/` as in [IX.3](../part09-dft/03-dft-workflows.md#thermal-expansion-from-quasiharmonic-phonons-handshake-3-pedigree) — but Handshakes 1, 2, and 4a exports should always cite a script name in the yaml header, the same way SCF logs cite `pw.x` version strings.
+Illustrative inputs live under [`fixtures/`](../fixtures/); verify the chain with `./scripts/test-fixtures.sh` before trusting a new parser version. Handshake 3 exports \(\alpha(300\,\text{K})\) from `cu.phonon/a_vs_T.dat` via [`parse_alpha.sh`](../scripts/parse_alpha.sh) — the same script runs automatically when [`parse_dft_workflow.sh`](../scripts/parse_dft_workflow.sh) finds phonon data in the foundation folder. Archive `alpha_cu_300K.dat` beside `cu.phonon/` as in [IX.3](../part09-dft/03-dft-workflows.md#thermal-expansion-from-quasiharmonic-phonons-handshake-3-pedigree). Handshakes 1, 2, 3, and 4a exports should always cite a script name in the yaml header, the same way SCF logs cite `pw.x` version strings.
 
 ### Sensitivity: which handshake matters most?
 
