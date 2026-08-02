@@ -199,6 +199,32 @@ Variational structure (conservative forces from potentials) aids stable coupling
 
 The prologue's copper wire: DFT gives cohesion; MD gives thermal motion; DDD gives work hardening; FEM (Part IV) gives bending and tension; CFD (Part V) gives cooling; Part VI explains why those simulations are minimizing energy or balancing virtual work — until they are not, and we descend further.
 
+## Scale-boundary handshake: \(\mathbb{C}\) from DFT/MD to variational elasticity
+
+Part VI writes \(\Pi[\mathbf{u}] = \int_\Omega \psi(\boldsymbol{\varepsilon})\, d\Omega\). The elastic tensor \(\mathbb{C} = \partial^2 \psi / \partial \boldsymbol{\varepsilon}^2\) is not a free parameter — it is the object Parts VIII–IX derive and Part IV consumes in \(\mathbf{B}^T \mathbb{C} \mathbf{B}\). Variational elasticity is where **pedigree meets physics**: the same \(\mathbb{C}\) must appear in the energy functional, the virtual work integrand, and the FEM material card.
+
+| Rung | Delivers | Requires |
+|------|----------|----------|
+| DFT (IX) | \(C_{11}, C_{12}, C_{44}\) for single-crystal fcc Cu | Converged SCF + small-strain cells (±0.5% uniaxial) |
+| MD (VIII) | Polycrystal-averaged \(E\), \(\nu\) from NPT stress fluctuations | Audited EAM; optional grain structure if texture matters |
+| Continuum (VI) | \(\psi(\boldsymbol{\varepsilon})\) or isotropic \(\mathbb{C}\) in virtual work | Documented Voigt/Reuss reduction from crystal data |
+| FEM (IV) | Element stiffness from \(\mathbf{B}^T \mathbb{C} \mathbf{B}\) | **Same** \(\mathbb{C}\) as VI.3 energy functional |
+
+**Isotropic reduction for the wire.** Cold-drawn copper is polycrystalline; a single-crystal DFT cell gives moduli that bracket but do not equal the engineering wire. Standard practice:
+
+| Source | Typical \(E\) (GPa) | Typical \(\nu\) | Wire context |
+|--------|----------------------|-----------------|--------------|
+| DFT (PBE, fcc Cu) | 110–130 | 0.33–0.36 | Single crystal along [100] |
+| MD NPT (256–500 atom fcc) | 105–125 | 0.32–0.35 | Same; potential-dependent |
+| Handbook (OFHC polycrystal) | 110–130 | 0.34 | Engineering design value |
+| Tensile test (Act III) | Secant slope before yield | From transverse strain | **Measured** on the specimen |
+
+Voigt and Reuss bounds on \(E\) for a random polycrystal lie between single-crystal extremes. If Part IV's elastic step uses \(E = 120\,\text{GPa}\) from a handbook but Part VIII's NPT average on a 500-atom fcc box gives \(E = 95\,\text{GPa}\), the fault is **scale mismatch** (single crystal vs drawn wire), not necessarily a bad potential — but the mismatch must be documented in the foundation folder, not silently ignored.
+
+**Thermal coupling (Act II).** Variational elasticity with thermal strain writes \(\boldsymbol{\varepsilon} = \boldsymbol{\varepsilon}_{\text{mech}} + \alpha \Delta T \mathbf{I}\). The thermal stress estimate \(\sigma \approx E \alpha \Delta T\) from [VI.2](02-stress-balance.md) inherits the same \(E\) as \(\Pi\). Mixing DFT \(E\) in the mechanical block and handbook \(\alpha\) without cross-checking against DFT quasi-harmonic expansion (Part IX) is a **pedigree fracture** at the continuum scale.
+
+**What breaks without the handshake.** Fitting \(\psi\) from a tensile test while using DFT moduli in a coupled thermoelastic run couples two different material definitions. A 10% modulus error is a 10% force error at the same grip displacement — visible on the load cell before yield. Archive `elastic_constants/` beside `kappa_md_300K.txt` and `cu.phonon/` in the foundation folder: one row per source (handbook, DFT, MD, tensile test), one \(\mathbb{C}\) chosen for production FEM with a citation. Part VI.3's virtual work is only honest when that row exists.
+
 ## Lab act: virtual work equals load cell reading (Act III — Pulling)
 
 **Act III** ramps grip displacement and the load cell reports force. Variational elasticity states that equilibrium is \(\delta \Pi = 0\) — virtual work done by internal stress equals virtual work done by external loads. This Lab act verifies that statement on the same three-element bar Part IV will mesh.

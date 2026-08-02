@@ -105,6 +105,27 @@ Bulk copper wire interior is modeled as **periodic**: atom leaving one face of t
 
 They are **inappropriate** for surfaces, cracks, or wire diameters where free surfaces dominate. Those simulations use **free boundaries** or **fixed** atoms at the outer shell, sometimes coupled to continuum elasticity (flexible boundary methods) to mimic a larger elastic surrounding.
 
+### RVE size selection: when periodic bulk is honest
+
+The representative volume element (RVE) is the atomistic analogue of Part IV's mesh: too small and boundary artifacts dominate; too large and cost explodes. For bulk property extraction (moduli, \(\gamma_{\text{sf}}\), cohesive energy), a standard audit on fcc Cu:
+
+| Property | Minimum cell (rule of thumb) | Convergence test |
+|----------|------------------------------|------------------|
+| Lattice parameter \(a_0\) | 256 atoms (4×4×4 conventional) | \(\|a(N) - a(2N)\| < 0.001\,\text{Å}\) |
+| Bulk modulus \(B\) | 500–2000 atoms | \(B(N)\) within 2% of \(B(2N)\) |
+| Stacking-fault energy \(\gamma_{\text{sf}}\) | Slab with \(\geq 15\,\text{Å}\) vacuum between periodic images | \(\gamma_{\text{sf}}\) stable when slab thickness doubled |
+| Dislocation core structure | Cylinder \(\geq 10\,b\) radius, \(\geq 20\,b\) glide length | Core width and Peierls stress stable vs box size |
+
+**Scale-boundary handshake (RVE → continuum/FEM).** Part VI's variational elasticity and Part IV's \(\mathbf{B}^T \mathbb{C} \mathbf{B}\) consume **homogenized** moduli. MD on a 256-atom periodic cell returns **single-crystal** values; the drawn wire is polycrystalline. Document the reduction:
+
+\[
+E_{\text{poly}} \approx \text{Voigt/Reuss average of } C_{ij} \text{ from MD or DFT},
+\]
+
+and compare to the tensile-test secant modulus from Act III. A 15% gap between single-crystal MD and wire test is **expected** (texture, cold work); a 15% gap between two MD cells of different size on the **same** geometry is **unconverged RVE** — the atomistic mirror of Part IV's mesh refinement study.
+
+**Flexible boundary methods** (displacement imposed on an outer shell from linear elasticity) reduce image stress when a dislocation or crack cannot be periodized. The outer shell stiffness should match Part VI's \(E\) and \(\nu\) from the handshake table in [VI.3](../../part06-continuum/03-variational-elasticity.md#scale-boundary-handshake-mathbbc-from-dftmd-to-variational-elasticity) — otherwise the MD box fights the continuum it is supposed to represent.
+
 ## Defects in MD: how to introduce them
 
 | Defect | MD construction |

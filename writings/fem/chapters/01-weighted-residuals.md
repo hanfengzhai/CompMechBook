@@ -34,6 +34,21 @@ for a chosen set of **weight functions** (or **test functions**) \(\{w_i\}\). Ea
 
 This is the discrete shadow of Part II's orthogonality: the error is forced to be "invisible" to a finite set of observers.
 
+### Handshake with Part II.4: loads, projectors, and residuals
+
+[Part II.4](../../part02-functional-analysis/04-operators-duality.md) named two objects weighted residuals inherit without re-deriving them:
+
+| Part II.4 object | Weighted residual form | FEM manifestation |
+|------------------|------------------------|-------------------|
+| Load functional \(\ell(v)\) | Right-hand side \(\ell(\phi_i)\) in each weighted equation | Nodal forces from \(\int f \phi_i\, dx\) |
+| Stiffness operator \(A\) | Bilinear form \(a(u_h, \phi_i)\) on the left | Entries of assembled \(\mathbf{K}\) |
+| Galerkin projector \(P_h\) | Residual orthogonal to \(V_h\) | \(u_h\) is best energy fit when \(A\) is self-adjoint |
+| Weak* convergence \(\ell_N \to \ell\) | Same limit equations as mesh refines | Load lumping that preserves midspan displacement trend |
+
+The **residual orthogonality** \(\int r\, w_i = 0\) is Galerkin's way of saying the error \(u - u_h\) is invisible to the test space in the energy inner product — the finite-dimensional echo of Part II.3's projection theorem. When the right-hand side is a concentrated grip load, II.4's weak* limit justifies replacing a distributed contact pressure with equivalent nodal forces as the mesh refines; when that replacement fails, the weighted residual equations are solving the **wrong** physics even if assembly is flawless.
+
+Part [IV.2](02-galerkin-assembly.md) automates the scatter; Part [IV.5](05-convergence.md) proves \(P_h u\) tracks \(u\) as \(h \to 0\). This chapter is the hinge: residuals first, then assembly, then convergence — the same order Part II used for operators, then spectra, then weak PDEs.
+
 ## The approximation space
 
 Write the approximate solution as
