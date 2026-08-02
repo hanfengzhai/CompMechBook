@@ -25,10 +25,16 @@ echo "--- parse_elastic.sh (fixtures/cu.elastic) ---"
 ) > "$TMP" 2>&1
 grep -q 'C11_GPa' "$TMP"
 
+echo "--- parse_cht.sh (Handshake 2) ---"
+./scripts/parse_cht.sh fixtures/cht_wire.conf > "$TMP" 2>&1
+grep -q 'cht_export.yaml' "$TMP"
+grep -q 'fixed_point_converged = yes' "$TMP"
+
 echo "--- parse_dft_workflow.sh ---"
 ./scripts/parse_dft_workflow.sh fixtures/cu.foundation --check-only
 ./scripts/parse_dft_workflow.sh fixtures/cu.foundation > "$TMP" 2>&1
 grep -q 'foundation_export.yaml' "$TMP"
+grep -q 'relax_converged: yes' "$TMP"
 
 echo ""
 echo "PASS: all fixture tests succeeded."
