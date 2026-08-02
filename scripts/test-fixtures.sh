@@ -51,5 +51,17 @@ grep -q 'rate_export.yaml' "$TMP"
 grep -q 'rate_sensitivity_m = 0.02200' "$TMP"
 grep -q 'PASS: rate export complete' "$TMP"
 
+echo "--- parse_vacf.sh (MD phonon DOS) ---"
+./scripts/parse_vacf.sh fixtures/phonon_dos_md.dat --compare 5 > "$TMP" 2>&1
+grep -q 'vacf_export.yaml' "$TMP"
+grep -q 'acoustic_peak_ok = yes' "$TMP"
+grep -q 'PASS: VACF phonon DOS export complete' "$TMP"
+
+echo "--- parse_fe2.sh (Handshake 4b) ---"
+./scripts/parse_fe2.sh fixtures/fe2_notch_comparison.dat --compare 1 --expected 10.70 > "$TMP" 2>&1
+grep -q 'fe2_export.yaml' "$TMP"
+grep -q 'fe2_enrichment_required = yes' "$TMP"
+grep -q 'PASS: FE² export complete' "$TMP"
+
 echo ""
 echo "PASS: all fixture tests succeeded."
