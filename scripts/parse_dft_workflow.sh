@@ -87,6 +87,20 @@ if [[ -f "$DIR/cu.relax.out" ]]; then
   grep -q "convergence has been achieved" "$DIR/cu.relax.out" && RELAX_OK="yes"
 fi
 
+ALPHA="NA" ALPHA_PPM="NA" SIGMA_TH="NA"
+PHONON_OK=0
+if [[ -f "$DIR/cu.phonon/a_vs_T.dat" ]]; then
+  PHONON_OK=1
+  echo "# Running parse_alpha.sh on cu.phonon/"
+  (
+    "$ROOT/scripts/parse_alpha.sh" "$DIR/cu.phonon" --target-t 300 --delta-t 90 --E "${E:-120}" --compare 15
+  ) | tee /tmp/parse_alpha_out.txt
+  ALPHA=$(grep '^alpha_1_per_K = ' /tmp/parse_alpha_out.txt | awk '{print $3}')
+  ALPHA_PPM=$(grep '^alpha_ppm = ' /tmp/parse_alpha_out.txt | awk '{print $3}')
+  SIGMA_TH=$(grep '^sigma_thermal_fixed_grip_MPa = ' /tmp/parse_alpha_out.txt | awk '{print $3}')
+  echo ""
+fi
+
 echo "foundation_audit:"
 echo "  directory: $DIR"
 echo "  readme_present: yes"
@@ -116,7 +130,14 @@ elastic_constants_GPa:
 voigt_isotropic:
   youngs_modulus_GPa: ${E}
   poissons_ratio: ${NU}
+thermal_expansion:
+  alpha_1_per_K: ${ALPHA}
+  alpha_ppm: ${ALPHA_PPM}
+  sigma_thermal_fixed_grip_MPa: ${SIGMA_TH}
+  handshake: 3
+  parser_alpha: parse_alpha.sh
 relaxation_converged: ${RELAX_OK}
+phonon_quasiharmonic: $([ "$PHONON_OK" -eq 1 ] && echo yes || echo no)
 parser_elastic: parse_elastic.sh
 parser_workflow: parse_dft_workflow.sh
 YAML

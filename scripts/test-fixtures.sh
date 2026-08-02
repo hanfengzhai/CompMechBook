@@ -30,6 +30,12 @@ echo "--- parse_cht.sh (Handshake 2) ---"
 grep -q 'cht_export.yaml' "$TMP"
 grep -q 'fixed_point_converged = yes' "$TMP"
 
+echo "--- parse_alpha.sh (Handshake 3) ---"
+./scripts/parse_alpha.sh fixtures/cu.foundation/cu.phonon --target-t 300 --delta-t 90 --compare 15 > "$TMP" 2>&1
+grep -q 'alpha_export.yaml' "$TMP"
+grep -q 'gamma_acoustic_ok = yes' "$TMP"
+grep -q 'PASS: alpha export complete' "$TMP"
+
 echo "--- parse_dft_workflow.sh ---"
 ./scripts/parse_dft_workflow.sh fixtures/cu.foundation --check-only
 ./scripts/parse_dft_workflow.sh fixtures/cu.foundation > "$TMP" 2>&1
