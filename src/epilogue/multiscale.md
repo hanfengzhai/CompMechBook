@@ -405,7 +405,7 @@ FE² raises peak stress by \(\sim 10\)–\(15\%\) over crystal plasticity alone 
 | Rate | DDD subcycling mapped to lab \(\dot\varepsilon\) via Handshake 4a | Re-fit \(m\); do not import \(10^3\,\text{s}^{-1}\) curve directly |
 | Three-way compare | FE² root stress within 15% of MD subdomain (2 nm box) if available | Fall back to QM/MM or MD/FEM concurrent coupling |
 
-Archive `fe2_notch.log` with macro mesh, active-point list, OpenDiS restart per RVE, and the comparison table above. When FE² and scalar plasticity agree within 5%, **offline calibration suffices** — the notch is not localization-limited. When FE² exceeds crystal plasticity by more than 10%, export the RVE-averaged back stress as an enriched internal variable for production runs that cannot afford 48 concurrent DDD solves.
+Archive `fe2_notch.log` with macro mesh, active-point list, OpenDiS restart per RVE, and the comparison table above. Run [`parse_fe2.sh`](../../scripts/parse_fe2.sh) on the comparison table to emit `fe2_export.yaml` with pass/fail flags for enrichment vs offline calibration. When FE² and crystal plasticity agree within 5%, **offline calibration suffices** — the notch is not localization-limited. When FE² exceeds crystal plasticity by more than 10%, export the RVE-averaged back stress as an enriched internal variable for production runs that cannot afford 48 concurrent DDD solves.
 
 ```mermaid
 flowchart LR
@@ -453,9 +453,12 @@ The repository ships small parsers beside the Lab acts so handshake exports are 
 | 2 — Joule ↔ CHT | [`parse_cht.sh`](../scripts/parse_cht.sh) | wire geometry + load config (`cht_wire.conf`) | `cht_export.yaml` with \(T_w\), flux balance, iteration count |
 | 3 — Thermal → FEM | [`parse_alpha.sh`](../scripts/parse_alpha.sh) | `cu.phonon/a_vs_T.dat` from quasiharmonic scan | `alpha_export.yaml` with \(\alpha\), \(\varepsilon_{\text{th}}\), fixed-grip \(\sigma_{\text{th}}\) |
 | 4 — GSF → DDD | [`parse_gsf.sh`](../scripts/parse_gsf.sh) | `gsf_cu111.dat` from DFT sweep or metadynamics | `gsf_export.yaml` with \(\gamma_{\text{sf}}\), partial separation |
+| 4a — DDD → FEM rate | [`parse_rate.sh`](../scripts/parse_rate.sh) | `ddd_tau_vs_rate.dat` from OpenDiS sweep | `rate_export.yaml` with \(\tau_{\text{flow}}\) extrapolated to lab rate |
+| 4b — FE² at notch | [`parse_fe2.sh`](../scripts/parse_fe2.sh) | `fe2_notch_comparison.dat` from macro/DDD run | `fe2_export.yaml` with uplift vs crystal plasticity |
+| MD — phonon DOS | [`parse_vacf.sh`](../scripts/parse_vacf.sh) | `phonon_dos_md.dat` from NVT VACF | `vacf_export.yaml` with acoustic peak vs DFT LA |
 | 4 — replica MD | [`parse_wham.sh`](../scripts/parse_wham.sh) | replica-exchange histogram | `wham_export.yaml` at target \(T\) |
 
-Illustrative inputs live under [`fixtures/`](../fixtures/); verify the chain with `./scripts/test-fixtures.sh` before trusting a new parser version. Handshake 3 exports \(\alpha(300\,\text{K})\) from `cu.phonon/a_vs_T.dat` via [`parse_alpha.sh`](../scripts/parse_alpha.sh) — the same script runs automatically when [`parse_dft_workflow.sh`](../scripts/parse_dft_workflow.sh) finds phonon data in the foundation folder. Archive `alpha_cu_300K.dat` beside `cu.phonon/` as in [IX.3](../part09-dft/03-dft-workflows.md#thermal-expansion-from-quasiharmonic-phonons-handshake-3-pedigree). Handshakes 1, 2, 3, and 4a exports should always cite a script name in the yaml header, the same way SCF logs cite `pw.x` version strings.
+Illustrative inputs live under [`fixtures/`](../fixtures/); verify the chain with `./scripts/test-fixtures.sh` before trusting a new parser version. Handshake 3 exports \(\alpha(300\,\text{K})\) from `cu.phonon/a_vs_T.dat` via [`parse_alpha.sh`](../scripts/parse_alpha.sh) — the same script runs automatically when [`parse_dft_workflow.sh`](../scripts/parse_dft_workflow.sh) finds phonon data in the foundation folder. Archive `alpha_cu_300K.dat` beside `cu.phonon/` as in [IX.3](../part09-dft/03-dft-workflows.md#thermal-expansion-from-quasiharmonic-phonons-handshake-3-pedigree). Handshake 4a exports lab-rate flow stress via [`parse_rate.sh`](../scripts/parse_rate.sh); Handshake 4b audits FE² notch uplift via [`parse_fe2.sh`](../scripts/parse_fe2.sh). Part VIII VACF phonon DOS cross-checks DFT dispersion via [`parse_vacf.sh`](../scripts/parse_vacf.sh). Handshakes 1, 2, 3, 4a, and 4b exports should always cite a script name in the yaml header, the same way SCF logs cite `pw.x` version strings.
 
 ### Sensitivity: which handshake matters most?
 

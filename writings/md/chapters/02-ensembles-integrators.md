@@ -243,7 +243,7 @@ Part IX.3 computes quasi-harmonic thermal expansion \(\alpha(T)\) from DFT phono
 1. Run 100 ps NVT on 256-atom bulk Cu at 300 K; dump velocities every 10 fs.
 2. Compute VACF; FFT to \(g(\omega)\).
 3. Compare peak positions to DFT `ph.x` dispersion along high-symmetry lines — shifts \(> 5\%\) flag a bad EAM fit before exporting \(\alpha\) to Part VI thermoelasticity.
-4. Archive `phonon_dos_md.dat` beside `cu.phonon/` in the foundation folder.
+4. Archive `phonon_dos_md.dat` beside `cu.phonon/` in the foundation folder. Run [`parse_vacf.sh`](../../scripts/parse_vacf.sh) to emit `vacf_export.yaml` and verify acoustic peaks match DFT `dispersion.dat` within 5%.
 
 **What breaks without the handshake.** A potential that reproduces bulk modulus but shifts optical peaks by 15% will predict wrong heat capacity and, through quasi-harmonic coupling, wrong thermal expansion — the same \(\alpha\) that enters Part I.3's thermal eigenstrain and Part VI's coupled thermomechanical block system. Phonon DOS is the vibration spectrum the wire's eigenmodes from [I.3](../part01-linear-algebra/03-eigenvalues.md) approach as \(N \to \infty\); MD and DFT are two ways to name that spectrum at atomic scale.
 
