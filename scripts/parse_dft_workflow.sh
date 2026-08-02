@@ -7,6 +7,7 @@
 #   cu.relax.out       optional — vc-relax log with converged forces
 #   cu.elastic/        optional — six strain pw.x outputs for parse_elastic.sh
 #   cu.phonon/         optional — phonon dispersion archive
+#                      optional — phonon_dos_md.dat (VACF cross-check via parse_vacf.sh)
 #   cu.gsf/            optional — stacking-fault slab calculations
 #
 # Emits foundation_export.yaml for epilogue multiscale handshakes.
@@ -101,6 +102,28 @@ if [[ -f "$DIR/cu.phonon/a_vs_T.dat" ]]; then
   echo ""
 fi
 
+VACF_OK=0
+ACOUSTIC_PEAK="NA" ACOUSTIC_SHIFT="NA" ACOUSTIC_OK="unknown"
+VACF_INPUT=""
+if [[ -f "$DIR/cu.phonon/phonon_dos_md.dat" ]]; then
+  VACF_INPUT="$DIR/cu.phonon/phonon_dos_md.dat"
+elif [[ -f "$DIR/phonon_dos_md.dat" ]]; then
+  VACF_INPUT="$DIR/phonon_dos_md.dat"
+fi
+if [[ -n "$VACF_INPUT" ]]; then
+  VACF_OK=1
+  echo "# Running parse_vacf.sh on phonon_dos_md.dat"
+  DISP_ARG=()
+  [[ -f "$DIR/cu.phonon/dispersion.dat" ]] && DISP_ARG=(--dispersion "$DIR/cu.phonon/dispersion.dat")
+  (
+    "$ROOT/scripts/parse_vacf.sh" "$VACF_INPUT" "${DISP_ARG[@]}"
+  ) | tee /tmp/parse_vacf_out.txt
+  ACOUSTIC_PEAK=$(grep '^acoustic_peak_THz = ' /tmp/parse_vacf_out.txt | awk '{print $3}')
+  ACOUSTIC_SHIFT=$(grep '^acoustic_shift_pct = ' /tmp/parse_vacf_out.txt | awk '{print $3}')
+  ACOUSTIC_OK=$(grep '^acoustic_peak_ok = ' /tmp/parse_vacf_out.txt | awk '{print $3}')
+  echo ""
+fi
+
 GAMMA_SF="NA" GAMMA_USF="NA" PARTIAL_SEP="NA"
 GSF_OK=0
 GSF_INPUT=""
@@ -127,6 +150,7 @@ echo "  readme_present: yes"
 echo "  relax_converged: $RELAX_OK"
 echo "  elastic_complete: $([ "$ELASTIC_OK" -eq 1 ] && echo yes || echo no)"
 echo "  phonon_archived: $([ -d "$DIR/cu.phonon" ] && echo yes || echo no)"
+echo "  vacf_dos_archived: $([ "$VACF_OK" -eq 1 ] && echo yes || echo no)"
 echo "  gsf_archived: $([ -d "$DIR/cu.gsf" ] && echo yes || echo no)"
 echo ""
 
@@ -165,6 +189,13 @@ stacking_fault:
   source_file: ${GSF_INPUT:-none}
 relaxation_converged: ${RELAX_OK}
 phonon_quasiharmonic: $([ "$PHONON_OK" -eq 1 ] && echo yes || echo no)
+md_phonon_dos:
+  acoustic_peak_THz: ${ACOUSTIC_PEAK}
+  acoustic_shift_pct: ${ACOUSTIC_SHIFT}
+  acoustic_peak_ok: ${ACOUSTIC_OK}
+  handshake: MD-phonon
+  parser_vacf: parse_vacf.sh
+  source_file: ${VACF_INPUT:-none}
 gsf_archived: $([ "$GSF_OK" -eq 1 ] && echo yes || echo no)
 parser_elastic: parse_elastic.sh
 parser_workflow: parse_dft_workflow.sh
