@@ -158,6 +158,96 @@ Engineers often care not about \(\|u - u_h\|_{H^1}\) but about a **quantity of i
 
 This adjoint viewpoint connects FEM error analysis to design optimization and sensitivity analysis: the same dual problem that estimates error also supplies gradients for shape optimization.
 
+## Dynamic FEM: modal cross-links from Part I through Part II
+
+Static equilibrium \(\mathbf{K}\mathbf{U}=\mathbf{F}\) dominated Part IV so far — the copper wire under tension and Joule heating. **Dynamic FEM** adds the mass matrix \(\mathbf{M}\) and the same eigenvalue problem Part I.3 solved on the spring chain:
+
+\[
+\mathbf{K}\boldsymbol{\phi}_n = \omega_n^2 \mathbf{M}\boldsymbol{\phi}_n.
+\]
+
+Each discrete mode \(\boldsymbol{\phi}_n\) oscillates at angular frequency \(\omega_n\); modal superposition decouples the dynamics exactly as Part I promised for the tapped wire.
+
+### The cross-scale modal pipeline
+
+| Stage | Location | Object | Theorem / habit |
+|-------|----------|--------|-----------------|
+| Discrete modes | [I.3](../part01-linear-algebra/03-eigenvalues.md) | \(\mathbf{K}\), \(\mathbf{M}\), \(\omega_n\), \(\boldsymbol{\phi}_n\) | Spectral theorem (finite); modal decoupling |
+| Limit \(N \to \infty\) | [I.4](../part01-linear-algebra/04-toward-infinity.md) | \(\sin(n\pi x/L)\) as continuum eigenfunctions | Fourier modes = Laplacian eigenvectors |
+| Operator spectrum | [II.5](../part02-functional-analysis/05-spectral-theorem.md) | Compact self-adjoint \(A\); Rayleigh quotient | Galerkin eigenvalues converge to continuous spectrum |
+| Assembly | [IV.2](../part04-fem/02-galerkin-assembly.md) | Same scatter for \(\mathbf{K}\) and \(\mathbf{M}\) | \(M_{ij} = \int \phi_i \phi_j\, d\Omega\) |
+| Convergence | This chapter | \(\|\omega_{n,h} - \omega_n\|\) as \(h \to 0\) | Same Céa / approximation theory on \(H^1\) |
+
+The copper wire's **first bending mode** in a grip fixture — the frequency that fatigue analysis cares about — is not a separate topic from static FEM. It is the **same mesh**, the same shape functions, and a second matrix assembled with one different integrand.
+
+### Undamped modal FEM
+
+For undamped free vibration, expand displacement in modal coordinates:
+
+\[
+\mathbf{U}(t) = \sum_n q_n(t)\,\boldsymbol{\phi}_n.
+\]
+
+Orthogonality of modes with respect to \(\mathbf{K}\) and \(\mathbf{M}\) gives decoupled scalar oscillators:
+
+\[
+\ddot{q}_n + \omega_n^2 q_n = 0, \qquad q_n(t) = A_n\cos(\omega_n t) + B_n\sin(\omega_n t).
+\]
+
+**Rayleigh–Ritz eigenvalue problem.** Part II.5 showed that minimizing the Rayleigh quotient over \(V_h\) recovers discrete eigenvalues. Assembly computes
+
+\[
+\mathbf{K}\boldsymbol{\Phi} = \lambda \mathbf{M}\boldsymbol{\Phi}, \qquad \lambda = \omega^2,
+\]
+
+with the same \(\mathbf{K}\) from static elasticity and \(\mathbf{M}\) from the transient heat section of [IV.2](../part04-fem/02-galerkin-assembly.md). Part III's energy methods and Part IV's Galerkin assembly are therefore the **static and spectral faces of one projector** — exactly the Functional Analysis Notes roadmap from operators to weak PDE/FEM.
+
+### Damped and forced dynamics on the wire
+
+Real grip fixtures add damping (friction, polymer pads) and harmonic forcing (vibration shaker). **Rayleigh damping** \(\mathbf{C} = \alpha_R \mathbf{M} + \beta_R \mathbf{K}\) keeps modal decoupling approximate. Forced response at frequency \(\omega\):
+
+\[
+(\mathbf{K} - \omega^2 \mathbf{M} + i\omega\mathbf{C})\mathbf{U} = \mathbf{F},
+\]
+
+or, in modal coordinates with modal damping \(\zeta_n\), each mode satisfies
+
+\[
+\ddot{q}_n + 2\zeta_n \omega_n \dot{q}_n + \omega_n^2 q_n = \frac{\boldsymbol{\phi}_n^T \mathbf{F}}{m_n}.
+\]
+
+**Resonance warning.** If a shaker hits \(\omega \approx \omega_n\), displacement amplifies by \(\sim 1/(2\zeta_n)\) — the discrete analogue of Part I.3's Lab act on the spring chain. Mesh refinement must converge **eigenvalues** as well as static displacement: halving \(h\) shifts \(\omega_n\) toward the continuum limit the same way Céa's lemma bounds static error.
+
+| Quantity | Static FEM (Act III) | Dynamic FEM (same mesh) |
+|----------|----------------------|-------------------------|
+| Primary unknown | \(\mathbf{U}\) (equilibrium) | \(\mathbf{U}(t)\) or modal \(q_n(t)\) |
+| Primary matrix | \(\mathbf{K}\) | \(\mathbf{K}\), \(\mathbf{M}\) (and \(\mathbf{C}\) if damped) |
+| Convergence target | \(\|u - u_h\|_{H^1}\) | \(\|\omega_{n,h} - \omega_n\|\) for tracked modes |
+| Part I link | \(\mathbf{K}\mathbf{u}=\mathbf{f}\) | \(\mathbf{K}\mathbf{v} = \omega^2 \mathbf{M}\mathbf{v}\) |
+| Part II link | Lax–Milgram / Céa | Spectral theorem; Rayleigh–Ritz convergence |
+
+### Thermal load in modal coordinates (Handshake 3 preview)
+
+Act II's blocked thermal expansion enters dynamics as a **static preload** plus optional transient heating. The thermal load vector \(\mathbf{f}_{\text{th}}\) projects onto mode \(n\) as
+
+\[
+f_{\text{th},n} = \boldsymbol{\phi}_n^T \mathbf{f}_{\text{th}}.
+\]
+
+Symmetric fixed–fixed modes carry the thermal reaction; antisymmetric modes do not ([I.3](../part01-linear-algebra/03-eigenvalues.md)). The epilogue's Handshake 3 sensitivity analysis uses the same projection when estimating load-cell readings — static and dynamic FEM share one modal basis.
+
+### Lab act: first three eigenfrequencies on the 1D copper bar
+
+Reuse the three-node bar from [IV.4](../part04-fem/04-poisson-to-elasticity.md): assemble \(\mathbf{K}\) (axial bar) and consistent lumped or consistent \(\mathbf{M}\). Solve the generalized eigenproblem; compare \(\omega_{1,h}\) to the continuum string estimate \(\omega_1 \approx \pi c / L\) with \(c = \sqrt{E/\rho}\).
+
+| Mesh (elements) | \(\omega_{1,h}\) (rad/s) | Relative error vs continuum |
+|-----------------|--------------------------|----------------------------|
+| 3 | record | \(O(1)\) — too coarse for modes |
+| 11 | record | decreasing |
+| 41 | record | \(< 2\%\) for first mode |
+
+Plot \(\omega_{n,h}\) versus \(h\) on log–log axes — the slope should match the \(H^1\) approximation rate for the same elements. If static displacement converges but \(\omega_1\) does not, check **mass matrix assembly** (consistent vs lumped) before refining further. This is the dynamic counterpart to the Act III grip refinement Lab act below.
+
 ## Software verification habits
 
 Before trusting a mesh for a design decision:
@@ -191,8 +281,8 @@ Part IV followed the FEM Notes from weighted residuals through error estimates. 
 |----------|------------------------------|
 | What **object**? | Trial space \(V_h\), shape functions, assembled \(\mathbf{K}\) and \(\mathbf{f}\) |
 | What **structure**? | Galerkin orthogonality, isoparametric maps, \(h\)- and \(p\)-refinement |
-| What **theorem**? | Best approximation; Céa lemma; a priori convergence rates |
-| What **breaks**? | Locking, hourglass modes, pollution on distorted elements |
+| What **theorem**? | Best approximation; Céa lemma; a priori convergence rates; Rayleigh–Ritz modal convergence |
+| What **breaks**? | Locking, hourglass modes, pollution on distorted elements; inconsistent \(\mathbf{M}\) breaks eigenfrequencies |
 
 The pipeline from Part III is now complete:
 

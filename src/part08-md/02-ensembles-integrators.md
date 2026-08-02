@@ -306,9 +306,112 @@ Verification culture from Part IV–V applies here: **manufactured** checks (har
 
 ## Rare events and the time-scale gap
 
-Wire creep over years involves vacancy diffusion and dislocation climb at strain rates MD cannot reach directly. **Accelerated MD** (hyperdynamics, parallel replica, metadynamics) and **kinetic Monte Carlo** extrapolate from MD-derived barriers — topics beyond this chapter but essential for connecting atomistics to service life.
+Wire creep over years involves vacancy diffusion and dislocation climb at strain rates MD cannot reach directly. **Accelerated MD** (hyperdynamics, parallel replica, metadynamics) and **kinetic Monte Carlo** extrapolate from MD-derived barriers — essential for connecting atomistics to service life. This section sketches the **NEB → KMC → continuum** workflow the wire's annealing and electromigration stories need; [VIII.3](03-ab-initio-and-coarse-graining.md) develops the same ladder with DFT anchors and coarse-graining exports.
 
-For crack nucleation, **transition path sampling** finds rare barrier-crossing trajectories. The copper wire epilogue will return to these coupling strategies; here we note MD supplies **barriers and mechanisms**, not always **timescales**.
+For crack nucleation, **transition path sampling** finds rare barrier-crossing trajectories. MD supplies **barriers and mechanisms**; NEB and KMC supply **clock time** once those barriers are audited.
+
+### NEB workflow: vacancy hop in copper
+
+**Nudged elastic band (NEB)** finds a minimum-energy path (MEP) between two relaxed configurations and estimates the saddle-point barrier \(\Delta E\). For Cu self-diffusion at 900 K, the event is a nearest-neighbor vacancy hop:
+
+1. **Build initial and final states.** Start from a relaxed fcc supercell with one vacancy at site A. Copy the structure; move the vacancy to a nearest-neighbor site B; minimize energy while holding the vacancy identity fixed. Both endpoints must be local minima on the same potential surface (Mishin EAM or a DeepMD model audited against Part IX).
+
+2. **Insert intermediate images.** Place 5–11 images along a linear interpolation of atomic positions between initial and final. Each image is a guess at the MEP; NEB relaxes them toward the true path.
+
+3. **Run NEB with spring forces.** LAMMPS (`fix neb`) or ASE (`NEB` optimizer) applies spring forces between adjacent images and projects the true force perpendicular to the path tangent. **Climbing-image NEB (CI-NEB)** elevates the highest-energy image toward the saddle — sharper barrier estimate.
+
+4. **Read \(\Delta E\) and archive.** Barrier height is the energy of the highest image minus the initial minimum. For Cu vacancy migration with a well-fit EAM, \(\Delta E_m \sim 0.6\)–\(0.8\,\text{eV}\) at 0 K; formation energy \(E_f^v\) comes from a separate supercell calculation (Part IX).
+
+```lammps
+# neb_vacancy_cu.lammps — illustrative CI-NEB setup
+units           metal
+atom_style      atomic
+read_data       cu_vac_ini.data
+pair_style      eam/alloy
+pair_coeff      * * Cu_mishin.eam.alloy Cu
+fix             1 all neb 0.1
+neigh_modify    every 1 delay 0 check yes
+min_style       fire
+timestep        0.001
+run             5000
+```
+
+Post-process: plot energy versus reaction coordinate; \(\Delta E = E_{\text{saddle}} - E_{\text{initial}}\). Compare to DFT NEB on the same hop (Part IX) — agreement within 0.1 eV before exporting rates.
+
+### From barrier to Arrhenius rate
+
+With hop distance \(a \approx a_0/\sqrt{2} \approx 2.55\,\text{Å}\) and attempt frequency \(\nu_0 \sim 10^{13}\,\text{s}^{-1}\):
+
+\[
+k(T) = \nu_0 \exp(-\Delta E / k_B T).
+\]
+
+At \(T = 900\,\text{K}\) with \(\Delta E = 0.7\,\text{eV}\), \(k \sim 10^{9}\,\text{s}^{-1}\) per hop — fast enough for MD MSD validation. At \(T = 300\,\text{K}\), the same barrier gives \(k \sim 10^{-5}\,\text{s}^{-1}\): one hop every \(10^5\,\text{s}\) — **inaccessible to direct MD** but exactly what KMC is for.
+
+| Temperature | MD MSD (500 ps run) | NEB + Arrhenius | KMC (long-time average) |
+|-------------|---------------------|-----------------|-------------------------|
+| 900 K | Reliable \(D\) from slope | Cross-check \(\Delta E\) | Optional validation |
+| 300 K | Slope \(\approx 0\) (no hops) | \(D \sim 10^{-25}\,\text{m}^2/\text{s}\) | Void growth over ms–s |
+| Anneal (Act II) | Qualitative vacancy annihilation | Rate table for climb | Dislocation density export to Part VII |
+
+### KMC workflow: grain-boundary vacancy exchange
+
+**Kinetic Monte Carlo** advances a discrete state by selecting events from a rate table — no femtosecond integration:
+
+1. **Enumerate events.** For each vacancy–atom pair at a grain boundary, list hop directions with distinct \(\Delta E_i\) from NEB or DFT (Part IX).
+
+2. **Build rate table.** \(r_i = \nu_0 \exp(-\Delta E_i / k_B T)\) at the simulation temperature (300 K for room-temperature wire, 900 K for anneal).
+
+3. **Select and advance.** Choose event \(i\) with probability \(r_i / \sum_j r_j\); update atomic configuration; increment clock by \(\Delta t = -\ln(\xi) / \sum_j r_j\) with uniform random \(\xi \in (0,1]\).
+
+4. **Average and export.** Time-average vacancy density \(\rho_{\text{vac}}(t)\), void volume, or electromigration drift velocity. Fit effective \(D(T)\) to an Arrhenius law for Part VI continuum damage models.
+
+```python
+# kmc_vacancy_hop.py — minimal event loop (illustrative)
+import numpy as np
+rates = np.array([k(T) for k in hop_rates])  # from NEB barriers
+t = 0.0
+while t < t_max:
+    r_tot = rates.sum()
+    i = np.random.choice(len(rates), p=rates / r_tot)
+    apply_hop(i)
+    t += -np.log(np.random.random()) / r_tot
+```
+
+**Scale-boundary handshake (NEB/KMC in this chapter → VIII.3 → epilogue).**
+
+| Step | Tool | Input | Output | Consumer |
+|------|------|-------|--------|----------|
+| 1 | DFT (IX) | Initial/final vacancy configs | \(\Delta E_m\), \(E_f^v\) | NEB validation |
+| 2 | NEB (VIII.2) | EAM or ML potential | MEP, \(\Delta E\) | Arrhenius \(k(T)\) |
+| 3 | MD (VIII.2) | Same potential, high \(T\) | MSD \(D(T)\) | Cross-check rates |
+| 4 | KMC | Rate table at target \(T\) | \(\rho_{\text{vac}}(t)\), void growth | Part VI creep law |
+| 5 | Continuum (VI) | Effective \(D(T)\) | Damage/evolution PDE | Part IV/FEM internal variables |
+
+**What breaks without the handshake.** Using MSD at 300 K when no hops occur (Step 3) and plugging the resulting noise into a creep model (Step 5) is the atomistic analogue of reporting FEM stress before mesh convergence. Using KMC rates from a DFT functional that differs from the EAM that validated \(\nu_0\) shifts void growth by exponentials — worse than a 10% error in \(\alpha\) (epilogue Handshake 3).
+
+### Lab act: NEB barrier for Cu vacancy migration (Act II anneal preview)
+
+This Lab act connects Act II heating (wire anneals, vacancies become mobile) to the rate tables Part VII climb models need:
+
+**Step 1 — relaxed endpoints.** Minimize `cu_vac_256.data` (vacancy at center) and `cu_vac_256_final.data` (vacancy at NN site) in LAMMPS with Mishin EAM. Record energies \(E_i\), \(E_f\).
+
+**Step 2 — CI-NEB.** Run 7-image CI-NEB between endpoints; archive `neb.log` with energies per image.
+
+**Step 3 — extract \(\Delta E_m\).** \(\Delta E_m = E_{\text{saddle}} - E_i\). Compare to literature \(\sim 0.65\)–\(0.75\,\text{eV}\) for Cu.
+
+**Step 4 — Arrhenius cross-check.** Compute \(k(900\,\text{K})\) and run a 500 ps NVT MD diffusion simulation at 900 K ([Einstein relation section above](#einstein-relation-and-vacancy-diffusion-on-the-wire)). MSD slope and Arrhenius rate should agree within a factor of 2–3.
+
+**Step 5 — export.** Write `cu_vac_migration_rates.yaml` with \(\Delta E_m\), \(\nu_0\), and \(k(T)\) at 300, 600, 900 K for KMC or Part VII kinetics. Document potential version and NEB image count — same pedigree habit as Part IX SCF logs.
+
+| Check | Pass criterion | Failure mode |
+|-------|----------------|--------------|
+| Endpoint energies | Both are local minima (no imaginary modes) | Wrong final vacancy site |
+| Barrier | Within 0.15 eV of DFT or experiment | Bad EAM far from vacancy |
+| MSD vs Arrhenius at 900 K | \(D\) within factor 3 | \(\Delta t\) too large; no hops sampled |
+| Rate table units | eV, s\(^{-1}\), K documented | Ry/Bohr/fs mix in handoff |
+
+When Step 4 fails at 300 K (expected — no hops), that is confirmation KMC is required, not evidence the barrier is wrong.
 
 ### Scale-boundary handshake: phonons from DFT to MD validation
 
@@ -401,9 +504,9 @@ This chapter is where the copper wire's laboratory temperature enters simulation
 | What **object**? | Phase-space trajectory \(\{\mathbf{r}_i(t), \mathbf{p}_i(t)\}\); state vector in \(\mathbb{R}^{6N}\) |
 | What **structure**? | Symplectic Verlet; thermostats (NVT) and barostats (NPT) |
 | What **theorem**? | NVE energy drift as timestep audit; ergodic sampling in equilibrium ensembles |
-| What **breaks**? | \(\Delta t\) too large; wrong ensemble during loading; strain-rate gap vs lab frame |
+| What **breaks**? | \(\Delta t\) too large; wrong ensemble during loading; strain-rate gap vs lab frame; NEB barriers from wrong potential; KMC rates at wrong \(T\) |
 
-The NVE drift and NPT modulus checks in the Lab act mirror Part IV's mesh refinement and Part IX's cutoff convergence — do not export \(E\), \(\nu\), or yield stress until the integrator and ensemble are audited. Part I's pattern returns: state plus update rule, now at \(10^5\)–\(10^9\) atoms.
+The NVE drift and NPT modulus checks in the Lab act mirror Part IV's mesh refinement and Part IX's cutoff convergence — do not export \(E\), \(\nu\), or yield stress until the integrator and ensemble are audited. The NEB/KMC Lab act adds a third audit: do not export creep or void-growth rates until barriers cross-check MSD at high \(T\) and Arrhenius at low \(T\). Part I's pattern returns: state plus update rule, now at \(10^5\)–\(10^9\) atoms.
 
 ## Bridge
 
@@ -414,6 +517,7 @@ Verlet integrators and NVT/NPT ensembles make classical MD a controlled experime
 | Symplectic Verlet; NVE as sanity check | When EAM is not enough: AIMD and QM/MM |
 | NVT/NPT thermostats and barostats for Cu at 300–600 K | EAM-fit workflow from DFT bulk properties |
 | Reproducibility checklist (cutoff, \(\Delta t\), drift) | Coarse-graining: export \(C_{ij}\), \(\gamma_{\text{sf}}\), mobility to Part VII |
+| NEB/KMC workflow for vacancy hops and long-time kinetics | Full accelerated-methods table; DeepMD; parallel MD scaling |
 | Time-scale gap (creep, rare events) | Handoff table linking Part VIII exports to Part IV/VII consumers |
 
 Return to the [prologue](../../prologue/00-many-scales.md): the wire's strength at the engineering scale still depends on a potential someone fit from quantum data. Part VII's dislocations move on surfaces MD integrates; Part IV's elastic step uses moduli MD or DFT averaged over a polycrystal. [VIII.3](03-ab-initio-and-coarse-graining.md) is the **export chapter** — the rung where atomistics stops being a standalone movie and becomes input for coarser models, while naming what only Part IX can re-derive from \(\rho(\mathbf{r})\).
