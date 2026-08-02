@@ -134,6 +134,95 @@ E = \frac{9B G}{3B + G}, \qquad \nu = \frac{3B - 2G}{2(3B + G)},
 
 with \(G = (C_{11} - C_{12} + 3C_{44})/5\) for cubic crystals. A typical PBE result: \(C_{11} \approx 170\) GPa, \(C_{12} \approx 120\) GPa, \(C_{44} \approx 75\) GPa — bracketing but not matching room-temperature experiment.
 
+#### Strain-cell input decks (three deformations for cubic Cu)
+
+Each elastic constant comes from a **fixed-cell** `scf` run with a small strain applied to the Bravais matrix. Archive three decks beside `cu.relax.out`:
+
+**Uniaxial strain for \(C_{11}\)** — scale `celldm(1)` by \(1 + \delta\) with \(\delta = 0.005\):
+
+```text
+&CONTROL
+  calculation = 'scf'
+  prefix      = 'cu_C11_eps_p'
+  pseudo_dir  = './pseudo/'
+  outdir      = './tmp/'
+  tprnfor     = .true.
+/
+&SYSTEM
+  ibrav = 2
+  celldm(1) = 6.826   ! (1 + 0.005) × relaxed celldm(1) from vc-relax
+  nat   = 1
+  ntyp  = 1
+  ecutwfc = 60        ! converged value from Step 1
+  occupations = 'smearing'
+  smearing = 'mp'
+  degauss = 0.02
+/
+&ELECTRONS
+  conv_thr = 1.0d-10
+/
+ATOMIC_SPECIES
+  Cu  63.546  Cu.pbe-d-v1.0.uspp.F.UPF
+ATOMIC_POSITIONS crystal
+  Cu  0.0  0.0  0.0
+K_POINTS automatic
+  16 16 16  0 0 0
+```
+
+Repeat with `celldm(1) = 6.758` (\(\delta = -0.005\)) for `cu_C11_eps_m`. **Shear for \(C_{44}\)** uses `ibrav = 0` with a deformed `CELL_PARAMETERS` (orthorhombic cell with \(\gamma = 2\delta\) in the xy shear component). **Volume-preserving tetragonal distortion** for \(C_{12}\) couples \(C_{11}\) and \(C_{12}\) — follow the MSE5720 HW2 script pattern or the [Quantum ESPRESSO `elastic` example](https://www.quantum-espresso.org/Doc/INPUT_PW.html).
+
+#### Parsing `pw.x` output (forces, stress, energy)
+
+Production workflows never read totals by hand. Standard grep/awk patterns for copper bulk runs:
+
+```bash
+# Total energy (Ry) — last occurrence per SCF cycle
+grep "!" cu_C11_eps_p.out | tail -1 | awk '{print "Etot_Ry =", $5}'
+
+# Convergence check
+grep "convergence has been achieved" cu_C11_eps_p.out || echo "SCF FAILED"
+
+# Total stress tensor (kbar) — Voigt order xx yy zz yz xz xy
+grep -A 3 "total   stress" cu_C11_eps_p.out | tail -3
+
+# Maximum force on atoms (Ry/Bohr) — must be ~0 for fixed-cell elastic runs
+grep "Total force" cu_C11_eps_p.out | tail -1
+```
+
+Convert stress from kbar to GPa: multiply by \(0.1\). For uniaxial strain \(\varepsilon_{11} = \delta\):
+
+\[
+C_{11} \approx \frac{\sigma_{11}(+\delta) - \sigma_{11}(-\delta)}{2\delta}.
+\]
+
+| Parsed quantity | Typical converged value (Cu, PBE) | Failure symptom |
+|-----------------|-------------------------------------|-----------------|
+| `Etot` drift between ±\(\delta\) runs | \(< 1\) meV/atom | Cutoff or k-mesh too coarse |
+| `sigma_11` symmetric in ±\(\delta\) | Yes to 0.1 GPa | Strain step too large; use \(\delta = 0.003\) |
+| `Total force` | \(< 10^{-4}\) Ry/Bohr | Cell not relaxed before fixed-cell strain |
+| SCF iterations | \(< 30\) with `mixing_beta = 0.3` | Add smearing; reduce `mixing_beta` |
+
+Archive `parse_elastic.sh` beside the three strain decks — the epilogue's Handshake 1 cites this script's output, not a spreadsheet typed from memory.
+
+#### `ph.x` input deck (phonon check before Part VIII)
+
+After converged `vc-relax`, linear-response phonons confirm mechanical stability:
+
+```text
+&inputph
+  tr2_ph = 1.0d-14
+  prefix = 'cu_bulk'
+  outdir = './tmp/'
+  fildyn = 'cu.dyn'
+  ldisp = .true.
+  nq1 = 4
+  nq2 = 4
+  nq3 = 4
+/
+```
+
+Run `ph.x < cu.ph.in > cu.ph.out`, then `q2r.x` and `matdyn.x` on `cu.dyn` to plot dispersion. **Pass criterion:** acoustic branches at \(\Gamma\) go to zero within numerical noise; no imaginary frequencies. Archive `cu.phonon/` with the elastic folder — Part VIII's VACF handshake and Part VI's \(\alpha(T)\) workflow both consume this directory.
+
 ### Step 4 — Vacancy supercell (handoff to Part VII)
 
 Build a \(3\times3\times3\) conventional cell (108 atoms). Remove one atom; relax with fixed cell shape. Formation energy:

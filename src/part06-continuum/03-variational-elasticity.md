@@ -240,6 +240,45 @@ Fixed end at \(x = 0\), prescribed displacement \(\delta = 0.1\,\text{mm}\) at \
 
 Plot force versus \(\delta\) from the load cell against the analytical line — slope \(EA/L\). Before yield (Act IV), the curve should be straight; variational elasticity explains **why** Part IV's \(\mathbf{K}\mathbf{U}=\mathbf{F}\) is force balance, not merely matrix algebra. When thermal strain \(\alpha \Delta T\) from Act II is present, subtract it from mechanical strain in \(\Pi\): the load cell reads lower force at the same grip displacement because the wire already expanded.
 
+## Lab act: finite strain versus small strain on the same grip (Act III — Pulling, finite-strain preview)
+
+**Act III** keeps the wire in the linear elastic regime, but the prologue's grip displacement \(\delta = 0.10\,\text{mm}\) on \(L = 100\,\text{mm}\) is not infinitesimal — it is \(\delta/L = 10^{-3}\), large enough that the **Green–Lagrange strain** and the small-strain tensor \(\varepsilon_{xx} = \delta/L\) disagree at the third decimal. This Lab act compares the two energy functionals on the same specimen before [VI.4](04-nonlinear-plasticity-preview.md) turns on Newton–Raphson and plastic history.
+
+**Setup.** Uniaxial tension of the 1 mm copper wire; reference length \(L_0 = 100\,\text{mm}\), current length \(L = L_0 + \delta\). Stretch \(\lambda = L/L_0 = 1 + \delta/L_0\). For \(\delta = 0.10\,\text{mm}\): \(\lambda = 1.001\).
+
+**Small-strain energy (Part VI.3 quadratic \(\Pi\)).** With \(\varepsilon_{xx} = \lambda - 1 = 10^{-3}\):
+
+\[
+\Pi_{\text{small}} = \tfrac{1}{2} E \varepsilon_{xx}^2 A L_0 = \tfrac{1}{2} E A L_0 (\lambda - 1)^2.
+\]
+
+**Finite-strain energy (Saint-Venant–Kirchhoff preview).** Green–Lagrange strain \(E_{11} = \tfrac{1}{2}(\lambda^2 - 1)\). For \(\lambda = 1.001\): \(E_{11} = 1.0005 \times 10^{-3}\) — **0.05% larger** than \(\varepsilon_{xx}\). Strain energy \(\Pi_{\text{GL}} = \tfrac{1}{2} E E_{11}^2 A L_0\) integrated on the reference domain (valid while \(\lambda\) stays near unity):
+
+| Strain measure | Value at \(\lambda = 1.001\) | Stored energy \(\Pi\) (mJ) | Reaction force \(F = \partial\Pi/\partial\delta\) (N) |
+|----------------|------------------------------|----------------------------|--------------------------------------------------------|
+| Small \(\varepsilon = \lambda - 1\) | \(1.000 \times 10^{-3}\) | 4.60 | 92.0 |
+| Green–Lagrange \(E_{11} = \tfrac{1}{2}(\lambda^2-1)\) | \(1.0005 \times 10^{-3}\) | 4.61 | 92.1 |
+| True neo-Hookean (1D) \(\Pi = \tfrac{1}{2}E A L_0 (\ln\lambda)^2\) | — | 4.60 | 92.0 |
+
+At \(\delta/L = 10^{-3}\), the three models agree within **0.1%** — linear FEM and variational elasticity are honest for Act III. The table becomes a **convergence study in strain measure**, not in mesh size:
+
+| \(\delta/L\) | Relative error: small strain vs GL energy | Wire context |
+|--------------|------------------------------------------|--------------|
+| \(10^{-4}\) | \(< 0.01\%\) | Elastic climb on load cell |
+| \(10^{-3}\) | \(\sim 0.05\%\) | Prologue Act III setpoint |
+| \(10^{-2}\) | \(\sim 0.5\%\) | Still elastic; nonlinear FEM advisable |
+| \(5 \times 10^{-2}\) | \(\sim 2.5\%\) | Approaching necking; geometric nonlinearity mandatory |
+
+**Finite-element check.** On the three-element bar from the [worked example](#worked-example-the-copper-wire-as-rayleigh-ritz), small-displacement FEM uses \(\mathbf{B}\) with \(\partial u/\partial x\). A **Updated Lagrangian** step with the same mesh and \(\lambda = 1.001\) updates \(\mathbf{F}\) at each Gauss point:
+
+\[
+F_{11} = \frac{\partial x}{\partial X} = \lambda, \qquad E_{11} = \tfrac{1}{2}(F_{11}^2 - 1),
+\]
+
+and assembles \(\mathbf{K}_T\) from \(\partial^2 \psi / \partial \mathbf{F}^2\). One Newton iteration from \(\lambda = 1\) should recover the GL force within 0.1% — if not, the tangent is inconsistent with the energy (the same lesson as return-mapping in [VI.4](04-nonlinear-plasticity-preview.md)).
+
+**Bridge to VI.4.** Act III's straight load-cell line used quadratic \(\Pi\). When Act IV bends the curve, part of the bend is **material** (plasticity) and part is **geometric** (necking, \(\lambda\) far from 1). This Lab act separates the geometric branch: at prologue displacements, geometry is still negligible; at ultimate tensile strength, \(\Pi_{\text{small}}\) and \(\Pi_{\text{GL}}\) diverge and only hyperelastic or Updated Lagrangian FEM is credible. Archive `strain_measure_check.dat` with columns \((\delta/L, \Pi_{\text{small}}, \Pi_{\text{GL}}, F_{\text{small}}, F_{\text{GL}})\) beside the Act III load-cell trace — the epilogue's Handshake 4 uses the same discipline when rate-dependent plasticity enters the story.
+
 ## Concept map checkpoint (variational elasticity)
 
 This chapter is where FEM's matrix equation receives its continuum philosophical source. Before nonlinear plasticity admits history, summarize what variational elasticity established:
