@@ -44,5 +44,12 @@ grep -q 'relax_converged: yes' "$TMP"
 grep -q 'gsf_archived: yes' "$TMP"
 grep -q 'gamma_sf_mJ_m2: 45.0' "$TMP"
 
+echo "--- parse_rate.sh (Handshake 4a) ---"
+./scripts/parse_rate.sh fixtures/ddd_tau_vs_rate.dat --lab-rate 1e-3 \
+  --compare 2 --expected 33.21 > "$TMP" 2>&1
+grep -q 'rate_export.yaml' "$TMP"
+grep -q 'rate_sensitivity_m = 0.02200' "$TMP"
+grep -q 'PASS: rate export complete' "$TMP"
+
 echo ""
 echo "PASS: all fixture tests succeeded."
