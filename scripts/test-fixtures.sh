@@ -87,5 +87,17 @@ grep -q 'fe2_export.yaml' "$TMP"
 grep -q 'fe2_enrichment_required = yes' "$TMP"
 grep -q 'PASS: FE² export complete' "$TMP"
 
+echo "--- parse_multiscale_workflow.sh (full chain) ---"
+./scripts/parse_multiscale_workflow.sh fixtures/cu.foundation fixtures/cht_wire.conf > "$TMP" 2>&1
+grep -q 'multiscale_export.yaml' "$TMP"
+grep -q 'handshake_2_cht:' "$TMP"
+grep -q 'T_wall_K: 311.4831' "$TMP"
+grep -q 'delta_T_from_handshake_2: 11.48' "$TMP"
+grep -q 'LA_lifetime_ps: 15.400000' "$TMP"
+grep -q 'target_T_K: 300' "$TMP"
+grep -q 'tau_flow_extrapolated_MPa: 33.2043' "$TMP"
+grep -q 'fe2_enrichment_required: yes' "$TMP"
+grep -q 'PASS: multiscale workflow complete' "$TMP"
+
 echo ""
 echo "PASS: all fixture tests succeeded."
