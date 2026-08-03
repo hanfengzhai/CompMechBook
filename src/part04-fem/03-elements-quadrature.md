@@ -208,6 +208,8 @@ This chapter is where mesh geometry enters the energy integrals. Before vector e
 
 The patch-test Lab act is the FEM analogue of Part I's three-node sanity check: if linear \(u(x)=x/L\) is not exact on two P1 bars, no amount of \(h\)-refinement in Act III will rescue the load cell curve. Quadrature and element order determine **accuracy**; assembly determines **structure**.
 
+## Bridge
+
 Poisson's equation — scalar, symmetric, coercive — is the training ground where elements and quadrature behave well. Vector elasticity adds tensor constitutive laws, block stiffness structure, and traction boundary integrals. The assembly loop is unchanged; the integrand grows richer.
 
 | What IV.3 established | What IV.4 extends |

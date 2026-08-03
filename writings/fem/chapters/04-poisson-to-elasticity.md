@@ -254,6 +254,8 @@ This chapter is where the copper wire gains vector degrees of freedom and thermo
 
 The one-mesh-two-fields Lab act showed Act II (Joule heating) and Act III (tension) on the same connectivity — the multiphysics pattern conjugate heat transfer in Part V will extend to the fluid boundary. Part IV's closing checkpoint in [IV.5](05-convergence.md) adds Céa's lemma; this chapter supplies the **physics** those error bounds bound.
 
+## Bridge
+
 Poisson's equation and linear elasticity share one assembly loop — scalar versus vector unknowns, gradient versus strain, the same \(\mathbf{K}\mathbf{U}=\mathbf{F}\) pattern Part I introduced on springs. A solver that passes patch tests and looks smooth on the copper wire is not necessarily **accurate**: convergence theory ties mesh size \(h\) and polynomial order \(p\) to quantifiable error bounds in the norms Part II named.
 
 | What this chapter established | What convergence theory (next chapter) supplies |

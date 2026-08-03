@@ -98,7 +98,7 @@ if [[ -f "$DIR/cu.phonon/a_vs_T.dat" ]]; then
   PHONON_OK=1
   echo "# Running parse_alpha.sh on cu.phonon/"
   (
-    "$ROOT/scripts/parse_alpha.sh" "$DIR/cu.phonon" --target-t 300 --delta-t 90 --E "${E:-120}" --compare 15
+    "$ROOT/scripts/parse_alpha.sh" "$DIR/cu.phonon" --target-t 300 --delta-t 90 --E "${E:-120}" --compare 15 --no-write
   ) | tee /tmp/parse_alpha_out.txt
   ALPHA=$(grep '^alpha_1_per_K = ' /tmp/parse_alpha_out.txt | awk '{print $3}')
   ALPHA_PPM=$(grep '^alpha_ppm = ' /tmp/parse_alpha_out.txt | awk '{print $3}')

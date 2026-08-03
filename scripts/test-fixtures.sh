@@ -31,7 +31,7 @@ grep -q 'cht_export.yaml' "$TMP"
 grep -q 'fixed_point_converged = yes' "$TMP"
 
 echo "--- parse_alpha.sh (Handshake 3) ---"
-./scripts/parse_alpha.sh fixtures/cu.foundation/cu.phonon --target-t 300 --delta-t 90 --compare 15 > "$TMP" 2>&1
+./scripts/parse_alpha.sh fixtures/cu.foundation/cu.phonon --target-t 300 --delta-t 90 --compare 15 --no-write > "$TMP" 2>&1
 grep -q 'alpha_export.yaml' "$TMP"
 grep -q 'gamma_acoustic_ok = yes' "$TMP"
 grep -q 'PASS: alpha export complete' "$TMP"
@@ -60,10 +60,19 @@ grep -q 'lifetime_export.yaml' "$TMP"
 grep -q 'lifetime_primary_ps = 15.4' "$TMP"
 grep -q 'PASS: phonon lifetime export complete' "$TMP"
 
-echo "--- parse_lifetime.sh (temperature sweep) ---"
+echo "--- parse_lifetime.sh (temperature sweep, interpolated T_w) ---"
+./scripts/parse_lifetime.sh fixtures/cu.foundation/cu.phonon/phonon_lifetime_vs_T.dat \
+  --target-t 311.4831 --compare 5 --expected 14.94 > "$TMP" 2>&1
+grep -q 'sweep_mode = yes' "$TMP"
+grep -q 'interpolation = interpolated' "$TMP"
+grep -q 'lifetime_primary_ps = 14.940676' "$TMP"
+grep -q 'PASS: phonon lifetime export complete' "$TMP"
+
+echo "--- parse_lifetime.sh (temperature sweep, exact node) ---"
 ./scripts/parse_lifetime.sh fixtures/cu.foundation/cu.phonon/phonon_lifetime_vs_T.dat \
   --target-t 380 --compare 5 --expected 12.2 > "$TMP" 2>&1
 grep -q 'sweep_mode = yes' "$TMP"
+grep -q 'interpolation = exact' "$TMP"
 grep -q 'lifetime_primary_ps = 12.2' "$TMP"
 grep -q 'ln_tau_vs_T_slope = -0.002' "$TMP"
 grep -q 'PASS: phonon lifetime export complete' "$TMP"
@@ -93,8 +102,9 @@ grep -q 'multiscale_export.yaml' "$TMP"
 grep -q 'handshake_2_cht:' "$TMP"
 grep -q 'T_wall_K: 311.4831' "$TMP"
 grep -q 'delta_T_from_handshake_2: 11.48' "$TMP"
-grep -q 'LA_lifetime_ps: 15.400000' "$TMP"
-grep -q 'target_T_K: 300' "$TMP"
+grep -q 'LA_lifetime_ps: 14.940676' "$TMP"
+grep -q 'target_T_K: 311.4831' "$TMP"
+grep -q 'interpolation: interpolated' "$TMP"
 grep -q 'tau_flow_extrapolated_MPa: 33.2043' "$TMP"
 grep -q 'fe2_enrichment_required: yes' "$TMP"
 grep -q 'PASS: multiscale workflow complete' "$TMP"

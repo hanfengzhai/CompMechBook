@@ -72,7 +72,7 @@ if [[ -f "$FOUNDATION/cu.phonon/a_vs_T.dat" ]]; then
   echo "=== Handshake 3 — thermal expansion (ΔT=${DELTA_T} K from Handshake 2) ==="
   (
     "$ROOT/scripts/parse_alpha.sh" "$FOUNDATION/cu.phonon" \
-      --target-t 300 --delta-t "$DELTA_T" --E "$E_GPA" --compare 15
+      --target-t 300 --delta-t "$DELTA_T" --E "$E_GPA" --compare 15 --no-write
   ) | tee "$TMPDIR_WORK/alpha.txt"
   ALPHA=$(grep '^alpha_1_per_K = ' "$TMPDIR_WORK/alpha.txt" | awk '{print $3}')
   ALPHA_PPM=$(grep '^alpha_ppm = ' "$TMPDIR_WORK/alpha.txt" | awk '{print $3}')
@@ -84,7 +84,7 @@ else
 fi
 
 # --- MD phonon lifetime at converged T_w (temperature pedigree for Handshake 4a) ---
-LA_LIFETIME="NA" LA_LINEWIDTH="NA" LIFETIME_T="NA" DRAG_SLOPE="NA"
+LA_LIFETIME="NA" LA_LINEWIDTH="NA" LIFETIME_T="NA" DRAG_SLOPE="NA" LIFETIME_INTERP="NA"
 LIFETIME_INPUT=""
 if [[ -f "$FOUNDATION/cu.phonon/phonon_lifetime_vs_T.dat" ]]; then
   LIFETIME_INPUT="$FOUNDATION/cu.phonon/phonon_lifetime_vs_T.dat"
@@ -99,6 +99,7 @@ if [[ -n "$LIFETIME_INPUT" ]]; then
   LA_LIFETIME=$(grep '^lifetime_primary_ps = ' "$TMPDIR_WORK/lifetime_tw.txt" | awk '{print $3}')
   LA_LINEWIDTH=$(grep '^linewidth_primary_GHz = ' "$TMPDIR_WORK/lifetime_tw.txt" | awk '{print $3}')
   LIFETIME_T=$(grep '^target_temperature_K = ' "$TMPDIR_WORK/lifetime_tw.txt" | awk '{print $3}')
+  LIFETIME_INTERP=$(grep '^interpolation = ' "$TMPDIR_WORK/lifetime_tw.txt" | awk '{print $3}')
   DRAG_SLOPE=$(grep '^ln_tau_vs_T_slope = ' "$TMPDIR_WORK/lifetime_tw.txt" | awk '{print $3}')
   echo ""
 fi
@@ -189,6 +190,7 @@ md_phonon_lifetime_at_Tw:
   export: lifetime_export.yaml
   parser: parse_lifetime.sh
   target_T_K: ${LIFETIME_T:-${T_WALL}}
+  interpolation: ${LIFETIME_INTERP:-unknown}
   LA_lifetime_ps: ${LA_LIFETIME}
   LA_linewidth_GHz: ${LA_LINEWIDTH}
   ln_tau_vs_T_slope: ${DRAG_SLOPE}

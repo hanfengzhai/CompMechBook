@@ -74,11 +74,36 @@ if [[ "$SWEEP" -eq 1 ]]; then
   [[ "$N" -ge 1 ]] || { echo "FAIL: need at least one sweep row for mode=$MODE in $DATA" >&2; exit 1; }
 
   T_LIST=$(awk '{ printf "%s%s", (NR>1?", ":""), $1 }' "$TMP")
-  read -r LA_T LA_OM LA_GHZ LA_PS LA_SRC <<< "$(awk -v t="$TARGET_T" '
-    { tk=$1; d=(tk-t)^2
-      if (best=="" || d<best) { best=d; t_ref=tk; om=$2; ghz=$3; ps=$4; src=$5 }
+  read -r LA_T LA_OM LA_GHZ LA_PS LA_SRC INTERP <<< "$(awk -v t="$TARGET_T" '
+    BEGIN { n = 0 }
+    { tk[n]=$1; om[n]=$2; ghz[n]=$3; ps[n]=$4; src[n]=$5; n++ }
+    END {
+      if (n == 0) exit 1
+      for (i = 0; i < n; i++) {
+        if (tk[i] == t) {
+          printf "%.4f %.6f %.6f %.6f %s exact\n", tk[i], om[i], ghz[i], ps[i], src[i]
+          exit
+        }
+      }
+      for (i = 0; i < n - 1; i++) {
+        if (tk[i] <= t && t <= tk[i+1]) {
+          dt = tk[i+1] - tk[i]
+          f = (t - tk[i]) / dt
+          om_i = om[i] + f * (om[i+1] - om[i])
+          ghz_i = ghz[i] + f * (ghz[i+1] - ghz[i])
+          ps_i = ps[i] + f * (ps[i+1] - ps[i])
+          src_i = (f < 0.5) ? src[i] : src[i+1]
+          printf "%.4f %.6f %.6f %.6f %s interpolated\n", t, om_i, ghz_i, ps_i, src_i
+          exit
+        }
+      }
+      best = -1; best_d = 1e99
+      for (i = 0; i < n; i++) {
+        d = (tk[i] - t) * (tk[i] - t)
+        if (d < best_d) { best_d = d; best = i }
+      }
+      printf "%.4f %.6f %.6f %.6f %s nearest\n", tk[best], om[best], ghz[best], ps[best], src[best]
     }
-    END { if (t_ref=="") exit 1; else printf "%.0f %.6f %.6f %.6f %s", t_ref, om, ghz, ps, src }
   ' "$TMP")"
 
   # Linear fit d(ln tau)/dT for drag temperature pedigree (Handshake 4a coupling)
@@ -100,6 +125,7 @@ if [[ "$SWEEP" -eq 1 ]]; then
   echo "temperature_list_K = [${T_LIST}]"
   echo "mode_primary = ${MODE}"
   echo "target_temperature_K = ${LA_T}"
+  echo "interpolation = ${INTERP}"
   echo "omega_primary_THz = ${LA_OM}"
   echo "linewidth_primary_GHz = ${LA_GHZ}"
   echo "lifetime_primary_ps = ${LA_PS}"
@@ -115,6 +141,7 @@ source_file: ${DATA}
 sweep: yes
 primary_mode: ${MODE}
 target_temperature_K: ${LA_T}
+interpolation: ${INTERP}
 temperature_list_K: [${T_LIST}]
 results:
   omega_THz: ${LA_OM}
