@@ -1,0 +1,13 @@
+[book]
+title = "Partial Differential Equations Notes"
+authors = ["Hanfeng Zhai"]
+description = "Fields on domains — strong and weak forms, Sobolev spaces, energy methods. — source notes for CompMechBook."
+language = "en"
+multilingual = false
+src = "chapters"
+
+[build]
+create-missing = false
+
+[output.html]
+mathjax-support = true
