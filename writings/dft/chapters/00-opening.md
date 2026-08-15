@@ -22,6 +22,12 @@ Part VIII ended with nuclei vibrating on an interatomic potential — EAM parame
 
 The copper wire at the electronic scale is not a chain of balls on springs. It is a periodic crystal of nuclei immersed in a sea of valence electrons whose density \(\rho(\mathbf{r})\) determines how strongly the lattice resists drawing, how easily dislocations slip, and how vacancies cost energy. DFT resolves that density; every number exported upward — \(E_{\text{coh}}\), \(C_{ij}\), \(\gamma_{\text{sf}}\) — is a contract between Part IX and Parts VI–VIII.
 
+## The electronic floor in one paragraph
+
+Read this once if you paused after Part VIII and wonder why the book now opens Schrödinger's equation for a copper unit cell — every chapter below unpacks one electronic beat of the same specimen.
+
+Classical MD assumed nuclei move on a Born–Oppenheimer surface without deriving it. Part IX separates fast electrons from slow nuclei, proves the ground-state energy is a functional of density alone, and solves Kohn–Sham equations self-consistently until cohesive energy, elastic constants, and stacking-fault energies export to the EAM tables Part VIII consumed. Quantum ESPRESSO input decks make the audit reproducible; convergence logs become the pedigree certificate every upward handshake demands. This is the **floor** of the prologue ladder — below it lie many-electron wavefunctions and excited states this book treats only as footnotes. After Part IX, only coupling remains: the [epilogue](../epilogue/multiscale.md) reunites every rung in workflow time.
+
 ## The concept map
 
 | Question | Example in this part |
