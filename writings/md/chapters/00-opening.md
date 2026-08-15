@@ -30,6 +30,12 @@ The copper wire at the atomistic scale is a face-centered cubic lattice of coppe
 
 What MD returns upward: cohesive energy, elastic constants, stacking-fault energies, and mobility parameters that DDD and continuum models consume. What MD demands downward: a potential energy surface — empirical (EAM, MEAM) or learned from DFT (Part IX). The wire's story continues here as vibrating nuclei on that surface.
 
+## The atomistic descent in one paragraph
+
+Read this once if you paused after Part VII and wonder why the book now resolves line cores as atoms — every chapter below unpacks one atomistic beat of the same copper wire.
+
+Dislocation dynamics regularized cores with a cutoff radius and borrowed mobility from tables. Part VIII replaces that fiction with vibrating nuclei on an interatomic potential — a representative volume at the notch tip, grain boundary, or screw core where bond breaking and thermal statistics answer questions DDD cannot ask. NVT and NPT ensembles equilibrate the patch; velocity-Verlet integration marches Newton's equations; LAMMPS workflows fit EAM parameters that export cohesive energy, elastic constants, and stacking-fault energy upward. Part IX audits those potentials from electron density; the [epilogue](../epilogue/multiscale.md) wires the exports into handshakes no single code runs alone. Mesoscale descent taught forest statistics; atomistic descent teaches **trajectories**.
+
 ## Two clocks: reading order vs foundation pedigree
 
 This book and the laboratory use **two different orderings** for the same afternoon — and both are intentional.
