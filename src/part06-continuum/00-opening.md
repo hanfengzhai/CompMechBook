@@ -6,6 +6,10 @@ The copper wire under tension is our specimen throughout. At this scale it is a 
 
 Four chapters follow in order: kinematics; stress and balance laws; variational elasticity; and a preview of geometric and material nonlinearity — the last continuum stop before Part VII. The layout follows the **Continuum Mechanics Notes** in [`writings/continuum/`](../../writings/continuum/): numbered chapters with **Bridge** sections linking geometry to energy principles and to the mesoscale models of Part VII.
 
+## Midpoint: ascent complete, descent ahead
+
+If you have read linearly since the [preface](../../preface.md), you have completed the **ascent** — from vectors and stiffness matrices (Part I) through function spaces and weak PDEs (Parts II–III) to FEM, FVM, and now continuum mechanics (Parts IV–VI). The copper wire that began as a chain of springs is now a cylinder with Cauchy stress behind every entry in \(\mathbf{K}\). What follows in Parts VII–IX is the **descent**: the same specimen at finer scales, asking where yield stress, mobility, and elastic moduli hide their history. Part VI is the last rung where the wire still looks smooth on the engineering scale; [VI.4](04-nonlinear-plasticity-preview.md) admits that smoothness is a fiction — and [Part VII](../part07-defects/00-opening.md) begins the story of what lives underneath.
+
 ## Chapter guide
 
 | Chapter | Wire story beat | Core object | Handoff |

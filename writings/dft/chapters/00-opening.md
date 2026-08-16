@@ -16,11 +16,23 @@ Three chapters cover Born–Oppenheimer and the Hohenberg–Kohn framework, Kohn
 
 Read in order. Each chapter ends with a **Bridge** that states why the next chapter must exist; running Kohn–Sham without Born–Oppenheimer separation confuses electronic and nuclear degrees of freedom; exporting moduli without SCF convergence is the atomistic analogue of an unrefined FEM mesh.
 
+## The electronic floor in one paragraph
+
+Read this once if Part VIII's potentials felt like black boxes — every chapter below audits one electronic beat of the same copper wire.
+
+Copper's valence electrons determine everything coarser models inherit: cohesive energy that sets the scale of interatomic forces, elastic constants that enter every stiffness matrix, stacking-fault energy that governs dislocation mobility, vacancy formation enthalpy that explains diffusion during annealing. Density functional theory resolves the electron density \(\rho(\mathbf{r})\) self-consistently, proves the ground-state energy is a functional of that density alone, and exports numbers upward through Quantum ESPRESSO workflows. This is the **finest rung** on the prologue's ladder — the floor beneath every EAM parameter, every mobility table, every entry in \(\mathbb{C}\). The [epilogue](../epilogue/multiscale.md) climbs back up with those numbers in hand.
+
 ## Scene
 
 Part VIII ended with nuclei vibrating on an interatomic potential — EAM parameters fit to experiments, MD trajectories, or machine-learned surfaces. That potential is a **practical fiction**: it assumes electrons adjust instantaneously to nuclear motion, and it hides the quantum mechanics that sets cohesive energy, stacking-fault energy, and vacancy formation enthalpy.
 
 The copper wire at the electronic scale is not a chain of balls on springs. It is a periodic crystal of nuclei immersed in a sea of valence electrons whose density \(\rho(\mathbf{r})\) determines how strongly the lattice resists drawing, how easily dislocations slip, and how vacancies cost energy. DFT resolves that density; every number exported upward — \(E_{\text{coh}}\), \(C_{ij}\), \(\gamma_{\text{sf}}\) — is a contract between Part IX and Parts VI–VIII.
+
+## The electronic floor in one paragraph
+
+Read this once if you paused after Part VIII and wonder why the book now opens Schrödinger's equation for a copper unit cell — every chapter below unpacks one electronic beat of the same specimen.
+
+Classical MD assumed nuclei move on a Born–Oppenheimer surface without deriving it. Part IX separates fast electrons from slow nuclei, proves the ground-state energy is a functional of density alone, and solves Kohn–Sham equations self-consistently until cohesive energy, elastic constants, and stacking-fault energies export to the EAM tables Part VIII consumed. Quantum ESPRESSO input decks make the audit reproducible; convergence logs become the pedigree certificate every upward handshake demands. This is the **floor** of the prologue ladder — below it lie many-electron wavefunctions and excited states this book treats only as footnotes. After Part IX, only coupling remains: the [epilogue](../epilogue/multiscale.md) reunites every rung in workflow time.
 
 ## The concept map
 
@@ -76,6 +88,9 @@ If you have read linearly since the prologue, Part VIII's closing checkpoint fit
 | Elastic constants from stress–strain fluctuations | \(C_{ij}\) from strained unit cells (force theorem) |
 | Stacking-fault energy for DDD mobility | \(\gamma_{\text{sf}}\) from relaxed faulted supercells |
 | [VIII.3 Bridge](03-ab-initio-and-coarse-graining.md#bridge-to-part-ix) requests DFT pedigree | [IX.3](03-dft-workflows.md) exports QE numbers upward |
+| [VIII.3 Pedigree checklist](../part08-md/03-ab-initio-and-coarse-graining.md#pedigree-checklist-before-the-epilogue) — five-row contract before the epilogue | Each row receives a QE log, functional, and k-mesh in IX.3 |
+
+Linear readers arriving from [VIII.3](../part08-md/03-ab-initio-and-coarse-graining.md#pedigree-checklist-before-the-epilogue) should carry the pedigree checklist row-by-row — each export upward is a contract the epilogue's multiscale afternoon will enforce.
 
 Part VIII's LAMMPS trajectories assumed electrons follow nuclei instantaneously; Part IX separates the timescales and proves the ground-state energy is a **functional of density alone** — the finest rung of the prologue's ladder. The copper wire's valence electrons determine cohesive energy, bond stiffness, and defect formation enthalpies that every coarser model inherits. Part I's eigenvalue loop reappears as Kohn–Sham orbitals; Part IV's basis discretization reappears as plane waves and k-points. The epilogue will wire DFT → MD → DDD → FEM into one reproducible afternoon; Part IX supplies the numbers at the bottom of that chain.
 
