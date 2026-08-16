@@ -16,6 +16,12 @@ Three chapters cover potentials and phase space, ensembles and integrators, then
 
 Read in order. Each chapter ends with a **Bridge** that states why the next chapter must exist; running MD without understanding ensembles is energy drift disguised as physics; fitting EAM without DFT anchors is multiscale folklore.
 
+## The atomistic descent in one paragraph
+
+Read this once if Part VII's line defects felt abstract and you wonder why the book now counts individual atoms — every chapter below resolves one atomistic beat of the same copper wire.
+
+Dislocation cores are not mathematical points; they are rearrangements of dozens of atomic planes where bonds stretch, rebond, and exchange energy with the surrounding lattice. Part VIII makes those cores physical: nuclei on an interatomic potential, thermostats exchanging heat, integrators marching time in femtoseconds. The representative volume at a notch root or grain boundary is small enough to simulate yet large enough to export cohesive energy, elastic constants, and stacking-fault energies upward to DDD and continuum models. Part IX then asks where the potential itself comes from — the electronic floor beneath every EAM parameter. Ascent taught discretization; the atomistic descent teaches **resolution**.
+
 ## Scene
 
 Part VII ended with dislocation lines gliding through a polycrystal, exporting hardening laws and link statistics to crystal plasticity FEM. That picture is still **coarse-grained**: the dislocation core is a line singularity regularized by a cutoff radius; mobility tables are fit from experiments or atomistic snapshots, not derived from first principles.

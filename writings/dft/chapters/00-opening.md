@@ -16,6 +16,12 @@ Three chapters cover Born–Oppenheimer and the Hohenberg–Kohn framework, Kohn
 
 Read in order. Each chapter ends with a **Bridge** that states why the next chapter must exist; running Kohn–Sham without Born–Oppenheimer separation confuses electronic and nuclear degrees of freedom; exporting moduli without SCF convergence is the atomistic analogue of an unrefined FEM mesh.
 
+## The electronic floor in one paragraph
+
+Read this once if Part VIII's potentials felt like black boxes — every chapter below audits one electronic beat of the same copper wire.
+
+Copper's valence electrons determine everything coarser models inherit: cohesive energy that sets the scale of interatomic forces, elastic constants that enter every stiffness matrix, stacking-fault energy that governs dislocation mobility, vacancy formation enthalpy that explains diffusion during annealing. Density functional theory resolves the electron density \(\rho(\mathbf{r})\) self-consistently, proves the ground-state energy is a functional of that density alone, and exports numbers upward through Quantum ESPRESSO workflows. This is the **finest rung** on the prologue's ladder — the floor beneath every EAM parameter, every mobility table, every entry in \(\mathbb{C}\). The [epilogue](../epilogue/multiscale.md) climbs back up with those numbers in hand.
+
 ## Scene
 
 Part VIII ended with nuclei vibrating on an interatomic potential — EAM parameters fit to experiments, MD trajectories, or machine-learned surfaces. That potential is a **practical fiction**: it assumes electrons adjust instantaneously to nuclear motion, and it hides the quantum mechanics that sets cohesive energy, stacking-fault energy, and vacancy formation enthalpy.
