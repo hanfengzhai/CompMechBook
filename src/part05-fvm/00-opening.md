@@ -23,6 +23,12 @@ Part IV meshed the copper wire as a solid: stiffness matrices from Galerkin asse
 
 Current heats the copper; air carries that heat away by convection. Inside the wire, conduction is elliptic and FEM-friendly. In the surrounding fluid, momentum and energy are **transported**, not minimized — mass and enthalpy move with the flow, boundary layers steepen near the hot surface, and at high Reynolds number vortices shed downstream. The strong form is still Navier–Stokes and the energy equation from Part III, but the discretization philosophy shifts from trial functions in \(H^1\) to **flux balance on control volumes**. Part V is where the wire meets the wind.
 
+## The flux ladder in one paragraph
+
+Read this once if you want the fifth rung of the ascent before the proofs — every chapter below turns the same copper wire from elliptic conduction into conjugate heat transfer with the air that cools it.
+
+Integral conservation balances fluxes across cell faces; one-dimensional upwind schemes teach CFL stability before Riemann solvers tame shocks and steep gradients. Navier–Stokes and SIMPLE-type coupling make incompressible CFD tractable; wall temperature and heat flux handshake with Part IV's solid mesh at the interface. [Part VI's midpoint](../part06-continuum/00-opening.md#midpoint-ascent-complete-descent-ahead) closes the ascent with Cauchy stress behind every flux; [Part IV's Galerkin mesh](../part04-fem/00-opening.md#the-galerkin-mesh-in-one-paragraph) meshed the interior this part surrounds. Part V is the second discretization dialect on one specimen — conservation-first where Galerkin energy principles are awkward.
+
 ## The concept map
 
 | Question | Example in this part |

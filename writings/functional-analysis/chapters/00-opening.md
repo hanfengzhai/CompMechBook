@@ -24,6 +24,12 @@ Part I ended with a limit: as the spring network refines, the copper wire's disp
 
 The wire at this scale is still one-dimensional for intuition: axial displacement \(u(x)\) under tension, temperature \(T(x)\) along its length when current flows. Part II supplies the room those fields live in — norms that measure elastic energy, inner products that define orthogonality of vibration modes, completeness so mesh refinement has a target to converge toward. Every FEM code in later parts is linear algebra inside \(H^1\); this part explains why that claim is honest.
 
+## The analytical contract in one paragraph
+
+Read this once if you want the second rung of the ascent before the proofs — every chapter below unpacks one layer of the same copper wire as a field, not a vector.
+
+Mesh refinement sends nodal values toward functions \(u(x)\) and \(T(x)\) that live in normed spaces where Cauchy sequences stay inside — completeness is the target every stiffness matrix approximates. Inner products add angles so Galerkin projection is best approximation in energy norm, not ad hoc linear algebra; operators generalize matrices and dual functionals generalize load vectors. The spectral theorem closes the loop with discrete eigenmodes converging to normal modes of the vibrating bar. [Part III's weak-form pipeline](../part03-pdes/00-opening.md#the-weak-form-pipeline-in-one-paragraph) writes the PDEs these spaces host; [Part I's ascent preview](../part01-linear-algebra/00-opening.md#the-ascent-in-one-paragraph) sketches the full climb through Part VI. Part II is the analytical contract every FEM code signs without reading.
+
 ## The concept map (ME 412)
 
 The [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) are organized as a concept map, not a proof stack. At every step, ask:

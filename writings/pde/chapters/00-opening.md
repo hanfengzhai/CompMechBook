@@ -23,6 +23,12 @@ Part II named the function spaces — \(L^2\) for field energy, \(H^1\) for weak
 
 The physics at this scale is still continuum: steady axial conduction along the bar, elastic equilibrium under uniaxial tension, transient heating when current switches on. Each scenario begins as a **strong form** — a PDE satisfied pointwise — and must be rewritten as a **weak form** testable on a mesh. Part III is where the wire's equations become computable statements in the Sobolev spaces Part II defined.
 
+## The weak-form pipeline in one paragraph
+
+Read this once if you want the third rung of the ascent before the proofs — every chapter below turns the same copper wire from pointwise PDEs into energy principles a mesh can discretize.
+
+Strong forms fail at grip corners and concentrated loads; integration by parts produces weak forms \(a(u,v)=\ell(v)\) whose solutions live in \(H^1\) and \(L^2\), not in classical \(C^2\) smoothness. Sobolev spaces name that regularity; energy methods package existence and uniqueness as minimization — Lax–Milgram before any shape function is chosen. [Part IV's Galerkin mesh](../part04-fem/00-opening.md#the-galerkin-mesh-in-one-paragraph) assembles the stiffness matrix from these weak forms; [Part V's flux ladder](../part05-fvm/00-opening.md#the-flux-ladder-in-one-paragraph) discretizes transport when conservation beats variational energy. Part III is the last purely analytical stop before code — the recurring weak form the prologue promised would return in every later part.
+
 ## The concept map
 
 | Question | Example in this part |

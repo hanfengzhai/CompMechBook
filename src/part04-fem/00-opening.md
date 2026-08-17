@@ -24,6 +24,12 @@ Part III wrote the weak forms — virtual work for elasticity, the heat equation
 
 At this scale the wire is a solid specimen in a tensile test: displacement unknowns at nodes, boundary conditions at the grips, perhaps a refined region near a stress concentrator. Part IV is the engineer's answer to Part III's mathematics — how weighted residuals become Galerkin assembly, how convergence rates connect discrete matrices to the infinite-dimensional operators of Part II, and why the stiffness matrix is not magic but a best approximation in energy norm.
 
+## The Galerkin mesh in one paragraph
+
+Read this once if you want the fourth rung of the ascent before the proofs — every chapter below turns the same copper wire from weak forms into a meshed solid whose stiffness matrix you can trust on the load cell.
+
+Weighted residuals choose test spaces; Galerkin makes trial and test the same and produces sparse \(\mathbf{K}\) from element loops, shape functions, and quadrature. Scalar Poisson extends to vector elasticity on the same mesh; Céa's lemma proves the discrete solution tracks the continuous minimizer as \(h \to 0\). [Part V's flux ladder](../part05-fvm/00-opening.md#the-flux-ladder-in-one-paragraph) complements this part for the air that cools the wire; [Part VI's midpoint](../part06-continuum/00-opening.md#midpoint-ascent-complete-descent-ahead) names the stress and strain tensors both discretizations approximate. Part IV is where Part I's \(\mathbf{K}\mathbf{u}=\mathbf{f}\) becomes honest projection in \(H^1\).
+
 ## The concept map
 
 | Question | Example in this part |
