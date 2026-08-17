@@ -23,6 +23,12 @@ The prologue placed a cold-drawn copper wire under tension — heated by current
 
 At this first scale the wire is not yet a PDE or a mesh. It is a chain of coupled springs: each node carries a displacement, each bond contributes a stiffness entry, and tension at the grips becomes a load vector. Finite element assembly, molecular dynamics force evaluation, and Kohn–Sham orbital solves all reduce to the same pattern — \(\mathbf{K}\mathbf{u}=\mathbf{f}\) or its eigenvalue cousin. Part I makes that pattern explicit before Part II asks what happens when the number of springs grows without bound.
 
+## The ascent in one paragraph
+
+Read this once if you want the climb ahead before the proofs — every part through Part VI unpacks one rung of the same copper wire on the way up.
+
+The wire begins as coupled springs: a state vector, a stiffness matrix, eigenmodes that decouple vibration. Mesh refinement sends those objects toward fields in function spaces where weak forms live and Galerkin convergence is honest projection. PDEs write the equilibrium and heat equations those forms discretize; finite elements mesh the solid and finite volumes balance fluxes in the air that cools it when current flows. Continuum mechanics names the stress and strain both discretizations approximate — and admits that cold drawing wrote yield history smooth fields cannot see. [Part VI's midpoint](../part06-continuum/00-opening.md#midpoint-ascent-complete-descent-ahead) closes the ascent; [Part VII's mesoscale preview](../part07-defects/00-opening.md#the-descent-in-one-paragraph) opens the descent. Part I is the first rung: the grammar every later chapter speaks.
+
 ## The concept map
 
 At every step in this part, ask the same four questions the [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) later formalize for infinite dimensions:
