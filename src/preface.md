@@ -74,7 +74,9 @@ Read this once if you want the mathematical climb before every proof — each li
 
 Read this once if you want the scale descent before the mesoscopic and finer proofs — each linked part opening unpacks one rung on the way down.
 
-[Part VII's mesoscale preview](part07-defects/00-opening.md#the-descent-in-one-paragraph), [Part VIII's atomistic preview](part08-md/00-opening.md#the-atomistic-descent-in-one-paragraph), and [Part IX's electronic floor](part09-dft/00-opening.md#the-electronic-floor-in-one-paragraph) offer one-paragraph previews of dislocation forests, atomic lattices, and valence electrons on the same specimen. After Part IX, only coupling remains: the [epilogue](epilogue/multiscale.md) reunites every export in workflow time.
+**[Part VII](part07-defects/00-opening.md)** names the forest cold drawing stored: dislocation lines with Burgers vectors, Peach–Köhler forces, mobility laws, and Taylor hardening that export \(\rho\) and \(\tau(\gamma)\) to crystal plasticity FEM — the mechanism behind the \(J_2\) bend Part VI could only fit. **[Part VIII](part08-md/00-opening.md)** replaces line-core cutoffs with vibrating nuclei on interatomic potentials: NVT and NPT ensembles, velocity-Verlet integration, LAMMPS workflows that fit EAM parameters and export cohesive energy, elastic constants, and stacking-fault energy upward on trust. **[Part IX](part09-dft/00-opening.md)** audits those potentials from electron density: Born–Oppenheimer separation, Hohenberg–Kohn, Kohn–Sham self-consistency, and Quantum ESPRESSO decks that export \(E_{\text{coh}}\), \(C_{ij}\), and \(\gamma_{\text{sf}}\) with a pedigree traceable to SCF logs — the finest rung on the prologue's ladder. After Part IX, only coupling remains: the [epilogue](epilogue/multiscale.md) reunites every export in workflow time.
+
+Each part opening also carries a one-paragraph preview for readers who pause mid-descent: [mesoscale](part07-defects/00-opening.md#the-descent-in-one-paragraph), [atomistic](part08-md/00-opening.md#the-atomistic-descent-in-one-paragraph), and [electronic floor](part09-dft/00-opening.md#the-electronic-floor-in-one-paragraph).
 
 ## How this book is organized
 
