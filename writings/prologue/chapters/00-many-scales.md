@@ -212,6 +212,7 @@ The book reads in **mathematical order** (Part I before Part IX). The copper wir
 | The plot in one page | [Preface: story in one page](../preface.md#the-story-in-one-page) |
 | Ascent preview (Parts I–VI) | [Preface: ascent preview chain](../preface.md#ascent-preview-chain) |
 | Descent preview (Parts VII–IX) | [Preface: descent preview chain](../preface.md#descent-preview-chain) |
+| Continuity hinges (midpoint + VI.4) | [Preface: continuity hinges](../preface.md#continuity-hinges-ascent-descent) |
 | Ascent/descent hinge (VI.4) | [Part VI.4 intermission](../part06-continuum/04-nonlinear-plasticity-preview.md#intermission-ascent-ends-descent-begins) |
 | Chapter × lab-act map | [Appendix: narrative beat map](../appendix/sources.md#narrative-beat-map-mathematical-order--lab-act) |
 | Parameter pedigree (Act VI) | [Appendix: pedigree path](../appendix/sources.md#parameter-pedigree-path-act-vi-reading-order) |
