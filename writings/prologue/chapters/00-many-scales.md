@@ -203,6 +203,24 @@ We begin with the grammar of vectors and matrices — not because wires are line
 
 Turn the page when ready. The ladder starts with familiar objects: vectors, matrices, and the linear maps between them.
 
+## Reading compass: two clocks on one wire
+
+The book reads in **mathematical order** (Part I before Part IX). The copper wire lives in **laboratory time** (mounting before hardening). Both clocks describe the same afternoon — the continuity comes from returning to the specimen whenever the symbols change.
+
+| If you need… | Start here |
+|--------------|------------|
+| The plot in one page | [Preface: story in one page](../preface.md#the-story-in-one-page) |
+| Ascent preview (Parts I–VI) | [Preface: ascent preview chain](../preface.md#ascent-preview-chain) |
+| Descent preview (Parts VII–IX) | [Preface: descent preview chain](../preface.md#descent-preview-chain) |
+| Chapter × lab-act map | [Appendix: narrative beat map](../appendix/sources.md#narrative-beat-map-mathematical-order--lab-act) |
+| Parameter pedigree (Act VI) | [Appendix: pedigree path](../appendix/sources.md#parameter-pedigree-path-act-vi-reading-order) |
+
+**Mathematical order** builds language before atomistics — the path the Functional Analysis Notes layout assumes. **Laboratory time** follows what the operator watches: grips close (Act I), current warms the wire (Act II), load ramps (Act III), the curve hardens (Act IV). Act VI — foundation — runs **in parallel** with Acts I–V in real projects: no FEM deck starts without moduli whose pedigree traces to DFT or calibration.
+
+The [midpoint anchor](../part06-continuum/00-opening.md#midpoint-ascent-complete-descent-ahead) in Part VI is where the two journeys meet in reading order: ascent complete, descent ahead. The [epilogue](../epilogue/multiscale.md) reunites all six acts in workflow time.
+
+When a chapter feels abstract, locate it on the [narrative beat map](../appendix/sources.md#narrative-beat-map-mathematical-order--lab-act): *Which act am I simulating, and which rung supplies the numbers I trust?*
+
 ## Bridge
 
 Turn the page. The copper wire is waiting — first as vectors and matrices, eventually as electrons, dislocations, and degrees of freedom on a finite element mesh. The climb begins with the grammar we already speak: linear algebra.
@@ -214,4 +232,4 @@ Turn the page. The copper wire is waiting — first as vectors and matrices, eve
 | Weak form as recurring character (preview only) | Nodal equilibrium as finite-dimensional prelude; \(N\to\infty\) deferred to I.4 |
 | One specimen, many scales | Same wire as \(N\) coupled springs — the discrete shadow every mesh refines |
 
-Part I opens with [**Closing the arc from the Prologue**](../part01-linear-algebra/00-opening.md#closing-the-arc-from-the-prologue) — the same four questions replayed in finite-dimensional vocabulary before Part II replaces vectors with functions. Read the prologue's panoramic ladder once; then let Part I make the bottom rung explicit in the syntax every simulation shares.
+Part I opens with [**Closing the arc from the Prologue**](../part01-linear-algebra/00-opening.md#closing-the-arc-from-the-prologue) — the same four questions replayed in finite-dimensional vocabulary before Part II replaces vectors with functions. For the full mathematical climb before you commit to every proof, skim the [preface ascent preview chain](../preface.md#ascent-preview-chain) once; for the scale descent after Part VI, the [descent preview chain](../preface.md#descent-preview-chain) names every finer rung in one pass. Read the prologue's panoramic ladder once; then let Part I make the bottom rung explicit in the syntax every simulation shares.
