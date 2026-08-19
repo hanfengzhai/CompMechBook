@@ -66,6 +66,22 @@ The book reads in mathematical order (Part I before Part IX), but the copper wir
 
 When a chapter's **Bridge** names the next part, cross-check this table — the laboratory beat may lag or lead the mathematics by one part (Act II warming appears in Part III–V prose while Act III pulling is Part IV–VI). That offset is intentional: the wire heats before it yields.
 
+## Continuity hinges index (when the plot stutters)
+
+The [preface](../preface.md) documents ascent, midpoint, descent, and epilogue hinge tables separately. The [memory sheet](memory-sheet.md#continuity-hinges-master-map) collects all ten rows in one navigation page. Use this index when you know **which chapter** you are in but cannot feel the handoff to the next:
+
+| Chapter region | Hinge anchor | What should click |
+|----------------|--------------|-------------------|
+| I.4 → II.0 | [I.4 Bridge](../part01-linear-algebra/04-toward-infinity.md#bridge-to-part-ii) | Nodal vectors become fields; \(\mathbf{K}_N\) becomes an operator |
+| II.5 → III.0 | [II.5 Bridge](../part02-functional-analysis/05-spectral-theorem.md#bridge-to-part-iii) | Completeness hands off to weak Poisson and heat |
+| III.4 → IV.0 | [III.4 Bridge](../part03-pdes/04-energy-methods.md#bridge-to-part-iv) | Lax–Milgram becomes Galerkin assembly |
+| IV.5 / V.4 → VI.0 | [Two doors](../part04-fem/05-convergence.md#bridge-two-doors-from-here) | FEM and FVM converge on Cauchy stress |
+| VI.0 / VI.4 → VII.0 | [Midpoint](../part06-continuum/00-opening.md#midpoint-ascent-complete-descent-ahead), [intermission](../part06-continuum/04-nonlinear-plasticity-preview.md#intermission-ascent-ends-descent-begins) | Ascent complete; \(J_2\) placeholders yield to forest |
+| VII.3 → VIII.0 | [VII.3 Bridge](../part07-defects/03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) | Line cores need atomic bonding |
+| VIII.3 → IX.0 | [VIII.3 Bridge](../part08-md/03-ab-initio-and-coarse-graining.md#bridge-to-part-ix) | Potentials on trust need SCF audit |
+| IX.3 → Epilogue | [IX.3 Bridge](../part09-dft/03-dft-workflows.md#bridge-to-the-epilogue) | Finest rung; upward homogenization begins |
+| Epilogue → Prologue | [Epilogue Bridge](../epilogue/multiscale.md#bridge) | Four questions restart on the next project |
+
 ## Chapter roadmap (one continuous arc)
 
 Read in order for the full narrative. Each row is one chapter; **Bridge** sections at chapter ends explain the handoff to the next row.
