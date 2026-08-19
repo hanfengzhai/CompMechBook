@@ -8,7 +8,7 @@ This chapter is not a full treatise on plasticity theory — that would require 
 
 Return to the force–displacement trace from Part I: linear climb, then yield knee, then hardening plateau. Linear elasticity explains only the first segment. Large strain, necking, and path-dependent hardening live outside the quadratic energy landscape — yet the same wire, same grips, same experiment. This chapter names what changes when the tangent stiffness stops being constant and points toward Part VII's defects as the microscale reason for the knee.
 
-## Intermission: ascent ends, descent begins
+## Intermission: ascent ends, descent begins {#intermission-ascent-ends-descent-begins}
 
 If you have read linearly since the [preface ascent preview chain](../../preface.md#ascent-preview-chain), Part VI's [midpoint anchor](00-opening.md#midpoint-ascent-complete-descent-ahead) marked the turn from mathematical climb to scale descent. This chapter is the last continuum stop on the ascent side of that hinge: it admits that cold-drawn copper, notch roots, and path-dependent hardening **break** the smooth fields FEM and FVM trusted in Parts IV–V. The [preface descent preview chain](../../preface.md#descent-preview-chain) names what follows — dislocation forest, atomic lattice, electron density — without asking you to leave the wire on the bench. The specimen does not change; only the state variable does. When the J₂ return-mapping loop fits \(H\) and \(\sigma_{y0}\) but cannot explain **why** the curve bent, the plot turns downward: phenomenology has done its job; pedigree awaits in Part VII.
 

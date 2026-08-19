@@ -57,8 +57,9 @@ The book reads in mathematical order (Part I before Part IX), but the copper wir
 | III.1–III.4 | II–III | Strong form fails; energy chooses the solution |
 | IV.1–IV.5 | I, III | Mesh the solid; choose FEM or FVM door |
 | V.1–V.4 | II | Cool the wire; balance fluxes in air |
-| VI.1–VI.4 | II–IV | Name stress; yield preview forces descent |
-| VII.1–VII.3 | IV | Forest hardens; export \(\tau(\gamma)\) |
+| VI.1–VI.3 | II–III | Name stress; virtual work behind \(\mathbf{K}\) |
+| VI.4 | II–IV → descent | [Intermission](../part06-continuum/04-nonlinear-plasticity-preview.md#intermission-ascent-ends-descent-begins): ascent ends; \(J_2\) placeholders await a forest |
+| VII.0–VII.3 | IV | Forest hardens; export \(\tau(\gamma)\) |
 | VIII.1–VIII.3 | V–VI | Atoms at the notch; fit potential |
 | IX.1–IX.3 | VI | Electrons; archive pedigree |
 | Epilogue | All six | Wire the rungs; sensitivity ranks |

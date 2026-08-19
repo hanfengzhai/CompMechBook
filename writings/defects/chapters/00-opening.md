@@ -77,7 +77,7 @@ Part VI admitted that cold-drawn copper work-hardens and that notch roots break 
 
 ## Closing the arc from Part VI
 
-If you have read linearly since the prologue, Part VI's closing checkpoint named the continuum fields and admitted that **smooth elasticity ends at defects**. Part VII is the first **descent** that explains where phenomenological parameters hide their history:
+If you have read linearly since the prologue, [Part VI's intermission](../part06-continuum/04-nonlinear-plasticity-preview.md#intermission-ascent-ends-descent-begins) named the hinge where ascent ends and descent begins — smooth elasticity exhausted, phenomenological \(J_2\) placeholders awaiting a forest. Part VII is the first **descent** that explains where those parameters hide their history:
 
 | Part VI (continuum on the wire) | Part VII (dislocations on the wire) |
 |---------------------------------|-------------------------------------|

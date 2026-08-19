@@ -212,12 +212,13 @@ The book reads in **mathematical order** (Part I before Part IX). The copper wir
 | The plot in one page | [Preface: story in one page](../preface.md#the-story-in-one-page) |
 | Ascent preview (Parts I–VI) | [Preface: ascent preview chain](../preface.md#ascent-preview-chain) |
 | Descent preview (Parts VII–IX) | [Preface: descent preview chain](../preface.md#descent-preview-chain) |
+| Ascent/descent hinge (VI.4) | [Part VI.4 intermission](../part06-continuum/04-nonlinear-plasticity-preview.md#intermission-ascent-ends-descent-begins) |
 | Chapter × lab-act map | [Appendix: narrative beat map](../appendix/sources.md#narrative-beat-map-mathematical-order--lab-act) |
 | Parameter pedigree (Act VI) | [Appendix: pedigree path](../appendix/sources.md#parameter-pedigree-path-act-vi-reading-order) |
 
 **Mathematical order** builds language before atomistics — the path the Functional Analysis Notes layout assumes. **Laboratory time** follows what the operator watches: grips close (Act I), current warms the wire (Act II), load ramps (Act III), the curve hardens (Act IV). Act VI — foundation — runs **in parallel** with Acts I–V in real projects: no FEM deck starts without moduli whose pedigree traces to DFT or calibration.
 
-The [midpoint anchor](../part06-continuum/00-opening.md#midpoint-ascent-complete-descent-ahead) in Part VI is where the two journeys meet in reading order: ascent complete, descent ahead. The [epilogue](../epilogue/multiscale.md) reunites all six acts in workflow time.
+The [midpoint anchor](../part06-continuum/00-opening.md#midpoint-ascent-complete-descent-ahead) in Part VI is where the two journeys meet in reading order: ascent complete, descent ahead. [VI.4's intermission](../part06-continuum/04-nonlinear-plasticity-preview.md#intermission-ascent-ends-descent-begins) is the last continuum page before Part VII — read it when the return-mapping loop fits the load cell but cannot explain **why** the curve bent. The [epilogue](../epilogue/multiscale.md) reunites all six acts in workflow time.
 
 When a chapter feels abstract, locate it on the [narrative beat map](../appendix/sources.md#narrative-beat-map-mathematical-order--lab-act): *Which act am I simulating, and which rung supplies the numbers I trust?*
 
