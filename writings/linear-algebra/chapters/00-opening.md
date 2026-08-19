@@ -71,7 +71,7 @@ The prologue introduced a single copper wire as a **ladder of scales** — from 
 
 The wire at this scale is still a chain of coupled springs — not yet a PDE, not yet a mesh of tetrahedra. Part I supplies the syntax every later part generalizes: collect degrees of freedom, write balance as a linear system, decouple complexity with eigenmodes, then ask what happens when \(N \to \infty\) in Chapter 4.
 
-## Closing the arc from the Prologue
+## Closing the arc from the Prologue {#opening-hinge-prologue-to-part-i}
 
 If you have read the prologue straight through, the copper wire has already appeared as a continuum member, a dislocation forest, an atomic lattice, and a sea of electrons. Part I does not repeat those scenes — it **grounds** them in the grammar every later scale inherits:
 
@@ -121,6 +121,7 @@ The prologue introduced the copper wire at every scale and named the four questi
 
 | Prologue device | Part I chapter that delivers it |
 |-----------------|--------------------------------|
+| [Opening hinge](../preface.md#opening-continuity-hinge): panorama → grammar | [Part I opening](00-opening.md#opening-hinge-prologue-to-part-i): finite-dimensional rehearsal |
 | Six-act lab session, **Act I — Mounting** | [I.1](01-vectors-matrices.md): first \(\mathbf{K}\mathbf{u}=\mathbf{f}\) with grips fixed |
 | Four questions: state / equations / discretization / export | [I.1–I.4](04-toward-infinity.md): vector → map → modes → limit \(N\to\infty\) |
 | Ladder of scales (preview) | [I.4](04-toward-infinity.md): fields replace vectors; operators replace matrices |

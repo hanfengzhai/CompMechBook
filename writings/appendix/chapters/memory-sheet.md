@@ -133,10 +133,11 @@ flowchart TB
 
 ## Continuity hinges master map {#continuity-hinges-master-map}
 
-When a chapter feels disconnected from the last, pause at the hinge for your reading position — same copper wire, richer vocabulary at each turn. The [preface](../preface.md) splits these into ascent, midpoint, descent, and epilogue tables; this page collects all **nine narrative hinges** plus the **closing loop** in reading order.
+When a chapter feels disconnected from the last, pause at the hinge for your reading position — same copper wire, richer vocabulary at each turn. The [preface](../preface.md) splits these into opening, ascent, midpoint, descent, and epilogue tables; this page collects all **twelve narrative hinges** in reading order.
 
 | # | Phase | Hinge | When to pause |
 |---|-------|-------|---------------|
+| 0 | Opening | [Prologue → I](../prologue/00-many-scales.md#bridge-to-part-i) | Scale ladder feels like a menu before the first matrix |
 | 1 | Ascent | [I.4 → II](../part01-linear-algebra/04-toward-infinity.md#bridge-to-part-ii) | \(\mathbf{K}\mathbf{u}=\mathbf{f}\) feels unrelated to PDEs |
 | 2 | Ascent | [II.5 → III](../part02-functional-analysis/05-spectral-theorem.md#bridge-to-part-iii) | Sobolev norms feel abstract; weak form is the next dialogue |
 | 3 | Ascent | [III.4 → IV](../part03-pdes/04-energy-methods.md#bridge-to-part-iv) | Energy minimization and matrix assembly seem like separate tricks |
@@ -146,7 +147,8 @@ When a chapter feels disconnected from the last, pause at the hinge for your rea
 | 7 | Descent | [VII.3 → VIII](../part07-defects/03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) | Mobility or \(\gamma_{\text{sf}}\) feel like fitted constants |
 | 8 | Descent | [VIII.3 → IX](../part08-md/03-ab-initio-and-coarse-graining.md#bridge-to-part-ix) | EAM matches bulk moduli but no DFT deck is cited |
 | 9 | Descent | [IX.3 → epilogue](../part09-dft/03-dft-workflows.md#bridge-to-the-epilogue) | Exports exist in separate folders with no workflow |
-| 10 | Closing | [Epilogue → prologue](../epilogue/multiscale.md#bridge) | Next project needs scale discipline from day one |
+| 10 | Closing | [Epilogue: six-act reunion](../epilogue/multiscale.md#lab-act-reunion-six-acts-one-afternoon) | Each part makes sense alone but workflow order is unclear |
+| 11 | Closing | [Epilogue → prologue](../epilogue/multiscale.md#bridge) | Next project needs scale discipline from day one |
 
 **Baby picture:** read straight through for the plot; when the symbols change faster than the specimen, jump to the hinge row — it is the narrative stitch the Functional Analysis Notes layout assumes between numbered chapters.
 
