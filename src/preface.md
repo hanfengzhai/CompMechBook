@@ -62,7 +62,7 @@ Read this once if you want the plot before the proofs — every chapter below un
 
 A cold-drawn copper wire waits in wedge grips: our protagonist through every scale. We first learn the grammar every simulation shares — vectors, stiffness matrices, eigenmodes — and watch mesh refinement send those objects toward functions and operators. Function spaces supply the room where weak forms live; PDEs write the equilibrium and heat equations those forms discretize. Finite elements mesh the solid; finite volumes balance fluxes in the air that cools the wire when current flows. Continuum mechanics names the stress and strain both discretizations approximate; [VI.4's intermission](part06-continuum/04-nonlinear-plasticity-preview.md#intermission-ascent-ends-descent-begins) admits cold drawing wrote yield history the smooth fields cannot see — the hinge where phenomenology ends and pedigree begins. Dislocation dynamics simulates the forest that hardens the wire; molecular dynamics resolves atoms at notches and fits potentials on trust; density functional theory audits those potentials from electron density. The epilogue wires the rungs into handshakes no single code runs alone — the same four questions at every interface: state, equations, discretization, upward export.
 
-The [prologue](prologue/00-many-scales.md) opens the scene; the [chapter roadmap](appendix/sources.md) lists every beat in reading order; the [epilogue](epilogue/multiscale.md) reunites all six lab acts in workflow time. The [ascent preview chain](#ascent-preview-chain) and [descent previews](#descent-preview-chain) below summarize each rung before you commit to every proof; the prologue's [reading compass](prologue/00-many-scales.md#reading-compass-two-clocks-on-one-wire) maps mathematical order against laboratory time when the two clocks diverge. The [continuity hinges](#continuity-hinges-ascent-descent) table names the two turns at Part VI — mathematical midpoint and narrative intermission — before Part VII descends to defects.
+The [prologue](prologue/00-many-scales.md) opens the scene; the [chapter roadmap](appendix/sources.md) lists every beat in reading order; the [epilogue](epilogue/multiscale.md) reunites all six lab acts in workflow time. The [ascent preview chain](#ascent-preview-chain) and [descent previews](#descent-preview-chain) below summarize each rung before you commit to every proof; the prologue's [reading compass](prologue/00-many-scales.md#reading-compass-two-clocks-on-one-wire) maps mathematical order against laboratory time when the two clocks diverge. The [continuity hinges](#continuity-hinges-ascent-descent) table names the two turns at Part VI — mathematical midpoint and narrative intermission — before Part VII descends to defects; the [descent continuity hinges](#descent-continuity-hinges) table names the three turns within Parts VII–IX before the epilogue couples every export.
 
 ## Ascent preview chain
 
@@ -89,6 +89,20 @@ The book turns twice at Part VI — once in vocabulary, once in plot. Both hinge
 | **First mesoscale chapter** | [Part VII opening](part07-defects/00-opening.md) | Burgers geometry and DDD replace scalar \(\alpha\); the descent preview chain begins in earnest |
 
 Read the [midpoint](part06-continuum/00-opening.md#midpoint-ascent-complete-descent-ahead) when Parts I–V feel like separate subjects — Part VI names the stress tensor both discretizations approximate. Read the [intermission](part06-continuum/04-nonlinear-plasticity-preview.md#intermission-ascent-ends-descent-begins) when the return-mapping loop fits \(H\) and \(\sigma_{y0}\) but cannot explain **why** the curve bent. The prologue's [reading compass](prologue/00-many-scales.md#reading-compass-two-clocks-on-one-wire) maps these hinges against laboratory time (Acts III–IV: pull, then harden).
+
+## Descent continuity hinges (VII → epilogue) {#descent-continuity-hinges}
+
+After Part VI's intermission, the book descends in three deliberate turns — same wire, finer state variable, stricter pedigree at every export.
+
+| Hinge | Location | What turns |
+|-------|----------|------------|
+| **Mesoscale → atomistic** | [VII.3 Bridge](part07-defects/03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) | Line cores and mobility tables need atomic bonding; DDD cutoff becomes a vibrating RVE |
+| **Atomistic → electronic** | [VIII.3 Bridge](part08-md/03-ab-initio-and-coarse-graining.md#bridge-to-part-ix) | EAM potentials on trust need SCF audit; Born–Oppenheimer surface derived from \(\rho(\mathbf{r})\) |
+| **Electronic → coupling** | [IX.3 Bridge](part09-dft/03-dft-workflows.md#bridge-to-the-epilogue) | Finest rung complete; upward homogenization and handshake loops in the epilogue |
+
+Read the [mesoscale hinge](part07-defects/03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) when mobility or \(\gamma_{\text{sf}}\) feel like fitted constants — Peierls stress and core width hide in atomic trajectories, not Taylor hardening alone. Read the [atomistic hinge](part08-md/03-ab-initio-and-coarse-graining.md#bridge-to-part-ix) when EAM matches bulk moduli but no one cites the DFT input deck. Read the [coupling hinge](part09-dft/03-dft-workflows.md#bridge-to-the-epilogue) when exports exist in separate folders but no workflow connects them — the epilogue's multiscale afternoon is where pedigree becomes handshake.
+
+The [descent preview chain](#descent-preview-chain) names Parts VII–IX in one pass; this table names the **three narrative hinges** within that descent — the moments the plot turns from forest statistics to vibrating nuclei, from trajectories to electron density, from self-consistency to coupled codes.
 
 ## How this book is organized
 
