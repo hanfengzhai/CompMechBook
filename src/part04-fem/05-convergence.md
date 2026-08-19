@@ -317,7 +317,7 @@ Weak form (Part III)  →  Galerkin on V_h (Part IV)  →  K U = F  →  error b
 
 The copper wire's tensile equilibrium, steady heating, and elastic step all occupy rows in the summary tables above. Convergence as \(h \to 0\) is the promise Part II made in function spaces, made numerical in this chapter.
 
-## Bridge: two doors from here
+## Bridge: two doors from here {#bridge-two-doors-from-here}
 
 Part IV answered *how* to discretize elliptic problems on meshes. Two natural continuations follow — and both converge on the same continuum vocabulary of Part VI.
 

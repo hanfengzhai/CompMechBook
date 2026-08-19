@@ -215,7 +215,7 @@ Discretize with **two equal bar elements** (three nodes). Use linear hat functio
 
 The mid-span temperature you read on the thermocouple is the **minimizer** of \(\Pi\) in \(V_h\). When Part IV assembles \(\mathbf{K}\mathbf{T} = \mathbf{F}\) for the coupled thermoelastic wire, the mechanical block minimizes elastic energy and the thermal block minimizes this functional — two bowls, one afternoon. If you add thermal expansion \(\varepsilon_{\text{th}} = \alpha(T - T_{\text{ref}})\) before Act III ramps load, the two functionals **couple**: heat lowers effective stress at fixed grip displacement, previewing the thermoelastic energy in the worked example above.
 
-## Bridge to Part IV
+## Bridge to Part IV {#bridge-to-part-iv}
 
 We have:
 
