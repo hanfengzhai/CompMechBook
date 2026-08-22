@@ -320,8 +320,17 @@ Potentials define forces; integrators and statistical ensembles define how traje
 | Core cutoff radius in OpenDiS | Physical core structure in a cylindrical RVE | Stable timesteps and thermostat transients |
 | Taylor hardening from link statistics | Nucleation barriers and cross-slip rates | Converged runs before exporting to DDD yaml tables |
 
+**Scale-boundary handshake (VII.3 → VIII.1 → VIII.2).**
+
+| Mesoscale request (Part VII) | Atomistic foundation (this chapter) | Dynamics audit (next chapter) | Failure mode |
+|------------------------------|-------------------------------------|-------------------------------|--------------|
+| Burgers vector \(b = a_0/\sqrt{2}\) | EAM-minimized \(a_0\) on fcc lattice | NPT equilibration at 300 K | Wrong lattice constant in DDD yaml |
+| Core cutoff \(r_c\) in OpenDiS | Physical core width from cylindrical RVE | Stable \(\Delta t\) under NVE check | Linear elasticity inside core |
+| \(\gamma_{\text{sf}}\) for partial dislocations | Generalized stacking-fault surface | Slab pull under NVT ensemble | Wrong stacking sequence in EAM fit |
+| Peierls threshold in segment law | Core structure at 0 K minimization | Finite-\(T\) phonon drag from NVT shear | 0 K barrier exported to 300 K DDD |
+
 Part VII's [Bridge](../../part07-defects/03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) named the **ink** behind dislocation lines — atomic bonding. The copper lattice here is that ink: nuclei on a Born–Oppenheimer surface whose parameters were trusted in LAMMPS before Part IX derived them from \(\rho(\mathbf{r})\). The [two clocks note](00-opening.md#two-clocks-reading-order-vs-foundation-pedigree) at the Part VIII opening explains why you may already have run EAM fits in workflow order; linear readers arrive correctly after DDD and should treat this chapter as **resolving the core** the mesoscale model regularized with a cutoff.
 
-Return to the prologue's **Act IV — Hardening**: the load cell curve bent because lines moved; MD shows **how bonds stretch** at the core where Peach–Köhler forces are largest. Part I's pattern returns — state vector \(\{\mathbf{r}_i\}\), force vector from \(\nabla V\), timestep loop as repeated matrix–vector work — now with \(10^5\)–\(10^9\) atoms instead of \(N\) springs.
+Return to the prologue's **Act IV — Hardening**: the load cell curve bent because lines moved; MD shows **how bonds stretch** at the core where Peach–Köhler forces are largest. Part I's pattern returns — state vector \(\{\mathbf{r}_i\}\), force vector from \(\nabla V\), timestep loop as repeated matrix–vector work — now with \(10^5\)–\(10^9\) atoms instead of \(N\) springs. The EAM minimization Lab act above is the **foundation archive** Part IX's DFT run will supersede — but only after [IX.3](../part09-dft/03-dft-workflows.md) documents cutoff and k-mesh convergence.
 
 [VIII.2](02-ensembles-integrators.md) makes sampling precise: Verlet integration, NVT and NPT control, and LAMMPS workflows that connect atomistic simulation to dislocation dynamics and beyond. Turn the page when the potential is specified but the wire's laboratory temperature has not yet entered the simulation — that is the signal that phase space, not just energy minimization, is the correct stage.

@@ -265,6 +265,17 @@ Poisson's equation and linear elasticity share one assembly loop — scalar vers
 | Thermoelastic coupling: scalar heat + vector displacement on one mesh | A posteriori estimators and adaptive refinement at grip corners |
 | Nonlinear hyperelastic preview (Part VI pointer) | When \(p\)-refinement beats \(h\)-refinement; locking at \(\nu \to 1/2\) |
 
-Return to the [prologue](../../prologue/00-many-scales.md): **Act III** ramps grip displacement on a mesh whose axial displacement field is now a vector-valued Poisson story — three components, one assembly habit. The load cell curve in the linear elastic regime is trustworthy only if refinement studies show the discrete solution converging to the weak solution Part III wrote. [II.3](../part02-functional-analysis/03-hilbert-spaces.md) and [III.3](../part03-pdes/03-sobolev-spaces.md) supplied the norms; the next chapter closes the loop between theory and mesh refinement on the copper wire and beyond.
+**Scale-boundary handshake (IV.4 → IV.5 → Part V/VI).**
+
+| Vector FEM output (this chapter) | Convergence audit (next chapter) | Downstream consumer | Failure mode |
+|----------------------------------|----------------------------------|---------------------|--------------|
+| Block \(\mathbf{K}\) from \(\mathbb{C}:\boldsymbol{\varepsilon}(\mathbf{v})\) | Céa's lemma in energy norm \(\|u-u_h\|_a\) | Part VI return-mapping on same mesh | Locking at \(\nu \to 1/2\) on Q1 hex |
+| Thermoelastic load from \(\alpha \Delta T\) (Lab act Pass 2) | \(h\)-refinement at grip corner | Act III load cell in linear regime | Thermal stress ignored in pure mechanical run |
+| Traction BC on grip face | A posteriori error at Neumann boundary | Part V conjugate heat transfer | Wrong traction quadrature on distorted face |
+| Isotropic \(E,\nu\) on drawn wire | Texture-aware \(\mathbb{C}\) when rates fail | Part VII polycrystal RVE | Single-crystal moduli on drawn specimen |
+
+Recall the pipeline from [Part III.4](../part03-pdes/04-energy-methods.md#bridge-to-part-iv): weak form → energy minimum → Rayleigh–Ritz on \(V_h\). This chapter extended Rayleigh–Ritz from scalar temperature to vector displacement on the **same** mesh connectivity — the multiphysics habit Part V will reuse when air cooling adds a Robin flux on the wire surface.
+
+Return to the [prologue](../../prologue/00-many-scales.md): **Act III** ramps grip displacement on a mesh whose axial displacement field is now a vector-valued Poisson story — three components, one assembly habit. The load cell curve in the linear elastic regime is trustworthy only if refinement studies show the discrete solution converging to the weak solution Part III wrote. [II.3](../part02-functional-analysis/03-hilbert-spaces.md) and [III.3](../part03-pdes/03-sobolev-spaces.md) supplied the norms; [IV.5](05-convergence.md) closes the loop between theory and mesh refinement on the copper wire and beyond.
 
 Turn the page when patch tests pass but the grip displacement still changes when you halve \(h\) — that is the signal that convergence theory, not intuition, must certify the answer.

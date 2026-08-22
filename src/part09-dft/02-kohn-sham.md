@@ -319,7 +319,17 @@ The Kohn–Sham equations are the theory; Quantum ESPRESSO inputs and convergenc
 | Stacking-fault energy for partials | Generalized stacking-fault surface from slab calculations | Defect supercells with documented finite-size study |
 | Phonons for thermal checks | DFPT or finite-difference phonon workflows | Export tables for MD and continuum thermal expansion |
 
-Part I's eigenvalue loop reappears as the self-consistent cycle above; Part II's function spaces as orbital Hilbert spaces; Part IV's assembly philosophy as plane-wave expansions and k-point quadrature. The [Part IX opening](00-opening.md#bridge) framed this part as the **audit chapter** for every potential Part VIII already ran — the same role Part II played for Part I's stiffness matrices.
+**Scale-boundary handshake (IX.2 → IX.3 → epilogue).**
+
+| Kohn–Sham output (this chapter) | Workflow archive (next chapter) | Upstream consumer | Failure mode |
+|---------------------------------|---------------------------------|-------------------|--------------|
+| Converged \(\rho(\mathbf{r})\) and \(E_{\text{tot}}\) | Documented `pw.x` input deck + convergence log | Part VIII EAM fit ([VIII.1](../part08-md/01-potentials-phase-space.md)) | Under-converged \(E_{\text{cut}}\) exported to LAMMPS |
+| Elastic constants \(C_{ij}\) from strain derivatives | `vc-relax` + stress-strain series for fcc Cu | Part IV/ VI \(\mathbb{C}\) on drawn wire | Single-point stress without relaxation |
+| \(\gamma_{\text{sf}}\) from slab calculations | Generalized stacking-fault energy surface | Part VII partial dislocation laws | Wrong slip plane in slab geometry |
+| Vacancy formation \(E_f^v\) | Supercell SCF with finite-size study | Part VIII NEB barriers; annealing kinetics | Image charge in too-small cell |
+| Phonon DOS from DFPT | `ph.x` export table | Part VIII VACF cross-check ([VIII.2](../part08-md/02-ensembles-integrators.md)) | Incomplete k-mesh in phonon run |
+
+Part I's eigenvalue loop reappears as the self-consistent cycle above; Part II's function spaces as orbital Hilbert spaces; Part IV's assembly philosophy as plane-wave expansions and k-point quadrature. The [Part IX opening](00-opening.md#bridge) framed this part as the **audit chapter** for every potential Part VIII already ran — the same role Part II played for Part I's stiffness matrices. The cutoff-sweep Lab act above is the DFT analogue of Part IV's \(h\)-refinement: pick the smallest \(E_{\text{cut}}\) where energy changes fall below 1 meV/atom before exporting any number upward.
 
 Return to the prologue's **Act VI — Foundation**: before the operator mounted the wire, someone chose Young's modulus and a yield stress. That invisible afternoon is now explicit: cohesive energy per atom, elastic constants \(C_{ij}\), vacancy formation enthalpy, and surface energies — each gated by SCF convergence and documented functional choice. Unconverged cutoff is the DFT analogue of an ill-conditioned \(\mathbf{K}\): structured noise dressed as physics.
 
