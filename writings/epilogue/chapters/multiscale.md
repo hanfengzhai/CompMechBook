@@ -597,6 +597,22 @@ No single executable runs all six acts unattended. The discipline is **traceabil
 
 The multiscale afternoon in the opening **Scene** is this table running in parallel — QE logs beside LAMMPS beside OpenDiS beside the same tet mesh from Part IV. Reading order taught the grammar; workflow order pays the bills.
 
+### What you should be able to do after the book
+
+The epilogue is not a bibliography — it is a workflow exam on the same copper wire. Before you start a new project, check these habits against a real multiscale afternoon:
+
+| After completing | Skill on the copper wire | Minimal artifact |
+|------------------|--------------------------|------------------|
+| Full read (I–IX) | Trace Young's modulus from FEM input deck to DFT export | Spreadsheet: value, unit, functional, k-mesh, source file |
+| Coupling paradigms | Choose sequential vs concurrent coupling for a notch root | One paragraph: where overlap breaks single constants |
+| Conjugate heat (IV–V) | Run FEM solid ↔ FVM fluid until wall flux matches | Fixed-point log: \(T_w\), \(q_w\) iterations to tolerance |
+| Act IV hardening | Export \(\tau(\gamma)\) from DDD with documented strain rate | yaml beside crystal-plasticity deck; rate matches load cell |
+| Act VI foundation | Wire IX → VIII → VII → IV in workflow order | Pedigree diagram with units at every arrow |
+| Handshake discipline | Ask four questions at every interface, not only inside solvers | Checklist row per arrow: state, equations, discretization, export |
+| Verification | Name what is proved vs validated empirically at each rung | One column in a V&V table beside the pedigree diagram |
+
+None of these require a national allocation — but each one separates a reproducible multiscale study from a pile of incompatible input decks. If you can trace one modulus to an archived SCF log, run a conjugate heat loop until fluxes agree, and say which act of the lab session a new simulation belongs to, you have closed the loop the prologue opened. Return to the [prologue four questions](../prologue/00-many-scales.md#the-same-questions-at-every-scale) on the next material; the specimen changes, the habit does not.
+
 ## Concept map checkpoint (epilogue)
 
 The epilogue closes the book with the four questions applied to **multiscale coupling**. Before you start the next project, summarize the whole arc:

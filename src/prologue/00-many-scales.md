@@ -228,6 +228,21 @@ The [preface ascent continuity hinges](../preface.md#ascent-continuity-hinges) n
 
 When a chapter feels abstract, locate it on the [narrative beat map](../appendix/sources.md#narrative-beat-map-mathematical-order--lab-act): *Which act am I simulating, and which rung supplies the numbers I trust?*
 
+### What you should be able to do after the prologue
+
+The prologue is panoramic — no proofs yet — but it should change how you read every later chapter. Before Part I assembles the first matrix, check these habits against the copper wire:
+
+| After reading | Skill on the copper wire | Minimal artifact |
+|---------------|--------------------------|------------------|
+| Scene + ladder | Name the nine rungs in order; say what each exports upward | One-row ladder sketch: algebra → … → DFT |
+| Four questions table | Fill state / equations / discretization / export for FEM and MD | Completed row for two scales on the same wire |
+| Six-act lab session | Place any Part I–IX chapter on Acts I–VI | Act label beside chapter title in your notes |
+| Homogenize vs derive | Explain why we read I–VI before VII–IX | One sentence: "modulus is output, not input" |
+| Scale overlap | Point to the notch as a region where sequential homogenization fails | Sketch: continuum stress far away, atoms at tip |
+| Reading compass | Choose mathematical order vs lab time for your goal | Link to one [preface hinge](../preface.md#opening-continuity-hinge) you will use first |
+
+None of these require running a code — but each one is the navigation discipline the Functional Analysis Notes layout assumes at every part opening. If you can locate a chapter on the ladder, name the four questions it answers, and say which lab act the operator is watching, Part I's \(\mathbf{K}\mathbf{u}=\mathbf{f}\) will not feel like a new subject. It will feel like the bottom rung of a story you have already started.
+
 ## Concept map checkpoint (prologue)
 
 The prologue opened the whole book with the four questions the [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) formalize part by part. Before Part I makes them finite-dimensional, summarize the panoramic ladder:
