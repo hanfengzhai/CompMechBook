@@ -197,6 +197,18 @@ The strong form is what physicists write. The weak form is what variational algo
 | Natural BC as limits of flux | Emergent BC from integration by parts |
 | FEM entry via second derivatives | FEM entry via one integration by parts → stiffness integrals |
 
+**Scale-boundary handshake (III.1 → III.2 → Acts II/III).**
+
+| Strong-form output (this chapter) | Weak-form consumer ([III.2](02-weak-form.md)) | Wire location | Failure mode |
+|-----------------------------------|----------------------------------------------|---------------|--------------|
+| \(-k\Delta T = q\) at smooth interior points | \(\int k \nabla T \cdot \nabla v = \int q v\) | Midspan under Joule heating (Act II) | Using strong Laplacian at thermocouple weld |
+| \(-\nabla\cdot\boldsymbol{\sigma} = \mathbf{0}\) | Virtual work \(\int \boldsymbol{\sigma}:\nabla\mathbf{v}\) | Grip-to-midspan elastic zone (Act III) | Second derivatives at reentrant grip corner |
+| Dirichlet BC \(T|_{\Gamma_D} = T_0\) | Essential constraint on trial space \(H^1_0\) | Fixed-grip ends at 300 K | Mixing Dirichlet rows with duplicated Neumann flux |
+| Neumann flux \(-k\partial T/\partial n = h(T - T_\infty)\) | Natural BC term in weak form | Wire surface to coolant (Act II preview) | Robin BC assembled twice in FEM |
+| Elliptic classification (Poisson, steady heat) | Lax–Milgram coercivity hypothesis | Both Act II and Act III in linear regime | Parabolic heat treated as elliptic without time term |
+
+The Lab act's three-point table is the operational version of this handshake: row one (midspan) stays in strong form for intuition; rows two and three (weld, interface) **require** the weak form [III.2](02-weak-form.md) derives next. Part II built \(H^1\) so the weak form has a room to live in; this chapter names the PDEs that room will serve.
+
 The copper wire's tensile equilibrium and steady heating look elliptic and innocent in strong form — until the grip corner, the thermocouple weld, or a material interface breaks \(C^2\) smoothness. Part II built \(H^1\) and Lax–Milgram; this chapter named the PDEs those tools will serve. The next chapter derives the weak form of Poisson's equation — the template for essentially all FEM codes — and states the Lax–Milgram theorem that guarantees a unique weak solution. The wire's temperature and displacement, too rough for classical derivatives at corners and kinks, will find a home there.
 
 Return to this chapter's opening **Scene**: the thermal camera in prologue **Act II — Warming** demands a strong-form equation at every interior point — and previews why the weak form in [III.2](02-weak-form.md) is the honest continuum statement at the thermocouple weld and insulator corner. Part I's nodal balance laws were the finite-dimensional prelude; Part II's Sobolev spaces are the limit room; this chapter is the blackboard physics both must approximate.

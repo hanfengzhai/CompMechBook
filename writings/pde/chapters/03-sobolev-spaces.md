@@ -198,6 +198,18 @@ Energy methods package weak forms as minimization problems. They unify FEM, prov
 | \(H^2\) regularity enables \(O(h^2)\) rates | Saddle-point forms where minimization alone fails (Stokes) |
 | Piecewise-linear FEM fields live in \(H^1\), not \(H^2\) | Polyconvex energies for nonlinear elasticity (Part VI preview) |
 
+**Scale-boundary handshake (III.3 → III.4 → Part IV).**
+
+| Sobolev contract (this chapter) | Energy method consumer ([III.4](04-energy-methods.md)) | FEM discretization (Part IV) | Failure mode |
+|---------------------------------|--------------------------------------------------------|------------------------------|--------------|
+| \(T \in H^1\): continuous, \(T' \in L^2\) | Dirichlet principle: minimize \(\Pi[T] = \int \tfrac{k}{2}|\nabla T|^2 - qT\) | P1 hat functions on wire mesh (Act II) | Temperature jump across element → \(T_h \notin H^1\) |
+| \(H^1_0\) encodes zero Dirichlet on grips | Elastic \(\Pi[\mathbf{u}]\) with essential BC on displacement | Mechanical block shares mesh with thermal (Act III) | Thermal expansion eigenstrain omitted |
+| \(H^2\) regularity → \(O(h^2)\) for P1 Poisson | Rayleigh–Ritz on \(V_h\) equivalent to Galerkin | [IV.2](../part04-fem/02-galerkin-assembly.md) assembly loop | Expecting \(O(h^2)\) when true solution is only \(H^1\) |
+| Trace theorem: boundary values in \(L^2(\partial\Omega)\) | Natural BC from \(\delta\Pi\) | Neumann face quadrature in [IV.3](../part04-fem/03-elements-quadrature.md) | Robin convection assembled without trace consistency |
+| Rellich–Kondrachov compactness in 2D/3D | Coercivity + compactness → existence | Patch test certifies \(V_h \subset H^1\) | Non-conforming elements without inf–sup audit |
+
+The thermocouple Lab act proved \(T_h \in H^1\) on three nodes but \(T_h \notin H^2\) — the regularity gap that separates **membership** (enough for weak forms) from **rate** (enough for optimal convergence). [III.4](04-energy-methods.md) packages that membership as energy minimization; Part IV discretizes the minimizer on \(V_h\).
+
 The copper wire's displacement minimizes elastic energy in \(H^1\); its temperature minimizes a quadratic functional with conductivity \(k(x)\). Those are not separate tricks — they are the same variational pattern [III.2](02-weak-form.md) wrote as \(a(u,v)=\ell(v)\), now dressed as \(\delta\Pi[u]=0\). When incompressibility or mixed stress–displacement formulations appear, minimization alone is insufficient; saddle-point structure (LBB) enters — the same inf–sup language Part IV will meet again for Stokes.
 
 Return to the [prologue](../../prologue/00-many-scales.md): in **Act II — Warming**, the thermocouple climbs while the grips still hold fixed displacement. The temperature field \(T(x)\) that drives that reading must live in \(H^1\) — continuous across the wire, with square-integrable gradient — even though Joule heating and surface convection make \(T\) kinked at the thermocouple weld and insulator corner. Piecewise-linear FEM temperatures are globally in \(H^1\) but not in \(H^2\); that gap is exactly why optimal \(O(h^2)\) rates need smoother true solutions than the discrete fields themselves possess. Sobolev membership is not pedantry — it is the contract the thermocouple and the load cell both assume.

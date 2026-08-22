@@ -221,6 +221,18 @@ Part III applies this toolkit to **partial differential equations** directly. We
 | Galerkin best approximation on \(V_h\) | The equations Parts IV and V will discretize |
 | [II.5 checkpoint](#concept-map-checkpoint-part-ii) | [III opening](../part03-pdes/00-opening.md#closing-the-arc-from-part-ii) **Closing the arc from Part II** |
 
+**Scale-boundary handshake (Part II → Part III → Part IV).**
+
+| Part II export (this chapter) | Part III consumer | Wire-scale lab act | Failure mode |
+|-------------------------------|-------------------|--------------------|--------------|
+| Lax–Milgram on coercive \(a(u,v)\) | Weak Poisson/heat/elasticity in [III.2](../part03-pdes/02-weak-form.md) | Act II steady heating; Act III tensile equilibrium | Writing strong form where \(C^2\) fails at grip corner |
+| Rayleigh–Ritz: \(\omega_{1,h} \ge \omega_1\) | Energy minimum in [III.4](../part03-pdes/04-energy-methods.md) | Tap test before Act III linear ramp | Mass lumping breaks spectral monotonicity |
+| Dual loads \(\ell \in H^{-1}\) | Point forces and Neumann flux in weak form | Grip traction as equivalent nodal loads | Load lumping without weak\* convergence |
+| Compact embedding \(H^1 \hookrightarrow L^2\) | Sobolev regularity audit in [III.3](../part03-pdes/03-sobolev-spaces.md) | Thermocouple weld: \(T \in H^1\), not \(C^2\) | Discontinuous trial fields across elements |
+| Galerkin best approximation on \(V_h\) | Part IV assembly ([IV.2](../part04-fem/02-galerkin-assembly.md)) | Same mesh for heat and mechanics | Different connectivity for thermal vs mechanical DOFs |
+
+The [preface ascent continuity hinges](../preface.md#ascent-continuity-hinges) name Part II → Part III as the **function spaces → PDEs** turn — the second hinge in the mathematical climb. When Part I's eigenmodes and Part II's operator spectra feel disconnected from the wire's PDEs, reread the Rayleigh–Ritz Lab act above: \(\omega_{1,h}\) converging from above is the same spectral machinery that will certify mesh convergence in [IV.5](../part04-fem/05-convergence.md).
+
 The [prologue](../../prologue/00-many-scales.md) named the weak form a **recurring character** — born here as integration by parts, destined to become Galerkin assembly in Part IV, virtual work in Part VI, and a variational statement on electron density in Part IX. Part II built the room that character speaks in: \(H^1\) for admissible fields, dual spaces for concentrated loads, compact embeddings so Galerkin projections have targets. Part III is the act where the character first has lines on stage: multiply by a test function, integrate by parts, and ask whether internal and external virtual work balance for every admissible virtual displacement. The copper wire at the grip corner — where Part III opens — is where that character stops pretending every field is \(C^2\).
 
 Turn the page. Strong forms first: what the blackboard demands at every point, and where that demand breaks.
