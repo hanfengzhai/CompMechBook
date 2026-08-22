@@ -47,6 +47,19 @@ flowchart LR
 
 **Baby picture:** separate fast electrons from slow nuclei, prove the ground-state energy is a functional of density alone, solve Kohn–Sham equations self-consistently, then export cohesive energy and elastic moduli upward to MD, DDD, and FEM. The copper wire's valence electrons live here.
 
+## How Part IX connects to the full ladder (upward exports)
+
+Part IX is the **finest rung** whose exports climb back through every coarser model — the audit chapter for the entire book:
+
+| Export from Part IX | Minimum SCF evidence | Upward consumer |
+|---------------------|----------------------|-----------------|
+| \(E_{\text{coh}}\), \(a_0\) | Relaxed fcc cell; pressure \(\approx 0\) | Part VIII EAM fit; Part VII Burgers \(b = a_0/\sqrt{2}\) |
+| \(C_{ij}\) or Voigt \(E, \nu\) | Strained unit cells; force theorem | Part IV elastic step; Part VI \(\mathbb{C}\) handshake |
+| \(\gamma_{\text{sf}}\) | Faulted supercell relaxation | Part VII partial separation; Peierls stress in OpenDiS |
+| SCF convergence log | Functional, pseudopotential, cutoff, k-mesh | Epilogue pedigree at every handshake arrow |
+
+If Part VIII's EAM potential felt like a black box, Part IX is the **Part II of the descent** — it names the limit object (\(\rho(\mathbf{r})\), Kohn–Sham orbitals) behind every interatomic potential. Part I's eigenvalue loop reappears as the SCF cycle; Part IV's basis discretization reappears as plane waves and k-points. The [epilogue](../epilogue/multiscale.md) wires these exports into workflow time; the [preface descent continuity hinges](../preface.md#descent-continuity-hinges) name the three turns from mesoscale through electrons to coupling.
+
 ## Representative schematics (DFT Coursework)
 
 The [MSE 5720 DFT coursework](https://github.com/hanfengzhai/MSE5720-HW) and teaching materials follow the same concept-map layout: each schematic is a baby picture of the electronic-structure pipeline. Use them as a visual index while reading:

@@ -51,6 +51,18 @@ flowchart LR
 
 **Baby picture:** name the line defects that carry plasticity, simulate their motion with elastic superposition and mobility tables, extract hardening laws and link statistics, then export internal variables to polycrystal FEM. The drawn copper wire is stronger because of this forest, not because \(\mathbf{K}\) changed.
 
+## How Part VII connects to Parts IV–IX
+
+Part VII is the **first descent rung** that exports history variables upward and requests atomic pedigree downward:
+
+| Part VII chapter | Structure or theorem | Where it reappears |
+|-----------------|---------------------|-------------------|
+| VII.1 Defect taxonomy | Burgers vector \(\mathbf{b}\); core structure | Part VIII core-width RVE; Part IX \(\gamma_{\text{sf}}\) audit |
+| VII.2 Dislocation dynamics | Peach–Köhler; mobility \(M(\tau,T)\) | Part IV stress import; Part VIII phonon drag cross-check |
+| VII.3 Polycrystal handoff | Taylor hardening; OpenDiS → DAMASK | Part IV crystal-plasticity FEM; epilogue Handshake 4a |
+
+If Act IV's upward bend in the load cell curve felt like a fitted \(H\) without a mechanism, return to [VII.2](02-dislocation-dynamics.md). Part IV supplies the Cauchy stress field DDD consumes; Part VIII resolves core cutoffs and fits mobility tables; Part IX audits stacking-fault energy and elastic moduli those tables assume. The copper wire's cold-drawn strength is a **mesoscale export** — not a change to Young's modulus, but a forest density \(\rho\) written into internal variables at Gauss points.
+
 ## Representative schematics (Defects Notes)
 
 The [Defects & Disorders Notes](https://hanfengzhai.github.io/file/defects_notes.pdf) mirror Part II's concept-map layout: each schematic is a baby picture of the mesoscale pipeline. Use them as a visual index while reading:

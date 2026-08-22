@@ -42,6 +42,19 @@ flowchart LR
 
 **Baby picture:** divide the domain into cells, balance fluxes across faces, resolve discontinuities with a Riemann problem, then extend to Navier–Stokes for the air cooling the copper wire. FVM complements FEM: conservation-first where Galerkin energy principles are awkward.
 
+## How Part V connects to Parts IV and VI
+
+Part V is the **transport discretization dialect** paired with Part IV's elliptic habit on the same specimen:
+
+| Part V chapter | Structure or theorem | Where it reappears |
+|-----------------|---------------------|-------------------|
+| V.1 Conservation | Integral balance on control volumes | Part VI balance laws in integral form |
+| V.2 One-dimensional FVM | CFL stability; upwind bias | Part IV transient heat (explicit alternative) |
+| V.3 Riemann fluxes | Numerical fluxes; TVD limiters | Part VI shock and wave-speed vocabulary |
+| V.4 Navier–Stokes | Conjugate heat transfer handshake | Epilogue multiscale coupling template |
+
+If Act II's thermocouple response feels disconnected from Part IV's conduction mesh, read [V.4](04-navier-stokes-cfd.md) — wall temperature and heat flux must agree at the interface. Part VI names the Cauchy stress and rate-of-deformation tensors both Part IV (solid) and Part V (fluid) approximate. The epilogue generalizes the conjugate heat loop practiced here to DFT→MD→DDD→FEM chains — same export discipline, finer pedigree at every arrow.
+
 ## Representative schematics (FVM / CFD Notes)
 
 The [Finite Volume Method Notes](https://hanfengzhai.github.io/note/FVM.pdf) and [Computational Fluid Dynamics Notes](https://hanfengzhai.github.io/file/CFD_note.pdf) mirror Part II's concept-map layout: each schematic is a baby picture of the conservation pipeline. Use them as a visual index while reading:

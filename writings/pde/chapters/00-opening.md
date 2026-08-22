@@ -43,6 +43,19 @@ flowchart LR
 
 **Baby picture:** write the physics as a PDE, relax smoothness to a weak statement testable on a mesh, identify the function space where the solution lives, then package existence as minimizing an energy. The copper wire's temperature profile and axial displacement are two instances of the same pipeline.
 
+## How Part III connects to Parts IV–VI
+
+Part III is the **analytical pipeline** both discretization philosophies inherit before any mesh is drawn:
+
+| Part III chapter | Structure or theorem | Where it reappears |
+|-----------------|---------------------|-------------------|
+| III.1 Strong form | Pointwise PDE + boundary conditions | Part VI balance laws; Part IV Dirichlet rows |
+| III.2 Weak form | Bilinear form \(a(u,v)=\ell(v)\) | Part IV Galerkin assembly; Part V integral balance |
+| III.3 Sobolev spaces | \(H^1\) regularity; trace on \(\partial\Omega\) | Part IV conforming elements; Part II embeddings |
+| III.4 Energy methods | Lax–Milgram; Dirichlet principle | Part IV Rayleigh–Ritz; Part VI virtual work |
+
+If you read only one part before choosing FEM or FVM, read this one. Part IV and Part V are two dialects for the same weak forms; Part VI names the tensor fields both dialects approximate. The copper wire's equilibrium and heating equations are complete here — later parts only ask *how* to compute them on a grid.
+
 ## Representative schematics (ME 300B)
 
 The [Partial Differential Equations Notes](https://hanfengzhai.github.io/file/ME300B_PDE.pdf) (ME 300B) mirror Part II's ME 412 habit: each schematic is a baby picture of the same weak-form pipeline. Use them as a visual index while reading:

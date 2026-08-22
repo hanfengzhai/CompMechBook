@@ -44,6 +44,20 @@ flowchart LR
 
 **Baby picture:** choose trial and test spaces, enforce the weak form by making residuals orthogonal to the test space, assemble element by element, then prove the discrete solution tracks the continuous one as \(h \to 0\). The copper wire in tension is a bar whose stiffness matrix is not magic — it is a Galerkin projection.
 
+## How Part IV connects to Parts V–VII
+
+Part IV is the **solid discretization contract** every mesoscale and continuum chapter downstream assumes:
+
+| Part IV chapter | Structure or theorem | Where it reappears |
+|-----------------|---------------------|-------------------|
+| IV.1 Weighted residuals | Galerkin orthogonality | Part VI virtual work on the same mesh |
+| IV.2 Assembly | Local-to-global \(\mathbf{K}\); sparsity pattern | Part VII DAMASK polycrystal handoff |
+| IV.3 Elements | Patch test; Gauss quadrature | Part VI hyperelastic energy on isoparametric maps |
+| IV.4 Elasticity | \(\mathbf{B}^T\mathbb{C}\mathbf{B}\) block assembly | Part VI Cauchy stress post-processing |
+| IV.5 Convergence | Céa's lemma; **two doors** | Part V conjugate heat interface; Part VI stress interpretation |
+
+If the load cell curve looks trustworthy but you cannot explain why refining the mesh changes the answer predictably, return to [IV.5](05-convergence.md). Part V discretizes the **fluid** that Part IV left as a Robin boundary; Part VII imports the **stress field** Part IV computed into Peach–Köhler forces. The copper wire's tensile test is one Galerkin projection — conjugate heat and dislocation dynamics are handshakes on the same mesh vocabulary.
+
 ## Representative schematics (FEA Notes)
 
 The [Finite Element Analysis Notes](https://hanfengzhai.github.io/file/FEA_notes.pdf) and [problem sessions](https://hanfengzhai.github.io/note.html) follow the same ME 412 habit: each schematic is a baby picture of the Galerkin pipeline. Use them as a visual index while reading:
