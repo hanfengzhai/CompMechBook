@@ -311,6 +311,18 @@ Crystal plasticity and calibrated DDD close the mesoscale chapter: they explain 
 | Calibrated \(h_0\), \(g_{\text{sat}}\) in DAMASK | EAM or MEAM parameters fit to DFT elastic constants |
 | FE² at notches when homogenization fails | Bond breaking and chemistry (e.g. surface oxidation) |
 
+**Scale-boundary handshake (VII.3 → Part VIII → Part IV/VI).**
+
+| Mesoscale export (this chapter) | Atomistic input (Part VIII) | Continuum consumer | Failure mode |
+|---------------------------------|-----------------------------|--------------------|--------------|
+| \(\tau(\gamma)\), \(\rho(\gamma)\) from RVE DDD | Mobility \(M(\tau,T)\) from NVT shear | Part VI return-mapping \(H\) | Literature \(\alpha=0.3\) with wrong \(\rho\) pedigree |
+| Peierls threshold in segment laws | Core width \(w\), \(\gamma_{\text{sf}}\) from slab MD | OpenDiS mobility yaml | Linear elasticity at \(r < 1\) nm |
+| Calibrated \(h_0\), \(g_{\text{sat}}\) in DAMASK | EAM fit audited against DFT \(C_{ij}\) | Part IV polycrystal tensile run | Texture mismatch (one orientation vs drawn wire) |
+| FE² RVE at notch Gauss points | Nucleation barriers from MD/DFT | Act V stress concentration | Homogenization where gradient plasticity needed |
+| Grain-boundary obstacle rules | Bond-breaking at interfaces | Surface oxidation chemistry | Phenomenological GB strength without atomic basis |
+
+The OpenDiS → DAMASK → polycrystal FEM pipeline above is the **export discipline** the prologue promised — statistics become internal state variables on the mesh [Part IV](../part04-fem/02-galerkin-assembly.md) taught us to assemble. [VII.2](02-dislocation-dynamics.md) produced the segment-network evidence; this chapter homogenizes it across **drawing dies and grain boundaries** — the organizational scale the cold-drawn wire on the bench actually has.
+
 Return to the [prologue](../../prologue/00-many-scales.md): **Act IV** hardening and **Act V** notch stress concentration both lean on parameters whose **ink** is atomic — the same copper lattice Part VIII will traverse with Newton's equations and empirical or *ab initio* potentials. Part IX follows when even EAM parameters need first-principles validation of formation energies and band structure.
 
 The wire's strength is a story written in dislocation lines; the lines borrow their mobility from phonons and cores the mesoscale cannot resolve. [VIII.1](../part08-md/01-potentials-phase-space.md) begins with interatomic potentials and phase space — the next rung down on the ladder, same specimen, stricter export contract.

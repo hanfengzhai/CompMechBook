@@ -271,6 +271,18 @@ Born–Oppenheimer separation and Hohenberg–Kohn existence theorems justify tr
 | Small-cell DFT computes **intensive** quantities | Plane waves, k-meshes, \(E_{\text{cut}}\) convergence rituals |
 | Inputs for Part VIII EAM fits and Part VII defect energies | Workflows from input deck to elastic constants upward |
 
+**Scale-boundary handshake (IX.1 → IX.2 → Part VIII).**
+
+| Theorem output (this chapter) | Kohn–Sham implementation (next chapter) | Upstream consumer | Failure mode |
+|-------------------------------|-------------------------------------------|-------------------|--------------|
+| BO energy surface \(E_{\text{BO}}(\{\mathbf{R}_I\})\) | SCF loop on fixed nuclear geometry | LAMMPS Born–Oppenheimer MD (VIII.3) | Mixing BO and non-BO dynamics |
+| HK variational principle on \(\rho(\mathbf{r})\) | Kohn–Sham orbitals with same density | EAM embedding/density fit (VIII.1) | Using excited-state \(\rho\) for ground-state fit |
+| Murnaghan \(a_0\), \(B_0\) from volume scans | Converged `pw.x` at each lattice parameter | Part IV elastic step; Part VI \(\mathbb{C}\) | Under-converged SCF between volume points |
+| Cohesive energy \(E_{\text{coh}}\) per atom | Total energy at equilibrium volume | EAM bulk modulus sanity check | Wrong reference energy (isolated atom vs bulk) |
+| Defect formation enthalpy definitions | Supercell SCF with one removed atom | Part VII Peierls, Part VIII NEB barriers | Finite-size image errors in small cells |
+
+Part II asked what **state variable** carries enough information for well-posed mechanics; Hohenberg–Kohn answers that question at the electronic scale — \(\rho(\mathbf{r})\) replaces the \(3N_e\)-dimensional wavefunction. Part VIII assumed that compression without proof; this chapter supplies the intellectual floor. See also the [two clocks note](../part08-md/00-opening.md#two-clocks-reading-order-vs-foundation-pedigree): chapter order descends VII → VIII → IX; workflow order builds input decks IX → VIII → VII → IV.
+
 Return to the prologue's **Act VI — Foundation**: before any wire-scale FEM run, someone chose \(E\), \(\nu\), and surface energies whose pedigree traces to calculations like those in this part. Part VIII's EAM potential and Part VII's stacking-fault energies consume what IX.1–IX.3 export; the epilogue wires those exports into multiscale pipelines no single code runs alone.
 
 [IX.2](02-kohn-sham.md) is the practitioner's chapter — SCF cycles, pseudopotentials, and the convergence checklist that separates chemistry from numerical artifact. Turn the page when "DFT gave a number" but cutoff, k-sampling, and functional choice were never documented — that is the signal the foundation run is not yet trustworthy enough to climb the ladder.

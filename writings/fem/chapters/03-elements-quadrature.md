@@ -219,6 +219,17 @@ Poisson's equation — scalar, symmetric, coercive — is the training ground wh
 | Patch test and \(O(h^2)\) intuition for smooth heat | Anisotropic stiffness from texture (cold-drawn wire) |
 | \(p\)- vs. \(h\)-refinement tradeoffs | From heated cross-section to tensile specimen under end load |
 
+**Scale-boundary handshake (IV.3 → IV.4 → Part VI).**
+
+| Element technology (this chapter) | Vector extension (next chapter) | Wire-scale consumer | Failure mode |
+|-----------------------------------|---------------------------------|---------------------|--------------|
+| P1 triangles; centroid quadrature on \(\int k\|\nabla T\|^2\) | Block \(\mathbf{K}\) from \(\mathbb{C}:\boldsymbol{\varepsilon}(\mathbf{v})\) | Act III tensile specimen on load cell | Locking when \(\nu \to 1/2\) on Q1 mesh |
+| Isoparametric \(\mathbf{J}\), \(\det J\) in volume integrals | Traction face quadrature on grip boundaries | Neumann load split from body weight | Wrong \(\det J\) sign in distorted grip cluster |
+| Patch test on scalar Poisson (Lab act) | Vector patch test on linear elasticity | Linear elastic climb before yield | Non-symmetric \(\mathbf{K}\) from transposed B-matrix |
+| \(p\)-refinement on heated cross-section (Act II) | Anisotropic \(\mathbb{C}\) from cold-drawn texture | Part VI variational elasticity handoff | Q1 hex hourglassing in 3D grip region |
+
+Recall the pipeline from [Part III.4](../part03-pdes/04-energy-methods.md#bridge-to-part-iv): weak form → energy minimum → Rayleigh–Ritz on \(V_h\). Assembly ([IV.2](02-galerkin-assembly.md)) is the operational half of Rayleigh–Ritz; element technology is the other half. The copper wire's tensile mesh is only as trustworthy as the P1 bars (1D), triangles (2D cross-section), or tets (3D grip region) that define \(V_h\).
+
 Return to the [prologue](../../prologue/00-many-scales.md): **Act III**'s load cell measures force on a wire whose FEM mesh is built from the element families named here. Part III minimized thermal energy on the same P1 triangles; Part IV now carries **mechanical** degrees of freedom with the same quadrature loop. [IV.4](04-poisson-to-elasticity.md) closes the scalar-to-vector jump — the chapter where the copper wire stops being a temperature field alone and becomes the tensile bar whose stress–strain curve the prologue will track through yield.
 
 Turn the page when Poisson assembly feels routine but an elasticity run returns a singular or nonsymmetric matrix — that is the signal the block constitutive structure deserves its own chapter.
