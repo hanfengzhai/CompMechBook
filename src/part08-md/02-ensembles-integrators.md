@@ -519,7 +519,17 @@ Verlet integrators and NVT/NPT ensembles make classical MD a controlled experime
 | Reproducibility checklist (cutoff, \(\Delta t\), drift) | Coarse-graining: export \(C_{ij}\), \(\gamma_{\text{sf}}\), mobility to Part VII |
 | NEB/KMC workflow for vacancy hops and long-time kinetics | Full accelerated-methods table; DeepMD; parallel MD scaling |
 | Time-scale gap (creep, rare events) | Handoff table linking Part VIII exports to Part IV/VII consumers |
+| VACF phonon DOS audit ([phonon section above](#phonon-density-of-states-from-velocity-autocorrelation)) | Cross-check against Part IX `ph.x` before exporting moduli |
 
-Return to the [prologue](../../prologue/00-many-scales.md): the wire's strength at the engineering scale still depends on a potential someone fit from quantum data. Part VII's dislocations move on surfaces MD integrates; Part IV's elastic step uses moduli MD or DFT averaged over a polycrystal. [VIII.3](03-ab-initio-and-coarse-graining.md) is the **export chapter** — the rung where atomistics stops being a standalone movie and becomes input for coarser models, while naming what only Part IX can re-derive from \(\rho(\mathbf{r})\).
+**Scale-boundary handshake (VIII.2 → VIII.3 → Part IX).**
+
+| MD export (this chapter) | Audit gate | Upstream consumer | Failure mode |
+|--------------------------|------------|-------------------|--------------|
+| \(E\), \(\nu\) from NPT tension | NVE drift \(< 10^{-4}\); \(\langle T\rangle = 300 \pm 10\) K | Part IV elastic step; Part VI \(\mathbb{C}\) | Wrong ensemble during loading |
+| \(D(T)\) from MSD / Einstein | Linear MSD window; NEB barrier cross-check at high \(T\) | Part VII climb; Part VI creep | Ballistic slope exported as diffusion |
+| Phonon peaks from VACF | Within 5–10% of DFT `dispersion.dat` | Part IX quasi-harmonic \(\alpha(T)\); Part I.3 modes | Bulk-fit EAM wrong at dislocation core |
+| NEB \(\Delta E_m\) for vacancy hop | Endpoints are local minima; CI-NEB saddle | KMC rate table; Part VII recovery | Wrong final vacancy site |
+
+Return to the [prologue](../../prologue/00-many-scales.md): **Act II — Heating** needs NVT at 300–600 K before Joule heating couples to FVM; **Act III — Pulling** needs NPT tension with audited \(\Delta t\) before moduli climb to Part IV. Part VII's dislocations move on surfaces MD integrates; Part IV's elastic step uses moduli MD or DFT averaged over a polycrystal. [VIII.3](03-ab-initio-and-coarse-graining.md) is the **export chapter** — the rung where atomistics stops being a standalone movie and becomes input for coarser models, while naming what only [Part IX](../part09-dft/03-dft-workflows.md) can re-derive from \(\rho(\mathbf{r})\).
 
 Turn the page when the EAM curve matches experiment in bulk but fails at the notch root — that is the signal to audit the potential against electronic structure.

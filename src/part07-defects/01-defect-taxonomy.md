@@ -187,12 +187,22 @@ The Act IV Lab act classified slip traces on cold-drawn copper before the load c
 
 Dislocation dynamics simulates line defects directly — too coarse for every atom, too fine for pure FEM. It is the mesoscale chapter of our copper wire story: the place where work hardening becomes geometry and statistics rather than a fitted curve.
 
-| What the taxonomy named | What [VII.2](02-dislocation-dynamics.md) will simulate |
-|-------------------------|--------------------------------------------------------|
+| What VII.1 (taxonomy) named | What VII.2 (dislocation dynamics) will simulate |
+|-----------------------------|------------------------------------------------|
 | Point defects (vacancies, interstitials) | Thermal recovery and climb kinetics feeding forest evolution |
 | Line defects (edge, screw, mixed) | Peach–Köhler motion, multiplication, junction reactions |
 | Surface defects (GBs, stacking faults) | Barriers to slip; sources for new segments |
 | Scalar \(\rho\) as internal variable | Taylor \(\tau \propto \sqrt{\rho}\) from line statistics, not fitted \(H\) |
+| Part VI J₂ parameters \(\sigma_{y0}\), \(H\) ([VI.4](../part06-continuum/04-nonlinear-plasticity-preview.md)) | Mesoscale origin of yield and hardening from forest density |
+
+**Scale-boundary handshake (Part VI → VII.1 → VII.2).**
+
+| Continuum parameter (Part VI) | Defect-scale origin (this chapter) | DDD input (next chapter) | Failure mode |
+|-------------------------------|-----------------------------------|--------------------------|--------------|
+| \(\sigma_0\) (initial yield) | Hall–Petch grain boundaries; friction stress | Source density, obstacle spacing | Fitted \(\sigma_0\) with no \(\rho\) or \(d\) |
+| \(H\) (isotropic hardening) | Taylor forest \(\tau \propto \sqrt{\rho}\) | Line length statistics from motion | Phenomenological \(H\) with no forest geometry |
+| Rate sensitivity | Thermally activated kink-pair nucleation | MD mobility tables ([VIII.2](../part08-md/02-ensembles-integrators.md)) | Rate-independent J₂ at high strain rate |
+| Core energy / \(\gamma_{\text{sf}}\) | Stacking faults, partial dislocations | DFT or MD exports ([IX.3](../part09-dft/03-dft-workflows.md)) | Linear elasticity at \(r < 1\) nm |
 
 The taxonomy above named what broke the smooth continuum picture: point defects (vacancies from annealing), line defects (dislocations from cold drawing), and surface defects (grain boundaries, stacking faults). The next chapter follows those **lines** as they move under Peach–Köhler forces, multiply through Frank–Read sources, and tangle into the forest whose density \(\rho\) makes Taylor hardening \(\tau \propto \sqrt{\rho}\) — the mesoscale origin of the \(H\) and \(\sigma_{y0}\) that Part VI's J₂ preview borrowed without derivation.
 

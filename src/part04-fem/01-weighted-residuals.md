@@ -171,21 +171,6 @@ For coercive problems, Galerkin FEM delivers:
 
 These properties explain why elliptic solid mechanics — the copper wire under tension, a turbine blade under centrifugal load, a heat sink under steady conduction — lives comfortably in the FEM world.
 
-## Bridge
-
-Galerkin's method on a finite element space becomes a matrix system through **global assembly**: loop over elements, compute local stiffness and load vectors, scatter into a global sparse matrix. That algorithm — identical in academic Matlab scripts and in industrial solvers processing millions of elements — is the subject of the next chapter.
-
-| What weighted residuals established | What assembly (next chapter) must compute |
-|-------------------------------------|------------------------------------------|
-| Residual \(R_{\text{weak}}(v; u_h)=0\) for all test \(v\) | Local \(\mathbf{K}^e\), \(\mathbf{f}^e\) and scatter into global sparsity |
-| Galerkin: trial space = test space | DOF maps, element connectivity, boundary constraints |
-| Rayleigh–Ritz equivalence for coercive problems | Same energy minimum as Part III.4, now on nodal coefficients |
-| Virtual work for scalar Poisson and vector elasticity | Bar/triangle/tet contributions along the copper wire mesh |
-
-Recall Part III's closing pipeline: strong PDE → weak form → **energy minimum** (Dirichlet principle) → discrete search on \(V_h\). Weighted residuals are the operational face of that minimum — enforcing \(R_{\text{weak}}(v; u_h) = 0\) for all test functions is equivalent to seeking the minimizer of a quadratic energy when the bilinear form is symmetric and coercive. The copper wire's tensile equilibrium from [III.4](../part03-pdes/04-energy-methods.md) arrives here as the same \(a(u,v) = \ell(v)\) restricted to piecewise linears; assembly is how we compute the matrix that Rayleigh–Ritz minimization demands.
-
-Return to the [prologue](../../prologue/00-many-scales.md): **Act III — Pulling** turns abstract Galerkin orthogonality into numbers the load cell trusts. Part I named \(\mathbf{K}\mathbf{u}=\mathbf{f}\); Part II proved the limit lives in \(H^1\); Part III wrote the bilinear form. [IV.2](02-galerkin-assembly.md) is where the operator becomes code — the stiffness matrix is not magic, but the Gram matrix of the energy inner product on \(V_h\).
-
 ## Lab act: weighted residual on two bar elements (Act III — Pulling)
 
 **Act III** ramps end displacement; the load cell reads reaction force. Weighted residuals are the **orthogonality condition** that turns that ramp into a matrix system before any industrial assembly loop obscures the pattern.
@@ -229,3 +214,29 @@ This chapter is where Part III's weak form becomes an **operational** approximat
 | What **breaks**? | Collocation on non-smooth \(u_h\); Petrov–Galerkin needed for advection; penalty ill-conditioning |
 
 The two-element bar Lab act is Galerkin in miniature: enforce \(\int (EA u_h' \phi_i' - 0)\, dx = 0\) for each hat function. Every industrial FEM code is this orthogonality condition with millions of test directions — the same character Part III introduced as \(a(u,v)=\ell(v)\), now restricted to \(V_h\).
+
+## Bridge
+
+Galerkin's method on a finite element space becomes a matrix system through **global assembly** — loop over elements, compute local stiffness and load vectors, scatter into a global sparse matrix. That algorithm, identical in academic Matlab scripts and in industrial solvers processing millions of elements, is the subject of the next chapter.
+
+| What IV.1 (weighted residuals) established | What IV.2 (assembly) must compute |
+|-------------------------------------------|-----------------------------------|
+| Residual \(R_{\text{weak}}(v; u_h)=0\) for all test \(v\) | Local \(\mathbf{K}^e\), \(\mathbf{f}^e\) and scatter into global sparsity |
+| Galerkin: trial space = test space | DOF maps, element connectivity, boundary constraints |
+| Rayleigh–Ritz equivalence for coercive problems | Same energy minimum as [III.4](../part03-pdes/04-energy-methods.md), now on nodal coefficients |
+| Virtual work for scalar Poisson and vector elasticity | Bar/triangle/tet contributions along the copper wire mesh |
+| [Part II.4](../part02-functional-analysis/04-operators-duality.md) handshake: loads as dual functionals | \(\ell(\phi_i)\) and \(a(u_h,\phi_i)\) become rows of \(\mathbf{f}\) and \(\mathbf{K}\) |
+
+**Scale-boundary handshake (Parts I–III → IV.1 → IV.2).**
+
+| Upstream quantity | Weighted residual form | Assembly output | Failure mode |
+|-------------------|------------------------|-----------------|--------------|
+| Part I \(\mathbf{K}\mathbf{u}=\mathbf{f}\) | Galerkin orthogonality on \(V_h\) | Same sparsity pattern at scale | Wrong connectivity scatter |
+| Part II energy norm \(\|u\|_a\) | \(R_{\text{weak}}=0 \Leftrightarrow\) energy minimum | SPD \(\mathbf{K}\) when \(a\) is coercive | Petrov–Galerkin without adjoint care |
+| Part III \(a(u,v)=\ell(v)\) | Restrict to \(v=\phi_i \in V_h\) | \(\mathbf{K}\mathbf{U}=\mathbf{F}\) | Duplicated Neumann loads |
+
+Recall Part III's closing pipeline: strong PDE → weak form → **energy minimum** (Dirichlet principle) → discrete search on \(V_h\). Weighted residuals are the operational face of that minimum — enforcing \(R_{\text{weak}}(v; u_h) = 0\) for all test functions is equivalent to seeking the minimizer of a quadratic energy when the bilinear form is symmetric and coercive. The copper wire's tensile equilibrium from [III.4](../part03-pdes/04-energy-methods.md) arrives here as the same \(a(u,v) = \ell(v)\) restricted to piecewise linears; assembly is how we compute the matrix that Rayleigh–Ritz minimization demands.
+
+Return to the [prologue](../../prologue/00-many-scales.md): **Act III — Pulling** turns abstract Galerkin orthogonality into numbers the load cell trusts. Part I named \(\mathbf{K}\mathbf{u}=\mathbf{f}\); Part II proved the limit lives in \(H^1\); Part III wrote the bilinear form. The two-element bar Lab act above is assembly in embryo — [IV.2](02-galerkin-assembly.md) is where the operator becomes code, and the stiffness matrix is the Gram matrix of the energy inner product on \(V_h\), not an arbitrary sparse array.
+
+Turn the page when the weak form is clear but no global matrix exists yet — that is the signal weighted residuals need an assembly loop.
