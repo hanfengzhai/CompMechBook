@@ -238,13 +238,13 @@ The Lab act linked grip displacement to measurable diameter change via \(\vareps
 
 Kinematics names the geometric objects — \(\mathbf{F}\), \(\boldsymbol{\varepsilon}\), \(\mathbf{E}\), \(\mathbf{D}\). Forces enter through **stress tensors** and **balance laws** that constrain how stress varies in space and time.
 
-| What Parts IV–V computed | What this chapter names |
-|--------------------------|-------------------------|
-| Nodal \(\mathbf{U}\) from Galerkin assembly | \(\mathbf{u}(\mathbf{x})\), \(\mathbf{F} = \mathbf{I} + \nabla\mathbf{u}\) |
-| Strain from the \(B\)-matrix | \(\boldsymbol{\varepsilon}\), Green–Lagrange \(\mathbf{E}\), rate \(\mathbf{D}\) |
-| Thermal expansion in Act II (Joule heating) | Volumetric \(J = \det\mathbf{F}\); Poisson lateral contraction |
-| FVM velocity field in the cooling air | \(\mathbf{D}\) as symmetric part of \(\nabla\mathbf{v}\) |
+| What VI.1 (kinematics) established | What VI.2 (balance laws) must supply |
+|------------------------------------|--------------------------------------|
+| \(\mathbf{F}\), \(\boldsymbol{\varepsilon}\), \(\mathbf{E}\), \(\mathbf{D}\) | Cauchy stress \(\boldsymbol{\sigma}\); traction \(\boldsymbol{\sigma}\mathbf{n}\) on boundaries |
+| Axial stretch \(\lambda\) and lateral contraction from \(\nu\) on the wire | Momentum balance \(\nabla\cdot\boldsymbol{\sigma}+\mathbf{b}=\mathbf{0}\) |
+| \(B\)-matrix as discrete shadow of \(\boldsymbol{\varepsilon}(\mathbf{u})\) ([IV.4](../part04-fem/04-poisson-to-elasticity.md)) | Hooke's law \(\boldsymbol{\sigma}=\mathbb{C}:\boldsymbol{\varepsilon}\) closes the system |
+| \(\mathbf{D}\) as rate counterpart to FVM velocity ([V.4](../part05-fvm/04-navier-stokes-cfd.md)) | Thermal balance linking **Act II** Joule heating to stress-free strain |
 
-Return to the prologue's **Act III — Pulling**: grip displacement ramps, and the load cell records force. Parts IV and V already computed temperature and flux fields on their respective meshes; Part IV assembled nodal displacements from shape functions. This chapter explains **what those numbers mean geometrically** — axial stretch \(\lambda = 1 + u'/L\), lateral contraction from \(\nu\), and the finite-strain objects that nonlinear extensions in [VI.4](04-nonlinear-plasticity-preview.md) require. The \(B\)-matrix in every FEM code is the discrete shadow of \(\boldsymbol{\varepsilon}(\mathbf{u})\) defined here; the FVM velocity field in the cooling air is the rate counterpart \(\mathbf{D}\).
+Return to the prologue's **Act III — Pulling**: grip displacement ramps, and the load cell records force. Parts [IV](../part04-fem/04-poisson-to-elasticity.md) and [V](../part05-fvm/04-navier-stokes-cfd.md) already computed temperature and flux fields on their respective meshes; Part IV assembled nodal displacements from shape functions. This chapter explains **what those numbers mean geometrically** — axial stretch \(\lambda = 1 + u'/L\), lateral contraction from \(\nu\), and the finite-strain objects that nonlinear extensions in [VI.4](04-nonlinear-plasticity-preview.md) require.
 
-The next chapter completes the continuum picture: Cauchy stress, Piola–Kirchhoff stress, conservation of mass and momentum, and constitutive relations that FEM and FVM discretize. Turn the page when displacement fields need a stress conjugate — kinematics without balance is geometry without physics.
+[VI.2](02-stress-balance.md) is where the load cell's force in **Act III** acquires a Cauchy stress conjugate — kinematics without balance is geometry without physics. Turn the page when displacement fields need a stress tensor to pair with strain.

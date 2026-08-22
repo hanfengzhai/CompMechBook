@@ -252,6 +252,12 @@ Navier–Stokes adds viscous fluxes, heat conduction, and the incompressibility 
 | Sod shock tube as correctness gate | Low-Re cooling flow around the copper wire |
 | FVM integral balance on cells | Pressure–velocity coupling; turbulence closures at high Re |
 
-The copper wire heated by current needs air to carry heat away — a fluid problem sitting beside the solid conduction Part IV already meshed. Riemann solvers handled the **hyperbolic** vocabulary; Navier–Stokes adds the **parabolic** and **elliptic** partners that make conjugate heat transfer a coupled story rather than two unrelated codes. When the wall temperature and wall flux handshake between solid and fluid, you are watching Part IV and Part V speak at an interface — the same partitioned coupling pattern the epilogue generalizes to DFT→MD→DDD→FEM chains.
+| Hyperbolic (this chapter) | Parabolic + elliptic ([V.4](04-navier-stokes-cfd.md)) |
+|---------------------------|------------------------------------------------------|
+| Sod shock tube gate | Natural-convection Nusselt on the heated wire |
+| Roe/HLLC at faces | SIMPLE/PISO pressure–velocity splitting |
+| MUSCL + limiters | Low-Re boundary layer vs. high-Re turbulence closure |
 
-The next chapter situates the full fluid mechanics pipeline, from Reynolds number to turbulence models, with the copper wire's cooling flow as motivation. Turn the page when Sod passes but the wire still runs hot — that is the signal to add viscosity, conduction, and the shared continuum vocabulary Part VI will name.
+Return to the [prologue](../../prologue/00-many-scales.md): in **Act II — Warming**, Part [IV.4](../part04-fem/04-poisson-to-elasticity.md) conducts Joule heat in the solid while this chapter's Riemann engines handle **discontinuous** face states — the inner loop every OpenFOAM cell runs. [V.4](04-navier-stokes-cfd.md) adds viscosity and the **conjugate heat transfer** handshake the [V opening](00-opening.md#conjugate-heat-transfer-the-wire-meets-the-wind) previewed: wall \(T\) and flux must agree before the thermocouple stops climbing. Part [VI opening](../part06-continuum/00-opening.md#closing-the-arc-from-parts-iv-and-v) names the shared continuum tensors both discretizations approximate.
+
+Turn the page when Sod passes but the wire still runs hot — that is the signal to add viscosity, conduction, and the shared continuum vocabulary Part VI will name.

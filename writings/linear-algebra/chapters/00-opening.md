@@ -119,14 +119,15 @@ None of these require functional analysis — but each one is the finite-dimensi
 
 The prologue introduced the copper wire at every scale and named the four questions every rung must answer. Part I begins at the rung every simulation shares — degrees of freedom collected into vectors, evolution and equilibrium written as linear systems — before the wire becomes a field, a mesh, or an electron density.
 
-| Prologue device | Part I chapter that delivers it |
-|-----------------|--------------------------------|
-| [Opening hinge](../preface.md#opening-continuity-hinge): panorama → grammar | [Part I opening](00-opening.md#opening-hinge-prologue-to-part-i): finite-dimensional rehearsal |
-| Six-act lab session, **Act I — Mounting** | [I.1](01-vectors-matrices.md): first \(\mathbf{K}\mathbf{u}=\mathbf{f}\) with grips fixed |
-| Four questions: state / equations / discretization / export | [I.1–I.4](04-toward-infinity.md): vector → map → modes → limit \(N\to\infty\) |
-| Ladder of scales (preview) | [I.4](04-toward-infinity.md): fields replace vectors; operators replace matrices |
-| Weak form as recurring character (named, not yet spoken) | [I.4 Bridge](04-toward-infinity.md#bridge-to-part-ii): three-step handoff to Part II |
+| What the prologue established | What Part I (opening → I.1) opens |
+|-------------------------------|-----------------------------------|
+| Copper wire specimen; six-act lab arc | **Act I — Mounting**: first honest \(\mathbf{K}\mathbf{u}=\mathbf{f}\) before yield |
+| Four questions: state / equations / discretization / export | Finite DOFs: \(\mathbf{u}\in\mathbb{R}^N\), sparse \(\mathbf{K}\), load cell as \(\mathbf{f}\) |
+| Ladder preview (FEM, FVM, DFT…) | Same grammar under every rung — matrices before fields |
+| Weak form named, not yet spoken | [I.4 Bridge](04-toward-infinity.md#bridge-to-part-ii): \(N\to\infty\) handoff to Part II |
 
-The first chapter refreshes the language — inner products, norms, matrix structure — that Parts II through IX will generalize to functions and operators. Read it as the opening sentence of the novel after the prologue's panoramic view: the grips are still open, the load cell still reads zero, and the first honest model is already a sparse matrix waiting to be assembled.
+Return to the [prologue](../../prologue/00-many-scales.md): the drawn Cu wire (\(L=1\,\text{m}\), \(EA=2.4\times10^8\,\text{N·m}\) from [I.1](01-vectors-matrices.md)) is still unstrained — load cell reads zero, grips fixed. Every later part generalizes the same object: Part [IV](../part04-fem/00-opening.md) meshes it, Part [V](../part05-fvm/00-opening.md) cools it, Part [IX](../part09-dft/00-opening.md) audits its elastic constants. Part I is the rung where that story is still a **small sparse matrix** you can write by hand.
+
+The first chapter refreshes the language — inner products, norms, matrix structure — that Parts II through IX will generalize to functions and operators.
 
 Turn the page when the prologue's ladder feels like a menu of methods — Part I is where every later scale reveals the same \(\mathbf{A}\mathbf{x}=\mathbf{b}\) grammar underneath.

@@ -589,8 +589,19 @@ The pedigree checklist in [VIII.3](../part08-md/03-ab-initio-and-coarse-graining
 
 Run one convergence check before archiving: double the plane-wave cutoff and confirm \(E_{\text{tot}}\) changes by less than 1 meV/atom. Part II taught that honest FEM requires a convergence target in \(H^1\); Part IX teaches the same instinct at the electronic scale — SCF energy must settle before any number climbs the ladder.
 
-## Bridge to the epilogue
+## Bridge to the epilogue {#bridge-to-epilogue}
 
-We have reached the finest rung of the spatial ladder for equilibrium properties of bulk copper: electrons, orbitals, self-consistency, convergence, exports. The copper wire at human scale — sag, Joule heat, work hardening, possible fracture — never lives here. It lives in the **coupling** of what each part computes.
+Part IX closes the **downward** audit: fcc Cu has converged SCF logs, elastic constants, vacancy and stacking-fault energies, and archived input decks. The copper wire on the bench — sag under self-weight, Joule heat in **Act II**, work hardening in **Act IV**, notch concentration in **Act V** — never lives in a 2-atom supercell. It lives in the **export chain** this chapter disciplined.
 
-The epilogue gathers sequential homogenization, concurrent handshakes, and surrogate acceleration into workflows that respect the rituals of this chapter: converged DFT feeds potentials; potentials feed MD; MD feeds mobilities; DDD feeds hardening; FEM and CFD feed design. The story that opened with a single material at many scales closes with how disciplined teams make those scales converse — with archived inputs, stated tolerances, and honest error bars. Read the epilogue's [**Closing the arc from Part IX**](../epilogue/multiscale.md#closing-the-arc-from-part-ix) first if you want the export table above mapped directly onto one multiscale afternoon before the general coupling patterns.
+| What Part IX (this chapter) exported | What the epilogue must couple upward |
+|--------------------------------------|--------------------------------------|
+| Converged \(E_{\text{cut}}\), k-mesh, `vc-relax` + `scf` series for fcc Cu | Pedigree tables: every macro input traces to a foundation run |
+| \(C_{ij}\), cohesive energy, vacancy \(E_f\), GSF surface | EAM/MEAM fits (Part VIII) → mobility tables (Part VII) → \(\mathbb{C}\), \(\sigma_y\) (Part VI) |
+| Documented defect supercells and finite-size studies | FE² / concurrent handshakes when homogenization fails at the notch |
+| Reproducible QE/VASP/GPAW archive (MSE 5720 template) | Sequential vs. concurrent coupling; surrogate acceleration with stated tolerances |
+
+Return to the [prologue](../../prologue/00-many-scales.md): **Act VI — Foundation** ran in parallel with Acts I–V — the invisible afternoon where someone chose \(E\), \(\nu\), and surface energies before the load cell moved. [IX.1](../part09-dft/01-born-oppenheimer.md) named the BO surface; [IX.2](../part09-dft/02-kohn-sham.md) ran the SCF loop; this chapter archived the numbers [VIII.3](../part08-md/03-ab-initio-and-coarse-graining.md) and [VII.3](../part07-defects/03-polycrystal-and-fem-handoff.md) consume. The epilogue is where **Door A** (FVM cooling) and **Door B** (FEM solid) from [IV.5](../part04-fem/05-convergence.md#bridge-two-doors-from-here) meet the DFT→MD→DDD→FEM ladder in one multiscale afternoon.
+
+Read the epilogue's [**Closing the arc from Part IX**](../../epilogue/multiscale.md#closing-the-arc-from-part-ix) first for the export table mapped onto the wire specimen; then the general coupling patterns (partitioned CHT, sequential homogenization, concurrent FE²).
+
+Turn the page when every rung has trustworthy numbers in isolation but no one can explain how the load cell curve inherits from an SCF log — that is the signal the epilogue's coupling vocabulary is missing.
