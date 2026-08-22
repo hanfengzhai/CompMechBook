@@ -384,4 +384,16 @@ Return to the prologue's **Act II — Warming**: current flows, the wire heats, 
 
 The [prologue](../../prologue/00-many-scales.md) promised one specimen in two discretization languages. Part IV's \(\mathbf{K}\mathbf{U}=\mathbf{F}\) and Part V's flux balances are not competing methods; they are **adjacent chapters** in the same afternoon. Part VI is where the load cell's force–displacement curve acquires Cauchy stress behind it, and where cold-drawn strength stops being a fitted parameter and becomes a question for dislocations in Part VII. See [VI opening](../part06-continuum/00-opening.md#closing-the-arc-from-parts-iv-and-v) **Closing the arc from Parts IV and V** for the full handoff table.
 
-Turn the page when sparse linear systems and face fluxes feel like the whole story — continuum mechanics is what makes \(\mathbf{K}\mathbf{U}=\mathbf{F}\) a force-balance statement rather than an array exercise.
+**Scale-boundary handshake (V.4 → Part VI → Part VII).**
+
+| FVM export (this chapter) | Continuum vocabulary (Part VI) | Downstream scale | Failure mode |
+|---------------------------|--------------------------------|------------------|--------------|
+| Cell-averaged \(Nu\), \(h(T_w)\) from CHT loop | Robin BC as surface traction limit; thermal strain \(\alpha\Delta T\) | Part VII mobility \(M(T)\) softening | \(h\) from correlation without mesh convergence |
+| Face fluxes \(\mathbf{F}\cdot\mathbf{n}\) at wire surface | Energy balance in virtual work | Part VI nonlinear return-mapping at heated grip | Flux mismatch at partitioned Picard interface |
+| RANS/LES eddy viscosity \(\nu_t\) | Rate of deformation \(\mathbf{D}\); objectivity | Part VI constitutive frame indifference | Boussinesq closure at high Re without validation |
+| CFL-stable transient temperature history | Balance laws \(\nabla\cdot\boldsymbol{\sigma}+\mathbf{b}=\mathbf{0}\) | Part VII dislocation nucleation at grip corner | Steady CHT extrapolated to dynamic grip ramp |
+| Monolithic vs Picard coupling decision | Same block-sparse pattern as [IV.4 thermoelasticity](../part04-fem/04-poisson-to-elasticity.md#coupled-thermoelasticity) | Epilogue multiscale Picard chains | Partitioned DFT→MD export without WHAM reweighting |
+
+The [preface ascent preview chain](../preface.md#ascent-preview-chain) placed Part V after Part IV so **Act II — Warming** could be told in two discretization dialects before Part VI names the shared tensor language. Whether you arrived via Door A from [IV.5](../part04-fem/05-convergence.md#bridge-two-doors-from-here) or read Part V immediately after Part III, the conjugate heat transfer scene above is the template every multiphysics interface inherits — wall temperature and flux must agree before mechanical softening enters the story in **Act III–IV**.
+
+Turn the page when sparse linear systems and face fluxes feel like the whole story — continuum mechanics is what makes \(\mathbf{K}\mathbf{U}=\mathbf{F}\) a force-balance statement rather than an array exercise. If the CHT loop converges but the load cell reading still lacks a stress tensor behind it, Part VI is the missing chapter, not another flux limiter.

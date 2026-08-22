@@ -453,9 +453,9 @@ This chapter's four questions — scoped to **segment-network simulation**, not 
 
 The load cell's post-yield bend is not a fitted Voce slope alone — it is a forest whose density and link statistics DDD can measure. The **full Part VII** checkpoint — taxonomy through crystal plasticity handoff — closes in [VII.3](03-polycrystal-and-fem-handoff.md). Parts VIII–IX supply the mobility and elastic constants this chapter consumes.
 
-## Bridge
+## Bridge to Part VII.3 {#bridge-to-vii3}
 
-Single-crystal DDD explains how lines move, multiply, and harden a crystal — but the copper wire is polycrystalline and structural models speak crystal plasticity and FEM, not segment networks alone. The next chapter follows how DDD statistics export upward to constitutive laws and where Peierls barriers and grain boundaries still demand finer-scale input.
+Single-crystal DDD explains how lines move, multiply, and harden a crystal — but the copper wire is polycrystalline and structural models speak crystal plasticity and FEM, not segment networks alone. [VII.3](03-polycrystal-and-fem-handoff.md) follows how DDD statistics export upward to constitutive laws and where Peierls barriers and grain boundaries still demand finer-scale input from Parts VIII–IX.
 
 | What VII.2 simulated | What [VII.3](03-polycrystal-and-fem-handoff.md) must homogenize |
 |------------------------|----------------------------------------------------------------|
@@ -476,4 +476,13 @@ Single-crystal DDD explains how lines move, multiply, and harden a crystal — b
 
 Return to the [prologue](../../prologue/00-many-scales.md): **Act IV — Hardening** is when the load cell curve bent upward after yield because lines multiplied and tangled — DDD made that forest visible as moving segments. Part VI's J₂ plasticity fitted the bend with a scalar hardening modulus \(H\); this chapter showed where \(H\) hides its physics in \(\rho\) and link statistics. [VII.3](03-polycrystal-and-fem-handoff.md) closes the mesoscale arc by asking how those statistics survive **drawing dies and grain boundaries** — the organizational scale the cold-drawn wire on the bench actually has.
 
-Parts VIII–IX supply the mobility and elastic constants this chapter consumed; VII.3 is where DDD stops being a single-crystal movie and becomes **input for the same FEM mesh Part IV taught us to assemble**. Turn the page when OpenDiS converges on one orientation but the wire's macroscopic hardening still disagrees with experiment — that is the signal that polycrystal texture, not segment timestep, is the missing physics.
+Parts VIII–IX supply the mobility and elastic constants this chapter consumed; VII.3 is where DDD stops being a single-crystal movie and becomes **input for the same FEM mesh Part IV taught us to assemble**. The epilogue's **Handshake 4** formalizes the rate-sensitivity export this chapter's mobility tables feed into [VI.4 Perzyna](../part06-continuum/04-nonlinear-plasticity-preview.md#bridge-to-part-vii) — DDD power-law \(m\) at \(10^3\,\text{s}^{-1}\) extrapolated to lab \(10^{-3}\,\text{s}^{-1}\) is the same unit-mismatch hazard Part V warned about at CHT interfaces.
+
+| Verification gate (this chapter) | What must pass before VII.3 | Epilogue handshake |
+|----------------------------------|----------------------------|-------------------|
+| Segment length convergence on \(\tau(\gamma)\) | Taylor fit stable to \(\pm 5\%\) | Handshake 3: \(\rho\) → \(H\) |
+| Mobility \(M(\tau,T)\) tabulated | Matches MD shear at same \(T\) | Handshake 4a: rate extrapolation |
+| \(C_{ij}\) from DFT or handbook | Peierls threshold calibrated | Handshake 2: elastic constants |
+| Single-crystal RVE stress curve | Texture average planned | Handshake 5: polycrystal FEM |
+
+Turn the page when OpenDiS converges on one orientation but the wire's macroscopic hardening still disagrees with experiment — that is the signal that polycrystal texture, not segment timestep, is the missing physics. If the forest-density Lab act above matches the load cell bend on paper but the spool test does not, the cold-drawn wire's grain structure — not another OpenDiS increment — is what [VII.3](03-polycrystal-and-fem-handoff.md) must homogenize.

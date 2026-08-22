@@ -266,7 +266,7 @@ perzyna:
 
 When the load cell ramp rate changes but the FEM deck uses rate-independent \(J_2\) alone, Act IV is **incomplete** — the hardening knee may match at one rate and fail at another. That is the signal to export \(m\) from Part VII/VIII before certifying the wire for service.
 
-## Bridge to Part VII
+## Bridge to Part VII {#bridge-to-part-vii}
 
 Linear and nonlinear elasticity — geometric and material — exhaust what a **continuum field** can say before its assumptions fail at defects. The copper wire's cold-worked strength is not in \(\mathbb{C}\); it is in the dislocation forest frozen by manufacturing. Part VII names those defects, simulates their motion, and exports the hardening laws that make nonlinear FEM honest.
 
@@ -278,7 +278,20 @@ Return to the prologue's **Act IV — Hardening**: the load cell curve bent upwa
 | Yield knee on the force–displacement trace | Slip lines on the wire surface; Burgers circuits that fail to close |
 | Cutoff-regularized singularities at notches | Line defects with Peach–Köhler forces and mobility laws |
 | Fitted \(H\) from macroscopic calibration | DDD link statistics exportable to crystal plasticity |
+| Perzyna \((N,\eta)\) and rate sensitivity \(m\) | DDD mobility \(M(\tau,T)\) from Part VIII MD |
+
+**Scale-boundary handshake (VI.4 → Part VII → Part VIII).**
+
+| Continuum export (this chapter) | Mesoscale consumer (Part VII) | Atomistic floor (Part VIII) | Failure mode |
+|---------------------------------|-------------------------------|-----------------------------|--------------|
+| Return-mapping \(H\), \(\sigma_{y0}\) from one tensile test | Taylor \(\tau(\rho)\); OpenDiS link statistics | EAM/MD shear calibrates \(M\) | Mesh converged but hardening slope still wrong |
+| Perzyna \(m \approx 0.02\) at \(10^{-3}\,\text{s}^{-1}\) | Power-law mobility \(\dot\varepsilon^p = M\tau\) | NVT shear at atomistic rates | Rate-independent J₂ at high strain rate |
+| Cutoff radius at notch root | Burgers circuit and core structure | MD core reconstruction | Singularity regularized but nucleation physics absent |
+| Thermal softening from [V.4 CHT](../part05-fvm/04-navier-stokes-cfd.md#bridge-to-part-vi) | \(M(T)\) in segment rules | Phonon drag from MD | Steady \(T_w\) extrapolated to Joule transient |
+| [IV.5 convergence audit](../part04-fem/05-convergence.md#bridge-two-doors-from-here) passed on elastic mesh | DDD RVE at plastic onset | — | Elastic mesh certified while lines multiply |
 
 Part VII opens with the same specimen at the yield point: polished copper showing faint **slip lines** on {111} planes — the visible trace of dislocation motion that J₂ plasticity homogenized into a scalar \(\alpha\). Remember also that the drawn wire is not a single crystal: cold drawing leaves a **polycrystal with grain boundaries** that homogenized \(H\) cannot see — the spool of wire in [VII.3](../part07-defects/03-polycrystal-and-fem-handoff.md) is the same specimen at a finer organizational scale. [VII.1](../part07-defects/01-defect-taxonomy.md) names the defect catalog; [VII.2](../part07-defects/02-dislocation-dynamics.md) follows the forest as it moves, multiplies, and tangles under load.
 
-The [preface descent preview chain](../preface.md#descent-preview-chain) maps the full descent ahead: [Part VII's mesoscale preview](../part07-defects/00-opening.md#the-descent-in-one-paragraph), then [Part VIII's atomistic preview](../part08-md/00-opening.md#the-atomistic-descent-in-one-paragraph), then [Part IX's electronic floor](../part09-dft/00-opening.md#the-electronic-floor-in-one-paragraph). Part VII is the first rung — not the last. Turn the page when the mesh is fine enough but the physics still wrong — that is the hinge between continuum and mesoscale.
+The [preface descent preview chain](../preface.md#descent-preview-chain) maps the full descent ahead: [Part VII's mesoscale preview](../part07-defects/00-opening.md#the-descent-in-one-paragraph), then [Part VIII's atomistic preview](../part08-md/00-opening.md#the-atomistic-descent-in-one-paragraph), then [Part IX's electronic floor](../part09-dft/00-opening.md#the-electronic-floor-in-one-paragraph). Part VII is the first rung — not the last.
+
+Turn the page when the mesh is fine enough but the physics still wrong — that is the hinge between continuum and mesoscale. If the return-mapping Lab act above reproduces the load cell knee at one strain rate but fails when the grip ramp slows, archive `viscoplastic.yaml` and descend: the missing physics is in line motion, not in another Gauss point.
