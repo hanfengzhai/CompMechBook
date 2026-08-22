@@ -239,4 +239,15 @@ Norms measure size; inner products measure angle and projection. When the norm c
 | Banach completeness: limits stay inside the space | Best approximation: FEM error is projection error in energy norm |
 | \(L^2\) for temperature; energy norm for displacement | Céa's lemma preview: discrete solution is optimal in \(V_h\) |
 
+**Scale-boundary handshake (II.1 → II.2 → II.3).**
+
+| Motivation export ([II.1](01-motivation.md)) | Normed-space output (this chapter) | Hilbert consumer ([II.3](03-hilbert-spaces.md)) | Failure mode |
+|---------------------------------------------|------------------------------------|-------------------------------------------------|--------------|
+| Limit field \(u(x)\in H^1\), not \(\mathbf{u}\in\mathbb{R}^N\) | Energy norm \(\|u\|_{H^1}\) measures strain, not nodal max | Inner product \((u,v)\) adds angles for orthogonality | Judging mesh quality by \(L^2\) alone at kinks |
+| Well-posedness contract: existence, stability, convergence | Banach completeness: Cauchy sequences stay inside | Riesz representation of loads as inner products | Discrete solutions converging outside admissible class |
+| Bar refinement Lab act (\(N=5,20,100\)) | Hat-function spike in \(\|u_h'\|_{L^2}\) at corners | Galerkin best approximation in energy norm | "More nodes look smoother" without energy-norm audit |
+| Equivalent norms on the same space | Same convergence story, different constants | Céa's lemma preview: discrete solution is optimal in \(V_h\) | Mixing norm choices when comparing error reports |
+
+The hat-function Lab act is the numerical face of this handshake: \(\|u_h'\|_{L^2}\) spikes at a kink even when nodal values look reasonable — the same diagnostic Act III's load cell will inherit when the grip corner is under-resolved. Part III writes weak PDEs in the normed spaces defined here; Part IV assembles \(\mathbf{K}\) as projection onto \(V_h\) — but only after [II.3](03-hilbert-spaces.md) adds the inner-product geometry that makes "Galerkin is projection" a theorem.
+
 Part I diagonalized \(\mathbf{K}\) by finding orthogonal eigenvectors in \(\mathbb{R}^N\). The copper wire's vibration modes in the limit are the same idea — but orthogonality is now \((u_i, u_j) = 0\) in \(H^1\), not \(\mathbf{u}_i^T \mathbf{u}_j = 0\). The next chapter develops that geometry and connects it directly to the finite element method through best approximation and Céa's lemma. Turn the page when you are ready to see why "Galerkin is projection" is a theorem, not a slogan.

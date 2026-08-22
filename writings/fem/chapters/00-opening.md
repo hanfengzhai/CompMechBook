@@ -159,6 +159,17 @@ Part III ended with energy methods and the promise of assembly. The first chapte
 | Sobolev regularity and Lax–Milgram | \(H^1\)-conforming shape functions; patch tests and quadrature |
 | Energy pipeline closed at continuum scale | Same \(\mathbf{K}\mathbf{U}=\mathbf{F}\) from Part I, now with a convergence theorem |
 
+**Scale-boundary handshake (Part III → Part IV → Part V/VI).**
+
+| PDE export ([Part III](../part03-pdes/00-opening.md)) | FEM output (this part) | Downstream consumer | Failure mode |
+|-------------------------------------------------------|------------------------|---------------------|--------------|
+| Weak form \(a(u,v)=\ell(v)\) in \(H^1\) | Galerkin on \(V_h\) → \(\mathbf{K}\mathbf{U}=\mathbf{F}\) | Door A: CHT with [Part V](../part05-fvm/00-opening.md); Door B: stress in [Part VI](../part06-continuum/00-opening.md) | Different meshes without interface handshake |
+| Lax–Milgram well-posedness | Céa's lemma: discrete tracks continuous minimizer | \(h\)-refinement audit at grip corner (Act III) | Locking on distorted elements |
+| Energy minimum \(\Pi[u]\) in \(H^1\) | Rayleigh–Ritz on nodal coefficients | Act III load cell in linear elastic regime | Thermal eigenstrain omitted in pure mechanical run |
+| Sobolev \(H^1\) regularity | \(H^1\)-conforming shape functions | Part VI virtual work and \(\mathbf{B}^T\mathbb{C}\mathbf{B}\) | Non-conforming elements at reentrant corner |
+
+The [preface ascent continuity hinge](../preface.md#ascent-continuity-hinges) lists Part IV as the **assembly → convergence** turn — where the energy minimum Part III proved becomes a meshed solid the load cell can trust. When assembly feels like bookkeeping, return to the Galerkin projector from [Part II.4](../part02-functional-analysis/04-operators-duality.md): the stiffness matrix is the Gram matrix of the energy inner product on \(V_h\), not an arbitrary sparse array.
+
 Return to the [prologue](../../prologue/00-many-scales.md): **Act III — Pulling** is the load cell's almost-linear climb, and Part IV is where that curve becomes a meshed solid whose stiffness matrix is not magic but the Gram matrix of the energy inner product on \(V_h\). Part I taught assembly as sparse bookkeeping; Part II proved the limit lives in \(H^1\); Part III wrote the bilinear form. [IV.1](01-weighted-residuals.md) is the first sentence of discretization — weighted residuals as the operational face of the energy minimum Part III named.
 
 Turn the page when the weak form is clear but no global matrix exists yet — that is the signal Galerkin assembly is the next move.

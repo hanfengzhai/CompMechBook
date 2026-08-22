@@ -164,6 +164,15 @@ Part IV assembled stiffness matrices from shape functions; [IV.5](../part04-fem/
 | \(\mathbf{K}\mathbf{U}=\mathbf{F}\) from assembly | Riemann fluxes, CFL limits, upwind bias for transport |
 | Error estimates as \(h \to 0\) | Entropy conditions and shock capturing on coarse grids |
 
-The **conjugate heat transfer** scene above is why Door A is not optional on first reading for the full wire story: Joule heating in the solid (Part IV) and convection in the air (Part V) exchange wall temperature and heat flux until both sides agree — the same fixed-point handshake the epilogue later generalizes to DFT→MD→DDD→FEM chains. Part III wrote the Navier–Stokes and energy equations; Part V discretizes them with flux balances that respect the invariants Galerkin cannot guarantee at high Reynolds number.
+**Scale-boundary handshake (Part IV → Part V → Part VI).**
+
+| FEM export ([Part IV](../part04-fem/00-opening.md)) | FVM output (this part) | Continuum consumer ([Part VI](../part06-continuum/00-opening.md)) | Failure mode |
+|-----------------------------------------------------|------------------------|-------------------------------------------------------------------|--------------|
+| Meshed solid; \(\mathbf{K}\mathbf{T}=\mathbf{q}\) for Joule heat | Cell flux balances in the air domain | Cauchy stress and rate-of-deformation tensors | Wall temperature mismatch at solid–fluid interface |
+| Robin BC \(q = h(T_w - T_\infty)\) as boundary data | Resolved convection boundary layer | Act II thermocouple response to cooling rate | Mass loss or spurious oscillations in fluid run |
+| Céa: energy-norm convergence as \(h \to 0\) on solid | CFL stability + TVD limiters on fluid grid | Conjugate heat fixed-point loop until interface residual \(< \varepsilon\) | Outer coupling not converged; only inner solves trusted |
+| Galerkin trial functions in \(H^1\) | Upwind bias and Riemann fluxes at steep gradients | Part VI names the flux tensors both discretizations approximate | Shock captured without entropy audit |
+
+The conjugate heat transfer scene above is the numerical face of this handshake: Joule heating in the solid (Part IV) and convection in the air (Part V) exchange wall temperature and heat flux until both sides agree — the same fixed-point discipline the [epilogue](../epilogue/multiscale.md) later generalizes to DFT→MD→DDD→FEM chains. Part VI reunites the fork by naming the Cauchy stress and flux tensors both dialects approximate. Part III wrote the Navier–Stokes and energy equations; Part V discretizes them with flux balances that respect the invariants Galerkin cannot guarantee at high Reynolds number.
 
 The first chapter below begins with **integral forms of conservation laws** — the FVM dialect of the same balance laws Part VI will name in Cauchy stress and rate-of-deformation language. Turn the page when the thermocouple climbs and the air around the wire needs a discretization philosophy of its own.

@@ -303,6 +303,17 @@ Not every linear map is best viewed in the standard basis. The modes of vibratio
 | Rotations, local/global frames, SVD principal directions | Natural frequencies on the spring-chain wire; Lanczos for lowest modes |
 | SPD and symmetry as coercivity shadows | Spectral theorem preview before Part II operators |
 
+**Scale-boundary handshake (I.1 → I.2 → I.3).**
+
+| Vectors/matrices export ([I.1](01-vectors-matrices.md)) | Linear maps output (this chapter) | Eigenvalue consumer ([I.3](03-eigenvalues.md)) | Failure mode |
+|---------------------------------------------------------|-----------------------------------|-----------------------------------------------|--------------|
+| \(\mathbf{K}\mathbf{u}=\mathbf{f}\) nodal equilibrium | \(\mathbf{L}_e^T \mathbf{k}_e \mathbf{L}_e\) scatter/gather assembly | \(\mathbf{K}\mathbf{v}=\omega^2\mathbf{M}\mathbf{v}\) modal decoupling | Wrong Jacobian in a rotated bar element |
+| SPD symmetry \(\mathbf{K}=\mathbf{K}^T\) | Transpose as adjoint: \(\mathbf{B}^T\) maps stress to nodal loads | Self-adjoint generalized eigenproblem | Non-symmetric maps without adjoint care |
+| Sparse local coupling in \(\mathbf{K}\) | Change of basis / rotation \(\mathbf{R}^T\mathbf{k}\mathbf{R}\) | Diagonalizing basis where \(\mathbf{K}\) acts by scaling | Rank deficiency → spurious rigid-body modes |
+| Energy \(\mathbf{u}^T \mathbf{K}\mathbf{u}\) | Strain operator \(\boldsymbol{\varepsilon}=\mathbf{B}\mathbf{u}\) | Modal strain-energy partition by mode | Mixed local/global coordinates without rotation |
+
+The rotated-bar Lab act is the numerical face of this handshake: assembly is geometry, not bookkeeping — and eigenvalues are the coordinate system in which the map tells its simplest story. When the wire hums at unexpected frequencies, check rank deficiency (rigid-body modes the grips must remove) before blaming material constants.
+
 Return to the [prologue](../../prologue/00-many-scales.md): **Act I — Mounting** fixes the wire, but a tap on the fixture excites **standing-wave pitches** — discrete normal modes before any continuum limit. [I.2](02-linear-maps.md) showed that assembly is a change of basis (\(\mathbf{L}_e\)); [I.3](03-eigenvalues.md) asks which basis **diagonalizes** the stiffness map so each mode oscillates independently. The Lab act that rotated a misaligned bar element is the same idea: wrong coordinates mix DOFs; eigenvectors are the coordinates where \(\mathbf{K}\) acts by pure scaling.
 
 When the wire hums at unexpected frequencies, check rank deficiency (rigid-body modes the grips must remove) before blaming material constants — the same diagnostic [Part II.5](../part02-functional-analysis/05-spectral-theorem.md) will elevate to operator spectra. Part I's opening [**concept map**](00-opening.md#the-concept-map) asked what breaks if structure is missing; [I.3](03-eigenvalues.md) makes decoupling explicit before [I.4](04-toward-infinity.md) sends \(N\to\infty\) and Part II names the operator behind every assembled matrix.
