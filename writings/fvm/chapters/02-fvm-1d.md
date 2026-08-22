@@ -240,6 +240,18 @@ First-order FVM on cell averages taught the **conservation rhythm** Part V build
 | CFL stability from flux Jacobian eigenvalues | Limiters and MUSCL reconstruction for \(O(\Delta x^2)\) |
 | Ghost-cell BCs on a 1D line | Shock capturing without spurious oscillations |
 
+**Scale-boundary handshake (V.2 → V.3 → Act II).**
+
+| 1D FVM export (this chapter) | Riemann consumer ([V.3](03-fluxes-riemann.md)) | Wire-scale lab act | Failure mode |
+|--------------------------------|----------------------------------------------|--------------------|--------------|
+| Cell averages \(U_j\); face fluxes \(F_{j+1/2}\) | Roe, HLL, HLLC approximate solvers | Act II boundary-layer cooling around wire | \(\rho < 0\) from explicit overshoot |
+| Discrete conservation: net flux = source + rate | Shock capturing without spurious oscillations | Compressible jet later in Act II preview | First-order smearing over \(O(\Delta x)\) cells |
+| CFL limit from flux Jacobian eigenvalues | MUSCL reconstruction for \(O(\Delta x^2)\) | Timestep audit before coupling to solid mesh | Violating CFL on stiff source terms |
+| Ghost-cell BCs at domain ends | Nonlinear left/right states at each face | Robin BC at wire surface ([VI.2](../part06-continuum/02-stress-balance.md)) | Ghost values inconsistent with Part IV solid temperature |
+| Patch test: linear \(T(x)\) exact on uniform mesh | Limiters at discontinuities | Conjugate heat transfer handshake with [IV.2](../part04-fem/02-galerkin-assembly.md) | Two solvers without flux/temperature contract at interface |
+
+The boundary-layer Lab act is the fluid-side patch test: linear temperature must be exact on any uniform mesh before coupling to Part IV's solid conduction in **Act II**. Conjugate heat transfer is not two unrelated solvers — it is this conservation rhythm on the air side meeting Galerkin assembly on the wire side, with Robin BC \(-\kappa \partial T/\partial n = h(T - T_\infty)\) as the handshake row both codes must implement identically.
+
 Return to the [prologue](../../prologue/00-many-scales.md): in **Act II — Warming**, Part IV's wire conducts heat smoothly while Part V's air cools it — first with low-Re boundary-layer flow, later with compressible regimes where density and velocity jump across shocks and shear layers. The 1D Euler update you coded here is the inner loop every OpenFOAM cell executes in three dimensions — the difference is only face area and volume weighting. [V.3](03-fluxes-riemann.md) supplies the **Riemann engines** that translate left/right cell states into a unique face flux when the solution is discontinuous.
 
-Turn the page when first-order Sod's problem converges but the shock front is three cells thick — that is the signal numerical flux design, not finer \(\Delta x\) alone, must improve the physics at the face.
+The [preface ascent continuity hinges](../preface.md#ascent-continuity-hinges) name [IV.5](../part04-fem/05-convergence.md#bridge-two-doors-from-here) / [V.4](04-navier-stokes-cfd.md#bridge-to-part-vi) as the **discretization fork → continuum** turn; this chapter is the first rung on Door A where conservation replaces minimization as the organizing principle. When first-order Sod's problem converges but the shock front is three cells thick — or the wire surface temperature disagrees with the air mesh despite a refined solid mesh — that is the signal numerical flux design and interface BCs, not finer \(\Delta x\) alone, must improve the physics at the face.
