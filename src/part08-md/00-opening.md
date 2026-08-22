@@ -168,4 +168,15 @@ Part VII ended with dislocation forests, Taylor hardening, and the admission tha
 
 Part I's coupled springs reappear here as coupled nuclei on an interatomic potential — still \(\mathbf{F} = -\nabla V\) at each timestep, still eigenmodes (now phonons) that decouple small oscillations, still stability constraints on \(\Delta t\) that mirror explicit Euler's CFL limit. Part VII exported mesoscale numbers; Part VIII shows how LAMMPS workflows, thermostats, and coarse-graining make those numbers **measurable and traceable** before Part IX derives the potential surface \(V(\{\mathbf{r}_i\})\) from electron density.
 
-The first chapter below opens **phase space** — positions, momenta, Hamiltonian mechanics — and the interatomic potentials every MD run of copper assumes on trust until the audit in Part IX. Turn the page when the mesh is fine enough but the core is still wrong: that is the hinge between line defects and atoms.
+**Scale-boundary handshake (Part VII → Part VIII → Part IX).**
+
+| DDD export ([Part VII](../part07-defects/00-opening.md)) | MD contract (this part) | DFT audit (Part IX) | Failure mode |
+|-----------------------------------------------------------|-------------------------|---------------------|--------------|
+| Cutoff-regularized core; mobility \(M(\tau,T)\) | RVE of fcc Cu nuclei; NVT shear on core | AIMD forces replace empirical \(M\) | Core box too small → spurious image forces |
+| \(\gamma_{\text{sf}}\) as input parameter | Relaxed faulted slab in LAMMPS | SCF generalized stacking-fault surface | EAM fit without phonon cross-check |
+| Taylor \(\tau \propto \sqrt{\rho}\) hardening | Trajectory statistics export \(\tau(\gamma)\) | Not re-derived at electronic scale | Mobility table with no temperature sweep |
+| Polycrystal texture handoff to FEM | \(a_0\), \(E\), \(\nu\) from NPT fluctuations | Bulk modulus from small-strain DFT | Mishin EAM, 2001 — no pedigree row |
+
+The [preface descent continuity hinge](../preface.md#descent-continuity-hinges) names [VII.3](../part07-defects/03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) as the **mesoscale → atomistic** turn — where line cores and mobility tables need atomic bonding before Part IX audits the potential from \(\rho(\mathbf{r})\). Return to the [prologue](../../prologue/00-many-scales.md): **Act V** is the notch where continuum fields predict stress concentration but cannot resolve bond breaking; **Act VI** is the offline foundation folder where EAM parameters and mobility tables are fitted before the operator mounts the wire.
+
+The first chapter below opens **phase space** — positions, momenta, Hamiltonian mechanics — and the interatomic potentials every MD run of copper assumes on trust until the audit in Part IX. When the mesh is fine enough but the core is still wrong — that is the hinge between line defects and atoms. Turn the page.

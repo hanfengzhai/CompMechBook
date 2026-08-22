@@ -167,4 +167,15 @@ Part II ended with a promise: the copper wire's displacement and temperature liv
 
 The first chapter below writes **strong forms** — what the blackboard demands at every point — and names where classical \(C^2\) smoothness fails on the wire's grip corner, insulator interface, and mid-span load. That failure is not a bug in the physics; it is the plot hinge the prologue's recurring character has been walking toward since Part I's nodal balance laws. [III.2](02-weak-form.md) gives the character its first lines; [III.4](04-energy-methods.md) closes the analytical pipeline before FEM and FVM turn weak forms into code.
 
-Turn the page when you are ready to see where pointwise PDEs break — and why the weak form is the correct continuum statement, not a numerical convenience.
+**Scale-boundary handshake (Part II → Part III → Parts IV–V).**
+
+| Part II export | Part III contract (this part) | Discretization consumer | Failure mode |
+|----------------|------------------------------|-------------------------|--------------|
+| \(H^1\), \(L^2\); completeness | Weak form \(a(u,v)=\ell(v)\) on \(\Omega\) | Part IV Galerkin on \(V_h\); Part V flux balance | Strong Laplacian at reentrant corner |
+| Bilinear form \(a\); dual load \(\ell\) | Integration by parts; natural BCs emerge | Part IV \(\mathbf{K}\mathbf{U}=\mathbf{F}\); Part V wall \(q_w\) | Duplicated Neumann data on two meshes |
+| Lax–Milgram coercivity | Energy minimum \(\Pi[u]\) in [III.4](04-energy-methods.md) | Rayleigh–Ritz assembly (Part IV) | Minimizing strong form on wrong space |
+| Galerkin best approximation on \(V_h\) | Sobolev trace and \(H^1_0\) in [III.3](03-sobolev-spaces.md) | \(H^1\)-conforming shape functions | Temperature jump across element → \(T_h \notin H^1\) |
+
+The [preface ascent continuity hinge](../preface.md#ascent-continuity-hinges) names this part as the **analysis → PDEs** turn — where completeness and spectral theory from [II.5](../part02-functional-analysis/05-spectral-theorem.md#bridge-to-part-iii) hand off to weak forms the copper wire's equilibrium demands. Return to the [prologue](../../prologue/00-many-scales.md): **Acts II–III** share the same pipeline — Joule heating and grip displacement both begin as strong PDEs and must become weak forms before FEM or FVM assign node values or cell fluxes.
+
+When pointwise PDEs break at the grip corner but virtual work still balances — that is the signal the weak form is the correct continuum statement, not a numerical convenience. Turn the page.

@@ -200,8 +200,6 @@ Scatter into global \(\mathbf{K}\), apply \(U_1=0\) and \(U_2=10\,\mu\text{m}\) 
 
 The weighted residual **is** the assembly loop in embryo: for each test function \(\phi_i\), enforce \(\int (EA u_h' \phi_i' - 0)\, dx = 0\). Part IV.2 automates the scatter; Part IV.3 adds quadrature on general elements. When the load cell trace is linear in Act III, every point is this two-equation system with a larger \(\mathbf{K}\).
 
-Turn the page when the weak form is clear but no matrix exists yet — that is the signal that weighted residuals need an assembly loop.
-
 ## Concept map checkpoint (weighted residuals)
 
 This chapter is where Part III's weak form becomes an **operational** approximation rule. Before assembly automates the scatter, summarize what weighted residuals established:
@@ -237,6 +235,8 @@ Galerkin's method on a finite element space becomes a matrix system through **gl
 
 Recall Part III's closing pipeline: strong PDE → weak form → **energy minimum** (Dirichlet principle) → discrete search on \(V_h\). Weighted residuals are the operational face of that minimum — enforcing \(R_{\text{weak}}(v; u_h) = 0\) for all test functions is equivalent to seeking the minimizer of a quadratic energy when the bilinear form is symmetric and coercive. The copper wire's tensile equilibrium from [III.4](../part03-pdes/04-energy-methods.md) arrives here as the same \(a(u,v) = \ell(v)\) restricted to piecewise linears; assembly is how we compute the matrix that Rayleigh–Ritz minimization demands.
 
+The [preface ascent continuity hinge](../preface.md#ascent-continuity-hinges) lists Part IV as the **well-posedness → assembly** turn — where the energy minimum [III.4](../part03-pdes/04-energy-methods.md) proved becomes a meshed solid the load cell can trust. Weighted residuals are the operational face of that turn: \(R_{\text{weak}}(v; u_h)=0\) for all test \(v\) is Rayleigh–Ritz minimization on \(V_h\) when \(a\) is symmetric and coercive.
+
 Return to the [prologue](../../prologue/00-many-scales.md): **Act III — Pulling** turns abstract Galerkin orthogonality into numbers the load cell trusts. Part I named \(\mathbf{K}\mathbf{u}=\mathbf{f}\); Part II proved the limit lives in \(H^1\); Part III wrote the bilinear form. The two-element bar Lab act above is assembly in embryo — [IV.2](02-galerkin-assembly.md) is where the operator becomes code, and the stiffness matrix is the Gram matrix of the energy inner product on \(V_h\), not an arbitrary sparse array.
 
-Turn the page when the weak form is clear but no global matrix exists yet — that is the signal weighted residuals need an assembly loop.
+When the weak form is clear but no global matrix exists yet — that is the signal weighted residuals need an assembly loop. Turn the page.

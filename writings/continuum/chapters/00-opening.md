@@ -143,6 +143,15 @@ Parts IV and V solved PDEs on meshes. Part VI names the fields those PDEs carry 
 | Cell fluxes and wall heat transfer (Part V) | Thermal strain \(\alpha\Delta T\); coupled energy balance in continuum form |
 | Céa lemma: discrete tracks continuous minimizer | Virtual work: FEM \(\mathbf{K}\) is the discrete shadow of \(\int \boldsymbol{\sigma}:\delta\boldsymbol{\varepsilon}\,d\Omega\) |
 
-Return to the [prologue](../../prologue/00-many-scales.md): whether you arrived via **Door B** from Part IV or completed Part V's conjugate heat transfer, the load cell curve in **Act III** measured something Part VI will finally name — Cauchy stress conjugate to the axial stretch \(\lambda = 1 + u'/L\). Cold-drawn strength and the upward bend in **Act IV** are not mesh artifacts; they are constitutive history that smooth elastic fields cannot explain alone. [VI.1](01-kinematics.md) begins with geometry; [VI.4](04-nonlinear-plasticity-preview.md) admits when that geometry needs dislocations.
+**Scale-boundary handshake (Parts IV–V → Part VI → Part VII).**
 
-Turn the page when \(\mathbf{K}\mathbf{U}=\mathbf{F}\) feels like linear algebra without physics — kinematics is where the wire's stretch becomes a tensor story.
+| Discretization export | Continuum contract (this part) | Descent consumer | Failure mode |
+|-----------------------|-------------------------------|------------------|--------------|
+| Nodal \(\mathbf{U}\) from shape functions | Displacement field \(\mathbf{u}(\mathbf{X})\); \(\mathbf{F}\), \(\boldsymbol{\varepsilon}\) | Part VII Burgers geometry on the same mesh | Stress from raw shape-function gradients without objectivity |
+| \(\mathbf{K}\mathbf{U}=\mathbf{F}\) from Galerkin | Virtual work: \(\int \boldsymbol{\sigma}:\delta\boldsymbol{\varepsilon}\,d\Omega\) | Crystal plasticity FEM in [VII.3](../part07-defects/03-polycrystal-and-fem-handoff.md) | Calling assembly "force balance" without naming \(\boldsymbol{\sigma}\) |
+| Cell fluxes and wall \(T\), \(q_w\) (Part V) | Thermal strain \(\alpha\Delta T\) in balance laws | Joule heating coupled to air cooling | Mechanical run omitting eigenstrain from Act II |
+| Céa: discrete tracks continuous minimizer | Hyperelastic energy density \(W(\mathbf{F})\) | [VI.4](04-nonlinear-plasticity-preview.md) \(J_2\) preview → DDD forest | Fitting \(H\) without mesoscale mechanism |
+
+The [preface continuity hinges](../preface.md#continuity-hinges-ascent-descent) mark Part VI as the **mathematical midpoint** — FEM and FVM converge on Cauchy stress before the descent to dislocations and atoms. Return to the [prologue](../../prologue/00-many-scales.md): whether you arrived via **Door B** from Part IV or completed Part V's conjugate heat transfer, the load cell curve in **Act III** measured something Part VI will finally name — Cauchy stress conjugate to the axial stretch \(\lambda = 1 + u'/L\). Cold-drawn strength and the upward bend in **Act IV** are not mesh artifacts; they are constitutive history that smooth elastic fields cannot explain alone. [VI.1](01-kinematics.md) begins with geometry; [VI.4](04-nonlinear-plasticity-preview.md) admits when that geometry needs dislocations.
+
+When \(\mathbf{K}\mathbf{U}=\mathbf{F}\) feels like linear algebra without physics — kinematics is where the wire's stretch becomes a tensor story. Turn the page.
