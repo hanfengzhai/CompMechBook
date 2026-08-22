@@ -230,6 +230,17 @@ Poisson's equation — scalar, symmetric, coercive — is the training ground wh
 
 Recall the pipeline from [Part III.4](../part03-pdes/04-energy-methods.md#bridge-to-part-iv): weak form → energy minimum → Rayleigh–Ritz on \(V_h\). Assembly ([IV.2](02-galerkin-assembly.md)) is the operational half of Rayleigh–Ritz; element technology is the other half. The copper wire's tensile mesh is only as trustworthy as the P1 bars (1D), triangles (2D cross-section), or tets (3D grip region) that define \(V_h\).
 
-Return to the [prologue](../../prologue/00-many-scales.md): **Act III**'s load cell measures force on a wire whose FEM mesh is built from the element families named here. Part III minimized thermal energy on the same P1 triangles; Part IV now carries **mechanical** degrees of freedom with the same quadrature loop. [IV.4](04-poisson-to-elasticity.md) closes the scalar-to-vector jump — the chapter where the copper wire stops being a temperature field alone and becomes the tensile bar whose stress–strain curve the prologue will track through yield.
+Return to the [prologue](../../prologue/00-many-scales.md): **Act III**'s load cell measures force on a wire whose FEM mesh is built from the element families named here. Part III minimized thermal energy on the same P1 triangles; Part IV now carries **mechanical** degrees of freedom with the same quadrature loop. [IV.4](04-poisson-to-elasticity.md) closes the scalar-to-vector jump — the chapter where the copper wire stops being a temperature field alone and becomes the tensile bar whose prologue will track through yield.
 
-Turn the page when Poisson assembly feels routine but an elasticity run returns a singular or nonsymmetric matrix — that is the signal the block constitutive structure deserves its own chapter.
+The [preface ascent preview chain](../preface.md#ascent-preview-chain) placed Part IV after Part III so **Act II — Warming** and **Act III — Pulling** could share one element library before Part V adds a second discretization dialect for the air cooling the wire. [IV opening](../part04-fem/00-opening.md#what-you-should-be-able-to-do-after-part-iv) lists the patch test as the IV.3 skill checkpoint — the artifact that must pass before vector elasticity in IV.4 and convergence rates in IV.5 certify the load cell curve.
+
+**Element technology → vector extension (intra-part handshake).**
+
+| IV.3 output (this chapter) | IV.4 consumer | Act on wire | Failure mode |
+|----------------------------|---------------|-------------|--------------|
+| Patch test on scalar Poisson (Lab act) | Vector patch test on linear elasticity | Linear elastic climb before yield | Non-symmetric \(\mathbf{K}\) from transposed B-matrix |
+| P1 triangles on heated cross-section | Block \(\mathbf{B}^T\mathbb{C}\mathbf{B}\) on same connectivity | Act II + Act III on one mesh | Thermal eigenstrain omitted in mechanical pass |
+| Isoparametric \(\mathbf{J}\) on grip cluster | Traction face quadrature on Neumann BC | End load split from body weight | Wrong \(\det J\) sign in distorted elements |
+| \(p\)-refinement on smooth temperature | Anisotropic \(\mathbb{C}\) from cold-drawn texture | Secant modulus vs single-crystal MD | Q1 hex hourglassing in 3D grip region |
+
+Turn the page when Poisson assembly feels routine but an elasticity run returns a singular or nonsymmetric matrix — that is the signal the block constitutive structure in [IV.4](04-poisson-to-elasticity.md) deserves its own chapter.

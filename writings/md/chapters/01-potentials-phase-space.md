@@ -333,4 +333,15 @@ Part VII's [Bridge](../../part07-defects/03-polycrystal-and-fem-handoff.md#bridg
 
 Return to the prologue's **Act IV — Hardening**: the load cell curve bent because lines moved; MD shows **how bonds stretch** at the core where Peach–Köhler forces are largest. Part I's pattern returns — state vector \(\{\mathbf{r}_i\}\), force vector from \(\nabla V\), timestep loop as repeated matrix–vector work — now with \(10^5\)–\(10^9\) atoms instead of \(N\) springs. The EAM minimization Lab act above is the **foundation archive** Part IX's DFT run will supersede — but only after [IX.3](../part09-dft/03-dft-workflows.md) documents cutoff and k-mesh convergence.
 
-[VIII.2](02-ensembles-integrators.md) makes sampling precise: Verlet integration, NVT and NPT control, and LAMMPS workflows that connect atomistic simulation to dislocation dynamics and beyond. Turn the page when the potential is specified but the wire's laboratory temperature has not yet entered the simulation — that is the signal that phase space, not just energy minimization, is the correct stage.
+The [preface descent continuity hinges](../preface.md#descent-continuity-hinges) name [VII.3 → VIII](../part07-defects/03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) as the **mesoscale → atomistic** turn — the first hinge in the scale descent. This chapter is where that hinge lands: mobility tables and core cutoffs from Part VII receive atomic coordinates and EAM forces. [Part VIII opening](../part08-md/00-opening.md#what-you-should-be-able-to-do-after-part-viii) lists the EAM minimization Lab act as the VIII.1 skill checkpoint before ensembles and integrators in VIII.2.
+
+**Foundation pedigree row (VIII.1 archive).**
+
+| Export | File | Upstream consumer | Failure mode |
+|--------|------|-------------------|--------------|
+| Lattice parameter \(a_0\) | `cu_eam_a0.txt` | Burgers vector \(b = a_0/\sqrt{2}\) in DDD yaml | Wrong Peierls threshold |
+| Cohesive energy | `cu_eam_ecoh.txt` | Part IX DFT audit target | EAM fit without DFT cross-check |
+| Bulk modulus from volumetric strain | `cu_eam_B.txt` | Part VI \(E,\nu\) handshake | Unconverged RVE size |
+| Thermal conductivity \(\kappa\) (Green–Kubo) | `kappa_md_300K.txt` | Part IV/V thermal blocks | Handbook \(k\) mixed with DFT moduli |
+
+[VIII.2](02-ensembles-integrators.md) makes sampling precise: Verlet integration, NVT and NPT control, and LAMMPS workflows that connect atomistic simulation to dislocation dynamics and beyond. Turn the page when the potential is specified and the EAM minimization archive is on disk, but the wire's laboratory temperature has not yet entered the simulation — that is the signal that phase space, not just energy minimization, is the correct stage.

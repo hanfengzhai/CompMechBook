@@ -235,4 +235,17 @@ Part IV asks: how do we choose \(V_h\), compute integrals, and assemble \(\mathb
 
 If you need the fluid fork after FEM, [IV.5](../part04-fem/05-convergence.md#bridge-two-doors-from-here) names **Door A** (Part V: FVM and conjugate heat transfer) and **Door B** (Part VI: continuum stress–strain vocabulary) — the canonical place to choose, so this chapter can stay focused on energy → assembly.
 
-Turn the page. Assembly awaits: the same \(\mathbf{K}\mathbf{U}=\mathbf{F}\) from Part I, now built from shape functions, Jacobians, and the bilinear forms defined in Part III.
+Return to the [prologue](../../prologue/00-many-scales.md): **Act II — Warming** minimized thermal energy on the same bar this chapter discretized in the Lab act; **Act III — Pulling** will minimize elastic energy on the mesh Part IV assembles. The afternoon does not separate physics from algorithms — it separates **which functional** is stationary at each grip setting.
+
+**Scale-boundary handshake (III.4 → Part IV → Acts II/III).**
+
+| Energy output (this chapter) | FEM consumer (Part IV) | Lab act on wire | Failure mode |
+|------------------------------|------------------------|-----------------|--------------|
+| Dirichlet \(\Pi[T]\) minimized in \(H^1\) | Thermal block in thermoelastic assembly | Act II thermocouple at mid-span | Equal-order \(P1\)–\(P1\) Stokes without inf–sup |
+| Elastic \(\Pi[\mathbf{u}]\) with thermal eigenstrain | Mechanical block + coupled load vector | Act III load cell in linear regime | Thermal stress omitted in pure mechanical run |
+| Rayleigh–Ritz on \(V_h\) → \(\mathbf{K}\mathbf{U}=\mathbf{F}\) | Galerkin assembly loop ([IV.2](../part04-fem/02-galerkin-assembly.md)) | Same mesh, two fields | Different connectivity for heat vs mechanics |
+| LBB saddle point (Stokes preview) | Mixed Taylor–Hood elements ([IV.4](../part04-fem/04-poisson-to-elasticity.md)) | Low-Re coolant around wire | Penalty \(\chi\) without inf–sup audit |
+
+The [preface ascent continuity hinge](../preface.md#ascent-continuity-hinges) lists this chapter as the **well-posedness → assembly** turn — the third of four hinges in the mathematical climb. When energy minimization and matrix assembly feel like separate subjects, reread the Rayleigh–Ritz Lab act above: \(\partial \Pi / \partial T_2 = 0\) and the weak-form row at node 2 are the same equation, one in energy language and one in Galerkin language.
+
+Turn the page when the weak form is clear and the energy functional is written, but no global matrix exists yet — that is the signal Galerkin assembly is the next move. The same \(\mathbf{K}\mathbf{U}=\mathbf{F}\) from Part I, now built from shape functions, Jacobians, and the bilinear forms defined in Part III, awaits in [IV opening](../part04-fem/00-opening.md#closing-the-arc-from-part-iii).
