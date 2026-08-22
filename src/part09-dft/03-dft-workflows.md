@@ -570,7 +570,7 @@ Part IX followed the DFT coursework arc from Born–Oppenheimer through Quantum 
 | What **theorem**? | Hohenberg–Kohn; Kohn–Sham mapping (with approximate \(E_{xc}\)) |
 | What **breaks**? | Functional dependence; metals without smearing; pseudopotential transferability |
 
-The export table above is where the **downward derivation** of the ladder begins: \(E_{\text{coh}}\), \(C_{ijkl}\), stacking-fault energies, and phonons feed MD potentials, DDD mobilities, and continuum moduli. A wire simulation that imports \(E = 120\) GPa without asking whether it came from Voigt-averaged DFT, room-temperature experiment, or cold-worked polycrystal data carries silent assumptions this part makes explicit. The epilogue asks how disciplined teams wire these exports into multiscale workflows.
+The export table above is where the **downward derivation** of the ladder begins: \(E_{\text{coh}}\), \(C_{ijkl}\), stacking-fault energies, and phonons feed MD potentials, DDD mobilities, and continuum moduli. A wire simulation that imports \(E = 120\) GPa without asking whether it came from Voigt-averaged DFT, room-temperature experiment, or cold-worked polycrystal data carries silent assumptions this part makes explicit. The [epilogue concept map checkpoint](../epilogue/multiscale.md#concept-map-checkpoint-epilogue--whole-book) asks how disciplined teams wire these exports into multiscale workflows.
 
 ## Lab act: archive the foundation run before the wire-scale solve (Act VI — Foundation)
 

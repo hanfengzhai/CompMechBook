@@ -73,7 +73,7 @@ The wire at this scale is still a chain of coupled springs — not yet a PDE, no
 
 ## Closing the arc from the Prologue {#opening-hinge-prologue-to-part-i}
 
-If you have read the prologue straight through, the copper wire has already appeared as a continuum member, a dislocation forest, an atomic lattice, and a sea of electrons. Part I does not repeat those scenes — it **grounds** them in the grammar every later scale inherits:
+If you have read the prologue straight through, the copper wire has already appeared as a continuum member, a dislocation forest, an atomic lattice, and a sea of electrons. Confirm the panoramic view with the [prologue concept map checkpoint](../prologue/00-many-scales.md#concept-map-checkpoint-prologue) before the first proof — then Part I **grounds** those scenes in the grammar every later scale inherits:
 
 | Prologue image | Part I vocabulary |
 |----------------|-------------------|

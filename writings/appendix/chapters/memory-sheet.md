@@ -198,7 +198,7 @@ Multiscale workflows fail at **interfaces**, not inside solvers. Before merging 
 Each numbered chapter follows the same five-beat rhythm the Functional Analysis Notes use, extended with narrative Scene and Lab act sections:
 
 1. **Scene** — return to the copper wire in the lab
-2. **Concept map checkpoint** (mid- or end-chapter) — object, structure, theorem, failure mode — present in all **35 numbered chapters** (I.1–IX.3)
+2. **Concept map checkpoint** (mid- or end-chapter) — object, structure, theorem, failure mode — present in all **35 numbered chapters** (I.1–IX.3), plus the [prologue](../prologue/00-many-scales.md#concept-map-checkpoint-prologue) (whole-book panorama) and [epilogue](../epilogue/multiscale.md#concept-map-checkpoint-epilogue--whole-book) (coupling scale)
 3. **Lab act** — one computational move you can run
 4. **Bridge** — why the next chapter must exist
 

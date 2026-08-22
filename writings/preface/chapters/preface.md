@@ -21,7 +21,7 @@ Each part follows the **Functional Analysis Notes** (ME 412) layout — numbered
 | **Scene** | Return to the copper wire in concrete detail | Preface, prologue, every part opening, every numbered chapter, epilogue |
 | **Bridge** | State why the next chapter must exist | End of every numbered chapter and part opening |
 | **Lab act** | Worked example, workflow, or checklist tied to computation | Inside chapters (assembly, LAMMPS, OpenDiS, QE inputs) |
-| **Concept map** | Object → structure → theorem → failure mode | Part openings; part closing checkpoints |
+| **Concept map** | Object → structure → theorem → failure mode | Part openings; part closing checkpoints; [prologue](prologue/00-many-scales.md#concept-map-checkpoint-prologue) and [epilogue](epilogue/multiscale.md#concept-map-checkpoint-epilogue--whole-book) bookends |
 | **Representative schematics** | Baby pictures indexed to source notes (ME 300A, ME 412, ME 300B, FEA, FVM, …) | Every part opening (I–IX) |
 
 The dramatic arc is not a surprise twist — it is **scale change with the same specimen**:

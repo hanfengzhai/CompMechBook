@@ -605,6 +605,31 @@ The copper wire is still under tension — mechanical, electrical, intellectual.
 
 The wire does not care which chapter we finished last. It responds to physics. Our craft is to make that physics computable, connected, and credible.
 
+## Concept map checkpoint (Epilogue / whole book)
+
+After Parts I–IX, confirm the four questions at **coupling** scale — the closing lens the [prologue](../prologue/00-many-scales.md#the-concept-map-whole-book) previewed and Part IX's closing checkpoint archived:
+
+| Question | Whole-book answer (multiscale wire) |
+|----------|-------------------------------------|
+| What **object**? | Coupled states at interfaces — wall temperature, hardening law, interatomic potential, archived SCF exports |
+| What **structure**? | Handshake loops; sequential homogenization; concurrent overlap where scale separation fails |
+| What **theorem** (principle)? | Scale separation where valid; convergence at each rung; verification and validation at every interface |
+| What **breaks**? | Unit errors, wrong processing history, category errors at notches; exports without pedigree |
+
+The [concept map (closing lens)](#the-concept-map-closing-lens) and [six-act reunion](#lab-act-reunion-six-acts-one-afternoon) are the operational versions of this table — the same four questions, now at boundaries between codes rather than within a single mesh.
+
+### What you should be able to do after the book
+
+| Skill | Minimal artifact on the copper wire |
+|-------|-------------------------------------|
+| Trace a modulus | DFT `pw.x` log → Voigt average → Young's modulus in the FEM input deck |
+| Run conjugate heat | FEM solid ↔ FVM fluid fixed-point with documented \(h\) and iteration log |
+| Explain hardening | DDD forest density → Taylor law → crystal-plasticity Gauss point |
+| Audit a potential | EAM fit folder with matching functional, k-mesh, and README at the arrow |
+| Name overlap regions | Notch root: continuum locates stress; MD resolves nucleation — bulk DFT does not predict crack-tip chemistry alone |
+
+The book opened with one wire and four questions. It closes with the discipline to wire every export into workflow time — the multiscale afternoon the opening **Scene** described. Return to the [prologue](../prologue/00-many-scales.md) when the specimen changes; the ladder is reusable, not copper-specific.
+
 ## Bridge {#bridge}
 
 The ladder ends here, but the references do not. The [Sources appendix](../appendix/sources.md) lists the PDF notes, coursework repositories, and external texts behind each part. The [Final Memory Sheet](../appendix/memory-sheet.md) collects the book-wide habits and traps in the ME 412 style. When `Writings.git` is linked, canonical chapter markdown lives under `writings/` in the Functional Analysis Notes layout; run `./scripts/sync-writings.sh` after upstream edits to refresh this book.

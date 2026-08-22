@@ -228,6 +228,30 @@ The [preface ascent continuity hinges](../preface.md#ascent-continuity-hinges) n
 
 When a chapter feels abstract, locate it on the [narrative beat map](../appendix/sources.md#narrative-beat-map-mathematical-order--lab-act): *Which act am I simulating, and which rung supplies the numbers I trust?*
 
+## Concept map checkpoint (Prologue)
+
+Before Part I, confirm the four questions at **whole-book** scale — the panoramic view the [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) layout will replay part by part:
+
+| Question | Whole-book answer (copper wire) |
+|----------|--------------------------------|
+| What **object**? | One specimen at many scales: vector, field, defect network, trajectories, electron density |
+| What **structure**? | Ladder: homogenize upward, derive downward; weak forms at every rung |
+| What **theorem** (principle)? | Well-posedness and convergence at each discretization; consistent interface data across scales |
+| What **breaks**? | Wrong moduli, missing processing history, unit mismatches, category errors at notches and cores |
+
+The [concept map](#the-concept-map-whole-book) and [six-act lab session](#the-experiment-as-plot) are the narrative devices that keep this panorama from becoming a menu of unrelated courses. Part I makes the first rung explicit: \(\mathbf{K}\mathbf{u}=\mathbf{f}\) before fields, weak forms, or electrons enter the story.
+
+### What you should carry into Part I
+
+| Before Part I | You should be able to… |
+|---------------|------------------------|
+| Scale ladder | Name the nine rungs (I–IX) and one quantity each exports upward |
+| Four questions | Apply state / equations / discretization / export to one row of the [scale table](#the-same-questions-at-every-scale) |
+| Two clocks | Distinguish mathematical reading order (Part I before Part IX) from lab-act time (mount before harden) |
+| Weak form preview | Recognize virtual work as the character that returns in Parts III, IV, VI, and IX |
+
+If you can answer those four rows without opening a code manual, the prologue has done its job. Part I supplies the syntax; the specimen stays the same.
+
 ## Bridge {#bridge-to-part-i}
 
 Turn the page. The copper wire is waiting — first as vectors and matrices, eventually as electrons, dislocations, and degrees of freedom on a finite element mesh. The climb begins with the grammar we already speak: linear algebra.
