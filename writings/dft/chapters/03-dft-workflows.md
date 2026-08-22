@@ -600,6 +600,19 @@ Part IX closes the **downward** audit: fcc Cu has converged SCF logs, elastic co
 | Documented defect supercells and finite-size studies | FE² / concurrent handshakes when homogenization fails at the notch |
 | Reproducible QE/VASP/GPAW archive (MSE 5720 template) | Sequential vs. concurrent coupling; surrogate acceleration with stated tolerances |
 
+**Scale-boundary handshake (IX.3 → epilogue → full ladder).**
+
+| DFT archive (this chapter) | Audit gate | Upstream consumer | Failure mode |
+|----------------------------|------------|-------------------|--------------|
+| `cu.scf.in` + convergence log | \(E_{\text{tot}}\) change \(< 1\) meV/atom on cutoff doubling | Part VIII EAM fit ([VIII.3](../part08-md/03-ab-initio-and-coarse-graining.md)) | Under-converged \(E_{\text{cut}}\) in LAMMPS |
+| Relaxed \(a_0\) from `vc-relax` | Forces \(< 10^{-4}\) Ry/Bohr | Part VIII NPT box; Part VII Burgers \(b\) | Wrong lattice constant in DDD yaml |
+| Symmetric \(C_{ij}\) from strain series | ±0.5% strain cells converged | Part IV elastic step; Part VI \(\mathbb{C}\) | Single-point stress without relaxation |
+| Vacancy \(E_f^v\) + finite-size study | Supercell large enough for image decay | Part VIII NEB; annealing kinetics | Image charge in too-small cell |
+| GSF surface from slab calculations | Correct slip plane and k-mesh | Part VII partial dislocation laws | Wrong stacking sequence in slab |
+| `ph.x` phonon export | k-mesh convergence in DFPT | Part VIII VACF cross-check ([VIII.2](../part08-md/02-ensembles-integrators.md)) | Incomplete phonon DOS at high \(T\) |
+
+Part I's eigenvalue loop — assemble, solve, update — reappears as the SCF cycle archived here; Part II's convergence instinct as cutoff and k-mesh sweeps; Part IV's verification habit as the pedigree checklist above. The book's **ascent** (Parts I–VI) and **descent** (Parts VII–IX) meet in the epilogue when every macro input traces to a foundation run someone can reproduce.
+
 Return to the [prologue](../../prologue/00-many-scales.md): **Act VI — Foundation** ran in parallel with Acts I–V — the invisible afternoon where someone chose \(E\), \(\nu\), and surface energies before the load cell moved. [IX.1](../part09-dft/01-born-oppenheimer.md) named the BO surface; [IX.2](../part09-dft/02-kohn-sham.md) ran the SCF loop; this chapter archived the numbers [VIII.3](../part08-md/03-ab-initio-and-coarse-graining.md) and [VII.3](../part07-defects/03-polycrystal-and-fem-handoff.md) consume. The epilogue is where **Door A** (FVM cooling) and **Door B** (FEM solid) from [IV.5](../part04-fem/05-convergence.md#bridge-two-doors-from-here) meet the DFT→MD→DDD→FEM ladder in one multiscale afternoon.
 
 Read the epilogue's [**Closing the arc from Part IX**](../../epilogue/multiscale.md#closing-the-arc-from-part-ix) first for the export table mapped onto the wire specimen; then the general coupling patterns (partitioned CHT, sequential homogenization, concurrent FE²).

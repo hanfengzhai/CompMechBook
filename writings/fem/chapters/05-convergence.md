@@ -319,10 +319,31 @@ The copper wire's tensile equilibrium, steady heating, and elastic step all occu
 
 ## Bridge: two doors from here {#bridge-two-doors-from-here}
 
-Part IV answered *how* to discretize elliptic problems on meshes. Two natural continuations follow — and both converge on the same continuum vocabulary of Part VI.
+Part IV answered *how* to discretize elliptic problems on meshes — and this chapter proved *when* to trust the answers. Two natural continuations follow; both converge on the same continuum vocabulary of Part VI.
+
+| What this chapter established | What Door A / Door B supplies |
+|--------------------------------|-------------------------------|
+| Céa's lemma: \(\|u-u_h\|_a \le C h^p \|u\|_{H^{p+1}}\) | Part V: flux-based CFL audit for advection; Part VI: names \(\boldsymbol{\sigma}\) behind \(\mathbf{K}\) |
+| Galerkin orthogonality: discrete solution is best approximation in energy norm | Part V: integral conservation when Galerkin oscillates at high Re |
+| \(h\)- and \(p\)-refinement rates; Aubin–Nitsche in \(L^2\) | Part VI: virtual work principle that both FEM and FVM inherit |
+| A posteriori estimators and adaptive refinement at grip corners | Part V: Robin wall flux for conjugate heat transfer in **Act II** |
+| Locking at \(\nu \to 1/2\); verification checklist | Part VI: constitutive history behind the **Act IV** load-cell bend |
 
 **Door A — Part V (conservation on cells).** Fluids at high Reynolds number, shocks, and steep advection fronts favor a different philosophy from Galerkin trial functions: integrate conservation laws over control volumes and balance **fluxes** across faces. The finite volume method is that story — complementary to FEM, not competing with it. When the copper wire heats in air, Part V discretizes the cooling flow; Part IV discretizes conduction in the solid; a fixed-point loop at the wall couples them (conjugate heat transfer). Read Part V next if fluids and CFD are your immediate goal.
 
 **Door B — Part VI (continuum mechanics).** If your specimen is solid-dominated — tension, bending, thermal strain without resolving the surrounding fluid — you may skip Part V on first reading and go directly to Part VI. There we name the fields Part IV's code already approximates: deformation gradient, strain, Cauchy stress, virtual work. The stiffness matrix from Chapter 2 is the discrete shadow of a hyperelastic energy; convergence rates from this chapter justify trusting that shadow as \(h \to 0\).
 
+**Scale-boundary handshake (IV.5 → Part V/VI → Part VII).**
+
+| Convergence audit (this chapter) | Discretization consumer | Downstream scale | Failure mode |
+|----------------------------------|-------------------------|------------------|--------------|
+| Three-mesh \(h\)-study plateaus in energy norm | Part VI virtual work on same mesh | Part VII RVE homogenization | Texture-aware \(\mathbb{C}\) needed on drawn wire |
+| Céa certificate for Act III load cell | Part V Robin flux at wire surface | Act II conjugate heat transfer | Thermal BC wrong while mesh converges |
+| A posteriori error at grip corner | Part VI nonlinear return-mapping | Part VII dislocation nucleation | Elastic mesh at plastic onset |
+| P1/P2 rate check on bar Poisson | Part VI \(\mathbb{C}\) from isotropic \(E,\nu\) | Part VIII EAM-fit moduli | Single-crystal rates on polycrystal specimen |
+
 Either path is valid. Part V ends with its own bridge into Part VI; the epilogue later treats both discretizations as dialects of one multiphysics story. What matters is not the order of Doors A and B, but that you eventually reach Part VI before descending to dislocations and atoms — continuum stress and balance language is the shared floor under both FEM and FVM.
+
+Return to the [prologue](../../prologue/00-many-scales.md): **Act III — Pulling** is trustworthy only when the three-row Lab act table above plateaus — the same instinct Part IX later applies to SCF cutoff. [IV.4](04-poisson-to-elasticity.md) extended scalar assembly to vector elasticity; this chapter closes the **existence–convergence** arc Part II opened in \(H^1\). Whether you walk through Door A (air cooling in **Act II**) or Door B (solid mechanics first), the load cell curve inherits from a mesh whose error decreases at a predictable rate — not from a contour plot that merely looks smooth.
+
+Turn the page when patch tests pass and Céa's rates hold on a bar but the grip displacement still moves when you halve \(h\) at the corner — that is the signal Door A or Door B must name the physics the converged mesh is approximating.
