@@ -140,6 +140,19 @@ Each chapter adds one move to a conservation-first workflow that complements Par
 
 None of these require a full CFD code — but each one is the transport dialect the air around the wire demands. If you can balance fluxes on three cells, state a CFL limit, and explain why wall temperature must match at a solid–fluid interface, you have the core of Act II's conjugate heat transfer before Part VI names the stress and flux tensors both sides approximate.
 
+## Concept map checkpoint (Part V opening)
+
+Before [V.1](01-conservation-integral.md), confirm the conservation philosophy that complements Part IV's trial-function approach:
+
+| Question | Part V answer (copper wire) |
+|----------|----------------------------|
+| What **object**? | Cell averages, face fluxes, conserved heat and mass |
+| What **structure**? | Integral balance, upwind bias, Riemann solvers |
+| What **theorem**? | Discrete conservation; Lax equivalence; TVD limiters |
+| What **breaks**? | Mass loss; spurious oscillations at shocks; CFL instability |
+
+FEM and FVM are not competing religions — they are **complementary discretizations** on the same specimen: elliptic solid conduction (Part IV) coupled to hyperbolic fluid transport (Part V) at the wire surface.
+
 ## Bridge
 
 Part IV assembled stiffness matrices from shape functions; [IV.5](../part04-fem/05-convergence.md#bridge-two-doors-from-here) named **Door A** — conservation on control volumes for fluids, shocks, and steep advection fronts. Part V walks through that door. The physics of the copper wire did not change; the **computational instinct** did.

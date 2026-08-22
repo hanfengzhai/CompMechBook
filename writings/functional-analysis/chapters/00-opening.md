@@ -134,6 +134,19 @@ Each chapter adds one move to a workflow that turns "the mesh looks smooth" into
 
 None of these require running a commercial FEM code — but each one is the infinite-dimensional justification for what Part IV assembles. If you can state the weak form of \(-u''=f\) on \((0,1)\), name the space \(u \in H^1_0\), and explain why Galerkin is projection rather than guesswork, you have the core of ME 412 on the copper wire. Parts III–IV replace definitions with PDEs and loops; the **moves** stay the same.
 
+## Concept map checkpoint (Part II opening)
+
+Before [II.1](01-motivation.md), summarize the analytical contract every discretization in Parts III–IX must honor:
+
+| Question | Part II answer (copper wire) |
+|----------|------------------------------|
+| What **object**? | Fields \(u(x)\), \(T(x)\) — not vectors \(\mathbf{u}\in\mathbb{R}^N\) for fixed \(N\) |
+| What **structure**? | Norm (energy), inner product (orthogonality), completeness (limits stay in \(H^1\)) |
+| What **theorem**? | Lax–Milgram; Galerkin best approximation; spectral convergence of Rayleigh–Ritz |
+| What **breaks**? | Cauchy sequences leaving the space; corners with no classical \(C^2\) solution |
+
+Part I ended with \(N\to\infty\); Part II names the **room** the limit lives in. The fourteen schematics indexed above are the visual index — when a proof feels abstract, ask which schematic you are standing on.
+
 ## Bridge
 
 Part I ended with a promise: as the mesh refines, the copper wire's displacement and temperature fields live in infinite-dimensional spaces, not in \(\mathbb{R}^N\) for any fixed \(N\). [I.4](../part01-linear-algebra/04-toward-infinity.md#bridge-to-part-ii) named the three-step bridge — weak form, subspace \(V_h \subset H^1\), matrix system — and deferred steps 1–2 to this part. The first chapter below makes that promise precise: why weak forms appear, why classical smoothness fails at corners, and why the stiffness matrix is a Galerkin projection rather than an arbitrary sparse array.

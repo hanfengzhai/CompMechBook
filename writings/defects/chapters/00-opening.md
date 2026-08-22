@@ -169,6 +169,19 @@ Each chapter adds one move to the mesoscale pipeline that turns phenomenological
 
 None of these require a production polycrystal run — but each one is the mechanism behind Part VI's fitted \(H\). If you can name the forest that cold drawing stored, explain why \(\tau \propto \sqrt{\rho}\), and sketch the handoff from DDD statistics to FEM internal variables, you have the mesoscale narrator for Act IV's upward bend.
 
+## Concept map checkpoint (Part VII opening)
+
+Before [VII.1](01-defect-taxonomy.md), confirm the first **descent** rung — where phenomenological hardening yields to computable forest physics:
+
+| Question | Part VII answer (copper wire) |
+|----------|-------------------------------|
+| What **object**? | Dislocation lines, Burgers vector \(\mathbf{b}\), density \(\rho\) |
+| What **structure**? | Peach–Köhler forces, mobility laws, link statistics |
+| What **theorem**? | Taylor hardening; DDD time integration; homogenization to crystal plasticity |
+| What **breaks**? | Core singularity; wrong hardening; yield without forest structure |
+
+The scale-boundary worked example above is **Handshake 0** on the descent ladder — the same export discipline conjugate heat transfer practiced at the solid–fluid wall, now for stress tensors at a crystal RVE.
+
 ## Bridge
 
 Part VI closed with variational elasticity: energy minimization and virtual work for **smooth** fields. The drawn copper wire violates that smoothness at the mesoscale — dislocation lines, grain boundaries, and vacancy clusters are the mechanisms behind **Act IV** hardening on the load cell. Part VII is the first **descent** on the prologue ladder: the same specimen, a smaller state variable, export discipline unchanged.

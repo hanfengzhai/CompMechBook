@@ -132,6 +132,19 @@ Each chapter adds one move to the continuum vocabulary that makes FEM and FVM ou
 
 None of these require running DDD or MD — but each one is the physics behind the numbers Part IV assembles. If you can compute axial stretch from a displacement field, write Cauchy stress balance, and explain why cold-drawn hardening is not in \(\mathbb{C}\) alone, you have the continuum floor before the book descends to dislocations and atoms.
 
+## Concept map checkpoint (Part VI opening)
+
+Before [VI.1](01-kinematics.md), confirm the continuum floor that both FEM and FVM approximate — and the hinge where ascent ends:
+
+| Question | Part VI answer (copper wire) |
+|----------|------------------------------|
+| What **object**? | \(\mathbf{F}\), \(\boldsymbol{\sigma}\), strain energy on the meshed cylinder |
+| What **structure**? | Objectivity, balance laws, constitutive relations |
+| What **theorem**? | Virtual work; hyperelastic energy potentials |
+| What **breaks**? | Non-objective models; yield without history; singularities at defects |
+
+Part VI is the **mathematical midpoint**: Parts I–V climbed from algebra to discretization; Parts VII–IX will descend to defects, atoms, and electrons. [VI.4's intermission](04-nonlinear-plasticity-preview.md#intermission-ascent-ends-descent-begins) names the narrative turn.
+
 ## Bridge
 
 Parts IV and V solved PDEs on meshes. Part VI names the fields those PDEs carry — deformation gradient, strain, stress — and derives the virtual work principle that both discretizations inherit. The first chapter begins with the geometry of deformation: how the copper wire stretches, rotates, and changes volume when pulled.

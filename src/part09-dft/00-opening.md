@@ -131,6 +131,19 @@ Each chapter adds one move to the electronic-structure workflow that grounds eve
 
 None of these require a national supercomputer allocation — but each one is the foundation Act VI runs in parallel with the tensile test. If you can explain why MD's potential is a functional of electron density, archive an SCF log beside every exported modulus, and trace Young's modulus from strained unit cells back to Kohn–Sham orbitals, you have closed the downward derivation before the epilogue wires the ladder together.
 
+## Concept map checkpoint (Part IX opening)
+
+Before [IX.1](01-born-oppenheimer.md), confirm the **finest rung** on the prologue ladder — the floor beneath every EAM parameter and mobility table:
+
+| Question | Part IX answer (copper wire) |
+|----------|------------------------------|
+| What **object**? | Electron density \(\rho(\mathbf{r})\), Kohn–Sham orbitals, total energy |
+| What **structure**? | Hohenberg–Kohn mapping, SCF iteration, k-point sampling |
+| What **theorem**? | Variational ground state; force theorem; elastic constants from strain |
+| What **breaks**? | Wrong functional; SCF oscillation; size-extensive errors on small cells |
+
+Part IX closes **downward derivation**; only coupling remains. The [epilogue](../epilogue/multiscale.md) reunites every rung in workflow time — state, equations, discretization, upward export at interfaces between codes.
+
 ## Bridge
 
 Part VIII ran LAMMPS on an EAM potential **on trust** — cohesive energy, lattice parameter, mobility tables appeared without a full electronic-structure derivation. [VIII.3](03-ab-initio-and-coarse-graining.md#bridge-to-part-ix) named the quantities DFT must re-derive and pointed here. Part IX is the **audit chapter**: the same fcc copper cell Part VIII vibrated, now solved for \(\rho(\mathbf{r})\).

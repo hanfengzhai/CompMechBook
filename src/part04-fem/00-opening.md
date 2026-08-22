@@ -134,6 +134,19 @@ Each chapter adds one move to a minimal FEM workflow you can run on paper, in Nu
 
 None of these require a commercial solver — but each one is the discretization move Part VI will name with stress tensors and virtual work. If you can assemble a bar, pass a patch test, and show tip displacement stabilizes under refinement, you have the core of Act III's linear elastic FEM before yield, hardening, or atomistic resolution enter the story.
 
+## Concept map checkpoint (Part IV opening)
+
+Before [IV.1](01-weighted-residuals.md), confirm the discretization contract that makes FEM honest projection, not ad hoc linear algebra:
+
+| Question | Part IV answer (copper wire) |
+|----------|------------------------------|
+| What **object**? | Trial space \(V_h\), shape functions, assembled \(\mathbf{K}\) and \(\mathbf{f}\) |
+| What **structure**? | Galerkin orthogonality, isoparametric maps, \(h\)-refinement |
+| What **theorem**? | Best approximation; Céa's lemma; a priori convergence rates |
+| What **breaks**? | Locking; hourglass modes; pollution on distorted elements |
+
+Part III wrote weak forms; Part IV turns them into **code** — the same \(\mathbf{K}\mathbf{U}=\mathbf{F}\) Part I taught, now with a convergence theorem behind it.
+
 ## Bridge
 
 Part III ended with energy methods and the promise of assembly. The first chapter below introduces weighted residuals — the unifying idea behind Galerkin's method — and shows why choosing test functions as trial functions is the natural discretization of the weak form the copper wire's equilibrium demands.

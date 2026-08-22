@@ -141,6 +141,19 @@ Each chapter adds one move to the analytical pipeline that turns a blackboard PD
 
 None of these require assembling a mesh — but each one is the continuum statement FEM enforces at the limit. If you can write the weak form of \(-u''=f\) on \((0,L)\), name \(u \in H^1_0\), and explain why the energy minimum equals virtual work, you have the analytical core that Parts IV–VI discretize and interpret.
 
+## Concept map checkpoint (Part III opening)
+
+Before [III.1](01-strong-form.md), confirm the ladder from strong PDE to trusted numbers — schematic 14 from the Functional Analysis Notes:
+
+| Question | Part III answer (copper wire) |
+|----------|-------------------------------|
+| What **object**? | Fields \(u(\mathbf{x})\), \(T(\mathbf{x})\) on \(\Omega\) with boundary \(\partial\Omega\) |
+| What **structure**? | Strong form (pointwise), weak form (test functions), Dirichlet energy |
+| What **theorem**? | Lax–Milgram existence; energy minimization; well-posedness in \(H^1\) |
+| What **breaks**? | Reentrant grip corners; delta loads; oscillations on coarse meshes without weak form |
+
+Part II supplied the spaces; Part III writes the **equations** those spaces host. The weak form introduced in the prologue as a recurring character speaks its first lines in [III.2](02-weak-form.md).
+
 ## Bridge
 
 Part II ended with a promise: the copper wire's displacement and temperature live in Sobolev spaces, not in \(\mathbb{R}^N\) for any fixed mesh. [II.5](../part02-functional-analysis/05-spectral-theorem.md#bridge) named the weak form a **recurring character** about to speak on stage — multiply by a test function, integrate by parts, balance virtual work for every admissible displacement. Part III is that act.

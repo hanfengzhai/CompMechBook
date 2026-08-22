@@ -155,6 +155,19 @@ Each chapter adds one move to the atomistic workflow that supplies numbers the m
 
 None of these require a full ab initio MD production run — but each one is the atomistic audit Part IX will derive from first principles. If you can integrate Newton's equations with a thermostat, read a LAMMPS log for temperature and pressure, and explain what an EAM potential assumes about electron density, you have the finest discrete scale before Kohn–Sham replaces the potential with orbitals.
 
+## Concept map checkpoint (Part VIII opening)
+
+Before [VIII.1](01-potentials-phase-space.md), confirm the atomistic resolution that Part VII's line models defer to nuclei and bonds:
+
+| Question | Part VIII answer (copper wire) |
+|----------|--------------------------------|
+| What **object**? | Positions \(\{\mathbf{r}_i\}\), momenta, interatomic potential \(V\) |
+| What **structure**? | Hamiltonian mechanics, thermostats, periodic boundaries |
+| What **theorem**? | Energy conservation (symplectic integrators); ergodic sampling |
+| What **breaks**? | Energy drift; wrong ensemble; cutoff artifacts in EAM fits |
+
+The handoff table above lists every export MD must supply before the epilogue's multiscale afternoon — populate it before Part IX audits the potential surface.
+
 ## Bridge
 
 Part VII ended with dislocation forests, Taylor hardening, and the admission that **cores and crack tips need atoms**. [VII.3](03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) named the quantities MD must supply — stacking-fault energy, core width, mobility tables — and deferred their microscopic origin to this part. Part VIII puts the atoms back on stage.

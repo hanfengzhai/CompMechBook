@@ -115,6 +115,19 @@ Each chapter adds one move to a minimal workflow you can run on paper or in NumP
 
 None of these require functional analysis — but each one is the finite-dimensional shadow of something Part II names rigorously. If you can assemble a three-node bar, solve for displacement, and extract a fundamental frequency, you have already done 80% of what a linear static/dynamic FEM code does on the first timestep. Parts II–IV replace vectors with functions and loops with weak forms; the **moves** stay the same.
 
+## Concept map checkpoint (Part I opening)
+
+Before the first numbered chapter, confirm the four questions the [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) will replay in infinite dimensions — now at the **grammar** rung of the prologue ladder:
+
+| Question | Part I answer (copper wire) |
+|----------|----------------------------|
+| What **object**? | State vector \(\mathbf{u}\), stiffness \(\mathbf{K}\), eigenmodes on a spring chain |
+| What **structure**? | Inner product (energy), symmetry (reciprocity), sparsity (local coupling) |
+| What **theorem**? | Spectral theorem; SPD \(\mathbf{K}\) \(\Rightarrow\) unique equilibrium |
+| What **breaks**? | Ill-conditioning; spurious modes; refinement without a target space |
+
+The prologue named nine scales; Part I names the **syntax** every scale shares. When a later chapter feels foreign — orbitals, fluxes, Peach–Köhler forces — return here: somewhere underneath is \(\mathbf{A}\mathbf{x}=\mathbf{b}\) or an eigenproblem.
+
 ## Bridge
 
 The prologue introduced the copper wire at every scale and named the four questions every rung must answer. Part I begins at the rung every simulation shares — degrees of freedom collected into vectors, evolution and equilibrium written as linear systems — before the wire becomes a field, a mesh, or an electron density.
