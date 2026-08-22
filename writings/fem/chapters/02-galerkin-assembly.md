@@ -274,7 +274,7 @@ The scatter Lab act verified that node 2 feels both neighbors (\(2k\) on the dia
 
 ## Bridge
 
-Global assembly is the map from continuum physics to \(\mathbf{K}\mathbf{U}=\mathbf{F}\) — but the integrals inside each element depend on **shape functions**, **reference-to-physical maps**, and **quadrature rules**. The accuracy, cost, and robustness of the method — whether P1 triangles suffice or Q2 elements are needed, whether reduced integration causes hourglassing — are determined in the next chapter.
+Global assembly is the map from continuum physics to \(\mathbf{K}\mathbf{U}=\mathbf{F}\) — but the integrands inside each element depend on **shape functions**, **reference-to-physical maps**, and **quadrature rules**. The accuracy, cost, and robustness of the method — whether P1 triangles suffice or Q2 elements are needed, whether reduced integration causes hourglassing — are determined in the next chapter.
 
 | What IV.2 assembled | What IV.3 must specify |
 |-----------------------|------------------------|
@@ -282,6 +282,15 @@ Global assembly is the map from continuum physics to \(\mathbf{K}\mathbf{U}=\mat
 | Scatter/gather into global sparsity pattern | Isoparametric Jacobian \(J\) and \(\det J\) in integrals |
 | DOF map for vector problems on the wire | Quadrature points/weights that integrate polynomials exactly |
 | Mass matrix for transient heat on the wire | Locking, hourglassing, and patch-test failures |
+
+**Scale-boundary handshake (IV.2 → IV.3 → IV.4).**
+
+| Assembly output (this chapter) | Element technology (next chapter) | Wire-scale consumer | Failure mode |
+|------------------------------|-------------------------------------|---------------------|--------------|
+| Local \(\mathbf{K}^e\) from \(\int B^T D B\) | Shape functions \(N_I\), \(B\)-matrix on reference cells | Act III elastic climb on load cell | Wrong \(\det J\) sign in grip cluster |
+| Global scatter into CSR \(\mathbf{K}\) | Gauss quadrature exact on polynomial order | Transient heat (Act II) mass matrix | Under-integration → soft elements |
+| \(\ell(\phi_i)\) → nodal \(\mathbf{F}\) | Neumann face quadrature consistent with volume rule | Body weight + grip traction split | Oscillating midspan without \(h\)-trend |
+| Operator handshake ([II.4](../part02-functional-analysis/04-operators-duality.md)) | Patch test on triangles/tets | Part IV.4 vector elasticity on wire cross-section | Hourglassing in reduced Q1 integration |
 
 Recall the pipeline from [Part III.4](../part03-pdes/04-energy-methods.md#bridge-to-part-iv): weak form → energy minimum → Rayleigh–Ritz on \(V_h\). Assembly is the operational half of Rayleigh–Ritz; element technology is the other half. The copper wire's tensile mesh is only as trustworthy as the P1 bar elements (1D), triangles (2D cross-section), or tets (3D grip region) that define \(V_h\).
 

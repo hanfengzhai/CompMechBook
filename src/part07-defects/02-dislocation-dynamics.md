@@ -464,6 +464,16 @@ Single-crystal DDD explains how lines move, multiply, and harden a crystal — b
 | Mobility \(M(\tau,T)\) from MD tables | Peierls thresholds and grain-boundary barriers |
 | OpenDiS export yaml for one crystal | DAMASK / FEM handoff for the full wire spool |
 
-Return to the prologue's **Act IV — Hardening**: the load cell curve bent upward after yield because lines multiplied and tangled — DDD made that forest visible as moving segments. Part VI's J₂ plasticity fitted the bend with a scalar hardening modulus \(H\); this chapter showed where \(H\) hides its physics in \(\rho\) and link statistics. [VII.3](03-polycrystal-and-fem-handoff.md) closes the mesoscale arc by asking how those statistics survive **drawing dies and grain boundaries** — the organizational scale the cold-drawn wire on the bench actually has.
+**Scale-boundary handshake (VII.2 → VII.3 → Part IV/VI).**
+
+| DDD export (this chapter) | Homogenization (next chapter) | Continuum consumer | Failure mode |
+|---------------------------|-------------------------------|--------------------|--------------|
+| \(\tau(\gamma)\), \(\rho(\gamma)\) from OpenDiS | Taylor fit → Voce hardening \(k_1\) | Part VI return-mapping \(H\) | Literature \(\alpha=0.3\) with wrong \(\rho\) |
+| Link-length histograms | Obstacle spacing \(L \sim 1/\sqrt{\rho}\) | Gradient plasticity (optional) | Scalar \(\rho\) collapsing texture |
+| \(M(\tau,T)\) from [VIII.2](../part08-md/02-ensembles-integrators.md) | Flow-rule tabulation \(\dot\gamma(\tau,T)\) | Crystal plasticity UMAT | Rate-independent J₂ at high strain rate |
+| \(C_{ij}\), \(\gamma_{\text{sf}}\) from [Part IX](../part09-dft/03-dft-workflows.md) | Peierls threshold calibration | Partial separation in segment rules | Linear elasticity at \(r < 1\) nm |
+| Single-crystal RVE stress curve | Texture average over grain orientations | Part IV tensile run on wire spool | One orientation vs cold-drawn polycrystal |
+
+Return to the [prologue](../../prologue/00-many-scales.md): **Act IV — Hardening** is when the load cell curve bent upward after yield because lines multiplied and tangled — DDD made that forest visible as moving segments. Part VI's J₂ plasticity fitted the bend with a scalar hardening modulus \(H\); this chapter showed where \(H\) hides its physics in \(\rho\) and link statistics. [VII.3](03-polycrystal-and-fem-handoff.md) closes the mesoscale arc by asking how those statistics survive **drawing dies and grain boundaries** — the organizational scale the cold-drawn wire on the bench actually has.
 
 Parts VIII–IX supply the mobility and elastic constants this chapter consumed; VII.3 is where DDD stops being a single-crystal movie and becomes **input for the same FEM mesh Part IV taught us to assemble**. Turn the page when OpenDiS converges on one orientation but the wire's macroscopic hardening still disagrees with experiment — that is the signal that polycrystal texture, not segment timestep, is the missing physics.

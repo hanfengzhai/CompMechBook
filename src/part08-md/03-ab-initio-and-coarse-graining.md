@@ -498,9 +498,19 @@ The EAM-fit checklist and handoff table above already named the quantities MD ex
 | \(\gamma_{\text{sf}}\) | Stacking-fault energy for partial dislocations | Generalized stacking-fault energy surface from slab calculations |
 | \(E_f^v\) (vacancy formation) | Diffusion and creep parameters at high \(T\) | Supercell with one removed atom; total-energy difference |
 
+**Scale-boundary handshake (VIII.3 → Part IX → epilogue).**
+
+| MD export (this chapter) | DFT audit gate (Part IX) | Upstream consumer | Failure mode |
+|----------------------------|--------------------------|-------------------|--------------|
+| EAM-fit \(a_0\), \(E_{\text{coh}}\) | Murnaghan SCF vs volume (`pw.x`) | LAMMPS equilibrium box (Act V notch) | Bulk-fit wrong at dislocation core |
+| \(\gamma_{\text{sf}}\) from slab pulls | GSF surface from [IX.3](../part09-dft/03-dft-workflows.md) | Part VII partial separation \(d\) | 10% \(\gamma_{\text{sf}}\) error shifts hardening curve |
+| \(C_{11}, C_{12}\) from NPT | Strained fcc cells (±0.5% uniaxial) | Part IV elastic step; Part VI \(\mathbb{C}\) | Wrong functional for elastic constants |
+| Trial \(M(\tau)\) from shear cell | NEB barrier from DFT endpoints | OpenDiS mobility yaml | Mixing potentials across rungs |
+| KMC rate table from NEB | \(\Delta E_m\) converged in SCF | Part VI creep at high \(T\) | Barriers from different functional than MD |
+
 Part VIII assumed Born–Oppenheimer surfaces and fit potentials to match these numbers. Part IX is the **audit chapter** — the same copper cell Part VIII vibrated, now solved for \(\rho(\mathbf{r})\) before the epilogue climbs back up the ladder. See also the [two clocks note](../part08-md/00-opening.md#two-clocks-reading-order-vs-foundation-pedigree): chapter order descends VII → VIII → IX; workflow order builds input decks IX → VIII → VII → IV.
 
-Return to the prologue's **Act VI — Foundation**: before any wire-scale FEM run, someone chose Young's modulus, stacking-fault energy, and a mobility table — parameters whose pedigree this chapter traced to EAM fits and coarse-grained exports. Part IX re-derives each from first principles so the ladder has a floor, not folklore. The [Part IX opening](../part09-dft/00-opening.md) frames that descent explicitly; [IX.1](../part09-dft/01-born-oppenheimer.md) separates fast electrons from slow nuclei before the Kohn–Sham machinery begins.
+Return to the [prologue](../../prologue/00-many-scales.md): **Act V — Notch** is where the EAM-fit audit Lab act above must pass before million-atom nucleation runs; **Act VI — Foundation** is where someone chose Young's modulus, stacking-fault energy, and a mobility table before any wire-scale FEM run — parameters whose pedigree this chapter traced to EAM fits and coarse-grained exports. Part IX re-derives each from first principles so the ladder has a floor, not folklore. The [Part IX opening](../part09-dft/00-opening.md) frames that descent explicitly; [IX.1](../part09-dft/01-born-oppenheimer.md) separates fast electrons from slow nuclei before the Kohn–Sham machinery begins.
 
 ### Pedigree checklist before the epilogue
 
