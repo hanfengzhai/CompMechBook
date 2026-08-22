@@ -209,6 +209,7 @@ The book reads in **mathematical order** (Part I before Part IX). The copper wir
 
 | If you need… | Start here |
 |--------------|------------|
+| Skill checkpoints (competence time) | [Preface: skill navigation](../preface.md#skill-navigation) |
 | Opening hinge (prologue → Part I) | [Preface: opening hinge](../preface.md#opening-continuity-hinge) |
 | The plot in one page | [Preface: story in one page](../preface.md#the-story-in-one-page) |
 | Ascent preview (Parts I–VI) | [Preface: ascent preview chain](../preface.md#ascent-preview-chain) |

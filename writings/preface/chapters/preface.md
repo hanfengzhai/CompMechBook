@@ -186,7 +186,7 @@ The book is one continuous story, but not every reader enters at the same rung:
 | **Analysis first** | Part I, then Part II | Skip to Part III when function spaces feel familiar; return to IV–V for discretization | Students who know FEM but want weak-form foundations |
 | **Scale descent** | Part VI after skimming I–III | VI → VII → VIII → IX, then back to IV–V for how continuum codes mesh and flux | Researchers asking where moduli and hardening laws originate |
 
-On every path, read the **Bridge** at the end of the prior chapter when a jump feels abrupt. Part openings add **Story so far** recaps, **concept map** tables (object → structure → theorem → failure mode), **How Part X connects to…** cross-part tables, and **representative schematics** indexed to the source notes — all following the [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) layout. Part closings add **concept map checkpoints** that summarize what the part exported to the next scale. The **prologue** and **epilogue** add matching **concept map checkpoints** that frame the whole ladder at the bookends.
+On every path, read the **Bridge** at the end of the prior chapter when a jump feels abrupt. Part openings add **Story so far** recaps, **concept map** tables (object → structure → theorem → failure mode), **How Part X connects to…** cross-part tables, **skill checkpoint** tables (minimal artifacts on the copper wire), and **representative schematics** indexed to the source notes — all following the [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) layout. Part closings add **concept map checkpoints** that summarize what the part exported to the next scale. The **prologue** and **epilogue** add matching **concept map checkpoints** that frame the whole ladder at the bookends. The [skill navigation](#skill-navigation) table below collects every checkpoint in one compass.
 
 ## Reading rhythm
 
@@ -199,8 +199,31 @@ Each chapter uses a deliberate rhythm so the book reads as one continuous story 
 | **Concept map** | Four questions: object, structure, theorem, failure mode | Part openings; epilogue closing lens |
 | **Representative schematics** | Baby pictures indexed to source notes (ME 300A, ME 412, ME 300B, FEA, FVM, …) | Every part opening (I–IX) |
 | **Bridge** | States why the next chapter exists — the narrative hinge | End of every numbered chapter, part opening, preface, prologue, epilogue, appendix glossary and sources |
+| **Skill checkpoint** | Minimal artifact you can produce on the copper wire before turning the page | Prologue; every part opening (I–IX); epilogue |
 
-When abstraction rises, read in this order: **Lab act** (which experiment am I in?) → **Scene** (what is the operator watching?) → **Concept map** (what structure makes the theorem possible?) → **Representative schematics** (which baby picture matches this chapter?) → **Bridge** (why turn the page?).
+When abstraction rises, read in this order: **Lab act** (which experiment am I in?) → **Scene** (what is the operator watching?) → **Concept map** (what structure makes the theorem possible?) → **Representative schematics** (which baby picture matches this chapter?) → **Skill checkpoint** (what can I do on paper or in a terminal?) → **Bridge** (why turn the page?).
+
+## Skill navigation
+
+The book is one continuous story, but mastery is checked at **milestones** — not only at the end. Each milestone lists skills on the copper wire and a **minimal artifact** (a matrix, a plot, a convergence log, a pedigree row) you can produce before moving on. Use this table as a compass when you want practice without rereading every proof:
+
+| Milestone | When to pause | Skill checkpoint |
+|-----------|---------------|------------------|
+| After the panoramic ladder | Before Part I assembles the first matrix | [Prologue](prologue/00-many-scales.md#what-you-should-be-able-to-do-after-the-prologue) |
+| After Part I | Before fields replace vectors in Part II | [Part I opening](part01-linear-algebra/00-opening.md#what-you-should-be-able-to-do-after-part-i) |
+| After Part II | Before weak PDEs in Part III | [Part II opening](part02-functional-analysis/00-opening.md#what-you-should-be-able-to-do-after-part-ii) |
+| After Part III | Before Galerkin assembly in Part IV | [Part III opening](part03-pdes/00-opening.md#what-you-should-be-able-to-do-after-part-iii) |
+| After Part IV | Before FVM fluxes or continuum stress | [Part IV opening](part04-fem/00-opening.md#what-you-should-be-able-to-do-after-part-iv) |
+| After Part V | Before Cauchy tensors in Part VI | [Part V opening](part05-fvm/00-opening.md#what-you-should-be-able-to-do-after-part-v) |
+| After Part VI | Before the mesoscale descent in Part VII | [Part VI opening](part06-continuum/00-opening.md#what-you-should-be-able-to-do-after-part-vi) |
+| After Part VII | Before atomic trajectories in Part VIII | [Part VII opening](part07-defects/00-opening.md#what-you-should-be-able-to-do-after-part-vii) |
+| After Part VIII | Before Kohn–Sham in Part IX | [Part VIII opening](part08-md/00-opening.md#what-you-should-be-able-to-do-after-part-viii) |
+| After Part IX | Before multiscale coupling in the epilogue | [Part IX opening](part09-dft/00-opening.md#what-you-should-be-able-to-do-after-part-ix) |
+| After the full arc | Before starting a new project on a different material | [Epilogue](epilogue/multiscale.md#what-you-should-be-able-to-do-after-the-book) |
+
+Each part-opening table breaks skills down **by chapter** (e.g. I.1–I.4, II.1–II.5). The prologue and epilogue tables frame the whole ladder at the bookends — navigation discipline before proofs, workflow exam after coupling. When a chapter feels abstract, skip to the matching row in the part opening and produce the minimal artifact; when the artifact is in hand, return to the **Bridge** at the end of the prior chapter for the narrative hinge.
+
+The [reading compass](prologue/00-many-scales.md#reading-compass-two-clocks-on-one-wire) in the prologue maps **continuity hinges** (when the plot turns); this table maps **skill checkpoints** (when you should be able to do something concrete on the wire). Both tables describe the same afternoon — one in narrative time, one in competence time.
 
 ## The copper wire through the book
 
