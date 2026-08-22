@@ -217,6 +217,17 @@ Discretizing the integral form on a 1D grid yields the classic FVM update: cell 
 | Discrete conservation vs. Galerkin drift | Exact global balance of mass/energy on any mesh |
 | Same contract from shock tubes to Illustris | CFL stability and time marching for the wire's boundary layer |
 
+**Scale-boundary handshake (Part IV → V.1 → V.2).**
+
+| FEM export (Part IV) | Integral conservation (this chapter) | FVM consumer ([V.2](02-fvm-1d.md)) | Failure mode |
+|----------------------|--------------------------------------|-------------------------------------|--------------|
+| Weak-form conduction \(\int k \nabla T \cdot \nabla v\) | Divergence theorem on control volumes | Semi-discrete flux difference on 1D grid | Non-conservative splitting of advection–diffusion |
+| Robin BC at wire surface | Face flux \(q = -k\partial T/\partial n = h(T_w - T_\infty)\) | Ghost-cell or specified-flux boundary | Flux imbalance in Picard coupling loop |
+| Joule source \(\dot{q}=\rho_e J^2\) in solid mesh | Source integral \(\int_{\Omega_i} S\, dV\) in cell balance | Explicit source term in FVM update | Double-counting heat at solid–fluid interface |
+| Global energy from Galerkin assembly | Discrete conservation: interior face fluxes cancel | Three-cell heat-balance Lab act as sanity gate | Galerkin drift for hyperbolic fluxes |
+
+The three-cell heat-balance Lab act is the operational version of this handshake: if global energy is not conserved at the discrete level, the conjugate heat-transfer coupling in [V.4](04-navier-stokes-cfd.md) fails before Navier–Stokes enters the story. Part IV minimizes energy on trial spaces; this chapter states the **conservation contract** the fluid side must honor at the wire surface.
+
 Return to the prologue's **Act II — Warming**: current switched on, the wire surface runs hot, and air carries heat away by convection. Part IV computed conduction inside the solid from weak forms; this chapter states the **conservation contract** for the fluid side — what enters a control volume must equal what leaves plus what accumulates. [V.2](02-fvm-1d.md) is where that contract becomes an update loop the conjugate heat-transfer scene in [V.4](04-navier-stokes-cfd.md) will handshake with FEM temperature fields.
 
 Part III's weak forms minimized energy on trial spaces; FVM **balances fluxes** on control volumes — the discretization philosophy Part IV's elliptic FEM does not automatically guarantee for advection. Turn the page when the integral balance is clear but no cell-averaged update exists yet — that is the signal that conservation wants a mesh of volumes, not a mesh of trial functions.

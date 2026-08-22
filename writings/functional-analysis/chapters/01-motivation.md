@@ -220,6 +220,17 @@ With motivation in place, we begin where all analysis begins: measuring distance
 | Four questions: existence, uniqueness, stability, convergence | Banach completeness: Cauchy sequences stay inside the admissible class |
 | \(\mathbf{K}\) as shadow of bilinear form \(a(\cdot,\cdot)\) | Equivalent norms and why FEM error measures do not depend on one choice |
 
+**Scale-boundary handshake (I.4 → II.1 → II.2).**
+
+| Part I export ([I.4](../part01-linear-algebra/04-toward-infinity.md)) | Motivation output (this chapter) | Normed-space consumer ([II.2](02-normed-spaces.md)) | Failure mode |
+|-----------------------------------------------------------------------|----------------------------------|------------------------------------------------------|--------------|
+| Spring network as \(N\to\infty\) limit | Target field \(u(x)\in H^1\), not \(\mathbf{u}\in\mathbb{R}^N\) | Energy norm \(\|u\|_{H^1}\) measures strain, not nodal max | Refining \(N\) without naming the limit space |
+| \(\mathbf{K}\) as finite shadow of \(a(u,v)\) | Bilinear form pipeline: physics → weak form → algebra | Equivalent norms: same convergence, different constants | Judging mesh quality by \(L^2\) alone at kinks |
+| Four questions: existence, uniqueness, stability, convergence | Well-posedness contract every code inherits | Banach completeness: Cauchy sequences stay inside | Discrete solutions converging outside admissible class |
+| Bar refinement Lab act (\(N=5,20,100\)) | Visual polyline → limit function \(u(x)=10x\,\mu\text{m}\) | Hat-function spike in \(\|u_h'\|_{L^2}\) at corners | "More nodes look smoother" without energy-norm audit |
+
+The bar refinement experiment in the Lab act is the numerical face of this handshake: piecewise linears approach a straight line because the limit lives in \(H^1\), not because longer vectors are smoother. Part III will write weak PDEs in that room; Part IV will assemble \(\mathbf{K}\) as projection onto \(V_h\) — but only after [II.2](02-normed-spaces.md) names the rulers that make convergence a theorem.
+
 Return to the [prologue](../../prologue/00-many-scales.md): the weak form was introduced there as a **recurring character** that outlives every mesh. Part I gave it a finite-dimensional prelude — nodal equilibrium — and [I.4](../part01-linear-algebra/04-toward-infinity.md) showed refinement sending \(N\) without bound. This chapter named **why** that limit must live in a function space before Part III writes weak PDEs and Part IV assembles \(\mathbf{K}\) from shape functions. Inner products and Hilbert geometry follow in [II.3](03-hilbert-spaces.md); the next chapter builds the normed-space foundation they rest on.
 
 Turn the page when "the mesh looks smooth" is not yet a theorem — norms and completeness are what make that visual judgment honest.
