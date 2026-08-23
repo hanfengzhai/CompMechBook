@@ -1,10 +1,10 @@
 # Galerkin's Method and Global Assembly
 
-[IV.1](01-weighted-residuals.md) ended with Galerkin orthogonality: the weak-form residual vanishes against every test function in \(V_h\), and the discrete problem is \(\mathbf{K}\mathbf{U}=\mathbf{F}\) waiting to be filled. This chapter is where that orthogonality becomes **code** — the global assembly loop that turns local element contributions into the sparse matrix Part I introduced as nodal equilibrium and Part III derived as the Riesz form restricted to \(V_h\).
+Part III closed with a bowl: equilibrium is the bottom of an energy functional, and Rayleigh–Ritz replaces the infinite-dimensional search with nodal coefficients. [IV.1](01-weighted-residuals.md) showed the operational equivalent — Galerkin orthogonality makes the weak-form residual vanish against every test function in \(V_h\), leaving \(\mathbf{K}\mathbf{U}=\mathbf{F}\) waiting to be filled but not yet computed. This chapter is where that orthogonality becomes **code** — the global assembly loop that turns local element contributions into the sparse matrix Part I introduced as nodal equilibrium and Part III derived as the Riesz form restricted to \(V_h\).
 
 Weighted residuals gave us the logic: enforce \(\int r\, w_i = 0\) for chosen weights. Galerkin chose \(w_i = \phi_i\). The finite element method chooses the \(\phi_i\) to be local, piecewise-polynomial **shape functions** on a mesh. What remains is the algorithm that every FEM code shares — from a twenty-line Matlab script for a homework bar problem to Abaqus assembling a million-element turbine disk.
 
-That algorithm is **global assembly**: loop over elements, compute local contributions, scatter into a global sparse matrix. It is structured linear algebra — the change-of-basis story from Part I, executed millions of times with a sparsity pattern dictated by mesh connectivity.
+That algorithm is **global assembly**: loop over elements, compute local contributions, scatter into a global sparse matrix. It is structured linear algebra — the change-of-basis story from Part I, executed millions of times with a sparsity pattern dictated by mesh connectivity. The copper wire's operator does not see orthogonality conditions or energy gradients; they see a sparsity pattern fill and a **Solve** button. Assembly is the translation between those worlds.
 
 ## Scene: the mesh becomes a matrix
 

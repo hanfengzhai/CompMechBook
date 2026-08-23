@@ -1,5 +1,7 @@
 # Energy Methods and Minimum Principles
 
+[III.3](03-sobolev-spaces.md) established the **room** where admissible fields live — \(H^1\) membership, trace values, compact embeddings. Energy methods ask the complementary question: among all fields in that room, which one does physics **select**? For much of mechanics the answer is "the one at the bottom of a bowl" — and that selection rule is what makes FEM assembly more than matrix bookkeeping.
+
 Many PDEs of mechanics are Euler–Lagrange equations of an energy functional. Minimizing energy — or finding stationary points — is both a theoretical tool and a practical algorithm (nonlinear FEM, phase-field models, variational time integrators).
 
 Pull the copper wire in tension: in linear elasticity, equilibrium minimizes stored elastic energy minus work done by the load. Heat the wire: steady conduction minimizes a thermal dissipation functional subject to boundary data. Even when the physics is not literally "energy" (electrostatics, Darcy flow), a convex functional often lurks behind the PDE — and convexity is what makes minimizers unique and computable.
@@ -8,7 +10,7 @@ Pull the copper wire in tension: in linear elasticity, equilibrium minimizes sto
 
 Load the copper wire in the tensile frame and hold the grip displacement fixed. Microscopically, atoms rearrange for milliseconds; macroscopically, the wire **settles** to an equilibrium shape that minimizes total potential energy — elastic stored energy minus work done by the grips. Plot energy versus a trial displacement field: the true equilibrium sits at the bottom of a bowl; perturb it slightly and the energy rises, a sign of stability.
 
-The same variational picture governs steady heating: among all temperature fields satisfying boundary data, the physical one minimizes a thermal functional whose Euler–Lagrange equation is Fourier's law. Part III ends here because Part IV will **discretize this minimization** — replace the infinite-dimensional search over admissible fields with a finite-dimensional search over nodal values, and call the result finite element assembly. Energy methods are the bridge from weak PDEs to algorithms.
+The same variational picture governs steady heating: among all temperature fields satisfying boundary data, the physical one minimizes a thermal functional whose Euler–Lagrange equation is Fourier's law. Part III ends here because Part IV will **discretize this minimization** — replace the infinite-dimensional search over admissible fields with a finite-dimensional search over nodal values, and call the result finite element assembly. Energy methods are the bridge from weak PDEs to algorithms: the Sobolev contract from [III.3](03-sobolev-spaces.md) names admissible fields; the Dirichlet principle names the field physics chooses among them.
 
 ## The Dirichlet principle
 
@@ -217,13 +219,13 @@ The mid-span temperature you read on the thermocouple is the **minimizer** of \(
 
 ## Bridge to Part IV {#bridge-to-part-iv}
 
-We have:
+Part III began with strong forms at every point and ended with a variational contract. We now have:
 
-- Weak forms from integration by parts
-- Sobolev spaces for admissible fields
-- Energy principles for well-posedness and algorithms
+- Weak forms from integration by parts ([III.2](02-weak-form.md))
+- Sobolev spaces for admissible fields ([III.3](03-sobolev-spaces.md))
+- Energy principles for well-posedness and algorithms (this chapter)
 
-Part IV asks: how do we choose \(V_h\), compute integrals, and assemble \(\mathbf{K}\)? The finite element method is the answer — weighted residuals, element-by-element assembly, quadrature rules, and convergence theory that make the copper wire’s discrete model faithful to the continuum energy we minimized here.
+The copper wire has been a PDE problem since Part III opened; after this chapter it becomes a **mesh problem**. Part IV asks: how do we choose \(V_h\), compute integrals, and assemble \(\mathbf{K}\)? The finite element method is the answer — weighted residuals, element-by-element assembly, quadrature rules, and convergence theory that make the wire's discrete model faithful to the continuum energy we minimized here. Read [IV opening](../part04-fem/00-opening.md#closing-the-arc-from-part-iii) as the first sentence of discretization; read [IV.2](../part04-fem/02-galerkin-assembly.md) as the chapter where Rayleigh–Ritz becomes a scatter loop.
 
 | What Part III completed | What Part IV opens |
 |-------------------------|-------------------|

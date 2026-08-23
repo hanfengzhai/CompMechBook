@@ -657,6 +657,21 @@ The wire does not care which chapter we finished last. It responds to physics. O
 
 ## Bridge {#bridge}
 
-The ladder ends here, but the references do not. The [Sources appendix](../appendix/sources.md) lists the PDF notes, coursework repositories, and external texts behind each part. The [Final Memory Sheet](../appendix/memory-sheet.md) collects the book-wide habits and traps in the ME 412 style. When `Writings.git` is linked, canonical chapter markdown lives under `writings/` in the Functional Analysis Notes layout; run `./scripts/sync-writings.sh` after upstream edits to refresh this book.
+The ladder ends here, but the references do not — and the wire is still in the grips.
 
-Return to the [prologue](../prologue/00-many-scales.md) whenever a new project needs scale discipline — the four questions (state, equations, discretization, upward exports) apply to every material, not only copper. For the full arc in one sitting, reread the [preface ascent preview chain](../preface.md#ascent-preview-chain) from Part I through [Part VI's midpoint](../part06-continuum/00-opening.md#midpoint-ascent-complete-descent-ahead) and [VI.4's intermission](../part06-continuum/04-nonlinear-plasticity-preview.md#intermission-ascent-ends-descent-begins) — pausing at the [ascent continuity hinges](../preface.md#ascent-continuity-hinges) when vectors, weak forms, and assembly feel disconnected — then the [descent preview chain](../preface.md#descent-preview-chain) through Part IX — pausing at the [descent continuity hinges](../preface.md#descent-continuity-hinges) when mobility tables, EAM fits, or SCF exports feel disconnected — and finish with the [epilogue continuity hinges](../preface.md#epilogue-continuity-hinges) that close the loop from coupled workflows back to the prologue's four questions. The [memory sheet master map](../appendix/memory-sheet.md#continuity-hinges-master-map) collects all twelve hinges in one navigation page — the same copper wire, the same ladder, now with every handshake named.
+You opened the book with a cold-drawn copper cylinder, four questions, and an afternoon that had not yet started. You close it with the same specimen traced from \(\mathbb{R}^N\) through function spaces, meshes, defects, atoms, and electrons — and back upward through homogenization. The mathematics changed dialect at every rung; the discipline did not: name the state, write the equations, discretize honestly, export upward with units and convergence logs. When a parameter in a new input deck feels arbitrary, that habit is the tool — not another solver manual.
+
+| Where to go next | Why |
+|------------------|-----|
+| [Sources appendix](../appendix/sources.md) | PDF notes, coursework repos, and texts behind each part |
+| [Final Memory Sheet](../appendix/memory-sheet.md) | Book-wide habits and traps in the ME 412 style |
+| [Prologue](../prologue/00-many-scales.md) | The four questions on a new material — same habit, new specimen |
+| [Preface ascent hinges](../preface.md#ascent-continuity-hinges) | When vectors, weak forms, and assembly feel disconnected |
+| [Preface descent hinges](../preface.md#descent-continuity-hinges) | When mobility tables, EAM fits, or SCF exports feel disconnected |
+| [Memory sheet master map](../appendix/memory-sheet.md#continuity-hinges-master-map) | All twelve continuity hinges in one navigation page |
+
+For the full arc in one sitting, follow the [ascent preview chain](../preface.md#ascent-preview-chain) through [Part VI's midpoint](../part06-continuum/00-opening.md#midpoint-ascent-complete-descent-ahead) and [VI.4's intermission](../part06-continuum/04-nonlinear-plasticity-preview.md#intermission-ascent-ends-descent-begins), then the [descent preview chain](../preface.md#descent-preview-chain) through Part IX, and finish with the [epilogue continuity hinges](../preface.md#epilogue-continuity-hinges) that close the loop from coupled workflows back to the prologue's four questions.
+
+When `Writings.git` is linked, canonical chapter markdown lives under `writings/` in the Functional Analysis Notes layout; run `./scripts/sync-writings.sh` after upstream edits to refresh this book.
+
+Return to the lab whenever a new project needs scale discipline. The wire does not care which chapter you finished last; it responds to physics. Our craft is to make that physics computable, connected, and credible — one handshake at a time.
