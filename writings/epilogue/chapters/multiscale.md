@@ -237,6 +237,8 @@ Voigt averaging gives \(E = 130\,\text{GPa}\), \(\nu = 0.34\) for the isotropic 
 
 ### Handshake 2 — Joule heating → conjugate heat transfer (Part IV ↔ V) {#handshake-2--joule-heating--conjugate-heat-transfer-part-iv--v}
 
+The [preface epilogue continuity hinge](../preface.md#epilogue-continuity-hinges) names this handshake as the **first leg** of the **Joule heat → fixed-grip stress** chain: Handshake 2 sets \(\Delta T = T_w - T_\infty\); [Handshake 3](#handshake-3--thermal-strain--mechanical-stiffness-part-vi--iv) and [IX.3 quasiharmonic \(\alpha\)](../part09-dft/03-dft-workflows.md#thermal-expansion-from-quasiharmonic-phonons-handshake-3-pedigree) complete it. The [sensitivity table](#sensitivity-which-handshake-matters-most) ranks Handshake 2 **first for mid-span temperature** and Handshake 3 **first for fixed-grip load-cell stress** — do not conflate the two: \(\alpha\) does not enter until \(\Delta T\) is converged here.
+
 Steady current \(I = 5\,\text{A}\) in a 1 mm wire with resistivity \(\rho_e \approx 1.7 \times 10^{-8}\,\Omega\cdot\text{m}\) gives volumetric heating
 
 \[
@@ -253,6 +255,8 @@ Part IV's FEM solves \(-k\nabla^2 T = q\) in the solid with \(k \approx 400\,\te
 On the prologue wire geometry, the V.4 Lab act converges in **four Picard iterations** at \(T_w \approx 379\,\text{K}\) with \(h \approx 23\,\text{W/m}^2\text{K}\) — warm to the touch, consistent with Act II. A full 3D FEM solid with the same \(I = 5\,\text{A}\) Joule source typically lands in the same band (\(T_w \approx 385\)–\(395\,\text{K}\) at mid-span) once radial conduction and lengthwise variation are resolved. **Archive both:** export `cht_export.yaml` via [`parse_cht.sh`](../scripts/parse_cht.sh) beside the converged iteration log; Handshakes 3–4a inherit \(\Delta T = T_w - T_\infty\), not a room-temperature default.
 
 **Sanity check:** integrated surface heat flux equals integrated Joule source — the energy residual column in the V.4 Lab act table is the same audit [`parse_cht.sh`](../scripts/parse_cht.sh) automates for the epilogue workflow.
+
+Return to the [preface **Joule heat → fixed-grip stress** row](../preface.md#epilogue-continuity-hinges) when CHT converges but the FEM deck still uses handbook \(\alpha\) — that row lists Handshake 2 → IX.3 → Handshake 3 in reading order; this section is step one.
 
 ### Handshake 3 — Thermal strain → mechanical stiffness (Part VI → IV) {#handshake-3--thermal-strain--mechanical-stiffness-part-vi--iv}
 
