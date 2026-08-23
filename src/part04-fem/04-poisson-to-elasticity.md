@@ -1,14 +1,28 @@
 # From Poisson to Elasticity
 
-Poisson's equation taught us the FEM pipeline: weak form, shape functions, assembly, solve. Linear elasticity is not a new method — it is the same pipeline with vector-valued fields, tensor constitutive laws, and a bilinear form built from strain rather than gradient.
+[IV.3](03-elements-quadrature.md) closed the **mesh geometry** layer: P1 shape functions, isoparametric maps, quadrature rules, patch tests. The assembly loop is now routine for scalar Poisson — weak form, element integrals, scatter into \(\mathbf{K}\mathbf{U}=\mathbf{F}\), solve. IV.4 is not a new method. It is the same loop with vector-valued fields, tensor constitutive laws, and a bilinear form built from strain rather than gradient.
 
-The copper wire under tension illustrates the transition cleanly. Steady Joule heating gives a scalar temperature field governed by \(-\Delta T = q\); mechanical loading gives a vector displacement field governed by \(-\nabla\cdot\boldsymbol{\sigma} = \mathbf{f}\). Both problems assemble into \(\mathbf{K}\mathbf{U} = \mathbf{F}\). The difference is in the size of \(\mathbf{U}\), the block structure of \(\mathbf{K}\), and the physical meaning of the entries.
+The copper wire under tension makes the upgrade concrete. Steady Joule heating gives a scalar temperature field governed by \(-\Delta T = q\); mechanical loading gives a vector displacement field governed by \(-\nabla\cdot\boldsymbol{\sigma} = \mathbf{f}\). Both problems assemble into \(\mathbf{K}\mathbf{U} = \mathbf{F}\) on the **same connectivity** Part III's energy methods and IV.3's element library already defined. The difference is the size of \(\mathbf{U}\), the block structure of \(\mathbf{K}\), and the physical meaning of the entries — not the scatter loop itself.
 
 > **Reader's note:** This chapter uses small-strain kinematics and isotropic Hooke's law in the form a FEM code expects. **Part VI** develops the same objects — deformation, stress, balance laws, and variational elasticity — from continuum mechanics first principles. Read here for assembly; return to Part VI for the physics foundation, or skim Part VI Chapters 1–3 first if you prefer definitions before discretization.
 
+## Closing the arc from IV.3
+
+If you have read linearly since the prologue, IV.3 certified the **discretization machinery** — reference elements, Jacobians, Gauss points, patch tests. IV.4 certifies the **multiphysics habit** on that machinery:
+
+| IV.3 (elements on the wire) | IV.4 (Poisson → elasticity) |
+|-----------------------------|----------------------------|
+| Scalar P1 shape functions \(N_a\) | Vector unknowns: \(d\) DOFs per node |
+| Gradient \(\nabla u\) in stiffness integrand | Strain \(\boldsymbol{\varepsilon}(\mathbf{u})\) via strain–displacement \(\mathbf{B}\) |
+| Poisson \(a(u,v)=\int k\nabla u\cdot\nabla v\) | Elastic \(a(\mathbf{u},\mathbf{v})=\int \boldsymbol{\varepsilon}(\mathbf{u}):\mathbb{C}:\boldsymbol{\varepsilon}(\mathbf{v})\) |
+| Patch test on linear temperature (Act II) | Vector patch test + thermoelastic coupling (Acts II–III) |
+| Centroid/quadrature on scalar fields | Block \(\mathbf{B}^T\mathbb{C}\mathbf{B}\) at each Gauss point |
+
+[IV.3's Bridge](03-elements-quadrature.md#bridge) named the failure modes that signal this chapter: singular or nonsymmetric \(\mathbf{K}\) when Poisson assembly feels routine but elasticity does not. Part III's [energy pipeline](../part03-pdes/04-energy-methods.md#bridge-to-part-iv) already minimized both thermal and elastic functionals at continuum scale; IV.4 is where those two minimizers share one mesh and one afternoon.
+
 ## Scene: one wire, two fields
 
-Run current through the copper wire and two simulations appear on the same mesh: a scalar temperature field from Joule heating, and a vector displacement field from thermal expansion plus tension. Poisson gave us the scalar pipeline; elasticity repeats it threefold — same assembly loop, block stiffness matrix, different physics. The wire does not separate those couplings as cleanly as the FEM deck does, but recognizing the pattern saves a semester of relearning.
+Run current through the copper wire and two simulations appear on the same mesh: a scalar temperature field from Joule heating, and a vector displacement field from thermal expansion plus tension. Poisson gave us the scalar pipeline; elasticity repeats it threefold — same assembly loop, block stiffness matrix, different physics. The wire does not separate those couplings as cleanly as the FEM deck does, but recognizing the pattern saves a semester of relearning. When the load cell reads tension while the thermocouple still climbs, you are watching two energy minimizers on one connectivity — the scene Part III.4 named and IV.3 discretized.
 
 ## Strong form of linear elasticity
 

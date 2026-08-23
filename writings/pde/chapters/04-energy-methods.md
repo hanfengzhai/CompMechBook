@@ -217,7 +217,16 @@ Discretize with **two equal bar elements** (three nodes). Use linear hat functio
 
 The mid-span temperature you read on the thermocouple is the **minimizer** of \(\Pi\) in \(V_h\). When Part IV assembles \(\mathbf{K}\mathbf{T} = \mathbf{F}\) for the coupled thermoelastic wire, the mechanical block minimizes elastic energy and the thermal block minimizes this functional — two bowls, one afternoon. If you add thermal expansion \(\varepsilon_{\text{th}} = \alpha(T - T_{\text{ref}})\) before Act III ramps load, the two functionals **couple**: heat lowers effective stress at fixed grip displacement, previewing the thermoelastic energy in the worked example above.
 
-**Handoff to Part IV.** You just minimized energy by hand on two P1 bars. Part IV reopens the same equation in three dialects: [IV.1](../part04-fem/01-weighted-residuals.md) asks the residual to vanish in weighted averages (Galerkin's operational face of Rayleigh–Ritz); [IV.2](../part04-fem/02-galerkin-assembly.md) scatters the resulting integrals into \(\mathbf{K}\mathbf{U}=\mathbf{F}\); [IV.3](../part04-fem/03-elements-quadrature.md) names the shape functions and quadrature points inside each \(\mathbf{k}^e\). The Lab act's \(\partial \Pi / \partial T_2 = 0\) is row 2 of the global system — energy language and Galerkin language, same copper wire, same thermocouple reading.
+**Handoff to Part IV.** You just minimized energy by hand on two P1 bars — the same move Part IV will automate on every element. Read [IV opening](../part04-fem/00-opening.md#closing-the-arc-from-part-iii) as the **first code chapter** after this one: it names weighted residuals, assembly, and convergence as three sentences of the same Rayleigh–Ritz story you executed by setting \(\partial \Pi / \partial T_2 = 0\).
+
+| What you computed here (III.4 Lab act) | What Part IV opens |
+|----------------------------------------|-------------------|
+| \(\partial \Pi / \partial T_2 = 0\) on two P1 bars | Galerkin: \(\int r\, w_i = 0\) for every test function in \(V_h\) ([IV.1](../part04-fem/01-weighted-residuals.md)) |
+| Scalar \(K_{22} T_2 = F_2\) from energy minimization | Element scatter into global \(\mathbf{K}\mathbf{U}=\mathbf{F}\) ([IV.2](../part04-fem/02-galerkin-assembly.md)) |
+| Hat functions on \((0,L)\) | Isoparametric maps, quadrature, patch tests ([IV.3](../part04-fem/03-elements-quadrature.md)) |
+| Thermal \(\Pi[T]\) at Act II mid-span | Thermoelastic \(\Pi[\mathbf{u},T]\) on one mesh ([IV.4](../part04-fem/04-poisson-to-elasticity.md)) |
+
+The Lab act's row-2 equation is not a toy — it is the thermal block of the coupled deck that will carry Act II and Act III on the same connectivity.
 
 ## Bridge to Part IV {#bridge-to-part-iv}
 
@@ -252,4 +261,4 @@ Return to the [prologue](../../prologue/00-many-scales.md): **Act II — Warming
 
 The [preface ascent continuity hinge](../preface.md#ascent-continuity-hinges) lists this chapter as the **well-posedness → assembly** turn — the third of four hinges in the mathematical climb. When energy minimization and matrix assembly feel like separate subjects, reread the Rayleigh–Ritz Lab act above: \(\partial \Pi / \partial T_2 = 0\) and the weak-form row at node 2 are the same equation, one in energy language and one in Galerkin language.
 
-Turn the page when the weak form is clear and the energy functional is written, but no global matrix exists yet — that is the signal Galerkin assembly is the next move. [IV.1](../part04-fem/01-weighted-residuals.md) opens with the same residual orthogonality the Lab act just computed by hand: instead of setting \(\partial \Pi / \partial T_2 = 0\) on a two-element bar, demand \(\int r\, w_i = 0\) for every test function in \(V_h\). The same \(\mathbf{K}\mathbf{U}=\mathbf{F}\) from Part I, now built from shape functions, Jacobians, and the bilinear forms defined in Part III, awaits in [IV opening](../part04-fem/00-opening.md#closing-the-arc-from-part-iii).
+Turn the page when the weak form is clear, the energy functional is written, and the Lab act's \(\partial \Pi / \partial T_2 = 0\) still feels like a one-off trick — that is the signal Part IV exists. [IV opening](../part04-fem/00-opening.md#closing-the-arc-from-part-iii) reopens the copper wire as a **meshed solid**: the Dirichlet principle you minimized here becomes Rayleigh–Ritz on nodal coefficients; the bilinear form \(a(u,v)\) from [III.2](02-weak-form.md) becomes element stiffness integrals; the same \(\mathbf{K}\mathbf{U}=\mathbf{F}\) from Part I returns with shape functions, Jacobians, and a convergence theorem in [IV.5](../part04-fem/05-convergence.md). Part III answered *what* equation the wire satisfies and *why* it is well posed; Part IV answers *how* to compute it on the mesh the prologue's Act III demands.

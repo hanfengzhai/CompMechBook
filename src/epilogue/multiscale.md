@@ -647,19 +647,21 @@ The epilogue closes the book with the four questions applied to **multiscale cou
 
 Parts I–IX each answered the four questions at one scale. The epilogue asks them at **boundaries between codes** — the same discipline the prologue promised, now in workflow time. When a parameter in an input deck feels arbitrary, trace it down the ladder until a convergence log or archived export names its origin.
 
-## Closing
+## Closing and Bridge {#bridge}
 
-Computational mechanics is not a bag of tricks. It is one conversation about representation — how we translate nature into equations, equations into algebra, and algebra into insight. The mathematics in Parts I and II is not separate from the MD integrator or the Riemann solver. It is the same ladder viewed from different heights.
+Computational mechanics is not a bag of tricks. It is one conversation about representation — how we translate nature into equations, equations into algebra, and algebra into insight. The mathematics in Parts I and II is not separate from the MD integrator or the Riemann solver; the conjugate heat loop in Parts IV–V is not separate from the DFT→EAM→DDD→FEM ladder in Parts IX–VII. It is the same ladder viewed from different heights, wired together by the handshake discipline this epilogue named.
 
-The copper wire is still under tension — mechanical, electrical, intellectual. You now have the language to follow it from electrons to engineering and back again: to ask where parameters came from, what was homogenized away, and how to couple scales when a single model reaches the limit of its validity.
+You opened the book with a cold-drawn copper cylinder, four questions, and an afternoon that had not yet started. You close it with the same specimen still in the grips — mechanical, electrical, intellectual tension unchanged — but now traceable from \(\mathbb{R}^N\) through function spaces, meshes, defects, atoms, and electrons, and back upward through homogenization. The mathematics changed dialect at every rung; the discipline did not: **state, equations, discretization, upward export** — asked inside each solver in Parts I–IX, and asked again at every interface in the [six-act reunion](#lab-act-reunion-six-acts-one-afternoon) table.
 
-The wire does not care which chapter we finished last. It responds to physics. Our craft is to make that physics computable, connected, and credible.
+| What the book established | What multiscale work requires next |
+|-----------------------------|-----------------------------------|
+| One specimen, many scales (prologue) | Locate a new project in the six-act table before opening a terminal |
+| Weak form → Galerkin → assembly (Parts III–IV) | Same habit at code boundaries: units, frames, convergence logs |
+| Conjugate heat FEM ↔ FVM (Parts IV–V) | Template for every upward/downward handshake in the pedigree diagrams |
+| DFT exports with archived SCF (Part IX) | Pedigree for every parameter in an input deck — no orphan moduli |
+| Twelve continuity hinges (preface + memory sheet) | Navigation when the plot stutters mid-project, not only mid-read |
 
-## Bridge {#bridge}
-
-The ladder ends here, but the references do not — and the wire is still in the grips.
-
-You opened the book with a cold-drawn copper cylinder, four questions, and an afternoon that had not yet started. You close it with the same specimen traced from \(\mathbb{R}^N\) through function spaces, meshes, defects, atoms, and electrons — and back upward through homogenization. The mathematics changed dialect at every rung; the discipline did not: name the state, write the equations, discretize honestly, export upward with units and convergence logs. When a parameter in a new input deck feels arbitrary, that habit is the tool — not another solver manual.
+The ladder ends here; the references and the lab session do not.
 
 | Where to go next | Why |
 |------------------|-----|
@@ -674,4 +676,4 @@ For the full arc in one sitting, follow the [ascent preview chain](../preface.md
 
 When `Writings.git` is linked, canonical chapter markdown lives under `writings/` in the Functional Analysis Notes layout; run `./scripts/sync-writings.sh` after upstream edits to refresh this book.
 
-Return to the lab whenever a new project needs scale discipline. The wire does not care which chapter you finished last; it responds to physics. Our craft is to make that physics computable, connected, and credible — one handshake at a time.
+Return to the lab whenever a new project needs scale discipline. The wire responds to physics whether we read linearly or workflow-by-workflow; our craft is to make that physics **computable, connected, and credible** — one handshake at a time, one act of the afternoon at a time, until the next specimen asks the same four questions and the story begins again.
