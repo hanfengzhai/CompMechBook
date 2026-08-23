@@ -68,7 +68,7 @@ When a chapter's **Bridge** names the next part, cross-check this table — the 
 
 ## Continuity hinges index (when the plot stutters)
 
-The [preface](../preface.md) documents opening, ascent, midpoint, descent, and epilogue hinge tables separately. The [memory sheet](memory-sheet.md#continuity-hinges-master-map) collects all twelve rows in one navigation page. Use this index when you know **which chapter** you are in but cannot feel the handoff to the next:
+The [preface](../preface.md) documents opening, ascent, midpoint, descent, and epilogue hinge tables separately. The [memory sheet](memory-sheet.md#continuity-hinges-master-map) collects all thirteen rows in one navigation page. Use this index when you know **which chapter** you are in but cannot feel the handoff to the next:
 
 | Chapter region | Hinge anchor | What should click |
 |----------------|--------------|-------------------|
