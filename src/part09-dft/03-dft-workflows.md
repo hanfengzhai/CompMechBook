@@ -611,6 +611,18 @@ Part IX closes the **downward** audit: fcc Cu has converged SCF logs, elastic co
 | GSF surface from slab calculations | Correct slip plane and k-mesh | Part VII partial dislocation laws | Wrong stacking sequence in slab |
 | `ph.x` phonon export | k-mesh convergence in DFPT | Part VIII VACF cross-check ([VIII.2](../part08-md/02-ensembles-integrators.md)) | Incomplete phonon DOS at high \(T\) |
 
+**Epilogue pedigree table (IX.3 → four handshakes).** The epilogue's multiscale afternoon chains four interfaces on the same copper wire. Every row below must trace to a file in the foundation folder archived by this chapter — the same habit as FEM mesh convergence studies in Part IV:
+
+| Epilogue handshake | DFT export (this chapter) | Archive artifact | Upstream part that consumes it |
+|--------------------|---------------------------|------------------|--------------------------------|
+| **1 — DFT → continuum** | Voigt \(E\), \(\nu\) from symmetric \(C_{ij}\); relaxed \(a_0\) | `cu.elastic/`, `cu.relax.out` | Part IV elastic step; Part VI \(\mathbb{C}\) |
+| **2 — Joule → CHT** | \(\alpha(T)\) from quasi-harmonic `ph.x` or phonon DOS | `cu.phonon/a_vs_T.dat` | Part IV–V thermal strain; `cht_export.yaml` |
+| **3 — thermal → mechanical** | Temperature-dependent moduli (optional DFPT) | `cu.elastic/` at elevated \(T\) | Part VI return-mapping at heated grip |
+| **4a — rate hardening** | (indirect) phonon drag bounds on \(m\) | `cu.phonon/` + MD VACF cross-check | Part VII mobility \(M(\tau,T)\) |
+| **4b — notch localization** | Stacking-fault energy \(\gamma_{\text{sf}}\); vacancy \(E_f^v\) | GSF slab; defect supercell | Part VIII NEB; Part VII partial dislocations |
+
+When the epilogue asks *does thermal softening change stiffness before yield?*, Handshake 1 alone is insufficient — Handshakes 2 and 3 require converged CHT **and** archived phonon data at the wire temperature, not handbook \(\alpha\) beside an orphan `pw.x` log. Run [`parse_dft_workflow.sh`](../../scripts/parse_dft_workflow.sh) and [`parse_multiscale_workflow.sh`](../../scripts/parse_multiscale_workflow.sh) to emit `foundation_export.yaml` and `multiscale_export.yaml` beside the Act VI folder before opening the epilogue.
+
 Part I's eigenvalue loop — assemble, solve, update — reappears as the SCF cycle archived here; Part II's convergence instinct as cutoff and k-mesh sweeps; Part IV's verification habit as the pedigree checklist above. The book's **ascent** (Parts I–VI) and **descent** (Parts VII–IX) meet in the epilogue when every macro input traces to a foundation run someone can reproduce.
 
 Return to the [prologue](../../prologue/00-many-scales.md): **Act VI — Foundation** ran in parallel with Acts I–V — the invisible afternoon where someone chose \(E\), \(\nu\), and surface energies before the load cell moved. [IX.1](../part09-dft/01-born-oppenheimer.md) named the BO surface; [IX.2](../part09-dft/02-kohn-sham.md) ran the SCF loop; this chapter archived the numbers [VIII.3](../part08-md/03-ab-initio-and-coarse-graining.md) and [VII.3](../part07-defects/03-polycrystal-and-fem-handoff.md) consume. The epilogue is where **Door A** (FVM cooling) and **Door B** (FEM solid) from [IV.5](../part04-fem/05-convergence.md#bridge-two-doors-from-here) meet the DFT→MD→DDD→FEM ladder in one multiscale afternoon.
