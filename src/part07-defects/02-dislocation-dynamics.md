@@ -483,7 +483,7 @@ Parts VIII–IX supply the mobility and elastic constants this chapter consumed;
 | Verification gate (this chapter) | What must pass before VII.3 | Epilogue handshake |
 |----------------------------------|----------------------------|-------------------|
 | Segment length convergence on \(\tau(\gamma)\) | Taylor fit stable to \(\pm 5\%\) | Handshake 3: \(\rho\) → \(H\) |
-| Mobility \(M(\tau,T)\) tabulated | Matches MD shear at same \(T\) | Handshake 4a: rate extrapolation |
+| Mobility \(M(\tau,T)\) tabulated | Matches MD shear at same \(T\) | [Handshake 4a](../../epilogue/multiscale.md#handshake-4--rate-dependent-hardening-and-notch-localization-part-vii--vi--viii): rate extrapolation via [`parse_rate.sh`](../../scripts/parse_rate.sh); [sensitivity derivation](../../epilogue/multiscale.md#worked-example-sensitivity-ranks) |
 | \(C_{ij}\) from DFT or handbook | Peierls threshold calibrated | Handshake 2: elastic constants |
 | Single-crystal RVE stress curve | Texture average planned | Handshake 5: polycrystal FEM |
 

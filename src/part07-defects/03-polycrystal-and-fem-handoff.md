@@ -170,7 +170,7 @@ DAMASK material.yaml:
 | \(\tau(\gamma)\) | `g^(s)` slip resistance | Pa |
 | Link density | optional damage / GND proxy | m\(^{-2}\) |
 
-### Scale-boundary handshake: DDD strain rate to quasi-static FEM
+### Scale-boundary handshake: DDD strain rate to quasi-static FEM {#scale-boundary-handshake-ddd-strain-rate-to-quasi-static-fem}
 
 OpenDiS timesteps and mobility-table resolution limit accessible RVE strain rates to \(\dot\varepsilon_{\text{DDD}} \sim 10^2\)–\(10^4\,\text{s}^{-1}\). The tensile frame in the prologue runs at \(\dot\varepsilon_{\text{lab}} \sim 10^{-3}\)–\(10^{-1}\,\text{s}^{-1}\) — three to six orders of magnitude slower. The handshake is not "run DDD slower until it matches"; it is a **documented extrapolation** through rate-dependent mobility and slip resistance before homogenized curves enter DAMASK or continuum FEM.
 
@@ -206,7 +206,7 @@ mobility_table_source: MD_NVT_shear_PartVIII     # git commit hash
 
 **What breaks without the handshake.** Importing a DDD stress–strain curve run at \(10^3\,\text{s}^{-1}\) directly into a quasi-static FEM run at \(10^{-3}\,\text{s}^{-1}\) **overpredicts** flow stress by 5–20% for rate-sensitive fcc metals — enough to miss yield in the load-cell comparison of Act III while still looking "physically reasonable" on a plot. The error is worse at elevated temperature (Joule heating in Act II), where \(m\) grows and mobility tables from Part VIII must be evaluated at the **same** \(T\) as the DDD run, not at 300 K by default.
 
-The rate handshake is the mesoscale counterpart of Part VI's [Voigt/Reuss elastic handshake](../part06-continuum/02-stress-balance.md#scale-boundary-handshake-dft-elastic-tensor-to-fem-material-card): two discretizations (DDD timestep vs. lab grip speed) must agree on the **observable** the load cell measures before crystal plasticity FEM inherits the curve. When in doubt, bracket: run DAMASK at both \(\tau_{\text{flow}}(\dot\varepsilon_{\text{DDD}})\) and \(\tau_{\text{flow}}(\dot\varepsilon_{\text{lab}})\) and report the band as uncertainty on the macroscopic prediction.
+The rate handshake is the mesoscale counterpart of Part VI's [Voigt/Reuss elastic handshake](../part06-continuum/02-stress-balance.md#scale-boundary-handshake-dft-elastic-tensor-to-fem-material-card): two discretizations (DDD timestep vs. lab grip speed) must agree on the **observable** the load cell measures before crystal plasticity FEM inherits the curve. When in doubt, bracket: run DAMASK at both \(\tau_{\text{flow}}(\dot\varepsilon_{\text{DDD}})\) and \(\tau_{\text{flow}}(\dot\varepsilon_{\text{lab}})\) and report the band as uncertainty on the macroscopic prediction. The epilogue's [Handshake 4a worked example](../../epilogue/multiscale.md#handshake-4--rate-dependent-hardening-and-notch-localization-part-vii--vi--viii) and [sensitivity derivation worksheet](../../epilogue/multiscale.md#worked-example-sensitivity-ranks) quantify that band — on fixture data, direct import without extrapolation overpredicts flow stress by **35%**; run [`parse_rate.sh`](../../scripts/parse_rate.sh) on `ddd_tau_vs_rate.dat` to emit `rate_export.yaml` before the crystal-plasticity deck inherits \(\tau_{\text{lab}}\). The [prologue reading compass row for Handshake 4a](../../prologue/00-many-scales.md#reading-compass-two-clocks-on-one-wire) names this stitch in narrative time; the epilogue [Act IV hardening skill row](../../epilogue/multiscale.md#what-you-should-be-able-to-do-after-the-book) is the competence-time mirror.
 
 ### Step 3 — Polycrystal FEM of the wire (DAMASK + mesh)
 
