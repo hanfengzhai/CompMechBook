@@ -606,6 +606,8 @@ The [prologue](../prologue/00-many-scales.md#the-experiment-as-plot) framed the 
 
 No single executable runs all six acts unattended. The discipline is **traceability**: each arrow in the handshake column carries units, convergence logs, and the four questions — state, equations, discretization, upward export — asked at every interface. When a new project starts, locate it in this table before opening a terminal: *Which act am I simulating, and which finer rung supplies the numbers I am about to trust?*
 
+Act VI in the table is the **foundation prequel** archived in [IX.3's Bridge to the epilogue](../part09-dft/03-dft-workflows.md#bridge-to-the-epilogue) — the pedigree checklist and four-handshake export table that map DFT folders onto the multiscale afternoon. When mathematical order (I→IX) and laboratory time diverge, read that bridge first for *what* to archive; return here for *when* each act runs. The [quasiharmonic \(\alpha\) Lab act](../part09-dft/03-dft-workflows.md#lab-act-quasiharmonic-alpha-handshake-3-pedigree) is Act VI's thermal export; [memory sheet row 13](../appendix/memory-sheet.md#continuity-hinges-master-map) names the Handshake 2 → \(\alpha\) → Handshake 3 chain when the load cell reads thermal compression after CHT converges.
+
 The multiscale afternoon in the opening **Scene** is this table running in parallel — QE logs beside LAMMPS beside OpenDiS beside the same tet mesh from Part IV. Reading order taught the grammar; workflow order pays the bills.
 
 ### What you should be able to do after the book

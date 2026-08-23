@@ -139,7 +139,7 @@ Each chapter adds one move to the electronic-structure workflow that grounds eve
 |---------------|--------------------------|------------------|
 | IX.1 | State Born–Oppenheimer separation; cite Hohenberg–Kohn | \(E[\rho]\) depends only on ground-state \(\rho(\mathbf{r})\) |
 | IX.2 | Write Kohn–Sham equations; read SCF convergence in a log | `convergence has been achieved`; \(E_{\text{coh}}\) per atom |
-| IX.3 | Build a QE input deck; export \(C_{ij}\), \(\gamma_{\text{sf}}\) with pedigree | Functional, pseudopotential, cutoff, k-mesh in spreadsheet header |
+| IX.3 | Build a QE input deck; export \(C_{ij}\), \(\gamma_{\text{sf}}\), quasiharmonic \(\alpha\) with pedigree; run [`parse_alpha.sh`](../../scripts/parse_alpha.sh) on `cu.phonon/a_vs_T.dat` | Functional, pseudopotential, cutoff, k-mesh in spreadsheet header; `alpha_export.yaml` beside `cu.elastic/` |
 
 None of these require a national supercomputer allocation — but each one is the foundation Act VI runs in parallel with the tensile test. If you can explain why MD's potential is a functional of electron density, archive an SCF log beside every exported modulus, and trace Young's modulus from strained unit cells back to Kohn–Sham orbitals, you have closed the downward derivation before the epilogue wires the ladder together.
 
