@@ -154,7 +154,9 @@ None of these require a commercial solver — but each one is the discretization
 
 ## Bridge
 
-Part III ended with energy methods and the promise of assembly. The first chapter below introduces weighted residuals — the unifying idea behind Galerkin's method — and shows why choosing test functions as trial functions is the natural discretization of the weak form the copper wire's equilibrium demands.
+You can write the weak form and minimize the energy functional for the copper wire's tension test — Part III closed that analytical chapter at [III.4](../part03-pdes/04-energy-methods.md#bridge-to-part-iv). What you cannot yet do is hand the operator a global stiffness matrix. Part IV is the **code chapter** that closes that gap: weighted residuals first, then element assembly, then convergence theory that justifies trusting the load cell before yield.
+
+The first chapter below introduces weighted residuals — the unifying idea behind Galerkin's method — and shows why choosing test functions as trial functions is the natural discretization of the weak form the copper wire's equilibrium demands.
 
 | What Part III completed | What Part IV opens |
 |-------------------------|-------------------|
@@ -174,6 +176,6 @@ Part III ended with energy methods and the promise of assembly. The first chapte
 
 The [preface ascent continuity hinge](../preface.md#ascent-continuity-hinges) lists Part IV as the **assembly → convergence** turn — where the energy minimum Part III proved becomes a meshed solid the load cell can trust. When assembly feels like bookkeeping, return to the Galerkin projector from [Part II.4](../part02-functional-analysis/04-operators-duality.md): the stiffness matrix is the Gram matrix of the energy inner product on \(V_h\), not an arbitrary sparse array.
 
-Return to the [prologue](../../prologue/00-many-scales.md): **Act III — Pulling** is the load cell's almost-linear climb, and Part IV is where that curve becomes a meshed solid whose stiffness matrix is not magic but the Gram matrix of the energy inner product on \(V_h\). Part I taught assembly as sparse bookkeeping; Part II proved the limit lives in \(H^1\); Part III wrote the bilinear form. [IV.1](01-weighted-residuals.md) is the first sentence of discretization — weighted residuals as the operational face of the energy minimum Part III named.
+Return to the [prologue](../../prologue/00-many-scales.md): **Act III — Pulling** is the load cell's almost-linear climb. Part I taught \(\mathbf{K}\mathbf{u}=\mathbf{f}\) as sparse bookkeeping; Part II proved the limit lives in \(H^1\); Part III wrote the bilinear form whose minimum that matrix approximates. [IV.1](01-weighted-residuals.md) is the first sentence of discretization — the operational face of Dirichlet's principle on a mesh the operator can actually run.
 
 Turn the page when the weak form is clear but no global matrix exists yet — that is the signal Galerkin assembly is the next move.

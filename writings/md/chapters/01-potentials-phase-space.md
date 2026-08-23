@@ -1,6 +1,6 @@
 # Interatomic Potentials and Phase Space
 
-[Part VIII opening](00-opening.md#bridge) and [VII.3's Bridge](../part07-defects/03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) named the atomistic quantities mesoscale models need — stacking-fault energy, core width, mobility tables — and deferred their microscopic origin to this part. This chapter supplies the Hamiltonian structure and interatomic potentials those quantities require: positions \(\{\mathbf{r}_i\}\), forces \(\mathbf{F}_i = -\nabla_{\mathbf{r}_i} V\), and the EAM fits that LAMMPS runs before any thermostat or shear test in [VIII.2](02-ensembles-integrators.md).
+[Part VIII opening](00-opening.md#bridge) and [VII.3's Bridge](../part07-defects/03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) named the atomistic quantities mesoscale models need — stacking-fault energy, core width, mobility tables — and deferred their microscopic origin to this part. If those yaml entries felt like adjustable knobs, this chapter is where they become **positions and forces**: nuclei on a Born–Oppenheimer surface whose Hamiltonian structure, EAM decomposition, and cutoff radius LAMMPS evaluates before any thermostat or shear test in [VIII.2](02-ensembles-integrators.md).
 
 Molecular dynamics (MD) treats atoms as classical particles interacting through potentials fitted to quantum data or experiments. It is the workhorse of atomistic materials mechanics — the scale where the copper wire's lattice resolves into distinct nuclei, each carrying kinetic energy, each feeling forces from neighbors across bonds that may stretch, buckle, or break.
 
@@ -8,7 +8,7 @@ When continuum fields smear atoms into density, MD puts them back. When DFT trac
 
 ## Scene: the notch under the microscope
 
-Part VII explained that a stress concentration at a notch root is where continuum elasticity hands off to dislocation nucleation. Zoom one more step. A molecular dynamics simulation boxes a few nanometers of copper around the notch tip: tens of thousands of fcc lattice sites, periodic or fixed boundaries on the sides, atoms pulled on the top layer to mimic the far-field tension from the tensile frame.
+Part VII explained that a stress concentration at a notch root is where continuum elasticity hands off to dislocation nucleation — and that the OpenDiS mobility table borrowed its temperature and core width from somewhere finer. Zoom one more step. A molecular dynamics simulation boxes a few nanometers of copper around the notch tip: tens of thousands of fcc lattice sites, periodic or fixed boundaries on the sides, atoms pulled on the top layer to mimic the far-field tension from the tensile frame.
 
 There is no \(\boldsymbol{\sigma}(\mathbf{x})\) field in the data — only positions \(\mathbf{r}_i(t)\) and forces \(\mathbf{F}_i = -\nabla_{\mathbf{r}_i} V\). The potential \(V\) might be an EAM fit to DFT energies from Part IX; the integrator might be velocity Verlet with a femtosecond timestep. Bonds at the tip stretch; a dislocation loop nucleates; the student watches plasticity begin as coordinated atomic motion, not as a yield surface parameter.
 

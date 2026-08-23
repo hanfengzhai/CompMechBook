@@ -321,7 +321,7 @@ Crystal plasticity and calibrated DDD close the mesoscale chapter: they explain 
 | FE² RVE at notch Gauss points | Nucleation barriers from MD/DFT | Act V stress concentration | Homogenization where gradient plasticity needed |
 | Grain-boundary obstacle rules | Bond-breaking at interfaces | Surface oxidation chemistry | Phenomenological GB strength without atomic basis |
 
-The OpenDiS → DAMASK → polycrystal FEM pipeline above is the **export discipline** the prologue promised — statistics become internal state variables on the mesh [Part IV](../part04-fem/02-galerkin-assembly.md) taught us to assemble. [VII.2](02-dislocation-dynamics.md) produced the segment-network evidence; this chapter homogenizes it across **drawing dies and grain boundaries** — the organizational scale the cold-drawn wire on the bench actually has.
+[VII.2](02-dislocation-dynamics.md) produced the segment-network evidence on one crystal; this chapter homogenized it across **drawing dies and grain boundaries** — the organizational scale the cold-drawn wire on the bench actually has. The handoff tables above are the archive Part VIII will fill with atomic coordinates, EAM forces, and mobility measured at the temperature the lab uses — not the temperature the yaml file happened to default to.
 
 Return to the [prologue](../../prologue/00-many-scales.md): **Act IV** hardening and **Act V** notch stress concentration both lean on parameters whose **ink** is atomic — the same copper lattice Part VIII will traverse with Newton's equations and empirical or *ab initio* potentials. Part IX follows when even EAM parameters need first-principles validation of formation energies and band structure.
 
