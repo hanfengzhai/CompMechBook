@@ -44,6 +44,8 @@ If you have read linearly since the prologue, Part IX's closing checkpoint archi
 | Documented SCF convergence logs | Required pedigree for every upward arrow — same habit as FEM mesh studies |
 | [IX.3 Bridge to epilogue](../part09-dft/03-dft-workflows.md#bridge-to-the-epilogue) | Handshake loops generalize conjugate heat transfer from Parts IV–V |
 
+The [preface continuity hinge](../preface.md#epilogue-continuity-hinges) names the **Handshake 2 → 3 chain** in one row: \(T_w\) from the [V.4 Picard loop](../part05-fvm/04-navier-stokes-cfd.md#lab-act-extension-two-domain-picard-loop-with-a-1d-fem-solid) sets \(\Delta T\); quasiharmonic \(\alpha\) from [IX.3](../part09-dft/03-dft-workflows.md#thermal-expansion-from-quasiharmonic-phonons-handshake-3-pedigree) sets thermal strain — and the [sensitivity table](#sensitivity-which-handshake-matters-most) ranks Handshake 3 **first** for fixed-grip load-cell readings. Read that preface row when the export table above feels complete but the load cell still cites handbook \(\alpha\) beside an orphan `pw.x` log.
+
 Part IX closed the **downward derivation** — the finest rung of the prologue's ladder. The epilogue closes **upward homogenization**: how disciplined teams climb from \(\rho(\mathbf{r})\) to structural design without unit errors, wrong history, or category mistakes at notches and crack tips. Part I's sparse matrix, Part IV's mesh, Part VII's dislocation forest, and Part IX's electron density are not separate homework problems. They are scenes in one story whose coupling rules are stated in the sections below.
 
 ## The concept map (closing lens)

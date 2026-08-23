@@ -118,6 +118,7 @@ When two parts feel adjacent but unrelated — say FEM (IV) and DDD (VII) — tr
 | EAM | Embedded atom method | Part VIII |
 | PBC | Periodic boundary conditions | Part VIII |
 | CHT | Conjugate heat transfer | Part V.4, Epilogue |
+| WHAM | Weighted histogram analysis method — reweights parallel-tempering replica samples to a target temperature (e.g. Joule-heated \(T_w\)) before exporting cross-slip or mobility statistics | [VIII.3](../part08-md/03-ab-initio-and-coarse-graining.md#wham--part-vii-mobility-hinge-act-ii-temperature-pedigree) |
 
 ## Canonical sources
 

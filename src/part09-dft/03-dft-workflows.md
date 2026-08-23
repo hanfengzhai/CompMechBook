@@ -617,7 +617,7 @@ Part IX closes the **downward** audit: fcc Cu has converged SCF logs, elastic co
 |--------------------|---------------------------|------------------|--------------------------------|
 | **1 — DFT → continuum** | Voigt \(E\), \(\nu\) from symmetric \(C_{ij}\); relaxed \(a_0\) | `cu.elastic/`, `cu.relax.out` | Part IV elastic step; Part VI \(\mathbb{C}\) |
 | **2 — Joule → CHT** | \(\alpha(T)\) from quasi-harmonic `ph.x` or phonon DOS | `cu.phonon/a_vs_T.dat` | Part IV–V thermal strain; `cht_export.yaml` |
-| **3 — thermal → mechanical** | Temperature-dependent moduli (optional DFPT) | `cu.elastic/` at elevated \(T\) | Part VI return-mapping at heated grip |
+| **3 — thermal → mechanical** | Quasiharmonic \(\alpha\), fixed-grip \(\sigma_{\text{th}} = E\alpha\Delta T\) — [ranks first for load-cell stress](../../epilogue/multiscale.md#sensitivity-which-handshake-matters-most) | `alpha_cu_300K.dat`, `cu.phonon/a_vs_T.dat` | Part VI return-mapping at heated grip |
 | **4a — rate hardening** | (indirect) phonon drag bounds on \(m\) | `cu.phonon/` + MD VACF cross-check | Part VII mobility \(M(\tau,T)\) |
 | **4b — notch localization** | Stacking-fault energy \(\gamma_{\text{sf}}\); vacancy \(E_f^v\) | GSF slab; defect supercell | Part VIII NEB; Part VII partial dislocations |
 
