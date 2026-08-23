@@ -278,4 +278,6 @@ Recall the pipeline from [Part III.4](../part03-pdes/04-energy-methods.md#bridge
 
 Return to the [prologue](../../prologue/00-many-scales.md): **Act III** ramps grip displacement on a mesh whose axial displacement field is now a vector-valued Poisson story — three components, one assembly habit. The load cell curve in the linear elastic regime is trustworthy only if refinement studies show the discrete solution converging to the weak solution Part III wrote. [II.3](../part02-functional-analysis/03-hilbert-spaces.md) and [III.3](../part03-pdes/03-sobolev-spaces.md) supplied the norms; [IV.5](05-convergence.md) closes the loop between theory and mesh refinement on the copper wire and beyond.
 
+The [preface ascent preview chain](../preface.md#ascent-preview-chain) placed Part IV after Part III so both thermal and mechanical acts could share one element library; [IV.5](05-convergence.md) is where that library earns a convergence certificate before Part V adds a second discretization dialect for the air cooling the wire.
+
 Turn the page when patch tests pass but the grip displacement still changes when you halve \(h\) — that is the signal that convergence theory, not intuition, must certify the answer.

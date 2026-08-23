@@ -294,15 +294,30 @@ The three-element bar worked example closed the loop from Part I's springs throu
 
 ## Bridge
 
-Variational elasticity closes the loop the book has traced since Part I's spring network: minimize energy in \(H^1\), derive virtual work, assemble \(\mathbf{K}\) — and recognize the discrete solve as Rayleigh–Ritz on the same functional Part III named.
+Variational elasticity closes the loop the book has traced since Part I's spring network: minimize energy in \(H^1\), derive virtual work, assemble \(\mathbf{K}\) — and recognize the discrete solve as Rayleigh–Ritz on the same functional Part III named. A solver that passes patch tests and reproduces the linear elastic climb is not yet **complete** at yield: quadratic \(\Pi\) explains Act III but not Act IV.
 
-| What VI.3 established | What VI.4 opens |
-|-------------------------|-----------------|
-| Hyperelastic energy \(\psi(\boldsymbol{\varepsilon})\); path-independent response | Geometric nonlinearity when strains are large |
-| Virtual work \(\delta\Pi = 0\) as FEM's philosophical source | J₂ plasticity when history matters (cold-drawn wire) |
-| Worked 1D bar: exact linear solution on P1 mesh | Newton–Raphson at every load increment |
-| Elastic springback before yield | Honest admission: smooth fields break at defects |
+| What this chapter established | What nonlinear plasticity preview (next chapter) supplies |
+|--------------------------------|--------------------------------------------------------|
+| Hyperelastic \(\psi(\boldsymbol{\varepsilon})\); path-independent elastic response | Geometric nonlinearity when \(\lambda\) departs from unity (Lab act strain-measure check) |
+| Virtual work \(\delta\Pi = 0\) as FEM's philosophical source | J₂ plasticity with internal variable \(\alpha\) when history matters |
+| Worked 1D bar: exact linear solution on P1 mesh = Rayleigh–Ritz | Return-mapping and Newton–Raphson at every load increment |
+| Thermal coupling via \(\varepsilon_{\text{th}} = \alpha\Delta T\) in coupled \(\Pi\) | Rate-dependent Perzyna flow when grip ramp rate changes |
+| Elastic springback before yield | Honest admission: smooth fields break at defects and notches |
 
-Return to the [prologue](../../prologue/00-many-scales.md): **Act III** measured the linear elastic climb on the load cell; **Act IV** is the upward bend that variational elasticity cannot explain with a quadratic \(\psi\) alone. Part IV assembled \(\mathbf{K}\) from bilinear forms; this chapter named the stress and strain those forms integrate. [VI.4](04-nonlinear-plasticity-preview.md) is the last continuum stop — phenomenological hardening without dislocations, a fitted curve waiting for Part VII's forest to supply \(\sigma_{y0}\) and \(H\).
+**Scale-boundary handshake (VI.3 → VI.4 → Part VII).**
 
-Turn the page when the wire's stress–strain curve bends upward after cold drawing but your elastic energy minimization still returns a straight line — that is the signal history and mesoscale defects have entered the story.
+| Variational export (this chapter) | Nonlinear continuum consumer ([VI.4](04-nonlinear-plasticity-preview.md)) | Mesoscale floor (Part VII) | Failure mode |
+|-----------------------------------|---------------------------------------------------------------------------|------------------------------|--------------|
+| Quadratic \(\Pi\); linear elastic climb on load cell | J₂ yield with isotropic hardening \(H\) | Taylor \(\tau \propto \sqrt{\rho}\) from DDD | Mesh converged but hardening slope still wrong |
+| Rayleigh–Ritz = Part IV assembly on same mesh | Return-mapping at each Gauss point | OpenDiS link statistics export | Fitted \(H\) without forest density |
+| Small-strain \(\boldsymbol{\varepsilon}\) in virtual work | Updated Lagrangian when \(\delta/L > 10^{-2}\) | Burgers circuits at notch root | Geometric error masked as material hardening |
+| Isotropic \(\mathbb{C}\) from handbook \(E,\nu\) | Thermal softening when \(T\) feeds \(\sigma_y(T)\) | \(M(T)\) in mobility tables | Steady \(T\) from [V.4 CHT](../part05-fvm/04-navier-stokes-cfd.md#bridge-to-part-vi) extrapolated to Joule transient |
+| [IV.5 convergence audit](../part04-fem/05-convergence.md#bridge-two-doors-from-here) on elastic mesh | Plastic tangent \(\mathbf{K}_T\) consistency check | — | Elastic mesh certified while lines multiply at yield |
+
+Recall the pipeline from [Part III.4](../part03-pdes/04-energy-methods.md#bridge-to-part-iv): strong PDE → weak form → energy minimum → Rayleigh–Ritz on \(V_h\). Part IV implemented the last step; this chapter showed **why** assembly is energy minimization — the same variational habit [VI.2](02-stress-balance.md) wrote as momentum balance in tensor form. [VI.4](04-nonlinear-plasticity-preview.md) is the last continuum stop before the descent: phenomenological hardening without dislocations, a fitted curve waiting for Part VII's forest to supply \(\sigma_{y0}\) and \(H\).
+
+Return to the [prologue](../../prologue/00-many-scales.md): **Act III — Pulling** measured the linear elastic climb on the load cell; **Act IV — Hardening** is the upward bend that variational elasticity cannot explain with a quadratic \(\psi\) alone. Part IV assembled \(\mathbf{K}\) from bilinear forms; this chapter named the stress and strain those forms integrate. The strain-measure Lab act showed geometric nonlinearity is still negligible at prologue displacements — the bend at Act IV is **material**, not mesh error. When the load cell curve bends but \(\Pi_{\text{small}}\) still returns a straight line, history and mesoscale defects have entered the story.
+
+The [preface descent preview chain](../preface.md#descent-preview-chain) maps what follows: [VI.4](04-nonlinear-plasticity-preview.md) closes continuum phenomenology, then [Part VII's mesoscale preview](../part07-defects/00-opening.md#the-descent-in-one-paragraph) names the dislocation forest cold drawing left behind.
+
+Turn the page when the wire's stress–strain curve bends upward after cold drawing but your elastic energy minimization still returns a straight line — that is the signal return-mapping, not another Gauss point, must enter the load step.
