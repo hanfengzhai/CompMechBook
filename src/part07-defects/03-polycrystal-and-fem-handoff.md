@@ -227,7 +227,7 @@ postprocess.py         # compare force–displacement to tensile test
 
 ### Step 4 — When offline calibration fails: FE² at the notch {#step-4--when-offline-calibration-fails-fe-at-the-notch}
 
-Drawing dies and wire notches concentrate stress. Sequential homogenization with one scalar hardening law under-predicts localization. **FE²** embeds a DDD RVE at selected Gauss points:
+Drawing dies and wire notches concentrate stress. Sequential homogenization with one scalar hardening law under-predicts localization — the competence gap the [prologue Handshake 4b preview row](../../prologue/00-many-scales.md#what-you-should-be-able-to-do-after-the-prologue) names before Part VII and the [preface row 15 skill checkpoint](../../preface.md#skill-navigation-row-15) closes after the epilogue reunites Acts I–VI. **FE²** embeds a DDD RVE at selected Gauss points:
 
 ```mermaid
 flowchart TB
@@ -242,7 +242,7 @@ flowchart TB
 3. Each macro increment: pass \(\bar{\boldsymbol{\varepsilon}}\) (or velocity gradient) to RVE; run OpenDiS substepping; return \(\bar{\boldsymbol{\sigma}}\).
 4. Compare to pure crystal plasticity: FE² should capture extra hardening from dislocation pile-ups at the notch.
 
-Cost scales with `(# active Gauss points) × (DDD timesteps per macro step)`. For production wire design, offline calibration (Steps 1–3) remains default; FE² validates whether the calibrated law is safe near stress concentrators. The epilogue's [FE² worked example](../../epilogue/multiscale.md#worked-example-fe-at-the-wire-notch-act-v--notch) quantifies the 10–15% root-stress uplift on fixture data; the [sensitivity derivation worksheet](../../epilogue/multiscale.md#worked-example-sensitivity-ranks) (Handshake 4b column) ranks when FE² matters versus when [preface row 14](../../preface.md#skill-navigation-row-14) offline calibration suffices. Run [`parse_fe2.sh`](../../scripts/parse_fe2.sh) on `fe2_notch_comparison.dat` before trusting the notch-root answer.
+Cost scales with `(# active Gauss points) × (DDD timesteps per macro step)`. For production wire design, offline calibration (Steps 1–3) remains default; FE² validates whether the calibrated law is safe near stress concentrators. This section is the **upstream half** of epilogue [Handshake 4b](../../epilogue/multiscale.md#4b--when-continuum-fails-at-the-notch-md-subdomain-act-v--notch) and [memory sheet row 15](../../appendix/memory-sheet.md#continuity-hinges-master-map); the epilogue's [FE² worked example](../../epilogue/multiscale.md#worked-example-fe-at-the-wire-notch-act-v--notch) quantifies the 10–15% root-stress uplift on fixture data; the [sensitivity derivation worksheet](../../epilogue/multiscale.md#worked-example-sensitivity-ranks) (Handshake 4b column) ranks when FE² matters versus when [preface row 14](../../preface.md#skill-navigation-row-14) offline calibration suffices. Complete [preface row 15](../../preface.md#skill-navigation-row-15) after row 14 — bulk \(\tau_{\text{lab}}\) from 4a is necessary but not sufficient for notch-root localization. Run [`parse_fe2.sh`](../../scripts/parse_fe2.sh) on `fe2_notch_comparison.dat` before trusting the notch-root answer.
 
 ### Checklist before trusting the handoff
 
