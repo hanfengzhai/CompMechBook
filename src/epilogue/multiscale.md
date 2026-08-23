@@ -241,13 +241,16 @@ Steady current \(I = 5\,\text{A}\) in a 1 mm wire with resistivity \(\rho_e \app
 q = \frac{I^2 \rho_e}{\pi (d/2)^2} \approx 2.2 \times 10^7\,\text{W/m}^3.
 \]
 
-Part IV's FEM solves \(-k\nabla^2 T = q\) in the solid with \(k \approx 400\,\text{W/m·K}\). Part V's FVM (or a correlation from [V.4](../part05-fvm/04-navier-stokes-cfd.md)) supplies \(h \approx 15\,\text{W/m}^2\text{K}\) on the surface. **Partitioned fixed-point loop:**
+Part IV's FEM solves \(-k\nabla^2 T = q\) in the solid with \(k \approx 400\,\text{W/m·K}\). Part V's FVM supplies \(h\) from a natural-convection \(\text{Nu}\) correlation or a full air-domain solve — the step-by-step **Picard loop** is worked in [V.4 Lab act: two-domain CHT with a 1D FEM solid](../part05-fvm/04-navier-stokes-cfd.md#lab-act-extension-two-domain-picard-loop-with-a-1d-fem-solid). **Partitioned fixed-point loop (same template as that Lab act):**
 
 1. Guess wall temperature \(T_w = 350\,\text{K}\); apply \(q_w = h(T_w - T_\infty)\) with \(T_\infty = 300\,\text{K}\).
-2. Solve solid conduction; read new \(T_w\) from surface nodes.
-3. Repeat until \(|T_w^{(k+1)} - T_w^{(k)}| < 0.5\,\text{K}\).
+2. **Solid solve:** assemble \(\mathbf{K}_T \mathbf{T} = \mathbf{f} + q_w \mathbf{b}_\Gamma\) (Part IV thermoelastic pattern, conduction only); read \(T_w\) from surface nodes.
+3. **Fluid update:** recompute \(h\) from \(\text{Ra}(T_w)\) or the FVM face flux; under-relax if \(|T_w^{(k+1)} - T_w^{(k)}|\) oscillates (\(\omega \approx 0.4\)–\(0.6\), as in the V.4 iteration table).
+4. Repeat until \(|T_w^{(k+1)} - T_w^{(k)}| < 0.5\,\text{K}\) **and** integrated surface flux matches integrated Joule source within 1%.
 
-Typical convergence: \(T_w \approx 385\)–\(395\,\text{K}\) at mid-span — warm to the touch, consistent with Act II in the prologue. **Sanity check:** integrated surface heat flux equals integrated Joule source (Part V Lab act).
+On the prologue wire geometry, the V.4 Lab act converges in **four Picard iterations** at \(T_w \approx 379\,\text{K}\) with \(h \approx 23\,\text{W/m}^2\text{K}\) — warm to the touch, consistent with Act II. A full 3D FEM solid with the same \(I = 5\,\text{A}\) Joule source typically lands in the same band (\(T_w \approx 385\)–\(395\,\text{K}\) at mid-span) once radial conduction and lengthwise variation are resolved. **Archive both:** export `cht_export.yaml` via [`parse_cht.sh`](../scripts/parse_cht.sh) beside the converged iteration log; Handshakes 3–4a inherit \(\Delta T = T_w - T_\infty\), not a room-temperature default.
+
+**Sanity check:** integrated surface heat flux equals integrated Joule source — the energy residual column in the V.4 Lab act table is the same audit [`parse_cht.sh`](../scripts/parse_cht.sh) automates for the epilogue workflow.
 
 ### Handshake 3 — Thermal strain → mechanical stiffness (Part VI → IV)
 

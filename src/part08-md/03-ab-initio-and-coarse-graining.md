@@ -401,8 +401,37 @@ wham_converged: true
 
 When `cross_slip_380K.yaml` sits beside `mobility_cu_screw_300K.yaml`, Part VII's hardening Lab act can distinguish **forest generation** (glide) from **forest annihilation** (cross-slip recovery) at the temperature the wire actually reaches during Act II — not an Arrhenius extrapolation from a cold shear cell.
 
+#### WHAM → Part VII mobility hinge (Act II temperature pedigree)
+
+The parallel tempering Lab act above is not complete until **WHAM reweighting** certifies the \(380\,\text{K}\) statistics — the same discipline as the Picard loop in [V.4 CHT](../part05-fvm/04-navier-stokes-cfd.md#lab-act-extension-two-domain-picard-loop-with-a-1d-fem-solid): raw cold-replica time series are a **partitioned** estimate; [`parse_wham.sh`](../../scripts/parse_wham.sh) is the monolithic correction that enforces detailed balance across the replica ladder before any number crosses to OpenDiS.
+
+| Export from WHAM (`wham_export.yaml`) | Part VII consumer | Failure if skipped |
+|---------------------------------------|-------------------|---------------------|
+| Reweighted mean energy at \(T_w\) | Sanity check on core structure before mobility fit | Spurious thermal expansion of the dislocation core |
+| `wham_converged_5pct=yes` | Gate before archiving `cross_slip_380K.yaml` | Recovery rate from under-sampled cold replica |
+| Target \(T\) matching Part V \(T_w \pm 5\,\text{K}\) | [VII.2 mobility calibration](../part07-defects/02-dislocation-dynamics.md#lab-act-calibrate-screw-mobility-from-md-shear-act-iv--mobility-prelude) at \(T = T_w\), not 300 K | OpenDiS runs at room temperature while the wire is at 380 K |
+| Cross-slip event count at \(T_w\) | Forest **sink** term beside glide mobility in hardening yaml | Over-predicted hardening after Act II heating |
+
+**Workflow order on the copper wire:**
+
+```text
+V.4 Picard loop  →  T_w ≈ 379 K  →  cht_export.yaml
+       ↓
+Replica ladder with T = T_w node  →  parallel tempering (this Lab act)
+       ↓
+parse_wham.sh --target T_w  →  wham_export.yaml (converged?)
+       ↓
+MD shear at T_w  →  mobility_cu_screw_{T_w}K.yaml  →  Part VII OpenDiS
+       ↓
+cross_slip_{T_w}K.yaml  →  recovery sink in forest evolution (Act IV knee)
+```
+
+Part VII's [glide mobility Lab act](../part07-defects/02-dislocation-dynamics.md#lab-act-calibrate-screw-mobility-from-md-shear-act-iv--mobility-prelude) supplies \(M(\tau, T)\) from NVT shear; this parallel-tempering + WHAM chain supplies **temperature-matched recovery** at the same \(T_w\) the CHT loop converged — two yaml files (`mobility_*.yaml` and `cross_slip_*.yaml`), one temperature pedigree. When [`parse_multiscale_workflow.sh`](../../scripts/parse_multiscale_workflow.sh) runs Handshakes 1–4b, it reads `cht_export.yaml` before phonon lifetime interpolation at \(T_w\); archive `wham_export.yaml` beside `cht_export.yaml` so Handshake 4a's drag and recovery share the same wall temperature the epilogue names in Handshake 2.
+
 ```text
 Part V T_w (379 K)  →  replica 2 in parallel tempering
+       ↓
+parse_wham.sh at T_w  →  wham_export.yaml
        ↓
 Cross-slip counts at T_w  →  recovery rate in OpenDiS
        ↓
