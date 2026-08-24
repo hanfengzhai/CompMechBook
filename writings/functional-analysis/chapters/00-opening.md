@@ -64,20 +64,22 @@ Part II is the **analytical contract** every discretization in later parts must 
 
 If you read only one part before writing a weak form or running a mesh convergence study, read this one. Part III writes the PDEs; Part IV assembles the matrices — but Part II proves the limit exists and the discrete solution is optimal in \(V_h\).
 
-## Representative schematics (ME 412)
+## Representative schematics (ME 412) {#representative-schematics-me-412}
 
 Section A of the [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) collects **fourteen representative schematics** — baby pictures of the same machine this part builds. Use them as a visual index while reading:
 
-| Schematic | Idea | Chapter in this part |
-|-----------|------|----------------------|
-| 1a–1b | Master roadmap: linear algebra → operators → weak PDE/FEM | This opening; [II.5](05-spectral-theorem.md) Bridge |
-| 2 | Norms define topology; equivalent norms, same convergence | [II.2](02-normed-spaces.md) |
-| 3 | Completeness hierarchy: normed → Banach → Hilbert | [II.2](02-normed-spaces.md), [II.3](03-hilbert-spaces.md) |
-| 4 | Sequence spaces \(\ell^p\), \(\ell^\infty\), closure under norms | [II.2](02-normed-spaces.md) |
-| 5 | \(L^p\), \(H^1\), \(H^1_0\), weak derivatives | [II.3](03-hilbert-spaces.md); Part III.3 |
-| 6 | Orthogonal projection; best approximation in Hilbert space | [II.3](03-hilbert-spaces.md) |
-| 7 | Duality, Riesz representation, weak convergence | [II.4](04-operators-duality.md) |
-| 8a–8b | PDE → weak form → FEM; well-posedness triangle | [II.5](05-spectral-theorem.md) → Part III |
+| Schematic | Idea | Baby picture (ME 412) | Chapter in this part |
+|-----------|------|----------------------|----------------------|
+| 1a | Master roadmap: vector spaces → norms → completeness → Hilbert → weak PDE/FEM | First build the room, then add a ruler, then close the holes, then add geometry, then solve PDEs | This opening; [II.5](05-spectral-theorem.md) Bridge |
+| 1b | Linear algebra → operator problems; well-posedness = existence + uniqueness + stability | Finite-dimensional systems first; functional analysis asks how the same ideas survive as \(N \to \infty\) | [Part I opening](../part01-linear-algebra/00-opening.md#representative-schematics-me-300a) → [II.1](01-motivation.md) |
+| 2 | Norms define topology; equivalent norms, same convergence | A norm is the ruler; equivalent rulers distort lengths but not what “close” means | [II.2](02-normed-spaces.md) |
+| 3 | Completeness hierarchy: normed → Banach → Hilbert | Banach means no holes; Hilbert means no holes plus angles | [II.2](02-normed-spaces.md), [II.3](03-hilbert-spaces.md) |
+| 4 | Sequence spaces \(\ell^p\), \(\ell^\infty\), closure under norms | In \(\ell^p\), chopping off the tail works; in \(\ell^\infty\), the worst tail entry still matters | [II.2](02-normed-spaces.md) |
+| 5 | \(L^p\), \(H^1\), \(H^1_0\), weak derivatives | Sobolev spaces are where rough functions can still have usable weak derivatives | [II.3](03-hilbert-spaces.md); Part III.3 |
+| 6 | Orthogonal projection; best approximation in Hilbert space | Projection is dropping a perpendicular shadow onto the subspace | [II.3](03-hilbert-spaces.md) |
+| 7 | Duality, Riesz representation, weak convergence | A functional is a sensor; weak convergence means every sensor reading converges | [II.4](04-operators-duality.md) |
+| 8a | PDE → weak form → FEM; Galerkin as best approximation in \(S_h\) | FEM is the best shadow of the true solution inside a finite-dimensional trial space | [II.5](05-spectral-theorem.md) → Part III |
+| 8b | Well-posedness triangle: existence, uniqueness, stability | A problem is useful only if the solution exists, is unique, and does not explode when the input wiggles | [II.5](05-spectral-theorem.md) → Part III |
 | 9 | Sobolev energy-space bridge; Poincaré controls \(\|u\|_{L^2}\) by \(\|\nabla u\|_{L^2}\) | [II.2](02-normed-spaces.md), [II.3](03-hilbert-spaces.md); Part III.3 |
 | 10 | Why Lebesgue and Sobolev: \(C^1\) too small; completion by integral norms | [II.2](02-normed-spaces.md); Part III.3 |
 | 11 | FEM existence in \(S_h\); Riesz gives unique \(u_h\); energy projection | [II.5](05-spectral-theorem.md) → Part IV |
@@ -86,6 +88,8 @@ Section A of the [Functional Analysis Notes](https://hanfengzhai.github.io/file/
 | 14 | Variational + FEM ladder: strong → weak → Lax–Milgram → Galerkin → Céa | [II.5](05-spectral-theorem.md) → Part III → Part IV |
 
 Each schematic answers the four concept-map questions for one layer of structure. When a proof feels abstract, return to the matching row: *what object, what structure, what theorem, what breaks?*
+
+Schematic **1b** is the explicit **Part I → Part II hinge** in the ME 412 map: [Part I](../part01-linear-algebra/00-opening.md) assembled \(\mathbf{K}\mathbf{u}=\mathbf{f}\) and showed mesh refinement sends \(N \to \infty\); Schematic 1b asks what **operator** that matrix approximates and whether the limit problem is **well posed** (existence, uniqueness, stability). [I.4's Bridge](../part01-linear-algebra/04-toward-infinity.md#bridge-to-part-ii) names the handoff in narrative form; Schematic 1b names it in the course summary.
 
 Schematic **14** is the **plot spine** of Acts I–III in the book: existence climbs the ladder (strong PDE → weak form → coercivity → discrete Galerkin); convergence rates descend through interpolation (Céa's lemma, Aubin–Nitsche). Part II supplies the middle rungs; Part III writes the weak forms; Part IV assembles \(\mathbf{K}\). The copper wire's tensile equilibrium is one instance of that ladder — the load cell curve is trustworthy only when every rung is in place.
 

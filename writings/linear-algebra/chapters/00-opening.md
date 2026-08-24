@@ -46,7 +46,7 @@ flowchart LR
 
 **Baby picture:** collect degrees of freedom into a vector, write equilibrium as \(\mathbf{K}\mathbf{u}=\mathbf{f}\), decouple complexity with eigenmodes, then ask what happens when the mesh — and \(N\) — grows without bound. The copper wire's tension test begins as a spring network long before it becomes a PDE.
 
-## Representative schematics (ME 300A)
+## Representative schematics (ME 300A) {#representative-schematics-me-300a}
 
 The [Linear Algebra Notes](https://hanfengzhai.github.io/file/ME300A_LinAlg.pdf) (ME 300A) collect the same baby pictures Part II later lifts into infinite dimensions. Use them as a visual index while reading:
 
@@ -58,6 +58,10 @@ The [Linear Algebra Notes](https://hanfengzhai.github.io/file/ME300A_LinAlg.pdf)
 | 4 | \(N\to\infty\); operators, Gram matrices, preview of \(L^2\) and \(H^1\) | [I.4](04-toward-infinity.md) |
 
 Each schematic answers the four concept-map questions for one layer of finite-dimensional structure. When assembly or eigenmodes feel like bookkeeping, return to the matching row: *what object, what structure, what theorem, what breaks?* Part II will replay the same table with function spaces instead of vectors.
+
+### Forward link: ME 412 Schematic 1b
+
+The [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) (ME 412) label **Schematic 1b** the bridge from this part to operator problems: linear algebra tells us how finite-dimensional systems work; functional analysis asks how the same ideas survive in infinite dimensions. Part I ends with \(\mathbf{K}_N \to K\) as the mesh refines; [Part II's opening](../part02-functional-analysis/00-opening.md#representative-schematics-me-412) picks up Schematic 1b and names the limit operator, its norm, and the well-posedness triangle (Schematic 8b). Read [I.4's Bridge](04-toward-infinity.md#bridge-to-part-ii) when you want the narrative handoff; read Part II's Schematic 1b row when you want the course-map label for the same turn.
 
 ## Story so far (Prologue)
 
