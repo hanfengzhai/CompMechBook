@@ -250,6 +250,14 @@ The prologue is panoramic — no proofs yet — but it should change how you rea
 
 None of these require running a code — but each one is the navigation discipline the Functional Analysis Notes layout assumes at every part opening. The last three rows are **forward-looking** mirrors of the [epilogue workflow exam](../epilogue/multiscale.md#what-you-should-be-able-to-do-after-the-book): you will not produce [`parse_alpha.sh`](../scripts/parse_alpha.sh), [`parse_rate.sh`](../scripts/parse_rate.sh), or [`parse_fe2.sh`](../scripts/parse_fe2.sh) artifacts until Parts IV–IX, but naming Handshakes 2–3, 4a, and 4b here keeps Acts II–V from feeling like separate courses when mathematical order (I→IX) and laboratory time diverge on the same afternoon. If you can locate a chapter on the ladder, name the four questions it answers, and say which lab act the operator is watching, Part I's \(\mathbf{K}\mathbf{u}=\mathbf{f}\) will not feel like a new subject. It will feel like the bottom rung of a story you have already started.
 
+#### Row 13 preview — Joule heat → fixed-grip stress {#prologue-row-13-preview}
+
+**Baby picture:** Handshake 2 sets \(\Delta T\); Handshake 3 sets \(\alpha\Delta T\) — conflating them is the most common multiscale pedigree error on the heated wire. The [epilogue Handshake 2 opening paragraph](../epilogue/multiscale.md#handshake-2-opening) is the downstream workflow mirror of this preview: conjugate heat transfer (Parts IV–V) converges \(T_w\) before [IX.3's quasiharmonic \(\alpha\) Lab act](../part09-dft/03-dft-workflows.md#lab-act-quasiharmonic-alpha-handshake-3-pedigree) and [Handshake 3](../epilogue/multiscale.md#handshake-3--thermal-strain--mechanical-stiffness-part-vi--iv) set fixed-grip thermal stress. When Act II activates, read the [Act II reunion paragraph](../epilogue/multiscale.md#lab-act-reunion-six-acts-one-afternoon); when Act III ramps load, read the [Act III reunion paragraph](../epilogue/multiscale.md#lab-act-reunion-six-acts-one-afternoon) and [memory sheet row 13](../appendix/memory-sheet.md#continuity-hinges-master-map).
+
+#### Row 14 preview — DDD rate → lab load cell {#prologue-row-14-preview-handshake-4a}
+
+**Baby picture:** VII.3 sets \(\tau_{\text{flow}}(\dot\varepsilon_{\text{DDD}})\); Handshake 4a sets \(\tau_{\text{lab}}\) — conflating DDD timestep strain rate with lab grip speed overpredicts yield. The [epilogue Act IV reunion paragraph](../epilogue/multiscale.md#act-iv-reunion-handshake-4a) and [memory sheet row 14](../appendix/memory-sheet.md#continuity-hinges-master-map) close this loop in workflow time when the load cell curve bends.
+
 ## Concept map checkpoint (prologue)
 
 The prologue opened the whole book with the four questions the [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) formalize part by part. Before Part I makes them finite-dimensional, summarize the panoramic ladder:
