@@ -10,6 +10,19 @@ Four chapters follow in order: kinematics; stress and balance laws; variational 
 
 If you have read linearly since the [preface](../../preface.md), you have completed the **ascent** — from vectors and stiffness matrices (Part I) through function spaces and weak PDEs (Parts II–III) to FEM, FVM, and now continuum mechanics (Parts IV–VI). The copper wire that began as a chain of springs is now a cylinder with Cauchy stress behind every entry in \(\mathbf{K}\). What follows in Parts VII–IX is the **descent**: the same specimen at finer scales, asking where yield stress, mobility, and elastic moduli hide their history. Part VI is the last rung where the wire still looks smooth on the engineering scale; [VI.4's intermission](04-nonlinear-plasticity-preview.md#intermission-ascent-ends-descent-begins) admits that smoothness is a fiction — and [Part VII](../part07-defects/00-opening.md) begins the story of what lives underneath.
 
+**Pause here when Parts I–V feel like separate subjects.** The [preface continuity hinge #5](../../preface.md#continuity-hinges-ascent-descent) and [memory sheet row 5](../../appendix/memory-sheet.md#continuity-hinges-master-map) name this turn — FEM and FVM were two discretization dialects; Part VI is where they reunite on Cauchy stress and virtual work. Whether you arrived via [IV.5 Door B](../part04-fem/05-convergence.md#bridge-two-doors-from-here) (solids-first) or [V.4's Bridge](../part05-fvm/04-navier-stokes-cfd.md#bridge-to-part-vi) (fluids-first with conjugate heat transfer), the load cell in **Act III** measured something you can finally name: axial Cauchy stress conjugate to stretch \(\lambda = 1 + u'/L\).
+
+| Ascent rung | Part | Wire vocabulary | Discretization dialect |
+|-------------|------|-----------------|------------------------|
+| Grammar | I | \(\mathbf{K}\mathbf{u}=\mathbf{f}\); eigenmodes | Springs; \(N\to\infty\) limit |
+| Room | II | \(H^1\), Lax–Milgram, Galerkin projection | No mesh yet — analysis only |
+| Equations | III | Weak PDEs; energy minimum | Strong → weak form |
+| Solid mesh | IV | \(\mathbf{K}\mathbf{U}=\mathbf{F}\); Céa's lemma | Galerkin FEM ([variational ladder](../part04-fem/00-opening.md#the-variational-ladder-me-412-schematic-14-completed)) |
+| Fluid fluxes | V (optional) | Cell fluxes; CHT loop | FVM ([conservation ladder](../part05-fvm/00-opening.md#the-conservation-ladder-me-412-cross-index)) |
+| **Reunion** | **VI** | \(\mathbf{F}\), \(\boldsymbol{\sigma}\), virtual work | Both dialects approximate the same tensors |
+
+[Part IV's ME 412 cross-index](../part04-fem/00-opening.md#representative-schematics-me-412-part-iv) completed Schematic 14's Galerkin side; [Part V's conservation ladder](../part05-fvm/00-opening.md#the-conservation-ladder-me-412-cross-index) ran the parallel transport side. Part VI closes both arcs on the **continuum floor** — the tensors and balance laws that make FEM assembly a force-balance statement and FVM fluxes a momentum-balance statement. The [preface ascent preview chain](../../preface.md#ascent-preview-chain) ends here; the [descent preview chain](../../preface.md#descent-preview-chain) begins at [VI.4's intermission](04-nonlinear-plasticity-preview.md#intermission-ascent-ends-descent-begins).
+
 ## Chapter guide
 
 | Chapter | Wire story beat | Core object | Handoff |
@@ -58,6 +71,22 @@ The [Elasticity & Inelasticity Notes](https://hanfengzhai.github.io/file/elastic
 | 4 | Geometric and material nonlinearity; J₂ plasticity preview; when smooth fields fail | [VI.4](04-nonlinear-plasticity-preview.md) |
 
 Each schematic answers the four concept-map questions for one mechanical layer. When a stiffness matrix feels disconnected from physics, return to the matching row: *what object, what structure, what theorem, what breaks?* Part IV assembled \(\mathbf{K}\); Part VI names the stress and strain tensors that make that assembly a force-balance statement.
+
+## Representative schematics (ME 412 cross-index) {#representative-schematics-me-412-part-vi}
+
+[Part II's opening](../part02-functional-analysis/00-opening.md#representative-schematics-me-412) indexed all fourteen schematics from the [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf). Parts III–IV consumed schematics 5–14 on the analytical and Galerkin pipeline. Part VI **reunites the discretization fork** — naming the continuum tensors both FEM and FVM approximate and completing Schematic 14's story on the physics side:
+
+| ME 412 Schematic | Idea | Baby picture (ME 412) | Part VI chapter |
+|------------------|------|----------------------|-----------------|
+| 6 | Orthogonal projection; best approximation in Hilbert space | FEM's \(\mathbf{K}\) is the discrete shadow of virtual work | [VI.3](03-variational-elasticity.md) |
+| 8a | PDE → weak form; Galerkin as best approximation in \(S_h\) | Virtual work is the weak form of Cauchy balance | [VI.2](02-stress-balance.md)–[VI.3](03-variational-elasticity.md) |
+| 8b | Well-posedness triangle: existence, uniqueness, stability | Elastic BVPs need coercivity and consistent traction BCs | [VI.2](02-stress-balance.md)–[VI.3](03-variational-elasticity.md) |
+| 11 | FEM existence in \(S_h\); Riesz gives unique \(u_h\) | Part IV's discrete problem inherits the same energy geometry | [VI.3](03-variational-elasticity.md) (FEM connection) |
+| 14 | Variational ladder: strong → weak → Lax–Milgram → Galerkin → Céa | Part VI names the **physics** at the top of the ladder | [VI.1](01-kinematics.md)–[VI.4](04-nonlinear-plasticity-preview.md) |
+
+Schematic **14** now reads **both directions**: Parts II–IV climbed from strong PDE to Céa's lemma; Part VI supplies the continuum **strong form** those projections approximate — \(\mathbf{F}\), \(\boldsymbol{\sigma}\), balance laws, and hyperelastic energy. Schematics **6** and **11** connect Part IV's assembly back to virtual work; **8a** and **8b** justify why the weak form of equilibrium is the right statement before any mesh exists.
+
+The Elasticity schematics (1–4) and ME 412 cross-index (6, 8a, 8b, 11, 14) are **two labels for one pipeline** — Elasticity names the mechanical stages; ME 412 names the functional-analysis structures those stages inherit from Parts II–IV. When Cauchy stress feels disconnected from \(\mathbf{K}\mathbf{U}=\mathbf{F}\), match Elasticity Schematic 3 to ME 412 Schematic 8a: virtual work is the continuous weak form Galerkin discretizes. If you completed [Part V's conservation ladder](../part05-fvm/00-opening.md#the-conservation-ladder-me-412-cross-index), the reunion row is the same story with transport vocabulary: rate of deformation \(\mathbf{D}\) and Cauchy stress conjugate to flux-balanced momentum in the air domain.
 
 ## Story so far (Parts I–V)
 

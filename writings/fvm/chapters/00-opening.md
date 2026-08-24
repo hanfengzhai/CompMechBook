@@ -68,6 +68,35 @@ The [Finite Volume Method Notes](https://hanfengzhai.github.io/note/FVM.pdf) and
 
 Each schematic answers the four concept-map questions for one transport layer. When a mesh converges in FEM but a fluid run loses mass or oscillates at a shock, return to the matching row: *what object, what structure, what theorem, what breaks?* Part III wrote the PDEs; Part IV discretized elliptic solids; Part V discretizes **fluxes** for the air that cools the wire.
 
+## Representative schematics (ME 412 cross-index) {#representative-schematics-me-412-part-v}
+
+[Part II's opening](../part02-functional-analysis/00-opening.md#representative-schematics-me-412) indexed all fourteen schematics from the [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf). [Part IV](../part04-fem/00-opening.md#representative-schematics-me-412-part-iv) consumed schematics 6, 8a, 11, and 14 on the Galerkin pipeline. Part V does **not** repeat that variational ladder — transport and hyperbolic conservation favor flux balance over energy minimization — but three ME 412 structures still govern stability and well-posedness:
+
+| ME 412 Schematic | Idea | Baby picture (ME 412) | Part V chapter |
+|------------------|------|----------------------|----------------|
+| 8b | Well-posedness triangle: existence, uniqueness, stability | Navier–Stokes needs inf-sup stability; CFL ties explicit steps to mesh size | [V.2](02-fvm-1d.md)–[V.4](04-navier-stokes-cfd.md) |
+| 13b | Open Mapping, Bounded Inverse, Banach–Steinhaus | Uniform stability constants must hold as \(\Delta x \to 0\); CFL is the discrete echo | [V.2](02-fvm-1d.md) (CFL limit) |
+| 14 | Variational ladder (Galerkin branch) | Part V runs a **parallel conservation ladder** — same PDEs, different discretization instinct | [V.1](01-conservation-integral.md)–[V.4](04-navier-stokes-cfd.md) |
+
+Schematic **14**'s Galerkin rungs (Lax–Milgram → Céa) belong to Part IV; Part V's conservation rungs are **integral balance → upwind bias → Riemann flux → Navier–Stokes coupling**. Both ladders reunite in [Part VI](../part06-continuum/00-opening.md#midpoint-ascent-complete-descent-ahead) where Cauchy stress and rate-of-deformation tensors name what FEM energy minimization and FVM flux balance both approximate.
+
+The FVM/CFD schematics (1–4) and ME 412 cross-index (8b, 13b, 14 parallel) are **two labels for one transport pipeline** — FVM names the implementation stages; ME 412 names the stability structures those stages inherit from Part II. When CFL limits feel arbitrary, return to Schematic 13b: Banach–Steinhaus says stability constants must be **uniform** as the mesh refines — the same instinct behind Part IV's Céa bounds, now in transport vocabulary.
+
+## The conservation ladder (ME 412 Schematic 14 parallel) {#the-conservation-ladder-me-412-cross-index}
+
+Part IV completed Schematic 14's **variational** descent. Part V runs the **transport** parallel:
+
+```mermaid
+flowchart TB
+  S[Strong conservation PDE] --> I[Integral balance on control volume]
+  I --> U[Upwind / CFL stability]
+  U --> R[Riemann flux at faces]
+  R --> N[Navier-Stokes + conjugate heat]
+  N --> VI[Reunion: Cauchy stress in Part VI]
+```
+
+Read Part V as the **transport rungs** Part III's Navier–Stokes strong form demanded but Part IV's Galerkin ladder did not discretize. When a fluid run loses mass or oscillates at a shock, walk the conservation ladder backward: if Riemann fluxes fail, check upwind bias ([V.2](02-fvm-1d.md)); if CFL blows up, check integral balance ([V.1](01-conservation-integral.md)). The copper wire's conjugate heat transfer loop is one instance of both ladders speaking at an interface — solid energy from Part IV, fluid fluxes from Part V, continuum tensors from Part VI.
+
 ## Story so far (Parts I–IV)
 
 The ladder from the prologue now has a **computational spine** — not only equations, but algorithms:
