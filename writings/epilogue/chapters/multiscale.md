@@ -80,6 +80,40 @@ flowchart TB
 
 **Baby picture:** each part solved one rung of the ladder; multiscale mechanics wires the rungs together with the same four questions the prologue asked — now at **interfaces** between codes, not only within a single mesh.
 
+## Representative schematics (ME 412 cross-index) {#representative-schematics-me-412-epilogue}
+
+[Part II's opening](../part02-functional-analysis/00-opening.md#representative-schematics-me-412) indexed all fourteen schematics from the [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf). [Part IX](../part09-dft/00-opening.md#representative-schematics-me-412-part-ix) completed Schematic 14's **electronic parallel**. The epilogue does **not** repeat Galerkin projection or Kohn–Sham SCF — coupling is fixed-point iteration and pedigree discipline at **interfaces** — but five ME 412 structures still govern credible multiscale workflows:
+
+| ME 412 Schematic | Idea | Baby picture (ME 412) | Epilogue section |
+|------------------|------|----------------------|------------------|
+| 1a | Master roadmap: vector spaces → norms → completeness → Hilbert → weak PDE/FEM | The full ladder closes when upward homogenization mirrors the downward derivation | [Closing the full arc](#closing-the-full-arc); [Bridge](#bridge) |
+| 6 | Orthogonal projection; best approximation | Coarse models **project** fine-scale detail onto internal variables (\(\rho\), \(H\), \(E\)) | [Coupling paradigms](#coupling-paradigms); Handshakes 4a–4b |
+| 7 | Duality, Riesz representation, weak convergence | Interface functionals (flux, traction, work) must agree within tolerance — the dual handshake | [Handshake 2](#handshake-2--joule-heating--conjugate-heat-transfer-part-iv--v); [Verification, validation, and credibility](#verification-validation-and-credibility) |
+| 8b | Well-posedness triangle: existence, uniqueness, stability | Each rung converges internally; **coupling** adds outer-loop stability (CHT Picard, FE²) | [Sensitivity table](#sensitivity-which-handshake-matters-most); [Worked example: sensitivity ranks](#worked-example-sensitivity-ranks) |
+| 13b | Open Mapping, Bounded Inverse, Banach–Steinhaus | Unit conversion and frame consistency are **uniform bounds** at every arrow — one bad conversion poisons the ladder | [Scale-boundary interfaces](#scale-boundary-interfaces); [Handshake interface checklist](../appendix/memory-sheet.md#handshake-interface-checklist) |
+| 14 | Variational ladder (full arc) | The epilogue runs Schematic 14's **coupling branch** — see [below](#the-coupling-ladder-me-412-cross-index) | [Lab act reunion](#lab-act-reunion-six-acts-one-afternoon); [Six-act table](#lab-act-reunion-six-acts-one-afternoon) |
+
+Schematic **1a** closes the master roadmap the prologue opened: Parts I–VI climbed the ascent branch; Parts VII–IX ran the descent branches; the epilogue wires both directions with the same four questions. Schematic **6** names homogenization as **projection** — Taylor hardening, Voigt averages, and crystal plasticity internal variables are best approximations of fine-scale statistics, not guesses. Schematic **7** is the conjugate heat transfer instinct generalized: wall flux from FEM must equal flux absorbed by FVM — the same duality Part II taught for loads as functionals. Schematic **13b** is the unit audit behind every handshake row in the [memory sheet interface checklist](../appendix/memory-sheet.md#handshake-interface-checklist).
+
+The multiscale coupling schematics and ME 412 cross-index (1a, 6, 7, 8b, 13b, 14 coupling branch) are **two labels for one workflow pipeline** — epilogue sections name the implementation stages; ME 412 names the analysis structures those stages inherit from Parts I–II and IX. When exports feel complete but the load cell disagrees, match Epilogue Handshake 3 to ME 412 Schematic 7: *what interface functional must agree, and what convergence certificate proves it?*
+
+## The coupling ladder (ME 412 Schematic 14 branch) {#the-coupling-ladder-me-412-cross-index}
+
+Part IX completed Schematic 14's **electronic parallel**. The epilogue runs the **coupling branch** — upward homogenization from the finest rung back to engineering questions:
+
+```mermaid
+flowchart TB
+  DFT[IX: SCF archive] --> MD[VIII: EAM fit]
+  MD --> DDD[VII: mobility yaml]
+  DDD --> FEM[IV/VI: hardening on mesh]
+  FEM --> CHT[V/IV: Handshake 2 CHT]
+  CHT --> THM[IX.3 alpha + VI: Handshake 3]
+  THM --> LAB[Six-act lab reunion]
+  LAB -.->|four questions| PRO[Prologue restart]
+```
+
+Read the epilogue as the **upward rungs** [IX.3's intermission](../part09-dft/03-dft-workflows.md#intermission-electronics-ends-coupling-begins) demanded but could not compose. When the load cell reads thermal compression after CHT converges, walk the coupling ladder backward: if \(\sigma_{\text{th}}\) dominates, check Handshake 3 ([quasiharmonic \(\alpha\)](../part09-dft/03-dft-workflows.md#lab-act-quasiharmonic-alpha-handshake-3-pedigree) before handbook values); if \(T_w\) is wrong, check Handshake 2 ([V.4 Picard loop](../part05-fvm/04-navier-stokes-cfd.md#lab-act-extension-two-domain-picard-loop-with-a-1d-fem-solid)); if the hardening knee arrives early, check Handshake 4a ([VII.3 rate extrapolation](../part07-defects/03-polycrystal-and-fem-handoff.md#scale-boundary-handshake-ddd-strain-rate-to-quasi-static-fem)); if the notch root under-predicts, check Handshake 4b ([VII.3 Step 4 FE²](../part07-defects/03-polycrystal-and-fem-handoff.md#step-4--when-offline-calibration-fails-fe-at-the-notch)). The copper wire's multiscale afternoon is one instance of both ladders speaking at every interface — SCF logs from Part IX, trajectories from Part VIII, yaml from Part VII, meshes from Part IV.
+
 ## Lab act reunion: one afternoon, six acts
 
 The [prologue](../prologue/00-many-scales.md#the-experiment-as-plot) mapped one lab session to six acts — mounting, warming, pulling, hardening, notch, foundation. The epilogue reunites them:

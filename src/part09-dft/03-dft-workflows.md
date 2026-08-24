@@ -593,6 +593,14 @@ The pedigree checklist in [VIII.3](../part08-md/03-ab-initio-and-coarse-graining
 
 Run one convergence check before archiving: double the plane-wave cutoff and confirm \(E_{\text{tot}}\) changes by less than 1 meV/atom. Part II taught that honest FEM requires a convergence target in \(H^1\); Part IX teaches the same instinct at the electronic scale — SCF energy must settle before any number climbs the ladder.
 
+## Intermission: electronics end, coupling begins {#intermission-electronics-ends-coupling-begins}
+
+If you have read linearly since [Part VIII's intermission](../part08-md/03-ab-initio-and-coarse-graining.md#intermission-atomistics-ends-electronics-begin), Part IX was the third descent — electron density \(\rho(\mathbf{r})\) replacing interatomic potentials on trust. This chapter is the **last electronic stop** before coupling enters explicitly: it archives SCF logs, elastic constants, quasiharmonic \(\alpha\), and stacking-fault energies the foundation folder consumes, and names every quantity that still hides in **workflow composition** no single code runs alone.
+
+The three signals from Part VI reappear here with electronic vocabulary answered and multiscale vocabulary deferred: **history** (foundation archive replaces handbook moduli); **rate** (phonon exports bound mobility drag tables); **notch** (GSF slabs supply Peierls stress the epilogue's Handshake 4b consumes). The epilogue resolves the deferred signal — how DFT → MD → DDD → FEM compose in one afternoon — without asking you to leave the wire on the bench. The specimen does not change; only the question does: from *what is the ground-state energy?* to *how do exports cross interfaces?*
+
+When SCF logs exist in separate folders but no README connects them to LAMMPS or OpenDiS inputs, the plot turns upward one last time: the [epilogue's closing arc from Part IX](../../epilogue/multiscale.md#closing-the-arc-from-part-ix) is where pedigree becomes handshake. Read the [prologue row 16 preview](../../prologue/00-many-scales.md#prologue-row-16-preview-part-ix-reunion) when the [VIII midpoint reunion](../part09-dft/00-opening.md#third-descent-rung-viii-midpoint-reunion) and this intermission feel like separate manuals — Schematic 14's electronic parallel and coupling branch reunite on the same foundation folder.
+
 ## Bridge to the epilogue {#bridge-to-the-epilogue}
 
 Part IX closes the **downward** audit: fcc Cu has converged SCF logs, elastic constants, vacancy and stacking-fault energies, and archived input decks. The copper wire on the bench — sag under self-weight, Joule heat in **Act II**, work hardening in **Act IV**, notch concentration in **Act V** — never lives in a 2-atom supercell. It lives in the **export chain** this chapter disciplined.
