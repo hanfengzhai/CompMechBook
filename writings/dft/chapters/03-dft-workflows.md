@@ -576,7 +576,7 @@ Part IX followed the DFT coursework arc from Born–Oppenheimer through Quantum 
 
 The export table above is where the **downward derivation** of the ladder begins: \(E_{\text{coh}}\), \(C_{ijkl}\), stacking-fault energies, and phonons feed MD potentials, DDD mobilities, and continuum moduli. A wire simulation that imports \(E = 120\) GPa without asking whether it came from Voigt-averaged DFT, room-temperature experiment, or cold-worked polycrystal data carries silent assumptions this part makes explicit. The epilogue asks how disciplined teams wire these exports into multiscale workflows.
 
-## Lab act: archive the foundation run before the wire-scale solve (Act VI — Foundation)
+## Lab act: archive the foundation run before the wire-scale solve (Act VI — Foundation) {#lab-act-foundation-archive-act-vi}
 
 **Act VI** in the lab is the offline foundation run — the DFT calculation that must finish before anyone trusts the EAM potential, the mobility table, or the Young's modulus in the FEM input deck. This chapter's workflow discipline is not bureaucracy; it is the audit trail the epilogue's multiscale afternoon will ask you to produce.
 
