@@ -227,7 +227,7 @@ postprocess.py         # compare force–displacement to tensile test
 
 ### Step 4 — When offline calibration fails: FE² at the notch {#step-4--when-offline-calibration-fails-fe-at-the-notch}
 
-Drawing dies and wire notches concentrate stress. Sequential homogenization with one scalar hardening law under-predicts localization — the competence gap the [prologue Handshake 4b preview row](../../prologue/00-many-scales.md#what-you-should-be-able-to-do-after-the-prologue) names before Part VII and the [preface row 15 skill checkpoint](../../preface.md#skill-navigation-row-15) closes after the epilogue reunites Acts I–VI. **FE²** embeds a DDD RVE at selected Gauss points:
+Drawing dies and wire notches concentrate stress. Sequential homogenization with one scalar hardening law under-predicts localization — the competence gap the [prologue row 15 preview](../../prologue/00-many-scales.md#prologue-row-15-preview-handshake-4b) names before Part VII and the [preface row 15 skill checkpoint](../../preface.md#skill-navigation-row-15) closes after the epilogue reunites Acts I–VI. **FE²** embeds a DDD RVE at selected Gauss points:
 
 ```mermaid
 flowchart TB
