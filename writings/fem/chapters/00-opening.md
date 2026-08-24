@@ -58,19 +58,65 @@ Part IV is the **solid discretization contract** every continuum export must hon
 
 Door A at IV.5 leads to Part V (fluids); Door B leads to Part VI (continuum stress). Either path assumes the weak forms Part III derived and the Galerkin projection Part II proved optimal.
 
-## Representative schematics (FEA Notes)
+## Representative schematics (FEA Notes) {#representative-schematics-fea}
 
 The [Finite Element Analysis Notes](https://hanfengzhai.github.io/file/FEA_notes.pdf) and [problem sessions](https://hanfengzhai.github.io/note.html) follow the same ME 412 habit: each schematic is a baby picture of the Galerkin pipeline. Use them as a visual index while reading:
 
-| Schematic | Idea | Chapter in this part |
-|-----------|------|----------------------|
-| 1 | Weighted residuals: trial/test spaces, residual orthogonality | [IV.1](01-weighted-residuals.md) |
-| 2 | Galerkin assembly: local element matrices, scatter into global \(\mathbf{K}\) | [IV.2](02-galerkin-assembly.md) |
-| 3 | Shape functions, isoparametric maps, Gauss quadrature, patch test | [IV.3](03-elements-quadrature.md) |
-| 4 | From scalar Poisson to vector elasticity on the meshed wire | [IV.4](04-poisson-to-elasticity.md) |
-| 5 | Céa lemma, energy-norm error, \(h\)-refinement; **two doors** to Parts V or VI | [IV.5](05-convergence.md) |
+| Schematic | Idea | Baby picture (FEA) | Chapter in this part |
+|-----------|------|--------------------|----------------------|
+| 1 | Weighted residuals: trial/test spaces, residual orthogonality | Make the PDE residual small in a test space — Galerkin picks test = trial | [IV.1](01-weighted-residuals.md) |
+| 2 | Galerkin assembly: local element matrices, scatter into global \(\mathbf{K}\) | Loop over elements; scatter local \(k_e\) into global sparsity pattern | [IV.2](02-galerkin-assembly.md) |
+| 3 | Shape functions, isoparametric maps, Gauss quadrature, patch test | Reference element → physical map; integrate with Gauss points; patch test catches broken maps | [IV.3](03-elements-quadrature.md) |
+| 4 | From scalar Poisson to vector elasticity on the meshed wire | Same assembly loop; \(\mathbf{B}^T\mathbb{C}\mathbf{B}\) replaces scalar Laplacian | [IV.4](04-poisson-to-elasticity.md) |
+| 5 | Céa lemma, energy-norm error, \(h\)-refinement; **two doors** to Parts V or VI | Halve \(h\); error falls like \(h^p\); then choose fluids (Door A) or continuum stress (Door B) | [IV.5](05-convergence.md) |
 
 Each schematic answers the four concept-map questions for one discretization layer. When assembly feels like bookkeeping, return to the matching row: *what object, what structure, what theorem, what breaks?* Part II's Galerkin projection becomes code here; Part III's weak form is the input.
+
+## Representative schematics (ME 412 cross-index) {#representative-schematics-me-412-part-iv}
+
+[Part II's opening](../part02-functional-analysis/00-opening.md#representative-schematics-me-412) indexed all fourteen schematics from the [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf). [Part III's ME 412 cross-index](../part03-pdes/00-opening.md#representative-schematics-me-412-part-iii) consumed schematics 5, 8a, 8b, 9, 10, and 14 on the analytical pipeline. Part IV **completes** the variational ladder — the same labels the FEA table above uses with assembly vocabulary:
+
+| ME 412 Schematic | Idea | Baby picture (ME 412) | Part IV chapter |
+|------------------|------|----------------------|-----------------|
+| 6 | Orthogonal projection; best approximation in Hilbert space | Drop a perpendicular shadow of the true solution onto the trial subspace | [IV.1](01-weighted-residuals.md), [IV.5](05-convergence.md) |
+| 8a | PDE → weak form → FEM; Galerkin as best approximation in \(S_h\) | FEM is the best shadow of the true solution inside a finite-dimensional trial space | [IV.1](01-weighted-residuals.md)–[IV.2](02-galerkin-assembly.md) |
+| 11 | FEM existence in \(S_h\); Riesz gives unique \(u_h\); energy projection | A discrete trial space inherits existence from the same Riesz geometry as \(H^1\) | [IV.2](02-galerkin-assembly.md), [IV.5](05-convergence.md) |
+| 14 | Variational ladder: strong → weak → Lax–Milgram → Galerkin → Céa | Existence climbs the ladder; convergence rates descend through interpolation | [IV.1](01-weighted-residuals.md)–[IV.5](05-convergence.md); see [below](#the-variational-ladder-me-412-schematic-14-completed) |
+
+Schematic **14** closes the plot spine Parts II–III opened — schematics **6** and **8a** name the projection instinct assembly implements; **11** proves the discrete problem is well posed before Céa's lemma bounds error. Read [III.4's Bridge](../part03-pdes/04-energy-methods.md#bridge-to-part-iv) when you want the analytical handoff from Lax–Milgram to assembly; read this table when you want the ME 412 course-map labels for the same turn.
+
+The FEA schematics (1–5) and ME 412 cross-index (6, 8a, 11, 14) are **two labels for one pipeline** — FEA names the implementation stages; ME 412 names the functional-analysis theorems those stages inherit from Parts II–III. When a chapter feels like sparse-matrix bookkeeping, match its FEA row to the ME 412 row in the same story: weighted residuals (FEA-1) is Schematic 8a's operational face; assembly (FEA-2) is Schematic 11's matrix form; convergence (FEA-5) is Schematic 14's last rung.
+
+## The variational ladder (ME 412 Schematic 14 completed) {#the-variational-ladder-me-412-schematic-14-completed}
+
+[Part III's variational ladder](../part03-pdes/00-opening.md#the-variational-ladder-me-412-schematic-14) climbed from strong form through Lax–Milgram. Part IV completes the descent side — the rungs where existence becomes trusted numbers on the load cell:
+
+```mermaid
+flowchart TB
+  S[Strong PDE Lu = f + BCs] --> W[Weak form a u,v = F v on V]
+  W --> LM[Lax-Milgram: coercivity + continuity]
+  LM --> G[Galerkin: find u_h in S_h subset V]
+  G --> C[Cea: quasi-optimal error in V-norm]
+  C --> I[Interpolation: h^k rates via Ciarlet / Deny-Lions]
+  I --> D[Two doors: FVM fluxes or continuum stress]
+```
+
+Read Part IV as the **bottom three rungs** Part III deferred: Galerkin on \(V_h\) ([IV.1](01-weighted-residuals.md)–[IV.2](02-galerkin-assembly.md)), shape functions and quadrature ([IV.3](03-elements-quadrature.md)), Céa's lemma and \(h\)-refinement ([IV.5](05-convergence.md)). [IV.4](04-poisson-to-elasticity.md) extends the same ladder from scalar Poisson to vector elasticity on the meshed wire — the load cell's almost-linear climb before yield.
+
+When a mesh refuses to converge, walk the ladder backward: if Céa's rates fail, check interpolation ([IV.3](03-elements-quadrature.md)); if Galerkin orthogonality fails, check the weak form ([Part III](../part03-pdes/02-weak-form.md)); if the weak form is ill posed, return to Lax–Milgram ([Part III.4](../part03-pdes/04-energy-methods.md)). The copper wire's tensile equilibrium is one instance of that audit — trustworthy Act III readings require every rung.
+
+## Two paths ahead (preview) {#two-paths-ahead-preview}
+
+Part IV ends with convergence theory — the last purely solid-discretization chapter before the narrative fork reunites in Part VI. What follows is not a single road but a **choice of middle acts**, both leading to the same continuum floor:
+
+| Path | Part | Philosophy | Copper wire instance |
+|------|------|------------|----------------------|
+| **Solids-first** | IV → (optional V) → VI | Galerkin trial functions in \(H^1\); then flux balance for fluids | Tension test on a meshed solid; optional conjugate heat transfer with cooling air |
+| **Fluids-first** | V → VI | Conservation on control volumes; Riemann fluxes for advection | Joule heating in the wire coupled to air flow around it |
+
+Read Part IV first if solids and elliptic PDEs are your immediate goal (the default mathematical order). Read Part V first if fluids and hyperbolic conservation laws pull harder — [Part V's opening](../part05-fvm/00-opening.md#closing-the-arc-from-part-iv) names the **Part IV → Part V** handshake when you arrive through Door A at [IV.5](05-convergence.md#bridge-two-doors-from-here). Either way, Part VI must follow before we descend to dislocations and atoms. The story stays one book — only the order of two middle acts is flexible.
+
+[Part III's two-path preview](../part03-pdes/00-opening.md#two-paths-ahead-preview) named this fork before assembly existed; Part IV makes the choice concrete. Door A at [IV.5](05-convergence.md#bridge-two-doors-from-here) opens conjugate heat transfer ([Part V](../part05-fvm/00-opening.md)); Door B opens Cauchy stress ([Part VI](../part06-continuum/00-opening.md)). The [preface discretization fork hinge](../preface.md#ascent-continuity-hinges) lists both doors as one narrative turn — two languages, one tensor vocabulary in Part VI.
 
 ## Story so far (Parts I–III)
 

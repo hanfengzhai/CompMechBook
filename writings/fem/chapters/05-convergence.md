@@ -319,7 +319,7 @@ The copper wire's tensile equilibrium, steady heating, and elastic step all occu
 
 ## Bridge: two doors from here {#bridge-two-doors-from-here}
 
-Part IV answered *how* to discretize elliptic problems on meshes — and this chapter proved *when* to trust the answers. Two natural continuations follow; both converge on the same continuum vocabulary of Part VI.
+Part IV answered *how* to discretize elliptic problems on meshes — and this chapter proved *when* to trust the answers. [Part IV's opening](../00-opening.md#the-variational-ladder-me-412-schematic-14-completed) completed ME 412 Schematic 14's variational ladder; this bridge is where that ladder **forks** into two middle acts. Two natural continuations follow; both converge on the same continuum vocabulary of Part VI.
 
 | What this chapter established | What Door A / Door B supplies |
 |--------------------------------|-------------------------------|
@@ -342,7 +342,7 @@ Part IV answered *how* to discretize elliptic problems on meshes — and this ch
 | A posteriori error at grip corner | Part VI nonlinear return-mapping | Part VII dislocation nucleation | Elastic mesh at plastic onset |
 | P1/P2 rate check on bar Poisson | Part VI \(\mathbb{C}\) from isotropic \(E,\nu\) | Part VIII EAM-fit moduli | Single-crystal rates on polycrystal specimen |
 
-Either path is valid. Part V ends with its own bridge into Part VI; the epilogue later treats both discretizations as dialects of one multiphysics story. What matters is not the order of Doors A and B, but that you eventually reach Part VI before descending to dislocations and atoms — continuum stress and balance language is the shared floor under both FEM and FVM.
+Either path is valid. Part V ends with its own bridge into Part VI; the epilogue later treats both discretizations as dialects of one multiphysics story. What matters is not the order of Doors A and B, but that you eventually reach Part VI before descending to dislocations and atoms — continuum stress and balance language is the shared floor under both FEM and FVM. [Part IV's two-path preview](../00-opening.md#two-paths-ahead-preview) and [Part V's Part IV handshake](../part05-fvm/00-opening.md#closing-the-arc-from-part-iv) name the same fork from the solid and fluid sides.
 
 Return to the [prologue](../../prologue/00-many-scales.md): **Act III — Pulling** is trustworthy only when the three-row Lab act table above plateaus — the same instinct Part IX later applies to SCF cutoff. [IV.4](04-poisson-to-elasticity.md) extended scalar assembly to vector elasticity; this chapter closes the **existence–convergence** arc Part II opened in \(H^1\). Whether you walk through Door A (air cooling in **Act II**) or Door B (solid mechanics first), the load cell curve inherits from a mesh whose error decreases at a predictable rate — not from a contour plot that merely looks smooth.
 

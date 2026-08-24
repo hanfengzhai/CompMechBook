@@ -81,9 +81,11 @@ Part IV answered *how* to discretize elliptic problems on complex geometry. Part
 
 The copper wire you meshed in Part IV still carries current and heat. The air around it was implicit in boundary conditions — a convection coefficient, perhaps a Robin flux. Part V makes that air **explicit**: a fluid domain with cell-averaged velocity and temperature, coupled back to the solid at the interface. Same wire, second discretization dialect; Part VI will name the stress and flux tensors both dialects approximate.
 
-## Closing the arc from Part IV
+## Closing the arc from Part IV {#closing-the-arc-from-part-iv}
 
-If you arrived through [IV.5 Door A](../part04-fem/05-convergence.md#bridge-two-doors-from-here), Part IV's closing checkpoint just proved Céa lemma and named two exit doors. Part V is **Door A** — the complementary discretization for the air Part IV left as a Robin boundary condition:
+If you arrived through [IV.5 Door A](../part04-fem/05-convergence.md#bridge-two-doors-from-here), Part IV's closing checkpoint just proved Céa's lemma and named two exit doors. Part V is **Door A** — the complementary discretization for the air Part IV left as a Robin boundary condition. [Part IV's ME 412 cross-index](../part04-fem/00-opening.md#representative-schematics-me-412-part-iv) completed Schematic 14's variational ladder on the solid mesh; Part V begins a **parallel conservation ladder** that reunites with the same continuum floor in Part VI.
+
+If you chose the **fluids-first** path from [Part III's two-path preview](../part03-pdes/00-opening.md#two-paths-ahead-preview) and skipped Part IV on first reading, read [Part IV's two-path preview](../part04-fem/00-opening.md#two-paths-ahead-preview) when you return — Door B to Part VI assumes the Galerkin solid mesh exists even if you deferred it.
 
 | Part IV (FEM on the wire) | Part V (FVM on the wire) |
 |-----------------------------|--------------------------|
@@ -93,7 +95,7 @@ If you arrived through [IV.5 Door A](../part04-fem/05-convergence.md#bridge-two-
 | Céa: discrete tracks continuous minimizer in energy norm | CFL + limiters: discrete fluxes respect conservation invariants |
 | Convergence as \(h \to 0\) on the solid mesh | Convergence as \(\Delta x \to 0\) on the fluid grid |
 
-Part IV made the wire's interior computable; Part V makes its **surroundings** honest. The thermocouple from Act II does not respond to conductivity alone — it responds to how fast air carries heat away from the hot surface. [IV.5](../part04-fem/05-convergence.md#bridge-two-doors-from-here) promised that conjugate heat transfer would couple both meshes at an interface; the section below delivers that handshake.
+Part IV made the wire's interior computable; Part V makes its **surroundings** honest. The thermocouple from Act II does not respond to conductivity alone — it responds to how fast air carries heat away from the hot surface. [IV.5](../part04-fem/05-convergence.md#bridge-two-doors-from-here) promised that conjugate heat transfer would couple both meshes at an interface; the [conjugate heat transfer section below](#conjugate-heat-transfer-the-wire-meets-the-wind) delivers that handshake. The [preface discretization fork hinge](../preface.md#ascent-continuity-hinges) names this IV→V turn as one of four ascent hinges — Galerkin energy on the solid, flux balance in the air, Cauchy stress as the reunion in Part VI.
 
 ## Closing the arc from Part III
 
@@ -110,7 +112,7 @@ If you have read linearly since the prologue, Part III's closing checkpoint comp
 
 Part III wrote the Navier–Stokes and energy equations the air around the wire satisfies; Part IV discretized the **solid** with Galerkin trial functions. Part V discretizes the **fluid** with conservation-first flux balances — not because the physics changed, but because transport and shocks favor a different computational instinct. The conjugate heat transfer loop below is Part III's weak forms and Part V's flux balances **speaking at an interface**; Part VI will name the Cauchy stress and rate-of-deformation tensors both sides approximate.
 
-## Conjugate heat transfer: the wire meets the wind
+## Conjugate heat transfer: the wire meets the wind {#conjugate-heat-transfer-the-wire-meets-the-wind}
 
 The prologue promised that the copper wire and the air around it are one story told in two discretizations. **Conjugate heat transfer** makes that promise concrete:
 
