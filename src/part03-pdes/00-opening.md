@@ -56,18 +56,35 @@ Part III is the **analytical pipeline** both discretizations inherit:
 
 Part IV discretizes elliptic weak forms with trial functions; Part V discretizes transport PDEs with flux balances — but both start from the equations written here. If you read only one part before meshing the wire, read this one: it states what FEM enforces at the limit and what FVM conserves when the air cools the surface.
 
-## Representative schematics (ME 300B)
+## Representative schematics (ME 300B) {#representative-schematics-me-300b}
 
 The [Partial Differential Equations Notes](https://hanfengzhai.github.io/file/ME300B_PDE.pdf) (ME 300B) mirror Part II's ME 412 habit: each schematic is a baby picture of the same weak-form pipeline. Use them as a visual index while reading:
 
-| Schematic | Idea | Chapter in this part |
-|-----------|------|----------------------|
-| 1 | Strong form: pointwise PDE + boundary conditions; where smoothness fails | [III.1](01-strong-form.md) |
-| 2 | Weak form: test functions, integration by parts, natural boundary conditions | [III.2](02-weak-form.md) |
-| 3 | Sobolev spaces \(H^1\), \(L^2\); weak derivatives; trace on \(\partial\Omega\) | [III.3](03-sobolev-spaces.md) |
-| 4 | Energy functional; Lax–Milgram; minimum principles before discretization | [III.4](04-energy-methods.md) |
+| Schematic | Idea | Baby picture (ME 300B) | Chapter in this part |
+|-----------|------|------------------------|----------------------|
+| 1 | Strong form: pointwise PDE + boundary conditions; where smoothness fails | Physics written at every point; corners and point loads break classical smoothness | [III.1](01-strong-form.md) |
+| 2 | Weak form: test functions, integration by parts, natural boundary conditions | Multiply by a test function, integrate by parts, balance virtual work | [III.2](02-weak-form.md) |
+| 3 | Sobolev spaces \(H^1\), \(L^2\); weak derivatives; trace on \(\partial\Omega\) | Rough fields with usable weak derivatives; boundary values via trace | [III.3](03-sobolev-spaces.md) |
+| 4 | Energy functional; Lax–Milgram; minimum principles before discretization | Equilibrium as minimizing energy; existence from coercivity | [III.4](04-energy-methods.md) |
 
 Each schematic answers the four concept-map questions for one stage of the PDE-to-computation road. When a strong-form equation looks correct but a mesh refuses to converge, return to the matching row: *what object, what structure, what theorem, what breaks?* Parts IV and V will discretize the weak forms defined here — FEM by trial functions, FVM by cell fluxes — but the pipeline is already complete in Part III.
+
+## Representative schematics (ME 412 cross-index) {#representative-schematics-me-412-part-iii}
+
+[Part II's opening](../part02-functional-analysis/00-opening.md#representative-schematics-me-412) indexed all fourteen schematics from the [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf). Part III **consumes** six of them on the copper wire's PDE pipeline — the same labels the ME 300B table above uses with PDE vocabulary:
+
+| ME 412 Schematic | Idea | Baby picture (ME 412) | Part III chapter |
+|------------------|------|----------------------|------------------|
+| 5 | \(L^p\), \(H^1\), \(H^1_0\); weak derivatives | Sobolev spaces are where rough functions can still have usable weak derivatives | [III.3](03-sobolev-spaces.md) |
+| 8a | PDE → weak form; Galerkin as best approximation in \(S_h\) | FEM is the best shadow of the true solution inside a finite-dimensional trial space | [III.2](02-weak-form.md) |
+| 8b | Well-posedness triangle: existence, uniqueness, stability | A problem is useful only if the solution exists, is unique, and does not explode when the input wiggles | [III.4](04-energy-methods.md) |
+| 9 | Sobolev energy-space bridge; Poincaré inequality | On a fixed domain with zero trace, gradient energy controls total energy | [III.3](03-sobolev-spaces.md) |
+| 10 | Why Lebesgue and Sobolev: \(C^1\) too small | Classical smooth functions cannot fill \(L^2\); integral norms complete the space | [III.3](03-sobolev-spaces.md) |
+| 14 | Variational ladder: strong → weak → Lax–Milgram → Galerkin → Céa | Existence climbs the ladder; convergence rates descend through interpolation | [III.1](01-strong-form.md)–[III.4](04-energy-methods.md); see [below](#the-variational-ladder-me-412-schematic-14) |
+
+Schematic **14** is the narrative spine of Parts III–IV; schematics **5, 9, and 10** supply the regularity room where weak forms live; **8a** names the weak-form handoff Part IV will discretize; **8b** closes the part with Lax–Milgram and the well-posedness triangle [II.5](../part02-functional-analysis/05-spectral-theorem.md#bridge-to-part-iii) promised. Read [II.5's Bridge](../part02-functional-analysis/05-spectral-theorem.md#bridge-to-part-iii) when you want the narrative handoff from function spaces to PDEs; read this table when you want the ME 412 course-map labels for the same turn.
+
+The ME 300B schematics (1–4) and ME 412 cross-index (5, 8a, 8b, 9, 10, 14) are **two labels for one pipeline** — ME 300B names the PDE stages; ME 412 names the functional-analysis structures those stages inherit from Part II. When a chapter feels like a list of equations, match its ME 300B row to the ME 412 row in the same row of the story: strong form (300B-1) sits below Schematic 14's first rung; Sobolev regularity (300B-3) is Schematic 5 plus 9 and 10.
 
 ## Story so far (Parts I–II)
 
@@ -109,9 +126,9 @@ If you have read linearly since the prologue, notice how the **same four questio
 
 Part I showed that every mesh eventually gives linear algebra; Part II proved that refinement has a **target** in function space. Part III writes the **equations** that target satisfies. The copper wire that began as coupled springs is now a bar with boundary conditions — fixed grips, Joule heating, perhaps convection at the surface — still one specimen, now with PDEs that Parts IV and V will discretize. When Part IV assembles \(\mathbf{K}\) from shape functions, you will recognize the same sparse pattern Part I taught, now justified by the bilinear form defined here.
 
-## The variational ladder (ME 412 Schematic 14)
+## The variational ladder (ME 412 Schematic 14) {#the-variational-ladder-me-412-schematic-14}
 
-Part II's opening indexed fourteen schematics from the Functional Analysis Notes. **Schematic 14** is the narrative spine of Parts III–IV — the same ladder the notes draw from strong PDE to convergent FEM:
+Part II's opening indexed fourteen schematics from the Functional Analysis Notes. **Schematic 14** — also listed in the [ME 412 cross-index above](#representative-schematics-me-412-part-iii) — is the narrative spine of Parts III–IV:
 
 ```mermaid
 flowchart TB
