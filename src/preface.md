@@ -111,7 +111,7 @@ The book turns twice at Part VI — once in vocabulary, once in plot. Both hinge
 |-------|----------|------------|
 | **Mathematical midpoint** | [Part VI opening](part06-continuum/00-opening.md#midpoint-ascent-complete-descent-ahead) | FEM/FVM meet Cauchy stress; the climb from linear algebra through discretization is complete |
 | **Narrative intermission** | [VI.4](part06-continuum/04-nonlinear-plasticity-preview.md#intermission-ascent-ends-descent-begins) | Smooth fields and \(J_2\) hardening fit the load cell but not its cause; pedigree replaces phenomenology |
-| **First mesoscale chapter** | [Part VII opening](part07-defects/00-opening.md) | Burgers geometry and DDD replace scalar \(\alpha\); the descent preview chain begins in earnest |
+| **First mesoscale chapter** | [Part VII opening](part07-defects/00-opening.md#first-descent-rung-vi-midpoint-reunion) | Burgers geometry and DDD replace scalar \(\alpha\); the descent preview chain begins in earnest |
 
 Read the [midpoint](part06-continuum/00-opening.md#midpoint-ascent-complete-descent-ahead) when Parts I–V feel like separate subjects — Part VI names the stress tensor both discretizations approximate. Read the [intermission](part06-continuum/04-nonlinear-plasticity-preview.md#intermission-ascent-ends-descent-begins) when the return-mapping loop fits \(H\) and \(\sigma_{y0}\) but cannot explain **why** the curve bent. The prologue's [reading compass](prologue/00-many-scales.md#reading-compass-two-clocks-on-one-wire) maps these hinges against laboratory time (Acts III–IV: pull, then harden).
 
