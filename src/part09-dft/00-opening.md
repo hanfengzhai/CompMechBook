@@ -142,7 +142,7 @@ Part VIII assumed nuclei move on a potential surface — EAM, MEAM, or machine-l
 
 ## Closing the arc from Part VIII
 
-If you have read linearly since the prologue, Part VIII's closing checkpoint fitted EAM potentials and exported moduli upward on **trust**. Part IX is the **audit chapter** — where every interatomic parameter receives an electronic pedigree:
+If you have read linearly since the prologue, Part VIII's closing checkpoint fitted EAM potentials and exported moduli upward on **trust** — with mobility and phonon lifetimes tied to \(T_w\) at the [descent hinge](../part08-md/00-opening.md#descent-hinge-cores-mobility-and-tw-pedigree). Part IX is the **audit chapter** — where every interatomic parameter receives an electronic pedigree, and the [thermal phonon audit at \(T_w\)](#thermal-phonon-audit-at-tw) confirms \(\alpha\) and drag are not room-temperature folklore:
 
 | Part VIII (atoms on the wire) | Part IX (electrons in copper) |
 |-------------------------------|-------------------------------|
