@@ -110,6 +110,33 @@ If you have read linearly since the prologue, Part III's closing checkpoint comp
 
 Part III wrote the Navier–Stokes and energy equations the air around the wire satisfies; Part IV discretized the **solid** with Galerkin trial functions. Part V discretizes the **fluid** with conservation-first flux balances — not because the physics changed, but because transport and shocks favor a different computational instinct. The conjugate heat transfer loop below is Part III's weak forms and Part V's flux balances **speaking at an interface**; Part VI will name the Cauchy stress and rate-of-deformation tensors both sides approximate.
 
+## The conservation ladder (FVM parallel to Schematic 14) {#the-conservation-ladder-fvm-parallel-to-schematic-14}
+
+Part III's [variational ladder section](../part03-pdes/00-opening.md#the-variational-ladder-me-412-schematic-14) and Part IV's [Galerkin ladder section](../part04-fem/00-opening.md#the-galerkin-ladder-me-412-schematic-14-continued) drew **Schematic 14** for elliptic solids — strong PDE → weak form → Lax–Milgram → Galerkin → Céa. Part V draws the **parallel ladder** for transport and fluids on the same copper wire: the PDEs Part III wrote in strong and weak form, now discretized by **integral balance** rather than energy minimization.
+
+If you arrived through [IV.5 Door A](../part04-fem/05-convergence.md#bridge-two-doors-from-here), Part IV closed the Galerkin half of Schematic 14; Part V is the **conservation half** for the air that cools the wire. If you read Part III's [weak forms](../part03-pdes/02-weak-form.md) as "multiply by a test function and integrate," FVM asks "integrate the PDE over a cell and balance what crosses the faces" — the same divergence theorem Part III used to derive weak forms, now the **design principle** for the discretization:
+
+```mermaid
+flowchart TB
+  S[Strong PDE from Part III.1]
+  I[Integral form: d/dt int_V rho u dV + oint F dot n = 0]
+  C[Cell balance: sum_i d/dt u_i V_i + sum_faces F = 0]
+  U[Upwind + CFL stability in V.2]
+  R[Riemann fluxes + TVD in V.3]
+  N[Navier-Stokes + CHT in V.4]
+  S --> I --> C --> U --> R --> N
+```
+
+| Conservation rung | Part III anchor | Part V chapter | Wire instance |
+|-------------------|-----------------|----------------|---------------|
+| Strong form / divergence theorem | [III.1](../part03-pdes/01-strong-form.md) | [V.1](01-conservation-integral.md) | Heat flux through wire surface into air |
+| Weak form as integral identity | [III.2](../part03-pdes/02-weak-form.md) | [V.1](01-conservation-integral.md) | Same balance; test function → cell average |
+| Navier–Stokes + energy equation | [III.1](../part03-pdes/01-strong-form.md) | [V.4](04-navier-stokes-cfd.md) | Air boundary layer around hot wire |
+| Energy minimum (elliptic solid) | [III.4](../part03-pdes/04-energy-methods.md) | [Part IV](../part04-fem/00-opening.md) (solid) | Joule heating in wire via FEM |
+| Galerkin convergence (solid) | [IV.5](../part04-fem/05-convergence.md) | [V.2](02-fvm-1d.md) CFL + upwind | Fluid grid stability audit |
+
+**Baby picture:** Part III integrated by parts to get weak forms; Part V integrates over cells to get flux balances. The [Galerkin ladder](../part04-fem/00-opening.md#the-galerkin-ladder-me-412-schematic-14-continued) and this conservation ladder are **twins on one specimen** — FEM for conduction inside the wire, FVM for convection outside — coupled at the wall by conjugate heat transfer. When a fluid run loses mass or oscillates at a shock, return here: *which rung am I on — integral balance, upwind stability, or Riemann entropy?*
+
 ## Conjugate heat transfer: the wire meets the wind
 
 The prologue promised that the copper wire and the air around it are one story told in two discretizations. **Conjugate heat transfer** makes that promise concrete:

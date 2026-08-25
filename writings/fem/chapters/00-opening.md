@@ -124,6 +124,8 @@ flowchart TB
 
 **Baby picture:** Part III proved the continuous minimizer exists; Part IV builds the projector \(P_h\) that Part II named and proves \(u_h = P_h u\) is quasi-optimal. The stiffness matrix is not a separate invention — it is the Rayleigh–Ritz discretization of the energy functional [III.4](../part03-pdes/04-energy-methods.md) wrote before any element was meshed. When assembly feels like bookkeeping, return to the [variational ladder](../part03-pdes/00-opening.md#the-variational-ladder-me-412-schematic-14): *which rung of Schematic 14 am I on — existence or convergence?*
 
+When [IV.5](05-convergence.md#bridge-two-doors-from-here) names **Door A** for fluids and transport, continue the parallel diagram at [Part V's conservation ladder section](../part05-fvm/00-opening.md#the-conservation-ladder-fvm-parallel-to-schematic-14): integral balance replaces energy minimization for the air that cools the wire, but the strong and [weak forms](../part03-pdes/02-weak-form.md) from Part III are the same equations both ladders discretize. The Galerkin and conservation ladders reunite at Part VI on Cauchy stress and flux tensors — and at the conjugate heat transfer wall where solid FEM and fluid FVM exchange temperature and heat flux.
+
 ## Closing the arc from Part II
 
 If you have read linearly since the prologue, Part II's operator chapter ([II.4](../../part02-functional-analysis/04-operators-duality.md)) named the backstage machinery FEM assumes before the first element is meshed:

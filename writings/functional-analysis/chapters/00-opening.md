@@ -91,6 +91,8 @@ Schematic **14** is the **plot spine** of Acts I–III in the book: existence cl
 
 When you finish Part II and want the ladder drawn as a single narrative diagram before the PDE chapters begin, jump ahead to Part III's [variational ladder section](../part03-pdes/00-opening.md#the-variational-ladder-me-412-schematic-14) — same Schematic 14, now with the copper wire's axial equilibrium and Joule heating as worked instances. Return here when a proof feels abstract: the schematic table above is the ME 412 index; Part III's diagram is the plot spine.
 
+When you finish Part IV and want to see how Schematic 14 completes in assembly code, jump to [Part IV's Galerkin ladder section](../part04-fem/00-opening.md#the-galerkin-ladder-me-412-schematic-14-continued) — weighted residuals, global assembly, and Céa's lemma on the copper wire. [Part V's conservation ladder](../part05-fvm/00-opening.md#the-conservation-ladder-fvm-parallel-to-schematic-14) is the transport twin for conjugate heat transfer in Act II: same Part III weak forms, different discretization instinct for the air outside the wire.
+
 ## Story so far (Prologue & Part I)
 
 The prologue introduced the copper wire as a **ladder of scales** — continuum, dislocations, atoms, electrons — and the four questions every rung answers: state, equations, discretization, upward export. Part I made the bottom rung of that ladder explicit in finite dimensions:
