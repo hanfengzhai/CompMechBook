@@ -1,86 +1,80 @@
 # Computational Mechanics
 
-A continuous narrative from linear algebra through functional analysis, finite elements and volumes, continuum mechanics, dislocation dynamics, molecular dynamics, and density functional theory — told as one story about a copper wire at every scale.
+A continuous narrative book — from linear algebra through functional analysis, finite elements and volumes, continuum mechanics, dislocation dynamics, molecular dynamics, and density functional theory — told through one copper wire under tension and current.
 
-**~172,000 words** · **35 numbered chapters** · **9 parts** · built with [mdBook](https://github.com/rust-lang/mdBook)
+**~184k words** · **35 numbered chapters** · **mdBook** · canonical sources in [`writings/`](writings/)
 
 ## Read the book
 
-| | |
-|---|---|
-| **Start here** | [Preface](src/preface.md) → [Prologue: The Same Material, Many Scales](src/prologue/00-many-scales.md) |
-| **Full table of contents** | [src/SUMMARY.md](src/SUMMARY.md) |
-| **Chapter roadmap** | [Appendix: Sources and Further Reading](src/appendix/sources.md) |
-| **Cross-scale glossary** | [Appendix: Glossary and Cross-Scale Index](src/appendix/glossary.md) |
-| **Final memory sheet** | [Appendix: Final Memory Sheet](src/appendix/memory-sheet.md) |
-
-Read straight through for the full arc. Parts IV (FEM) and V (FVM) may be swapped on first reading; both converge at Part VI (continuum mechanics) before descending to defects, atoms, and electrons.
-
-## Narrative structure
-
-The book follows the **Functional Analysis Notes** (ME 412) layout: numbered chapters, **concept maps** (object → structure → theorem → failure mode) at every part opening, **representative schematics** indexed to source notes at every part opening (I–IX), **Scene** sections that return to the copper wire, **Lab act** sections tying chapters to the six-act lab session, and **Bridge** sections at every chapter end explaining why the next chapter exists.
-
-```mermaid
-flowchart TB
-  P[Prologue] --> I[Part I: Linear algebra]
-  I --> II[Part II: Functional analysis]
-  II --> III[Part III: PDEs and weak forms]
-  III --> IV[Part IV: Finite elements]
-  III --> V[Part V: Finite volumes and CFD]
-  IV --> VI[Part VI: Continuum mechanics]
-  V --> VI
-  VI --> VII[Part VII: Defects and DDD]
-  VII --> VIII[Part VIII: Molecular dynamics]
-  VIII --> IX[Part IX: DFT]
-  IX --> E[Epilogue: Multiscale coupling]
+```bash
+./scripts/install-mdbook.sh   # once
+export PATH="/usr/local/cargo/bin:$HOME/.local/bin:$PATH"
+mdbook build
+mdbook serve                 # http://localhost:3000
 ```
 
-The same specimen — a cold-drawn copper wire under tension, heated by current, cooled by air — reappears in every part. What changes is the **state variable**, not the material.
+Built HTML lands in `book/`.
 
-## Source material
+## Story and structure
 
-Canonical chapter markdown lives under [`writings/`](writings/) in the Functional Analysis Notes layout (one mdBook subtree per part). Course notes and teaching materials from [hanfengzhai.github.io](https://hanfengzhai.github.io) are synthesized into the prose.
+The book follows the **Functional Analysis Notes** (ME 412) layout — numbered chapters, concept maps (object → structure → theorem → failure mode), and **Bridge** sections linking each chapter to the next — extended with narrative devices so the arc reads as one novel:
 
-## Build locally
+| Device | Purpose |
+|--------|---------|
+| **Scene** | Return to the copper wire in the lab |
+| **Bridge** | State why the next chapter must exist |
+| **Lab act** | Worked computation (assembly, LAMMPS, OpenDiS, QE) |
+| **Concept map** | ME 412 four-question checkpoint at part openings |
+
+### Reading order
+
+| Part | Topic | Chapters |
+|------|-------|----------|
+| Preface / Prologue | Plot spine, one wire many scales | — |
+| **I** | Linear algebra | 4 |
+| **II** | Functional analysis | 5 |
+| **III** | PDEs and weak forms | 4 |
+| **IV** | Finite element method | 5 |
+| **V** | Finite volume method / CFD | 4 |
+| **VI** | Continuum mechanics | 4 |
+| **VII** | Defects and dislocation dynamics | 3 |
+| **VIII** | Molecular dynamics | 3 |
+| **IX** | Density functional theory | 3 |
+| Epilogue | Multiscale coupling | — |
+| Appendices | Glossary, sources, memory sheet | — |
+
+See [`src/SUMMARY.md`](src/SUMMARY.md) for the full table of contents.
+
+## Writings source integration
+
+Canonical chapter markdown lives under [`writings/`](writings/) (vendored from the author's **Writings** repository). Each subtree is a standalone mdBook mirroring the Functional Analysis Notes structure.
 
 ```bash
-# Install mdBook and mdbook-mermaid
-./scripts/install-mdbook.sh
-
-# Sync writings/ → src/ (if you edited canonical sources)
+# Edit canonical sources, then sync into src/
 ./scripts/sync-writings.sh
-
-# Build the unified book
-export PATH="$HOME/.local/bin:$PATH"
 mdbook build
 
-# Preview at http://localhost:3000
-mdbook serve
+# Verify sync
+./scripts/sync-writings.sh --check
 ```
 
-Output appears in `book/`. Build standalone part notes with `./scripts/build-all-writings.sh`.
+Build all standalone note books:
 
-## Repository layout
-
-```
-writings/          # Canonical markdown (Functional Analysis Notes layout)
-src/               # Unified book (synced from writings/)
-scripts/           # sync-writings.sh, install-mdbook.sh, word-count.sh, parse_*.sh (elastic, gsf, wham, dft, cht, alpha, rate, vacf, lifetime sweep, fe2, multiscale)
-                   # parse_alpha.sh accepts --no-write to skip archive sidecars (CI / fixture-safe); parse_multiscale_workflow.sh passes it automatically
-fixtures/          # Illustrative inputs for parse script smoke tests (elastic, GSF, WHAM, CHT, DFT foundation, phonon α, VACF DOS, FE² notch, DDD rate)
-book.toml          # mdBook configuration
-theme/             # Custom CSS
+```bash
+./scripts/build-all-writings.sh
 ```
 
-## Contributing
+## Multiscale workflow scripts
 
-1. Edit chapters under `writings/<topic>/chapters/`.
-2. Run `./scripts/sync-writings.sh` to copy into `src/`.
-3. Run `mdbook build` to verify.
-4. Open a pull request.
+The epilogue wires DFT → MD → DDD → FEM handshakes for the copper wire. Parser scripts audit foundation folders and export YAML pedigree files:
 
-When the external [Writings](https://github.com/hanfengzhai/Writings) repository is linked as a submodule, prefer upstream content and re-run the sync script.
+```bash
+./scripts/test-fixtures.sh                              # CI smoke test
+./scripts/parse_multiscale_workflow.sh fixtures/cu.foundation fixtures/cht_wire.conf
+```
 
-## License and disclaimer
+Handshake 3 evaluates quasiharmonic \(\alpha(T_w)\) at the **converged wall temperature** from Handshake 2 (CHT), not a 300 K default — the temperature pedigree chain documented in [memory sheet rows 8–9](src/appendix/memory-sheet.md#rows-8-9-baby-picture-tw-temperature-pedigree).
 
-These notes represent the author's understanding of the material and are intended for study and reference. Feedback is welcome at [hzhai@stanford.edu](mailto:hzhai@stanford.edu).
+## License and sources
+
+Teaching notes and course materials are cited in [`src/appendix/sources.md`](src/appendix/sources.md). The [Functional Analysis Notes PDF](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) is the structural template for Parts II–III and the concept-map discipline throughout.

@@ -69,10 +69,10 @@ echo ""
 # --- Handshake 3: thermal expansion at Handshake 2 ΔT ---
 ALPHA="NA" ALPHA_PPM="NA" SIGMA_TH="NA"
 if [[ -f "$FOUNDATION/cu.phonon/a_vs_T.dat" ]]; then
-  echo "=== Handshake 3 — thermal expansion (ΔT=${DELTA_T} K from Handshake 2) ==="
+  echo "=== Handshake 3 — thermal expansion (α at T_w=${T_WALL} K; ΔT=${DELTA_T} K from Handshake 2) ==="
   (
     "$ROOT/scripts/parse_alpha.sh" "$FOUNDATION/cu.phonon" \
-      --target-t 300 --delta-t "$DELTA_T" --E "$E_GPA" --compare 15 --no-write
+      --target-t "$T_WALL" --delta-t "$DELTA_T" --E "$E_GPA" --compare 15 --no-write
   ) | tee "$TMPDIR_WORK/alpha.txt"
   ALPHA=$(grep '^alpha_1_per_K = ' "$TMPDIR_WORK/alpha.txt" | awk '{print $3}')
   ALPHA_PPM=$(grep '^alpha_ppm = ' "$TMPDIR_WORK/alpha.txt" | awk '{print $3}')
@@ -181,10 +181,12 @@ handshake_2_cht:
 handshake_3_thermal:
   export: alpha_export.yaml
   parser: parse_alpha.sh
+  target_T_K: ${T_WALL}
   alpha_1_per_K: ${ALPHA}
   alpha_ppm: ${ALPHA_PPM}
   sigma_thermal_fixed_grip_MPa: ${SIGMA_TH}
   delta_T_from_handshake_2: ${DELTA_T}
+  note: "α(T_w) from Handshake 2 converged wall temperature — not 300 K default (rows 8–9 pedigree)"
 
 md_phonon_lifetime_at_Tw:
   export: lifetime_export.yaml
