@@ -22,6 +22,26 @@ Part VIII ended with nuclei vibrating on an interatomic potential — EAM parame
 
 The copper wire at the electronic scale is not a chain of balls on springs. It is a periodic crystal of nuclei immersed in a sea of valence electrons whose density \(\rho(\mathbf{r})\) determines how strongly the lattice resists drawing, how easily dislocations slip, and how vacancies cost energy. DFT resolves that density; every number exported upward — \(E_{\text{coh}}\), \(C_{ij}\), \(\gamma_{\text{sf}}\) — is a contract between Part IX and Parts VI–VIII.
 
+## Electronic audit hinge: descent pedigree and the \(T_w\) phonon contract {#electronic-audit-hinge-descent-pedigree-and-tw-phonon}
+
+[Part VIII's descent hinge](../part08-md/00-opening.md#descent-hinge-cores-mobility-and-tw-pedigree) closed the **atomistic descent** with vibrating nuclei on EAM potentials, mobility tables at converged \(T_w \approx 379\,\text{K}\), and phonon-lifetime interpolation for rate sensitivity — not room-temperature defaults from handbook folders. Part IX inherits that **temperature pedigree** at the electronic layer: every quasiharmonic \(\alpha(T)\) export, every phonon DOS used for Handshake 3 thermal strain, and every acoustic-mode lifetime that feeds Handshake 4a drag must be evaluated at the same \(T_w\) from [V.4's Picard loop](../part05-fvm/04-navier-stokes-cfd.md#lab-act-extension-two-domain-picard-loop-with-a-1d-fem-solid) — archive `alpha_export.yaml` beside `cht_export.yaml` with an explicit \(T_w\) column, not a silent 300 K extrapolation.
+
+When EAM potentials match bulk moduli but no one cites the DFT input deck, return to [continuity hinge rows 8–9](../appendix/sources.md#continuity-hinges-index-when-the-plot-stutters) (atomistic → electronic) and [row 7](../appendix/sources.md#continuity-hinges-index-when-the-plot-stutters) (mesoscale → atomistic via [VIII.0 descent hinge](../part08-md/00-opening.md#descent-hinge-cores-mobility-and-tw-pedigree)). The [epilogue Handshake 3](../epilogue/multiscale.md#handshake-3--thermal-strain--mechanical-stiffness-part-vi--iv) is the workflow-order export of the same thermal expansion Part VI wrote into balance laws — Act III's fixed-grip load cell reads \(\alpha(T_w)\Delta T\) before Part VII's forest bends the curve in Act IV; the [IX.3 quasiharmonic Lab act](03-dft-workflows.md#lab-act-quasiharmonic-alpha-handshake-3-pedigree) is the upstream half, Handshake 3 the downstream half. [Part VIII's WHAM parallel-tempering ladder](../part08-md/03-ab-initio-and-coarse-graining.md#wham--part-vii-mobility-hinge-act-ii-temperature-pedigree) and [Handshake 4a](../epilogue/multiscale.md#4a--ddd-strain-rate-to-quasi-static-load-cell-act-iv--hardening) demand phonon lifetimes interpolated to \(T_w\) — Part IX supplies the DFT phonon curve those interpolations audit.
+
+### Thermal phonon audit at \(T_w\) {#thermal-phonon-audit-at-tw}
+
+Joule heating raised the wire wall to \(T_w \approx 379\,\text{K}\) in Act II. Most foundation folders archive phonons at 300 K — correct for handbook comparison, **insufficient** for the multiscale afternoon unless you extrapolate:
+
+| Quantity | 300 K default risk | Audit at \(T_w\) |
+|----------|-------------------|------------------|
+| \(\alpha(T)\) | Handbook 17e-6 vs DFT 15.5e-6 at 300 K only | Fit \(a(T)\) from quasiharmonic scan; evaluate \(\alpha(T_w)\) for Handshake 3 |
+| Phonon lifetime \(\tau_{\text{ph}}(T)\) | MD drag uses 300 K phonon peak | Interpolate DFPT or MD VACF DOS to \(T_w\); archive beside `mobility_cu_screw_{T_w}K.yaml` |
+| \(C_p(T)\) | Transient CHT uses room-temperature heat capacity | Integrate phonon DOS at \(T_w\) if coupled transient runs matter |
+
+**Workflow contract.** After `cu.phonon/a_vs_T.dat` exists, run [`parse_alpha.sh`](../../scripts/parse_alpha.sh) with `--temperature 379` (or read \(T_w\) from `cht_export.yaml`) so `alpha_export.yaml` records \(\alpha(T_w)\) and \(\varepsilon_{\text{th}} = \alpha(T_w)\Delta T\), not \(\alpha(300\,\text{K})\) alone. When [Part VIII's VACF phonon DOS](../part08-md/03-ab-initio-and-coarse-graining.md) is archived beside `cu.phonon/`, [`parse_vacf.sh`](../../scripts/parse_vacf.sh) and [`parse_multiscale_workflow.sh`](../../scripts/parse_multiscale_workflow.sh) merge acoustic-peak pass/fail at documented temperature — the same habit as evaluating mobility at \(T_w\) rather than 300 K.
+
+If phonon data exists at 300 K but Handshake 2 converged at \(T_w \approx 379\,\text{K}\), Act VI is **partially audited** — elastic moduli and stacking-fault energies carry SCF pedigree while thermal eigenstrain and phonon drag still cite room-temperature folklore. The [sensitivity table](../epilogue/multiscale.md#sensitivity-which-handshake-matters-most) ranks Handshake 3 first for fixed-grip stress; a \(\pm 10\%\) error in \(\alpha(T_w)\) shifts thermal compression by \(\sim \pm 18\,\text{MPa}\) — three times the 50 N mechanical load. Anharmonicity between 300 K and \(T_w\) may require the MD NPT cross-check [IX.3 documents](03-dft-workflows.md#thermal-expansion-from-quasiharmonic-phonons-handshake-3-pedigree); document both DFT and MD numbers in the foundation folder header.
+
 ## The electronic floor in one paragraph
 
 Read this once if you paused after Part VIII and wonder why the book now opens Schrödinger's equation for a copper unit cell — every chapter below unpacks one electronic beat of the same specimen.
@@ -176,7 +196,7 @@ Each chapter adds one move to the electronic-structure workflow that grounds eve
 |---------------|--------------------------|------------------|
 | IX.1 | State Born–Oppenheimer separation; cite Hohenberg–Kohn | \(E[\rho]\) depends only on ground-state \(\rho(\mathbf{r})\) |
 | IX.2 | Write Kohn–Sham equations; read SCF convergence in a log | `convergence has been achieved`; \(E_{\text{coh}}\) per atom |
-| IX.3 | Build a QE input deck; export \(C_{ij}\), \(\gamma_{\text{sf}}\), quasiharmonic \(\alpha\) with pedigree; run [`parse_alpha.sh`](../../scripts/parse_alpha.sh) on `cu.phonon/a_vs_T.dat` | Functional, pseudopotential, cutoff, k-mesh in spreadsheet header; `alpha_export.yaml` beside `cu.elastic/` |
+| IX.3 | Build a QE input deck; export \(C_{ij}\), \(\gamma_{\text{sf}}\), quasiharmonic \(\alpha(T_w)\) with pedigree; run [`parse_alpha.sh`](../../scripts/parse_alpha.sh) on `cu.phonon/a_vs_T.dat` at converged \(T_w\) | Functional, pseudopotential, cutoff, k-mesh in spreadsheet header; `alpha_export.yaml` beside `cu.elastic/` with explicit \(T_w\) column |
 
 None of these require a national supercomputer allocation — but each one is the foundation Act VI runs in parallel with the tensile test. If you can explain why MD's potential is a functional of electron density, archive an SCF log beside every exported modulus, and trace Young's modulus from strained unit cells back to Kohn–Sham orbitals, you have closed the downward derivation before the epilogue wires the ladder together.
 
