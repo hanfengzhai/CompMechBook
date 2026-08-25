@@ -59,7 +59,7 @@ The [Linear Algebra Notes](https://hanfengzhai.github.io/file/ME300A_LinAlg.pdf)
 
 Each schematic answers the four concept-map questions for one layer of finite-dimensional structure. When assembly or eigenmodes feel like bookkeeping, return to the matching row: *what object, what structure, what theorem, what breaks?* Part II will replay the same table with function spaces instead of vectors.
 
-### ME 300A → ME 412 master roadmap (preview)
+### ME 300A → ME 412 master roadmap (preview) {#me-300a--me-412-master-roadmap-preview}
 
 The [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) (ME 412) open with **Schematic 1a–1b** — a master roadmap from linear algebra through weak PDEs and FEM. Part I covers the **left half** of that diagram in finite dimensions; Part II replays it with operators and Hilbert spaces:
 

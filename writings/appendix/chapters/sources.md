@@ -80,7 +80,7 @@ When a chapter's **Bridge** names the next part, cross-check this table — the 
 
 ## Continuity hinges index (when the plot stutters)
 
-The [preface](../preface.md) documents opening, ascent, midpoint, descent, and epilogue hinge tables separately. The [memory sheet](memory-sheet.md#continuity-hinges-master-map) collects all thirteen rows in one navigation page. Use this index when you know **which chapter** you are in but cannot feel the handoff to the next:
+The [preface](../preface.md) documents opening, ascent, midpoint, descent, and epilogue hinge tables separately. The [memory sheet](memory-sheet.md#continuity-hinges-master-map) collects all **sixteen** narrative hinges (rows 0–16) in one navigation page. Use this index when you know **which chapter** you are in but cannot feel the handoff to the next:
 
 | Chapter region | Hinge anchor | What should click |
 |----------------|--------------|-------------------|
@@ -95,6 +95,10 @@ The [preface](../preface.md) documents opening, ascent, midpoint, descent, and e
 | IX.3 → Epilogue | [IX.3 Bridge](../part09-dft/03-dft-workflows.md#bridge-to-the-epilogue) | Finest rung; upward homogenization begins |
 | Epilogue (workflow) | [Six-act reunion](../epilogue/multiscale.md#lab-act-reunion-six-acts-one-afternoon) | Reading order reunites with laboratory time |
 | Epilogue → Prologue | [Epilogue Bridge](../epilogue/multiscale.md#bridge) | Four questions restart on the next project |
+| Epilogue (Handshake 2 → 3) | [Handshake 2 → 3](../epilogue/multiscale.md#handshake-2--joule-heating--conjugate-heat-transfer-part-iv--v), [preface row 13](../preface.md#skill-navigation-row-13) | CHT converged but load cell still uses handbook \(\alpha\); Handshake 2 sets \(\Delta T\), Handshake 3 sets \(\alpha\Delta T\) |
+| Epilogue (Handshake 4a) | [VII.3 rate handshake](../part07-defects/03-polycrystal-and-fem-handoff.md#scale-boundary-handshake-ddd-strain-rate-to-quasi-static-fem), [preface row 14](../preface.md#skill-navigation-row-14) | DDD exports feed plasticity without strain-rate extrapolation; hardening knee arrives early |
+| Epilogue (Handshake 4b) | [VII.3 Step 4 FE²](../part07-defects/03-polycrystal-and-fem-handoff.md#step-4--when-offline-calibration-fails-fe-at-the-notch), [preface row 15](../preface.md#skill-navigation-row-15) | Bulk hardening from 4a looks right but notch root under-predicts peak stress |
+| Epilogue (Act VI orchestration) | [Parameter pedigree path](#parameter-pedigree-path-act-vi-reading-order), [preface row 16](../preface.md#skill-navigation-row-16) | Individual exports exist but no orchestrated `multiscale_export.yaml`; IX → IV pedigree before grips close |
 
 ## Chapter roadmap (one continuous arc)
 
