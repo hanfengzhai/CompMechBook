@@ -99,6 +99,31 @@ If you have read linearly since the prologue, Part III's closing checkpoint comp
 
 Part III answered *what* equation the wire satisfies and *why* it is well posed in \(H^1\). Part IV answers *how* to compute it: the energy functional Part III minimized becomes a quadratic form on nodal coefficients; the bilinear form \(a(u,v)\) becomes element stiffness integrals. When [IV.5](05-convergence.md) names two exit doors — Part V for fluids or Part VI for continuum stress — remember that both doors assume the weak forms and energy principles defined in Part III. The copper wire's tensile equilibrium is the same minimum principle; only the discretization dialect changes at the fork.
 
+## The Galerkin ladder (ME 412 Schematic 14, continued) {#the-galerkin-ladder-me-412-schematic-14-continued}
+
+Part III's [variational ladder section](../part03-pdes/00-opening.md#the-variational-ladder-me-412-schematic-14) drew Schematic 14 from strong PDE through Lax–Milgram — the **existence half** of the ME 412 baby picture. Part IV completes the **convergence half**: Galerkin projection, global assembly, and mesh refinement on the same copper wire. If you paused at [III.4's energy methods](../part03-pdes/04-energy-methods.md) with a well-posed weak form but no global matrix, read that chapter's [Bridge to Part IV](../part03-pdes/04-energy-methods.md#bridge-to-part-iv) first — then return here for the discretization rungs:
+
+```mermaid
+flowchart TB
+  LM[Lax-Milgram: u unique in H1 from Part III.4]
+  WR[Weighted residuals: r orthogonal to V_h]
+  G[Galerkin: u_h in S_h minimizes Pi on V_h]
+  A[Assembly: K from element a phi_i, phi_j]
+  C[Cea: u_h - u best in energy norm]
+  I[h-refinement: interpolation rates in IV.5]
+  LM --> WR --> G --> A --> C --> I
+```
+
+| Schematic 14 rung | Part III anchor | Part IV chapter | Wire instance |
+|-------------------|-----------------|-----------------|---------------|
+| Lax–Milgram / energy minimum | [III.4](../part03-pdes/04-energy-methods.md) | [IV.1](01-weighted-residuals.md) Rayleigh–Ritz | \(\Pi[u_h]\) on nodal DOFs for axial tension |
+| Weak form \(a(u,v)=\ell(v)\) | [III.2](../part03-pdes/02-weak-form.md) | [IV.2](02-galerkin-assembly.md) | Element scatter into global \(\mathbf{K}\mathbf{U}=\mathbf{F}\) |
+| Sobolev \(H^1\) regularity | [III.3](../part03-pdes/03-sobolev-spaces.md) | [IV.3](03-elements-quadrature.md) | \(H^1\)-conforming P1 bar on the wire mesh |
+| Dirichlet principle | [III.4](../part03-pdes/04-energy-methods.md#bridge-to-part-iv) | [IV.4](04-poisson-to-elasticity.md) | Heat plus vector elasticity on one mesh |
+| Convergence in energy norm | Part II.5 Galerkin projection | [IV.5](05-convergence.md) | Three-mesh \(h\)-study at the grip corner |
+
+**Baby picture:** Part III proved the continuous minimizer exists; Part IV builds the projector \(P_h\) that Part II named and proves \(u_h = P_h u\) is quasi-optimal. The stiffness matrix is not a separate invention — it is the Rayleigh–Ritz discretization of the energy functional [III.4](../part03-pdes/04-energy-methods.md) wrote before any element was meshed. When assembly feels like bookkeeping, return to the [variational ladder](../part03-pdes/00-opening.md#the-variational-ladder-me-412-schematic-14): *which rung of Schematic 14 am I on — existence or convergence?*
+
 ## Closing the arc from Part II
 
 If you have read linearly since the prologue, Part II's operator chapter ([II.4](../../part02-functional-analysis/04-operators-duality.md)) named the backstage machinery FEM assumes before the first element is meshed:

@@ -128,6 +128,8 @@ Read Part III as the **middle three rungs**: strong form (Chapter 1), weak form 
 
 When a chapter feels like a list of PDEs, return to this ladder: *where are we on the path from physics to trusted numbers on the load cell?*
 
+Part III closes at the **Lax–Milgram rung** — [III.4's energy methods](04-energy-methods.md) packages existence as minimizing \(\Pi[u]\) before any mesh exists. The upper half of Schematic 14 ends here; the lower half — Galerkin projection, assembly, Céa's lemma, interpolation rates — is Part IV's story. When you finish [III.4's Bridge to Part IV](04-energy-methods.md#bridge-to-part-iv), continue the same diagram at [Part IV's Galerkin ladder section](../part04-fem/00-opening.md#the-galerkin-ladder-me-412-schematic-14-continued): weighted residuals become the operational face of the energy minimum you just proved, and the copper wire's stiffness matrix becomes the Gram matrix of \(a(\cdot,\cdot)\) on \(V_h\).
+
 ## Two paths ahead (preview)
 
 Part III ends with energy methods — the last purely analytical chapter before discretization. What follows is not a single road but a **fork in the narrative**, both leading to the same continuum floor in Part VI:
