@@ -8,7 +8,7 @@ Four chapters follow in order: kinematics; stress and balance laws; variational 
 
 ## Midpoint: ascent complete, descent ahead {#midpoint-ascent-complete-descent-ahead}
 
-If you have read linearly since the [preface](../../preface.md), you have completed the **ascent** — from vectors and stiffness matrices (Part I) through function spaces and weak PDEs (Parts II–III) to FEM, FVM, and now continuum mechanics (Parts IV–VI). The copper wire that began as a chain of springs is now a cylinder with Cauchy stress behind every entry in \(\mathbf{K}\). What follows in Parts VII–IX is the **descent**: the same specimen at finer scales, asking where yield stress, mobility, and elastic moduli hide their history. Part VI is the last rung where the wire still looks smooth on the engineering scale; [VI.4's intermission](04-nonlinear-plasticity-preview.md#intermission-ascent-ends-descent-begins) admits that smoothness is a fiction — and [Part VII](../part07-defects/00-opening.md) begins the story of what lives underneath.
+If you have read linearly since the [preface](../preface.md), you have completed the **ascent** — from vectors and stiffness matrices (Part I) through function spaces and weak PDEs (Parts II–III) to FEM, FVM, and now continuum mechanics (Parts IV–VI). The copper wire that began as a chain of springs is now a cylinder with Cauchy stress behind every entry in \(\mathbf{K}\). What follows in Parts VII–IX is the **descent**: the same specimen at finer scales, asking where yield stress, mobility, and elastic moduli hide their history. Part VI is the last rung where the wire still looks smooth on the engineering scale; [VI.4's intermission](04-nonlinear-plasticity-preview.md#intermission-ascent-ends-descent-begins) admits that smoothness is a fiction — and [Part VII](../part07-defects/00-opening.md) begins the story of what lives underneath.
 
 ## Chapter guide
 
@@ -85,6 +85,20 @@ If you have read linearly since the prologue, Parts IV and V completed the **dis
 | [IV.5 Door B](../part04-fem/05-convergence.md#bridge-two-doors-from-here) or [V.4 Bridge](../part05-fvm/04-navier-stokes-cfd.md#bridge-to-part-vi) arrives here | [VI.4](04-nonlinear-plasticity-preview.md) admits smooth fields fail at defects |
 
 Part IV assembled stiffness from bilinear forms Part III derived; Part V balanced fluxes for the air Part III's energy equation governs. Neither part defined what **stress** means or why cold-drawn copper yields at a higher force than annealed copper. Part VI supplies that vocabulary — and the admission that phenomenological plasticity fits curves without simulating the dislocation forest Part VII will name. The copper wire that was a meshed solid and a cooled fluid domain is now a **mechanical body** with tensors, balance laws, and a yield surface that hides mesoscale history.
+
+## Closing the arc from Part III
+
+If you have read linearly since the prologue, Part III wrote the weak forms and energy principles that make FEM and FVM honest — strong PDE → test function → integration by parts → Lax–Milgram. Part VI is where those analytical objects receive **mechanical names**:
+
+| Part III (PDEs on the wire) | Part VI (continuum on the wire) |
+|-----------------------------|----------------------------------|
+| Weak form \(a(u,v)=\ell(v)\) for all \(v\in H^1_0\) | Virtual work \(\int \boldsymbol{\sigma}:\delta\boldsymbol{\varepsilon}\,d\Omega = \int \mathbf{t}\cdot\delta\mathbf{u}\,dS\) |
+| Energy functional \(\Pi[u]\); coercivity | Hyperelastic strain energy \(W(\mathbf{F})\); convexity / polyconvexity |
+| Sobolev regularity \(u\in H^1\) | Deformation gradient \(\mathbf{F}\); finite strain \(\mathbf{E}\) |
+| Lax–Milgram → unique minimizer | Balance laws \(\nabla\cdot\boldsymbol{\sigma}+\mathbf{b}=\mathbf{0}\) |
+| Thermal Poisson \(-\kappa\Delta T = q_J\) | Coupled energy balance; thermal strain \(\alpha\Delta T\) in virtual work |
+
+Part III proved the continuous problem is well posed; Part IV and V discretized it on meshes and cells; Part VI names the **tensors** those discretizations approximate. When Céa's lemma says the discrete solution tracks the continuous minimizer in the energy norm, Part VI explains that norm as elastic strain energy. When the conjugate heat transfer loop exports wall temperature \(T_w\), Part III's energy equation and Part VI's thermal strain are the **same physics** at different levels of naming — the handshake Part V's flux balances and Part VI's balance laws complete together.
 
 ## The twin ladders reunite (Schematic 14 → Part VI) {#the-twin-ladders-reunite-galerkin-and-conservation}
 
@@ -185,6 +199,6 @@ Parts IV and V solved PDEs on meshes. Part VI names the fields those PDEs carry 
 | Cell fluxes and wall \(T\), \(q_w\) (Part V) | Thermal strain \(\alpha\Delta T\) in balance laws | Joule heating coupled to air cooling | Mechanical run omitting eigenstrain from Act II |
 | Céa: discrete tracks continuous minimizer | Hyperelastic energy density \(W(\mathbf{F})\) | [VI.4](04-nonlinear-plasticity-preview.md) \(J_2\) preview → DDD forest | Fitting \(H\) without mesoscale mechanism |
 
-The [preface continuity hinges](../preface.md#continuity-hinges-ascent-descent) mark Part VI as the **mathematical midpoint** — FEM and FVM converge on Cauchy stress before the descent to dislocations and atoms. Return to the [prologue](../../prologue/00-many-scales.md): whether you arrived via **Door B** from Part IV or completed Part V's conjugate heat transfer, the load cell curve in **Act III** measured something Part VI will finally name — Cauchy stress conjugate to the axial stretch \(\lambda = 1 + u'/L\). Cold-drawn strength and the upward bend in **Act IV** are not mesh artifacts; they are constitutive history that smooth elastic fields cannot explain alone. [VI.1](01-kinematics.md) begins with geometry; [VI.4](04-nonlinear-plasticity-preview.md) admits when that geometry needs dislocations.
+The [preface continuity hinges](../preface.md#continuity-hinges-ascent-descent) mark Part VI as the **mathematical midpoint** — FEM and FVM converge on Cauchy stress before the descent to dislocations and atoms. Return to the [prologue](../prologue/00-many-scales.md): whether you arrived via **Door B** from Part IV or completed Part V's conjugate heat transfer, the load cell curve in **Act III** measured something Part VI will finally name — Cauchy stress conjugate to the axial stretch \(\lambda = 1 + u'/L\). Cold-drawn strength and the upward bend in **Act IV** are not mesh artifacts; they are constitutive history that smooth elastic fields cannot explain alone. [VI.1](01-kinematics.md) begins with geometry; [VI.4](04-nonlinear-plasticity-preview.md) admits when that geometry needs dislocations.
 
 When \(\mathbf{K}\mathbf{U}=\mathbf{F}\) feels like linear algebra without physics — kinematics is where the wire's stretch becomes a tensor story. Turn the page.

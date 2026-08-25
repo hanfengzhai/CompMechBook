@@ -401,7 +401,7 @@ wham_converged: true
 
 When `cross_slip_380K.yaml` sits beside `mobility_cu_screw_300K.yaml`, Part VII's hardening Lab act can distinguish **forest generation** (glide) from **forest annihilation** (cross-slip recovery) at the temperature the wire actually reaches during Act II — not an Arrhenius extrapolation from a cold shear cell.
 
-#### WHAM → Part VII mobility hinge (Act II temperature pedigree)
+#### WHAM → Part VII mobility hinge (Act II temperature pedigree) {#wham-part-vii-mobility-hinge-act-ii-temperature-pedigree}
 
 The parallel tempering Lab act above is not complete until **WHAM reweighting** certifies the \(380\,\text{K}\) statistics — the same discipline as the Picard loop in [V.4 CHT](../part05-fvm/04-navier-stokes-cfd.md#lab-act-extension-two-domain-picard-loop-with-a-1d-fem-solid): raw cold-replica time series are a **partitioned** estimate; [`parse_wham.sh`](../../scripts/parse_wham.sh) is the monolithic correction that enforces detailed balance across the replica ladder before any number crosses to OpenDiS.
 
@@ -514,7 +514,7 @@ Part VIII followed the MD Notes from phase space through coarse-graining. The fo
 
 The handoff table above closes the upward exports from atomistics: stacking-fault energy and core structures feed Part VII mobility; cohesive energy and moduli feed Part VI and Part IV elastic steps. What MD cannot invent — the potential surface itself — is Part IX's responsibility. Classical MD assumes Born–Oppenheimer surfaces; the next part derives them from electron density.
 
-## Bridge to Part IX
+## Bridge to Part IX {#bridge-to-part-ix}
 
 Classical MD is the workhorse; ab initio MD and QM/MM are the auditors when potentials fail. Coarse-graining and fitting are how Part VIII **hands numbers upward** to DDD and FEM and **requests truth downward** from electronic structure. Part IX makes that downward request precise: the Hohenberg–Kohn theorems, the Kohn–Sham equations, and the Quantum ESPRESSO-style workflows that turn a copper crystal into cohesive energy, elastic constants, and the potential datasets MD cannot invent.
 

@@ -14,7 +14,7 @@ The layout follows the **FEM Notes** in [`writings/fem/`](../../writings/fem/): 
 | [IV.2](02-galerkin-assembly.md) | Element loops scatter local stiffness | Shape functions, element matrices, BC enforcement | Quadrature and element types in IV.3 |
 | [IV.3](03-elements-quadrature.md) | P1 bars and triangles on the wire mesh | Reference elements, isoparametric map, Gauss rules | Scalar Poisson → vector elasticity in IV.4 |
 | [IV.4](04-poisson-to-elasticity.md) | Heat plus tension on the same mesh | \(\mathbf{B}^T\mathbb{C}\mathbf{B}\), thermoelastic coupling | Error bounds and refinement in IV.5 |
-| [IV.5](05-convergence.md) | Halving \(h\) at the grip corner | Céa's lemma, \(h\)- and \(p\)-rates, a posteriori estimators | [Bridge to Part V](05-convergence.md#bridge-to-part-v) or Part VI |
+| [IV.5](05-convergence.md) | Halving \(h\) at the grip corner | Céa's lemma, \(h\)- and \(p\)-rates, a posteriori estimators | [Bridge to Part V or VI](05-convergence.md#bridge-two-doors-from-here) |
 
 Read in order. Each chapter ends with a **Bridge** that states why the next chapter must exist; assembling elements without understanding weighted residuals turns FEM into a black box that fails at reentrant corners.
 
@@ -128,7 +128,7 @@ When [IV.5](05-convergence.md#bridge-two-doors-from-here) names **Door A** for f
 
 ## Closing the arc from Part II
 
-If you have read linearly since the prologue, Part II's operator chapter ([II.4](../../part02-functional-analysis/04-operators-duality.md)) named the backstage machinery FEM assumes before the first element is meshed:
+If you have read linearly since the prologue, Part II's operator chapter ([II.4](../part02-functional-analysis/04-operators-duality.md)) named the backstage machinery FEM assumes before the first element is meshed:
 
 | Part II.4 (operators on the wire) | Part IV (FEM on the wire) |
 |-----------------------------------|---------------------------|
@@ -197,6 +197,6 @@ Part III ended with energy methods and the promise of assembly. The first chapte
 
 The [preface ascent continuity hinge](../preface.md#ascent-continuity-hinges) lists Part IV as the **assembly → convergence** turn — where the energy minimum Part III proved becomes a meshed solid the load cell can trust. When assembly feels like bookkeeping, return to the Galerkin projector from [Part II.4](../part02-functional-analysis/04-operators-duality.md): the stiffness matrix is the Gram matrix of the energy inner product on \(V_h\), not an arbitrary sparse array.
 
-Return to the [prologue](../../prologue/00-many-scales.md): **Act III — Pulling** is the load cell's almost-linear climb, and Part IV is where that curve becomes a meshed solid whose stiffness matrix is not magic but the Gram matrix of the energy inner product on \(V_h\). Part I taught assembly as sparse bookkeeping; Part II proved the limit lives in \(H^1\); Part III wrote the bilinear form. [IV.1](01-weighted-residuals.md) is the first sentence of discretization — weighted residuals as the operational face of the energy minimum Part III named.
+Return to the [prologue](../prologue/00-many-scales.md): **Act III — Pulling** is the load cell's almost-linear climb, and Part IV is where that curve becomes a meshed solid whose stiffness matrix is not magic but the Gram matrix of the energy inner product on \(V_h\). Part I taught assembly as sparse bookkeeping; Part II proved the limit lives in \(H^1\); Part III wrote the bilinear form. [IV.1](01-weighted-residuals.md) is the first sentence of discretization — weighted residuals as the operational face of the energy minimum Part III named.
 
 Turn the page when the weak form is clear but no global matrix exists yet — that is the signal Galerkin assembly is the next move.

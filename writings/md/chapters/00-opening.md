@@ -26,7 +26,7 @@ What MD returns upward: cohesive energy, elastic constants, stacking-fault energ
 
 ## Descent hinge: cores, mobility, and the \(T_w\) pedigree {#descent-hinge-cores-mobility-and-tw-pedigree}
 
-[Part VII's ascent hinge](../part07-defects/00-opening.md#ascent-hinge-midpoint-and-twin-ladders) closed the **ascent** with the [twin ladders reunion](../part06-continuum/00-opening.md#the-twin-ladders-reunite-galerkin-and-conservation) — Galerkin energy (Part IV) and conservation flux (Part V) on one specimen before descent began. Part VII inherited \(T_w \approx 379\,\text{K}\) from conjugate heat transfer and demanded DDD mobility \(M(\tau, T_w)\), not a room-temperature default. Part VIII inherits that **temperature pedigree** at the atomistic layer: every NVT shear test that calibrates drag, every parallel-tempering ladder in [VIII.3](03-ab-initio-and-coarse-graining.md#wham--part-vii-mobility-hinge-act-ii-temperature-pedigree), and every phonon-lifetime interpolation for rate sensitivity must match the converged \(T_w\) from [V.4's Picard loop](../part05-fvm/04-navier-stokes-cfd.md#lab-act-extension-two-domain-picard-loop-with-a-1d-fem-solid) — archive `cht_export.yaml` beside `mobility_cu_screw_{T_w}K.yaml` so OpenDiS, MD, and the epilogue share one wall temperature.
+[Part VII's ascent hinge](../part07-defects/00-opening.md#ascent-hinge-midpoint-and-twin-ladders) closed the **ascent** with the [twin ladders reunion](../part06-continuum/00-opening.md#the-twin-ladders-reunite-galerkin-and-conservation) — Galerkin energy (Part IV) and conservation flux (Part V) on one specimen before descent began. Part VII inherited \(T_w \approx 379\,\text{K}\) from conjugate heat transfer and demanded DDD mobility \(M(\tau, T_w)\), not a room-temperature default. Part VIII inherits that **temperature pedigree** at the atomistic layer: every NVT shear test that calibrates drag, every parallel-tempering ladder in [VIII.3](03-ab-initio-and-coarse-graining.md#wham-part-vii-mobility-hinge-act-ii-temperature-pedigree), and every phonon-lifetime interpolation for rate sensitivity must match the converged \(T_w\) from [V.4's Picard loop](../part05-fvm/04-navier-stokes-cfd.md#lab-act-extension-two-domain-picard-loop-with-a-1d-fem-solid) — archive `cht_export.yaml` beside `mobility_cu_screw_{T_w}K.yaml` so OpenDiS, MD, and the epilogue share one wall temperature.
 
 When line cores feel like cutoffs rather than vibrating nuclei, return to [continuity hinge row 7](../appendix/sources.md#continuity-hinges-index-when-the-plot-stutters) (mesoscale → atomistic) and [rows 5–6](../appendix/sources.md#continuity-hinges-index-when-the-plot-stutters) (ascent → descent via [VII.0 ascent hinge](../part07-defects/00-opening.md#ascent-hinge-midpoint-and-twin-ladders)). The [epilogue Handshake 4a](../epilogue/multiscale.md#4a--ddd-strain-rate-to-quasi-static-load-cell-act-iv--hardening) is the workflow-order export of the same rate–temperature contract Part VII opened — Act IV's hardening knee reads power-law \(m\) and \(\tau_{\text{lab}}\) only after mobility at \(T_w\) is archived; the [VII.3 rate handshake](../part07-defects/03-polycrystal-and-fem-handoff.md#scale-boundary-handshake-ddd-strain-rate-to-quasi-static-fem) is the upstream half, Handshake 4a the downstream half. The [Part IX electronic audit hinge](../part09-dft/00-opening.md#electronic-audit-hinge-descent-pedigree-and-tw-phonon) is where phonon lifetimes and quasiharmonic \(\alpha(T)\) receive DFT pedigree at the same \(T_w\) — the audit beneath every mobility table Part VIII measured.
 
@@ -45,7 +45,7 @@ This book and the laboratory use **two different orderings** for the same aftern
 | **Mathematical (chapter order)** | VII mesoscale → VIII atoms → IX electrons | Descend to finer physics after continuum and DDD show where parameters hide their history |
 | **Workflow (Act VI foundation)** | IX DFT → VIII MD fit → VII mobility/hardening → IV FEM deck | Trace where input-file numbers actually come from before the operator mounts the wire |
 
-You are reading **mathematical order**: Part VII explained why hardening curves bend; Part VIII resolves cores and fits potentials; Part IX audits those potentials against electron density. In **workflow order** — the invisible afternoon before Act I — someone already ran Quantum ESPRESSO on fcc Cu, fitted an EAM in LAMMPS, calibrated mobility for OpenDiS, and typed Young's modulus into the mesh script. That prequel is documented in [Act VI of the sources appendix](../appendix/sources.md#six-acts--parts-laboratory-time).
+You are reading **mathematical order**: Part VII explained why hardening curves bend; Part VIII resolves cores and fits potentials; Part IX audits those potentials against electron density. In **workflow order** — the invisible afternoon before Act I — someone already ran Quantum ESPRESSO on fcc Cu, fitted an EAM in LAMMPS, calibrated mobility for OpenDiS, and typed Young's modulus into the mesh script. That prequel is documented in [Act VI of the sources appendix](../appendix/sources.md#six-acts-parts-laboratory-time).
 
 If the descent feels backward relative to how codes are built, treat Part IX as the **pedigree chapter** for every potential Part VIII already assumed — the same role Part II played for Part I's stiffness matrices. You may also read Part IX before Part VIII using the [scale-first path](../prologue/00-many-scales.md#the-experiment-as-plot) in the prologue; linear readers should arrive here correctly after atomistics and read IX as the audit, not a bolt-on.
 
@@ -82,7 +82,7 @@ Part VIII is the **finest discrete scale** before electrons enter explicitly. Li
 
 **Mathematical lineage (Part I → Part VIII).** Part I's \(\mathbf{K}\mathbf{u}=\mathbf{f}\) becomes dynamic Newton's laws: forces from \(\nabla V\), equilibrium from \(\nabla V = 0\), normal modes from the Hessian eigensystem. Part II's completeness instinct reappears as **RVE convergence** — halving the simulation cell and checking \(a_0\), \(\kappa\), or \(\gamma_{\text{sf}}\) is the atomistic mesh-refinement study. Part IV's scatter loop is the static limit; velocity Verlet is the same sparsity pattern executed \(10^7\) times per nanosecond of physical time.
 
-**Scale-boundary discipline.** Every quantity MD exports must carry a pedigree row in the foundation folder (see [Act VI in the sources appendix](../appendix/sources.md#six-acts--parts-laboratory-time)):
+**Scale-boundary discipline.** Every quantity MD exports must carry a pedigree row in the foundation folder (see [Act VI in the sources appendix](../appendix/sources.md#six-acts-parts-laboratory-time)):
 
 | Export | Minimum MD evidence | Downstream consumer |
 |--------|---------------------|---------------------|
@@ -127,9 +127,23 @@ If you have read linearly since the prologue, Part VII's closing checkpoint expo
 | Mobility tables from experiments or fits | Mobility from MD shear tests on cores |
 | Stacking-fault energy as input parameter | \(\gamma_{\text{sf}}\) from relaxed faulted configurations |
 | Taylor \(\sqrt{\rho}\) hardening law | Cohesive energy and elastic constants from fluctuations |
-| [VII.3 Bridge](03-polycrystal-and-fem-handoff.md) exports to FEM | [VIII.3](03-ab-initio-and-coarse-graining.md) fits EAM upward |
+| [VII.3 Bridge](../part07-defects/03-polycrystal-and-fem-handoff.md) exports to FEM | [VIII.3](03-ab-initio-and-coarse-graining.md) fits EAM upward |
 
 Part VII regularized dislocation cores with a cutoff radius and mobility law; Part VIII **resolves** those cores as atoms on an interatomic potential — still finite-dimensional in any simulation box, but now with bond breaking, thermal statistics, and phonon drag that no line model captures alone. The copper wire's notch tip (prologue Act V) and grain boundaries (VII.3 polycrystal handoff) are where continuum and DDD models need atomic witnesses. Part IX will derive the potential \(V(\{\mathbf{r}_i\})\) MD assumes; Part VIII shows how LAMMPS workflows, thermostats, and coarse-graining make that assumption computable and exportable.
+
+## Closing the arc from Part VI
+
+If you have read linearly since the prologue, Part VI named the continuum fields that FEM and FVM approximate — Cauchy stress, virtual work, thermal strain — and admitted that cold-drawn strength and notch singularities hide history smooth elasticity cannot explain. Part VIII is the **finest discrete scale** where those fields still make engineering sense before electrons enter explicitly:
+
+| Part VI (continuum on the wire) | Part VIII (atoms on the wire) |
+|---------------------------------|-------------------------------|
+| Cauchy stress \(\boldsymbol{\sigma}\); virtual work | Virial stress from atomic trajectories in an RVE |
+| Hyperelastic energy \(W(\mathbf{F})\); elastic tensor \(\mathbb{C}\) | NPT fluctuations export \(E\), \(\nu\), bulk modulus upward |
+| Thermal strain \(\varepsilon_{\text{th}} = \alpha\Delta T\) in balance laws | NVT/NPT equilibration at \(T_w\) from conjugate heat transfer |
+| \(J_2\) yield and phenomenological hardening preview | Cohesive energy, \(\gamma_{\text{sf}}\), core width for DDD mobility |
+| Smooth fields fail at notches (VI.4 intermission) | Representative volume resolves bond breaking at the notch tip |
+
+Part VI's virtual work principle is the **same statement** Newton's equations satisfy in an atomistic box — forces from \(\nabla V\), equilibrium from \(\nabla V = 0\), thermal averages replacing pointwise fields. Part VII homogenized dislocation motion into forest statistics; Part VIII resolves the **cores and interfaces** those statistics regularized. When the load cell curve bends in Act IV, Part VI named the phenomenon with a fitted yield surface; Part VII named the forest; Part VIII shows how stacking-fault energy and mobility emerge from trajectories on a potential surface Part IX will derive from \(\rho(\mathbf{r})\).
 
 ## Closing the arc from Part I
 
@@ -149,7 +163,7 @@ Part I's coupled springs become Part VIII's coupled nuclei on a potential surfac
 
 **Act V** is the optional scratch or grip corner where continuum fields predict *where* stress concentrates but cannot resolve bond breaking — MD's representative volume lives here. **Act VI** is the prequel every practitioner runs offline: EAM parameters, mobility tables, and elastic constants that Part VII and Part IV consume without re-deriving them each run. Part VIII connects both acts: atomistic trajectories at the notch tip and potential fitting that feeds the whole ladder upward.
 
-### What you should be able to do after Part VIII
+### What you should be able to do after Part VIII {#what-you-should-be-able-to-do-after-part-viii}
 
 Each chapter adds one move to the atomistic workflow that supplies numbers the mesoscale and continuum codes trust:
 
@@ -165,7 +179,7 @@ When Act II warmed the wire but mobility folders still cite 300 K, pause at the 
 
 ## Bridge
 
-Part VII ended with dislocation forests, Taylor hardening, and the admission that **cores and crack tips need atoms**. [VII.3](03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) named the quantities MD must supply — stacking-fault energy, core width, mobility tables — and deferred their microscopic origin to this part. Part VIII puts the atoms back on stage.
+Part VII ended with dislocation forests, Taylor hardening, and the admission that **cores and crack tips need atoms**. [VII.3](../part07-defects/03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) named the quantities MD must supply — stacking-fault energy, core width, mobility tables — and deferred their microscopic origin to this part. Part VIII puts the atoms back on stage.
 
 | What Part VII homogenized | What Part VIII resolves |
 |---------------------------|-------------------------|
@@ -185,6 +199,6 @@ Part I's coupled springs reappear here as coupled nuclei on an interatomic poten
 | Taylor \(\tau \propto \sqrt{\rho}\) hardening | Trajectory statistics export \(\tau(\gamma)\) | Not re-derived at electronic scale | Mobility table with no temperature sweep |
 | Polycrystal texture handoff to FEM | \(a_0\), \(E\), \(\nu\) from NPT fluctuations | Bulk modulus from small-strain DFT | Mishin EAM, 2001 — no pedigree row |
 
-The [preface descent continuity hinge](../preface.md#descent-continuity-hinges) names [VII.3](../part07-defects/03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) as the **mesoscale → atomistic** turn — where line cores and mobility tables need atomic bonding before Part IX audits the potential from \(\rho(\mathbf{r})\). Return to the [prologue](../../prologue/00-many-scales.md): **Act V** is the notch where continuum fields predict stress concentration but cannot resolve bond breaking; **Act VI** is the offline foundation folder where EAM parameters and mobility tables are fitted before the operator mounts the wire.
+The [preface descent continuity hinge](../preface.md#descent-continuity-hinges) names [VII.3](../part07-defects/03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) as the **mesoscale → atomistic** turn — where line cores and mobility tables need atomic bonding before Part IX audits the potential from \(\rho(\mathbf{r})\). Return to the [prologue](../prologue/00-many-scales.md): **Act V** is the notch where continuum fields predict stress concentration but cannot resolve bond breaking; **Act VI** is the offline foundation folder where EAM parameters and mobility tables are fitted before the operator mounts the wire.
 
 The first chapter below opens **phase space** — positions, momenta, Hamiltonian mechanics — and the interatomic potentials every MD run of copper assumes on trust until the audit in Part IX. When the mesh is fine enough but the core is still wrong — that is the hinge between line defects and atoms. Turn the page.

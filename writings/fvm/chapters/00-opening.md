@@ -106,7 +106,7 @@ If you have read linearly since the prologue, Part III's closing checkpoint comp
 | Energy minimization (elliptic) | Entropy conditions (hyperbolic); dissipation (parabolic) |
 | Test functions in \(H^1\) | Cell averages and face fluxes |
 | Lax–Milgram well-posedness | Discrete conservation; CFL stability for explicit steps |
-| [III.4 Bridge](04-energy-methods.md#bridge-to-part-iv) defers FVM fork to IV.5 | [IV.5](../part04-fem/05-convergence.md#bridge-two-doors-from-here) Door A arrives here |
+| [III.4 Bridge](../part03-pdes/04-energy-methods.md#bridge-to-part-iv) defers FVM fork to IV.5 | [IV.5](../part04-fem/05-convergence.md#bridge-two-doors-from-here) Door A arrives here |
 
 Part III wrote the Navier–Stokes and energy equations the air around the wire satisfies; Part IV discretized the **solid** with Galerkin trial functions. Part V discretizes the **fluid** with conservation-first flux balances — not because the physics changed, but because transport and shocks favor a different computational instinct. The conjugate heat transfer loop below is Part III's weak forms and Part V's flux balances **speaking at an interface**; Part VI will name the Cauchy stress and rate-of-deformation tensors both sides approximate.
 

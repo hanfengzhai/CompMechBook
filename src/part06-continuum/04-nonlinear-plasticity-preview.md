@@ -209,7 +209,7 @@ Continuum mechanics does not announce "switch to dislocations" with a banner. Th
 
 If only signal 1 appears, phenomenological \(J_2\) plasticity may suffice for engineering design. If signals 2 or 3 appear on the same specimen, the narrative descends — not because continuum mechanics failed, but because its **homogenization assumption** (smooth fields, no explicit defects) was never meant to hold at the mesoscale. Part VII is the first part that simulates the objects Part VI homogenized.
 
-## Lab act: return-mapping on the load cell knee (Act IV — Hardening)
+## Lab act: return-mapping on the load cell knee (Act IV — Hardening) {#lab-act-return-mapping-on-the-load-cell-knee-act-iv-hardening}
 
 **Act IV** is the upward bend on the force–displacement trace — the moment phenomenological plasticity replaces pure energy minimization. This Lab act walks one **return-mapping** increment on the copper wire in uniaxial tension so the load cell curve acquires history.
 

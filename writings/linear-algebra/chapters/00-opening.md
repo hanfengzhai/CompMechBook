@@ -148,7 +148,7 @@ The prologue introduced the copper wire at every scale and named the four questi
 | Ladder preview (FEM, FVM, DFT…) | Same grammar under every rung — matrices before fields |
 | Weak form named, not yet spoken | [I.4 Bridge](04-toward-infinity.md#bridge-to-part-ii): \(N\to\infty\) handoff to Part II |
 
-Return to the [prologue](../../prologue/00-many-scales.md): the drawn Cu wire (\(L=1\,\text{m}\), \(EA=2.4\times10^8\,\text{N·m}\) from [I.1](01-vectors-matrices.md)) is still unstrained — load cell reads zero, grips fixed. Every later part generalizes the same object: Part [IV](../part04-fem/00-opening.md) meshes it, Part [V](../part05-fvm/00-opening.md) cools it, Part [IX](../part09-dft/00-opening.md) audits its elastic constants. Part I is the rung where that story is still a **small sparse matrix** you can write by hand.
+Return to the [prologue](../prologue/00-many-scales.md): the drawn Cu wire (\(L=1\,\text{m}\), \(EA=2.4\times10^8\,\text{N·m}\) from [I.1](01-vectors-matrices.md)) is still unstrained — load cell reads zero, grips fixed. Every later part generalizes the same object: Part [IV](../part04-fem/00-opening.md) meshes it, Part [V](../part05-fvm/00-opening.md) cools it, Part [IX](../part09-dft/00-opening.md) audits its elastic constants. Part I is the rung where that story is still a **small sparse matrix** you can write by hand.
 
 The first chapter refreshes the language — inner products, norms, matrix structure — that Parts II through IX will generalize to functions and operators.
 

@@ -109,7 +109,7 @@ If you have read linearly since the prologue, notice how the **same four questio
 
 Part I showed that every mesh eventually gives linear algebra; Part II proved that refinement has a **target** in function space. Part III writes the **equations** that target satisfies. The copper wire that began as coupled springs is now a bar with boundary conditions — fixed grips, Joule heating, perhaps convection at the surface — still one specimen, now with PDEs that Parts IV and V will discretize. When Part IV assembles \(\mathbf{K}\) from shape functions, you will recognize the same sparse pattern Part I taught, now justified by the bilinear form defined here.
 
-## The variational ladder (ME 412 Schematic 14)
+## The variational ladder (ME 412 Schematic 14) {#the-variational-ladder-me-412-schematic-14}
 
 Part II's [representative schematics table](../part02-functional-analysis/00-opening.md#representative-schematics-me-412) indexed fourteen baby pictures from the Functional Analysis Notes; **Schematic 14** in that table is the variational + FEM ladder this section draws as a narrative spine. If you paused at Part II's closing checkpoint without feeling how existence and convergence share one diagram, read the schematic row there first — then return here for the mermaid plot spine of Parts III–IV:
 
@@ -160,7 +160,7 @@ None of these require assembling a mesh — but each one is the continuum statem
 
 ## Bridge
 
-Part II ended with a promise: the copper wire's displacement and temperature live in Sobolev spaces, not in \(\mathbb{R}^N\) for any fixed mesh. [II.5](../part02-functional-analysis/05-spectral-theorem.md#bridge) named the weak form a **recurring character** about to speak on stage — multiply by a test function, integrate by parts, balance virtual work for every admissible displacement. Part III is that act.
+Part II ended with a promise: the copper wire's displacement and temperature live in Sobolev spaces, not in \(\mathbb{R}^N\) for any fixed mesh. [II.5](../part02-functional-analysis/05-spectral-theorem.md#bridge-to-part-iii) named the weak form a **recurring character** about to speak on stage — multiply by a test function, integrate by parts, balance virtual work for every admissible displacement. Part III is that act.
 
 | What Part II supplied | What Part III writes |
 |-----------------------|----------------------|
@@ -180,6 +180,6 @@ The first chapter below writes **strong forms** — what the blackboard demands 
 | Lax–Milgram coercivity | Energy minimum \(\Pi[u]\) in [III.4](04-energy-methods.md) | Rayleigh–Ritz assembly (Part IV) | Minimizing strong form on wrong space |
 | Galerkin best approximation on \(V_h\) | Sobolev trace and \(H^1_0\) in [III.3](03-sobolev-spaces.md) | \(H^1\)-conforming shape functions | Temperature jump across element → \(T_h \notin H^1\) |
 
-The [preface ascent continuity hinge](../preface.md#ascent-continuity-hinges) names this part as the **analysis → PDEs** turn — where completeness and spectral theory from [II.5](../part02-functional-analysis/05-spectral-theorem.md#bridge-to-part-iii) hand off to weak forms the copper wire's equilibrium demands. Return to the [prologue](../../prologue/00-many-scales.md): **Acts II–III** share the same pipeline — Joule heating and grip displacement both begin as strong PDEs and must become weak forms before FEM or FVM assign node values or cell fluxes.
+The [preface ascent continuity hinge](../preface.md#ascent-continuity-hinges) names this part as the **analysis → PDEs** turn — where completeness and spectral theory from [II.5](../part02-functional-analysis/05-spectral-theorem.md#bridge-to-part-iii) hand off to weak forms the copper wire's equilibrium demands. Return to the [prologue](../prologue/00-many-scales.md): **Acts II–III** share the same pipeline — Joule heating and grip displacement both begin as strong PDEs and must become weak forms before FEM or FVM assign node values or cell fluxes.
 
 When pointwise PDEs break at the grip corner but virtual work still balances — that is the signal the weak form is the correct continuum statement, not a numerical convenience. Turn the page.
