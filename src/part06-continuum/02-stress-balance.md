@@ -200,7 +200,7 @@ For axisymmetric or full 3D meshes, the same \((E,\nu)\) populate \(\mathbb{C}_{
 
 **What breaks without the handshake.** A wire FEM model that imports \(E = 120\,\text{GPa}\) from a handbook without citing whether it came from DFT Voigt averaging, MD at 300 K, or a tensile test on cold-drawn stock carries **silent temperature, texture, and defect assumptions**. When DDD (Part VII) or MD (Part VIII) export moduli that disagree with the FEM card by 15%, the fault is usually missing homogenization — not a bug in OpenDiS or LAMMPS. This section is the engineering-scale counterpart of Part VIII's phonon handshake: two discretizations of the same copper lattice must agree on the observable the load cell measures before coarser models inherit the numbers.
 
-### Scale-boundary handshake: thermal expansion coefficient \(\alpha\) (DFT phonons → MD NPT → FEM thermal strain)
+### Scale-boundary handshake: thermal expansion coefficient \(\alpha\) (DFT phonons → MD NPT → FEM thermal strain) {#scale-boundary-handshake-thermal-expansion-alpha}
 
 The elastic handshake above sets \(E\) and \(\nu\) on the FEM card. **Act II — Warming** also needs the **coefficient of thermal expansion** \(\alpha\) that converts Joule-heated temperature rise into thermal strain \(\varepsilon_{\text{th}} = \alpha \Delta T\) and, with fixed grips, into compressive stress \(\sigma_{\text{th}} \approx E \alpha \Delta T\). That number appears in every coupled thermoelastic deck — yet teams often import \(\alpha = 17 \times 10^{-6}\,\text{K}^{-1}\) from a handbook without tracing it to the same DFT foundation run that supplied \(C_{ij}\).
 

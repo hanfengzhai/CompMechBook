@@ -24,6 +24,12 @@ Picture the load cell from prologue **Act IV — Hardening** exactly where VI.4 
 
 At the engineering scale the wire still satisfies balance laws and virtual work; at the mesoscale it is a forest of line defects whose collective motion we can simulate rather than postulate. Part VII is the first rung where the copper wire stops pretending to be a smooth continuum everywhere — the same specimen, the same afternoon, a smaller state variable.
 
+## Ascent hinge: midpoint and twin ladders {#ascent-hinge-midpoint-and-twin-ladders}
+
+[Part VI's mathematical midpoint](../part06-continuum/00-opening.md#midpoint-ascent-complete-descent-ahead) closes the **ascent** — linear algebra through FEM and FVM discretization complete, Cauchy stress named behind every entry in \(\mathbf{K}\). The [twin ladders reunion](../part06-continuum/00-opening.md#the-twin-ladders-reunite-galerkin-and-conservation) is the last place Galerkin energy (Part IV) and conservation flux (Part V) spoke on one specimen before descent: Joule heating in the wire, convection in the air, and thermal strain \(\varepsilon_{\text{th}} = \alpha\Delta T\) entering virtual work in [VI.2](../part06-continuum/02-stress-balance.md#scale-boundary-handshake-thermal-expansion-alpha) and [VI.3](../part06-continuum/03-variational-elasticity.md#thermal-coupling-act-ii).
+
+Part VII inherits that thermal history. The \(T_w \approx 379\,\text{K}\) from conjugate heat transfer softens dislocation mobility before the first plastic increment — DDD segment rules must read \(M(\tau, T_w)\), not \(M(\tau, 300\,\text{K})\). When Peach–Köhler forces feel disconnected from the FEM stress field, return to [continuity hinge row 4](../appendix/sources.md#continuity-hinges-index-when-the-plot-stutters) (twin ladders reunite at Part VI) and [row 5–6](../appendix/sources.md#continuity-hinges-index-when-the-plot-stutters) (midpoint → descent). The [epilogue Handshake 3](../epilogue/multiscale.md#handshake-3--thermal-strain--mechanical-stiffness-part-vi--iv) is the workflow-order export of the same thermal strain Part VI wrote into balance laws — Act III's fixed-grip load cell reads that pre-stress before Part VII's forest bends the curve in Act IV.
+
 ## The descent in one paragraph
 
 Read this once if you paused after Part VI and wonder why the book now leaves the continuum floor — every chapter below unpacks one mesoscopic or finer beat of the same copper wire.

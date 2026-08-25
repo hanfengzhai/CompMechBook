@@ -221,7 +221,9 @@ Part VI writes \(\Pi[\mathbf{u}] = \int_\Omega \psi(\boldsymbol{\varepsilon})\, 
 
 Voigt and Reuss bounds on \(E\) for a random polycrystal lie between single-crystal extremes. If Part IV's elastic step uses \(E = 120\,\text{GPa}\) from a handbook but Part VIII's NPT average on a 500-atom fcc box gives \(E = 95\,\text{GPa}\), the fault is **scale mismatch** (single crystal vs drawn wire), not necessarily a bad potential — but the mismatch must be documented in the foundation folder, not silently ignored.
 
-**Thermal coupling (Act II).** Variational elasticity with thermal strain writes \(\boldsymbol{\varepsilon} = \boldsymbol{\varepsilon}_{\text{mech}} + \alpha \Delta T \mathbf{I}\). The thermal stress estimate \(\sigma \approx E \alpha \Delta T\) from [VI.2](02-stress-balance.md) inherits the same \(E\) as \(\Pi\). Mixing DFT \(E\) in the mechanical block and handbook \(\alpha\) without cross-checking against DFT quasi-harmonic expansion (Part IX) is a **pedigree fracture** at the continuum scale.
+### Thermal coupling (Act II) {#thermal-coupling-act-ii}
+
+Variational elasticity with thermal strain writes \(\boldsymbol{\varepsilon} = \boldsymbol{\varepsilon}_{\text{mech}} + \alpha \Delta T \mathbf{I}\). The thermal stress estimate \(\sigma \approx E \alpha \Delta T\) from [VI.2](02-stress-balance.md#scale-boundary-handshake-thermal-expansion-alpha) inherits the same \(E\) as \(\Pi\). Mixing DFT \(E\) in the mechanical block and handbook \(\alpha\) without cross-checking against DFT quasi-harmonic expansion (Part IX) is a **pedigree fracture** at the continuum scale.
 
 **What breaks without the handshake.** Fitting \(\psi\) from a tensile test while using DFT moduli in a coupled thermoelastic run couples two different material definitions. A 10% modulus error is a 10% force error at the same grip displacement — visible on the load cell before yield. Archive `elastic_constants/` beside `kappa_md_300K.txt` and `cu.phonon/` in the foundation folder: one row per source (handbook, DFT, MD, tensile test), one \(\mathbb{C}\) chosen for production FEM with a citation. Part VI.3's virtual work is only honest when that row exists.
 
