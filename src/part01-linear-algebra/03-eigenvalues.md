@@ -269,7 +269,7 @@ We have stayed in finite dimensions: \(\mathbf{A}\mathbf{v} = \lambda \mathbf{v}
 | Lanczos on sparse \(\mathbf{K}\) for lowest modes | Spectral theory for elliptic operators (Part II.5 → Part IV.5) |
 | Resonance diagnosis on the wire fixture | Same decoupling picture at atomistic scales (Part VIII) |
 
-The [prologue](../../prologue/00-many-scales.md) introduced the specimen as one ladder with many rungs; eigenmodes are the **first time decoupling appears** in the book — a preview of orthogonality in Hilbert space and of dominant modes in molecular dynamics. [I.2](02-linear-maps.md) showed change of coordinates; eigenvectors are the coordinates in which the stiffness map acts by pure scaling.
+The [prologue](../prologue/00-many-scales.md) introduced the specimen as one ladder with many rungs; eigenmodes are the **first time decoupling appears** in the book — a preview of orthogonality in Hilbert space and of dominant modes in molecular dynamics. [I.2](02-linear-maps.md) showed change of coordinates; eigenvectors are the coordinates in which the stiffness map acts by pure scaling.
 
 The next chapter takes the first step from \(\mathbb{R}^N\) toward function spaces: inner products become integrals, matrices become operators, and the eigenvalue problem becomes a spectral problem for differential operators. Part II makes that transition rigorous; Part III writes down the PDEs those operators encode.
 

@@ -353,7 +353,7 @@ With vectors and matrices in hand, we next examine **linear maps** abstractly: c
 | Mesh refinement convergence toward \(u(x)\) | Isoparametric Jacobian preview: volume maps before Part IV |
 | Column space / null space of \(\mathbf{K}\) | Rigid-body modes the grips must constrain |
 
-Return to the [prologue](../../prologue/00-many-scales.md): **Act I — Mounting** fixes the wire in grips whose end displacement is a single global degree of freedom, yet every bar element still carries its own local axis. Assembly is the map that declares those languages equivalent — the same book-keeping Part IV will automate on millions of elements. When the map is wrong, the wire appears to stretch when only one end moves; when the basis is ill-chosen, \(\mathbf{K}\) is dense and ill-conditioned even though the physics is local.
+Return to the [prologue](../prologue/00-many-scales.md): **Act I — Mounting** fixes the wire in grips whose end displacement is a single global degree of freedom, yet every bar element still carries its own local axis. Assembly is the map that declares those languages equivalent — the same book-keeping Part IV will automate on millions of elements. When the map is wrong, the wire appears to stretch when only one end moves; when the basis is ill-chosen, \(\mathbf{K}\) is dense and ill-conditioned even though the physics is local.
 
 The copper wire, meshed or unmeshed, is the same physical object in every basis we choose. Turn the page when \(\mathbf{K}\mathbf{u}=\mathbf{f}\) feels like a table of numbers rather than a coordinate story — linear maps are where that table acquires geometry.
 

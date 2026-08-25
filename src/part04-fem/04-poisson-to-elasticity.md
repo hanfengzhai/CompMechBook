@@ -162,6 +162,8 @@ where \(\alpha\) is the coefficient of thermal expansion and \(\Delta T = T - T_
 \boldsymbol{\sigma} = \mathbb{C} : (\boldsymbol{\varepsilon} - \alpha \Delta T\, \mathbf{I}).
 \]
 
+<a id="coupled-thermoelasticity"></a>
+
 **Coupled thermoelasticity** alternates or monolithically solves:
 
 1. Heat equation: \(\rho c_p\, \partial T/\partial t - \nabla\cdot(k\nabla T) = q\) (FEM, scalar field).

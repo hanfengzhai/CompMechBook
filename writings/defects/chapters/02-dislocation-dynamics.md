@@ -106,7 +106,7 @@ where \(c_v^{\text{eq}}\) is equilibrium vacancy concentration (from Part IX for
 
 **What breaks without these cross-links.** Running OpenDiS with 300 K mobility at 400 K wire temperature (Joule heating from Act II) misses thermally activated cross-slip. Using literature \(D(T)\) without the VIII.2 NEB pedigree shifts climb rates by orders of magnitude. Pasting \(\gamma_{\text{sf}}\) from IX.3 while ignoring \(\gamma_{\text{USF}}\) leaves recovery kinetics unconstrained — the hardening curve after annealing has no barrier scale. Each failure is the mesoscale analogue of exporting FEM stress before mesh convergence: the code runs, but the story is wrong.
 
-### Lab act: calibrate screw mobility from MD shear (Act IV — mobility prelude)
+### Lab act: calibrate screw mobility from MD shear (Act IV — mobility prelude) {#lab-act-calibrate-screw-mobility-from-md-shear-act-iv--mobility-prelude}
 
 **Act IV** bends the load cell curve because lines move under Peach–Köhler forces. Before OpenDiS can reproduce that bend, the mobility law \(M(\tau, T)\) must be calibrated — not copied from a literature table without pedigree. This Lab act extracts \(M\) from a Part VIII MD shear test on a dislocation-containing supercell, then exports a yaml table OpenDiS consumes.
 
@@ -114,7 +114,7 @@ where \(c_v^{\text{eq}}\) is equilibrium vacancy concentration (from Part IX for
 
 **Step 1 — build the MD cell.** Use the same EAM potential and \(a_0\) from [Part VIII.1 Lab act](../../part08-md/01-potentials-phase-space.md#lab-act-eam-lattice-constant-from-energy-minimization-act-v--notch-prelude). Insert a straight screw dislocation on one {111}\(\langle 110\rangle\) system (Volterra construction or `dislocate` in LAMMPS). Cylindrical geometry: radius \(\geq 10\,b\), glide length \(\geq 20\,b\), flexible outer shell or fixed bottom layers to suppress spurious drift.
 
-**Step 2 — NVT shear protocol at 300 K.** Equilibrate in NVT, then apply constant resolved shear stress \(\tau\) via `fix addforce` on a top layer (or `fix deform` with stress control). Log dislocation position \(x(t)\) and average glide velocity \(v = \dot{x}\) over 50–200 ps once transients decay.
+**Step 2 — NVT shear protocol at \(T_w\).** Equilibrate in NVT at the converged wall temperature from Step 0 (typically \(T_w \approx 379\,\text{K}\) when Joule heating is active; use 300 K only for handbook comparison runs). Apply constant resolved shear stress \(\tau\) via `fix addforce` on a top layer (or `fix deform` with stress control). Log dislocation position \(x(t)\) and average glide velocity \(v = \dot{x}\) over 50–200 ps once transients decay.
 
 | Applied \(\tau\) (MPa) | Expected regime (Cu screw, 300 K) | Observable |
 |------------------------|-----------------------------------|------------|

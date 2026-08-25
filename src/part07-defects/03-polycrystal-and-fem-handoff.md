@@ -266,7 +266,7 @@ Create a handoff bundle for the drawn copper wire notch specimen:
 | File | Minimum contents | Downstream consumer |
 |------|------------------|---------------------|
 | `opendis.restart` | Final link-length distribution, forest density \(\rho\) | Taylor hardening input |
-| `mobility.yaml` | \(M(\tau, T=300\,\text{K})\) from NVT shear (Part VIII) | OpenDiS segment law |
+| `mobility.yaml` | \(M(\tau, T_w)\) from NVT shear at converged wall temperature (Part VIII; \(T_w\) from `cht_export.yaml`) | OpenDiS segment law |
 | `damask.yaml` | `h_0`, `g_sat`, initial CRSS per slip system from DDD averages | Crystal plasticity FEM |
 | `fem.inp` | Polycrystal RVE mesh, grain orientations (EBSD or synthetic) | Abaqus/DAMASK driver |
 | `units.txt` | Pa, m, s; Burgers vector \(b = 2.56 \times 10^{-10}\,\text{m}\) for Cu | Prevents silent unit bugs |

@@ -323,7 +323,7 @@ A \(\pm 10\%\) error in \(\alpha\) shifts fixed-grip thermal stress by \(\pm 18\
 
 **Archive requirement.** Store `alpha_cu_300K.dat` beside `cu.phonon/` with source (handbook, DFT quasi-harmonic, or NPT MD thermal expansion). If the FEM deck cites handbook \(\alpha\) while `cu.phonon/` exists, Handshake 3 is **partially audited** — the same pedigree gap [IX.3's quasiharmonic \(\alpha\) Lab act](../part09-dft/03-dft-workflows.md#lab-act-quasiharmonic-alpha-handshake-3-pedigree) flags before the epilogue.
 
-### Handshake 4 — Rate-dependent hardening and notch localization (Part VII → VI → VIII)
+### Handshake 4 — Rate-dependent hardening and notch localization (Part VII → VI → VIII) {#handshake-4--rate-dependent-hardening-and-notch-localization-part-vii--vi--viii}
 
 Act IV on the load cell is not a single physics story. The upward bend after yield combines **forest hardening** (dislocation density from Part VII), **strain-rate sensitivity** (mobility and phonon drag from Part VIII), and — when a micro-notch is present (Act V) — **stress localization** that homogenized crystal plasticity may smear. Handshake 4 wires all three; the epilogue treats them as one interface because the same archived `hardening.yaml` feeds the FEM deck whether or not a notch is present.
 
@@ -373,7 +373,7 @@ Schmid factor \(\approx 0.408\) for dominant fcc slip gives \(\sigma_y \approx 9
 
 When Joule heating raises \(T\) to 380 K (Handshake 2), \(m\) grows and mobility tables from Part VIII must be evaluated at the **same** \(T\) as the DDD run — not at 300 K by default. Rate-dependent plasticity is the mesoscale counterpart of Handshake 3's \(\alpha\) sensitivity: a 10% error in rate mapping shifts the hardening knee by the same order as a 10% error in thermal expansion shifts fixed-grip stress.
 
-#### 4b — When continuum fails at the notch: MD subdomain (Act V — Notch)
+#### 4b — When continuum fails at the notch: MD subdomain (Act V — Notch) {#4b--when-continuum-fails-at-the-notch-md-subdomain-act-v--notch}
 
 **Upstream contract ([VII.3 Step 4 FE²](../part07-defects/03-polycrystal-and-fem-handoff.md#step-4--when-offline-calibration-fails-fe-at-the-notch)).** This subsection is the epilogue-only **downstream half** of the FE² notch workflow Part VII documented — crystal plasticity vs two-scale DDD at selected Gauss points, `fe2_notch_comparison.dat`, and the 10–15% root-stress uplift scalar hardening from Handshake 4a may miss. If you arrived here from Act V without reading Part VII, read [VII.3 Step 4](../part07-defects/03-polycrystal-and-fem-handoff.md#step-4--when-offline-calibration-fails-fe-at-the-notch) first; if bulk hardening from 4a looks credible but the optional notch under-predicts peak stress, confirm [`parse_fe2.sh`](../scripts/parse_fe2.sh) ran on comparison data before trusting offline calibration — the upstream Step 4 names the OpenDiS/FEM procedure; Handshake 4b names the notch-root consequence when homogenization is skipped. Complete [preface row 14](../preface.md#skill-navigation-row-14) before [row 15](../preface.md#skill-navigation-row-15): FE² inherits the same `hardening.yaml` that 4a calibrated.
 

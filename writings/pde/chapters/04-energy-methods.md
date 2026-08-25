@@ -235,7 +235,7 @@ Part IV asks: how do we choose \(V_h\), compute integrals, and assemble \(\mathb
 
 If you need the fluid fork after FEM, [IV.5](../part04-fem/05-convergence.md#bridge-two-doors-from-here) names **Door A** (Part V: FVM and conjugate heat transfer) and **Door B** (Part VI: continuum stress–strain vocabulary) — the canonical place to choose, so this chapter can stay focused on energy → assembly.
 
-Return to the [prologue](../../prologue/00-many-scales.md): **Act II — Warming** minimized thermal energy on the same bar this chapter discretized in the Lab act; **Act III — Pulling** will minimize elastic energy on the mesh Part IV assembles. The afternoon does not separate physics from algorithms — it separates **which functional** is stationary at each grip setting.
+Return to the [prologue](../prologue/00-many-scales.md): **Act II — Warming** minimized thermal energy on the same bar this chapter discretized in the Lab act; **Act III — Pulling** will minimize elastic energy on the mesh Part IV assembles. The afternoon does not separate physics from algorithms — it separates **which functional** is stationary at each grip setting.
 
 **Scale-boundary handshake (III.4 → Part IV → Acts II/III).**
 
