@@ -244,7 +244,7 @@ For copper, the CVs that matter for multiscale handoffs are not abstract — the
 | Coordination number of surface atoms | Nucleation of oxide or adsorbate | Surface chemistry at notch (Act V) |
 | Dislocation core radius or partial separation | Core structure under stress | Mobility \(M(\tau)\) calibration (Part VII.2) |
 
-**Worked sketch: GSF metadynamics on Cu (111).** Build a bicrystal with one {111} plane shifted rigidly by coordinate \(u\) (same geometry as the DFT GSF workflow in [IX.3](../../part09-dft/03-dft-workflows.md)). Choose CV \(s = u / b_p\) where \(b_p = a_0/\sqrt{6}\) is the Shockley partial magnitude. Run well-tempered metadynamics in LAMMPS (`fix plumed`) or PLUMED coupled to an audited EAM:
+**Worked sketch: GSF metadynamics on Cu (111).** Build a bicrystal with one {111} plane shifted rigidly by coordinate \(u\) (same geometry as the DFT GSF workflow in [IX.3](../part09-dft/03-dft-workflows.md)). Choose CV \(s = u / b_p\) where \(b_p = a_0/\sqrt{6}\) is the Shockley partial magnitude. Run well-tempered metadynamics in LAMMPS (`fix plumed`) or PLUMED coupled to an audited EAM:
 
 1. **Equilibrate** the slab at 300 K with fixed lateral box; verify zero net stress at \(u = 0\).
 2. **Deposit hills** with initial height \(\omega \sim k_B T\) and width \(\sigma \sim 0.05\)–\(0.1\,b_p\); well-tempered factor \(\Delta T \sim 300\)–\(500\,\text{K}\) prevents over-filling.
@@ -265,7 +265,7 @@ Partial separation d ∝ 1/γ_sf  →  Part VII segment rules
 
 **Act VI** runs in parallel with the wire-scale afternoon — someone must supply \(\gamma_{\text{sf}}\) and \(\gamma_{\text{USF}}\) before OpenDiS imports stacking-fault numbers. DFT (Part IX) is the audit; **metadynamics on an audited EAM** is the fast scout that tells you where to place DFT single points on the \(\gamma(\mathbf{u})\) grid. This Lab act builds the full GSF curve in hours, not days.
 
-**Step 1 — bicrystal geometry.** Build a {111} slab with 24–32 atomic layers and in-plane dimensions \(\geq 8\,a_0\) (same slab template as [IX.3 GSF workflow](../../part09-dft/03-dft-workflows.md)). Fix the bottom four layers; allow the top half to relax in-plane. Define CV \(s = u / b_p\) where \(u\) is rigid shear displacement along \(\langle 112\rangle\) in the fault plane and \(b_p = a_0/\sqrt{6}\).
+**Step 1 — bicrystal geometry.** Build a {111} slab with 24–32 atomic layers and in-plane dimensions \(\geq 8\,a_0\) (same slab template as [IX.3 GSF workflow](../part09-dft/03-dft-workflows.md)). Fix the bottom four layers; allow the top half to relax in-plane. Define CV \(s = u / b_p\) where \(u\) is rigid shear displacement along \(\langle 112\rangle\) in the fault plane and \(b_p = a_0/\sqrt{6}\).
 
 **Step 2 — PLUMED / LAMMPS setup.** Use the same EAM potential from [VIII.1 Lab act](../part08-md/01-potentials-phase-space.md#lab-act-eam-lattice-constant-from-energy-minimization-act-v--notch-prelude). Well-tempered metadynamics parameters (Cu, illustrative):
 
@@ -331,7 +331,7 @@ Attempt swaps every 1000 MD steps; run 5–20 ns per replica before expecting co
 
 ### Lab act: parallel tempering for screw cross-slip at Joule-heated temperature (Act II–IV bridge)
 
-**Act II** raises wall temperature toward 380 K ([V.4 conjugate heat transfer](../../part05-fvm/04-navier-stokes-cfd.md#lab-act-extension-two-domain-picard-loop-with-a-1d-fem-solid)); **Act IV** hardening depends on whether screw dislocations **cross-slip** and annihilate forest segments during recovery. Plain NVT MD at 400 K rarely observes cross-slip in nanoseconds — the event is activated. **Parallel tempering** lets hot replicas visit cross-slipped cores while a cold replica at \(T_w\) inherits sampled structures with correct Boltzmann weights. This Lab act is the atomistic counterpart of Part VII's [mobility calibration](../part07-defects/02-dislocation-dynamics.md#lab-act-calibrate-screw-mobility-from-md-shear-act-iv--mobility-prelude), but targets **rare reorientation** rather than glide on a straight line.
+**Act II** raises wall temperature toward 380 K ([V.4 conjugate heat transfer](../part05-fvm/04-navier-stokes-cfd.md#lab-act-extension-two-domain-picard-loop-with-a-1d-fem-solid)); **Act IV** hardening depends on whether screw dislocations **cross-slip** and annihilate forest segments during recovery. Plain NVT MD at 400 K rarely observes cross-slip in nanoseconds — the event is activated. **Parallel tempering** lets hot replicas visit cross-slipped cores while a cold replica at \(T_w\) inherits sampled structures with correct Boltzmann weights. This Lab act is the atomistic counterpart of Part VII's [mobility calibration](../part07-defects/02-dislocation-dynamics.md#lab-act-calibrate-screw-mobility-from-md-shear-act-iv--mobility-prelude), but targets **rare reorientation** rather than glide on a straight line.
 
 **Step 1 — system and potential.** Use the audited EAM from [VIII.1 Lab act](../part08-md/01-potentials-phase-space.md#lab-act-eam-lattice-constant-from-energy-minimization-act-v--notch-prelude). Build a periodic cell (\(\geq 10\,000\) atoms) containing one straight screw dislocation on {111}\(\langle 110\rangle\) — the same Volterra geometry as the mobility Lab act, but **without** applied shear: the goal is spontaneous cross-slip, not driven glide.
 

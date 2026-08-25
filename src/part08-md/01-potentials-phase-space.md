@@ -124,7 +124,7 @@ E_{\text{poly}} \approx \text{Voigt/Reuss average of } C_{ij} \text{ from MD or 
 
 and compare to the tensile-test secant modulus from Act III. A 15% gap between single-crystal MD and wire test is **expected** (texture, cold work); a 15% gap between two MD cells of different size on the **same** geometry is **unconverged RVE** — the atomistic mirror of Part IV's mesh refinement study.
 
-**Flexible boundary methods** (displacement imposed on an outer shell from linear elasticity) reduce image stress when a dislocation or crack cannot be periodized. The outer shell stiffness should match Part VI's \(E\) and \(\nu\) from the handshake table in [VI.3](../../part06-continuum/03-variational-elasticity.md#scale-boundary-handshake-mathbbc-from-dftmd-to-variational-elasticity) — otherwise the MD box fights the continuum it is supposed to represent.
+**Flexible boundary methods** (displacement imposed on an outer shell from linear elasticity) reduce image stress when a dislocation or crack cannot be periodized. The outer shell stiffness should match Part VI's \(E\) and \(\nu\) from the handshake table in [VI.3](../part06-continuum/03-variational-elasticity.md#scale-boundary-handshake-mathbbc-from-dftmd-to-variational-elasticity) — otherwise the MD box fights the continuum it is supposed to represent.
 
 ## Defects in MD: how to introduce them
 
@@ -180,7 +180,7 @@ where \(V\) is system volume, \(T\) is temperature, and \(J(t)\) is the instanta
 
 ### Green–Kubo in the Part II vocabulary
 
-Part II taught that honest discretization needs a **complete space** and a **norm that measures what physics cares about**. Green–Kubo is the same contract at atomistic scale: the heat flux \(J(t)\) is a random process on a trajectory; its autocorrelation is an inner product in time, and conductivity is a linear functional of that correlation. Read the four concept-map questions from [Part II.2](../../part02-functional-analysis/02-normed-spaces.md) again — they apply without modification:
+Part II taught that honest discretization needs a **complete space** and a **norm that measures what physics cares about**. Green–Kubo is the same contract at atomistic scale: the heat flux \(J(t)\) is a random process on a trajectory; its autocorrelation is an inner product in time, and conductivity is a linear functional of that correlation. Read the four concept-map questions from [Part II.2](../part02-functional-analysis/02-normed-spaces.md) again — they apply without modification:
 
 | Question | Green–Kubo answer (copper wire) |
 |----------|--------------------------------|
@@ -329,7 +329,7 @@ Potentials define forces; integrators and statistical ensembles define how traje
 | \(\gamma_{\text{sf}}\) for partial dislocations | Generalized stacking-fault surface | Slab pull under NVT ensemble | Wrong stacking sequence in EAM fit |
 | Peierls threshold in segment law | Core structure at 0 K minimization | Finite-\(T\) phonon drag from NVT shear | 0 K barrier exported to 300 K DDD |
 
-Part VII's [Bridge](../../part07-defects/03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) named the **ink** behind dislocation lines — atomic bonding. The copper lattice here is that ink: nuclei on a Born–Oppenheimer surface whose parameters were trusted in LAMMPS before Part IX derived them from \(\rho(\mathbf{r})\). The [two clocks note](00-opening.md#two-clocks-reading-order-vs-foundation-pedigree) at the Part VIII opening explains why you may already have run EAM fits in workflow order; linear readers arrive correctly after DDD and should treat this chapter as **resolving the core** the mesoscale model regularized with a cutoff.
+Part VII's [Bridge](../part07-defects/03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) named the **ink** behind dislocation lines — atomic bonding. The copper lattice here is that ink: nuclei on a Born–Oppenheimer surface whose parameters were trusted in LAMMPS before Part IX derived them from \(\rho(\mathbf{r})\). The [two clocks note](00-opening.md#two-clocks-reading-order-vs-foundation-pedigree) at the Part VIII opening explains why you may already have run EAM fits in workflow order; linear readers arrive correctly after DDD and should treat this chapter as **resolving the core** the mesoscale model regularized with a cutoff.
 
 Return to the prologue's **Act IV — Hardening**: the load cell curve bent because lines moved; MD shows **how bonds stretch** at the core where Peach–Köhler forces are largest. Part I's pattern returns — state vector \(\{\mathbf{r}_i\}\), force vector from \(\nabla V\), timestep loop as repeated matrix–vector work — now with \(10^5\)–\(10^9\) atoms instead of \(N\) springs. The EAM minimization Lab act above is the **foundation archive** Part IX's DFT run will supersede — but only after [IX.3](../part09-dft/03-dft-workflows.md) documents cutoff and k-mesh convergence.
 

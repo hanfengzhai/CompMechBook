@@ -188,7 +188,7 @@ For nonlinear problems, assembly runs inside Newton iterations. The **tangent st
 
 ## Operator handshake (Part II.4 → assembly)
 
-Part [II.4](../../part02-functional-analysis/04-operators-duality.md) named the continuous objects assembly discretizes. This section is the **acceptance test** for Act III: every row in the scatter loop must represent the same operator story Part II proved on \(H^1\).
+Part [II.4](../part02-functional-analysis/04-operators-duality.md) named the continuous objects assembly discretizes. This section is the **acceptance test** for Act III: every row in the scatter loop must represent the same operator story Part II proved on \(H^1\).
 
 | Part II.4 object | Discrete assembly object | Copper wire instance |
 |------------------|--------------------------|----------------------|
@@ -218,7 +218,7 @@ flowchart LR
   sys --> Ph[Galerkin u_h = P_h u]
 ```
 
-When midspan displacement **oscillates** without trend as \(h\) halves, suspect \(\ell_N \not\to \ell\) before blaming quadrature — the same diagnostic [II.4](../../part02-functional-analysis/04-operators-duality.md) named for operators, now visible on the copper wire's load–displacement trace.
+When midspan displacement **oscillates** without trend as \(h\) halves, suspect \(\ell_N \not\to \ell\) before blaming quadrature — the same diagnostic [II.4](../part02-functional-analysis/04-operators-duality.md) named for operators, now visible on the copper wire's load–displacement trace.
 
 ## Connection to Part I and Part III
 

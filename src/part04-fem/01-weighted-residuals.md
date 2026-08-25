@@ -36,7 +36,7 @@ This is the discrete shadow of Part II's orthogonality: the error is forced to b
 
 ### Handshake with Part II.4: loads, projectors, and residuals
 
-[Part II.4](../../part02-functional-analysis/04-operators-duality.md) named two objects weighted residuals inherit without re-deriving them:
+[Part II.4](../part02-functional-analysis/04-operators-duality.md) named two objects weighted residuals inherit without re-deriving them:
 
 | Part II.4 object | Weighted residual form | FEM manifestation |
 |------------------|------------------------|-------------------|

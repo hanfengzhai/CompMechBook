@@ -51,7 +51,7 @@ Unconverged SCF is **structured noise** — energies and forces are meaningless.
 
 ### SCF as fixed-point iteration — the Part I eigenvalue loop with feedback
 
-The SCF cycle is a **fixed-point problem**: find \(\rho^\star\) such that \(\rho^\star = \mathcal{G}(\rho^\star)\), where \(\mathcal{G}\) maps an old density through build-potential → solve orbitals → construct new density. Each inner step — diagonalizing the Kohn–Sham Hamiltonian — is the **generalized eigenvalue problem** from [Part I.3](../../part01-linear-algebra/03-eigenvalues.md):
+The SCF cycle is a **fixed-point problem**: find \(\rho^\star\) such that \(\rho^\star = \mathcal{G}(\rho^\star)\), where \(\mathcal{G}\) maps an old density through build-potential → solve orbitals → construct new density. Each inner step — diagonalizing the Kohn–Sham Hamiltonian — is the **generalized eigenvalue problem** from [Part I.3](../part01-linear-algebra/03-eigenvalues.md):
 
 \[
 \mathbf{H}[\rho]\,\mathbf{c}_n = \epsilon_n\,\mathbf{S}\,\mathbf{c}_n,
@@ -63,7 +63,7 @@ with overlap matrix \(\mathbf{S}\) from non-orthogonal plane-wave or PAW bases. 
 |---------------|---------------------|---------------------|
 | Fixed \(\mathbf{K}\) | \(\mathbf{H}[\rho]\) from converged density | \(\mathbf{H}\) updated each outer iteration |
 | CG on \(\mathbf{K}\mathbf{u}=\mathbf{f}\) | Pulay/Broyden mixing on \(\rho\) | Nonlinear fixed-point acceleration |
-| Jacobi preconditioner ([I.1](../../part01-linear-algebra/01-vectors-matrices.md)) | Kerker preconditioner on \(\delta\rho\) | Damp long-wavelength charge sloshing in metals |
+| Jacobi preconditioner ([I.1](../part01-linear-algebra/01-vectors-matrices.md)) | Kerker preconditioner on \(\delta\rho\) | Damp long-wavelength charge sloshing in metals |
 | Residual \(\|\mathbf{r}_k\|\) vs iteration | \(\|\rho_{\text{new}} - \rho_{\text{old}}\|\), \(\Delta E\) | Same diagnostic habit: plot until flat |
 | Ill-conditioned \(\mathbf{K}\) | SCF oscillation near \(E_F\) | Smearing replaces sharp Fermi step |
 
