@@ -59,6 +59,43 @@ Part IX is the **electronic pedigree contract** every coarser model inherits:
 
 Part I's sparse solve reappears as orbital diagonalization; Part III's variational instinct reappears as \(E[\rho]\) minimization. The epilogue wires IX.3 exports into MD → DDD → FEM chains — the same four questions at every interface, now with SCF pedigree certificates.
 
+## The coupling ladder (ME 412 reunion)
+
+Part I indexed **Schematic 1a–1b** — the ME 300A → ME 412 master roadmap from linear algebra to weak PDEs. Part III indexed **Schematic 14** — the variational ladder from strong PDE to convergent FEM. Part IX is where the **downward descent meets upward homogenization**: the ME 412 coupling ladder that reunites ascent grammar (Parts I–III) with descent pedigree (Parts VII–IX) in workflow time.
+
+```mermaid
+flowchart TB
+  subgraph descent["Descent pedigree (reading order VII–IX)"]
+    IX[IX.3 DFT exports]
+    VIII[VIII EAM fit]
+    VII[VII mobility tables]
+    IV[IV FEM input deck]
+  end
+  subgraph handshakes["Epilogue handshakes (workflow order)"]
+    H1[Handshake 1: DFT moduli to FEM]
+    H2[Handshake 2: CHT converged delta T]
+    H3[Handshake 3: alpha delta T to load cell]
+    H4a[Handshake 4a: DDD rate extrapolation]
+    H4b[Handshake 4b: FE2 notch root]
+  end
+  IX --> VIII --> VII --> IV
+  IV --> H1
+  H1 --> H2 --> H3 --> H4a --> H4b
+  H2 -.->|delta T feeds| H3
+  H2 -.->|T_w feeds phonon lifetime| H4a
+  H4b --> MS[multiscale_export.yaml]
+```
+
+Read Part IX as the **foundation rung** of this ladder — Born–Oppenheimer separation (Chapter 1), Kohn–Sham SCF (Chapter 2), reproducible QE workflows (Chapter 3). The epilogue completes it with Handshakes 1–4b and [`parse_multiscale_workflow.sh`](../../scripts/parse_multiscale_workflow.sh). When individual exports exist in separate folders but no orchestrated pedigree links them, return to [memory sheet row 16](../appendix/memory-sheet.md#continuity-hinges-master-map) or the [preface row 16 skill checkpoint](../preface.md#skill-navigation-row-16).
+
+| ME 412 schematic | Ascent / descent location | Coupling ladder role |
+|------------------|---------------------------|----------------------|
+| [1a–1b](../part01-linear-algebra/00-opening.md#me-300a--me-412-master-roadmap-preview) | Parts I–II | Grammar: \(\mathbf{K}\mathbf{u}=\mathbf{f}\) → weak PDE |
+| [14](../part03-pdes/00-opening.md#the-variational-ladder-me-412-schematic-14) | Parts III–IV | Discretization: strong form → Galerkin FEM |
+| **Coupling ladder (row 16)** | Part IX → epilogue | Homogenization: DFT → MD → DDD → FEM with documented handshakes |
+
+**Baby picture:** Part IX supplies the electronic floor; the epilogue wires Handshakes 1–4b in dependency order — Handshake 2's \(\Delta T\) feeds Handshake 3, phonon lifetime at converged \(T_w\) feeds Handshake 4a drag — and archives `multiscale_export.yaml` beside the Act VI folder. The copper wire's valence electrons are the bottom rung; the load cell reading is the top.
+
 ## Representative schematics (DFT Coursework)
 
 The [MSE 5720 DFT coursework](https://github.com/hanfengzhai/MSE5720-HW) and teaching materials follow the same concept-map layout: each schematic is a baby picture of the electronic-structure pipeline. Use them as a visual index while reading:

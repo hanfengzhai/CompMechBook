@@ -157,6 +157,34 @@ When a chapter feels disconnected from the last, pause at the hinge for your rea
 
 **Baby picture:** read straight through for the plot; when the symbols change faster than the specimen, jump to the hinge row — it is the narrative stitch the Functional Analysis Notes layout assumes between numbered chapters. Row 13 is the epilogue-only stitch: **Handshake 2 sets \(\Delta T\); Handshake 3 sets \(\alpha\Delta T\)** — conflating them is the most common multiscale pedigree error on the heated wire; the [epilogue Act III reunion paragraph](../epilogue/multiscale.md#lab-act-reunion-six-acts-one-afternoon) names the same thermal pre-stress stitch in workflow time, and the [sensitivity derivation worksheet closing](../epilogue/multiscale.md#worked-example-sensitivity-ranks) links back to the [prologue row 13 preview](../prologue/00-many-scales.md#what-you-should-be-able-to-do-after-the-prologue) when the competence loop closes. Row 14 is the companion stitch for Act IV: **VII.3 sets \(\tau_{\text{flow}}(\dot\varepsilon_{\text{DDD}})\); Handshake 4a sets \(\tau_{\text{lab}}\)** — conflating DDD timestep strain rate with lab grip speed overpredicts yield by the same order as a handbook \(\alpha\) error shifts thermal stress; the [epilogue Act IV reunion paragraph](../epilogue/multiscale.md#lab-act-reunion-six-acts-one-afternoon) names the same hardening stitch in workflow time. Row 15 is the Act V stitch: **4a sets bulk \(\tau_{\text{lab}}\); 4b asks whether scalar \(H\) suffices at the notch root** — sequential homogenization can match bulk flow stress while under-predicting localization by 10–15%; run [`parse_fe2.sh`](../scripts/parse_fe2.sh) before trusting the notch-root answer; the [epilogue Act V reunion paragraph](../epilogue/multiscale.md#lab-act-reunion-six-acts-one-afternoon) and [sensitivity derivation worksheet closing](../epilogue/multiscale.md#worked-example-sensitivity-ranks) link back to the [prologue Handshake 4b preview](../prologue/00-many-scales.md#what-you-should-be-able-to-do-after-the-prologue) when the competence loop closes. Row 16 is the **ME 412 coupling ladder** stitch for Act VI: **rows 13–15 are individual handshakes; row 16 orchestrates them in dependency order** — [`parse_multiscale_workflow.sh`](../scripts/parse_multiscale_workflow.sh) runs Handshakes 1–4b with Handshake 2's converged \(\Delta T\) feeding Handshake 3 and phonon lifetime at \(T_w\) feeding Handshake 4a drag; archive `multiscale_export.yaml` beside the Act VI folder before opening the epilogue; the [epilogue Act VI reunion paragraph](../epilogue/multiscale.md#lab-act-reunion-six-acts-one-afternoon) names the same orchestration stitch in workflow time.
 
+### Act VI baby picture (ME 412 coupling ladder)
+
+The [Part IX opening](../part09-dft/00-opening.md#the-coupling-ladder-me-412-reunion) draws the full coupling ladder; this diagram is the **Act VI slice** — foundation pedigree in workflow order, then handshake orchestration:
+
+```mermaid
+flowchart TB
+  subgraph act6["Act VI foundation (IX to IV workflow order)"]
+    DFT[IX.3: E_coh, C_ij, gamma_sf]
+    MD[VIII: EAM fit on DFT]
+    DDD[VII: mobility from MD]
+    FEM[IV: moduli in input deck]
+  end
+  subgraph orch["Row 16 orchestration (epilogue handshakes)"]
+    H1[1: DFT moduli to FEM]
+    H2[2: CHT delta T]
+    H3[3: alpha delta T]
+    H4a[4a: rate extrapolation]
+    H4b[4b: FE2 notch]
+    OUT[multiscale_export.yaml]
+  end
+  DFT --> MD --> DDD --> FEM --> H1
+  H1 --> H2 --> H3 --> H4a --> H4b --> OUT
+  H2 -.->|delta T| H3
+  H2 -.->|T_w to phonon lifetime| H4a
+```
+
+When ascent grammar (Parts I–III) and descent pedigree (Parts VII–IX) feel like separate books, return here — row 16 is where the ME 412 coupling ladder reunites them in one afternoon.
+
 ## One-line course summaries (ME 412 style)
 
 The [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) close with compressed sentences that fit on an index card. This book extends that habit across scales:
