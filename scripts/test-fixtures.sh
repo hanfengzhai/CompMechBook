@@ -52,6 +52,8 @@ grep -q 'rate_sensitivity_m: 0.022' "$TMP"
 grep -q 'tau_flow_extrapolated_MPa: 33.20' "$TMP"
 grep -q 'temperature_sweep: yes' "$TMP"
 grep -q 'ln_tau_vs_T_slope: -0.002' "$TMP"
+grep -q 'temperature_pedigree:' "$TMP"
+grep -q 'T_w_source: default_300K' "$TMP"
 
 echo "--- parse_lifetime.sh (MD phonon lifetime) ---"
 ./scripts/parse_lifetime.sh fixtures/cu.foundation/cu.phonon/phonon_lifetime.dat \

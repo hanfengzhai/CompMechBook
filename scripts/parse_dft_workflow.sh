@@ -29,6 +29,29 @@ fi
 
 [[ -d "$DIR" ]] || { echo "FAIL: missing foundation directory: $DIR" >&2; exit 1; }
 
+# Resolve converged wall temperature for rows 8–9 temperature pedigree.
+# Priority: cht_export.yaml in foundation dir > README.md T_w_K > default 300 K.
+TARGET_T="300"
+DELTA_T="90"
+T_W_SOURCE="default_300K"
+if [[ -f "$DIR/cht_export.yaml" ]]; then
+  CHT_TW=$(grep -E '^\s*T_wall_K:' "$DIR/cht_export.yaml" | head -1 | awk '{print $2}')
+  CHT_DT=$(grep -E '^\s*delta_T_K:' "$DIR/cht_export.yaml" | head -1 | awk '{print $2}')
+  if [[ -n "$CHT_TW" && "$CHT_TW" != "NA" ]]; then
+    TARGET_T="$CHT_TW"
+    T_W_SOURCE="cht_export.yaml"
+  fi
+  if [[ -n "$CHT_DT" && "$CHT_DT" != "NA" ]]; then
+    DELTA_T="$CHT_DT"
+  fi
+elif [[ -f "$DIR/README.md" ]]; then
+  README_TW=$(grep -E '^T_w_K:' "$DIR/README.md" | head -1 | sed 's/^T_w_K:[[:space:]]*//' | sed 's/#.*//' | tr -d ' ')
+  if [[ -n "$README_TW" && "$README_TW" != "null" && "$README_TW" != "NA" ]]; then
+    TARGET_T="$README_TW"
+    T_W_SOURCE="README.md T_w_K"
+  fi
+fi
+
 MISSING=()
 OPTIONAL_MISSING=()
 
@@ -57,6 +80,7 @@ fi
 
 echo "# parse_dft_workflow.sh  foundation=$DIR"
 echo "# Part IX Act VI audit — epilogue Handshake 1"
+echo "# temperature pedigree: T_w=${TARGET_T} K (source: ${T_W_SOURCE}), delta_T=${DELTA_T} K"
 echo ""
 
 if [[ ${#OPTIONAL_MISSING[@]} -gt 0 ]]; then
@@ -96,9 +120,9 @@ ALPHA="NA" ALPHA_PPM="NA" SIGMA_TH="NA"
 PHONON_OK=0
 if [[ -f "$DIR/cu.phonon/a_vs_T.dat" ]]; then
   PHONON_OK=1
-  echo "# Running parse_alpha.sh on cu.phonon/"
+  echo "# Running parse_alpha.sh on cu.phonon/ (target T=${TARGET_T} K from ${T_W_SOURCE})"
   (
-    "$ROOT/scripts/parse_alpha.sh" "$DIR/cu.phonon" --target-t 300 --delta-t 90 --E "${E:-120}" --compare 15 --no-write
+    "$ROOT/scripts/parse_alpha.sh" "$DIR/cu.phonon" --target-t "$TARGET_T" --delta-t "$DELTA_T" --E "${E:-120}" --compare 15 --no-write
   ) | tee /tmp/parse_alpha_out.txt
   ALPHA=$(grep '^alpha_1_per_K = ' /tmp/parse_alpha_out.txt | awk '{print $3}')
   ALPHA_PPM=$(grep '^alpha_ppm = ' /tmp/parse_alpha_out.txt | awk '{print $3}')
@@ -121,9 +145,9 @@ elif [[ -f "$DIR/phonon_lifetime.dat" ]]; then
 fi
 if [[ -n "$LIFETIME_INPUT" ]]; then
   LIFETIME_OK=1
-  echo "# Running parse_lifetime.sh on $(basename "$LIFETIME_INPUT")"
+  echo "# Running parse_lifetime.sh on $(basename "$LIFETIME_INPUT") (target T=${TARGET_T} K from ${T_W_SOURCE})"
   (
-    "$ROOT/scripts/parse_lifetime.sh" "$LIFETIME_INPUT" --target-t 300
+    "$ROOT/scripts/parse_lifetime.sh" "$LIFETIME_INPUT" --target-t "$TARGET_T"
   ) | tee /tmp/parse_lifetime_out.txt
   LA_LIFETIME=$(grep '^lifetime_primary_ps = ' /tmp/parse_lifetime_out.txt | awk '{print $3}')
   LA_LINEWIDTH=$(grep '^linewidth_primary_GHz = ' /tmp/parse_lifetime_out.txt | awk '{print $3}')
@@ -223,6 +247,11 @@ material: Cu
 source_directory: ${DIR}
 handshake: 1  # DFT → continuum elastic constants
 functional: see README.md
+temperature_pedigree:
+  T_w_K: ${TARGET_T}
+  T_w_source: ${T_W_SOURCE}
+  delta_T_K: ${DELTA_T}
+  note: "Populate T_w_K from parse_cht.sh → cht_export.yaml or README.md before Handshakes 3 and 4a"
 elastic_constants_GPa:
   C11: ${C11}
   C12: ${C12}
@@ -236,6 +265,8 @@ thermal_expansion:
   alpha_1_per_K: ${ALPHA}
   alpha_ppm: ${ALPHA_PPM}
   sigma_thermal_fixed_grip_MPa: ${SIGMA_TH}
+  target_temperature_K: ${TARGET_T}
+  T_w_source: ${T_W_SOURCE}
   handshake: 3
   parser_alpha: parse_alpha.sh
 stacking_fault:
@@ -258,6 +289,8 @@ phonon_lifetime:
   LA_lifetime_ps: ${LA_LIFETIME}
   LA_linewidth_GHz: ${LA_LINEWIDTH}
   source: ${LA_LIFETIME_SRC}
+  target_temperature_K: ${TARGET_T}
+  T_w_source: ${T_W_SOURCE}
   temperature_sweep: $([ "$LIFETIME_SWEEP" -eq 1 ] && echo yes || echo no)
   temperature_list_K: ${LIFETIME_T_LIST}
   ln_tau_vs_T_slope: ${LIFETIME_DRAG_SLOPE}

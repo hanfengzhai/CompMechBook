@@ -161,6 +161,8 @@ Each chapter adds one move to the atomistic workflow that supplies numbers the m
 
 None of these require a full ab initio MD production run — but each one is the atomistic audit Part IX will derive from first principles. If you can integrate Newton's equations with a thermostat, read a LAMMPS log for temperature and pressure, and explain what an EAM potential assumes about electron density, you have the finest discrete scale before Kohn–Sham replaces the potential with orbitals.
 
+When Act II warmed the wire but mobility folders still cite 300 K, pause at the [preface row 8 skill checkpoint](../preface.md#skill-navigation-row-8) before trusting any NVT shear or WHAM export — [`parse_cht.sh`](../scripts/parse_cht.sh) must emit `cht_export.yaml` with converged \(T_w\) first; the [descent hinge](#descent-hinge-cores-mobility-and-tw-pedigree) above and [memory sheet rows 8–9 baby picture](../appendix/memory-sheet.md#rows-8-9-baby-picture-tw-temperature-pedigree) draw the same chain from CHT through MD mobility to DFT phonon audits in Part IX.
+
 ## Bridge
 
 Part VII ended with dislocation forests, Taylor hardening, and the admission that **cores and crack tips need atoms**. [VII.3](03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) named the quantities MD must supply — stacking-fault energy, core width, mobility tables — and deferred their microscopic origin to this part. Part VIII puts the atoms back on stage.
