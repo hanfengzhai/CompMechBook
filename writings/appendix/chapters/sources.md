@@ -19,19 +19,30 @@ The book reads in **mathematical order** (Part I before Part IX), but the copper
 
 Act VI runs **in parallel** with Acts I–V in real projects: no FEM deck starts without moduli whose pedigree traces to finer models or calibration. The [epilogue](../epilogue/multiscale.md) reunites all six acts in one multiscale afternoon.
 
-## Parameter pedigree path (Act VI reading order)
+## Parameter pedigree path (Act VI reading order) {#parameter-pedigree-path-act-vi-reading-order}
 
-The book reads **mathematically** from Part I to Part IX — grammar before descent. Real projects often read **downward** when building an input deck: start at electrons, export numbers, climb until FEM has honest moduli. Act VI is that reverse ladder on the same copper wire:
+The book reads **mathematically** from Part I to Part IX — grammar before descent. Real projects often read **downward** when building an input deck: start at electrons, export numbers, climb until FEM has honest moduli. Act VI is that reverse ladder on the same copper wire. The [Part IX coupling ladder](../part09-dft/00-opening.md#the-coupling-ladder-me-412-reunion) draws the full ME 412 reunion diagram; the pedigree path below is its **foundation slice** (IX → IV), before the epilogue wires Handshakes 1–4b in workflow order ([row 16](../memory-sheet.md#continuity-hinges-master-map); [Act VI reunion paragraph](../epilogue/multiscale.md#lab-act-reunion-six-acts-one-afternoon)).
 
 ```mermaid
-flowchart BT
-  DFT[IX.3 DFT workflows: C_ij, gamma_sf, E_coh]
-  MD[VIII.2-3 MD: EAM fit, mobility M(tau,T)]
-  DDD[VII.2 DDD: tau(rho), hardening laws]
-  FEM[IV.4 FEM: Voigt E, nu in assembly]
-  DFT --> MD
-  MD --> DDD
-  DDD --> FEM
+flowchart TB
+  subgraph pedigree["Act VI foundation (workflow order IX to IV)"]
+    DFT[IX.3: C_ij, gamma_sf, E_coh]
+    MD[VIII.2-3: EAM fit, mobility M(tau,T)]
+    DDD[VII.2: tau(rho), hardening laws]
+    FEM[IV.4: Voigt E, nu in assembly]
+  end
+  subgraph orchestration["Row 16 orchestration (epilogue handshakes)"]
+    H1[1: DFT moduli to FEM]
+    H2[2: CHT delta T]
+    H3[3: alpha delta T]
+    H4a[4a: rate extrapolation]
+    H4b[4b: FE2 notch]
+    OUT[multiscale_export.yaml]
+  end
+  DFT --> MD --> DDD --> FEM --> H1
+  H1 --> H2 --> H3 --> H4a --> H4b --> OUT
+  H2 -.->|delta T feeds| H3
+  H2 -.->|T_w to phonon lifetime| H4a
 ```
 
 | Step | Read | Export | Wire-scale consumer |
@@ -39,10 +50,11 @@ flowchart BT
 | 1 | [IX.3](../part09-dft/03-dft-workflows.md) | \(C_{ij}\), \(\gamma_{\text{sf}}\), cohesive energy | Elastic constants, partial separation in DDD |
 | 2 | [VIII.3](../part08-md/03-ab-initio-and-coarse-graining.md) | EAM table, phonon check | Production MD and mobility fitting |
 | 3 | [VIII.2](../part08-md/02-ensembles-integrators.md) | \(M(\tau, T)\) from constrained shear | OpenDiS mobility law |
-| 4 | [VII.2](../part07-defects/02-dislocation-dynamics.md) | \(\tau(\gamma)\), \(\rho(\gamma)\), \(\alpha\) | Crystal plasticity / Voce hardening |
+| 4 | [VII.2](../part07-defects/02-dislocation-dynamics.md) | \(\tau(\gamma)\), \(\rho(\gamma)\), Taylor \(\alpha\) | Crystal plasticity / Voce hardening |
 | 5 | [IV.4](../part04-fem/04-poisson-to-elasticity.md) | \(\mathbf{K}\) with documented \(E\), \(\nu\) | Load-cell linear regime in Act III |
+| 6 | [Epilogue](../epilogue/multiscale.md#lab-act-reunion-six-acts-one-afternoon) + [`parse_multiscale_workflow.sh`](../scripts/parse_multiscale_workflow.sh) | `multiscale_export.yaml` linking Handshakes 1–4b | Orchestrated pedigree beside Act VI folder |
 
-Each arrow needs a convergence log and a unit check — the epilogue's four-handshake sensitivity table ranks which exports dominate for a given question. **Mathematical order** teaches why the ladder exists; **pedigree order** fills the input deck before the grips close.
+Each arrow needs a convergence log and a unit check — the epilogue's [four-handshake sensitivity table](../epilogue/multiscale.md#sensitivity-which-handshake-matters-most) ranks which exports dominate for a given question. **Mathematical order** teaches why the ladder exists; **pedigree order** fills the input deck before the grips close; **orchestration** (row 16) links individual exports in dependency order so Handshake 2's \(\Delta T\) feeds Handshake 3 and phonon lifetime at converged \(T_w\) feeds Handshake 4a drag.
 
 ## Narrative beat map (mathematical order × lab act)
 

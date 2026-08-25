@@ -59,7 +59,7 @@ Part IX is the **electronic pedigree contract** every coarser model inherits:
 
 Part I's sparse solve reappears as orbital diagonalization; Part III's variational instinct reappears as \(E[\rho]\) minimization. The epilogue wires IX.3 exports into MD → DDD → FEM chains — the same four questions at every interface, now with SCF pedigree certificates.
 
-## The coupling ladder (ME 412 reunion)
+## The coupling ladder (ME 412 reunion) {#the-coupling-ladder-me-412-reunion}
 
 Part I indexed **Schematic 1a–1b** — the ME 300A → ME 412 master roadmap from linear algebra to weak PDEs. Part III indexed **Schematic 14** — the variational ladder from strong PDE to convergent FEM. Part IX is where the **downward descent meets upward homogenization**: the ME 412 coupling ladder that reunites ascent grammar (Parts I–III) with descent pedigree (Parts VII–IX) in workflow time.
 
@@ -90,7 +90,7 @@ Read Part IX as the **foundation rung** of this ladder — Born–Oppenheimer se
 
 | ME 412 schematic | Ascent / descent location | Coupling ladder role |
 |------------------|---------------------------|----------------------|
-| [1a–1b](../part01-linear-algebra/00-opening.md#me-300a--me-412-master-roadmap-preview) | Parts I–II | Grammar: \(\mathbf{K}\mathbf{u}=\mathbf{f}\) → weak PDE |
+| [1a–1b](../part01-linear-algebra/00-opening.md#me-300a--me-412-master-roadmap-preview) | Parts I–II | Grammar: \(\mathbf{K}\mathbf{u}=\mathbf{f}\) → weak PDE — return to [Part I's ME 300A roadmap](../part01-linear-algebra/00-opening.md#me-300a--me-412-master-roadmap-preview) when ascent and descent feel like separate books |
 | [14](../part03-pdes/00-opening.md#the-variational-ladder-me-412-schematic-14) | Parts III–IV | Discretization: strong form → Galerkin FEM |
 | **Coupling ladder (row 16)** | Part IX → epilogue | Homogenization: DFT → MD → DDD → FEM with documented handshakes |
 

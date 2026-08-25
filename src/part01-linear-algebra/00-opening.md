@@ -79,7 +79,7 @@ flowchart LR
   V --> M --> E --> L --> Op --> Hil --> Weak
 ```
 
-**Baby picture:** ME 300A teaches you to collect DOFs, write \(\mathbf{K}\mathbf{u}=\mathbf{f}\), and decouple with eigenmodes. ME 412 asks what happens when \(N\) grows without bound — the same four concept-map questions, now with \(u \in H^1\) instead of \(\mathbf{u} \in \mathbb{R}^N\). The copper wire's spring chain in Part I is the **discrete shadow** every mesh in Part IV refines toward the limit Part II names. When Part III's variational ladder ([Schematic 14](../part03-pdes/00-opening.md#the-variational-ladder-me-412-schematic-14)) or the epilogue's coupling ladder ([row 16](../appendix/memory-sheet.md#continuity-hinges-master-map)) feel distant, return here: the grammar is already in hand — only the room grows.
+**Baby picture:** ME 300A teaches you to collect DOFs, write \(\mathbf{K}\mathbf{u}=\mathbf{f}\), and decouple with eigenmodes. ME 412 asks what happens when \(N\) grows without bound — the same four concept-map questions, now with \(u \in H^1\) instead of \(\mathbf{u} \in \mathbb{R}^N\). The copper wire's spring chain in Part I is the **discrete shadow** every mesh in Part IV refines toward the limit Part II names. When Part III's variational ladder ([Schematic 14](../part03-pdes/00-opening.md#the-variational-ladder-me-412-schematic-14)) or the full-book [coupling ladder](../part09-dft/00-opening.md#the-coupling-ladder-me-412-reunion) ([row 16](../appendix/memory-sheet.md#continuity-hinges-master-map); [epilogue Act VI reunion](../epilogue/multiscale.md#lab-act-reunion-six-acts-one-afternoon)) feel distant, return here: the grammar is already in hand — only the room grows.
 
 ## Story so far (Prologue)
 
