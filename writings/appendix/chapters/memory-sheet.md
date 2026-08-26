@@ -137,7 +137,7 @@ When a chapter feels disconnected from the last, pause at the hinge for your rea
 
 | # | Phase | Hinge | When to pause |
 |---|-------|-------|---------------|
-| 0 | Opening | [Prologue → I](../prologue/00-many-scales.md#bridge-to-part-i) | Scale ladder feels like a menu before the first matrix |
+| 0 | Opening | [Prologue intermission → I](../prologue/00-many-scales.md#intermission-panorama-complete-grammar-begins) | Scale ladder feels like a menu before the first matrix |
 | 1 | Ascent | [I.4 → II](../part01-linear-algebra/04-toward-infinity.md#bridge-to-part-ii) | \(\mathbf{K}\mathbf{u}=\mathbf{f}\) feels unrelated to PDEs |
 | 2 | Ascent | [II.5 → III](../part02-functional-analysis/05-spectral-theorem.md#bridge-to-part-iii) | Sobolev norms feel abstract; weak form is the next dialogue |
 | 3 | Ascent | [III.4 → IV](../part03-pdes/04-energy-methods.md#bridge-to-part-iv) | Energy minimization and matrix assembly seem like separate tricks |

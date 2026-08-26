@@ -70,9 +70,9 @@ The book opens twice — once as a panoramic ladder in the prologue, once as exp
 
 | Hinge | Location | What turns |
 |-------|----------|------------|
-| **Panorama → grammar** | [Prologue Bridge](prologue/00-many-scales.md#bridge-to-part-i) → [Part I opening](part01-linear-algebra/00-opening.md#opening-hinge-prologue-to-part-i) | Nine-scale ladder becomes \(\mathbf{K}\mathbf{u}=\mathbf{f}\); four questions get their first numeric answers |
+| **Panorama → grammar** | [Prologue intermission](prologue/00-many-scales.md#intermission-panorama-complete-grammar-begins) → [Prologue Bridge](prologue/00-many-scales.md#bridge-to-part-i) → [Part I opening](part01-linear-algebra/00-opening.md#opening-hinge-prologue-to-part-i) | Nine-scale ladder becomes \(\mathbf{K}\mathbf{u}=\mathbf{f}\); four questions get their first numeric answers |
 
-Read the [prologue bridge](prologue/00-many-scales.md#bridge-to-part-i) when you want the plot before proofs — it names every rung in one sitting. Read [Part I's opening hinge](part01-linear-algebra/00-opening.md#opening-hinge-prologue-to-part-i) when the ladder feels like a catalog of methods — the wire is already a spring chain waiting for assembly. The [preface bridge](#bridge) below states the same handoff in prose before you turn to Part I.1.
+Read the [prologue intermission](prologue/00-many-scales.md#intermission-panorama-complete-grammar-begins) when the scale menu feels overwhelming before a single matrix is assembled — it closes the panoramic tour and names the grammar Part I will write. Read the [prologue bridge](prologue/00-many-scales.md#bridge-to-part-i) when you want the plot before proofs — it names every rung in one sitting. Read [Part I's opening hinge](part01-linear-algebra/00-opening.md#opening-hinge-prologue-to-part-i) when the ladder feels like a catalog of methods — the wire is already a spring chain waiting for assembly. The [preface bridge](#bridge) below states the same handoff in prose before you turn to Part I.1.
 
 ## Ascent preview chain
 

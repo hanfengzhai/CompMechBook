@@ -95,7 +95,7 @@ The wire at this scale is still a chain of coupled springs — not yet a PDE, no
 
 ## Closing the arc from the Prologue {#opening-hinge-prologue-to-part-i}
 
-If you have read the prologue straight through, the copper wire has already appeared as a continuum member, a dislocation forest, an atomic lattice, and a sea of electrons. Part I does not repeat those scenes — it **grounds** them in the grammar every later scale inherits:
+If you have read the prologue straight through, the copper wire has already appeared as a continuum member, a dislocation forest, an atomic lattice, and a sea of electrons. Pause at the [prologue intermission](../prologue/00-many-scales.md#intermission-panorama-complete-grammar-begins) if the panoramic ladder still feels like a menu of methods — it closes Act 0 and names the grammar this part will write. Part I does not repeat those scenes — it **grounds** them in the grammar every later scale inherits:
 
 | Prologue image | Part I vocabulary |
 |----------------|-------------------|

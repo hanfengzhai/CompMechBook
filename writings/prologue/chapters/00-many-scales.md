@@ -269,6 +269,14 @@ The prologue opened the whole book with the four questions the [Functional Analy
 
 The wire waits in the grips — cold-drawn, carrying current, strengthened by a forest the continuum cannot see. Part I will make the bottom rung explicit: \(\mathbf{K}\mathbf{u}=\mathbf{f}\) before fields, weak forms, or electrons enter the story. Return to this checkpoint when a later chapter feels like a new subject — it is the same four questions with richer vocabulary.
 
+## Intermission: panorama complete, grammar begins {#intermission-panorama-complete-grammar-begins}
+
+If you have read the [preface](../preface.md) and arrived here through the six-act lab table, the copper wire has already appeared as a continuum member, a dislocation forest, an atomic lattice, and a sea of electrons — without a single matrix assembled. The prologue is **Act 0** in the plot spine: panorama before grammar, ladder before syntax, four questions named before they become finite-dimensional.
+
+Part I is where the story stops touring scales and starts **writing them**. The specimen on the bench has not moved — only the vocabulary narrows. State becomes a vector; equations become \(\mathbf{K}\mathbf{u}=\mathbf{f}\); discretization becomes assembly; export becomes eigenmodes and moduli extracted from solves. When the nine-rung menu feels overwhelming, return to this intermission: every later part generalizes the same pattern you are about to make explicit on one spring chain.
+
+The [preface opening continuity hinge](../preface.md#opening-continuity-hinge) names this turn in one row; [Part I opening — Closing the arc from the Prologue](../part01-linear-algebra/00-opening.md#opening-hinge-prologue-to-part-i) replays the four questions in finite dimensions. Read the [concept map checkpoint](#concept-map-checkpoint-prologue) above if you need a one-table summary before turning the page — then continue to the [Bridge](#bridge-to-part-i) and Part I.1.
+
 ## Bridge {#bridge-to-part-i}
 
 Turn the page. The copper wire is waiting — first as vectors and matrices, eventually as electrons, dislocations, and degrees of freedom on a finite element mesh. The climb begins with the grammar we already speak: linear algebra.

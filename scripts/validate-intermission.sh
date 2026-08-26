@@ -19,6 +19,7 @@ check_intermission() {
   fi
 }
 
+check_intermission src/prologue/00-many-scales.md intermission-panorama-complete-grammar-begins
 check_intermission src/part03-pdes/04-energy-methods.md intermission-analysis-complete-assembly-begins
 check_intermission src/part05-fvm/04-navier-stokes-cfd.md intermission-discretization-complete-continuum-begins
 check_intermission src/part06-continuum/04-nonlinear-plasticity-preview.md intermission-ascent-ends-descent-begins
@@ -28,8 +29,8 @@ check_intermission src/part09-dft/03-dft-workflows.md intermission-descent-compl
 check_intermission src/epilogue/multiscale.md intermission-coupling-begins-loop-closes
 
 if [[ $MISSING -ne 0 ]]; then
-  echo "FAIL: narrative intermission hinges incomplete (III.4, V.4, VI.4, VII.3, VIII.3, IX.3, epilogue required)"
+  echo "FAIL: narrative intermission hinges incomplete (prologue, III.4, V.4, VI.4, VII.3, VIII.3, IX.3, epilogue required)"
   exit 1
 fi
 
-echo "OK: narrative intermission hinges present (III.4 analysis→assembly, V.4 discretization→continuum, VI.4 ascent→descent, VII.3 mesoscale→atomistic, VIII.3 atomistic→electronic, IX.3 descent→coupling, epilogue coupling→loop)"
+echo "OK: narrative intermission hinges present (prologue panorama→grammar, III.4 analysis→assembly, V.4 discretization→continuum, VI.4 ascent→descent, VII.3 mesoscale→atomistic, VIII.3 atomistic→electronic, IX.3 descent→coupling, epilogue coupling→loop)"
