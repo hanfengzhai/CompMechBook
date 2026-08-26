@@ -4,6 +4,23 @@ The copper wire from the prologue was never purely elastic. Cold drawing pushed 
 
 This chapter is not a full treatise on plasticity theory — that would require its own book. It is the **bridge** between variational elasticity and the defect mechanics of Part VII: what changes when displacements are large, when energy is no longer quadratic, and when history matters.
 
+## Closing the arc from VI.3 (energy complete, yield enters) {#plasticity-opening-hinge-energy-to-yield}
+
+If you walked through [VI.3's Bridge](03-variational-elasticity.md#bridge) and the [Lab act: finite strain versus small strain](03-variational-elasticity.md#lab-act-finite-strain-versus-small-strain-on-the-same-grip-act-iii--pulling-finite-strain-preview), the copper wire has total potential energy \(\Pi[\mathbf{u}]\), Rayleigh–Ritz assembly, and a quadratic \(\psi\) that explains Part IV's \(\mathbf{K}\mathbf{U}=\mathbf{F}\) — but **Act IV** on the load cell still bends upward after cold drawing, and variational elasticity returns a straight line. [Part VI opening — Chapter guide](../part06-continuum/00-opening.md#chapter-guide) lists VI.4 as the rung where geometric and material nonlinearity enter; [VI.3's opening hinge](03-variational-elasticity.md#variational-opening-hinge-balance-to-energy) replaced \(\boldsymbol{\sigma}\) with \(\Pi[\mathbf{u}]\); this chapter is the **fourth and last rung inside Part VI** — J₂ plasticity and Newton–Raphson before Part VII's dislocation forest.
+
+| VI.3 (variational elasticity on the wire) | VI.4 (nonlinear and plastic response on the wire) |
+|-------------------------------------------|---------------------------------------------------|
+| Quadratic \(\psi(\boldsymbol{\varepsilon})\); path-independent hyperelasticity | Non-quadratic \(\Psi(\mathbf{F})\); geometric nonlinearity at large \(\lambda\) |
+| Dirichlet principle: \(\delta\Pi=0\) for all admissible \(\delta\mathbf{u}\) | Incremental equilibrium: \(\mathbf{K}_T\,\Delta\mathbf{U}=\mathbf{R}\) at each load step |
+| Rayleigh–Ritz on \(V_h\): linear \(\mathbf{K}\mathbf{U}=\mathbf{F}\) | Return-mapping on Gauss points: elastic predictor, plastic corrector |
+| Small-strain Lab act: \(\Pi_{\text{small}}\) vs \(\Pi_{\text{GL}}\) agree at \(\delta/L=10^{-3}\) | Act IV knee: isotropic hardening \(\sigma_y=\sigma_{y0}+H\alpha\) fits the bend phenomenologically |
+| Elastic springback; energy stored and recovered on unloading | Path-dependent \(\boldsymbol{\varepsilon}^p\); history stored in internal variables |
+| Thermal strain in \(\Pi\) (preview) | Perzyna rate sensitivity \(m\); DDD mobility placeholder |
+
+VI.3 answered *why* static equilibrium minimizes elastic energy and *how* Part IV's assembly is Rayleigh–Ritz; this chapter asks *what changes* when the load cell curve bends, when \(\lambda\) departs from unity, and when cold-drawn copper remembers prior slip. When the [preface ascent continuity hinge](../preface.md#ascent-continuity-hinges) lists **kinematics → balance** at VI.2 and **balance → energy** at VI.3, the intra-part turn **energy → yield** is the companion hinge — a quadratic \(\Pi\) without plastic internal variables is a spring without memory, and J₂ hardening without dislocations is a fitted curve waiting for Part VII's forest.
+
+The specimen on the bench has not moved since [VI.3's Scene](03-variational-elasticity.md#scene-energy-stored-in-the-stretch). The load cell still records force versus grip displacement; \(\Pi[\mathbf{u}]\) still stationarizes below yield. What changes on this page is **admitting** that the cold-drawn wire's upward hardening knee, the notch-root stress singularity, and the rate dependence at high grip speeds **break** the assumptions VI.3 relied on — and naming the phenomenological tools (J₂, return mapping, Perzyna) that keep FEM honest until Part VII exports \(\sigma_{y0}\), \(H\), and \(M(\tau,T)\) from dislocation statistics.
+
 ## Scene: the curve bends, the model must follow
 
 Return to the force–displacement trace from Part I: linear climb, then yield knee, then hardening plateau. Linear elasticity explains only the first segment. Large strain, necking, and path-dependent hardening live outside the quadratic energy landscape — yet the same wire, same grips, same experiment. This chapter names what changes when the tangent stiffness stops being constant and points toward Part VII's defects as the microscale reason for the knee.
