@@ -15,6 +15,9 @@ echo "--- validate-narrative.sh ---"
 echo "--- validate-story-so-far.sh ---"
 ./scripts/validate-story-so-far.sh
 
+echo "--- validate-intermission.sh ---"
+./scripts/validate-intermission.sh
+
 echo "--- parse_gsf.sh ---"
 ./scripts/parse_gsf.sh fixtures/gsf_cu111.dat > "$TMP" 2>&1
 grep -q 'gamma_sf_mJ_m2' "$TMP"
