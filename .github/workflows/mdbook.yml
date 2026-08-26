@@ -39,6 +39,8 @@ jobs:
           ./scripts/validate-narrative.sh
           ./scripts/validate-story-so-far.sh
           ./scripts/validate-intermission.sh
+          ./scripts/validate-bridges.sh
+          ./scripts/validate-links.sh
 
       - name: Test parse script fixtures
         run: ./scripts/test-fixtures.sh
