@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-# Verify numbered chapters carry Scene, Bridge, and Lab act sections (ME 412 narrative template).
+# Verify numbered chapters and part openings carry Scene, Bridge, and Lab act
+# sections (ME 412 narrative template). Preface/prologue/epilogue require Scene
+# and Bridge; part openings also require Lab act.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -15,16 +17,33 @@ check_section() {
   fi
 }
 
+check_sections() {
+  local file="$1"
+  shift
+  for section in "$@"; do
+    check_section "$file" "$section"
+  done
+}
+
+# Numbered chapters (01–NN): Scene, Bridge, Lab act
 for f in src/part*/[0-9][0-9]-*.md; do
   [[ "$f" == *"/00-"* ]] && continue
-  check_section "$f" "Scene"
-  check_section "$f" "Bridge"
-  check_section "$f" "Lab act"
+  check_sections "$f" Scene Bridge "Lab act"
 done
 
+# Part openings (00-opening.md): Scene, Bridge, Lab act
+for f in src/part*/00-opening.md; do
+  check_sections "$f" Scene Bridge "Lab act"
+done
+
+# Bookends: Scene + Bridge (Lab act optional on preface)
+check_sections src/preface.md Scene Bridge
+check_sections src/prologue/00-many-scales.md Scene Bridge
+check_sections src/epilogue/multiscale.md Scene Bridge
+
 if [[ $MISSING -ne 0 ]]; then
-  echo "FAIL: narrative template incomplete (expected Scene, Bridge, Lab act on every numbered chapter)"
+  echo "FAIL: narrative template incomplete (Scene/Bridge/Lab act per ME 412 layout)"
   exit 1
 fi
 
-echo "OK: all numbered chapters have Scene, Bridge, and Lab act sections"
+echo "OK: narrative template complete (chapters, part openings, bookends)"

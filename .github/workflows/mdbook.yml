@@ -34,6 +34,11 @@ jobs:
       - name: Verify writings sync
         run: ./scripts/sync-writings.sh --check
 
+      - name: Verify narrative template
+        run: |
+          ./scripts/validate-narrative.sh
+          ./scripts/validate-story-so-far.sh
+
       - name: Test parse script fixtures
         run: ./scripts/test-fixtures.sh
 

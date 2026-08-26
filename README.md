@@ -15,6 +15,8 @@ mdbook serve                 # http://localhost:3000
 
 Built HTML lands in `book/`.
 
+CI enforces narrative continuity: every numbered chapter and part opening carries **Scene**, **Bridge**, and **Lab act** sections; part openings also include **Story so far** recaps (`validate-narrative.sh`, `validate-story-so-far.sh`).
+
 ## Story and structure
 
 The book follows the **Functional Analysis Notes** (ME 412) layout — numbered chapters, concept maps (object → structure → theorem → failure mode), and **Bridge** sections linking each chapter to the next — extended with narrative devices so the arc reads as one novel:
