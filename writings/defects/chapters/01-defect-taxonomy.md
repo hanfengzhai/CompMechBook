@@ -4,6 +4,23 @@ Perfect crystals exist in textbooks. Real materials carry **defects** — locali
 
 Continuum elasticity in Part VI describes smooth displacement fields. Defects are where that smoothness fails — and where mesoscale models begin.
 
+## Closing the arc from VI.4 (plasticity complete, defects enter) {#defect-taxonomy-opening-hinge-plasticity-to-forest}
+
+If you walked through [VI.4's Bridge](../part06-continuum/04-nonlinear-plasticity-preview.md#bridge-to-part-vii) and the [Lab act: return mapping on the load cell knee](../part06-continuum/04-nonlinear-plasticity-preview.md#lab-act-return-mapping-on-the-load-cell-knee-act-iv-hardening), the copper wire has J₂ plasticity, isotropic hardening \(\sigma_y = \sigma_{y0} + H\alpha\), and Perzyna rate sensitivity — but **Act IV** still bends because cold drawing stored a forest the continuum cannot see. [Part VII opening — Chapter guide](../part07-defects/00-opening.md#chapter-guide) lists VII.1 as the rung where Burgers geometry enters; [VI.4's opening hinge](../part06-continuum/04-nonlinear-plasticity-preview.md#plasticity-opening-hinge-energy-to-yield) replaced path-independent \(\Pi[\mathbf{u}]\) with internal variable \(\alpha\); this chapter is the **first rung inside Part VII** — defect taxonomy before Peach–Köhler motion or DDD time integration.
+
+| VI.4 (J₂ plasticity on the wire) | VII.1 (defect taxonomy on the wire) |
+|----------------------------------|-------------------------------------|
+| Scalar internal variable \(\alpha\); fitted \(H\), \(\sigma_{y0}\) | Burgers vector \(\mathbf{b}\); point, line, surface defect catalog |
+| Return mapping: elastic predictor, plastic corrector at Gauss points | Burgers circuit closure failure: \(\mathbf{b} = \oint d\mathbf{u} \neq \mathbf{0}\) |
+| Isotropic hardening law homogenizes forest statistics | Dislocation density \(\rho\); Taylor \(\tau \propto \sqrt{\rho}\) preview |
+| Slip invisible on polished surface until yield knee | Slip lines on {111} planes trace line-defect motion |
+| Cutoff at notch root regularizes singularity | Core structure where linear elasticity breaks (\(r < 1\) nm) |
+| Perzyna \((N,\eta)\) and rate sensitivity \(m\) | Thermally activated kink-pair nucleation preview → Part VIII MD |
+
+VI.4 answered *how* to fit the load cell knee with phenomenological plasticity; this chapter asks *what* cold drawing wrote into the wire before the test — vacancies from annealing, grain boundaries from polycrystal structure, dislocation lines whose density makes drawn copper stronger than annealed copper. When the [preface continuity hinge](../preface.md#continuity-hinges-ascent-descent) lists **ascent → descent** at [VI.4 intermission](../part06-continuum/04-nonlinear-plasticity-preview.md#intermission-ascent-ends-descent-begins), and [Part VII opening](../part07-defects/00-opening.md#ascent-hinge-midpoint-and-twin-ladders) replays the twin-ladder thermal pedigree, this section is where scalar \(\alpha\) yields to Burgers geometry for the first time since Part VI began.
+
+The specimen on the bench has not moved since [VI.4's Scene](../part06-continuum/04-nonlinear-plasticity-preview.md#scene-the-curve-bends-the-model-must-follow). The load cell still records force versus grip displacement; return mapping still fits \(H\) at one strain rate. What changes on this page is **naming** the objects J₂ homogenized: edge and screw segments, stacking faults, grain boundaries — the catalog cold drawing stored before Act IV began.
+
 ## Scene: the wire yields
 
 Part VI ended with J₂ plasticity and isotropic hardening — \(\sigma_y = \sigma_{y0} + H\alpha\) — parameters that made the return-mapping loop converge but did not explain **where** \(H\) and \(\sigma_{y0}\) came from. The force–displacement curve from Part I finally bends at the same yield knee those parameters were fitted to mimic. The load cell still reads force, but the slope drops: the wire is **plastic**. A polished surface that was mirror-smooth now shows faint **slip lines** — traces of dislocation motion on {111} planes. Continuum FEM with isotropic elasticity predicted a straight elastic segment forever; the experiment crossed a yield point that lives not in \(\mathbb{C}\) alone but in a **forest of line defects** stored by cold drawing.
