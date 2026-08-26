@@ -12,7 +12,7 @@ Three chapters cover defect taxonomy, dislocation dynamics, and the handoff to c
 |---------|-----------------|-------------|---------|
 | [VII.1](01-defect-taxonomy.md) | Cold drawing left a forest before the test began | Point, line, surface defects; Burgers vector \(\mathbf{b}\) | Peach–Köhler forces → DDD in VII.2; [opening hinge](01-defect-taxonomy.md#defect-taxonomy-opening-hinge-plasticity-to-forest) when \(\alpha\) is scalar but Act IV needs a forest |
 | [VII.2](02-dislocation-dynamics.md) | Lines glide under the FEM stress field | Mobility laws, time integration, Taylor hardening | Export \(\rho\), \(\tau(\gamma)\) → crystal plasticity in VII.3; [opening hinge](02-dislocation-dynamics.md#ddd-opening-hinge-taxonomy-to-motion) when \(\rho\) is a label but Act IV needs moving segments |
-| [VII.3](03-polycrystal-and-fem-handoff.md) | OpenDiS statistics feed DAMASK polycrystal FEM | Homogenization, internal variables, mesh handoff | [Bridge to Part VIII](03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) |
+| [VII.3](03-polycrystal-and-fem-handoff.md) | OpenDiS statistics feed DAMASK polycrystal FEM | Homogenization, internal variables, mesh handoff | [Bridge to Part VIII](03-polycrystal-and-fem-handoff.md#bridge-to-part-viii); [opening hinge](03-polycrystal-and-fem-handoff.md#polycrystal-opening-hinge-ddd-to-homogenization) when OpenDiS converges on one orientation but the spool test does not |
 
 Read in order. Each chapter ends with a **Bridge** that states why the next chapter must exist; simulating DDD without defect taxonomy is motion without Burgers geometry; exporting hardening without link statistics is curve-fitting without a forest.
 
