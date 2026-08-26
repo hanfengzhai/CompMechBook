@@ -6,6 +6,20 @@ Parts IV and V discretized PDEs on meshes. Part VI asks what those PDEs mean phy
 
 The copper wire under tension is our recurring specimen — at the continuum scale, it is a cylinder of copper with a displacement field and a deformation gradient that Part IV's elasticity code approximates node by node, while the air cooling it (Part V) carries a velocity field whose gradient enters the rate-of-deformation tensor in the fluid stress.
 
+## Closing the arc from Parts IV and V (discretization fork) {#continuum-opening-hinge-discretization-to-kinematics}
+
+If you walked through [V.4's intermission](../part05-fvm/04-navier-stokes-cfd.md#intermission-discretization-complete-continuum-begins) and [Bridge to Part VI](../part05-fvm/04-navier-stokes-cfd.md#bridge-to-part-vi), or arrived via [IV.5 Door B](../part04-fem/05-convergence.md#bridge-two-doors-from-here) straight to [Part VI opening](../part06-continuum/00-opening.md#midpoint-ascent-complete-descent-ahead), the copper wire has been solved twice on the computer without yet receiving a unified geometric vocabulary. [Part VI opening — Twin ladders reunite](../part06-continuum/00-opening.md#the-twin-ladders-reunite-galerkin-and-conservation) replays the full FEM↔FVM comparison table and the [midpoint anchor](../part06-continuum/00-opening.md#midpoint-ascent-complete-descent-ahead); this chapter is the **first rung** — deformation gradient \(\mathbf{F}\) before Cauchy stress or virtual work.
+
+| Parts IV–V (discretization on the wire) | Part VI.1 (kinematics on the wire) |
+|----------------------------------------|-------------------------------------|
+| Nodal displacements \(\mathbf{U}\) from shape functions | Continuous map \(\boldsymbol{\varphi}(\mathbf{X}, t)\); displacement \(\mathbf{u}(\mathbf{X})\) |
+| Assembled \(\mathbf{K}\mathbf{U}=\mathbf{F}\) from Galerkin | Deformation gradient \(\mathbf{F} = \partial\mathbf{x}/\partial\mathbf{X}\) sampled at Gauss points |
+| Cell-averaged velocity \(\bar{\mathbf{v}}\) (Part V) | Rate of deformation \(\mathbf{D} = \text{sym}(\nabla\mathbf{v})\) as fluid-side kinematic cousin |
+| Face fluxes \(\mathbf{F}\cdot\mathbf{n}\) at the wire surface | Reference and current configurations; stretch and rotation of material lines |
+| CHT loop exports \(T_w \approx 379\,\text{K}\) in `cht_export.yaml` | Thermal expansion strain increment \(\alpha\Delta T\,\mathbf{I}\) added to mechanical \(\boldsymbol{\varepsilon}\) |
+
+Parts IV and V answered *how* to discretize PDEs on meshes and control volumes; this chapter asks *what continuous map* those nodal values and cell averages sample. The load cell in **Act III** records force against grip displacement — kinematics names the **stretch** \(\lambda = 1 + u'/L\) behind that displacement before [VI.2](02-stress-balance.md) names the Cauchy stress conjugate to it. When the [preface ascent continuity hinge](../preface.md#ascent-continuity-hinges) lists **discretization fork → continuum**, this section is where sparse arrays become tensor fields — the first chapter where \(\mathbf{F}\) replaces \(\mathbf{U}\) as the primary object.
+
 ## Scene: the wire in the tensile frame
 
 Picture a 1 mm diameter copper wire, 100 mm gauge length, gripped at both ends in a tensile frame. A 50 N axial load produces a modest engineering strain \(\varepsilon \approx \sigma/E \sim 10^{-4}\) — well within the linear elastic range Part IV assumed when assembling \(\mathbf{K}\). Every node on the FEM mesh carries a displacement vector; kinematics asks what **continuous map** those nodal values sample.
