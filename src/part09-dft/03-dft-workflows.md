@@ -8,6 +8,14 @@ The narrative thread remains the copper wire. We will not simulate the whole wir
 
 No cluster will ever run DFT on the full wire. Instead, a small fcc supercell on a workstation yields lattice constant, bulk modulus, elastic constants, vacancy formation energy — the bulk numbers every upstream model assumes. Input files, cutoff convergence, k-mesh tests, relaxation, SCF cycle, property extraction: this chapter is the repeatable ritual that turns Quantum ESPRESSO output into parameters for Parts VI–VIII.
 
+## Intermission: descent complete, coupling begins {#intermission-descent-complete-coupling-begins}
+
+If you have read linearly since the [prologue ladder](../prologue/00-many-scales.md) and [Part VI's intermission](../part06-continuum/04-nonlinear-plasticity-preview.md#intermission-ascent-ends-descent-begins), the copper wire has descended three rungs — dislocation forest, atomic lattice, electron density — without changing material. [IX.1](../part09-dft/01-born-oppenheimer.md) separated fast electrons from slow nuclei; [IX.2](../part09-dft/02-kohn-sham.md) ran the SCF loop that makes DFT computable; this chapter archives the foundation folder — `cu.scf.in`, `cu.elastic/`, `cu.phonon/`, quasiharmonic \(\alpha(T_w)\) for Handshake 3 — that every upstream part already assumed. Part IX is the **finest rung** on the prologue's ladder; after this chapter, only **composition** remains.
+
+The epilogue asks how disciplined teams wire DFT → MD → DDD → FEM exports into one multiscale afternoon — the same four questions at every interface: state, equations, discretization, upward export. When every rung has trustworthy numbers in isolation but no one can explain how the load cell curve inherits from an SCF log, return to this intermission — the [preface epilogue continuity hinges](../preface.md#epilogue-continuity-hinges) list [IX.3's Bridge](#bridge-to-the-epilogue) as the **finest rung → workflow** turn; the [epilogue](../epilogue/multiscale.md#closing-the-arc-from-part-ix) picks up the story with Handshakes 1–4b and the six-act reunion.
+
+The specimen on the bench has not moved — only the direction of travel has. The descent asked *where do continuum parameters hide their history?* The epilogue asks *how do we compose the answers without unit errors, wrong temperature pedigree, or category mistakes at notches?* What changes on the next page is **handshake loops** — conjugate heat transfer from Parts IV–V as the template for every downstream export, `parse_multiscale_workflow.sh` as the orchestration discipline Act VI foundation folders deserve. If you need a one-paragraph reminder of the electronic arc before coupling, read [Part IX opening — Story so far](../part09-dft/00-opening.md#story-so-far-parts-i-viii) and then continue here.
+
 ## The calculation ladder inside DFT
 
 Every property calculation is a sequence of controlled approximations:

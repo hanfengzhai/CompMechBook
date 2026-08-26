@@ -8,6 +8,14 @@ The copper wire at laboratory scale will never be a full DFT supercell. The wire
 
 Most MD of copper uses an EAM potential fit once to DFT data and then trusted for millions of timesteps. At a crack tip where bonds stretch until rupture, or at a surface where oxidation nucleates, that trust may fail. Born–Oppenheimer MD recomputes forces from DFT each step; coarse-graining distills those trajectories into tables the mesoscale can afford. The wire's fracture strain is either validated at this scale or assumed.
 
+## Intermission: atomistic complete, electronic audit begins {#intermission-atomistic-complete-electronic-audit-begins}
+
+If you have read linearly since [Part VII's intermission](../part07-defects/03-polycrystal-and-fem-handoff.md#intermission-mesoscale-complete-atomistic-begins) and [Part VIII opening](../part08-md/00-opening.md), the copper wire has been represented as positions and momenta on an interatomic potential — EAM lattice constants in [VIII.1](../part08-md/01-potentials-phase-space.md), NVT shear cells and Green–Kubo conductivity in [VIII.2](../part08-md/02-ensembles-integrators.md), parallel tempering and WHAM reweighting at \(T_w\) in the Lab acts below. Part VIII is the last chapter where **classical mechanics on a fitted surface** remains the honest description — Newton's equations, thermostats, cutoff radii, and the export tables Part VII's OpenDiS yaml already consumes.
+
+Part IX replaces trust with **audit**: the same fcc Cu cell Part VIII vibrated, now solved for electron density \(\rho(\mathbf{r})\) before any number climbs the ladder again. When the EAM potential matches bulk moduli but no one cites the `pw.x` log that produced it, return to this intermission — the [preface descent continuity hinge](../preface.md#descent-continuity-hinges) lists this chapter as the **atomistic → electronic audit** turn; [Part IX opening](../part09-dft/00-opening.md#electronic-audit-hinge-descent-pedigree-and-tw-phonon) picks up the story at SCF pedigree and the thermal phonon audit at \(T_w\).
+
+The specimen on the bench has not moved — only the foundation has. Act V's notch MD still waits on an EAM-fit checklist; Act VI's foundation folder still needs \(C_{ij}\), \(\gamma_{\text{sf}}\), and quasiharmonic \(\alpha(T_w)\) with the same discipline as mesh convergence in Part IV. What changes on the next page is **derivation**: Born–Oppenheimer surfaces become Kohn–Sham equations, and every export upward must trace to a converged SCF cycle someone can reproduce. If you need a one-paragraph reminder of the atomistic arc before electronic structure, read [Part VIII opening — Story so far](../part08-md/00-opening.md#story-so-far-parts-i-vii) and then continue here.
+
 ## Born–Oppenheimer molecular dynamics
 
 In **Born–Oppenheimer MD (BOMD)**, nuclear positions \(\{\mathbf{R}_I\}\) evolve classically while electrons stay in the instantaneous ground state:

@@ -8,6 +8,14 @@ The cold-drawn copper wire is not a single crystal. It is thousands of grains, e
 
 A single-crystal DDD run explains how one slip system hardens under shear. The cold-drawn wire on the bench is thousands of grains twisted by drawing dies — texture, misorientation, grain-boundary barriers. This chapter asks how DDD statistics export upward: hardening laws for crystal plasticity, internal state variables for FEM, Peierls parameters borrowed from MD. The wire experiment is polycrystalline; the multiscale pipeline must be too.
 
+## Intermission: mesoscale complete, atomistic begins {#intermission-mesoscale-complete-atomistic-begins}
+
+If you have read linearly since [Part VI's intermission](../part06-continuum/04-nonlinear-plasticity-preview.md#intermission-ascent-ends-descent-begins) and the [preface descent preview chain](../preface.md#descent-preview-chain), the copper wire has changed state variable twice on the descent without leaving the bench: Burgers vectors and forest density \(\rho\) in Part VII, Peach–Köhler forces and Taylor hardening in [VII.2](../part07-defects/02-dislocation-dynamics.md), and now polycrystal texture and the OpenDiS → DAMASK → FEM export pipeline in this chapter. Part VII is the last stop where **line defects** remain the protagonist — statistics on an elastic medium, mobility laws with cutoffs, hardening curves that Part VI's \(J_2\) fit could only approximate.
+
+Part VIII replaces those cutoffs with **vibrating nuclei**: stacking-fault energy \(\gamma_{\text{sf}}\) from atomic bonding, core width \(w\) from slab pulls, phonon drag and cross-slip rates from NVT and parallel-tempering runs at \(T_w\). When Peierls stress or mobility tables feel like magic numbers in the yaml beside this chapter's handoff bundle, return to this intermission — the [preface descent continuity hinge](../preface.md#descent-continuity-hinges) lists this chapter as the **mesoscale → atomistic** turn; [Part VIII opening](../part08-md/00-opening.md#descent-hinge-cores-mobility-and-tw-pedigree) picks up the story at line cores and the temperature pedigree chain.
+
+The specimen on the bench has not moved — only the resolution has. Act IV's hardening knee still reads from forest evolution; Act V's notch still concentrates stress where homogenization may fail and FE² waits. What changes on the next page is **ink**: dislocation lines borrow mobility from phonons and cores the mesoscale cannot resolve. If you need a one-paragraph reminder of the mesoscale arc before atomistics, read [Part VII opening — Story so far](../part07-defects/00-opening.md#story-so-far-parts-i-vi) and then continue here.
+
 ## Peierls stress and lattice resistance
 
 Before external load moves a dislocation, the lattice itself resists glide. The **Peierls–Nabarro** model estimates the stress required to move a straight screw or edge dislocation through a perfect lattice:
