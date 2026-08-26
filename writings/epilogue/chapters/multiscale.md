@@ -14,6 +14,14 @@ A third terminal launches OpenDiS on a single-crystal RVE under the same strain 
 
 The copper wire on the bench — cold-drawn, carrying current, warm to the touch — is unchanged. What changed is the reader's ability to name where each number in the workflow came from, what was homogenized away, and which interface would break first if the ladder were climbed too carelessly. That afternoon is not a fantasy pipeline every laptop runs unattended. It is the **discipline** the book has been building toward since the prologue: state, equations, discretization, upward export — now at the boundaries between codes, not only within a single mesh.
 
+## Intermission: coupling begins, the loop closes {#intermission-coupling-begins-loop-closes}
+
+If you have read linearly since [IX.3's intermission](../part09-dft/03-dft-workflows.md#intermission-descent-complete-coupling-begins) and the [preface epilogue continuity hinges](../preface.md#epilogue-continuity-hinges), the copper wire has finished its descent — dislocation forest, atomic lattice, electron density — and the foundation folder on disk finally matches what Parts IV–VIII already assumed. Part IX answered *where do continuum parameters hide their history?* The epilogue asks *how do we compose those answers without unit errors, wrong temperature pedigree, or category mistakes at notches?*
+
+The specimen on the bench has not moved — only the direction of travel has. The **ascent** (Parts I–VI) built discretizations on weak forms; the **descent** (Parts VII–IX) audited their pedigree; the epilogue is **Act IV** in the preface plot spine — multiscale workflows that wire every rung into handshakes no single code runs alone. When every solver converges in isolation but the load cell curve still cites handbook numbers beside an orphan `pw.x` log, return to this intermission — the [preface six-act reunion row](../preface.md#epilogue-continuity-hinges) maps laboratory time to mathematical order; the sections below name Handshakes 1–4b on the same copper wire.
+
+What changes on this page is not a new scale but a new **habit**: the conjugate heat transfer loop from Parts IV–V — FEM solid and FVM fluid exchanging wall temperature until flux balances Joule heat — becomes the template for every interface downstream. DFT exports feed MD potentials; MD calibrates DDD mobility; DDD hardening feeds crystal plasticity FEM; and the outer Picard loop on \(T_w\) still runs from Act II. If you need a one-paragraph reminder of the electronic arc before coupling, read [Part IX opening — Story so far](../part09-dft/00-opening.md#story-so-far-parts-i-viii) and [IX.3's Bridge to the epilogue](../part09-dft/03-dft-workflows.md#bridge-to-the-epilogue), then continue here.
+
 ## Story so far (Parts I–IX)
 
 If you have read linearly since the prologue, the copper wire has changed language nine times without changing material:

@@ -2,7 +2,7 @@
 
 A continuous narrative book — from linear algebra through functional analysis, finite elements and volumes, continuum mechanics, dislocation dynamics, molecular dynamics, and density functional theory — told through one copper wire under tension and current.
 
-**~184k words** · **35 numbered chapters** · **mdBook** · canonical sources in [`writings/`](writings/)
+**~186k words** · **35 numbered chapters** · **mdBook** · canonical sources in [`writings/`](writings/)
 
 ## Read the book
 
@@ -15,7 +15,7 @@ mdbook serve                 # http://localhost:3000
 
 Built HTML lands in `book/`.
 
-CI enforces narrative continuity: every numbered chapter and part opening carries **Scene**, **Bridge**, and **Lab act** sections; part openings also include **Story so far** recaps (`validate-narrative.sh`, `validate-story-so-far.sh`, `validate-bridges.sh`); Part III.4, V.4, VI.4, VII.3, VIII.3, and IX.3 carry **Intermission** hinges where analysis yields to assembly, discretization yields to continuum vocabulary, ascent yields to descent, mesoscale yields to atomistics, atomistics yield to electronic audit, and descent yields to multiscale coupling (`validate-intermission.sh`); relative links are checked (`validate-links.sh`); total word count must stay above 180k (`validate-word-count.sh`).
+CI enforces narrative continuity: every numbered chapter and part opening carries **Scene**, **Bridge**, and **Lab act** sections; part openings also include **Story so far** recaps (`validate-narrative.sh`, `validate-story-so-far.sh`, `validate-bridges.sh`); Part III.4, V.4, VI.4, VII.3, VIII.3, IX.3, and the epilogue carry **Intermission** hinges where analysis yields to assembly, discretization yields to continuum vocabulary, ascent yields to descent, mesoscale yields to atomistics, atomistics yield to electronic audit, descent yields to multiscale coupling, and coupling closes the prologue loop (`validate-intermission.sh`); relative links are checked (`validate-links.sh`); total word count must stay above 180k (`validate-word-count.sh`).
 
 ## Story and structure
 

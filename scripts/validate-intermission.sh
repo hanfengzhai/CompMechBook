@@ -25,10 +25,11 @@ check_intermission src/part06-continuum/04-nonlinear-plasticity-preview.md inter
 check_intermission src/part07-defects/03-polycrystal-and-fem-handoff.md intermission-mesoscale-complete-atomistic-begins
 check_intermission src/part08-md/03-ab-initio-and-coarse-graining.md intermission-atomistic-complete-electronic-audit-begins
 check_intermission src/part09-dft/03-dft-workflows.md intermission-descent-complete-coupling-begins
+check_intermission src/epilogue/multiscale.md intermission-coupling-begins-loop-closes
 
 if [[ $MISSING -ne 0 ]]; then
-  echo "FAIL: narrative intermission hinges incomplete (III.4, V.4, VI.4, VII.3, VIII.3, IX.3 required)"
+  echo "FAIL: narrative intermission hinges incomplete (III.4, V.4, VI.4, VII.3, VIII.3, IX.3, epilogue required)"
   exit 1
 fi
 
-echo "OK: narrative intermission hinges present (III.4 analysis→assembly, V.4 discretization→continuum, VI.4 ascent→descent, VII.3 mesoscale→atomistic, VIII.3 atomistic→electronic, IX.3 descent→coupling)"
+echo "OK: narrative intermission hinges present (III.4 analysis→assembly, V.4 discretization→continuum, VI.4 ascent→descent, VII.3 mesoscale→atomistic, VIII.3 atomistic→electronic, IX.3 descent→coupling, epilogue coupling→loop)"
