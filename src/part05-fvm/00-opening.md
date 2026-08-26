@@ -83,7 +83,7 @@ The copper wire you meshed in Part IV still carries current and heat. The air ar
 
 ## Closing the arc from Part IV
 
-If you arrived through [IV.5 Door A](../part04-fem/05-convergence.md#bridge-two-doors-from-here), Part IV's closing checkpoint just proved Céa lemma and named two exit doors. Part V is **Door A** — the complementary discretization for the air Part IV left as a Robin boundary condition:
+If you arrived through [IV.5 Door A](../part04-fem/05-convergence.md#bridge-two-doors-from-here), Part IV's closing checkpoint just proved Céa lemma and named two exit doors. Reread the [IV.5 intermission](../part04-fem/05-convergence.md#intermission-galerkin-complete-conservation-begins) if the solid mesh feels complete but the air around the wire is still implicit — Galerkin converged; flux balance is Door A's organizing principle. Part V is **Door A** — the complementary discretization for the air Part IV left as a Robin boundary condition:
 
 | Part IV (FEM on the wire) | Part V (FVM on the wire) |
 |-----------------------------|--------------------------|
