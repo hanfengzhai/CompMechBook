@@ -93,7 +93,7 @@ If you arrived through [IV.5 Door A](../part04-fem/05-convergence.md#bridge-two-
 | Céa: discrete tracks continuous minimizer in energy norm | CFL + limiters: discrete fluxes respect conservation invariants |
 | Convergence as \(h \to 0\) on the solid mesh | Convergence as \(\Delta x \to 0\) on the fluid grid |
 
-Part IV made the wire's interior computable; Part V makes its **surroundings** honest. The thermocouple from Act II does not respond to conductivity alone — it responds to how fast air carries heat away from the hot surface. [IV.5](../part04-fem/05-convergence.md#bridge-two-doors-from-here) promised that conjugate heat transfer would couple both meshes at an interface; the section below delivers that handshake.
+Part IV made the wire's interior computable; Part V makes its **surroundings** honest. The thermocouple from Act II does not respond to conductivity alone — it responds to how fast air carries heat away from the hot surface. [IV.5](../part04-fem/05-convergence.md#bridge-two-doors-from-here) promised that conjugate heat transfer would couple both meshes at an interface; [V.1](../part05-fvm/01-conservation-integral.md#conservation-opening-hinge-galerkin-to-flux-balance) opens with the integral conservation contract that handshake requires; the section below delivers the full conservation ladder.
 
 ## Closing the arc from Part III
 

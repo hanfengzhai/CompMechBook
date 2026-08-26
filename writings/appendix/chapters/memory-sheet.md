@@ -141,7 +141,7 @@ When a chapter feels disconnected from the last, pause at the hinge for your rea
 | 1 | Ascent | [I.4 intermission → II](../part01-linear-algebra/04-toward-infinity.md#intermission-grammar-complete-function-spaces-begin) | \(\mathbf{K}\mathbf{u}=\mathbf{f}\) feels unrelated to PDEs |
 | 2 | Ascent | [II.5 intermission → III](../part02-functional-analysis/05-spectral-theorem.md#intermission-function-spaces-complete-pdes-begin) | Sobolev norms feel abstract; weak form is the next dialogue |
 | 3 | Ascent | [III.4 intermission → IV](../part03-pdes/04-energy-methods.md#intermission-analysis-complete-assembly-begins) | Energy minimization and matrix assembly seem like separate tricks |
-| 4 | Ascent | [IV.5 intermission → V/VI](../part04-fem/05-convergence.md#intermission-galerkin-complete-conservation-begins) | Solid mesh converges but air cooling is absent from the model |
+| 4 | Ascent | [IV.5 intermission → V](../part04-fem/05-convergence.md#intermission-galerkin-complete-conservation-begins) · [V.1 opening hinge](../part05-fvm/01-conservation-integral.md#conservation-opening-hinge-galerkin-to-flux-balance) | Solid mesh converges but air cooling is absent from the model; flux balance replaces stiffness assembly |
 | 5 | Ascent | [V.4 intermission → VI](../part05-fvm/04-navier-stokes-cfd.md#intermission-discretization-complete-continuum-begins) | FEM and FVM feel like unrelated courses |
 | 6 | Midpoint | [Part VI opening](../part06-continuum/00-opening.md#midpoint-ascent-complete-descent-ahead) | Parts I–V feel like separate subjects |
 | 7 | Midpoint | [VI.4 intermission](../part06-continuum/04-nonlinear-plasticity-preview.md#intermission-ascent-ends-descent-begins) | \(J_2\) fits the curve but not its cause |

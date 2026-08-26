@@ -4,6 +4,20 @@ Where FEM whispers "multiply by a test function and integrate by parts," FVM dec
 
 The copper wire reappears in a different guise. Solid mechanics on the wire still favors FEM, but imagine air cooling the heated specimen, or a shock tube test validating a CFD code before it simulates that cooling jet. Those flows are governed by conservation of mass, momentum, and energy — laws that make sense even when the pointwise PDE breaks down at shocks.
 
+## Closing the arc from Part IV (Door A) {#conservation-opening-hinge-galerkin-to-flux-balance}
+
+If you walked through [IV.5 Door A](../part04-fem/05-convergence.md#bridge-two-doors-from-here), [IV.5's intermission](../part04-fem/05-convergence.md#intermission-galerkin-complete-conservation-begins) named the hinge: Galerkin convergence certified the solid mesh; **flux balance** is the organizing principle for everything outside it. [Part V opening — Closing the arc from Part IV](../part05-fvm/00-opening.md#closing-the-arc-from-part-iv) replays the full FEM↔FVM comparison table and the [conservation ladder](../part05-fvm/00-opening.md#the-conservation-ladder-fvm-parallel-to-schematic-14); this chapter is the **first rung** — integral form before any cell-averaged update exists.
+
+| Part IV (Galerkin on the wire) | Part V.1 (integral balance on the wire) |
+|--------------------------------|-------------------------------------------|
+| Trial functions \(\phi_i \in H^1\); energy minimization | Cell averages \(\bar{U}_i\); flux balance on control volumes |
+| Weak form \(a(u,v)=\ell(v)\) from integration by parts | Integral form from divergence theorem on each \(\Omega_i\) |
+| Assembled \(\mathbf{K}\mathbf{T}=\mathbf{q}\) for Joule heating in solid | Face fluxes \(F_{i+1/2}\) for enthalpy leaving the hot surface |
+| Céa's lemma: discrete tracks continuous minimizer | Discrete conservation: interior face fluxes cancel in global sum |
+| Robin BC \(q = h(T_w - T_\infty)\) as boundary data | Same Robin flux as a **face boundary condition** on the fluid cell at the wall |
+
+Part IV answered *how* to discretize elliptic solids with shape functions; this chapter asks *how* to state conservation laws so that shocks, steep advection, and conjugate heat transfer inherit **exact discrete balances** rather than stabilized Galerkin residuals. The copper wire's interior still lives in Part IV's mesh; the air around it begins here with the divergence theorem on a control volume glued to the surface. When the [preface ascent continuity hinge](../preface.md#ascent-continuity-hinges) lists **Galerkin → transport discretization**, this section is where Door A readers first write fluxes instead of stiffness integrals.
+
 ## Scene: air leaving the wire
 
 The thermal camera from Part III showed the wire hot; now widen the frame. Still air in the lab carries heat away from the surface by natural convection — no fan, just buoyancy-driven flow. A CFD practitioner does not start by writing Navier–Stokes at a single point in the room. She tiles the air volume into control volumes, each a small box surrounding a node, and asks a bookkeeping question: **how much enthalpy flows in through each face, and how much flows out?**
