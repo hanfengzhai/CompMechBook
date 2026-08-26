@@ -4,6 +4,23 @@ Kinematics describes how bodies move and deform. **Balance laws** relate stress 
 
 Part IV assembled \(\int \boldsymbol{\varepsilon}(\mathbf{u}):\mathbb{C}:\boldsymbol{\varepsilon}(\mathbf{v})\). Part V balanced fluxes of momentum. This chapter explains what \(\boldsymbol{\sigma}\) and \(\mathbb{C}\) mean, where the equilibrium equation comes from, and how copper, air, and plastic metal differ at the constitutive level.
 
+## Closing the arc from VI.1 (geometry complete, forces enter) {#balance-opening-hinge-kinematics-to-stress}
+
+If you walked through [VI.1's Bridge](01-kinematics.md#bridge) and the [Lab act: read lateral contraction](01-kinematics.md#lab-act-read-lateral-contraction-from-grip-displacement-act-iii), the copper wire has a deformation gradient and strain tensor — but the load cell in **Act III** still reads force without a Cauchy stress conjugate. [Part VI opening — Chapter guide](../part06-continuum/00-opening.md#chapter-guide) lists VI.2 as the rung where traction enters; [VI.1's opening hinge](01-kinematics.md#continuum-opening-hinge-discretization-to-kinematics) replaced nodal \(\mathbf{U}\) with \(\mathbf{F}\); this chapter is the **second rung inside Part VI** — Cauchy stress before virtual work or hyperelastic energy.
+
+| VI.1 (kinematics on the wire) | VI.2 (balance laws on the wire) |
+|-------------------------------|----------------------------------|
+| Deformation gradient \(\mathbf{F}\); strain \(\boldsymbol{\varepsilon}\), \(\mathbf{E}\) | Cauchy stress \(\boldsymbol{\sigma}\); traction \(\boldsymbol{\sigma}\mathbf{n}\) on boundaries |
+| Axial stretch \(\lambda = 1 + u'/L\) and lateral contraction \(\varepsilon_{22} = -\nu\varepsilon_{11}\) | Momentum balance \(\nabla\cdot\boldsymbol{\sigma}+\mathbf{b}=\mathbf{0}\); load cell \(\sigma_{xx} = T/A\) |
+| Objectivity: \(\mathbf{F}=\mathbf{R}\mathbf{U}\); constitutive laws depend on stretch | Symmetry of \(\boldsymbol{\sigma}\) from angular momentum balance |
+| Rate \(\mathbf{D}\) as fluid kinematic cousin ([V.4](../part05-fvm/04-navier-stokes-cfd.md)) | Hooke's law \(\boldsymbol{\sigma}=\mathbb{C}:\boldsymbol{\varepsilon}\) closes mechanical equilibrium |
+| Micrometer Lab act: geometric patch test via Poisson ratio | Three-instrument scene: load cell, thermocouple, thermal camera on one specimen |
+| Thermal expansion strain \(\alpha\Delta T\,\mathbf{I}\) added to mechanical \(\boldsymbol{\varepsilon}\) | Thermal eigenstrain in constitutive law; Joule heating in energy balance |
+
+VI.1 answered *how* the wire stretches and rotates; this chapter asks *what force per area* the load cell measures and *which balance laws* constrain that stress in space and time. When the [preface ascent continuity hinge](../preface.md#ascent-continuity-hinges) lists **discretization fork → continuum** at VI.1, the intra-part turn **kinematics → balance** is the companion hinge — geometry without stress is a displacement field without physics, and stress without balance is a sensor reading without a PDE.
+
+The specimen on the bench has not moved since [VI.1's Scene](01-kinematics.md#scene-the-wire-in-the-tensile-frame). Grip displacement still defines axial stretch; the micrometer still checks \(\varepsilon_{22}/\varepsilon_{11} \approx -\nu\). What changes on this page is **naming** the tensor conjugate to strain: Cauchy stress \(\boldsymbol{\sigma}\) such that traction \(\boldsymbol{\sigma}\mathbf{n}\) on a cut surface equals the load cell force divided by area. Part IV assembled \(\mathbf{K}\mathbf{U}=\mathbf{F}\) from a weak form that assumed stress existed; this chapter derives the balance law that makes that assumption honest.
+
 ## Scene: three balances on one wire
 
 The tensile frame from Part I is still running, but the operator has raised the current. Three instruments watch the same copper cylinder:
