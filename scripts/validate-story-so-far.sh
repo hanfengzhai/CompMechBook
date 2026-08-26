@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Verify every part opening includes a Story so far recap (continuous-book device).
+# Verify part openings and epilogue include Story so far recaps (continuous-book device).
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -7,16 +7,23 @@ cd "$ROOT"
 
 MISSING=0
 
-for f in src/part*/00-opening.md; do
-  if ! grep -q "^## Story so far" "$f"; then
-    echo "MISSING ## Story so far: $f"
+check_story_so_far() {
+  local file="$1"
+  if ! grep -q "^## Story so far" "$file"; then
+    echo "MISSING ## Story so far: $file"
     MISSING=1
   fi
+}
+
+for f in src/part*/00-opening.md; do
+  check_story_so_far "$f"
 done
 
+check_story_so_far src/epilogue/multiscale.md
+
 if [[ $MISSING -ne 0 ]]; then
-  echo "FAIL: part openings missing Story so far recap"
+  echo "FAIL: Story so far recap missing (part openings and epilogue required)"
   exit 1
 fi
 
-echo "OK: all part openings have Story so far recaps"
+echo "OK: all part openings and epilogue have Story so far recaps"

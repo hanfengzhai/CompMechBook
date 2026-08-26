@@ -86,7 +86,7 @@ Part III ended with a promise: the weak form of equilibrium is a **minimum princ
 
 ## Closing the arc from Part III
 
-If you have read linearly since the prologue, Part III's closing checkpoint completed the analytical pipeline — strong form, weak form, Sobolev regularity, energy minimum. Part IV is the **first code chapter**:
+If you have read linearly since the prologue, Part III's closing checkpoint completed the analytical pipeline — strong form, weak form, Sobolev regularity, energy minimum. [III.4's intermission](../part03-pdes/04-energy-methods.md#intermission-analysis-complete-assembly-begins) named the hinge: analysis complete, assembly begins. Part IV is the **first code chapter**:
 
 | Part III (PDEs on the wire) | Part IV (FEM on the wire) |
 |-----------------------------|--------------------------|
