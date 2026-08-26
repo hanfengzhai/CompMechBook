@@ -2,6 +2,24 @@
 
 When metal yields, dislocations multiply and tangle. **Dislocation dynamics (DDD)** tracks their motion and interactions — the mesoscale engine of strain hardening. Pull a copper wire beyond its elastic limit and the stress–strain curve bends upward not because the lattice stiffens, but because an evolving **forest** of dislocation lines impedes further slip. DDD is how we simulate that forest without resolving every atom.
 
+## Closing the arc from VII.1 (taxonomy complete, motion enters) {#ddd-opening-hinge-taxonomy-to-motion}
+
+If you walked through [VII.1's Bridge](01-defect-taxonomy.md#bridge) and the [Lab act: read the slip lines before the load cell bends](01-defect-taxonomy.md#lab-act-read-the-slip-lines-before-the-load-cell-bends-act-iv--hardening), the copper wire has a defect catalog — point, line, and surface classes, Burgers vector \(\mathbf{b}\), Taylor \(\tau \propto \sqrt{\rho}\) preview — but **Act IV** still bends because the forest is a **label** on an input deck, not a network of moving segments. [Part VII opening — Chapter guide](../part07-defects/00-opening.md#chapter-guide) lists VII.2 as the rung where Peach–Köhler motion enters; [VII.1's opening hinge](01-defect-taxonomy.md#defect-taxonomy-opening-hinge-plasticity-to-forest) replaced scalar \(\alpha\) with Burgers geometry; this chapter is the **second rung inside Part VII** — dislocation dynamics before polycrystal homogenization or crystal plasticity FEM handoff in VII.3.
+
+| VII.1 (defect taxonomy on the wire) | VII.2 (dislocation dynamics on the wire) |
+|-------------------------------------|------------------------------------------|
+| Static catalog: vacancies, GBs, slip traces | Time-evolving segment network under load |
+| Burgers circuit closure failure: \(\mathbf{b} = \oint d\mathbf{u}\) | Peach–Köhler force \(\mathbf{f} = (\boldsymbol{\sigma}\cdot\mathbf{b})\times\boldsymbol{\xi}\) |
+| Scalar \(\rho\) as internal variable on input deck | \(\rho(\gamma)\) from line-length statistics as simulation output |
+| Taylor \(\tau \propto \sqrt{\rho}\) preview (theorem statement) | Taylor hardening from DDD link statistics (theorem verified) |
+| Slip lines classified before load cell bends | Frank–Read multiplication; forest tangling timestep by timestep |
+| Core structure where \(r < 1\) nm breaks elasticity | Mobility law \(\mathbf{v} = M(\tau,T)\,\mathbf{f}\); OpenDiS time integration |
+| GSF and Peierls preview → Parts VIII–IX | MD mobility calibration at \(T_w\); DFT \(\gamma_{\text{sf}}\) handshake |
+
+VII.1 answered *what* cold drawing wrote into the wire before the test — vacancies, grain boundaries, dislocation lines whose density makes drawn copper stronger than annealed copper; this chapter asks *how* those lines **move** under the stress field Part IV computed on the mesh — multiply at sources, tangle into a forest, and export \(\tau(\gamma)\) and \(\rho(\gamma)\) that replace phenomenological \(H\) in Part VI's return mapping. When the [preface continuity hinge](../preface.md#continuity-hinges-ascent-descent) lists **plasticity → defect taxonomy** at [VII.1's opening hinge](01-defect-taxonomy.md#defect-taxonomy-opening-hinge-plasticity-to-forest), and [Part VII opening](../part07-defects/00-opening.md#ascent-hinge-midpoint-and-twin-ladders) inherited \(T_w \approx 379\,\text{K}\) from [V.4 CHT](../part05-fvm/04-navier-stokes-cfd.md#bridge-to-part-vi), this section is where static Burgers geometry yields to Peach–Köhler motion for the first time since Part VII began.
+
+The specimen on the bench has not moved since [VII.1's Scene](01-defect-taxonomy.md#scene-the-wire-yields). The load cell still records the post-yield hardening knee; slip lines still trace {111} planes on the polished surface. What changes on this page is **simulation**: the forest becomes a computable network of segments, each feeling forces from external load and from every other line — the mesoscale engine that makes Act IV's upward bend a consequence of geometry rather than a fitted scalar.
+
 ## Scene: the forest grows
 
 Resume the tensile test where Part VI left it — load increasing, stress beyond yield. Inside the copper crystal, dislocation lines **glide** on {111} planes, **multiply** at Frank–Read sources, and **tangle** into a forest whose density rises with plastic strain. The load cell registers hardening: more stress needed for the next increment of stretch. No phenomenological law was typed in by hand; the curve bends because moving lines must push through a thickening forest.
