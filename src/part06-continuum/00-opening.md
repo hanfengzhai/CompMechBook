@@ -16,7 +16,7 @@ If you have read linearly since the [preface](../preface.md), you have completed
 |---------|-----------------|-------------|---------|
 | [VI.1](01-kinematics.md) | Grip displacement ramps; bar stretches and contracts laterally | \(\mathbf{F}\), \(\boldsymbol{\varepsilon}\), Green–Lagrange \(\mathbf{E}\) | Forces enter through stress → balance in VI.2 |
 | [VI.2](02-stress-balance.md) | Load cell records force; Cauchy stress balances momentum | Cauchy and Piola–Kirchhoff stress, conservation laws | Virtual work → energy principles in VI.3; [opening hinge](02-stress-balance.md#balance-opening-hinge-kinematics-to-stress) when \(\mathbf{F}\) is named but \(\boldsymbol{\sigma}\) is not |
-| [VI.3](03-variational-elasticity.md) | Elastic energy minimized under BCs | Strain energy density, hyperelasticity, FEM connection | Yield and hardening preview → Part VII in VI.4 |
+| [VI.3](03-variational-elasticity.md) | Elastic energy minimized under BCs | Strain energy density, hyperelasticity, FEM connection | Yield and hardening preview → Part VII in VI.4; [opening hinge](03-variational-elasticity.md#variational-opening-hinge-balance-to-energy) when \(\boldsymbol{\sigma}\) is named but \(\Pi[\mathbf{u}]\) is not |
 | [VI.4](04-nonlinear-plasticity-preview.md) | Force–displacement curve bends upward | \(J_2\) plasticity, isotropic hardening, return mapping | [Bridge to Part VII](04-nonlinear-plasticity-preview.md#bridge-to-part-vii) |
 
 Read in order. Each chapter ends with a **Bridge** that states why the next chapter must exist; naming stress without kinematics is force without geometry; fitting plasticity without Part VII is curve-fitting without a forest.

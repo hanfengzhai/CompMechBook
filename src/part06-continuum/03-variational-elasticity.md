@@ -4,6 +4,23 @@ Static equilibrium of an elastic body is equivalent to minimizing total potentia
 
 The copper wire under tension minimizes (or rather, stationarizes) elastic energy stored in its stretched atomic lattice — a minimization FEM approximates on a mesh. When the load exceeds yield, minimization gives way to incremental variational inequalities; when deformation grows large, the energy depends on \(\mathbf{F}\), not \(\boldsymbol{\varepsilon}\). This chapter walks that path.
 
+## Closing the arc from VI.2 (balance complete, energy enters) {#variational-opening-hinge-balance-to-energy}
+
+If you walked through [VI.2's Bridge](02-stress-balance.md#bridge) and the [Lab act: three instruments, one wire](02-stress-balance.md#lab-act-three-instruments-one-wire-act-ii--warming), the copper wire has Cauchy stress, momentum balance, and Hooke's law — but Part IV's \(\mathbf{K}\mathbf{U}=\mathbf{F}\) still feels like a sparse linear system rather than the stationarity of an energy functional. [Part VI opening — Chapter guide](../part06-continuum/00-opening.md#chapter-guide) lists VI.3 as the rung where virtual work reunifies with FEM; [VI.2's opening hinge](02-stress-balance.md#balance-opening-hinge-kinematics-to-stress) replaced \(\mathbf{F}\) with \(\boldsymbol{\sigma}\); this chapter is the **third rung inside Part VI** — total potential energy before hyperelasticity or plastic yield.
+
+| VI.2 (balance laws on the wire) | VI.3 (variational elasticity on the wire) |
+|---------------------------------|-------------------------------------------|
+| Cauchy stress \(\boldsymbol{\sigma}\); traction \(\boldsymbol{\sigma}\mathbf{n}\) | Strain energy density \(\psi(\boldsymbol{\varepsilon})\); total potential \(\Pi[\mathbf{u}]\) |
+| Momentum balance \(\nabla\cdot\boldsymbol{\sigma}+\mathbf{f}=\mathbf{0}\) | Dirichlet principle: equilibrium minimizes \(\Pi\) among admissible \(\mathbf{u}\) |
+| Virtual work derived from balance (strong → weak) | Virtual work as first variation \(\delta\Pi=0\) — same equation, energy origin |
+| Hooke's law \(\boldsymbol{\sigma}=\mathbb{C}:\boldsymbol{\varepsilon}\) | Why Part IV's \(\mathbf{K}\) integrates \(\mathbb{C}:\boldsymbol{\varepsilon}(\mathbf{N}_I):\boldsymbol{\varepsilon}(\mathbf{N}_J)\) |
+| Three-instrument Lab act: load cell, thermocouple, thermal camera | Rayleigh–Ritz on \(\Pi\): FEM assembly is discrete energy minimization |
+| Thermal eigenstrain in constitutive law | Coupled thermoelastic energy when \(T\) shifts moduli (preview) |
+
+VI.2 answered *what force per area* the load cell measures and *which balance laws* constrain stress in space and time; this chapter asks *why* static equilibrium is also a minimum principle and *how* Part IV's Galerkin assembly is Rayleigh–Ritz on the same functional Part III named in \(H^1\). When the [preface ascent continuity hinge](../preface.md#ascent-continuity-hinges) lists **discretization fork → continuum** at VI.1 and **kinematics → balance** at VI.2, the intra-part turn **balance → energy** is the companion hinge — stress without a potential is a tensor without a variational source, and energy without balance is a functional without a force law.
+
+The specimen on the bench has not moved since [VI.2's Scene](02-stress-balance.md#scene-three-balances-on-one-wire). The load cell still reads axial force; Cauchy stress still divides that reading by area. What changes on this page is **naming** the energy whose stationarity produces the virtual work equation VI.2 wrote in tensor notation: elastic strain energy \(\psi = \tfrac{1}{2}\boldsymbol{\varepsilon}:\mathbb{C}:\boldsymbol{\varepsilon}\) integrated over \(\Omega_0\), minus work of body forces and tractions. Part I assembled springs from a network energy; Part IV assembled \(\mathbf{K}\) from a bilinear form; this chapter proves both are the same story at different scales of approximation.
+
 ## Scene: energy stored in the stretch
 
 Return to the tensile frame with the load cell climbing. Below yield, the wire lengthens elastically: each increment of grip displacement adds work, and most of that work is **stored** as elastic strain energy recoverable on unloading. Plot \(\Pi(\mathbf{u})\) — total potential energy as a functional of the displacement field — and the equilibrium path is the trajectory that keeps \(\Pi\) stationary under admissible variations.
