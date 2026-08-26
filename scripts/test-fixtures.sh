@@ -9,6 +9,9 @@ trap 'rm -f "$TMP"' EXIT
 
 echo "=== test-fixtures.sh ==="
 
+echo "--- validate-narrative.sh ---"
+./scripts/validate-narrative.sh
+
 echo "--- parse_gsf.sh ---"
 ./scripts/parse_gsf.sh fixtures/gsf_cu111.dat > "$TMP" 2>&1
 grep -q 'gamma_sf_mJ_m2' "$TMP"
