@@ -11,7 +11,7 @@ Three chapters cover potentials and phase space, ensembles and integrators, then
 | Chapter | Wire story beat | Core object | Handoff |
 |---------|-----------------|-------------|---------|
 | [VIII.1](01-potentials-phase-space.md) | Copper lattice as \(N\) interacting particles | Lennard-Jones, EAM, periodic boundaries, cutoff | [Opening hinge from VII.3](01-potentials-phase-space.md#opening-hinge-vii3-to-viii1); thermostats and timestep → integrators in VIII.2 |
-| [VIII.2](02-ensembles-integrators.md) | NVT equilibration; NPT elastic response | Verlet, Nose–Hoover, stress–strain from MD | Potential fitting and AIMD → coarse-graining in VIII.3 |
+| [VIII.2](02-ensembles-integrators.md) | NVT equilibration; NPT elastic response | Verlet, Nose–Hoover, stress–strain from MD | [Opening hinge from VIII.1](02-ensembles-integrators.md#opening-hinge-viii1-to-viii2); potential fitting and AIMD → coarse-graining in VIII.3 |
 | [VIII.3](03-ab-initio-and-coarse-graining.md) | EAM fit exports \(\gamma_{\text{sf}}\), \(E_{\text{coh}}\) | LAMMPS workflows, DeepMD, handoff tables | [Bridge to Part IX](03-ab-initio-and-coarse-graining.md#bridge-to-part-ix) |
 
 Read in order. Each chapter ends with a **Bridge** that states why the next chapter must exist; running MD without understanding ensembles is energy drift disguised as physics; fitting EAM without DFT anchors is multiscale folklore.

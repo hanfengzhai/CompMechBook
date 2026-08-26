@@ -4,6 +4,24 @@ MD is not merely integrating Newton's laws — it is **controlled sampling** of 
 
 Getting the ensemble wrong is not a small error. It is simulating the wrong experiment.
 
+## Closing the arc from Part VIII.1 {#opening-hinge-viii1-to-viii2}
+
+If you have read linearly since the prologue, [VIII.1](01-potentials-phase-space.md) closed with an EAM-minimized fcc lattice — `cu_eam_a0.txt`, cohesive energy, bulk modulus from a 0 K `minimize` pass — and a Bridge that named `MD_NVT_shear_PartVIII` without yet integrating a single timestep at laboratory temperature. Part VIII.2 does not re-derive EAM or the Hamiltonian; it **samples** the phase space those objects define:
+
+| Part VIII.1 export (foundation archive) | Part VIII.2 vocabulary |
+|----------------------------------------|------------------------|
+| Lattice parameter \(a_0\) from 0 K minimization | NPT equilibration: \(\langle a(T_w)\rangle\) at converged wall temperature |
+| Cohesive energy \(E_{\text{coh}}\) per atom at minimum | NVT kinetic temperature \(\langle T\rangle\) matching \(T_w\) from `cht_export.yaml` |
+| Hessian eigenvalues / phonon scale at minimum | Verlet \(\Delta t \lesssim 2\) fs from \(\omega_{\max}\); NVE drift audit |
+| Hamiltonian \(H = K + V\) at static configuration | Trajectory \(H(t)\) in NVE; canonical averages in NVT/NPT |
+| Green–Kubo \(\kappa\) formula (Irving–Kirkwood flux) | NVE production after NVT equilibration; autocorrelation convergence |
+| `MD_NVT_shear_PartVIII` cited in VII.3 mobility yaml | Constrained NVT shear run exporting \(M(\tau, T_w)\) to OpenDiS |
+| Foundation folder `cu_eam_*.txt` | Ensemble-averaged moduli, MSD, VACF phonon DOS in `cu.elastic/`, `cu.phonon/` |
+
+[VIII.1's Bridge](01-potentials-phase-space.md#bridge) named the **dynamics audit** the mesoscale borrowed on trust — stable timesteps, thermostat transients, finite-\(T\) phonon drag. The [Part VIII opening descent hinge](00-opening.md#descent-hinge-cores-mobility-and-tw-pedigree) closed the **temperature pedigree**: if Act II warmed the wire to \(T_w \approx 379\,\text{K}\) via [V.4 conjugate heat transfer](../part05-fvm/04-navier-stokes-cfd.md#lab-act-extension-two-domain-picard-loop-with-a-1d-fem-solid), every NVT equilibration and NVT shear that calibrates drag must read that temperature from `cht_export.yaml`, not 300 K — archive the thermostat log beside `mobility_cu_screw_{T_w}K.yaml` before OpenDiS inherits the table. This chapter is where both contracts land: **trajectories replace energy minima**; **\(T_w\) replaces 0 K defaults** before any observable is averaged upward.
+
+The wire at room temperature is not its energy minimum — it is a canonical sample of phase space with kinetic energy exchanging through phonons and a heat bath. Part VIII.1 established the potential surface and Burgers vector \(b = a_0/\sqrt{2}\); Part VIII.2 is the first page where **time, temperature, and ensemble** enter the simulation honestly. When mobility tables or stress–strain curves feel like magic numbers, pause here — not at the EAM fit in [VIII.3](03-ab-initio-and-coarse-graining.md), not at Born–Oppenheimer in [Part IX](../part09-dft/01-born-oppenheimer.md) — because every atomistic export Part VII consumes inherits the integrator, thermostat, and equilibration length this chapter establishes.
+
 ## Scene: thermometers in a nanoscale lab
 
 A nanowire segment in MD cannot feel the laboratory thermostat on the wall — only the algorithm enforcing 300 K at the boundaries. NVE, NVT, NPT: each name is a contract about what is held fixed while the atoms move. Verlet integration advances positions; a Nosé–Hoover chain adds noise and drag in calibrated amounts. Get the ensemble wrong and you tensile-test frozen Cu at 0 K while believing it is room temperature.
@@ -534,6 +552,8 @@ Verlet integrators and NVT/NPT ensembles make classical MD a controlled experime
 
 Part I's pattern returns at atomistic scale: state vector \(\{\mathbf{r}_i,\mathbf{p}_i\}\), force update from \(\nabla V\), timestep loop as repeated evaluation — now with ensemble averages replacing a single equilibrium solve. The NVE drift audit is the MD analogue of Part IV's \(h\)-refinement and Part IX's cutoff sweep: do not export any number upward until the integrator certificate passes.
 
-Return to the [prologue](../prologue/00-many-scales.md): **Act II — Heating** needs NVT at 300–600 K before Joule heating couples to FVM; **Act III — Pulling** needs NPT tension with audited \(\Delta t\) before moduli climb to Part IV; **Act V — Notch** needs a converged shear run before stress concentration feeds the multiscale handoff. Part VII's dislocations move on surfaces MD integrates; Part IV's elastic step uses moduli MD or DFT averaged over a polycrystal. [VIII.1](01-potentials-phase-space.md) defined the ink; this chapter proved the ink flows at laboratory temperature; [VIII.3](03-ab-initio-and-coarse-graining.md) is the **export chapter** — the rung where atomistics stops being a standalone movie and becomes input for coarser models, while naming what only [Part IX](../part09-dft/03-dft-workflows.md) can re-derive from \(\rho(\mathbf{r})\).
+Return to the [prologue](../prologue/00-many-scales.md): **Act II — Heating** needs NVT at 300–600 K before Joule heating couples to FVM; **Act III — Pulling** needs NPT tension with audited \(\Delta t\) before moduli climb to Part IV; **Act V — Notch** needs a converged shear run before stress concentration feeds the multiscale handoff. Part VII's dislocations move on surfaces MD integrates; Part IV's elastic step uses moduli MD or DFT averaged over a polycrystal. [VIII.1](01-potentials-phase-space.md) defined the ink; the [opening hinge above](#opening-hinge-viii1-to-viii2) is where 0 K foundation archives become finite-\(T\) trajectories; this chapter proved the ink flows at laboratory temperature; [VIII.3](03-ab-initio-and-coarse-graining.md) is the **export chapter** — the rung where atomistics stops being a standalone movie and becomes input for coarser models, while naming what only [Part IX](../part09-dft/03-dft-workflows.md) can re-derive from \(\rho(\mathbf{r})\).
+
+The [preface descent continuity hinges](../preface.md#descent-continuity-hinges) name [VIII.1 → VIII.2](01-potentials-phase-space.md#bridge) as the **potentials → ensembles** turn — the second stitch in the atomistic descent. The [VIII.1 opening hinge](01-potentials-phase-space.md#opening-hinge-vii3-to-viii1) grounded mobility on \(\nabla V\); the [opening hinge above](#opening-hinge-viii1-to-viii2) is where `cu_eam_a0.txt` becomes NPT-averaged moduli and `MD_NVT_shear_PartVIII` runs at \(T_w\).
 
 Turn the page when NVE drift is flat and NPT moduli match experiment in bulk but the EAM curve fails at the notch root — that is the signal to audit the potential against electronic structure.
