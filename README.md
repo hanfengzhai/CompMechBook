@@ -15,7 +15,7 @@ mdbook serve                 # http://localhost:3000
 
 Built HTML lands in `book/`.
 
-CI enforces narrative continuity: every numbered chapter and part opening carries **Scene**, **Bridge**, and **Lab act** sections; part openings also include **Story so far** recaps (`validate-narrative.sh`, `validate-story-so-far.sh`, `validate-bridges.sh`); Part III.4 and VI.4 carry **Intermission** hinges where analysis yields to assembly and ascent yields to descent (`validate-intermission.sh`); relative links are checked (`validate-links.sh`).
+CI enforces narrative continuity: every numbered chapter and part opening carries **Scene**, **Bridge**, and **Lab act** sections; part openings also include **Story so far** recaps (`validate-narrative.sh`, `validate-story-so-far.sh`, `validate-bridges.sh`); Part III.4 and VI.4 carry **Intermission** hinges where analysis yields to assembly and ascent yields to descent (`validate-intermission.sh`); relative links are checked (`validate-links.sh`); total word count must stay above 180k (`validate-word-count.sh`).
 
 ## Story and structure
 

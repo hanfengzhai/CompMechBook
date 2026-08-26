@@ -41,6 +41,7 @@ jobs:
           ./scripts/validate-intermission.sh
           ./scripts/validate-bridges.sh
           ./scripts/validate-links.sh
+          ./scripts/validate-word-count.sh
 
       - name: Test parse script fixtures
         run: ./scripts/test-fixtures.sh
