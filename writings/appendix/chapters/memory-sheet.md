@@ -194,7 +194,7 @@ flowchart LR
 
 When rows 8–9 feel disconnected from row 13 (Handshake 2 → 3), read them as **upstream pedigree**: row 8 sets \(T_w\); row 9 sets \(\alpha(T_w)\) and \(\tau_{\text{ph}}(T_w)\); row 13 sets \(\alpha(T_w)\Delta T\) on fixed grips — skip row 9 and row 13 inherits handbook \(\alpha\) beside a converged CHT loop.
 
-### Act VI baby picture (ME 412 coupling ladder)
+### Act VI baby picture (ME 412 coupling ladder) {#act-vi-baby-picture-me-412-coupling-ladder}
 
 The [Part IX opening](../part09-dft/00-opening.md#the-coupling-ladder-me-412-reunion) draws the full coupling ladder; this diagram is the **Act VI slice** — foundation pedigree in workflow order, then handshake orchestration:
 
@@ -220,7 +220,7 @@ flowchart TB
   H2 -.->|T_w to phonon lifetime| H4a
 ```
 
-When ascent grammar (Parts I–III) and descent pedigree (Parts VII–IX) feel like separate books, return here — row 16 is where the ME 412 coupling ladder reunites them in one afternoon. The [epilogue script audit trail](../epilogue/multiscale.md#script-audit-trail-parse-scripts-handshakes) names each parser behind Handshakes 1–4b; [`parse_multiscale_workflow.sh`](../../scripts/parse_multiscale_workflow.sh) runs them in dependency order.
+When ascent grammar (Parts I–III) and descent pedigree (Parts VII–IX) feel like separate books, return here — row 16 is where the ME 412 coupling ladder reunites them in one afternoon. The [epilogue script audit trail](../epilogue/multiscale.md#script-audit-trail-parse-scripts-handshakes) closing paragraph names each parser behind Handshakes 1–4b and cites `./scripts/test-fixtures.sh` when auditing `delta_T_from_handshake_2` and `target_T_K`; [`parse_multiscale_workflow.sh`](../../scripts/parse_multiscale_workflow.sh) runs them in dependency order. Return to the [preface row 16 skill checkpoint](../preface.md#skill-navigation-row-16) and [prologue reading compass row 16](../prologue/00-many-scales.md#reading-compass-two-clocks-on-one-wire) when the competence loop closes — this baby picture is the narrative stitch; those two rows are the competence-time mirrors named in the script audit trail opening sentence.
 
 ## One-line course summaries (ME 412 style)
 

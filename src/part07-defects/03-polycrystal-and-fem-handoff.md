@@ -242,7 +242,7 @@ flowchart TB
 3. Each macro increment: pass \(\bar{\boldsymbol{\varepsilon}}\) (or velocity gradient) to RVE; run OpenDiS substepping; return \(\bar{\boldsymbol{\sigma}}\).
 4. Compare to pure crystal plasticity: FE² should capture extra hardening from dislocation pile-ups at the notch.
 
-**Fixture comparison (notched wire, 50 N tension).** Archive results in `fe2_notch_comparison.dat` — the same three-row table the epilogue's [FE² worked example](../epilogue/multiscale.md#worked-example-fe-at-the-wire-notch-act-v--notch) and [`parse_fe2.sh`](../../scripts/parse_fe2.sh) consume on [`fixtures/fe2_notch_comparison.dat`](../../fixtures/fe2_notch_comparison.dat):
+**Fixture comparison (notched wire, 50 N tension).** **Upstream contract (Handshake 4b):** archive results in `fe2_notch_comparison.dat` with the three-row schema below — the same table the epilogue's [FE² worked example](../epilogue/multiscale.md#worked-example-fe-at-the-wire-notch-act-v--notch) and [`parse_fe2.sh`](../../scripts/parse_fe2.sh) consume on [`fixtures/fe2_notch_comparison.dat`](../../fixtures/fe2_notch_comparison.dat). Do not change column names or row order without updating both VII.3 and the epilogue pass/fail criteria.
 
 | Model | Peak \(\sigma_{\text{eq}}\) at root (MPa) | Plastic zone depth (µm) | CPU time (relative) |
 |-------|-------------------------------------------|-------------------------|---------------------|
