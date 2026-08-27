@@ -106,7 +106,7 @@ flowchart TB
   H4b --> MS[multiscale_export.yaml]
 ```
 
-Read Part IX as the **foundation rung** of this ladder — Born–Oppenheimer separation (Chapter 1), Kohn–Sham SCF (Chapter 2), reproducible QE workflows (Chapter 3). The epilogue completes it with Handshakes 1–4b and [`parse_multiscale_workflow.sh`](../../scripts/parse_multiscale_workflow.sh). When individual exports exist in separate folders but no orchestrated pedigree links them, return to [memory sheet row 16](../appendix/memory-sheet.md#continuity-hinges-master-map) or the [preface row 16 skill checkpoint](../preface.md#skill-navigation-row-16).
+Read Part IX as the **foundation rung** of this ladder — Born–Oppenheimer separation (Chapter 1), Kohn–Sham SCF (Chapter 2), reproducible QE workflows (Chapter 3). The epilogue completes it with Handshakes 1–4b and [`parse_multiscale_workflow.sh`](../../scripts/parse_multiscale_workflow.sh). When individual exports exist in separate folders but no orchestrated pedigree links them, return to [memory sheet row 16](../appendix/memory-sheet.md#continuity-hinges-master-map), the [memory sheet Act VI baby picture](../appendix/memory-sheet.md#act-vi-baby-picture-me-412-coupling-ladder) (subgraph node ↔ IX.3 pedigree row audit), or the [preface row 16 skill checkpoint](../preface.md#skill-navigation-row-16).
 
 | ME 412 schematic | Ascent / descent location | Coupling ladder role |
 |------------------|---------------------------|----------------------|
@@ -114,7 +114,7 @@ Read Part IX as the **foundation rung** of this ladder — Born–Oppenheimer se
 | [14](../part03-pdes/00-opening.md#the-variational-ladder-me-412-schematic-14) | Parts III–IV | Discretization: strong form → Galerkin FEM |
 | **Coupling ladder (row 16)** | Part IX → epilogue | Homogenization: DFT → MD → DDD → FEM with documented handshakes |
 
-**Baby picture:** Part IX supplies the electronic floor; the epilogue wires Handshakes 1–4b in dependency order — Handshake 2's \(\Delta T\) feeds Handshake 3, phonon lifetime at converged \(T_w\) feeds Handshake 4a drag — and archives `multiscale_export.yaml` beside the Act VI folder. The copper wire's valence electrons are the bottom rung; the load cell reading is the top.
+**Baby picture:** Part IX supplies the electronic floor; the epilogue wires Handshakes 1–4b in dependency order — Handshake 2's \(\Delta T\) feeds Handshake 3, phonon lifetime at converged \(T_w\) feeds Handshake 4a drag — and archives `multiscale_export.yaml` beside the Act VI folder. The copper wire's valence electrons are the bottom rung; the load cell reading is the top. The [memory sheet Act VI baby picture](../appendix/memory-sheet.md#act-vi-baby-picture-me-412-coupling-ladder) (subgraph node ↔ IX.3 pedigree row audit) and [continuity hinges row 16](../appendix/memory-sheet.md#continuity-hinges-master-map) are the narrative-time mirrors of this coupling ladder — return there when ascent grammar and descent pedigree feel like separate books.
 
 ## Representative schematics (DFT Coursework)
 
