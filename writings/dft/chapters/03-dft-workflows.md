@@ -604,7 +604,7 @@ Part IX closes the **downward** audit: fcc Cu has converged SCF logs, elastic co
 | Documented defect supercells and finite-size studies | FE² / concurrent handshakes when homogenization fails at the notch |
 | Reproducible QE/VASP/GPAW archive (MSE 5720 template) | Sequential vs. concurrent coupling; surrogate acceleration with stated tolerances |
 
-**Scale-boundary handshake (IX.3 → epilogue → full ladder).**
+**Scale-boundary handshake (IX.3 → epilogue → full ladder).** {#ix3-foundation-checklist}
 
 | DFT archive (this chapter) | Audit gate | Upstream consumer | Failure mode |
 |----------------------------|------------|-------------------|--------------|
@@ -615,7 +615,7 @@ Part IX closes the **downward** audit: fcc Cu has converged SCF logs, elastic co
 | GSF surface from slab calculations | Correct slip plane and k-mesh | Part VII partial dislocation laws | Wrong stacking sequence in slab |
 | `ph.x` phonon export | k-mesh convergence in DFPT | Part VIII VACF cross-check ([VIII.2](../part08-md/02-ensembles-integrators.md)) | Incomplete phonon DOS at high \(T\) |
 
-The six rows above are the **foundation checklist** for Act VI — the audit gates on every DFT archive before [`parse_dft_workflow.sh`](../../scripts/parse_dft_workflow.sh) emits `foundation_export.yaml`. The [memory sheet Act VI baby picture](../appendix/memory-sheet.md#act-vi-baby-picture-me-412-coupling-ladder) draws the same DFT → MD → DDD → FEM subgraph in the `act6` foundation slice — return there when this table feels like isolated rows without workflow order; the baby picture's orchestration slice (Handshakes 1–4b → `multiscale_export.yaml`) is the downstream half archived by [`parse_multiscale_workflow.sh`](../../scripts/parse_multiscale_workflow.sh).
+The six rows above are the **foundation checklist** for Act VI — the audit gates on every DFT archive before [`parse_dft_workflow.sh`](../../scripts/parse_dft_workflow.sh) emits `foundation_export.yaml`. The [memory sheet Act VI baby picture](../appendix/memory-sheet.md#act-vi-baby-picture-me-412-coupling-ladder) draws the same DFT → MD → DDD → FEM subgraph in the `act6` foundation slice — return there when this table feels like isolated rows without workflow order; the [memory sheet Act VI baby picture closing paragraph](../appendix/memory-sheet.md#act-vi-baby-picture-closing) is the narrative stitch when this scale-boundary handshake table feels like isolated audit gates without the foundation → orchestration diagram; the baby picture's orchestration slice (Handshakes 1–4b → `multiscale_export.yaml`) is the downstream half archived by [`parse_multiscale_workflow.sh`](../../scripts/parse_multiscale_workflow.sh).
 
 **Epilogue pedigree table (IX.3 → four handshakes).** {#ix3-epilogue-pedigree-table} The epilogue's multiscale afternoon chains four interfaces on the same copper wire. Every row below must trace to a file in the foundation folder archived by this chapter — the same habit as FEM mesh convergence studies in Part IV:
 
