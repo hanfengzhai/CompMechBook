@@ -4,9 +4,26 @@ Molecular dynamics (MD) treats atoms as classical particles interacting through 
 
 When continuum fields smear atoms into density, MD puts them back. When DFT tracks electrons explicitly, MD assumes nuclei move on a **potential energy surface** those electrons define. Part VIII lives in that middle ground: classical mechanics with quantum-informed forces.
 
+## Closing the arc from Part VII {#opening-hinge-vii3-to-viii1}
+
+If you have read linearly since the prologue, [VII.3](../part07-defects/03-polycrystal-and-fem-handoff.md) closed the mesoscale chapter with OpenDiS → DAMASK → polycrystal FEM export discipline — hardening laws, rate extrapolation, and the `mobility.yaml` row that cites `MD_NVT_shear_PartVIII` without yet showing where that file came from. Part VIII.1 does not repeat that pipeline; it **grounds** the parameters the pipeline borrowed on trust:
+
+| Part VII export (VII.3) | Part VIII.1 vocabulary |
+|-------------------------|------------------------|
+| Mobility \(M(\tau, T)\) in OpenDiS segment laws | Forces \(\mathbf{F}_i = -\nabla_{\mathbf{r}_i} V\) on a screw-core RVE |
+| Peierls threshold and core cutoff \(r_c\) | Core width \(w\) from relaxed atomic positions |
+| Stacking-fault energy \(\gamma_{\text{sf}}\) as input | Generalized stacking-fault surface from slab configuration |
+| Burgers vector \(b = a_0/\sqrt{2}\) in DDD yaml | EAM-minimized lattice parameter \(a_0\) |
+| Taylor \(\tau \propto \sqrt{\rho}\) hardening fit | Cohesive energy and elastic constants from bulk minimization |
+| `rate_handoff.txt` citing mobility at \(T_w\) | Hamiltonian \(H\) and phase space \((\{\mathbf{r}_i\}, \{\mathbf{p}_i\})\) at the same \(T_w\) |
+
+[VII.3's Bridge](../part07-defects/03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) named the **ink** behind dislocation lines — atomic bonding. The [Part VIII opening descent hinge](00-opening.md#descent-hinge-cores-mobility-and-tw-pedigree) closed the **temperature pedigree**: if Act II warmed the wire to \(T_w \approx 379\,\text{K}\) via [V.4 conjugate heat transfer](../part05-fvm/04-navier-stokes-cfd.md#lab-act-extension-two-domain-picard-loop-with-a-1d-fem-solid), every NVT shear that calibrates drag must read that temperature, not 300 K — archive `cht_export.yaml` beside `mobility_cu_screw_{T_w}K.yaml` before OpenDiS inherits the table. This chapter is where both contracts land in one place: **coordinates and forces** replace line singularities; **\(T_w\)** replaces handbook defaults before any trajectory is integrated.
+
+The wire's strength is a story written in dislocation lines; the lines borrow their mobility from phonons and cores the mesoscale cannot resolve. Part VIII.1 is the first page where those cores become **atoms on a potential surface** — still finite-dimensional in any simulation box, but now with the Born–Oppenheimer contract Part IX will derive from \(\rho(\mathbf{r})\). When Peierls stress or mobility tables feel like magic numbers, pause here — not at the integrator in [VIII.2](02-ensembles-integrators.md), not at the EAM fit in [VIII.3](03-ab-initio-and-coarse-graining.md) — because every later atomistic export inherits the potential and lattice parameter this chapter establishes.
+
 ## Scene: the notch under the microscope
 
-Part VII explained that a stress concentration at a notch root is where continuum elasticity hands off to dislocation nucleation. Zoom one more step. A molecular dynamics simulation boxes a few nanometers of copper around the notch tip: tens of thousands of fcc lattice sites, periodic or fixed boundaries on the sides, atoms pulled on the top layer to mimic the far-field tension from the tensile frame.
+[VII.3](../part07-defects/03-polycrystal-and-fem-handoff.md) explained that a stress concentration at a notch root is where offline crystal plasticity may fail and FE² embeds a DDD RVE — but even that RVE regularizes the core with a cutoff. Zoom one more step. A molecular dynamics simulation boxes a few nanometers of copper around the notch tip: tens of thousands of fcc lattice sites, periodic or fixed boundaries on the sides, atoms pulled on the top layer to mimic the far-field tension from the tensile frame.
 
 There is no \(\boldsymbol{\sigma}(\mathbf{x})\) field in the data — only positions \(\mathbf{r}_i(t)\) and forces \(\mathbf{F}_i = -\nabla_{\mathbf{r}_i} V\). The potential \(V\) might be an EAM fit to DFT energies from Part IX; the integrator might be velocity Verlet with a femtosecond timestep. Bonds at the tip stretch; a dislocation loop nucleates; the student watches plasticity begin as coordinated atomic motion, not as a yield surface parameter.
 
@@ -333,7 +350,7 @@ Part VII's [Bridge](../part07-defects/03-polycrystal-and-fem-handoff.md#bridge-t
 
 Return to the prologue's **Act IV — Hardening**: the load cell curve bent because lines moved; MD shows **how bonds stretch** at the core where Peach–Köhler forces are largest. Part I's pattern returns — state vector \(\{\mathbf{r}_i\}\), force vector from \(\nabla V\), timestep loop as repeated matrix–vector work — now with \(10^5\)–\(10^9\) atoms instead of \(N\) springs. The EAM minimization Lab act above is the **foundation archive** Part IX's DFT run will supersede — but only after [IX.3](../part09-dft/03-dft-workflows.md) documents cutoff and k-mesh convergence.
 
-The [preface descent continuity hinges](../preface.md#descent-continuity-hinges) name [VII.3 → VIII](../part07-defects/03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) as the **mesoscale → atomistic** turn — the first hinge in the scale descent. This chapter is where that hinge lands: mobility tables and core cutoffs from Part VII receive atomic coordinates and EAM forces. [Part VIII opening](../part08-md/00-opening.md#what-you-should-be-able-to-do-after-part-viii) lists the EAM minimization Lab act as the VIII.1 skill checkpoint before ensembles and integrators in VIII.2.
+The [preface descent continuity hinges](../preface.md#descent-continuity-hinges) name [VII.3 → VIII](../part07-defects/03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) as the **mesoscale → atomistic** turn — the first hinge in the scale descent. The [opening hinge above](#opening-hinge-vii3-to-viii1) is where that turn lands in chapter order: mobility tables and core cutoffs from Part VII receive atomic coordinates and EAM forces before [VIII.2](02-ensembles-integrators.md) samples phase space at lab temperature. The [VIII.2 opening hinge](02-ensembles-integrators.md#opening-hinge-viii1-to-viii2) is the second descent stitch within Part VIII — where 0 K minimization becomes NVT/NPT trajectories at \(T_w\) and `MD_NVT_shear_PartVIII` finally runs. [Part VIII opening](../part08-md/00-opening.md#what-you-should-be-able-to-do-after-part-viii) lists the EAM minimization Lab act as the VIII.1 skill checkpoint before ensembles and integrators in VIII.2.
 
 **Foundation pedigree row (VIII.1 archive).**
 

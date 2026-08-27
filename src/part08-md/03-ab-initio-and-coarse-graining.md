@@ -4,9 +4,28 @@ Classical molecular dynamics of Part VIII assumes nuclei move on a **potential e
 
 The copper wire at laboratory scale will never be a full DFT supercell. The wire at atomic scale **must** be described quantum mechanically when bonds rearrange, chemistry appears, or empirical potentials have never been validated. The art is knowing when ab initio MD is mandatory, when classical MD suffices, and how to compress atomistic trajectories into numbers the mesoscale accepts.
 
+## Closing the arc from Part VIII.2 {#opening-hinge-viii2-to-viii3}
+
+If you have read linearly since the prologue, [VIII.2](02-ensembles-integrators.md) closed with audited NVT/NPT trajectories — NVE drift flat, NPT moduli within 10% of DFT, `mobility_cu_screw_{T_w}K.yaml` from a converged shear run, VACF phonon peaks archived beside `cu.phonon/` — and a Bridge that named the **export chapter** without yet showing how those numbers climb to DDD yaml tables with DFT pedigree. Part VIII.3 does not re-derive Verlet or thermostats; it **compresses** trajectories into contracts the mesoscale accepts and **requests truth downward** when EAM fails:
+
+| Part VIII.2 export (dynamics audit) | Part VIII.3 vocabulary |
+|-------------------------------------|------------------------|
+| \(E\), \(\nu\) from NPT tension at \(T_w\) | EAM-fit validation against DFT \(C_{ij}\); handoff to Part IV/VI |
+| \(M(\tau, T_w)\) from NVT shear cell | Coarse-grained mobility table + [WHAM](#wham-part-vii-mobility-hinge-act-ii-temperature-pedigree) at \(T_w\) for OpenDiS |
+| VACF phonon DOS peaks | Cross-check against Part IX `ph.x`; quasiharmonic \(\alpha(T_w)\) audit |
+| NEB \(\Delta E_m\) for vacancy hop | KMC rate table; DFT barrier validation in Part IX |
+| MSD \(D(T)\) at high \(T\) | Arrhenius extrapolation to low \(T\); creep parameters for Part VI |
+| Stress–strain at notch-relevant strain rate | When EAM fails: BOMD, QM/MM, DeepMD on bond-breaking zone |
+| Reproducibility checklist (cutoff, \(\Delta t\), drift) | [EAM-fit audit Lab act](#lab-act-eam-fit-audit-before-the-notch-md-run-act-v--notch); [pedigree checklist](#pedigree-checklist-before-the-epilogue) before Part IX |
+| `cu.elastic/`, `cu.phonon/` foundation folders | Handoff table: MD export → DFT audit gate → Part VII consumer |
+
+[VIII.2's Bridge](02-ensembles-integrators.md#bridge) named the signal to turn the page: **NVE drift flat and NPT moduli match experiment in bulk but the EAM curve fails at the notch root**. The [Part VIII opening descent hinge](00-opening.md#descent-hinge-cores-mobility-and-tw-pedigree) closed the **temperature pedigree** for exports that climb upward: WHAM parallel-tempering ladders and phonon-lifetime interpolation for Handshake 4a must read \(T_w\) from `cht_export.yaml`, not 300 K defaults. This chapter is where both contracts land: **coarse-grained numbers replace raw trajectories**; **DFT pedigree replaces EAM on trust** before Part IX derives \(\rho(\mathbf{r})\).
+
+Classical MD at laboratory temperature is not the bottom of the ladder — it is the **compression layer** where atomistics stops being a standalone movie and becomes input for DDD, FEM, and eventually electronic-structure audit. Part VIII.2 proved the integrator and ensemble; Part VIII.3 is the first page where **exports have filenames, consumers, and failure modes** named in one handoff table. When EAM matches bulk moduli but no one can cite the DFT input deck, pause here — not at Born–Oppenheimer in [Part IX](../part09-dft/01-born-oppenheimer.md) — because the [pedigree checklist](#pedigree-checklist-before-the-epilogue) below is the contract Part IX will enforce row by row.
+
 ## Scene: when EAM is not enough
 
-Most MD of copper uses an EAM potential fit once to DFT data and then trusted for millions of timesteps. At a crack tip where bonds stretch until rupture, or at a surface where oxidation nucleates, that trust may fail. Born–Oppenheimer MD recomputes forces from DFT each step; coarse-graining distills those trajectories into tables the mesoscale can afford. The wire's fracture strain is either validated at this scale or assumed.
+[VIII.2](02-ensembles-integrators.md) proved the EAM potential flows at \(T_w\) in bulk — moduli, mobility, phonon peaks audited. Most MD of copper uses that potential fit once to DFT data and then trusted for millions of timesteps. At a crack tip where bonds stretch until rupture, or at a surface where oxidation nucleates, that trust may fail. Born–Oppenheimer MD recomputes forces from DFT each step; coarse-graining distills those trajectories into tables the mesoscale can afford. The wire's fracture strain is either validated at this scale or assumed.
 
 ## Born–Oppenheimer molecular dynamics
 
@@ -539,7 +558,7 @@ The EAM-fit checklist and handoff table above already named the quantities MD ex
 
 Part VIII assumed Born–Oppenheimer surfaces and fit potentials to match these numbers. Part IX is the **audit chapter** — the same copper cell Part VIII vibrated, now solved for \(\rho(\mathbf{r})\) before the epilogue climbs back up the ladder. See also the [two clocks note](../part08-md/00-opening.md#two-clocks-reading-order-vs-foundation-pedigree): chapter order descends VII → VIII → IX; workflow order builds input decks IX → VIII → VII → IV.
 
-Return to the [prologue](../prologue/00-many-scales.md): **Act V — Notch** is where the EAM-fit audit Lab act above must pass before million-atom nucleation runs; **Act VI — Foundation** is where someone chose Young's modulus, stacking-fault energy, and a mobility table before any wire-scale FEM run — parameters whose pedigree this chapter traced to EAM fits and coarse-grained exports. Part IX re-derives each from first principles so the ladder has a floor, not folklore. The [Part IX opening](../part09-dft/00-opening.md) frames that descent explicitly; [IX.1](../part09-dft/01-born-oppenheimer.md) separates fast electrons from slow nuclei before the Kohn–Sham machinery begins.
+Return to the [prologue](../prologue/00-many-scales.md): **Act V — Notch** is where the EAM-fit audit Lab act above must pass before million-atom nucleation runs; **Act VI — Foundation** is where someone chose Young's modulus, stacking-fault energy, and a mobility table before any wire-scale FEM run — parameters whose pedigree this chapter traced to EAM fits and coarse-grained exports. Part IX re-derives each from first principles so the ladder has a floor, not folklore. The [Part IX opening](../part09-dft/00-opening.md) frames that descent explicitly; the [VIII.3 opening hinge above](#opening-hinge-viii2-to-viii3) is where [VIII.2's](02-ensembles-integrators.md#bridge) dynamics audit becomes the pedigree checklist Part IX enforces; [IX.1](../part09-dft/01-born-oppenheimer.md) separates fast electrons from slow nuclei before the Kohn–Sham machinery begins.
 
 ### Pedigree checklist before the epilogue
 

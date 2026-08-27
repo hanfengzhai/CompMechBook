@@ -10,9 +10,9 @@ Three chapters cover potentials and phase space, ensembles and integrators, then
 
 | Chapter | Wire story beat | Core object | Handoff |
 |---------|-----------------|-------------|---------|
-| [VIII.1](01-potentials-phase-space.md) | Copper lattice as \(N\) interacting particles | Lennard-Jones, EAM, periodic boundaries, cutoff | Thermostats and timestep → integrators in VIII.2 |
-| [VIII.2](02-ensembles-integrators.md) | NVT equilibration; NPT elastic response | Verlet, Nose–Hoover, stress–strain from MD | Potential fitting and AIMD → coarse-graining in VIII.3 |
-| [VIII.3](03-ab-initio-and-coarse-graining.md) | EAM fit exports \(\gamma_{\text{sf}}\), \(E_{\text{coh}}\) | LAMMPS workflows, DeepMD, handoff tables | [Bridge to Part IX](03-ab-initio-and-coarse-graining.md#bridge-to-part-ix) |
+| [VIII.1](01-potentials-phase-space.md) | Copper lattice as \(N\) interacting particles | Lennard-Jones, EAM, periodic boundaries, cutoff | [Opening hinge from VII.3](01-potentials-phase-space.md#opening-hinge-vii3-to-viii1); thermostats and timestep → integrators in VIII.2 |
+| [VIII.2](02-ensembles-integrators.md) | NVT equilibration; NPT elastic response | Verlet, Nose–Hoover, stress–strain from MD | [Opening hinge from VIII.1](02-ensembles-integrators.md#opening-hinge-viii1-to-viii2); potential fitting and AIMD → coarse-graining in VIII.3 |
+| [VIII.3](03-ab-initio-and-coarse-graining.md) | EAM fit exports \(\gamma_{\text{sf}}\), \(E_{\text{coh}}\) | LAMMPS workflows, DeepMD, handoff tables | [Opening hinge from VIII.2](03-ab-initio-and-coarse-graining.md#opening-hinge-viii2-to-viii3); [Bridge to Part IX](03-ab-initio-and-coarse-graining.md#bridge-to-part-ix) |
 
 Read in order. Each chapter ends with a **Bridge** that states why the next chapter must exist; running MD without understanding ensembles is energy drift disguised as physics; fitting EAM without DFT anchors is multiscale folklore.
 
@@ -119,7 +119,7 @@ MD closes the gap at **cores, grain boundaries, and fracture surfaces** — regi
 
 ## Closing the arc from Part VII
 
-If you have read linearly since the prologue, Part VII's closing checkpoint exported hardening laws and link statistics from dislocation dynamics to crystal plasticity FEM. Part VIII is the next **descent** — where line singularities become vibrating nuclei:
+If you have read linearly since the prologue, Part VII's closing checkpoint exported hardening laws and link statistics from dislocation dynamics to crystal plasticity FEM. Part VIII is the next **descent** — where line singularities become vibrating nuclei. The [VIII.1 opening hinge](01-potentials-phase-space.md#opening-hinge-vii3-to-viii1) is the first numbered chapter where that descent becomes explicit grammar — phase space, Hamiltonian, and EAM forces replacing mobility yaml rows that cited Part VIII without yet showing the atomic box:
 
 | Part VII (dislocations on the wire) | Part VIII (atoms on the wire) |
 |-------------------------------------|-------------------------------|
@@ -127,9 +127,9 @@ If you have read linearly since the prologue, Part VII's closing checkpoint expo
 | Mobility tables from experiments or fits | Mobility from MD shear tests on cores |
 | Stacking-fault energy as input parameter | \(\gamma_{\text{sf}}\) from relaxed faulted configurations |
 | Taylor \(\sqrt{\rho}\) hardening law | Cohesive energy and elastic constants from fluctuations |
-| [VII.3 Bridge](../part07-defects/03-polycrystal-and-fem-handoff.md) exports to FEM | [VIII.3](03-ab-initio-and-coarse-graining.md) fits EAM upward |
+| [VII.3 Bridge](../part07-defects/03-polycrystal-and-fem-handoff.md) exports to FEM | [VIII.1 opening hinge](01-potentials-phase-space.md#opening-hinge-vii3-to-viii1) grounds mobility on \(\nabla V\); [VIII.3](03-ab-initio-and-coarse-graining.md) fits EAM upward |
 
-Part VII regularized dislocation cores with a cutoff radius and mobility law; Part VIII **resolves** those cores as atoms on an interatomic potential — still finite-dimensional in any simulation box, but now with bond breaking, thermal statistics, and phonon drag that no line model captures alone. The copper wire's notch tip (prologue Act V) and grain boundaries (VII.3 polycrystal handoff) are where continuum and DDD models need atomic witnesses. Part IX will derive the potential \(V(\{\mathbf{r}_i\})\) MD assumes; Part VIII shows how LAMMPS workflows, thermostats, and coarse-graining make that assumption computable and exportable.
+Part VII regularized dislocation cores with a cutoff radius and mobility law; Part VIII **resolves** those cores as atoms on an interatomic potential — still finite-dimensional in any simulation box, but now with bond breaking, thermal statistics, and phonon drag that no line model captures alone. Read the [VIII.1 opening hinge](01-potentials-phase-space.md#opening-hinge-vii3-to-viii1) when [VII.3's Bridge](../part07-defects/03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) named the ink but the first MD chapter still feels like a new subject — the same copper wire, the same `mobility.yaml` row, now with coordinates and forces. The copper wire's notch tip (prologue Act V) and grain boundaries (VII.3 polycrystal handoff) are where continuum and DDD models need atomic witnesses. Part IX will derive the potential \(V(\{\mathbf{r}_i\})\) MD assumes; Part VIII shows how LAMMPS workflows, thermostats, and coarse-graining make that assumption computable and exportable.
 
 ## Closing the arc from Part VI
 
