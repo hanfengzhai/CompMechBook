@@ -242,6 +242,16 @@ flowchart TB
 3. Each macro increment: pass \(\bar{\boldsymbol{\varepsilon}}\) (or velocity gradient) to RVE; run OpenDiS substepping; return \(\bar{\boldsymbol{\sigma}}\).
 4. Compare to pure crystal plasticity: FE² should capture extra hardening from dislocation pile-ups at the notch.
 
+**Fixture comparison (notched wire, 50 N tension).** Archive results in `fe2_notch_comparison.dat` — the same three-row table the epilogue's [FE² worked example](../epilogue/multiscale.md#worked-example-fe-at-the-wire-notch-act-v--notch) and [`parse_fe2.sh`](../../scripts/parse_fe2.sh) consume on [`fixtures/fe2_notch_comparison.dat`](../../fixtures/fe2_notch_comparison.dat):
+
+| Model | Peak \(\sigma_{\text{eq}}\) at root (MPa) | Plastic zone depth (µm) | CPU time (relative) |
+|-------|-------------------------------------------|-------------------------|---------------------|
+| Scalar \(J_2\) + Handshake 4a | 198 | 120 | 1× |
+| Crystal plasticity (DAMASK) | 215 | 145 | 3× |
+| FE² (48 active Gauss points) | 238 | 185 | 85× |
+
+[`parse_fe2.sh`](../../scripts/parse_fe2.sh) reports **10.7% uplift** of FE² over crystal plasticity (215 → 238 MPa) and flags `fe2_enrichment_required = yes` when uplift exceeds 10% — matching the epilogue [sensitivity derivation worksheet](../epilogue/multiscale.md#worked-example-sensitivity-ranks) (Handshake 4b column). When FE² and crystal plasticity agree within 5%, offline calibration from Steps 1–3 suffices; when uplift exceeds 10%, export RVE-averaged back stress or activate concurrent DDD at the root.
+
 Cost scales with `(# active Gauss points) × (DDD timesteps per macro step)`. For production wire design, offline calibration (Steps 1–3) remains default; FE² validates whether the calibrated law is safe near stress concentrators. This section is the **upstream half** of epilogue [Handshake 4b](../epilogue/multiscale.md#4b--when-continuum-fails-at-the-notch-md-subdomain-act-v--notch) and [memory sheet row 15](../appendix/memory-sheet.md#continuity-hinges-master-map); the epilogue's [FE² worked example](../epilogue/multiscale.md#worked-example-fe-at-the-wire-notch-act-v--notch) quantifies the 10–15% root-stress uplift on fixture data; the [sensitivity derivation worksheet](../epilogue/multiscale.md#worked-example-sensitivity-ranks) (Handshake 4b column) ranks when FE² matters versus when [preface row 14](../preface.md#skill-navigation-row-14) offline calibration suffices. Complete [preface row 15](../preface.md#skill-navigation-row-15) after row 14 — bulk \(\tau_{\text{lab}}\) from 4a is necessary but not sufficient for notch-root localization. Run [`parse_fe2.sh`](../../scripts/parse_fe2.sh) on `fe2_notch_comparison.dat` before trusting the notch-root answer.
 
 ### Checklist before trusting the handoff
