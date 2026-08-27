@@ -615,6 +615,8 @@ Part IX closes the **downward** audit: fcc Cu has converged SCF logs, elastic co
 | GSF surface from slab calculations | Correct slip plane and k-mesh | Part VII partial dislocation laws | Wrong stacking sequence in slab |
 | `ph.x` phonon export | k-mesh convergence in DFPT | Part VIII VACF cross-check ([VIII.2](../part08-md/02-ensembles-integrators.md)) | Incomplete phonon DOS at high \(T\) |
 
+The six rows above are the **foundation checklist** for Act VI — the audit gates on every DFT archive before [`parse_dft_workflow.sh`](../../scripts/parse_dft_workflow.sh) emits `foundation_export.yaml`. The [memory sheet Act VI baby picture](../appendix/memory-sheet.md#act-vi-baby-picture-me-412-coupling-ladder) draws the same DFT → MD → DDD → FEM subgraph in the `act6` foundation slice — return there when this table feels like isolated rows without workflow order; the baby picture's orchestration slice (Handshakes 1–4b → `multiscale_export.yaml`) is the downstream half archived by [`parse_multiscale_workflow.sh`](../../scripts/parse_multiscale_workflow.sh).
+
 **Epilogue pedigree table (IX.3 → four handshakes).** The epilogue's multiscale afternoon chains four interfaces on the same copper wire. Every row below must trace to a file in the foundation folder archived by this chapter — the same habit as FEM mesh convergence studies in Part IV:
 
 | Epilogue handshake | DFT export (this chapter) | Archive artifact | Upstream part that consumes it |
