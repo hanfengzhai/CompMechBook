@@ -220,7 +220,7 @@ flowchart TB
   H2 -.->|T_w to phonon lifetime| H4a
 ```
 
-When ascent grammar (Parts I–III) and descent pedigree (Parts VII–IX) feel like separate books, return here — row 16 is where the ME 412 coupling ladder reunites them in one afternoon. The [epilogue script audit trail](../epilogue/multiscale.md#script-audit-trail-parse-scripts-handshakes) closing paragraph names each parser behind Handshakes 1–4b and cites `./scripts/test-fixtures.sh` when auditing `delta_T_from_handshake_2` and `target_T_K`; [`parse_multiscale_workflow.sh`](../../scripts/parse_multiscale_workflow.sh) runs them in dependency order. Return to the [preface epilogue continuity hinges](../preface.md#epilogue-continuity-hinges) (Act VI orchestration row), the [preface row 16 skill checkpoint](../preface.md#skill-navigation-row-16), the [prologue row 16 preview](../prologue/00-many-scales.md#what-you-should-be-able-to-do-after-the-prologue), and [prologue reading compass row 16](../prologue/00-many-scales.md#reading-compass-two-clocks-on-one-wire) when the competence loop closes — this baby picture is the narrative stitch; the epilogue hinges table and those three rows are the competence-time mirrors named in the script audit trail opening sentence.
+When ascent grammar (Parts I–III) and descent pedigree (Parts VII–IX) feel like separate books, return here — row 16 is where the ME 412 coupling ladder reunites them in one afternoon. The [epilogue script audit trail](../epilogue/multiscale.md#script-audit-trail-parse-scripts-handshakes) closing paragraph names each parser behind Handshakes 1–4b and cites `./scripts/test-fixtures.sh` when auditing `delta_T_from_handshake_2` and `target_T_K`; [`parse_multiscale_workflow.sh`](../../scripts/parse_multiscale_workflow.sh) runs them in dependency order. Return to the [preface epilogue continuity hinges](../preface.md#epilogue-continuity-hinges) (Act VI orchestration row), the [preface row 16 skill checkpoint](../preface.md#skill-navigation-row-16), the [prologue row 16 preview](../prologue/00-many-scales.md#what-you-should-be-able-to-do-after-the-prologue), and [prologue reading compass row 16](../prologue/00-many-scales.md#reading-compass-two-clocks-on-one-wire) when the competence loop closes — this baby picture is the narrative stitch; the epilogue hinges table and those three rows are the competence-time mirrors named in the script audit trail opening sentence. The [epilogue Act VI foundation table row](../epilogue/multiscale.md#lab-act-reunion-six-acts-one-afternoon) and [workflow exam Act VI row](../epilogue/multiscale.md#what-you-should-be-able-to-do-after-the-book) are the workflow-time mirrors; the [one-page copper wire recap](#one-page-copper-wire-recap) Act VI column compresses the same foundation → orchestration chain for index-card review.
 
 ## One-line course summaries (ME 412 style)
 
@@ -236,7 +236,7 @@ The [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/note
 
 When a chapter feels abstract, pick the row that matches your reading position and read it aloud — it is the plot spine in one breath.
 
-## One-page copper wire recap
+## One-page copper wire recap {#one-page-copper-wire-recap}
 
 | Act | Lab beat | Part | State on the wire | Upward export |
 |-----|----------|------|-------------------|---------------|
@@ -245,9 +245,9 @@ When a chapter feels abstract, pick the row that matches your reading position a
 | III | Pulling | II–IV, VI | \(u(x)\), \(\boldsymbol{\sigma}\) | Weak form → assembly |
 | IV | Hardening | VII | Dislocation density \(\rho\) | \(\tau(\gamma)\) for FEM |
 | V | Notch | VI, VIII | Stress concentrator | MD traction handoff |
-| VI | Foundation | IX → VIII → VII → IV | \(\rho(\mathbf{r})\), then potentials | \(E_{\text{coh}}\), \(C_{ij}\), pedigree |
+| VI | Foundation | IX → VIII → VII → IV | \(\rho(\mathbf{r})\), then potentials | \(E_{\text{coh}}\), \(C_{ij}\), [`multiscale_export.yaml`](../../scripts/parse_multiscale_workflow.sh) pedigree |
 
-Read the [prologue](../prologue/00-many-scales.md#the-experiment-as-plot) for the six-act table in narrative form; read the [epilogue](../epilogue/multiscale.md) for how to wire the acts into one afternoon workflow.
+Read the [prologue](../prologue/00-many-scales.md#the-experiment-as-plot) for the six-act table in narrative form; read the [epilogue Act VI foundation table row](../epilogue/multiscale.md#lab-act-reunion-six-acts-one-afternoon) for the foundation → handshake workflow and the [workflow exam Act VI row](../epilogue/multiscale.md#what-you-should-be-able-to-do-after-the-book) for the competence-time checklist. Act VI's upward export is not a single modulus — it is the orchestrated pedigree file linking Handshakes 1–4b; the [Act VI baby picture](#act-vi-baby-picture-me-412-coupling-ladder) draws that chain; [preface row 16](../preface.md#skill-navigation-row-16) closes the competence loop when individual exports exist but no `multiscale_export.yaml` links them.
 
 ## Handshake interface checklist
 
