@@ -103,6 +103,25 @@ The [preface](../preface.md) documents opening, ascent, midpoint, descent, and e
 | 15 | Epilogue (Handshake 4b) | [VII.3 Step 4 FE²](../part07-defects/03-polycrystal-and-fem-handoff.md#step-4--when-offline-calibration-fails-fe-at-the-notch), [FE² worked example](../epilogue/multiscale.md#worked-example-fe-at-the-wire-notch-act-v--notch), [preface row 15 three-way audit](../preface.md#skill-navigation-row-15), [row 15 closing loop](../epilogue/multiscale.md#row-15-closing-loop), [row 15 baby picture](memory-sheet.md#row-15-baby-picture-handshake-4b) | Bulk hardening from 4a looks right but notch root under-predicts peak stress; 4a sets bulk \(\tau_{\text{lab}}\), Handshake 4b asks whether scalar \(H\) suffices at \(K_t \approx 3\) |
 | 16 | Epilogue (Act VI orchestration) | [Parameter pedigree path](#parameter-pedigree-path-act-vi-reading-order), [preface row 16](../preface.md#skill-navigation-row-16) | Individual exports exist but no orchestrated `multiscale_export.yaml`; IX → IV pedigree before grips close |
 | 17 | Whole book (continuous read-through) | [Continuous read-through guide](#continuous-read-through-guide) · [preface row 17](../preface.md#skill-navigation-row-17) · [memory sheet row 17 baby picture](memory-sheet.md#row-17-baby-picture-continuous-read-through) | Chapters feel choppy despite Bridges — trust Scene/Bridge rhythm; pause only at three ascent/descent gates |
+| 18 | Part openings I.0–IX.0 | [Part-opening plot spine index](#part-opening-plot-spine-index-row-18) · [preface row 18](../preface.md#skill-navigation-row-18) · [memory sheet row 18 baby picture](memory-sheet.md#row-18-baby-picture-part-opening-plot-spine) | A part opening feels like a new syllabus — read its [plot spine one line](../part01-linear-algebra/00-opening.md#plot-spine-one-line) aloud |
+
+## Part-opening plot spine index (row 18) {#part-opening-plot-spine-index-row-18}
+
+Each part opening carries a **plot spine (one line)** section — a single sentence naming that part's role in Acts I–III (grammar, discretization, descent). Read aloud when symbols change faster than the specimen; the [chapter roadmap](#chapter-roadmap-one-continuous-arc) expands every row below into chapter-level beats.
+
+| Part | Act | [Plot spine one line](../part01-linear-algebra/00-opening.md#plot-spine-one-line) | Sentence (read aloud) |
+|------|-----|------------------|----------------------|
+| [I.0](../part01-linear-algebra/00-opening.md#plot-spine-one-line) | Act I — Grammar, rung 1 | Spring chain; \(\mathbf{K}\mathbf{u}=\mathbf{f}\) before fields |
+| [II.0](../part02-functional-analysis/00-opening.md#plot-spine-one-line) | Act I — Grammar, rung 2 | Fields in \(H^1\), \(L^2\); Schematic 14 middle rungs |
+| [III.0](../part03-pdes/00-opening.md#plot-spine-one-line) | Act I — Grammar, rung 3 | Weak PDEs on a domain; existence climbs Schematic 14 |
+| [IV.0](../part04-fem/00-opening.md#plot-spine-one-line) | Act II — Discretization, rung 1 | Galerkin assembly; Schematic 14 convergence half |
+| [V.0](../part05-fvm/00-opening.md#plot-spine-one-line) | Act II — Discretization, rung 2 | Flux balance in air; conservation ladder twin |
+| [VI.0](../part06-continuum/00-opening.md#plot-spine-one-line) | Act II — Continuum reunion | Cauchy stress reunites FEM and FVM; ascent ends |
+| [VII.0](../part07-defects/00-opening.md#plot-spine-one-line) | Act III — Descent, rung 1 | Dislocation forest; hardening from line motion |
+| [VIII.0](../part08-md/00-opening.md#plot-spine-one-line) | Act III — Descent, rung 2 | Atoms at cores; potentials on trust until IX |
+| [IX.0](../part09-dft/00-opening.md#plot-spine-one-line) | Act III — Descent, rung 3 | Electron density; SCF pedigree; finest rung |
+
+**Baby picture:** the [preface plot spine](../preface.md#plot-spine-how-the-story-is-told) names four acts; this table names **nine rungs** — one sentence per part opening. Row 17 tells you to read straight through; row 18 tells you what each part opening should **sound like** when the plot is continuous. When a part feels disconnected, open only its plot-spine line before diving into skill rows 0–16.
 
 ## Continuous read-through guide {#continuous-read-through-guide}
 
@@ -160,47 +179,47 @@ Read in order for the full narrative. Each row is one chapter; **Bridge** sectio
 |---|---------|----------------------------|
 | — | [Preface](../preface.md) | Why one book; copper-wire reading map |
 | — | [Prologue](../prologue/00-many-scales.md) | Same copper wire at every scale; the ladder |
-| I.0 | [Linear algebra opening](../part01-linear-algebra/00-opening.md) | Finite-dimensional grammar shared by all codes |
+| I.0 | [Linear algebra opening](../part01-linear-algebra/00-opening.md#plot-spine-one-line) | Finite-dimensional grammar shared by all codes |
 | I.1 | [Vectors and matrices](../part01-linear-algebra/01-vectors-matrices.md) | \(\mathbf{K}\mathbf{u}=\mathbf{f}\) on the wire as springs |
 | I.2 | [Linear maps](../part01-linear-algebra/02-linear-maps.md) | Bases, change of coordinates, stiffness assembly |
 | I.3 | [Eigenvalues](../part01-linear-algebra/03-eigenvalues.md) | Vibration modes that decouple complexity |
 | I.4 | [Toward infinity](../part01-linear-algebra/04-toward-infinity.md) | \(N\to\infty\); functions, operators, \(L^2\) |
-| II.0 | [Functional analysis opening](../part02-functional-analysis/00-opening.md) | Concept map (ME 412 template) |
+| II.0 | [Functional analysis opening](../part02-functional-analysis/00-opening.md#plot-spine-one-line) | Concept map (ME 412 template) |
 | II.1 | [Motivation](../part02-functional-analysis/01-motivation.md) | Why weak forms; corners and kinks |
 | II.2 | [Normed spaces](../part02-functional-analysis/02-normed-spaces.md) | Completeness; energy norms |
 | II.3 | [Hilbert spaces](../part02-functional-analysis/03-hilbert-spaces.md) | Inner products; orthogonality of modes |
 | II.4 | [Operators and duality](../part02-functional-analysis/04-operators-duality.md) | Loads as functionals; adjoints |
 | II.5 | [Spectral theorem](../part02-functional-analysis/05-spectral-theorem.md) | Compactness; Galerkin convergence |
-| III.0 | [PDE opening](../part03-pdes/00-opening.md) | Fields on domains |
+| III.0 | [PDE opening](../part03-pdes/00-opening.md#plot-spine-one-line) | Fields on domains |
 | III.1 | [Strong form](../part03-pdes/01-strong-form.md) | Classical PDEs and their limits |
 | III.2 | [Weak form](../part03-pdes/02-weak-form.md) | Test functions; integration by parts |
 | III.3 | [Sobolev spaces](../part03-pdes/03-sobolev-spaces.md) | Regularity for FEM |
 | III.4 | [Energy methods](../part03-pdes/04-energy-methods.md) | Minimum principles; Lax–Milgram |
-| IV.0 | [FEM opening](../part04-fem/00-opening.md) | Galerkin as projection |
+| IV.0 | [FEM opening](../part04-fem/00-opening.md#plot-spine-one-line) | Galerkin as projection |
 | IV.1 | [Weighted residuals](../part04-fem/01-weighted-residuals.md) | From PDE to discrete system |
 | IV.2 | [Galerkin assembly](../part04-fem/02-galerkin-assembly.md) | Local-to-global \(\mathbf{K}\) |
 | IV.3 | [Elements and quadrature](../part04-fem/03-elements-quadrature.md) | Shape functions; patch tests |
 | IV.4 | [Poisson to elasticity](../part04-fem/04-poisson-to-elasticity.md) | Vector problems on the wire |
 | IV.5 | [Convergence](../part04-fem/05-convergence.md) | Error norms; **two doors** to Parts V or VI |
-| V.0 | [FVM opening](../part05-fvm/00-opening.md) | Flux balance philosophy |
+| V.0 | [FVM opening](../part05-fvm/00-opening.md#plot-spine-one-line) | Flux balance philosophy |
 | V.1 | [Conservation integral](../part05-fvm/01-conservation-integral.md) | Control volumes |
 | V.2 | [FVM in 1D](../part05-fvm/02-fvm-1d.md) | Upwind advection (worked Python) |
 | V.3 | [Fluxes and Riemann](../part05-fvm/03-fluxes-riemann.md) | Shock capturing |
 | V.4 | [Navier–Stokes and CFD](../part05-fvm/04-navier-stokes-cfd.md) | SIMPLE; conjugate heat transfer |
-| VI.0 | [Continuum opening](../part06-continuum/00-opening.md) | Shared stress–strain vocabulary |
+| VI.0 | [Continuum opening](../part06-continuum/00-opening.md#plot-spine-one-line) | Shared stress–strain vocabulary |
 | VI.1 | [Kinematics](../part06-continuum/01-kinematics.md) | \(\mathbf{F}\), strain measures |
 | VI.2 | [Stress and balance](../part06-continuum/02-stress-balance.md) | Cauchy stress; conservation laws |
 | VI.3 | [Variational elasticity](../part06-continuum/03-variational-elasticity.md) | Virtual work; hyperelasticity |
 | VI.4 | [Nonlinear plasticity preview](../part06-continuum/04-nonlinear-plasticity-preview.md) | When continuum fields fail |
-| VII.0 | [Defects opening](../part07-defects/00-opening.md) | Singularities and mesoscale |
+| VII.0 | [Defects opening](../part07-defects/00-opening.md#plot-spine-one-line) | Singularities and mesoscale |
 | VII.1 | [Defect taxonomy](../part07-defects/01-defect-taxonomy.md) | Point, line, surface defects |
 | VII.2 | [Dislocation dynamics](../part07-defects/02-dislocation-dynamics.md) | DDD; Taylor hardening |
 | VII.3 | [Polycrystal handoff](../part07-defects/03-polycrystal-and-fem-handoff.md) | OpenDiS→DAMASK→FEM |
-| VIII.0 | [MD opening](../part08-md/00-opening.md) | Atoms when fields break down |
+| VIII.0 | [MD opening](../part08-md/00-opening.md#plot-spine-one-line) | Atoms when fields break down |
 | VIII.1 | [Potentials](../part08-md/01-potentials-phase-space.md) | EAM; phase space |
 | VIII.2 | [Ensembles and integrators](../part08-md/02-ensembles-integrators.md) | LAMMPS workflows |
 | VIII.3 | [Ab initio MD](../part08-md/03-ab-initio-and-coarse-graining.md) | DeepMD; coarse-graining |
-| IX.0 | [DFT opening](../part09-dft/00-opening.md) | Electrons at the finest rung |
+| IX.0 | [DFT opening](../part09-dft/00-opening.md#plot-spine-one-line) | Electrons at the finest rung |
 | IX.1 | [Born–Oppenheimer](../part09-dft/01-born-oppenheimer.md) | Separating electrons and nuclei |
 | IX.2 | [Kohn–Sham](../part09-dft/02-kohn-sham.md) | SCF cycle; convergence |
 | IX.3 | [DFT workflows](../part09-dft/03-dft-workflows.md) | Quantum ESPRESSO on Cu |

@@ -6,6 +6,12 @@ This part steps down one rung on the ladder. We classify defects, then follow di
 
 Three chapters cover defect taxonomy, dislocation dynamics, and the handoff to crystal plasticity and FEM. The layout follows the **Defects Notes** in [`writings/defects/`](../../writings/defects/): numbered chapters with **Bridge** sections, worked examples tied to the copper wire, and explicit upward links to Part VI (continuum) and downward requests to Part VIII (MD).
 
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **Act III — Descent, rung 1:** The load cell knee was phenomenology in Part VI; Part VII simulates the dislocation forest cold drawing stored — hardening becomes line motion, not fitted \(H\).
+
+When yield surfaces feel like curve-fitting, read the sentence above aloud — it is the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc) role for Part VII in one breath. See the [part-opening plot spine index](../appendix/sources.md#part-opening-plot-spine-index-row-18) for all nine rungs; the [descent in one paragraph](#the-descent-in-one-paragraph) below unpacks the same beat.
+
 ## Chapter guide
 
 | Chapter | Wire story beat | Core object | Handoff |

@@ -6,6 +6,12 @@ Density functional theory makes the ground-state energy a functional of the elec
 
 Three chapters cover Born–Oppenheimer and the Hohenberg–Kohn framework, Kohn–Sham equations and convergence practice, and reproducible Quantum ESPRESSO workflows that export numbers to MD, DDD, and continuum models. The layout follows the **DFT Notes** in [`writings/dft/`](../../writings/dft/): numbered chapters with **Bridge** sections leading to the epilogue's multiscale coupling story.
 
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **Act III — Descent, rung 3:** Every EAM parameter hides electron density; Part IX solves Kohn–Sham on fcc Cu and exports moduli with SCF pedigree — the finest rung before [Act IV couples every handshake](../epilogue/multiscale.md).
+
+When EAM potentials match bulk moduli but no DFT deck is cited, read the sentence above aloud — it is the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc) role for Part IX in one breath. See the [part-opening plot spine index](../appendix/sources.md#part-opening-plot-spine-index-row-18) for all nine rungs; the [coupling ladder](#the-coupling-ladder-me-412-reunion) below reunites ascent and descent in workflow time.
+
 ## Chapter guide
 
 | Chapter | Wire story beat | Core object | Handoff |

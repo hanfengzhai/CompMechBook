@@ -6,6 +6,12 @@ The copper wire from the prologue enters this part as a domain with boundary con
 
 The layout follows the **PDE Notes** in [`writings/pde/`](../../writings/pde/): four numbered chapters, mechanics examples throughout, and a **Bridge** at the end of each chapter pointing forward. Read them in order; they hand off directly to finite elements (Part IV) and finite volumes (Part V).
 
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **Act I — Grammar, rung 3:** The wire becomes a domain with boundary conditions; Part III rewrites heat and elasticity as weak PDEs testable on a mesh — [Schematic 14](../part03-pdes/00-opening.md#the-variational-ladder-me-412-schematic-14) climbs existence before Part IV assembles \(\mathbf{K}\).
+
+When strong forms look correct but meshes refuse to converge, read the sentence above aloud — it is the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc) role for Part III in one breath. See the [part-opening plot spine index](../appendix/sources.md#part-opening-plot-spine-index-row-18) for all nine rungs.
+
 ## Chapter guide
 
 | Chapter | Wire story beat | Core object | Handoff |

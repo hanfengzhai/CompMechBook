@@ -6,6 +6,12 @@ This part builds the language of those spaces: norms that measure energy and mea
 
 The layout follows the **Functional Analysis Notes** in [`writings/functional-analysis/`](../../writings/functional-analysis/): numbered chapters, worked examples tied to mechanics, and a **Bridge** at the end of each chapter pointing to the next idea. Read the five chapters in order; they hand off directly to Part III, where weak forms of boundary value problems are written in the spaces defined here.
 
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **Act I — Grammar, rung 2:** Nodal values become fields in \(H^1\) and \(L^2\); Part II builds the room where weak forms and Galerkin convergence are honest — [Schematic 14](#representative-schematics-me-412)'s middle rungs live here.
+
+When Sobolev norms feel abstract, read the sentence above aloud — it is the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc) role for Part II in one breath. See the [part-opening plot spine index](../appendix/sources.md#part-opening-plot-spine-index-row-18) for all nine rungs.
+
 ## Chapter guide
 
 | Chapter | Wire story beat | Core object | Handoff |

@@ -6,6 +6,12 @@ The finite element method is the answer for elliptic and parabolic problems on c
 
 The layout follows the **FEM Notes** in [`writings/fem/`](../../writings/fem/): five numbered chapters from residuals through error estimates, with **Bridge** sections linking each chapter to the next. Part V offers the complementary philosophy for fluids and hyperbolic conservation laws; both discretizations approximate the PDEs defined here.
 
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **Act II — Discretization, rung 1:** Part III's minimum principle becomes code; Part IV meshes the solid and proves the stiffness matrix is Galerkin projection, not magic — [Schematic 14's convergence half](../part04-fem/00-opening.md#the-galerkin-ladder-me-412-schematic-14-continued) begins here.
+
+When assembly feels like bookkeeping, read the sentence above aloud — it is the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc) role for Part IV in one breath. See the [part-opening plot spine index](../appendix/sources.md#part-opening-plot-spine-index-row-18) for all nine rungs.
+
 ## Chapter guide
 
 | Chapter | Wire story beat | Core object | Handoff |

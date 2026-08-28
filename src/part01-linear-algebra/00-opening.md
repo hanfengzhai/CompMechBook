@@ -6,6 +6,12 @@ We begin where most readers already have intuition: vectors, matrices, linear ma
 
 Four chapters follow the **Linear Algebra Notes** in [`writings/linear-algebra/`](../../writings/linear-algebra/): numbered files, mechanics examples, and **Bridge** sections at each handoff. Nothing here requires functional analysis; everything here prepares for it.
 
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **Act I — Grammar, rung 1:** The copper wire is still a spring chain; every later simulation reduces to \(\mathbf{K}\mathbf{u}=\mathbf{f}\) — Part I makes that shared syntax explicit before \(N\) grows without bound.
+
+When symbols change faster than the specimen, read the sentence above aloud — it is the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc) role for Part I in one breath. See the [part-opening plot spine index](../appendix/sources.md#part-opening-plot-spine-index-row-18) for all nine rungs; [row 18](../preface.md#skill-navigation-row-18) closes the audit when part openings feel like a syllabus.
+
 ## Chapter guide
 
 | Chapter | Wire story beat | Core object | Handoff |

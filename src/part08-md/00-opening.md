@@ -6,6 +6,12 @@ Molecular dynamics is the workhorse of atomistic materials mechanics. It supplie
 
 Three chapters cover potentials and phase space, ensembles and integrators, then ab initio MD, coarse-graining, and potential fitting. The layout follows the **MD Notes** in [`writings/md/`](../../writings/md/): numbered chapters with **Bridge** sections and explicit upward links to DDD (Part VII) and DFT (Part IX).
 
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **Act III — Descent, rung 2:** Line cores and notch tips need atoms; Part VIII integrates Newton's equations on interatomic potentials and exports mobility and \(\gamma_{\text{sf}}\) upward on trust until Part IX audits.
+
+When mobility tables cite Part VIII without an atomic box, read the sentence above aloud — it is the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc) role for Part VIII in one breath. See the [part-opening plot spine index](../appendix/sources.md#part-opening-plot-spine-index-row-18) for all nine rungs; the [atomistic descent in one paragraph](#the-atomistic-descent-in-one-paragraph) below unpacks the same beat.
+
 ## Chapter guide
 
 | Chapter | Wire story beat | Core object | Handoff |

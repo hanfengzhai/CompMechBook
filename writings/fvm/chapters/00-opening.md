@@ -6,6 +6,12 @@ The finite volume method discretizes those flux balances directly. When the copp
 
 The layout follows the **FVM Notes** in [`writings/fvm/`](../../writings/fvm/): four numbered chapters, **Bridge** sections at each handoff, and recurring connections to the weak-form ideas of Part III. Part VI unifies the continuum stress and balance language that both FEM and FVM ultimately approximate.
 
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **Act II — Discretization, rung 2:** The air outside the wire carries heat by flux, not energy minimization; Part V balances conservation on cells so Act II's Joule heating has somewhere to go — the [conservation ladder](../part05-fvm/00-opening.md#the-conservation-ladder-fvm-parallel-to-schematic-14) is Schematic 14's transport twin.
+
+When FEM converges but the fluid run loses mass, read the sentence above aloud — it is the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc) role for Part V in one breath. See the [part-opening plot spine index](../appendix/sources.md#part-opening-plot-spine-index-row-18) for all nine rungs.
+
 ## Chapter guide
 
 | Chapter | Wire story beat | Core object | Handoff |
