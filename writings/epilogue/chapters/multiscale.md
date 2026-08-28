@@ -789,7 +789,7 @@ When the book ends but the plot still feels episodic, start at the [continuous r
 
 ### Row 18 closing loop (part-opening plot spine reunion) {#row-18-closing-loop}
 
-This subsection is the **downstream half** of [memory sheet row 18](../appendix/memory-sheet.md#continuity-hinges-master-map), the [preface row 18 skill checkpoint](../preface.md#skill-navigation-row-18), and the [part-opening plot spine index](../appendix/sources.md#part-opening-plot-spine-index-row-18). The [prologue row 18 preview](../prologue/00-many-scales.md#prologue-preview-row-18) is the **upstream half** — return there when each part's Scene and concept map read correctly but the **transition between parts** still feels like opening a new textbook. Row 18 closes the part-boundary smoothness loop that row 17 opened at chapter rhythm: same copper wire, nine one-line roles from grammar through descent.
+This subsection is the **downstream half** of [memory sheet row 18](../appendix/memory-sheet.md#continuity-hinges-master-map), the [preface row 18 skill checkpoint](../preface.md#skill-navigation-row-18), and the [part-opening plot spine index](../appendix/sources.md#part-opening-plot-spine-index-row-18). The [prologue row 18 preview](../prologue/00-many-scales.md#prologue-preview-row-18) and [prologue row 18 closing stitch](../prologue/00-many-scales.md#row-18-closing-stitch) are the **upstream halves** — return there when each part's Scene and concept map read correctly but the **transition between parts** still feels like opening a new textbook. Row 18 closes the part-boundary smoothness loop that row 17 opened at chapter rhythm: same copper wire, nine one-line roles from grammar through descent.
 
 **Row 18 three-way audit (prologue preview ↔ skill checkpoint ↔ workflow exam).**
 
@@ -804,7 +804,7 @@ When a part opening feels like a new syllabus, start at the [part-opening plot s
 
 ### Row 19 closing loop (numbered-chapter plot spine reunion) {#row-19-closing-loop}
 
-This subsection is the **downstream half** of [memory sheet row 19](../appendix/memory-sheet.md#continuity-hinges-master-map), the [preface row 19 skill checkpoint](../preface.md#skill-navigation-row-19), and the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19). The [prologue row 19 preview](../prologue/00-many-scales.md#prologue-preview-row-19) is the **upstream half** — return there when Scene and Bridge both read correctly but the **chapter body** loses the copper wire mid-part. Row 19 closes the mid-chapter smoothness loop that row 18 opened at part boundaries: same copper wire, 35 one-line roles from grammar through descent.
+This subsection is the **downstream half** of [memory sheet row 19](../appendix/memory-sheet.md#continuity-hinges-master-map), the [preface row 19 skill checkpoint](../preface.md#skill-navigation-row-19), and the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19). The [prologue row 19 preview](../prologue/00-many-scales.md#prologue-preview-row-19) and [prologue row 19 closing stitch](../prologue/00-many-scales.md#row-19-closing-stitch) are the **upstream halves** — return there when Scene and Bridge both read correctly but the **chapter body** loses the copper wire mid-part. Row 19 closes the mid-chapter smoothness loop that row 18 opened at part boundaries: same copper wire, 35 one-line roles from grammar through descent.
 
 **Row 19 three-way audit (prologue preview ↔ skill checkpoint ↔ workflow exam).**
 
@@ -819,7 +819,7 @@ When mid-chapter reading stalls despite a Bridge, start at the [numbered-chapter
 
 ### Row 20 closing loop (gate-chapter plot spine reunion) {#row-20-closing-loop}
 
-This subsection is the **downstream half** of [memory sheet row 20](../appendix/memory-sheet.md#continuity-hinges-master-map), the [preface row 20 skill checkpoint](../preface.md#skill-navigation-row-20), and the [gate-chapter plot spine index](../appendix/sources.md#gate-chapter-plot-spine-index-row-20). The [prologue row 20 preview](../prologue/00-many-scales.md#prologue-preview-row-20) is the **upstream half** — return there when row 17's straight-through read stalls at I.4, VI.4, or IX.3 and neither part one-liners (row 18) nor chapter one-liners (row 19) alone restore continuity. Row 20 closes the gate smoothness loop that row 17 opened at mandatory pauses: same copper wire, three plot turns from grammar to coupling.
+This subsection is the **downstream half** of [memory sheet row 20](../appendix/memory-sheet.md#continuity-hinges-master-map), the [preface row 20 skill checkpoint](../preface.md#skill-navigation-row-20), and the [gate-chapter plot spine index](../appendix/sources.md#gate-chapter-plot-spine-index-row-20). The [prologue row 20 preview](../prologue/00-many-scales.md#prologue-preview-row-20) and [prologue row 20 closing stitch](../prologue/00-many-scales.md#row-20-closing-stitch) are the **upstream halves** — return there when row 17's straight-through read stalls at I.4, VI.4, or IX.3 and neither part one-liners (row 18) nor chapter one-liners (row 19) alone restore continuity. Row 20 closes the gate smoothness loop that row 17 opened at mandatory pauses: same copper wire, three plot turns from grammar to coupling.
 
 **Row 20 three-way audit (prologue preview ↔ skill checkpoint ↔ workflow exam).**
 
