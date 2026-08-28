@@ -34,6 +34,9 @@ jobs:
       - name: Validate relative links in src/
         run: ./scripts/validate-links.sh
 
+      - name: Validate relative links in writings/
+        run: ./scripts/validate-links.sh --writings
+
       - name: Verify writings sync
         run: ./scripts/sync-writings.sh --check
 
