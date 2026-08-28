@@ -150,7 +150,7 @@ If you have read linearly since the prologue, Part VIII's closing checkpoint fit
 | Cohesive energy from MD or experiment | \(E_{\text{coh}}\) from Kohn–Sham ground state |
 | Elastic constants from stress–strain fluctuations | \(C_{ij}\) from strained unit cells (force theorem) |
 | Stacking-fault energy for DDD mobility | \(\gamma_{\text{sf}}\) from relaxed faulted supercells |
-| [VIII.3 Bridge](03-ab-initio-and-coarse-graining.md#bridge-to-part-ix) requests DFT pedigree | [IX.3](03-dft-workflows.md) exports QE numbers upward |
+| [VIII.3 Bridge](../part08-md/03-ab-initio-and-coarse-graining.md#bridge-to-part-ix) requests DFT pedigree | [IX.3](03-dft-workflows.md) exports QE numbers upward |
 | [VIII.3 Pedigree checklist](../part08-md/03-ab-initio-and-coarse-graining.md#pedigree-checklist-before-the-epilogue) — five-row contract before the epilogue | Each row receives a QE log, functional, and k-mesh in IX.3 |
 
 Linear readers arriving from [VIII.3](../part08-md/03-ab-initio-and-coarse-graining.md#pedigree-checklist-before-the-epilogue) should carry the pedigree checklist row-by-row — each export upward is a contract the epilogue's multiscale afternoon will enforce.
@@ -202,7 +202,7 @@ None of these require a national supercomputer allocation — but each one is th
 
 ## Bridge
 
-Part VIII ran LAMMPS on an EAM potential **on trust** — cohesive energy, lattice parameter, mobility tables appeared without a full electronic-structure derivation. [VIII.3](03-ab-initio-and-coarse-graining.md#bridge-to-part-ix) named the quantities DFT must re-derive and pointed here. Part IX is the **audit chapter**: the same fcc copper cell Part VIII vibrated, now solved for \(\rho(\mathbf{r})\).
+Part VIII ran LAMMPS on an EAM potential **on trust** — cohesive energy, lattice parameter, mobility tables appeared without a full electronic-structure derivation. [VIII.3](../part08-md/03-ab-initio-and-coarse-graining.md#bridge-to-part-ix) named the quantities DFT must re-derive and pointed here. Part IX is the **audit chapter**: the same fcc copper cell Part VIII vibrated, now solved for \(\rho(\mathbf{r})\).
 
 | What Part VIII assumed | What Part IX derives |
 |------------------------|----------------------|

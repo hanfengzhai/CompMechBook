@@ -87,9 +87,9 @@ flowchart TB
 
 **Baby picture:** each part solved one rung of the ladder; multiscale mechanics wires the rungs together with the same four questions the prologue asked — now at **interfaces** between codes, not only within a single mesh.
 
-## Lab act reunion: one afternoon, six acts
+## Lab act reunion: one afternoon, six acts {#lab-act-reunion-preview}
 
-The [prologue](../prologue/00-many-scales.md#the-experiment-as-plot) mapped one lab session to six acts — mounting, warming, pulling, hardening, notch, foundation. The epilogue reunites them:
+The [prologue](../prologue/00-many-scales.md#the-experiment-as-plot) mapped one lab session to six acts — mounting, warming, pulling, hardening, notch, foundation. The epilogue reunites them here in **preview** form — coupling habits and handshake names before the detailed handshake sections below. After those sections, the [full reunion with per-node anchors and workflow-time paragraphs](#lab-act-reunion-six-acts-one-afternoon) returns to the same six acts with Act VI subgraph nodes, sensitivity audit trails, and the workflow exam table.
 
 | Act | Lab beat | Book parts | Coupling habit |
 |-----|----------|------------|----------------|
@@ -637,7 +637,7 @@ The weak form appeared in Part III as a mathematical convenience, became Galerki
 
 ## Lab act reunion: six acts, one afternoon {#lab-act-reunion-six-acts-one-afternoon}
 
-The [prologue](../prologue/00-many-scales.md#the-experiment-as-plot) framed the copper wire as one lab session in six acts. The epilogue is where those acts meet in **workflow time** — not reading order, but the afternoon the operator and the compute cluster share:
+If you read the [preview table near the opening](#lab-act-reunion-preview), this section is the **expanded reunion** — same six acts, now with per-node anchors, workflow-time paragraphs, and links to the sensitivity worksheet. The [prologue](../prologue/00-many-scales.md#the-experiment-as-plot) framed the copper wire as one lab session in six acts. The epilogue is where those acts meet in **workflow time** — not reading order, but the afternoon the operator and the compute cluster share:
 
 | Act | Lab moment | Parts that justified it | Multiscale handshake |
 |-----|------------|-------------------------|---------------------|
