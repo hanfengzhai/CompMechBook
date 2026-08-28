@@ -31,6 +31,9 @@ jobs:
           cargo install mdbook-mermaid --version 0.14.1 --locked
           mdbook-mermaid install .
 
+      - name: Validate relative links in src/
+        run: ./scripts/validate-links.sh
+
       - name: Verify writings sync
         run: ./scripts/sync-writings.sh --check
 
