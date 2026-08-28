@@ -64,26 +64,47 @@ def writings_to_src_md(wmd: Path) -> Path | None:
     parts = rel.parts
     if not parts:
         return None
-    if parts[0] == "preface" and rel.name == "preface.md":
+    if parts[0] == "preface" and rel.name in ("preface.md", "README.md"):
         return root / "src" / "preface.md"
     if parts[0] == "prologue" and len(parts) >= 2:
+        if rel.name == "README.md":
+            return root / "src" / "prologue" / "00-many-scales.md"
         return root / "src" / "prologue" / rel.name
     if parts[0] == "epilogue" and len(parts) >= 2:
+        if rel.name == "README.md":
+            return root / "src" / "epilogue" / "multiscale.md"
         return root / "src" / "epilogue" / rel.name
     if parts[0] == "appendix" and len(parts) >= 2:
+        if rel.name == "README.md":
+            return root / "src" / "appendix" / "sources.md"
         return root / "src" / "appendix" / rel.name
-    if parts[0] in PART_MAP and len(parts) >= 2 and parts[1] == "chapters":
-        return root / "src" / PART_MAP[parts[0]] / rel.name
+    if parts[0] in PART_MAP:
+        if len(parts) >= 2 and parts[1] == "chapters":
+            return root / "src" / PART_MAP[parts[0]] / rel.name
+        if rel.name == "README.md":
+            return root / "src" / PART_MAP[parts[0]] / "00-opening.md"
+    if rel.name == "README.md" and len(parts) == 1:
+        return root / "README.md"
     return None
 
 
 def resolve_writings(md: Path, link: str) -> Path | None:
     if skip_link(link):
         return Path("/dev/null")
+    path_part = strip_anchor(link)
+    # README stubs under writings/ use repo-local paths (../../src/, ./SUMMARY.md)
+    if md.name == "README.md":
+        if path_part.startswith("scripts/") or path_part.startswith("fixtures/"):
+            target = (root / path_part).resolve()
+        elif path_part.startswith("../../"):
+            target = (root / path_part.removeprefix("../../")).resolve()
+        else:
+            target = (md.parent / path_part).resolve()
+        return target if target.exists() else None
     src_md = writings_to_src_md(md)
     if src_md is not None:
         return resolve_src(src_md, link)
-    local = (md.parent / strip_anchor(link)).resolve()
+    local = (md.parent / path_part).resolve()
     return local if local.exists() else None
 
 
@@ -97,7 +118,11 @@ else:
     resolver = resolve_src
 
 broken = []
-for md in sorted(scan_dir.rglob("*.md")):
+seen: set[Path] = set()
+for md in sorted(scan_dir.rglob("*.md")) + sorted(scan_dir.rglob("README.md")):
+    if md in seen:
+        continue
+    seen.add(md)
     for m in link_re.finditer(md.read_text()):
         link = m.group(1)
         if resolver(md, link) is None:
