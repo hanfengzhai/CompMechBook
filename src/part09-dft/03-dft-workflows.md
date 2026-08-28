@@ -9,7 +9,7 @@ The narrative thread remains the copper wire. We will not simulate the whole wir
 
 > **IX.3 — Act III — Descent:** Quantum ESPRESSO workflows export pedigree numbers upward — the epilogue's Handshake 1 anchor.
 
-When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter. **Coupling gate (row 20):** this chapter is the third mandatory pause in row 17's straight read — recite the sentence above aloud, then read the [Bridge to the epilogue](#bridge-to-the-epilogue) before opening multiscale handshakes.
 
 ## Scene: bulk copper in a workstation
 

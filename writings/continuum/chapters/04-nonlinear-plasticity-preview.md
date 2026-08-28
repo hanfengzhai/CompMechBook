@@ -9,7 +9,7 @@ This chapter is not a full treatise on plasticity theory — that would require 
 
 > **VI.4 — Act II — Continuum reunion:** Plasticity preview names where continuum fields fail — ascent ends, descent begins at the knee.
 
-When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter. **Midpoint gate (row 20):** this chapter is the second mandatory pause in row 17's straight read — recite the sentence above aloud, then read the [intermission](#intermission-ascent-ends-descent-begins) before opening Part VII.
 
 ## Scene: the curve bends, the model must follow
 

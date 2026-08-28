@@ -9,7 +9,7 @@ Heat the copper wire at one end and wait: the temperature is not a vector of thr
 
 > **I.4 — Act I — Grammar:** Refine the mesh until nodal values become a field — \(N\to\infty\) is the gate where grammar becomes analysis.
 
-When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter. **Ascent gate (row 20):** this chapter is the first mandatory pause in row 17's straight read — recite the sentence above aloud, then read the [Bridge to Part II](#bridge-to-part-ii) before opening functional analysis.
 
 ## Scene: the sensors multiply
 
