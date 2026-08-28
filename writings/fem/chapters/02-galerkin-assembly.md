@@ -4,6 +4,13 @@ Weighted residuals gave us the logic: enforce \(\int r\, w_i = 0\) for chosen we
 
 That algorithm is **global assembly**: loop over elements, compute local contributions, scatter into a global sparse matrix. It is structured linear algebra — the change-of-basis story from Part I, executed millions of times with a sparsity pattern dictated by mesh connectivity.
 
+
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **IV.2 — Act II — Discretization:** Local element matrices sum to global \(\mathbf{K}\) — assembly is Part I's grammar on a mesh.
+
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+
 ## Scene: the mesh becomes a matrix
 
 Return to the copper wire in the tensile frame. Part I reduced it to a chain of springs; Part III wrote equilibrium as a weak form in \(H^1\); now a graduate student opens a FEM script and imports the same geometry as a one-dimensional mesh — twenty quadratic line elements along the axis, a refined cluster near the grip where stress will peak.

@@ -6,6 +6,13 @@ The copper wire in the prologue reappears here as a domain — a one-dimensional
 
 Part II's closing checkpoint promised that reentrant corners and concentrated loads break classical smoothness but not virtual work balance. This chapter makes that promise concrete on the blackboard: strong forms state what holds **pointwise** when \(C^2\) regularity is available, and name precisely where it fails on the wire's grip corner, insulator interface, and mid-span load. The next chapter is not a detour — it is the correct continuum statement the prologue's recurring character has been walking toward since Part I's nodal balance laws.
 
+
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **III.1 — Act I — Grammar:** Strong forms hold at interior points; welds and interfaces are where pointwise physics fails first.
+
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+
 ## Scene: heat at every point
 
 The tensile frame from Part I is still running, but the operator has raised the current. A thermal camera shows the copper wire no longer uniform: the center runs hotter than the grips, and the hottest strip follows the narrowest cross-section where Joule heating concentrates. An engineer writes on a whiteboard:

@@ -4,6 +4,13 @@ Coupled systems look complicated until we find the right coordinates. Eigenvalue
 
 Clamp one end of the copper wire and pull the other rhythmically: the wire does not respond with a single uniform stretch unless you happen to excite exactly the first mode. In general, different points oscillate out of phase, amplitudes vary along the length, and the motion looks messy in physical coordinates. In **modal coordinates** — the eigenvector basis of the stiffness and mass matrices — each mode oscillates independently at its own frequency. That decoupling is eigenvalue analysis doing its job.
 
+
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **I.3 — Act I — Grammar:** Tap the wire and it rings; eigenmodes decouple what the full stiffness matrix entangles.
+
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+
 ## Scene: the wire hums at one pitch
 
 Tap the clamped copper wire and listen: it rings at a handful of distinct frequencies, not a continuous blur. Each pitch is an eigenmode — a pattern of motion along the length that repeats in phase at its own rate. Modal analysis is how we predict which frequencies will fatigue the wire at a fastener and which a damping pad can suppress. The spring-network matrices from Part I carry those pitches in their spectra long before any continuum model is written down.

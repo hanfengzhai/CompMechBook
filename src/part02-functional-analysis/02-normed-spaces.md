@@ -4,6 +4,13 @@ When the copper wire heats under current, we may ask how far its temperature fie
 
 We begin with metric spaces, because convergence is fundamentally about distance. Norms are the most important way mechanics assigns distance, but not the only one.
 
+
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **II.2 — Act I — Grammar:** Energy norms need a complete room — Cauchy sequences must converge before we trust the limit solution.
+
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+
 ## Scene: how wrong is "wrong enough"?
 
 Two temperature fields along the heated wire can disagree by at most 0.1 K everywhere, or agree on average yet differ by 5 K at the clamp. Those are different notions of "close" — sup norm versus \(L^2\). When the engineer asks whether the thermal FEM is converged, the answer depends on which ruler we use. Normed spaces name those rulers and let mesh-refinement arguments conclude in the norm the physics actually cares about.

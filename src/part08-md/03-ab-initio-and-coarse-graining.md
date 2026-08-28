@@ -4,6 +4,13 @@ Classical molecular dynamics of Part VIII assumes nuclei move on a **potential e
 
 The copper wire at laboratory scale will never be a full DFT supercell. The wire at atomic scale **must** be described quantum mechanically when bonds rearrange, chemistry appears, or empirical potentials have never been validated. The art is knowing when ab initio MD is mandatory, when classical MD suffices, and how to compress atomistic trajectories into numbers the mesoscale accepts.
 
+
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **VIII.3 — Act III — Descent:** Coarse-graining compresses trajectories into yaml tables DDD and FEM can consume with pedigree.
+
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+
 ## Closing the arc from Part VIII.2 {#opening-hinge-viii2-to-viii3}
 
 If you have read linearly since the prologue, [VIII.2](02-ensembles-integrators.md) closed with audited NVT/NPT trajectories — NVE drift flat, NPT moduli within 10% of DFT, `mobility_cu_screw_{T_w}K.yaml` from a converged shear run, VACF phonon peaks archived beside `cu.phonon/` — and a Bridge that named the **export chapter** without yet showing how those numbers climb to DDD yaml tables with DFT pedigree. Part VIII.3 does not re-derive Verlet or thermostats; it **compresses** trajectories into contracts the mesoscale accepts and **requests truth downward** when EAM fails:

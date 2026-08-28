@@ -4,6 +4,13 @@ Kinematics describes how bodies move and deform. **Balance laws** relate stress 
 
 Part IV assembled \(\int \boldsymbol{\varepsilon}(\mathbf{u}):\mathbb{C}:\boldsymbol{\varepsilon}(\mathbf{v})\). Part V balanced fluxes of momentum. This chapter explains what \(\boldsymbol{\sigma}\) and \(\mathbb{C}\) mean, where the equilibrium equation comes from, and how copper, air, and plastic metal differ at the constitutive level.
 
+
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **VI.2 — Act II — Continuum reunion:** Cauchy stress and balance laws reunite what FEM assembled and FVM conserved.
+
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+
 ## Scene: three balances on one wire
 
 The tensile frame from Part I is still running, but the operator has raised the current. Three instruments watch the same copper cylinder:

@@ -4,6 +4,13 @@ Sobolev spaces measure how much smoothness a function has in an \(L^2\) sense. T
 
 When we approximate the temperature on the copper wire with piecewise-linear hat functions, the discrete field is continuous but has kinks at nodes. It is not twice differentiable in the classical sense — yet finite element solutions of Poisson's equation are meaningful because kinks are allowed in \(H^1\): only the **first** weak derivative must live in \(L^2\). Sobolev spaces encode exactly that level of regularity.
 
+
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **III.3 — Act I — Grammar:** Sobolev membership is the regularity contract every FEM shape function on the wire must satisfy.
+
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+
 ## Scene: kinks at the nodes
 
 Mesh the copper wire for steady Joule heating with ten linear bar elements. Plot the temperature: a continuous broken line, slope changing abruptly at each node, nowhere twice differentiable in the classical sense. A mathematician trained on \(C^2\) solutions might reject the picture; a finite element practitioner recognizes it as a **conforming \(H^1\)** approximation — continuous across elements, square-integrable gradient piecewise constant.

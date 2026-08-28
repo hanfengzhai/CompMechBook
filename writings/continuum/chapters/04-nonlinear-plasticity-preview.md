@@ -4,6 +4,13 @@ The copper wire from the prologue was never purely elastic. Cold drawing pushed 
 
 This chapter is not a full treatise on plasticity theory — that would require its own book. It is the **bridge** between variational elasticity and the defect mechanics of Part VII: what changes when displacements are large, when energy is no longer quadratic, and when history matters.
 
+
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **VI.4 — Act II — Continuum reunion:** Plasticity preview names where continuum fields fail — ascent ends, descent begins at the knee.
+
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+
 ## Scene: the curve bends, the model must follow
 
 Return to the force–displacement trace from Part I: linear climb, then yield knee, then hardening plateau. Linear elasticity explains only the first segment. Large strain, necking, and path-dependent hardening live outside the quadratic energy landscape — yet the same wire, same grips, same experiment. This chapter names what changes when the tangent stiffness stops being constant and points toward Part VII's defects as the microscale reason for the knee.

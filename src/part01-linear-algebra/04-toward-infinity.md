@@ -4,6 +4,13 @@ So far our state vectors have had finite length \(N\). A temperature field on a 
 
 Heat the copper wire at one end and wait: the temperature is not a vector of three numbers unless we pretend there are only three sensors. It is a function \(T(x)\) for \(x\) along the wire. Discretize that function finely enough and \(\mathbf{T} \in \mathbb{R}^N\) becomes a good proxy; coarsen the mesh and the proxy lies. The **true** state, in the continuum model, is the function itself — or rather, an element of an infinite-dimensional vector space equipped with norms that make the approximation problem well posed.
 
+
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **I.4 — Act I — Grammar:** Refine the mesh until nodal values become a field — \(N\to\infty\) is the gate where grammar becomes analysis.
+
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+
 ## Scene: the sensors multiply
 
 Return to the spring network from Chapters 1–3, now with a twist in the experiment. An engineer places thermocouples along the copper wire — first three, then ten, then forty, then a hundred — each reading \(T(x_i)\) at a node of a finer mesh. Every refinement produces a longer column vector \(\mathbf{T}_N\), yet the plotted profile along the axis stops changing shape once the spacing is fine enough. The family of vectors is not converging to a **longer** vector; it is converging to a **function** \(T(x)\) defined at every \(x\), the limit object Part II will name.

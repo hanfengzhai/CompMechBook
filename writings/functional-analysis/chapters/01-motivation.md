@@ -4,6 +4,13 @@ Part I ended with the spring network on the copper wire refining without bound: 
 
 A mesh with a million nodes is enormous by linear-algebra standards, but it is still finite. When we prove that the discrete solution converges as the element size \(h \to 0\), we are letting the number of degrees of freedom grow without bound. The **limit problem** — the boundary value problem the mesh is supposed to approximate — lives in an infinite-dimensional space. Functional analysis is the calculus of those spaces. It is not abstraction for its own sake. It is the vocabulary in which existence, uniqueness, stability, and convergence are stated precisely enough that a code's colorful plots can be trusted.
 
+
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **II.1 — Act I — Grammar:** The mesh refines forever; weak forms exist because corners and kinks break classical smoothness on the wire.
+
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+
 ## Scene: the mesh refines forever
 
 Return to the spring network from Part I, now with element size halving on each pass. A coarse mesh gives \(N = 10\) nodes and a vector \(\mathbf{u}_{10}\); refine once and \(N = 20\); refine again and \(N = 40\). Each solve returns a different column vector, yet the plotted displacement profile along the wire axis looks smoother with every pass. The engineer asks the question Part I could not answer: **where does this family settle** as \(h \to 0\)?

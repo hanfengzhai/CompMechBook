@@ -4,6 +4,13 @@ Many PDEs of mechanics are Euler–Lagrange equations of an energy functional. M
 
 Pull the copper wire in tension: in linear elasticity, equilibrium minimizes stored elastic energy minus work done by the load. Heat the wire: steady conduction minimizes a thermal dissipation functional subject to boundary data. Even when the physics is not literally "energy" (electrostatics, Darcy flow), a convex functional often lurks behind the PDE — and convexity is what makes minimizers unique and computable.
 
+
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **III.4 — Act I — Grammar:** Minimum energy and Lax–Milgram prove existence before any mesh is drawn on the heated bar.
+
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+
 ## Scene: the wire finds its rest
 
 Load the copper wire in the tensile frame and hold the grip displacement fixed. Microscopically, atoms rearrange for milliseconds; macroscopically, the wire **settles** to an equilibrium shape that minimizes total potential energy — elastic stored energy minus work done by the grips. Plot energy versus a trial displacement field: the true equilibrium sits at the bottom of a bowl; perturb it slightly and the energy rises, a sign of stability.

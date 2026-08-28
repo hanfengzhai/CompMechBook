@@ -4,6 +4,13 @@ Return to the copper wire from the prologue. At the engineering scale we want it
 
 The answer begins not with triangles and quadrature, but with a family of methods united by one idea. **Weighted residual methods** seek an approximate field \(u_h\) that makes the PDE residual small in a weighted average sense. The finite element method is the most important member of that family — Galerkin's method on a piecewise-polynomial space — but understanding the family clarifies why FEM is structured the way it is, and why alternatives (collocation, least squares, Petrov–Galerkin) appear when elliptic intuition fails.
 
+
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **IV.1 — Act II — Discretization:** Weighted residuals turn PDEs into finite averages — Galerkin is the family FEM inherits.
+
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+
 ## Scene: a guess that almost works
 
 Joule heating has raised the copper wire's temperature profile above ambient. An analyst guesses a simple shape — perhaps a straight line from hot grip to cool grip — plugs it into the heat equation, and finds the **residual** nonzero everywhere: the guess violates the PDE at almost every point. Weighted residuals ask a softer question: can we adjust the guess so that, when weighted and averaged over the domain, the residual vanishes in a finite number of directions?

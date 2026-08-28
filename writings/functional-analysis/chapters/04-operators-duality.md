@@ -2,6 +2,13 @@
 
 Matrices act on column vectors. Differential operators act on functions. Dual spaces act on vectors and functions alike through pairing — the language of loads, constraints, and virtual work. This chapter develops the operator vocabulary that makes weak formulations, mixed finite elements, and convergence under mesh refinement precise. When the copper wire's displacement field \(u_h\) changes with mesh size, we ask not only whether \(\|u_h - u\|\) shrinks, but in what **sense** the sequence approaches the limit. Strong convergence in norm is the strongest answer; weak convergence is often enough, and sometimes all that holds.
 
+
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **II.4 — Act I — Grammar:** Loads are functionals; adjoints pair operators with the physics they represent on the specimen.
+
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+
 ## Scene: the load is not a vector of numbers
 
 The grip applies a fixed displacement; gravity pulls downward with a force per unit volume; a contact constraint pushes only where the wire touches the wedge. In the weak form, each load becomes a linear functional on the displacement space — not an entry in a column vector until we choose a basis. Dual spaces are where virtual work lives: they translate physical loads into data the weak form can consume, and they explain why refining the mesh changes the discrete vector but not the underlying load object.

@@ -4,6 +4,13 @@ Perfect crystals exist in textbooks. Real materials carry **defects** — locali
 
 Continuum elasticity in Part VI describes smooth displacement fields. Defects are where that smoothness fails — and where mesoscale models begin.
 
+
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **VII.1 — Act III — Descent:** Point, line, and surface defects are the singularities continuum models smooth away.
+
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+
 ## Scene: the wire yields
 
 Part VI ended with J₂ plasticity and isotropic hardening — \(\sigma_y = \sigma_{y0} + H\alpha\) — parameters that made the return-mapping loop converge but did not explain **where** \(H\) and \(\sigma_{y0}\) came from. The force–displacement curve from Part I finally bends at the same yield knee those parameters were fitted to mimic. The load cell still reads force, but the slope drops: the wire is **plastic**. A polished surface that was mirror-smooth now shows faint **slip lines** — traces of dislocation motion on {111} planes. Continuum FEM with isotropic elasticity predicted a straight elastic segment forever; the experiment crossed a yield point that lives not in \(\mathbb{C}\) alone but in a **forest of line defects** stored by cold drawing.

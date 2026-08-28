@@ -4,6 +4,13 @@ Static equilibrium of an elastic body is equivalent to minimizing total potentia
 
 The copper wire under tension minimizes (or rather, stationarizes) elastic energy stored in its stretched atomic lattice — a minimization FEM approximates on a mesh. When the load exceeds yield, minimization gives way to incremental variational inequalities; when deformation grows large, the energy depends on \(\mathbf{F}\), not \(\boldsymbol{\varepsilon}\). This chapter walks that path.
 
+
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **VI.3 — Act II — Continuum reunion:** Virtual work is the weak form of elasticity; hyperelastic energy closes the FEM loop.
+
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+
 ## Scene: energy stored in the stretch
 
 Return to the tensile frame with the load cell climbing. Below yield, the wire lengthens elastically: each increment of grip displacement adds work, and most of that work is **stored** as elastic strain energy recoverable on unloading. Plot \(\Pi(\mathbf{u})\) — total potential energy as a functional of the displacement field — and the equilibrium path is the trajectory that keeps \(\Pi\) stationary under admissible variations.

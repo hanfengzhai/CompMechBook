@@ -6,6 +6,13 @@ The weak form is the computational mechanic's version of integration by parts: m
 
 If the copper wire is fixed at both ends and loaded in the middle, the displacement field may be continuous but not twice differentiable at the load point — the strong form \(-EA u'' = f\) fails classically at a point force. The weak form still asks: for all admissible virtual displacements, is internal virtual work equal to external virtual work? That question has an answer in \(H^1\), and Galerkin discretization turns it into \(\mathbf{K}\mathbf{U}=\mathbf{F}\).
 
+
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **III.2 — Act I — Grammar:** Test functions and integration by parts rewrite physics as pairings, not pointwise derivatives.
+
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+
 ## Scene: the grip corner
 
 Mount the copper wire in a rigid bracket with a reentrant corner — an L-shaped steel jaw gripping a cylindrical specimen. Under tension, the displacement field is visually smooth: the wire elongates, the bracket barely flexes. But zoom into the corner where copper meets steel: finite element post-processing shows stress components spiking, and a curious analyst asks whether \(-\nabla\cdot\boldsymbol{\sigma} = \mathbf{0}\) holds **pointwise** in classical sense.

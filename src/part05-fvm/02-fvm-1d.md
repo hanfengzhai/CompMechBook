@@ -6,6 +6,13 @@ The integral form of a conservation law balances fluxes through control volume b
 
 The author's FVM notes and CFD curriculum treat 1D advection and the Sod shock tube as mandatory verification cases before advancing to 2D grids and Navier–Stokes. This chapter follows that path.
 
+
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **V.2 — Act II — Discretization:** One-dimensional FVM with upwind flux is the honest first CFD code cooling the wire.
+
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+
 ## Scene: hot wire, cool air
 
 The copper wire from the prologue carries current; its surface runs hotter than the surrounding air. Along a one-dimensional slice through the boundary layer — distance measured normal to the wire — temperature and heat flux obey a conservation law: what enters a control volume must equal what leaves plus what accumulates. Partition that slice into cells, store **cell averages** instead of point values, and balance fluxes at interfaces.

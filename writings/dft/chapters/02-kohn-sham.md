@@ -4,6 +4,13 @@ Kohn–Sham DFT turns the abstract Hohenberg–Kohn energy functional into a **s
 
 For copper, a typical calculation fits in a few hundred atoms' worth of plane-wave coefficients — yet supplies the cohesive energy and elastic constants that anchor every coarser model of the wire.
 
+
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **IX.2 — Act III — Descent:** Kohn–Sham SCF is the self-consistent loop that makes DFT computationally tractable.
+
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+
 ## Scene: the self-consistent loop
 
 A Quantum ESPRESSO run on fcc copper begins with a guess for the electron density \(\rho(\mathbf{r})\). From that guess, build an effective potential; solve single-particle Schrödinger-like equations for orbitals; reconstruct a new density from occupied states; mix old and new densities; repeat until \(\rho\) stops changing — the **SCF cycle**. Each iteration is linear algebra on orbital coefficients; convergence is the signal that the Kohn–Sham equations are satisfied.

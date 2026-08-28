@@ -4,6 +4,13 @@ A matrix is not merely a table of numbers. It is a **linear map** expressed in a
 
 When we mesh the copper wire for a tensile test, each bar element has a **local** coordinate system aligned with the element axis. The global displacement vector lives in a **global** basis tied to node numbering. Assembly is the book-keeping that says: "this local degree of freedom is global degree of freedom 17." That book-keeping is a linear map.
 
+
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **I.2 — Act I — Grammar:** Element by element the stiffness assembles — bases and change of coordinates turn local springs into a global matrix.
+
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+
 ## Scene: two languages for the same grip load
 
 The tensile frame displays grip displacement in millimeters; the finite element deck stores it as degree of freedom 1. The bar element on the wire axis has its own local axis; the global stiffness matrix sees a completely different numbering. Same physics, three coordinate systems. Assembly is the map that declares them equivalent — and if that map is wrong, the wire appears to stretch when only one end moves.

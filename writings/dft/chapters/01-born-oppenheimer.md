@@ -4,6 +4,13 @@ Electrons determine almost all material properties at the chemical level. Densit
 
 For copper, DFT answers the most basic question the wire poses at the finest scale: **why does the crystal cohere at all?** The answer lives in the quantum mechanical balance between kinetic energy, electrostatic attraction, and exchange–correlation — not in a spring constant inserted by hand.
 
+
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **IX.1 — Act III — Descent:** Born–Oppenheimer separates fast electrons from slow nuclei — the finest scale split on copper.
+
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+
 ## Scene: electrons adjust in a blink
 
 Freeze a snapshot from Part VIII's molecular dynamics: copper nuclei mid-vibration, positions \(\{\mathbf{R}_I\}\) changing on picosecond timescales. The electrons that bind those nuclei respond in **femtoseconds** — three orders of magnitude faster because \(m_e \ll m_{\text{Cu}}\). In the laboratory frame, nuclei appear nearly stationary while the electron cloud rearranges around each geometry almost instantly.

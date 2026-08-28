@@ -4,6 +4,13 @@ Molecular dynamics (MD) treats atoms as classical particles interacting through 
 
 When continuum fields smear atoms into density, MD puts them back. When DFT tracks electrons explicitly, MD assumes nuclei move on a **potential energy surface** those electrons define. Part VIII lives in that middle ground: classical mechanics with quantum-informed forces.
 
+
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **VIII.1 — Act III — Descent:** Interatomic potentials and phase space replace fields with coordinates and forces at dislocation cores.
+
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+
 ## Closing the arc from Part VII {#opening-hinge-vii3-to-viii1}
 
 If you have read linearly since the prologue, [VII.3](../part07-defects/03-polycrystal-and-fem-handoff.md) closed the mesoscale chapter with OpenDiS → DAMASK → polycrystal FEM export discipline — hardening laws, rate extrapolation, and the `mobility.yaml` row that cites `MD_NVT_shear_PartVIII` without yet showing where that file came from. Part VIII.1 does not repeat that pipeline; it **grounds** the parameters the pipeline borrowed on trust:

@@ -2,6 +2,13 @@
 
 Every computational mechanics code, before it knows anything about stress tensors or Navier–Stokes, knows about arrays. A displacement field on a mesh is a vector of nodal values. A stiffness matrix is a sparse array coupling degrees of freedom. Even the most exotic multiscale scheme eventually calls a linear solver. Linear algebra is not a prerequisite chapter we endure on the way to "real" mechanics — it is the grammar in which mechanics is written once discretized.
 
+
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **I.1 — Act I — Grammar:** The grips tighten; the wire is still a spring chain and equilibrium is \(\mathbf{K}\mathbf{u}=\mathbf{f}\) before any field appears.
+
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+
 ## Scene: the grips tighten
 
 Picture the copper wire in the **tensile frame** of the prologue. The operator zeros the load cell, tightens the wedge grips, and clicks **Start**. For the next hour the full multiscale story is invisible: no mesh of tetrahedra, no Kohn–Sham cycle, no dislocation network — only a curve on a screen, **force versus displacement**, climbing almost linearly, then bending upward as the forest of line defects locked in by cold drawing resists further slip.

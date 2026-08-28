@@ -6,6 +6,13 @@ The copper wire under tension illustrates the transition cleanly. Steady Joule h
 
 > **Reader's note:** This chapter uses small-strain kinematics and isotropic Hooke's law in the form a FEM code expects. **Part VI** develops the same objects — deformation, stress, balance laws, and variational elasticity — from continuum mechanics first principles. Read here for assembly; return to Part VI for the physics foundation, or skim Part VI Chapters 1–3 first if you prefer definitions before discretization.
 
+
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **IV.4 — Act II — Discretization:** Poisson's scalar problem becomes vector elasticity on the same wire mesh under tension.
+
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+
 ## Scene: one wire, two fields
 
 Run current through the copper wire and two simulations appear on the same mesh: a scalar temperature field from Joule heating, and a vector displacement field from thermal expansion plus tension. Poisson gave us the scalar pipeline; elasticity repeats it threefold — same assembly loop, block stiffness matrix, different physics. The wire does not separate those couplings as cleanly as the FEM deck does, but recognizing the pattern saves a semester of relearning.

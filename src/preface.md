@@ -239,6 +239,7 @@ The book is one continuous story, but mastery is checked at **milestones** — n
 | Row 16 — Act VI orchestration → multiscale export | When Handshakes 1–4b exist in separate folders but no single pedigree file links them | [Row 16 skill checkpoint](#skill-navigation-row-16) |
 | Row 17 — continuous read-through | When chapters feel choppy despite Bridges — trust Scene/Bridge rhythm; pause only at I.4, VI.4, IX.3 | [Row 17 skill checkpoint](#skill-navigation-row-17) |
 | Row 18 — part-opening plot spine | When a part opening feels like a new syllabus — read its plot spine one line aloud | [Row 18 skill checkpoint](#skill-navigation-row-18) |
+| Row 19 — numbered-chapter plot spine | When mid-chapter reading stalls despite a Bridge — read this chapter's plot spine one line aloud | [Row 19 skill checkpoint](#skill-navigation-row-19) |
 | After the full arc | Before starting a new project on a different material | [Epilogue](epilogue/multiscale.md#what-you-should-be-able-to-do-after-the-book) |
 
 Each part-opening table breaks skills down **by chapter** (e.g. I.1–I.4, II.1–II.5). The prologue and epilogue tables frame the whole ladder at the bookends — navigation discipline before proofs, workflow exam after coupling. When a chapter feels abstract, skip to the matching row in the part opening and produce the minimal artifact; when the artifact is in hand, return to the **Bridge** at the end of the prior chapter for the narrative hinge.
@@ -453,7 +454,29 @@ This checkpoint closes the **part-opening plot spine** chain — the meta stitch
 | 3 | Name Act III rungs before epilogue | Step 3 — Act III descent | Descent pedigree distinct from ascent grammar |
 | 4 | [Plot spine index](appendix/sources.md#part-opening-plot-spine-index-row-18) recitation | Step 4 — full audit | Can narrate nine part roles in one sitting |
 
-**When to pause.** Read the [prologue row 18 preview](prologue/00-many-scales.md#prologue-preview-row-18) when landing on a new part feels like opening a new textbook — row 18 is permission to read one sentence aloud before the chapter guide. Return to the [part-opening plot spine index](appendix/sources.md#part-opening-plot-spine-index-row-18) when row 17's straight-through read stalls at a **part boundary** (e.g., III → IV or VI → VII), not at a chapter gate. Read the [memory sheet row 18 baby picture](appendix/memory-sheet.md#row-18-baby-picture-part-opening-plot-spine) when part openings and chapter roadmaps diverge; read the [epilogue row 18 closing loop](epilogue/multiscale.md#row-18-closing-loop) when the competence loop closes. When row 18 is complete, proceed to [row 12](#skill-navigation-row-12) when starting a new material, or revisit rows 8–16 when running the multiscale workflow.
+**When to pause.** Read the [prologue row 18 preview](prologue/00-many-scales.md#prologue-preview-row-18) when landing on a new part feels like opening a new textbook — row 18 is permission to read one sentence aloud before the chapter guide. Return to the [part-opening plot spine index](appendix/sources.md#part-opening-plot-spine-index-row-18) when row 17's straight-through read stalls at a **part boundary** (e.g., III → IV or VI → VII), not at a chapter gate. Read the [memory sheet row 18 baby picture](appendix/memory-sheet.md#row-18-baby-picture-part-opening-plot-spine) when part openings and chapter roadmaps diverge; read the [epilogue row 18 closing loop](epilogue/multiscale.md#row-18-closing-loop) when the competence loop closes. When row 18 is complete, proceed to [row 19](#skill-navigation-row-19) when mid-chapter abstraction stalls, or to [row 12](#skill-navigation-row-12) when starting a new material, or revisit rows 8–16 when running the multiscale workflow.
+
+### Row 19 skill checkpoint — numbered-chapter plot spine audit {#skill-navigation-row-19}
+
+This checkpoint closes the **numbered-chapter plot spine** chain — the meta stitch when Scene and Bridge both read correctly but the **chapter body** loses the copper wire mid-part. The [numbered-chapter plot spine index](appendix/sources.md#numbered-chapter-plot-spine-index-row-19) and [memory sheet row 19 baby picture](appendix/memory-sheet.md#row-19-baby-picture-numbered-chapter-plot-spine) are the **navigation halves**; the 35 plot spine one-line sections at each numbered chapter opening are the audit halves. Row 19 does not replace row 18 — it names **what each chapter should sound like** when row 17's straight-through read stalls mid-chapter rather than at a part boundary.
+
+| Step | Skill on the copper wire | Minimal artifact |
+|------|--------------------------|------------------|
+| 1 — Act I grammar | Read [I.1](../part01-linear-algebra/01-vectors-matrices.md#plot-spine-one-line) and [III.4](../part03-pdes/04-energy-methods.md#plot-spine-one-line) plot spines when ascent feels choppy | Two sentences: springs → Lax–Milgram |
+| 2 — Act II discretization | Read [IV.2](../part04-fem/02-galerkin-assembly.md#plot-spine-one-line) and [V.4](../part05-fvm/04-navier-stokes-cfd.md#plot-spine-one-line) plot spines at the IV/V fork | Two sentences: assembly → \(T_w\) pedigree |
+| 3 — Act III descent | Read [VII.2](../part07-defects/02-dislocation-dynamics.md#plot-spine-one-line) and [IX.3](../part09-dft/03-dft-workflows.md#plot-spine-one-line) plot spines before epilogue | Two sentences: forest → SCF export |
+| 4 — Spot audit | When any chapter feels abstract, read only its plot spine one line before the skill table | One sentence from the [chapter roadmap](appendix/sources.md#chapter-roadmap-one-continuous-arc) row |
+
+**Row 19 three-way audit (prologue preview ↔ this checkpoint ↔ workflow exam).**
+
+| Step | Prologue preview ([row 19](prologue/00-many-scales.md#prologue-preview-row-19)) | This checkpoint (above) | Workflow exam ([full arc row](epilogue/multiscale.md#what-you-should-be-able-to-do-after-the-book)) |
+|------|--------------------------------------------------------------------------------|-------------------------|------------------------------------------------------------------------------------------------------|
+| 1 | Name when to use chapter one-liners vs part one-liners | Step 1 — Act I grammar | Parts I–III feel like one continuous grammar climb |
+| 2 | Name IV/V chapter roles at discretization fork | Step 2 — Act II discretization | FEM assembly and CHT share one wire specimen |
+| 3 | Name descent chapter roles before epilogue | Step 3 — Act III descent | DDD, MD, and DFT exports cite the same pedigree |
+| 4 | [Numbered-chapter plot spine index](appendix/sources.md#numbered-chapter-plot-spine-index-row-19) spot check | Step 4 — spot audit | Any chapter's role narrated in one breath |
+
+**When to pause.** Read the [prologue row 19 preview](prologue/00-many-scales.md#prologue-preview-row-19) when mid-chapter abstraction rises faster than the specimen — row 19 is permission to read one sentence aloud before opening a skill checkpoint. Return to the [numbered-chapter plot spine index](appendix/sources.md#numbered-chapter-plot-spine-index-row-19) when row 18's part one-liners did not restore continuity — the break is usually mid-chapter, not at a part boundary. Read the [memory sheet row 19 baby picture](appendix/memory-sheet.md#row-19-baby-picture-numbered-chapter-plot-spine) when chapter roadmaps and chapter bodies diverge; read the [epilogue row 19 closing loop](epilogue/multiscale.md#row-19-closing-loop) when the competence loop closes. When row 19 is complete, proceed to [row 12](#skill-navigation-row-12) when starting a new material, or revisit rows 8–16 when running the multiscale workflow.
 
 ## The copper wire through the book
 

@@ -4,6 +4,13 @@ At a discontinuity, pointwise PDEs fail but integral conservation holds. The fin
 
 The Sod shock tube — a diaphragm separating high- and low-pressure gas, ruptured at \(t = 0\) — is the canonical verification problem in the author's [FVM notes](https://hanfengzhai.github.io/note/FVM.pdf). It is to CFD what the patch test is to FEM: if your code fails Sod, nothing else matters.
 
+
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **V.3 — Act II — Discretization:** Riemann solvers capture shocks when characteristic speeds cross on the mesh.
+
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+
 ## Scene: a rupture in the cooling duct
 
 Imagine a shock tube test bench beside the wire experiment: a diaphragm bursts, pressure jumps, a contact discontinuity races down the tube. Pointwise derivatives fail at the jump, but the integral form still balances mass and momentum. Riemann solvers are how a cell face asks, "Given gas on my left and right, what flux crosses me?" The copper wire's cooling air can stay subsonic, but the same machinery governs supersonic jets and, in other contexts, shock heating that changes annealing behavior.

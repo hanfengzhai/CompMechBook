@@ -4,6 +4,13 @@ Where FEM whispers "multiply by a test function and integrate by parts," FVM dec
 
 The copper wire reappears in a different guise. Solid mechanics on the wire still favors FEM, but imagine air cooling the heated specimen, or a shock tube test validating a CFD code before it simulates that cooling jet. Those flows are governed by conservation of mass, momentum, and energy — laws that make sense even when the pointwise PDE breaks down at shocks.
 
+
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **V.1 — Act II — Discretization:** Conservation laws start as integrals over control volumes, not pointwise PDEs in the air gap.
+
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+
 ## Scene: air leaving the wire
 
 The thermal camera from Part III showed the wire hot; now widen the frame. Still air in the lab carries heat away from the surface by natural convection — no fan, just buoyancy-driven flow. A CFD practitioner does not start by writing Navier–Stokes at a single point in the room. She tiles the air volume into control volumes, each a small box surrounding a node, and asks a bookkeeping question: **how much enthalpy flows in through each face, and how much flows out?**

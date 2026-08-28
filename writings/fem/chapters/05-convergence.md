@@ -4,6 +4,13 @@ A finite element mesh of the copper wire can look impressively fine — thousand
 
 This chapter connects Part I's discrete norms, Part II's function-space error analysis, and Part IV's implementation choices (\(h\), \(p\), element type) into a coherent refinement strategy.
 
+
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **IV.5 — Act II — Discretization:** Céa's lemma names the error; two doors open — fluids (Part V) or continuum reunion (Part VI).
+
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+
 ## Scene: finer mesh, same answer?
 
 The analyst refines the wire mesh once, twice, five times — stress contour colors shift, peak values creep downward, then stabilize. Is the solution converged, or merely pretty? Without a norm and an expected decay rate, refinement is guesswork dressed as diligence. This chapter gives the wire plot a certificate: in the energy norm, error should fall like \(h^p\), and when it does not, the element type or boundary model — not the solver — is suspect.

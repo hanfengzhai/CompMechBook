@@ -6,6 +6,13 @@ Parts IV and V discretized PDEs on meshes. Part VI asks what those PDEs mean phy
 
 The copper wire under tension is our recurring specimen — at the continuum scale, it is a cylinder of copper with a displacement field and a deformation gradient that Part IV's elasticity code approximates node by node, while the air cooling it (Part V) carries a velocity field whose gradient enters the rate-of-deformation tensor in the fluid stress.
 
+
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **VI.1 — Act II — Continuum reunion:** Deformation gradient \(\mathbf{F}\) tracks how the wire stretches — kinematics precedes stress.
+
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+
 ## Scene: the wire in the tensile frame
 
 Picture a 1 mm diameter copper wire, 100 mm gauge length, gripped at both ends in a tensile frame. A 50 N axial load produces a modest engineering strain \(\varepsilon \approx \sigma/E \sim 10^{-4}\) — well within the linear elastic range Part IV assumed when assembling \(\mathbf{K}\). Every node on the FEM mesh carries a displacement vector; kinematics asks what **continuous map** those nodal values sample.

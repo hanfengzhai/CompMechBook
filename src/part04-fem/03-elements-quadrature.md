@@ -4,6 +4,13 @@ An finite element is three things bundled together: a **reference domain** with 
 
 Chapter 2 showed assembly as a scatter of local matrices. This chapter explains what happens inside the element loop — how geometry enters through the Jacobian, how polynomial order controls accuracy, and why bad elements (slivers, nearly incompressible materials on Q1 meshes) produce bad answers even when the assembly code is correct.
 
+
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **IV.3 — Act II — Discretization:** Shape functions and quadrature are the geometry of approximation on each bar element.
+
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+
 ## Scene: the mesh becomes tiny shapes
 
 Zoom into the copper wire model until individual elements fill the screen: small triangles or bricks, each with the same reference template, stretched and rotated to fit the local geometry. Shape functions interpolate temperature and displacement inside each patch; quadrature integrates the weak form as a weighted sum of point values. A coarse mesh captures bulk stretch; a fine mesh resolves the hot spot where current density peaks — same element library, different resolution.

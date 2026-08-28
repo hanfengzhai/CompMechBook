@@ -2,6 +2,13 @@
 
 Eigenvalues decouple finite-dimensional vibration problems. A symmetric stiffness matrix diagonalizes in orthonormal modes; each mode oscillates at its own frequency, independently of the others. The **spectral theorem** for self-adjoint operators on Hilbert spaces is the same story without a fixed matrix size. It governs the normal modes of a copper wire, the buckling loads of a slender column, the diffusion rates of heat along that wire, and the convergence of finite element eigenvalues as the mesh refines. Part II has built the spaces, the inner products, and the compactness that make this theorem true. Here we state it, apply it, and hand the toolkit to Part III.
 
+
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **II.5 — Act I — Grammar:** Compactness and spectra prove Galerkin approximations have a target to converge toward as \(h\to 0\).
+
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+
 ## Scene: the wire sings
 
 Tap the clamped end of the copper wire with a small impulse and listen — not with your ears, but with an accelerometer and a spectrum analyzer. The time trace looks complicated: many frequencies mixed together, amplitudes changing along the length. Transform to **modal coordinates** — the eigenvector basis of the stiffness and mass matrices from Part I — and the picture simplifies: mode 1 oscillates at \(f_1\), mode 2 at \(f_2\), each shape fixed, each amplitude decoupled from the others. That decoupling is finite-dimensional spectral theory doing its job on a mesh.

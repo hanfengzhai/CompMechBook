@@ -2,6 +2,13 @@
 
 When metal yields, dislocations multiply and tangle. **Dislocation dynamics (DDD)** tracks their motion and interactions — the mesoscale engine of strain hardening. Pull a copper wire beyond its elastic limit and the stress–strain curve bends upward not because the lattice stiffens, but because an evolving **forest** of dislocation lines impedes further slip. DDD is how we simulate that forest without resolving every atom.
 
+
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **VII.2 — Act III — Descent:** Dislocation lines move, multiply, and harden the wire — Taylor's forest explains the load curve knee.
+
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+
 ## Scene: the forest grows
 
 Resume the tensile test where Part VI left it — load increasing, stress beyond yield. Inside the copper crystal, dislocation lines **glide** on {111} planes, **multiply** at Frank–Read sources, and **tangle** into a forest whose density rises with plastic strain. The load cell registers hardening: more stress needed for the next increment of stretch. No phenomenological law was typed in by hand; the curve bends because moving lines must push through a thickening forest.

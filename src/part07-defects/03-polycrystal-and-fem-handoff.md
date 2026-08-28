@@ -4,6 +4,13 @@ Dislocation dynamics resolves individual lines in an elastic medium — powerful
 
 The cold-drawn copper wire is not a single crystal. It is thousands of grains, each with its own slip systems, dislocation content, and orientation. DDD on one crystal explains one mechanism; engineering FEM needs **texture**, **hardening laws**, and **internal state variables** that summarize what DDD (or experiment) teaches.
 
+
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **VII.3 — Act III — Descent:** OpenDiS to DAMASK to FEM is the polycrystal handoff when texture and hardening matter.
+
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+
 ## Scene: from one crystal to a spool of wire
 
 A single-crystal DDD run explains how one slip system hardens under shear. The cold-drawn wire on the bench is thousands of grains twisted by drawing dies — texture, misorientation, grain-boundary barriers. This chapter asks how DDD statistics export upward: hardening laws for crystal plasticity, internal state variables for FEM, Peierls parameters borrowed from MD. The wire experiment is polycrystalline; the multiscale pipeline must be too.

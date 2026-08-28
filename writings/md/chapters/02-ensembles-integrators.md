@@ -4,6 +4,13 @@ MD is not merely integrating Newton's laws — it is **controlled sampling** of 
 
 Getting the ensemble wrong is not a small error. It is simulating the wrong experiment.
 
+
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **VIII.2 — Act III — Descent:** Ensembles and integrators make MD reproducible — LAMMPS is the wire at atomic timestep.
+
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+
 ## Closing the arc from Part VIII.1 {#opening-hinge-viii1-to-viii2}
 
 If you have read linearly since the prologue, [VIII.1](01-potentials-phase-space.md) closed with an EAM-minimized fcc lattice — `cu_eam_a0.txt`, cohesive energy, bulk modulus from a 0 K `minimize` pass — and a Bridge that named `MD_NVT_shear_PartVIII` without yet integrating a single timestep at laboratory temperature. Part VIII.2 does not re-derive EAM or the Hamiltonian; it **samples** the phase space those objects define:

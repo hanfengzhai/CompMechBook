@@ -4,6 +4,13 @@ Computational fluid dynamics (CFD) solves the Navier–Stokes equations when ana
 
 Part V built FVM for conservation laws. This chapter adds viscosity, incompressibility, boundary layers, and the practical machinery of production CFD — connecting to the author's [CFD notes](https://hanfengzhai.github.io/file/CFD_note.pdf) and closing the loop toward Part VI's continuum stress and balance language.
 
+
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **V.4 — Act II — Discretization:** Navier–Stokes and conjugate heat transfer set \(T_w\) — the temperature every descent rung inherits.
+
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+
 ## Scene: air decides the wire's fate
 
 Heat the copper wire until it glows softly; air above it rises, pulling cooler flow across the surface. That convection sets whether the mid-span temperature stays below annealing range. Navier–Stokes is the PDE for that air — advection, viscous diffusion, pressure coupling. Part V built conservation on cells; this chapter adds viscosity, Reynolds number, turbulence models, and the practical CFD workflow that connects a wire thermal model to the fluid domain around it.
