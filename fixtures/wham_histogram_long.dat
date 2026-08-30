@@ -1,0 +1,10 @@
+# Longer replica-exchange run (10 ns → 20 ns comparison fixture)
+# Columns: T_K  E_eV  count
+300  -3.620  2400
+300  -3.580  1600
+350  -3.615  2200
+350  -3.575  1500
+380  -3.610  2000
+380  -3.570  1400
+420  -3.605  1800
+420  -3.565  1300
