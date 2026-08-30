@@ -17,7 +17,7 @@ Return to the force–displacement trace from Part I: linear climb, then yield k
 
 ## Intermission: ascent ends, descent begins {#intermission-ascent-ends-descent-begins}
 
-If you have read linearly since the [preface ascent preview chain](../preface.md#ascent-preview-chain) and [continuity hinges](../preface.md#continuity-hinges-ascent-descent), Part VI's [midpoint anchor](00-opening.md#midpoint-ascent-complete-descent-ahead) marked the turn from mathematical climb to scale descent. This chapter is the last continuum stop on the ascent side of that hinge: it admits that cold-drawn copper, notch roots, and path-dependent hardening **break** the smooth fields FEM and FVM trusted in Parts IV–V. The [preface descent preview chain](../preface.md#descent-preview-chain) names what follows — dislocation forest, atomic lattice, electron density — without asking you to leave the wire on the bench. The specimen does not change; only the state variable does. When the J₂ return-mapping loop fits \(H\) and \(\sigma_{y0}\) but cannot explain **why** the curve bent, the plot turns downward: phenomenology has done its job; pedigree awaits in Part VII.
+If you have read linearly since the [preface ascent preview chain](../preface.md#ascent-preview-chain) and [continuity hinges](../preface.md#continuity-hinges-ascent-descent), Part VI's [midpoint anchor](00-opening.md#midpoint-ascent-complete-descent-ahead) marked the turn from mathematical climb to scale descent. This chapter is the last continuum stop on the ascent side of that hinge: it admits that cold-drawn copper, notch roots, and path-dependent hardening **break** the smooth fields FEM and FVM trusted in Parts IV–V. The [preface descent preview chain](../preface.md#descent-preview-chain) names what follows — dislocation forest, atomic lattice, electron density — without asking you to leave the wire on the bench. The specimen does not change; only the state variable does. When the J₂ return-mapping loop fits \(H\) and \(\sigma_{y0}\) but cannot explain **why** the curve bent, the plot turns downward: phenomenology has done its job; pedigree awaits in Part VII. The [prologue row 6 closing stitch](../prologue/00-many-scales.md#row-6-closing-stitch), [preface row 6 skill checkpoint](../preface.md#skill-navigation-row-6), and [epilogue row 6 closing loop](../epilogue/multiscale.md#row-6-closing-loop) reunite this intermission with competence-time and workflow-time audits when fitted \(H\) persists without a Part VII pointer.
 
 ## When linear elasticity breaks down
 
@@ -204,7 +204,7 @@ Part VI named the fields that Parts IV and V already approximated on meshes. Bef
 
 The copper wire under rising load follows this arc: Part IV's mesh computes \(\mathbf{u}\); Part VI explains that \(\mathbf{u}\) minimizes energy until yield; this chapter adds Newton–Raphson and \(J_2\) plasticity when the load cell curve bends. When the mesh is refined but the hardening law is wrong, the fault is not discretization — it is **constitutive physics** that lives at the dislocation scale. Part VII supplies that physics.
 
-### Three signals to descend from Part VI to Part VII
+### Three signals to descend from Part VI to Part VII {#three-signals-to-descend-from-part-vi-to-part-vii}
 
 Continuum mechanics does not announce "switch to dislocations" with a banner. The copper wire gives three practical signals that the smooth-field picture has reached its honest limit — the same signals an operator notices at the load cell:
 
