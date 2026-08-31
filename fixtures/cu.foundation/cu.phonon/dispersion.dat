@@ -1,0 +1,9 @@
+# Phonon dispersion along Γ–X (illustrative fixture for acoustic branch check)
+# q_frac  omega_cm-1  branch
+0.000  0.0  LA
+0.050  22.5  LA
+0.100  45.0  LA
+0.150  67.0  LA
+0.200  88.5  LA
+0.000  0.0  TA
+0.100  31.0  TA
