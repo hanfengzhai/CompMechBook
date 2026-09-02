@@ -135,6 +135,46 @@ Run with increasing `nx` at fixed CFL: the smeared pulse width should shrink as 
 
 For the heated copper wire's cooling air (Part V, Chapter 4), this script is the skeleton: replace scalar \(U\) with \(\mathbf{U} = (\rho, \rho u, \rho E)\), replace upwind with an HLLC flux (Chapter 3), and add viscous fluxes implicitly when the Reynolds number is large.
 
+## Worked example: convection–diffusion boundary layer (Act II)
+
+**Act II** heats the wire until the surface runs at \(T_w \approx 400\,\text{K}\) while lab air stays near \(T_\infty = 300\,\text{K}\). Along a one-dimensional slice through the thermal boundary layer — distance \(y\) measured normal to the wire — a first model balances **advection** of enthalpy away from the surface against **diffusion** back toward the freestream:
+
+\[
+T_t + u_\infty T_y = \kappa T_{yy}, \quad y \in [0, \delta], \quad T(0) = T_w, \; T(\delta) = T_\infty.
+\]
+
+At steady state with uniform freestream speed \(u_\infty\) and thermal diffusivity \(\kappa\), the profile is exponential:
+
+\[
+T(y) = T_\infty + (T_w - T_\infty)\, e^{-u_\infty y / \kappa}.
+\]
+
+The **thermal boundary-layer thickness** \(\delta_T \sim \kappa / u_\infty\) sets the cell size near the wall: resolve \(\delta_T\) with at least five cells before trusting a conjugate heat-transfer flux at the wire surface.
+
+Discretize on a uniform 1D FVM grid with \(N\) cells, face flux
+
+\[
+F_{j+1/2} = u_\infty T_j - \kappa \frac{T_{j+1} - T_j}{\Delta y},
+\]
+
+and implicit diffusion (or small enough \(\Delta t\) for explicit diffusion under a combined CFL). For air at room conditions, \(\kappa \approx 2.2 \times 10^{-5}\,\text{m}^2/\text{s}\); with \(u_\infty = 0.1\,\text{m/s}\), \(\delta_T \approx 0.2\,\text{mm}\).
+
+| Quantity | Symbol | Typical value (Act II) |
+|----------|--------|------------------------|
+| Wire surface temperature | \(T_w\) | 400 K |
+| Freestream temperature | \(T_\infty\) | 300 K |
+| Freestream speed | \(u_\infty\) | 0.05–0.5 m/s (natural → forced convection) |
+| Thermal diffusivity (air) | \(\kappa\) | \(2.2 \times 10^{-5}\,\text{m}^2/\text{s}\) |
+| Boundary-layer thickness | \(\delta_T \sim \kappa/u_\infty\) | 0.04–0.4 mm |
+
+Run three meshes with \(\Delta y = \delta_T/2,\, \delta_T/8,\, \delta_T/32\). Compare \(T(\delta_T/2)\) to the analytical value \(T_w + (T_\infty - T_w)\, e^{-1/2} \approx 339\,\text{K}\). When the three values agree within 1%, export the wall heat flux
+
+\[
+q'' = -k_{\text{air}} \left.\frac{\partial T}{\partial y}\right|_{y=0} \approx h (T_w - T_\infty), \quad h = \frac{k_{\text{air}} u_\infty}{\kappa},
+\]
+
+for the Robin handshake Part IV's solid mesh expects in [V.4](04-navier-stokes-cfd.md). This 1D exercise is not the full Navier–Stokes story — buoyancy and three-dimensional geometry matter for natural convection — but it is the **same conservation rhythm** the multidimensional solver runs: advective flux upstream, diffusive flux from gradients, discrete balance on cell averages. If the boundary-layer profile fails here, coupling FEM conduction inside the wire to FVM cooling outside will drift \(T_w\) in every Picard iteration regardless of mesh refinement on the solid side.
+
 ## Burgers' equation: shock formation
 
 Burgers' equation \(U_t + \partial(U^2/2)/\partial x = 0\) is a scalar model for nonlinear wave steepening. Smooth initial data develops a shock in finite time. A first-order upwind scheme captures the shock as a few-cell transition; exact solutions (rarefaction and shock relations) validate the numerical flux.

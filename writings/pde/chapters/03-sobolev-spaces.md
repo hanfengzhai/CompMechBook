@@ -2,6 +2,8 @@
 
 Sobolev spaces measure how much smoothness a function has in an \(L^2\) sense. They are the native habitat of weak solutions and conforming finite elements.
 
+The prior chapter ended with a promise: the weak form of the copper wire's conduction problem is honest even when classical \(C^2\) smoothness fails at grip corners and when trial temperatures are piecewise linear with kinks at nodes. That promise needs a **contract** — a space where "\(\nabla u\)" means something for functions that are not smooth everywhere, where Dirichlet boundary data attach to traces rather than point values, and where the bilinear form \(a(u,v)=\int k \nabla u \cdot \nabla v\) is finite. Sobolev spaces are that contract. Part II introduced \(H^1\) and \(L^2\) in the abstract; this chapter makes them operational for the PDEs and meshes of Parts III–IV.
+
 When we approximate the temperature on the copper wire with piecewise-linear hat functions, the discrete field is continuous but has kinks at nodes. It is not twice differentiable in the classical sense — yet finite element solutions of Poisson's equation are meaningful because kinks are allowed in \(H^1\): only the **first** weak derivative must live in \(L^2\). Sobolev spaces encode exactly that level of regularity.
 
 

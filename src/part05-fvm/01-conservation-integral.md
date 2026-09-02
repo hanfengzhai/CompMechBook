@@ -1,6 +1,6 @@
 # Integral Forms of Conservation Laws
 
-Where FEM whispers "multiply by a test function and integrate by parts," FVM declares "integrate the conservation law over a control volume and balance fluxes." Both respect the same physics; the bookkeeping differs. Part III wrote PDEs in strong form; Part IV discretized elliptic operators with trial functions. Part V begins with the form that hyperbolic and conservation-law physics prefer: **integral balance** on control volumes.
+Where FEM whispers "multiply by a test function and integrate by parts," FVM declares "integrate the conservation law over a control volume and balance fluxes." Both respect the same physics; the bookkeeping differs. Part III wrote PDEs in strong form; Part IV discretized elliptic operators with trial functions and closed with [IV.5's two-door bridge](../part04-fem/05-convergence.md#bridge-two-doors-from-here): Door A leads here, where conservation replaces energy minimization as the organizing principle for the air that cools the wire in **Act II**. Part V begins with the form that hyperbolic and conservation-law physics prefer: **integral balance** on control volumes.
 
 The copper wire reappears in a different guise. Solid mechanics on the wire still favors FEM, but imagine air cooling the heated specimen, or a shock tube test validating a CFD code before it simulates that cooling jet. Those flows are governed by conservation of mass, momentum, and energy — laws that make sense even when the pointwise PDE breaks down at shocks.
 
