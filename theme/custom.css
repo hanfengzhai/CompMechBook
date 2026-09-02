@@ -1,0 +1,21 @@
+.content main {
+  max-width: 820px;
+}
+
+blockquote {
+  border-left: 4px solid #4a90a4;
+  padding-left: 1em;
+  color: #555;
+  font-style: italic;
+}
+
+.chapter-lead {
+  font-size: 1.05em;
+  line-height: 1.7;
+  margin-bottom: 1.5em;
+}
+
+.part-title {
+  font-variant: small-caps;
+  letter-spacing: 0.08em;
+}
