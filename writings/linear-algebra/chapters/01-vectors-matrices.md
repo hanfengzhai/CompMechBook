@@ -360,6 +360,18 @@ With vectors and matrices in hand, we next examine **linear maps** abstractly: c
 | Mesh refinement convergence toward \(u(x)\) | Isoparametric Jacobian preview: volume maps before Part IV |
 | Column space / null space of \(\mathbf{K}\) | Rigid-body modes the grips must constrain |
 
+**Scale-boundary handshake (I.1 → I.2 → I.3).**
+
+| Matrix grammar export (this chapter) | Linear maps consumer ([I.2](02-linear-maps.md)) | Eigenvalue consumer ([I.3](03-eigenvalues.md)) | Failure mode |
+|--------------------------------------|-----------------------------------------------|-----------------------------------------------|--------------|
+| State \(\mathbf{u}\), SPD \(\mathbf{K}\), load \(\mathbf{f}\) | Gather/scatter \(\mathbf{L}_e\); local/global frames | Generalized eigenproblem \(\mathbf{K}\mathbf{v}=\omega^2\mathbf{M}\mathbf{v}\) | Rigid modes unconstrained by grips |
+| Inner product \(\mathbf{u}^T\mathbf{v}\) as strain energy | Jacobian of isoparametric maps | Mass-normalized modes \(\mathbf{v}_j^T\mathbf{M}\mathbf{v}_k=\delta_{jk}\) | Inconsistent mass matrix in dynamics |
+| Sparsity from local bar coupling | \(\mathbf{K}=\sum_e \mathbf{L}_e^T\mathbf{k}_e\mathbf{L}_e\) assembly | Lanczos on same sparse pattern | Dense fill from wrong scatter map |
+| CG / Jacobi on ill-conditioned \(\mathbf{K}\) | Preconditioner travels with mesh refinement | Modal superposition decouples time stepping | Mesh converges but iterations explode |
+| Three-node Lab act: \(F = k(u_3-u_2)\) | Element stiffness in local coordinates | Tap-test pitch = mode 1 frequency | Load cell vs matrix reaction mismatch |
+
+The three-node Lab act above is the operational version of this handshake: equilibrium \(\mathbf{K}\mathbf{u}=\mathbf{f}\) before assembly maps ([I.2](02-linear-maps.md)) and before decoupling modes ([I.3](03-eigenvalues.md)). When Act III's FEM mesh refines but CG iteration counts grow without a preconditioner, the physics discretization is fine and the **linear algebra layer** needs the rescaling this section names.
+
 Return to the [prologue](../prologue/00-many-scales.md): **Act I — Mounting** fixes the wire in grips whose end displacement is a single global degree of freedom, yet every bar element still carries its own local axis. Assembly is the map that declares those languages equivalent — the same book-keeping Part IV will automate on millions of elements. When the map is wrong, the wire appears to stretch when only one end moves; when the basis is ill-chosen, \(\mathbf{K}\) is dense and ill-conditioned even though the physics is local.
 
 The copper wire, meshed or unmeshed, is the same physical object in every basis we choose. Turn the page when \(\mathbf{K}\mathbf{u}=\mathbf{f}\) feels like a table of numbers rather than a coordinate story — linear maps are where that table acquires geometry.

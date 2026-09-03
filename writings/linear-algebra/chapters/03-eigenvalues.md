@@ -276,6 +276,18 @@ We have stayed in finite dimensions: \(\mathbf{A}\mathbf{v} = \lambda \mathbf{v}
 | Lanczos on sparse \(\mathbf{K}\) for lowest modes | Spectral theory for elliptic operators (Part II.5 → Part IV.5) |
 | Resonance diagnosis on the wire fixture | Same decoupling picture at atomistic scales (Part VIII) |
 
+**Scale-boundary handshake (I.2 → I.3 → I.4).**
+
+| Assembly export ([I.2](02-linear-maps.md)) | Modal output (this chapter) | Limit consumer ([I.4](04-toward-infinity.md) → Part II) | Failure mode |
+|--------------------------------------------|----------------------------|----------------------------------------------------------|--------------|
+| Sparse \(\mathbf{K}\), \(\mathbf{M}\) from bar scatter | Mass-normalized modes \(\mathbf{v}_j\); \(\omega_j^2\) | Mesh \(\omega_{h,j}\to\omega_j\) as \(h\to 0\) | Coarse mesh missing higher modes for CFL |
+| Thermal load \(\mathbf{f}_{\text{th}}\) projection | Symmetric modes carry blocked expansion stress | Part VI \(\sigma = E\alpha\Delta T\) | Handbook \(\alpha\) vs DFT phonon pedigree |
+| Lanczos / shift-invert on \(\mathbf{K}\) | Lowest 10–20 Ritz pairs for fatigue | Operator spectrum, not longer vectors | Spurious modes from wrong BCs |
+| Tap-test \(f_1 \approx 4.6\,\text{kHz}\) calibration | Mode 1 shape validates boundary model | Phonon DOS at atomistic scale (Part VIII) | Slip in wedge grip adds effective compliance |
+| Modal superposition preview | Decoupled coordinates \(\mathbf{q}_j\) | Hilbert orthogonality; Galerkin projection | Missing \(\mathbf{M}\) → wrong frequencies |
+
+The thermal-eigenstrain handshake earlier in this chapter is the static face of the same decoupling: blocked expansion projects onto symmetric modes before Act II's Joule heating enters Part VI. When the wire's modes outgrow any fixed \(N\), [I.4](04-toward-infinity.md) names the continuum operator whose spectrum the mesh approximates — the ascent gate where row 17's straight read pauses at [Bridge to Part II](04-toward-infinity.md#bridge-to-part-ii).
+
 The [prologue](../prologue/00-many-scales.md) introduced the specimen as one ladder with many rungs; eigenmodes are the **first time decoupling appears** in the book — a preview of orthogonality in Hilbert space and of dominant modes in molecular dynamics. [I.2](02-linear-maps.md) showed change of coordinates; eigenvectors are the coordinates in which the stiffness map acts by pure scaling.
 
 The next chapter takes the first step from \(\mathbb{R}^N\) toward function spaces: inner products become integrals, matrices become operators, and the eigenvalue problem becomes a spectral problem for differential operators. Part II makes that transition rigorous; Part III writes down the PDEs those operators encode.

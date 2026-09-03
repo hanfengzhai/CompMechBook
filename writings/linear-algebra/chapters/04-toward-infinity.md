@@ -311,6 +311,26 @@ Linear algebra taught us to solve \(\mathbf{K}\mathbf{u}=\mathbf{f}\). Mechanics
 
 Steps 1–2 require function spaces. Part II supplies normed spaces, completeness, Hilbert space structure, and compactness — the vocabulary for existence, uniqueness, and convergence. Part III writes the weak forms for Poisson, heat, and elasticity that Part IV discretizes.
 
+| What Part I established at finite \(N\) | What Part II will name |
+|----------------------------------------|------------------------|
+| \(\mathbf{u}_N^T \mathbf{K}_N \mathbf{u}_N\) | Bilinear form \(a(u,u)\) on \(H^1\) |
+| Mesh refinement: \(N\to\infty\) | Completeness; limit field \(u(x)\in V\) |
+| Energy error vs \(h\) | \(\|u-u_h\|_{H^1}\to 0\); Céa's lemma preview |
+| Eigenvalue accumulation | Spectral problem for elliptic operators |
+| Three-node → million-node solve | Galerkin projection \(u_h\in V_h\subset H^1\) |
+
+**Scale-boundary handshake (I.4 → Part II → Part III).** {#scale-boundary-handshake-i4-to-part-ii}
+
+| Part I export (this chapter) | Functional analysis consumer (Part II) | PDE consumer (Part III) | Failure mode |
+|------------------------------|----------------------------------------|-------------------------|--------------|
+| \(\mathbf{K}_N \mathbf{u}_N = \mathbf{f}_N\) | Operator \(K: H^1_0\to H^{-1}\) | Weak form \(-(EA u')' = f\) | Refining mesh without convergence target |
+| Energy \(\mathbf{u}^T\mathbf{K}\mathbf{u}\) | Coercive bilinear form \(a(u,v)\) | Lax–Milgram existence | Nodal displacement "converged" but energy 5% high |
+| Thermocouple profile \(T(x)\) | \(T\in H^1\); \(\|T\|_{H^1}\) energy norm | Steady heat \(-kT''=q\) weak form | Strong form at reentrant corners |
+| Manufactured-solution energy error | Completeness of \(H^1\) | Sobolev embedding preview | Slip in grip → wrong limit operator |
+| [Bridge to Part II](#bridge-to-part-ii) ascent gate | [II.1 motivation](../part02-functional-analysis/01-motivation.md) | [III.2 weak form](../part03-pdes/02-weak-form.md) | Treating \(N\to\infty\) as "bigger vector" |
+
+The displacement-convergence and thermocouple Lab acts above are the operational version of this handshake: track energy and displacement together; name the continuum operator the matrix approximates. Part II's [Closing the arc from Part I](../part02-functional-analysis/00-opening.md#closing-the-arc-from-part-i) recasts the same four questions from the prologue in \(H^1\) and \(L^2\). The [preface ascent continuity hinge](../preface.md#ascent-continuity-hinges) marks this Bridge as the first mandatory pause in row 17's straight read — recite the [plot spine one line](#plot-spine-one-line) aloud before opening Part II.
+
 The [prologue](../prologue/00-many-scales.md) named the weak form a **recurring character** — it will return as Galerkin assembly in Part IV, virtual work in Part VI, and a variational statement on electron density in Part IX. Part I could not give that character a stage: at fixed \(N\), equilibrium is \(\mathbf{K}\mathbf{u}=\mathbf{f}\), not integration by parts. Chapter 4 showed why refinement sends \(N\) without bound and why the limit object is a **function**, not a longer vector. Part II opens with [**Closing the arc from Part I**](../part02-functional-analysis/00-opening.md#closing-the-arc-from-part-i) — the same four questions from the prologue, now in \(H^1\) and \(L^2\) — and builds the room the weak form will speak in.
 
 Turn the page. We leave the comfort of \(\mathbb{R}^N\) and enter the space of admissible fields. The copper wire’s temperature and displacement live there; our meshes are finite-dimensional shadows of those fields, and the shadow improves as \(h \to 0\).

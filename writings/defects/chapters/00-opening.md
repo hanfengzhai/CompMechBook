@@ -204,6 +204,18 @@ Part VI closed with variational elasticity: energy minimization and virtual work
 | Cutoff-regularized singularities at notches | Line defects with Burgers vector \(\mathbf{b}\) and mobility law |
 | [VI.4 Bridge](../part06-continuum/04-nonlinear-plasticity-preview.md#bridge-to-part-vii) names the hinge | OpenDiS → DAMASK → polycrystal FEM handoff in [VII.3](03-polycrystal-and-fem-handoff.md) |
 
+**Scale-boundary handshake (Part VI → Part VII → Part VIII).**
+
+| Continuum export ([Part VI](../part06-continuum/04-nonlinear-plasticity-preview.md)) | Mesoscale contract (this part) | Atomistic audit ([Part VIII](../part08-md/00-opening.md)) | Failure mode |
+|--------------------------------------------------------------------------------------|--------------------------------|-----------------------------------------------------------|--------------|
+| \(J_2\) yield with fitted \(H\), \(\sigma_{y0}\) | Taylor \(\tau \propto \sqrt{\rho}\) from DDD | Mobility \(M(\tau,T)\) from NVT shear | Phenomenological \(H\) with no forest geometry |
+| Return-mapping at load cell knee | OpenDiS segment network; link statistics | Core structure in MD RVE | Rate-independent J₂ at high strain rate |
+| Cutoff-regularized notch singularity | Line defects with Burgers vector \(\mathbf{b}\) | Atoms at notch root; FE² subdomain | Linear elasticity at \(r < 1\) nm |
+| Thermal softening at \(T_w\) ([V.4 CHT](../part05-fvm/04-navier-stokes-cfd.md)) | \(M(\tau, T_w)\) in segment rules | MD mobility at same \(T_w\) | 300 K default mobility in heated wire |
+| [VI.4 intermission](../part06-continuum/04-nonlinear-plasticity-preview.md#intermission-ascent-ends-descent-begins) descent gate | [VII.3 Bridge to Part VIII](03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) | [IX.3 foundation deck](../part09-dft/03-dft-workflows.md) | Handbook \(\mathbb{C}\) without DFT pedigree |
+
+The [preface descent continuity hinge](../preface.md#descent-continuity-hinges) marks Part VII as the first **mesoscale → atomistic** turn on the prologue ladder — where line cores and mobility tables need atomic bonding before Part IX audits the potential from \(\rho(\mathbf{r})\). The [VI.4 return-mapping Lab act](../part06-continuum/04-nonlinear-plasticity-preview.md#lab-act-return-mapping-on-the-load-cell-knee-act-iv-hardening) fit the load cell knee with scalar \(H\); the three chapters below replace that scalar with forest density \(\rho\) and link-length statistics the epilogue's **Handshake 3** formalizes.
+
 The three chapters below follow the **Defects Notes** layout: [VII.1](01-defect-taxonomy.md) names point, line, and surface defects on the wire's polycrystal; [VII.2](02-dislocation-dynamics.md) simulates Peach–Köhler glide and forest evolution; [VII.3](03-polycrystal-and-fem-handoff.md) exports hardening laws to the same mesh Part IV assembled. Cold drawing did not change Young's modulus; it **stored** lines whose collective motion bends the force–displacement curve upward.
 
 Return to **Act IV** in the [prologue](../prologue/00-many-scales.md): the bend is not a magic constant in a yield surface — it is dislocation motion under the stress field Part IV computed. Parts VIII–IX will ask what sets mobility and stacking-fault energy; Part VII asks how plasticity **propagates** before we shrink to atoms and electrons.

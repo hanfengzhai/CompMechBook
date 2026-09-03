@@ -217,6 +217,18 @@ Part VIII ran LAMMPS on an EAM potential **on trust** — cohesive energy, latti
 | Stacking-fault energy for partial dislocations | Generalized stacking-fault surface from slab calculations |
 | Phonons for thermal expansion checks | DFPT or finite-difference phonons at documented k-mesh |
 
+**Scale-boundary handshake (Part VIII → Part IX → epilogue).**
+
+| MD export ([Part VIII](../part08-md/03-ab-initio-and-coarse-graining.md)) | DFT audit (this part) | Upward consumer (epilogue) | Failure mode |
+|---------------------------------------------------------------------------|----------------------|----------------------------|--------------|
+| EAM \(V(\{\mathbf{r}_i\})\) on trust | Hohenberg–Kohn \(E[\rho]\); Kohn–Sham SCF | Handshake 2: \(\mathbb{C}\), \(\gamma_{\text{sf}}\) pedigree | EAM fit without phonon cross-check |
+| Bulk \(a_0\), \(E\), \(\nu\) from NPT | Murnaghan \(B_0\) from volume scans | Part IV elastic step; Part VI \(\mathbb{C}\) | Under-converged SCF between volume points |
+| Mobility tables at \(T_w\) | Not re-derived at electronic scale | Handshake 4a: rate extrapolation | 300 K MD mobility in Joule-heated wire |
+| Phonon DOS from velocity autocorrelation | DFPT phonons at same k-mesh | Handshake 3: \(\alpha(T_w)\) via [`parse_alpha.sh`](../../scripts/parse_alpha.sh) | Optical branches shift >10% with matched bulk modulus |
+| [`wham_export.yaml`](../part08-md/03-ab-initio-and-coarse-graining.md) at \(T_w\) | Quasiharmonic \(\alpha(T)\) audit | [`multiscale_export.yaml`](../part09-dft/03-dft-workflows.md#ix3-foundation-checklist) | WHAM and DFT phonons at different \(T_w\) |
+
+The [preface descent continuity hinge](../preface.md#descent-continuity-hinges) names [VIII.3 → IX](../part08-md/03-ab-initio-and-coarse-graining.md#bridge-to-part-ix) as the **atomistic → electronic** turn — the last descent gate before row 17's straight read pauses at [IX.3 Bridge to epilogue](../part09-dft/03-dft-workflows.md#bridge-to-the-epilogue). Return to **Act VI — Foundation** in the [prologue](../prologue/00-many-scales.md): the foundation folder runs in parallel with Acts I–V; Part IX makes that invisible afternoon explicit.
+
 The book's recurring character — weak form, virtual work, variational principle — finds its finest-scale voice here: the Hohenberg–Kohn theorem states that the ground-state energy is minimized over admissible densities, exactly as Dirichlet's principle minimized elastic energy in Part III and Rayleigh–Ritz searched on \(V_h\) in Part IV. Part I's eigenvalue loop reappears as the self-consistent Kohn–Sham cycle; Part II's function spaces as orbital Hilbert spaces; Part IV's assembly philosophy as plane-wave expansions and k-point quadrature.
 
 **Reading order** (VII → VIII → IX) descends to finer physics; **workflow order** (IX → VIII → VII → IV) is how practitioners build input decks — see the [two clocks note](../part08-md/00-opening.md#two-clocks-reading-order-vs-foundation-pedigree). Linear readers should finish Part IX before the epilogue so every upward export in the multiscale afternoon carries a pedigree traceable to SCF convergence logs.
