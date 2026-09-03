@@ -21,6 +21,8 @@ The operator clicks **Solve**. The displacement curve overlays the experimental 
 
 ## The Galerkin system
 
+**Contract handoff (Part III → Part II → assembly).** [III.4](../part03-pdes/04-energy-methods.md) certified that equilibrium on the copper wire is energy minimization on \(H^1\); [II.3](../part02-functional-analysis/03-hilbert-spaces.md) proved that Galerkin orthogonality \(a(u-u_h, v_h)=0\) for all \(v_h \in V_h\) makes \(u_h\) the best approximation in the energy norm. Assembly is the operational proof that those theorems are the same object as a sparse matrix: each entry \(K_{ij} = a(\phi_j, \phi_i)\) is the Gram matrix of the energy inner product restricted to the grip-cluster mesh from the Scene — not an arbitrary array the solver happens to accept. When Act III's load-cell trace disagrees with experiment, verify that \(\mathbf{K}\mathbf{U}=\mathbf{F}\) enforces the same orthogonality before blaming yield, dislocation density, or mesh density.
+
 Let \(V_h = \text{span}\{\phi_1, \ldots, \phi_N\} \subset V\). Seek
 
 \[

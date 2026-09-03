@@ -57,6 +57,12 @@ where \(U^*(0; U_L, U_R)\) is the self-similar solution at \(x = 0\). Godunov's 
 
 Monotonicity implies **total variation diminishing (TVD)** behavior: the number of local extrema does not increase. For scalar conservation laws, this prevents Gibbs phenomena.
 
+### Act II subsonic face state (when no shock crosses the wire)
+
+The Scene's shock tube is the stress test; the copper wire's cooling air is the production case. At the first fluid cell face adjacent to the heated surface, natural convection keeps \(Ma \ll 1\): left state \((\rho_L, p_L, u_L)\) is nearly quiescent warm air, right state \((\rho_R, p_R, u_R)\) is the slightly cooler neighbor cell. No shock forms — yet the Riemann question is unchanged: **what flux crosses this face?** Godunov (or HLLC) still evaluates \(F^*_{1/2} = F(U^*(0; U_L, U_R))\) from the left/right cell averages; the wave speeds \(\lambda_1 = u-c\), \(\lambda_2 = u\), \(\lambda_3 = u+c\) are small, so the flux is dominated by pressure and density gradients in the thermal boundary layer rather than by Rankine–Hugoniot jumps.
+
+When characteristic speeds stay subsonic, the diffusive limit in [V.2](02-fvm-1d.md) — Robin flux \(q'' = h(T_w - T_\infty)\) exported from the boundary-layer profile — is the low-Mach counterpart to the Riemann machinery above. Passing Sod certifies the hyperbolic kernel; the V.2 boundary-layer example certifies the face flux when shocks are absent. **Failure mode:** a code that passes Sod but uses centered (non-upwind) fluxes at the wire-adjacent face can conserve mass globally while advecting spurious temperature oscillations into the boundary layer — conjugate heat transfer then poisons \(T_w\) regardless of solid-side mesh refinement in Part IV.
+
 ## Approximate Riemann solvers
 
 Exact Riemann solvers for Euler are iterative and expensive. Production codes use **approximate Riemann solvers** that capture essential wave speeds at lower cost.

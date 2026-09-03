@@ -49,6 +49,26 @@ Finite volume methods never form \(\partial \mathbf{F}/\partial x\) at a face. T
 
 Part I's telescoping sums reappear: if fluxes at shared faces are equal and opposite for adjacent cells, summing the semi-discrete equations over the domain eliminates interior fluxes and yields global conservation.
 
+### Worked example: surface-adjacent control volume at the wire face
+
+Return to the Scene: one air cell glued to the copper surface at steady state, with the thermocouple reading \(T_w \approx 400\,\text{K}\) after Joule heating in Act II. Label the cell center \(j=1\); its west face is the wire–air interface, east/north/south faces neighbor interior air at \(T_\infty \approx 300\,\text{K}\). In steady state with no volumetric source in the cell,
+
+\[
+\sum_{f \in \partial \Omega_1} q_f'' A_f = 0,
+\]
+
+where \(q_f''\) is the heat flux (W/m²) crossing face \(f\) outward from the cell. Sign the fluxes so **inflow is negative, outflow positive**:
+
+| Face | Flux model | Sign on wire cell | Typical magnitude (order) |
+|------|------------|-------------------|---------------------------|
+| West (wire) | Conduction from solid FEM: \(q''_{\text{solid}} = -k_s (\partial T/\partial n)|_{\text{wire}}\) | **Inflow** (heat enters air from copper) | \(10^4\)–\(10^5\,\text{W/m}^2\) under 1 A Joule heating |
+| East | Natural convection to neighbor: \(h(T_1 - T_2)\) | Outflow if \(T_1 > T_2\) | \(h \sim 5\)–\(15\,\text{W/(m}^2\text{K)}\) |
+| North, South | Same convection pattern to neighbors | Outflow on average | Smaller than west if 2D cross-section is thin |
+
+Summing the four face contributions must balance: solid conduction **in** equals convection **out** on the other three faces. This is the discrete conservation contract the [V.4](04-navier-stokes-cfd.md) Picard loop must preserve at every iteration — if interior face fluxes do not telescope to this global balance, \(T_w\) drifts even when Part IV's solid mesh has converged in the energy norm. The [V.2](02-fvm-1d.md) boundary-layer Lab act exports the Robin flux \(q'' = h(T_w - T_\infty)\) that closes the west face; this three-face table is its 2D bookkeeping counterpart.
+
+**Failure mode.** A converged Galerkin solid solve coupled to a fluid mesh that violates discrete conservation at the interface looks stable for dozens of Picard iterations, then settles on a \(T_w\) that is 10–20 K wrong — enough to poison quasiharmonic \(\alpha(T_w)\) in Handshake 3 and every downstream descent-scale model that inherits the temperature pedigree.
+
 ## 1D conservation law template
 
 In one space dimension, control volumes are intervals \([x_{j-1/2}, x_{j+1/2}]\) of width \(\Delta x_j\). The integral form becomes
