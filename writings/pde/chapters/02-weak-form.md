@@ -263,6 +263,16 @@ Weak derivatives make sense in **Sobolev spaces**. The next chapter defines \(H^
 | Point loads as functionals, not \(L^2\) densities | \(H^{-1}\) dual loads; concentrated forces on the wire |
 | Corners break classical \(C^2\) smoothness | Regularity ladder: \(H^1\) membership vs. \(H^2\) for optimal FEM rates |
 
+**Scale-boundary handshake (III.1 → III.2 → III.3).**
+
+| Strong-form export ([III.1](01-strong-form.md)) | Weak-form output (this chapter) | Sobolev consumer ([III.3](03-sobolev-spaces.md)) | Failure mode |
+|--------------------------------------------------|--------------------------------|---------------------------------------------------|--------------|
+| Pointwise PDE \(-k\Delta T = q\) at smooth interior | \(\int k \nabla T \cdot \nabla v = \int q v\) for all \(v \in H^1_0\) | \(T \in H^1\); weak derivative \(\nabla T \in L^2\) | Strong Laplacian at thermocouple weld |
+| Momentum balance \(-\nabla\cdot\boldsymbol{\sigma}=\mathbf{0}\) | Virtual work \(\int \boldsymbol{\sigma}:\nabla\mathbf{v}\) | \(\mathbf{u} \in H^1\); trace on Dirichlet boundary | Second derivatives at reentrant grip corner |
+| Dirichlet BC on \(\Gamma_D\) | Essential constraint on trial space | \(H^1_0\) membership encodes fixed grips | Duplicated Neumann flux after Dirichlet rows |
+| Point load as concentrated force | Load as functional \(\ell \in H^{-1}\) | Dual pairing, not \(L^2\) density | Treating point load as nodal \(f_i\) without regularization |
+| Galerkin preview \(\mathbf{K}\mathbf{U}=\mathbf{F}\) | Bilinear form \(a(u,v)\) and load \(\ell(v)\) | Coercivity hypothesis for Lax–Milgram | Discontinuous trial \(T_h\) across elements |
+
 The [prologue](../prologue/00-many-scales.md) named this formulation a **recurring character** — born here as integration by parts, returning as Galerkin orthogonality in Part IV, virtual work in Part VI, and a variational statement on electron density in Part IX. Part II built the room (\(H^1\), dual loads, completeness); this chapter gave the character its first lines on stage. When the grip corner breaks classical \(C^2\) smoothness, the weak form still balances virtual work — that is the plot hinge the rest of the book assumes you will trust.
 
 Energy methods ([III.4](04-energy-methods.md)) then recast \(a(u,v)=\ell(v)\) as minimization or saddle-point principles — the variational backbone of FEM and, in nonlinear settings, of hyperelastic and phase-field solvers. Turn the page when "test function" still feels informal — Sobolev spaces are the contract that makes FEM assembly honest.

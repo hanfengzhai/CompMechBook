@@ -312,6 +312,16 @@ Variational elasticity closes the loop the book has traced since Part I's spring
 | Worked 1D bar: exact linear solution on P1 mesh | Newton–Raphson at every load increment |
 | Elastic springback before yield | Honest admission: smooth fields break at defects |
 
+**Scale-boundary handshake (VI.2 → VI.3 → VI.4).**
+
+| Balance-law export ([VI.2](02-stress-balance.md)) | Variational output (this chapter) | Nonlinear consumer ([VI.4](04-nonlinear-plasticity-preview.md)) | Failure mode |
+|---------------------------------------------------|-----------------------------------|----------------------------------------------------------------|--------------|
+| Momentum balance \(\nabla\cdot\boldsymbol{\sigma}+\mathbf{f}=\mathbf{0}\) | Stationarity \(\delta\Pi=0\) of total potential energy | J₂ plasticity when history matters | Treating yield as a fitted \(H\) without dislocation forest |
+| Hooke's law \(\boldsymbol{\sigma}=\mathbb{C}:\boldsymbol{\varepsilon}\) | Quadratic \(\Pi\) on small-strain bar | Geometric nonlinearity at large \(\lambda\) | Small-displacement FEM past necking onset |
+| Virtual work from Part III weak form | Rayleigh–Ritz on P1 bar returns exact linear solution | Newton–Raphson at every load increment | Inconsistent tangent vs. energy in Updated Lagrangian step |
+| Thermal strain \(\varepsilon_{\text{th}}=\alpha\Delta T\) from Act II | Coupled energy functional (preview) | Phenomenological hardening without internal variables | Handbook \(\alpha\) beside converged CHT \(T_w\) |
+| Act III load-cell linear climb | Three-element bar worked example closes Part I→IV loop | Act IV upward bend signals mesoscale descent | Smooth \(\Pi\) explains curve that cold-drawn history bent |
+
 Return to the [prologue](../prologue/00-many-scales.md): **Act III** measured the linear elastic climb on the load cell; **Act IV** is the upward bend that variational elasticity cannot explain with a quadratic \(\psi\) alone. Part IV assembled \(\mathbf{K}\) from bilinear forms; this chapter named the stress and strain those forms integrate. [VI.4](04-nonlinear-plasticity-preview.md) is the last continuum stop — phenomenological hardening without dislocations, a fitted curve waiting for Part VII's forest to supply \(\sigma_{y0}\) and \(H\).
 
 Turn the page when the wire's stress–strain curve bends upward after cold drawing but your elastic energy minimization still returns a straight line — that is the signal history and mesoscale defects have entered the story.

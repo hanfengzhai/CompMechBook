@@ -333,6 +333,16 @@ Balance laws, stress, and constitutive relations complete the **field vocabulary
 | Hooke's law \(\boldsymbol{\sigma}=\mathbb{C}:\boldsymbol{\varepsilon}\) | Why Part IV's \(\mathbf{K}\) integrates \(\mathbb{C}:\boldsymbol{\varepsilon}(\mathbf{N}_I):\boldsymbol{\varepsilon}(\mathbf{N}_J)\) |
 | Thermal balance and Fourier law for Joule heating | Coupled energy functional when temperature feeds moduli (preview) |
 
+**Scale-boundary handshake (VI.1 → VI.2 → VI.3).**
+
+| Kinematics export ([VI.1](01-kinematics.md)) | Balance-law output (this chapter) | Variational consumer ([VI.3](03-variational-elasticity.md)) | Failure mode |
+|----------------------------------------------|-----------------------------------|-------------------------------------------------------------|--------------|
+| Deformation gradient \(\mathbf{F}\); strain measures | Cauchy stress \(\boldsymbol{\sigma}\); momentum balance | Total potential \(\Pi[\mathbf{u}]\) whose stationarity is equilibrium | Rigid-body modes from unconstrained wire |
+| Objectivity of \(\boldsymbol{\sigma}\) | Symmetry from angular momentum balance | Virtual work with physical \(\boldsymbol{\sigma}\) | Non-symmetric stress tensor in ad hoc code |
+| Small-strain \(\boldsymbol{\varepsilon}\) on Act III mesh | Hooke's law \(\boldsymbol{\sigma}=\mathbb{C}:\boldsymbol{\varepsilon}\) | Why Part IV's \(\mathbf{K}\) integrates \(\mathbb{C}:\boldsymbol{\varepsilon}(\mathbf{N}_I):\boldsymbol{\varepsilon}(\mathbf{N}_J)\) | Isotropic \(\mathbb{C}\) fitted without DFT pedigree |
+| Steady energy balance with Joule heating | Fourier law \(\mathbf{q}=-\kappa\nabla T\); Robin BC at fluid interface | Coupled thermal–mechanical energy (preview) | Wrong heat flux at air boundary in CHT |
+| Load cell reading in linear elastic regime | Cauchy stress at grip cross-section | Rayleigh–Ritz on quadratic \(\Pi\) before yield | Thermal pre-stress omitted when \(\varepsilon_{\text{th}}=\alpha\Delta T\) is nonzero |
+
 The virtual work equation in this chapter is the same balance Part IV assembled — continuum mechanics **names** the tensors the FEM code already integrated. The load cell's linear elastic climb (prologue **Act III**) measures stress derived here; when the curve bends (**Act IV**), smooth fields and isotropic \(\mathbb{C}\) stop being enough.
 
 [VI.3](03-variational-elasticity.md) makes the energy statement explicit, closes the upward arc from Part I's spring network, and previews when hyperelasticity and yield force a descent to Part VII. Turn the page when \(\boldsymbol{\sigma}=\mathbb{C}:\boldsymbol{\varepsilon}\) feels like a constitutive plug-in rather than the consequence of minimizing elastic energy — variational elasticity reunifies the story.
