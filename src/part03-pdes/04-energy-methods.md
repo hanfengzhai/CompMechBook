@@ -17,6 +17,8 @@ Load the copper wire in the tensile frame and hold the grip displacement fixed. 
 
 The same variational picture governs steady heating: among all temperature fields satisfying boundary data, the physical one minimizes a thermal functional whose Euler–Lagrange equation is Fourier's law. Part III ends here because Part IV will **discretize this minimization** — replace the infinite-dimensional search over admissible fields with a finite-dimensional search over nodal values, and call the result finite element assembly. Energy methods are the bridge from weak PDEs to algorithms.
 
+**Contract handoff (III.2 → III.4 → Part IV).** [III.2](02-weak-form.md) rewrote equilibrium as the pairing \(a(u,v)=\ell(v)\); the Dirichlet principle below shows that pairing is the first variation of a convex functional \(\Pi(u)\) on \(H^1_0\). Lax–Milgram is not a separate existence trick — it is the proof that \(\Pi\) has a unique minimizer on the grip-fixed wire, and that minimizer is the displacement field the load cell eventually reads. Part IV's Rayleigh–Ritz step replaces the infinite-dimensional minimum with \(\min_{v_h \in V_h} \Pi(v_h)\), which is exactly \(\mathbf{K}\mathbf{U}=\mathbf{F}\) when \(V_h\) is the grip-cluster mesh from Act II. If the linear elastic ramp looks wrong before yield, check coercivity and load functional continuity here before refining elements in Part IV.
+
 ## The Dirichlet principle
 
 For Poisson's equation with homogeneous Dirichlet data, define

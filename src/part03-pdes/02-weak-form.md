@@ -41,6 +41,8 @@ Read the diagram above as the plot spine of the novel, not a syllabus chart: eve
 
 This is why the weak form is not a numerical trick. It is the **correct continuum statement** for problems whose classical solutions fail at corners, kinks, and point loads — exactly the situations the drawn wire presents when clamped, notched, or loaded at a grip.
 
+**Contract handoff (Part II → weak form).** [II.2](../part02-functional-analysis/02-normed-spaces.md) built \(H^1\) with completeness so mesh refinement has a target; [II.3](../part02-functional-analysis/03-hilbert-spaces.md) equipped that space with an inner product so loads become continuous functionals via Riesz. The derivation below is the operational proof that Part I's nodal balance and Part II's function spaces describe the same copper wire: multiply the strong PDE by a test function in \(H^1_0\), integrate by parts once, and the grip-corner singularity from the Scene enters only through boundary traction — not through a demand that \(u \in C^2\). When Act III's FEM post-processing shows stress spikes at the bracket corner, the weak form is the certificate that equilibrium still holds in the sense Galerkin will discretize; blaming the mesh before verifying \(a(u,v)=\ell(v)\) repeats the category error Part II was written to prevent.
+
 ## Derivation: Poisson with Dirichlet BCs
 
 Start with \(-\Delta u = f\) in \(\Omega\), \(u = 0\) on \(\partial\Omega\). Multiply by a test function \(v\) that also vanishes on the boundary:

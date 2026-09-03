@@ -15,6 +15,8 @@ When this chapter feels abstract, read the sentence above aloud — it is this c
 
 Clamp the wire and strike it softly: the fundamental bend and the second bend do not exchange energy arbitrarily — their displacements integrate to orthogonal patterns over the length. That decoupling is Hilbert geometry: an inner product turns mode orthogonality into a theorem, and Galerkin projection into best approximation in energy. The wire's vibration spectrum is a Hilbert-space story told before any tetrahedral mesh exists.
 
+**Contract handoff (II.2 → II.3 → III.2).** [II.2](02-normed-spaces.md) gave the wire's displacement a norm and proved Cauchy sequences stay in \(H^1\); inner products below add angles so "orthogonal modes" and "best approximation on a mesh" become theorems rather than finite-difference folklore. Riesz representation is the hinge: a grip load, a thermocouple constraint, and a distributed body force all become continuous functionals \(\ell(v)\) on the same Hilbert space where \(u\) lives — which is exactly what [III.2](../part03-pdes/02-weak-form.md) will pair against test functions in the weak form. When Galerkin error is discussed in Part IV, Céa's lemma will cite the projection geometry defined here; if modes from [I.3](../part01-linear-algebra/03-eigenvalues.md) decouple on the spring mesh but look coupled on a coarse FEM mesh, the fix is subspace choice in \(V_h\), not a new physical model.
+
 ## Definition
 
 An **inner product** on a real vector space \(V\) is a map \((\cdot,\cdot): V \times V \to \mathbb{R}\) such that for all \(u,v,w \in V\) and \(\alpha \in \mathbb{R}\):

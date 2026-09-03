@@ -17,6 +17,8 @@ Return to the tensile frame with the load cell climbing. Below yield, the wire l
 
 Part IV assembled \(\mathbf{K}\mathbf{U}=\mathbf{F}\) from element matrices; Part VI now explains **why** that linear system is the discrete first variation of an energy. Virtual work and minimum potential energy are two views of the same equilibrium; variational elasticity makes the connection explicit before Part VII asks what happens when the stored-energy landscape develops singularities at dislocation cores.
 
+**Contract handoff (Part IV → Part VI).** [IV.2](../part04-fem/02-galerkin-assembly.md) assembled \(\mathbf{K}\mathbf{U}=\mathbf{F}\) as the Gram matrix of the strain-energy bilinear form on \(V_h\); [III.4](../part03-pdes/04-energy-methods.md) proved that matrix minimizes \(\Pi\) over the same subspace. The minimum potential energy principle below makes the reunion explicit: virtual work \(\delta\Pi=0\) and Galerkin orthogonality \(a(u-u_h,v_h)=0\) are the same equilibrium statement — one in continuum tensor notation, one in sparse linear algebra. Part VI names \(\boldsymbol{\sigma}\) and \(\mathbb{C}\) so the upward export from DFT (Part IX) and downward import from DDD hardening (Part VII) attach to objects the FEM code already integrates. When the load cell bends at yield, the elastic \(\Pi\) below is still the correct pre-yield contract; Part VII explains why the energy landscape gains history after that knee.
+
 ## Principle of minimum potential energy
 
 Among **kinematically admissible** displacements \(\mathbf{u}\) — satisfying \(\mathbf{u} = \mathbf{u}_0\) on \(\Gamma_D\) — define the **total potential energy**
