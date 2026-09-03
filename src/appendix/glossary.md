@@ -135,12 +135,30 @@ The book reads in **mathematical order** (Part I before Part IX) but the copper 
 
 **Reading tip:** Act VI runs **in parallel** with Acts I–V in real projects — foundation folders populate while the grips are still at zero. Row 21 is the laboratory-time mirror of row 17's mathematical read-through guide.
 
+## Representative schematics (by part) {#representative-schematics-by-part}
+
+Each part opening indexes baby pictures from its source notes (ME 300A, ME 412, ME 300B, FEA, FVM/CFD, Elasticity, Defects, Atomistic, DFT). When a proof feels abstract despite Scene and Bridge, open the schematic row for your part — the full map with chapter links is in [Sources (row 22)](sources.md#representative-schematics-cross-reference-index-row-22).
+
+| Part | Source notes | Schematics | Key spine | Part-opening table |
+|------|--------------|------------|-----------|-------------------|
+| I | ME 300A | 1–4 | Finite grammar → \(N\to\infty\) | [I.0](../part01-linear-algebra/00-opening.md#representative-schematics-me-300a) |
+| II | ME 412 | 1a–14 | **Schematic 14** variational + FEM ladder | [II.0](../part02-functional-analysis/00-opening.md#representative-schematics-me-412) |
+| III | ME 300B | 1–4 | Strong → weak → Sobolev → energy | [III.0](../part03-pdes/00-opening.md#representative-schematics-me-300b) |
+| IV | FEA | 1–5 | Galerkin assembly; two doors at IV.5 | [IV.0](../part04-fem/00-opening.md#representative-schematics-fea-notes) |
+| V | FVM / CFD | 1–4 | Conservation ladder (transport twin) | [V.0](../part05-fvm/00-opening.md#representative-schematics-fvm--cfd-notes) |
+| VI | Elasticity | 1–4 | Virtual work reunites FEM and FVM | [VI.0](../part06-continuum/00-opening.md#representative-schematics-elasticity-notes) |
+| VII | Defects | 1–3 | DDD forest replaces fitted \(H\) | [VII.0](../part07-defects/00-opening.md#representative-schematics-defects-notes) |
+| VIII | Atomistic | 1–3 | Potentials → LAMMPS → coarse-graining | [VIII.0](../part08-md/00-opening.md#representative-schematics-atomistic-modeling-notes) |
+| IX | DFT coursework | 1–3 | Kohn–Sham SCF → QE export pedigree | [IX.0](../part09-dft/00-opening.md#representative-schematics-dft-coursework) |
+
+**Reading tip:** Schematic **14** in Part II is the plot spine for Acts I–II — existence climbs through Parts III–IV; the conservation ladder in Part V is its transport twin for Act II warming. Row 22 is the visual-vocabulary mirror of row 19's plot-spine one-liners.
+
 ## Canonical sources
 
 Chapter markdown is authored under [`writings/`](../../writings/) (Functional Analysis Notes layout) and synced into `src/` via [`scripts/sync-writings.sh`](../../scripts/sync-writings.sh). For PDF links, repositories, and the full chapter roadmap, see [Sources and Further Reading](sources.md).
 
 ## Bridge
 
-This page answers *what did that symbol mean last time?* The [chapter roadmap](sources.md) answers *where does each chapter sit in reading order?* The [lab-act cross-reference (row 21)](sources.md#lab-act-cross-reference-index-row-21) answers *which worked example belongs to which act of the wire's afternoon?* The [Final Memory Sheet](memory-sheet.md) answers *what habits and traps should I carry to the next project?*
+This page answers *what did that symbol mean last time?* The [chapter roadmap](sources.md) answers *where does each chapter sit in reading order?* The [lab-act cross-reference (row 21)](sources.md#lab-act-cross-reference-index-row-21) answers *which worked example belongs to which act of the wire's afternoon?* The [representative schematics index (row 22)](sources.md#representative-schematics-cross-reference-index-row-22) answers *which baby picture matches this chapter's confusion?* The [Final Memory Sheet](memory-sheet.md) answers *what habits and traps should I carry to the next project?*
 
 Return to the [prologue](../prologue/00-many-scales.md) when a new specimen replaces copper — the four questions and six-act lab table apply to any material. Return to the [epilogue](../epilogue/multiscale.md) when you need to wire codes together rather than recall vocabulary.

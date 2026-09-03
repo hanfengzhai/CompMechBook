@@ -108,6 +108,7 @@ The [preface](../preface.md) documents opening, ascent, midpoint, descent, and e
 | 19 | Numbered chapters I.1–IX.3 | [Numbered-chapter plot spine index](#numbered-chapter-plot-spine-index-row-19) · [preface row 19](../preface.md#skill-navigation-row-19) · [memory sheet row 19 baby picture](memory-sheet.md#row-19-baby-picture-numbered-chapter-plot-spine) | Mid-chapter reading stalls despite a Bridge — read this chapter's [plot spine one line](../part01-linear-algebra/01-vectors-matrices.md#plot-spine-one-line) aloud |
 | 20 | Gate chapters I.4, VI.4, IX.3 | [Gate-chapter plot spine index](#gate-chapter-plot-spine-index-row-20) · [preface row 20](../preface.md#skill-navigation-row-20) · [memory sheet row 20 baby picture](memory-sheet.md#row-20-baby-picture-gate-chapter-plot-spine) | A mandatory gate stalls the straight read — recite its [plot spine one line](../part01-linear-algebra/04-toward-infinity.md#plot-spine-one-line) aloud before the Bridge |
 | 21 | Lab acts (six-act laboratory time) | [Lab-act cross-reference index](#lab-act-cross-reference-index-row-21) · [glossary lab-act table](glossary.md#lab-act-cross-reference-by-act) | Mathematics reads smoothly but the wire's afternoon feels episodic — follow laboratory time through worked examples |
+| 22 | Representative schematics (nine source notes) | [Schematics cross-reference index](#representative-schematics-cross-reference-index-row-22) · [glossary schematics table](glossary.md#representative-schematics-by-part) | Proofs feel abstract despite Scene and Bridge — open the baby picture for this part before the skill checkpoint |
 
 ## Part-opening plot spine index (row 18) {#part-opening-plot-spine-index-row-18}
 
@@ -172,6 +173,59 @@ Row 17–20 organize **mathematical reading order** (Scene → Bridge rhythm, pl
 | **Reunion** | All six acts wired | [Epilogue](../epilogue/multiscale.md#lab-act-reunion-six-acts-one-afternoon) | [`parse_multiscale_workflow.sh`](../../scripts/parse_multiscale_workflow.sh) on `cu.foundation/` |
 
 **Baby picture:** row 17 tells you how to read chapter-to-chapter; row 21 tells you how to **experience the wire's afternoon** through Lab acts. Mathematical order (I → IX) and laboratory time (Acts I–VI) intentionally offset — Act II warming appears in Part III–V prose while Act III pulling spans Part II–VI. When that offset confuses you, open only the Lab-act row for the act you care about, run the minimal artifact, then return to the **Bridge** of the chapter you paused in. The [glossary lab-act table](glossary.md#lab-act-cross-reference-by-act) compresses the same mapping for index-card review; the [epilogue six-act reunion](../epilogue/multiscale.md#lab-act-reunion-six-acts-one-afternoon) closes the workflow loop.
+
+## Representative schematics cross-reference index (row 22) {#representative-schematics-cross-reference-index-row-22}
+
+Rows 17–21 organize **reading rhythm** — straight-through plot, plot-spine one-liners, laboratory time. Row 22 organizes **visual vocabulary** — the baby pictures indexed at every part opening from the source notes vendored in [`writings/`](../../writings/). When a proof feels abstract despite Scene and Bridge, return to the schematic row for your current part before opening a skill checkpoint: each schematic answers the four concept-map questions (object, structure, theorem, failure mode) for one layer of the copper-wire story.
+
+### Nine source notes, one habit
+
+| Part | Source notes (PDF / repo) | Schematic range | Part-opening table | Plot spine role |
+|------|---------------------------|-----------------|-------------------|-----------------|
+| I | [ME 300A Linear Algebra](https://hanfengzhai.github.io/file/ME300A_LinAlg.pdf) | 1–4 | [I.0 schematics](../part01-linear-algebra/00-opening.md#representative-schematics-me-300a) | Finite grammar: \(\mathbf{K}\mathbf{u}=\mathbf{f}\), eigenmodes, \(N\to\infty\) preview |
+| II | [ME 412 Functional Analysis](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) | 1a–14 | [II.0 schematics](../part02-functional-analysis/00-opening.md#representative-schematics-me-412) | Function spaces; **Schematic 14** is the variational + FEM ladder spine |
+| III | [ME 300B PDEs](https://hanfengzhai.github.io/file/ME300B_PDE.pdf) | 1–4 | [III.0 schematics](../part03-pdes/00-opening.md#representative-schematics-me-300b) | Strong → weak → Sobolev → Lax–Milgram before code |
+| IV | [FEA Notes](https://hanfengzhai.github.io/file/FEA_notes.pdf) | 1–5 | [IV.0 schematics](../part04-fem/00-opening.md#representative-schematics-fea-notes) | Galerkin assembly; completes Schematic 14 convergence half |
+| V | [FVM](https://hanfengzhai.github.io/note/FVM.pdf) / [CFD](https://hanfengzhai.github.io/file/CFD_note.pdf) | 1–4 | [V.0 schematics](../part05-fvm/00-opening.md#representative-schematics-fvm--cfd-notes) | Conservation ladder twin to Schematic 14 for transport |
+| VI | [Elasticity Notes](https://hanfengzhai.github.io/file/elasticity_notes.pdf) | 1–4 | [VI.0 schematics](../part06-continuum/00-opening.md#representative-schematics-elasticity-notes) | Cauchy stress reunites FEM and FVM dialects |
+| VII | [Defects Notes](https://hanfengzhai.github.io/file/defects_notes.pdf) | 1–3 | [VII.0 schematics](../part07-defects/00-opening.md#representative-schematics-defects-notes) | Dislocation forest replaces fitted \(H\) |
+| VIII | [Atomistic Modeling](https://hanfengzhai.github.io/file/AtomModel_note.pdf) | 1–3 | [VIII.0 schematics](../part08-md/00-opening.md#representative-schematics-atomistic-modeling-notes) | Potentials, ensembles, coarse-graining upward |
+| IX | [MSE 5720 DFT](https://github.com/hanfengzhai/MSE5720-HW) | 1–3 | [IX.0 schematics](../part09-dft/00-opening.md#representative-schematics-dft-coursework) | Born–Oppenheimer → Kohn–Sham → QE export pedigree |
+
+### Master schematic map (reading order)
+
+| Part | Schematic | Idea on the copper wire | Book chapter |
+|------|-----------|-------------------------|--------------|
+| I | 1 | Vectors, norms, energy \(\mathbf{u}^T\mathbf{K}\mathbf{u}\) | [I.1](../part01-linear-algebra/01-vectors-matrices.md) |
+| I | 2 | Linear maps, bases, assembly as coordinate change | [I.2](../part01-linear-algebra/02-linear-maps.md) |
+| I | 3 | Eigenmodes decouple vibration of the spring chain | [I.3](../part01-linear-algebra/03-eigenvalues.md) |
+| I | 4 | \(N\to\infty\); operators and \(L^2\) preview | [I.4](../part01-linear-algebra/04-toward-infinity.md) |
+| II | 1a–1b | Master roadmap: algebra → operators → weak PDE/FEM | [II.0](../part02-functional-analysis/00-opening.md), [II.5](../part02-functional-analysis/05-spectral-theorem.md) |
+| II | 2–4 | Norms, completeness, sequence spaces | [II.2](../part02-functional-analysis/02-normed-spaces.md) |
+| II | 5–6 | \(L^p\), \(H^1\); orthogonal projection | [II.3](../part02-functional-analysis/03-hilbert-spaces.md) |
+| II | 7 | Duality, Riesz, weak convergence | [II.4](../part02-functional-analysis/04-operators-duality.md) |
+| II | 8a–11 | PDE → weak form → FEM existence | [II.5](../part02-functional-analysis/05-spectral-theorem.md) → Part III–IV |
+| II | **14** | **Variational + FEM ladder** (strong → weak → Lax–Milgram → Galerkin → Céa) | [III.0 variational ladder](../part03-pdes/00-opening.md#the-variational-ladder-me-412-schematic-14) · [IV.0 Galerkin ladder](../part04-fem/00-opening.md#the-galerkin-ladder-me-412-schematic-14-continued) |
+| III | 1 | Strong form; corners break \(C^2\) smoothness | [III.1](../part03-pdes/01-strong-form.md) |
+| III | 2 | Weak form; integration by parts | [III.2](../part03-pdes/02-weak-form.md) |
+| III | 3 | Sobolev \(H^1\), trace, \(C^0\) conformity | [III.3](../part03-pdes/03-sobolev-spaces.md) |
+| III | 4 | Energy minimum; Lax–Milgram | [III.4](../part03-pdes/04-energy-methods.md) |
+| IV | 1–5 | Weighted residuals → assembly → elements → elasticity → Céa; **two doors** | [IV.1](../part04-fem/01-weighted-residuals.md)–[IV.5](../part04-fem/05-convergence.md) |
+| V | 1–4 | Integral conservation → 1D FVM → Riemann → Navier–Stokes CHT | [V.1](../part05-fvm/01-conservation-integral.md)–[V.4](../part05-fvm/04-navier-stokes-cfd.md) |
+| VI | 1–4 | Kinematics → stress balance → virtual work → \(J_2\) intermission | [VI.1](../part06-continuum/01-kinematics.md)–[VI.4](../part06-continuum/04-nonlinear-plasticity-preview.md) |
+| VII | 1–3 | Defect taxonomy → DDD → Taylor hardening handoff | [VII.1](../part07-defects/01-defect-taxonomy.md)–[VII.3](../part07-defects/03-polycrystal-and-fem-handoff.md) |
+| VIII | 1–3 | Potentials → ensembles/integrators → ab initio coarse-graining | [VIII.1](../part08-md/01-potentials-phase-space.md)–[VIII.3](../part08-md/03-ab-initio-and-coarse-graining.md) |
+| IX | 1–3 | Born–Oppenheimer → Kohn–Sham SCF → QE workflows | [IX.1](../part09-dft/01-born-oppenheimer.md)–[IX.3](../part09-dft/03-dft-workflows.md) |
+
+### Three schematic spines (when the ladder feels fragmented)
+
+| Spine | Where drawn | When to open |
+|-------|-------------|--------------|
+| **ME 300A → ME 412 ascent** | [I.0 roadmap preview](../part01-linear-algebra/00-opening.md#me-300a--me-412-master-roadmap-preview) | Part I feels like homework unrelated to analysis |
+| **Schematic 14 variational ladder** | [III.0](../part03-pdes/00-opening.md#the-variational-ladder-me-412-schematic-14) · [IV.0 Galerkin](../part04-fem/00-opening.md#the-galerkin-ladder-me-412-schematic-14-continued) · [V.0 conservation](../part05-fvm/00-opening.md#the-conservation-ladder-fvm-parallel-to-schematic-14) | Weak forms, assembly, and fluxes feel like three courses |
+| **Coupling ladder (Act VI)** | [IX.0 reunion](../part09-dft/00-opening.md#the-coupling-ladder-me-412-reunion) · [memory sheet Act VI](../appendix/memory-sheet.md#act-vi-baby-picture-me-412-coupling-ladder) | Foundation exports exist but handshakes feel unordered |
+
+**Baby picture:** row 17 tells you how to read chapter-to-chapter; row 21 tells you how to **experience the wire's afternoon** through Lab acts; row 22 tells you **which baby picture to open** when symbols change faster than the specimen. Return to the part-opening schematic table for your current part, find the schematic whose idea matches your confusion, jump to the linked chapter, then return to the **Bridge** you paused at. The [glossary schematics table](glossary.md#representative-schematics-by-part) compresses the nine source-note ranges for index-card review; **Schematic 14** in Part II is the spine that makes Parts III–IV read as one continuous ascent — the same diagram Part V mirrors with the conservation ladder for conjugate heat transfer in Act II.
 
 ## Continuous read-through guide {#continuous-read-through-guide}
 
