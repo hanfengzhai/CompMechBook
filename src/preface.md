@@ -247,6 +247,7 @@ The book is one continuous story, but mastery is checked at **milestones** — n
 | Row 18 — part-opening plot spine | When a part opening feels like a new syllabus — read its plot spine one line aloud | [Row 18 skill checkpoint](#skill-navigation-row-18) |
 | Row 19 — numbered-chapter plot spine | When mid-chapter reading stalls despite a Bridge — read this chapter's plot spine one line aloud | [Row 19 skill checkpoint](#skill-navigation-row-19) |
 | Row 20 — gate-chapter plot spine | When a mandatory gate (I.4, VI.4, IX.3) stalls the straight read — recite its plot spine one line aloud before the Bridge | [Row 20 skill checkpoint](#skill-navigation-row-20) |
+| Row 21 — lab-act cross-reference | When mathematics reads smoothly but the wire's afternoon feels episodic — follow laboratory time through worked Lab acts | [Lab-act index](appendix/sources.md#lab-act-cross-reference-index-row-21) |
 | After the full arc | Before starting a new project on a different material | [Epilogue](epilogue/multiscale.md#what-you-should-be-able-to-do-after-the-book) |
 
 Each part-opening table breaks skills down **by chapter** (e.g. I.1–I.4, II.1–II.5). The prologue and epilogue tables frame the whole ladder at the bookends — navigation discipline before proofs, workflow exam after coupling. When a chapter feels abstract, skip to the matching row in the part opening and produce the minimal artifact; when the artifact is in hand, return to the **Bridge** at the end of the prior chapter for the narrative hinge.

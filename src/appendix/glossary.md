@@ -120,12 +120,27 @@ When two parts feel adjacent but unrelated — say FEM (IV) and DDD (VII) — tr
 | CHT | Conjugate heat transfer | Part V.4, Epilogue |
 | WHAM | Weighted histogram analysis method — reweights parallel-tempering replica samples to a target temperature (e.g. Joule-heated \(T_w\)) before exporting cross-slip or mobility statistics | [VIII.3](../part08-md/03-ab-initio-and-coarse-graining.md#wham-part-vii-mobility-hinge-act-ii-temperature-pedigree) |
 
+## Lab-act cross-reference (by act) {#lab-act-cross-reference-by-act}
+
+The book reads in **mathematical order** (Part I before Part IX) but the copper wire lives in **laboratory time** (mounting before hardening). When proofs flow but the afternoon feels episodic, use this table — the full index with chapter links is in [Sources (row 21)](sources.md#lab-act-cross-reference-index-row-21).
+
+| Act | What happens on the wire | First Lab act to run | Reunion |
+|-----|--------------------------|----------------------|---------|
+| I — Mounting | Grips close; load cell at zero | [I.1 three-node bar](../part01-linear-algebra/01-vectors-matrices.md#lab-act-three-nodes-one-load-cell-reading-act-i--mounting) | [Epilogue Act I](../epilogue/multiscale.md#lab-act-reunion-six-acts-one-afternoon) |
+| II — Warming | Current on; thermocouple rises | [III.2 weak form](../part03-pdes/02-weak-form.md#lab-act-integrate-by-parts-on-the-heated-wire-act-ii--warming) or [V.4 CHT](../part05-fvm/04-navier-stokes-cfd.md#lab-act-natural-convection-nusselt-number-on-the-heated-wire-act-ii--warming) | Handshake 2 in [epilogue](../epilogue/multiscale.md#handshake-2--joule-heating--conjugate-heat-transfer-part-iv--v) |
+| III — Pulling | Grip displacement ramps | [IV.2 assembly](../part04-fem/02-galerkin-assembly.md#lab-act-scatter-one-bar-element-into-global-mathbfk-act-iii--pulling) | [VI.3 virtual work](../part06-continuum/03-variational-elasticity.md#lab-act-virtual-work-equals-load-cell-reading-act-iii--pulling) |
+| IV — Hardening | Force–displacement curve bends | [VII.2 forest density](../part07-defects/02-dislocation-dynamics.md#lab-act-read-the-hardening-bend-from-forest-density-act-iv) | Handshake 4a in [epilogue](../epilogue/multiscale.md#4a--ddd-strain-rate-to-quasi-static-load-cell-act-iv--hardening) |
+| V — Notch | Stress concentrator | [VIII.3 EAM audit](../part08-md/03-ab-initio-and-coarse-graining.md#lab-act-eam-fit-audit-before-the-notch-md-run-act-v--notch) | Handshake 4b in [epilogue](../epilogue/multiscale.md#4b--when-continuum-fails-at-the-notch-md-subdomain-act-v--notch) |
+| VI — Foundation | DFT/MD exports (parallel) | [IX.3 archive](../part09-dft/03-dft-workflows.md#lab-act-archive-the-foundation-run-before-the-wire-scale-solve-act-vi--foundation) | [`parse_multiscale_workflow.sh`](../../scripts/parse_multiscale_workflow.sh) |
+
+**Reading tip:** Act VI runs **in parallel** with Acts I–V in real projects — foundation folders populate while the grips are still at zero. Row 21 is the laboratory-time mirror of row 17's mathematical read-through guide.
+
 ## Canonical sources
 
 Chapter markdown is authored under [`writings/`](../../writings/) (Functional Analysis Notes layout) and synced into `src/` via [`scripts/sync-writings.sh`](../../scripts/sync-writings.sh). For PDF links, repositories, and the full chapter roadmap, see [Sources and Further Reading](sources.md).
 
 ## Bridge
 
-This page answers *what did that symbol mean last time?* The [chapter roadmap](sources.md) answers *where does each chapter sit in reading order?* The [Final Memory Sheet](memory-sheet.md) answers *what habits and traps should I carry to the next project?*
+This page answers *what did that symbol mean last time?* The [chapter roadmap](sources.md) answers *where does each chapter sit in reading order?* The [lab-act cross-reference (row 21)](sources.md#lab-act-cross-reference-index-row-21) answers *which worked example belongs to which act of the wire's afternoon?* The [Final Memory Sheet](memory-sheet.md) answers *what habits and traps should I carry to the next project?*
 
 Return to the [prologue](../prologue/00-many-scales.md) when a new specimen replaces copper — the four questions and six-act lab table apply to any material. Return to the [epilogue](../epilogue/multiscale.md) when you need to wire codes together rather than recall vocabulary.
