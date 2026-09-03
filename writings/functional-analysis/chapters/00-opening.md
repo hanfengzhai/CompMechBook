@@ -150,4 +150,22 @@ None of these require running a commercial FEM code — but each one is the infi
 
 Part I ended with a promise: as the mesh refines, the copper wire's displacement and temperature fields live in infinite-dimensional spaces, not in \(\mathbb{R}^N\) for any fixed \(N\). [I.4](../part01-linear-algebra/04-toward-infinity.md#bridge-to-part-ii) named the three-step bridge — weak form, subspace \(V_h \subset H^1\), matrix system — and deferred steps 1–2 to this part. The first chapter below makes that promise precise: why weak forms appear, why classical smoothness fails at corners, and why the stiffness matrix is a Galerkin projection rather than an arbitrary sparse array.
 
+| What [I.4](../part01-linear-algebra/04-toward-infinity.md#bridge-to-part-ii) established | What Part II (opening → II.1) opens |
+|----------------------------------------------------------------------------------------|-------------------------------------|
+| \(\mathbf{K}_N \mathbf{u}_N = \mathbf{f}_N\) as mesh refines | Operator \(K: H^1_0 \to H^{-1}\); limit field \(u(x)\) |
+| Energy error vs \(h\) on manufactured solutions | Norms \(\|\cdot\|_{H^1}\), \(\|\cdot\|_{L^2}\); completeness |
+| Thermocouple profile \(T(x)\) as nodal limit | \(T \in H^1\); inner product as strain-energy norm |
+| Spectral accumulation of \((\mathbf{K}, \mathbf{M})\) eigenvalues | Compact operators; spectral theorem preview |
+
+**Scale-boundary handshake (I.4 → Part II → II.1).**
+
+| Part I export ([I.4](../part01-linear-algebra/04-toward-infinity.md)) | Function spaces (this part) | Motivation consumer ([II.1](01-motivation.md)) | Failure mode |
+|------------------------------------------------------------------------|----------------------------|-----------------------------------------------|--------------|
+| Mesh refinement \(N \to \infty\) | Completeness of \(H^1\); Cauchy sequences stay in \(V\) | Why weak forms replace strong PDEs at corners | Refining mesh without convergence target |
+| \(\mathbf{u}^T \mathbf{K} \mathbf{u}\) energy | Coercive bilinear form \(a(u,v)\) | Lax–Milgram existence preview | Nodal displacement "converged" but energy 5% high |
+| Discrete eigenvalues \((\mathbf{K}, \mathbf{M})\) | Operator spectrum; compactness | Modal limit as mesh refines | Spurious modes from incomplete space |
+| Gram matrix / \(L^2\) preview | Riesz representation; dual loads | Load as functional, not just vector | Neumann data treated as nodal force |
+
 The [prologue](../prologue/00-many-scales.md) introduced the weak form as a **recurring character** that will outlive every mesh. Part I gave it a finite-dimensional prelude — \(\mathbf{K}\mathbf{u}=\mathbf{f}\) as nodal equilibrium — and Chapter 4 showed that prelude converges toward a field \(u(x)\) as \(h \to 0\). Part II is where that field acquires a norm, an inner product, and a completeness theorem worth trusting. When Act III in the lab session ramps grip displacement, the load cell curve is honest only because the limit object defined here makes mesh refinement meaningful.
+
+Turn the page when \(\mathbf{K}\mathbf{u}=\mathbf{f}\) feels unrelated to PDEs — function spaces are where the matrix reveals the operator it was always approximating.

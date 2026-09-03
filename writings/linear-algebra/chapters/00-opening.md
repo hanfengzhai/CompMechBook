@@ -154,6 +154,15 @@ The prologue introduced the copper wire at every scale and named the four questi
 | Ladder preview (FEM, FVM, DFT…) | Same grammar under every rung — matrices before fields |
 | Weak form named, not yet spoken | [I.4 Bridge](04-toward-infinity.md#bridge-to-part-ii): \(N\to\infty\) handoff to Part II |
 
+**Scale-boundary handshake (prologue → I.0 → I.1).**
+
+| Prologue export (ladder + four questions) | Part I opening (this chapter) | Matrix grammar consumer ([I.1](01-vectors-matrices.md)) | Failure mode |
+|-------------------------------------------|-------------------------------|--------------------------------------------------------|--------------|
+| Nine rungs: algebra → … → DFT | Act I mounting: \(\mathbf{K}\mathbf{u}=\mathbf{f}\) at zero load | State \(\mathbf{u}\), SPD \(\mathbf{K}\), load \(\mathbf{f}\) with numbers | Ladder feels like a menu before the first matrix |
+| Four questions per scale | Concept map: object / structure / theorem / breaks | Energy \(\mathbf{u}^T\mathbf{K}\mathbf{u}\); sparsity from local coupling | Skipping to eigenvalues before assembly |
+| Six-act lab arc | Mounting Lab act: boundary tags, rigid-body removal | Three-node bar: \(F = k(u_3-u_2)\) on load cell | Zero-load assembly conflated with Act III ramp |
+| Weak form as recurring character | ME 300A → ME 412 roadmap preview | Inner product as strain-energy pairing | Treating \(\mathbf{K}\) as arbitrary data |
+
 Return to the [prologue](../prologue/00-many-scales.md): the drawn Cu wire (\(L=1\,\text{m}\), \(EA=2.4\times10^8\,\text{N·m}\) from [I.1](01-vectors-matrices.md)) is still unstrained — load cell reads zero, grips fixed. Every later part generalizes the same object: Part [IV](../part04-fem/00-opening.md) meshes it, Part [V](../part05-fvm/00-opening.md) cools it, Part [IX](../part09-dft/00-opening.md) audits its elastic constants. Part I is the rung where that story is still a **small sparse matrix** you can write by hand.
 
 The first chapter refreshes the language — inner products, norms, matrix structure — that Parts II through IX will generalize to functions and operators.
