@@ -145,6 +145,8 @@ Each numbered chapter (I.1–IX.3) carries a **plot spine (one line)** section �
 
 **Baby picture:** row 17 names chapter rhythm (Scene → Bridge); row 18 names part boundaries (nine one-liners); row 19 names **mid-chapter orientation** (35 one-liners). When a chapter feels abstract, read its plot spine aloud before opening a skill checkpoint — the sentence is the narrative stitch the Functional Analysis Notes layout assumes at every numbered chapter opening.
 
+The [preface row 19 skill checkpoint](../preface.md#skill-navigation-row-19) lists four audit steps for mid-chapter smoothness; the [prologue row 19 closing stitch](../prologue/00-many-scales.md#row-19-closing-stitch) is the narrative-time mirror when a chapter body loses the copper wire mid-part; the [memory sheet row 19 baby picture](memory-sheet.md#row-19-baby-picture-numbered-chapter-plot-spine) compresses the 35 sentences for index-card review; the [epilogue Row 19 workflow exam](../epilogue/multiscale.md#row-19-workflow-exam) and [epilogue row 19 closing loop](../epilogue/multiscale.md#row-19-closing-loop) reunite narrative, competence, and workflow time when row 18's part one-liners did not restore continuity mid-chapter.
+
 ## Gate-chapter plot spine index (row 20) {#gate-chapter-plot-spine-index-row-20}
 
 Row 17 names three **mandatory pauses** during a straight-through read; row 20 names the **plot spine one-liner** to recite aloud at each gate before opening the Bridge or intermission. These are not arbitrary checkpoints — they are the three plot turns where the copper wire's story changes act: grammar becomes analysis, ascent ends at the knee, pedigree exports upward to coupling.
