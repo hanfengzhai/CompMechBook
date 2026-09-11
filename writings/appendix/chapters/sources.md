@@ -125,6 +125,8 @@ Each part opening carries a **plot spine (one line)** section — a single sente
 
 **Baby picture:** the [preface plot spine](../preface.md#plot-spine-how-the-story-is-told) names four acts; this table names **nine rungs** — one sentence per part opening. Row 17 tells you to read straight through; row 18 tells you what each part opening should **sound like** when the plot is continuous. When a part feels disconnected, open only its plot-spine line before diving into skill rows 0–16.
 
+The [preface row 18 skill checkpoint](../preface.md#skill-navigation-row-18) lists four audit steps for part-boundary smoothness; the [prologue row 18 closing stitch](../prologue/00-many-scales.md#row-18-closing-stitch) is the narrative-time mirror when a part opening feels like a new syllabus; the [memory sheet row 18 baby picture](memory-sheet.md#row-18-baby-picture-part-opening-plot-spine) compresses the nine sentences for index-card review; the [epilogue row 18 closing loop](../epilogue/multiscale.md#row-18-closing-loop) reunites narrative, competence, and workflow time when row 17's straight read stalls at III → IV or VI → VII.
+
 ## Numbered-chapter plot spine index (row 19) {#numbered-chapter-plot-spine-index-row-19}
 
 Each numbered chapter (I.1–IX.3) carries a **plot spine (one line)** section — a single sentence naming that chapter's role in the continuous arc. Read aloud when mid-chapter abstraction rises faster than the specimen; the [chapter roadmap](#chapter-roadmap-one-continuous-arc) lists the same roles in table form. Row 18 names part boundaries; row 19 names **chapter interiors** when row 17's Scene/Bridge rhythm stalls mid-chapter.
