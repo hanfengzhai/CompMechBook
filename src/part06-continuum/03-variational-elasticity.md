@@ -301,6 +301,19 @@ This chapter is where FEM's matrix equation receives its continuum philosophical
 
 The three-element bar worked example closed the loop from Part I's springs through Part IV's assembly: Rayleigh–Ritz on a quadratic energy returns exact linear solutions when \(u(x)\in V_h\). Act IV's upward bend signals the energy is no longer a simple quadratic in \(\mathbf{u}\) — the cue for [VI.4](04-nonlinear-plasticity-preview.md) and Part VII's forest.
 
+### Opening hinge: VI.3 → VI.4 (virtual work → plasticity preview) {#opening-hinge-vi3-to-vi4}
+
+[Row 31](../appendix/sources.md#twin-ladder-virtual-work-reunion-index-row-31) closed the **elastic** reunion: \(\delta\Pi = 0\) equals the load cell slope before yield. [VI.4](04-nonlinear-plasticity-preview.md) opens when that identity **breaks** — the curve bends upward, history enters, and energy minimization becomes constrained optimization at each Gauss point. Read the [virtual work → plasticity preview reunion index](../appendix/sources.md#virtual-work-plasticity-preview-reunion-index-row-32) when row 31 restored \(\mathbf{K}\mathbf{U}=\mathbf{F}\) as force balance but return-mapping still feels like a separate numerical trick.
+
+| What VI.3's virtual work Lab act proved | What VI.4's return-mapping Lab act adds |
+|----------------------------------------|----------------------------------------|
+| Straight load-cell line: \(F = EA\delta/L\) from \(\delta\Pi = 0\) | Upward bend: secant stiffness drops after yield |
+| Quadratic \(\Pi[\mathbf{u}]\) with optional \(\alpha\Delta T\) from `cht_export.yaml` | Internal variable \(\alpha_n\); yield function \(f \le 0\) |
+| Rayleigh–Ritz exact on P1 bar when \(u(x)\) is linear | Newton–Raphson with consistent tangent \(\mathbf{K}_T\) |
+| Finite-strain preview: \(\Pi_{\text{small}} \approx \Pi_{\text{GL}}\) at \(\delta/L = 10^{-3}\) | Geometric + material nonlinearity split at Act IV |
+
+The [VI.4 opening hinge from VI.3](04-nonlinear-plasticity-preview.md#opening-hinge-vi3-to-vi4) is the downstream half of this table — turn there when the load cell knee appears but your energy functional still returns a straight line.
+
 ## Bridge
 
 Variational elasticity closes the loop the book has traced since Part I's spring network: minimize energy in \(H^1\), derive virtual work, assemble \(\mathbf{K}\) — and recognize the discrete solve as Rayleigh–Ritz on the same functional Part III named.

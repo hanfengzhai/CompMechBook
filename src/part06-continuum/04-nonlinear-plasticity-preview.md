@@ -15,6 +15,19 @@ When this chapter feels abstract, read the sentence above aloud — it is this c
 
 Return to the force–displacement trace from Part I: linear climb, then yield knee, then hardening plateau. Linear elasticity explains only the first segment. Large strain, necking, and path-dependent hardening live outside the quadratic energy landscape — yet the same wire, same grips, same experiment. This chapter names what changes when the tangent stiffness stops being constant and points toward Part VII's defects as the microscale reason for the knee.
 
+### Opening hinge: VI.3 → VI.4 (virtual work → plasticity preview) {#opening-hinge-vi3-to-vi4}
+
+[VI.3's virtual work Lab act](03-variational-elasticity.md#lab-act-virtual-work-equals-load-cell-reading-act-iii--pulling) proved that the load cell slope before yield is \(\delta\Pi = 0\) on the same three-element bar Part IV meshes — not merely \(\mathbf{K}\mathbf{U}=\mathbf{F}\) as sparse algebra. This chapter opens when that proof **stops applying**: the force–displacement curve bends, plastic strain accumulates, and equilibrium at each increment is a **return-mapping projection** onto a yield surface rather than unconstrained energy minimization.
+
+| VI.3 elastic checkpoint | VI.4 plasticity preview |
+|-------------------------|-------------------------|
+| \(\Pi = \tfrac{1}{2}\int \mathbb{C}:\boldsymbol{\varepsilon}:\boldsymbol{\varepsilon}\, d\Omega\) | \(\psi\) no longer quadratic in total strain |
+| Virtual work \(\Leftrightarrow\) equilibrium | Kuhn–Tucker complementarity at yield |
+| Thermal pre-stress from `cht_export.yaml` in \(\Pi[\mathbf{u}]\) | Same \(\sigma_{\text{th}}\) shifts yield onset before first plastic increment |
+| [Finite-strain Lab act](03-variational-elasticity.md#lab-act-finite-strain-versus-small-strain-on-the-same-grip-act-iii--pulling-finite-strain-preview) at \(\delta/L = 10^{-3}\) | Geometric nonlinearity + \(J_2\) history at Act IV |
+
+When row 31 restored energy but return-mapping still feels disconnected from \(\delta\Pi = 0\), read the [virtual work → plasticity preview reunion index](../appendix/sources.md#virtual-work-plasticity-preview-reunion-index-row-32) — row 32 names the **energy break at the knee**, not a new subject. The [intermission](#intermission-ascent-ends-descent-begins) below is the narrative gate before Part VII's first descent rung.
+
 ## Intermission: ascent ends, descent begins {#intermission-ascent-ends-descent-begins}
 
 If you have read linearly since the [preface ascent preview chain](../preface.md#ascent-preview-chain) and [continuity hinges](../preface.md#continuity-hinges-ascent-descent), Part VI's [midpoint anchor](00-opening.md#midpoint-ascent-complete-descent-ahead) marked the turn from mathematical climb to scale descent. This chapter is the last continuum stop on the ascent side of that hinge: it admits that cold-drawn copper, notch roots, and path-dependent hardening **break** the smooth fields FEM and FVM trusted in Parts IV–V. The [preface descent preview chain](../preface.md#descent-preview-chain) names what follows — dislocation forest, atomic lattice, electron density — without asking you to leave the wire on the bench. The specimen does not change; only the state variable does. When the J₂ return-mapping loop fits \(H\) and \(\sigma_{y0}\) but cannot explain **why** the curve bent, the plot turns downward: phenomenology has done its job; pedigree awaits in Part VII.

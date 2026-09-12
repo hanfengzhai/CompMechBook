@@ -30,6 +30,21 @@ Picture the load cell from prologue **Act IV — Hardening** exactly where VI.4 
 
 At the engineering scale the wire still satisfies balance laws and virtual work; at the mesoscale it is a forest of line defects whose collective motion we can simulate rather than postulate. Part VII is the first rung where the copper wire stops pretending to be a smooth continuum everywhere — the same specimen, the same afternoon, a smaller state variable.
 
+## Descent hinge from VI.4: energy break, forest begins {#descent-hinge-from-vi4-energy-break-forest-begins}
+
+[VI.4's intermission](../part06-continuum/04-nonlinear-plasticity-preview.md#intermission-ascent-ends-descent-begins) is the **narrative gate** this opening inherits — not a separate course on plasticity theory. Row 31 proved \(\delta\Pi = 0\) equals the load cell slope in the elastic climb; [row 32](../appendix/sources.md#virtual-work-plasticity-preview-reunion-index-row-32) names the moment that identity breaks at the yield knee and return-mapping replaces unconstrained minimization. Part VII is the first rung that explains **why** the knee bent: dislocation lines, not a fitted \(H\).
+
+Read this hinge aloud when Part VII feels like a new subject after tensor vocabulary:
+
+| VI.4 export (continuum phenomenology) | Part VII consumer (mesoscale physics) | Pedigree anchor |
+|---------------------------------------|---------------------------------------|-----------------|
+| Return-mapped Cauchy \(\boldsymbol{\sigma}\) at Gauss points | Peach–Köhler driving force on each segment | Same stress tensor, different resolution |
+| Fitted \(H\), \(\sigma_{y0}\) from one tensile test | Forest density \(\rho\); Taylor \(\tau \propto \sqrt{\rho}\) | Cold-drawn history stored before the test |
+| Thermal pre-stress \(\sigma_{\text{th}} \approx E\alpha\Delta T\) from `cht_export.yaml` | Mobility \(M(\tau, T_w)\) softens glide before first plastic increment | [`fixtures/cht_export.yaml`](../../fixtures/cht_export.yaml): \(T_w = 311.48\,\text{K}\), \(\Delta T = 11.48\,\text{K}\) |
+| Three descent signals (history, mesh-independent hardening failure, notch core) | VII.1 defect taxonomy → VII.2 DDD → VII.3 polycrystal handoff | [VI.4 Bridge](../part06-continuum/04-nonlinear-plasticity-preview.md#bridge-to-part-vii) names the hinge |
+
+The load cell from **Act IV — Hardening** is still mounted. Part VI's \(J_2\) loop made the curve computable; Part VII makes the bend **generative** — lines multiply under the stress field Part IV exported. When Peach–Köhler forces feel disconnected from virtual work, return to [row 31](../appendix/sources.md#twin-ladder-virtual-work-reunion-index-row-31) for the elastic reunion, then [row 32](../appendix/sources.md#virtual-work-plasticity-preview-reunion-index-row-32) for the energy break at yield — both are the same afternoon, different state variables.
+
 ## Ascent hinge: midpoint and twin ladders {#ascent-hinge-midpoint-and-twin-ladders}
 
 [Part VI's mathematical midpoint](../part06-continuum/00-opening.md#midpoint-ascent-complete-descent-ahead) closes the **ascent** — linear algebra through FEM and FVM discretization complete, Cauchy stress named behind every entry in \(\mathbf{K}\). The [twin ladders reunion](../part06-continuum/00-opening.md#the-twin-ladders-reunite-galerkin-and-conservation) is the last place Galerkin energy (Part IV) and conservation flux (Part V) spoke on one specimen before descent: Joule heating in the wire, convection in the air, and thermal strain \(\varepsilon_{\text{th}} = \alpha\Delta T\) entering virtual work in [VI.2](../part06-continuum/02-stress-balance.md#scale-boundary-handshake-thermal-expansion-alpha) and [VI.3](../part06-continuum/03-variational-elasticity.md#thermal-coupling-act-ii).
