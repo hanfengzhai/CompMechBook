@@ -689,9 +689,9 @@ This checkpoint closes the **Thermoelastic assembly reunion** chain — the meta
 | Step | Skill on the copper wire | Minimal artifact |
 |------|--------------------------|------------------|
 | 1 — Energy grammar | Read [III.4 monolithic vs staggered](../part03-pdes/04-energy-methods.md#monolithic-vs-staggered-thermoelastic-energy) and [IV.0 thermoelastic thread](../part04-fem/00-opening.md#acts-ii-and-iii-together-thermoelastic-assembly-thread) | One sentence: coupled \(\Pi[u,T]\) → two assembly passes on one mesh |
-| 2 — Heat pass | Run [IV.1 heat Lab act](../part04-fem/01-weighted-residuals.md#lab-act-extension-joule-heating-on-two-elements-act-ii--warming) or [IV.2 \(\mathbf{K}_{TT}\) scatter](../part04-fem/02-galerkin-assembly.md#lab-act-extension-scatter-mathbfk_tt-on-the-same-mesh-act-ii--warming) | Mid-node \(T_1\) and \(\Delta T = T_1 - T_{\text{ref}}\) stored |
+| 2 — Heat pass | Run [IV.1 heat Lab act](../part04-fem/01-weighted-residuals.md#lab-act-extension-joule-heating-on-two-elements-act-ii--warming), [IV.2 \(\mathbf{K}_{TT}\) scatter](../part04-fem/02-galerkin-assembly.md#lab-act-extension-scatter-mathbfk_tt-on-the-same-mesh-act-ii--warming), or [IV.3 heat quadrature extension](../part04-fem/03-elements-quadrature.md#lab-act-extension-same-element-loop-heat-quadrature-before-mechanics-act-ii--warming) | Mid-node \(T_1\) and \(\Delta T = T_1 - T_{\text{ref}}\) stored |
 | 3 — Mechanical pass | Run [IV.1 bar Lab act](../part04-fem/01-weighted-residuals.md#lab-act-weighted-residual-on-two-bar-elements-act-iii--pulling) with \(\mathbf{F}_{\text{th}}\) from Step 2 | Load cell reading includes thermal pre-stress |
-| 4 — Full audit | Run [IV.4 one-mesh-two-fields Lab act](../part04-fem/04-poisson-to-elasticity.md#lab-act-one-mesh-two-fields-act-iiiii-on-the-copper-wire) | Staggered solve log: heat → mechanics on identical connectivity |
+| 4 — Full audit | Run [IV.4 one-mesh-two-fields Lab act](../part04-fem/04-poisson-to-elasticity.md#lab-act-one-mesh-two-fields-act-iiiii-on-the-copper-wire); read [IV.4 thermoelastic thread](../part04-fem/04-poisson-to-elasticity.md#coupled-thermoelasticity) | Staggered solve log: heat → mechanics on identical connectivity |
 
 **Row 29 three-way audit (prologue preview ↔ this checkpoint ↔ workflow exam).**
 

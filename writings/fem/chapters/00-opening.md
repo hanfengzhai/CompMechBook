@@ -61,7 +61,7 @@ The prologue's lab session does not treat heating and pulling as separate homewo
 |---------|------------------------------------------|
 | [IV.1](01-weighted-residuals.md) | Residual orthogonality for scalar heat and vector elasticity; same Galerkin choice |
 | [IV.2](02-galerkin-assembly.md) | Element scatter into \(\mathbf{K}_{TT}\) and \(\mathbf{K}_{uu}\); preview of off-diagonal coupling |
-| [IV.3](03-elements-quadrature.md) | Shared P1 connectivity; scalar vs vector DOFs per node |
+| [IV.3](03-elements-quadrature.md#shared-p1-library-for-heat-and-mechanics-acts-iiiii-on-one-mesh) | Shared P1 connectivity; same \(N_a\), \(\mathbf{J}\), quadrature; scalar vs vector DOFs per node |
 | [IV.4](04-poisson-to-elasticity.md#coupled-thermoelasticity) | Staggered pass (heat → mechanics) or monolithic \(\mathbf{K}_{uT}\); [Lab act: one mesh, two fields](04-poisson-to-elasticity.md#lab-act-one-mesh-two-fields-act-iiiii-on-the-copper-wire) |
 | [IV.5](05-convergence.md) | \(h\)-refinement on both blocks; thermal stress omitted → wrong load cell slope |
 

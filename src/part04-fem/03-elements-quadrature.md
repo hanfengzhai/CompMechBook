@@ -185,6 +185,46 @@ Use this checklist before committing to an element family:
 
 For introductory work and course problem sessions, P1 triangles in 2D remain the right default. For production analysis of the copper wire with contact, plasticity, or fine stress gradients, P2 or hexahedral elements with selective \(p\)-refinement are typical.
 
+## Shared P1 library for heat and mechanics (Acts II–III on one mesh)
+
+[IV.1](01-weighted-residuals.md) enforced heat and elasticity residuals on the **same hat functions**; [IV.2](02-galerkin-assembly.md) scattered \(\mathbf{K}_{TT}\) and \(\mathbf{K}_{uu}\) from the **same connectivity array**. This chapter names what stays identical inside the element loop when Act II and Act III share an afternoon:
+
+| Element object | Act II — scalar heat | Act III — vector elasticity | Shared? |
+|----------------|---------------------|----------------------------|---------|
+| Reference element \(\hat{\Omega}\) | P1 segment \([0,1]\) or P1 triangle | Same template | Yes |
+| Nodal coordinates \(\mathbf{X}_a\) | Isoparametric map \(\mathbf{x}(\xi)\) | Same map | Yes |
+| Jacobian \(\mathbf{J}\), \(\det J\) | Volume measure in \(\int k \|\nabla T\|^2\) | Same in \(\int \mathbf{B}^T\mathbb{C}\mathbf{B}\) | Yes |
+| Shape functions \(N_a(\xi)\) | Scalar trial \(T_h = \sum T_a N_a\) | Vector trial \(\mathbf{u}_h = \sum \mathbf{U}_a N_a\) | Same \(N_a\), different DOF count |
+| Quadrature points \(\xi_q\), weights \(w_q\) | Integrate \(\int k \nabla N_a \cdot \nabla N_b\) | Integrate \(\int \mathbf{B}^T\mathbb{C}\mathbf{B}\) | Same rule if \(\mathbb{C}\) is constant on element |
+| Global DOF map | One scalar per node | \(d\) components per node | **Same node numbering**; expanded index for vectors |
+
+**Baby picture:** the mesh file lists nodes once; the element library evaluates \(N_a\) and \(\mathbf{J}\) once per quadrature point; only the **integrand** changes between passes — conductivity \(k\) for heat, elasticity tensor \(\mathbb{C}\) for mechanics. When input decks duplicate connectivity for a thermal mesh and a structural mesh, the thermocouple and load cell are answering questions about **different specimens** even if the geometry looks identical on screen.
+
+### Quadrature order for staggered thermoelastic passes
+
+On P1 bars and triangles, one Gauss point at the element centroid integrates **constant** gradients exactly — sufficient for uniform \(k\), \(EA\), and isotropic \(\mathbb{C}\) on each element. The heat pass stores \(T_h(\xi_q)\) at those same points when forming thermal eigenstrain
+
+\[
+\varepsilon_{\text{th}}(\xi_q) = \alpha\bigl(T_h(\xi_q) - T_{\text{ref}}\bigr)
+\]
+
+for the mechanical pass. Skipping quadrature alignment — evaluating \(\varepsilon_{\text{th}}\) at nodes while \(\mathbf{B}\) is formed at centroids — introduces \(O(h)\) inconsistency that masquerades as "mysterious" thermal pre-stress on coarse meshes. Production codes evaluate \(\varepsilon_{\text{th}}\) at the **same quadrature points** as the mechanical stiffness integrand; [IV.4](04-poisson-to-elasticity.md#coupled-thermoelasticity) completes the handshake.
+
+```mermaid
+flowchart LR
+  mesh[One mesh file] --> elem[Element loop]
+  elem --> J[Jacobian and N_a at xi_q]
+  J --> pass1[Pass 1: k grad N integrand]
+  J --> pass2[Pass 2: B^T C B integrand]
+  pass1 --> KTT[K_TT scatter]
+  pass2 --> Kuu[K_uu scatter]
+  KTT --> T[T_h at xi_q]
+  T --> Fth[F_th from alpha Delta T]
+  Fth --> Kuu
+```
+
+When Act II and Act III feel like separate courses, return to this diagram — the only fork is the integrand, not the geometry. The [Part IV thermoelastic assembly thread](00-opening.md#acts-ii-and-iii-together-thermoelastic-assembly-thread) and [Thermoelastic assembly reunion index](../appendix/sources.md#thermoelastic-assembly-reunion-index-row-29) (row 29) are the reading-time audits when export pedigree is clear but the two passes never ran in order.
+
 ## Lab act: patch test on two bar elements before Act III meshing
 
 **Act III** will mesh the tensile specimen — but a two-element bar is enough to verify that shape functions, quadrature, and assembly obey the **patch test** before trusting a 3D mesh at the grip corner.
@@ -202,16 +242,34 @@ Implement the 2×2 global system by hand or in NumPy: element stiffness \(k_e = 
 
 Optional extension: repeat with a **distorted** two-element partition (lengths \(0.3L\) and \(0.7L\)). P1 bars still pass the patch test for linear solutions — a reminder that element quality matters for **higher-order** accuracy, not for representing linear fields exactly.
 
+## Lab act extension: same element loop, heat quadrature before mechanics (Act II — Warming) {#lab-act-extension-same-element-loop-heat-quadrature-before-mechanics-act-ii--warming}
+
+Before trusting vector elasticity in [IV.4](04-poisson-to-elasticity.md), verify that **element technology** — not just assembly scatter — is shared between thermal and mechanical passes on the two-element bar from [IV.2](02-galerkin-assembly.md#lab-act-extension-scatter-mathbfk_tt-on-the-same-mesh-act-ii--warming).
+
+**Setup.** Reuse the three-node bar: \(L = 1\,\text{m}\), \(k = 400\,\text{W/(m·K)}\), uniform Joule source \(q = 10^6\,\text{W/m}^3\), \(T_0 = T_2 = 300\,\text{K}\). One Gauss point at \(\xi = 1/2\) on each reference segment \([0,1]\).
+
+| Step | Element-loop move | Audit on wire |
+|------|---------------------|---------------|
+| 1 | Evaluate \(N_1, N_2\) and \(dN/dx = \pm 1/h\) at \(\xi_q\) | Same formulas as mechanical bar |
+| 2 | Form local \(\mathbf{k}_T^e = k \int B_T^T B_T \, d\xi \approx k/h \begin{bmatrix}1&-1\\-1&1\end{bmatrix}\) | Identical sparsity pattern as \(\mathbf{K}_{uu}\) with \(EA/h\) |
+| 3 | Load \(f_{T,a}^e = \int q N_a \, d\xi \approx q h/2\) on each element | Mid-node heat generation from Joule source |
+| 4 | Scatter with **same** \(\mathbf{L}_e\) as [IV.2 Step 4](02-galerkin-assembly.md#lab-act-extension-scatter-mathbfk_tt-on-the-same-mesh-act-ii--warming); solve for \(T_1\) | Thermocouple at mid-span |
+| 5 | Store \(T_h(\xi_q)\) at centroid of each element for \(\varepsilon_{\text{th}}\) | Handshake input to Act III mechanical pass |
+
+**Pass criterion:** \(\mathbf{K}_{TT}\) and \(\mathbf{K}_{uu}\) (from the mechanical patch test above) have **identical nonzero pattern** — only the scalar prefactor \(k/h\) versus \(EA/h\) differs. If Step 4 uses a different connectivity file than Step 5's mechanical scatter, row 29's thermoelastic reunion audit fails before [IV.4](04-poisson-to-elasticity.md#lab-act-one-mesh-two-fields-act-iiiii-on-the-copper-wire) runs.
+
+**Handshake audit:** compare \(T_1\) from this coarse mesh to the value from [IV.1's heat Lab act](01-weighted-residuals.md#lab-act-extension-joule-heating-on-two-elements-act-ii--warming) — both should use the same \(N_a\), \(\mathbf{J}\), and quadrature rule. When they disagree, the bug is in element quadrature or reference-map sign, not in Joule physics.
+
 ## Concept map checkpoint (elements and quadrature)
 
 This chapter is where mesh geometry enters the energy integrals. Before vector elasticity extends the same loop, summarize what element technology established:
 
 | Question | Part IV answer (copper wire) |
 |----------|------------------------------|
-| What **object**? | Shape functions \(N_a\); reference element \(\hat{\Omega}\); Jacobian \(\mathbf{J}\) |
-| What **structure**? | Partition of unity; Kronecker property; isoparametric map \(\mathbf{x}(\xi)\) |
-| What **theorem**? | Patch test: exact when solution \(\in V_h\); \(O(h^p)\) rates for smooth fields |
-| What **breaks**? | Locking (\(\nu \to 1/2\)); hourglassing (reduced integration); distorted elements reduce order |
+| What **object**? | Shape functions \(N_a\); reference element \(\hat{\Omega}\); Jacobian \(\mathbf{J}\); **same \(N_a\) for scalar \(T\) and vector \(\mathbf{u}\)** |
+| What **structure**? | Partition of unity; Kronecker property; isoparametric map \(\mathbf{x}(\xi)\); **one connectivity, two integrands** |
+| What **theorem**? | Patch test: exact when solution \(\in V_h\); \(O(h^p)\) rates for smooth fields; quadrature exact on constant P1 gradients |
+| What **breaks**? | Locking (\(\nu \to 1/2\)); hourglassing (reduced integration); distorted elements reduce order; **separate thermal and structural meshes** |
 
 The patch-test Lab act is the FEM analogue of Part I's three-node sanity check: if linear \(u(x)=x/L\) is not exact on two P1 bars, no amount of \(h\)-refinement in Act III will rescue the load cell curve. Quadrature and element order determine **accuracy**; assembly determines **structure**.
 
