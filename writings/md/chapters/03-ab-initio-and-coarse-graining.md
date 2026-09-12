@@ -28,7 +28,7 @@ If you have read linearly since the prologue, [VIII.2](02-ensembles-integrators.
 
 [VIII.2's Bridge](02-ensembles-integrators.md#bridge) named the signal to turn the page: **NVE drift flat and NPT moduli match experiment in bulk but the EAM curve fails at the notch root**. The [Part VIII opening descent hinge](00-opening.md#descent-hinge-cores-mobility-and-tw-pedigree) closed the **temperature pedigree** for exports that climb upward: WHAM parallel-tempering ladders and phonon-lifetime interpolation for Handshake 4a must read \(T_w\) from `cht_export.yaml`, not 300 K defaults. This chapter is where both contracts land: **coarse-grained numbers replace raw trajectories**; **DFT pedigree replaces EAM on trust** before Part IX derives \(\rho(\mathbf{r})\).
 
-Classical MD at laboratory temperature is not the bottom of the ladder — it is the **compression layer** where atomistics stops being a standalone movie and becomes input for DDD, FEM, and eventually electronic-structure audit. Part VIII.2 proved the integrator and ensemble; Part VIII.3 is the first page where **exports have filenames, consumers, and failure modes** named in one handoff table. When EAM matches bulk moduli but no one can cite the DFT input deck, pause here — not at Born–Oppenheimer in [Part IX](../part09-dft/01-born-oppenheimer.md) — because the [pedigree checklist](#pedigree-checklist-before-the-epilogue) below is the contract Part IX will enforce row by row. When row 34 restored phase-space pedigree but handoff tables still feel disconnected, read the [preface row 35 skill checkpoint](../preface.md#skill-navigation-row-35) — the competence-time mirror of this opening hinge.
+Classical MD at laboratory temperature is not the bottom of the ladder — it is the **compression layer** where atomistics stops being a standalone movie and becomes input for DDD, FEM, and eventually electronic-structure audit. Part VIII.2 proved the integrator and ensemble; Part VIII.3 is the first page where **exports have filenames, consumers, and failure modes** named in one handoff table. When EAM matches bulk moduli but no one can cite the DFT input deck, pause here — not at Born–Oppenheimer in [Part IX](../part09-dft/01-born-oppenheimer.md) — because the [pedigree checklist](#pedigree-checklist-before-the-epilogue) below is the contract Part IX will enforce row by row. When row 34 restored phase-space pedigree but handoff tables still feel disconnected, read the [preface row 35 skill checkpoint](../preface.md#skill-navigation-row-35) — the competence-time mirror of this opening hinge. When row 35 restored yaml exports but Part IX still feels like a new course, read the [preface row 36 skill checkpoint](../preface.md#skill-navigation-row-36) after [Bridge to Part IX](#bridge-to-part-ix).
 
 ## Scene: when EAM is not enough
 
@@ -441,7 +441,7 @@ The parallel tempering Lab act above is not complete until **WHAM reweighting** 
 **Workflow order on the copper wire:**
 
 ```text
-V.4 Picard loop  →  T_w ≈ 379 K  →  cht_export.yaml
+V.4 Picard loop  →  T_w = 311.48 K  →  cht_export.yaml
        ↓
 Replica ladder with T = T_w node  →  parallel tempering (this Lab act)
        ↓
@@ -455,7 +455,7 @@ cross_slip_{T_w}K.yaml  →  recovery sink in forest evolution (Act IV knee)
 Part VII's [glide mobility Lab act](../part07-defects/02-dislocation-dynamics.md#lab-act-calibrate-screw-mobility-from-md-shear-act-iv--mobility-prelude) supplies \(M(\tau, T)\) from NVT shear; this parallel-tempering + WHAM chain supplies **temperature-matched recovery** at the same \(T_w\) the CHT loop converged — two yaml files (`mobility_*.yaml` and `cross_slip_*.yaml`), one temperature pedigree. When [`parse_multiscale_workflow.sh`](../../scripts/parse_multiscale_workflow.sh) runs Handshakes 1–4b, it reads `cht_export.yaml` before phonon lifetime interpolation at \(T_w\); archive `wham_export.yaml` beside `cht_export.yaml` so Handshake 4a's drag and recovery share the same wall temperature the epilogue names in Handshake 2.
 
 ```text
-Part V T_w (379 K)  →  replica 2 in parallel tempering
+Part V T_w (311.48 K from cht_export.yaml)  →  replica 2 in parallel tempering
        ↓
 parse_wham.sh at T_w  →  wham_export.yaml
        ↓
