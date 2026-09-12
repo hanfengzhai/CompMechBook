@@ -90,6 +90,19 @@ Stationarity in \(u\) at fixed \(T\) gives the mechanical equilibrium with therm
 
 Numbers for copper at modest \(\Delta T = 50\,\text{K}\): \(\alpha \approx 17 \times 10^{-6}\,\text{K}^{-1}\), so \(\varepsilon_{\text{th}} \approx 8.5 \times 10^{-4}\). With \(E = 120\,\text{GPa}\), the thermal stress if expansion were fully constrained would be \(\sigma_{\text{th}} \approx E \varepsilon_{\text{th}} \approx 100\,\text{MPa}\) — comparable to yield in annealed copper and a reminder that **Act II and Act III are not independent** on the same specimen. Part IV's thermoelastic assembly (Chapter 4) and Part V's conjugate heat transfer implement this split functional on the same mesh; Part VI names the tensors inside the integrand.
 
+### Monolithic vs staggered thermoelastic energy
+
+Industrial codes implement the coupled functional \(\Pi[u,T]\) in two patterns. Both require the exports from [III.3](03-sobolev-spaces.md) — \(T, u \in H^1\) on the same mesh — but they differ in how stationarity is enforced:
+
+| Pattern | Variational move | Discrete system | When it fits the wire |
+|---------|------------------|-----------------|----------------------|
+| **Staggered** | Minimize \(\Pi_T[T]\) at fixed \(u\); then \(\Pi_u[u;T]\) at fixed \(T\) | Block Gauss–Seidel on \(\mathbf{K}_{TT}\), \(\mathbf{K}_{uu}\) | Weak coupling: modest \(\Delta T\), linear elasticity |
+| **Monolithic** | Stationarity of \(\Pi[u,T]\) in both variables simultaneously | Single saddle or block system with off-diagonal \(\mathbf{K}_{uT}\) | Strong coupling: large thermal strain, shared nodes mandatory |
+
+At the linearized level, staggered iteration is equivalent to one pass of block Jacobi on the coupled stiffness matrix — convergent when off-diagonal blocks are small compared to diagonal coercivity constants. The [III.3 discrete Poincaré table](03-sobolev-spaces.md#worked-example-discrete-poincaré-on-a-uniform-1d-mesh) names those coercivity budgets: if \(\mathbf{K}_{TT}\) is ill-conditioned on a coarse thermal mesh, staggered coupling may stall before the mechanical block sees the correct thermal eigenstrain.
+
+**Export contract (Acts II → III).** The thermal block exports nodal \(T_h\); the mechanical block consumes \(\varepsilon_{\text{th}} = \alpha(T_h - T_{\text{ref}})\) as an equivalent load vector, not as a separate material card. Handbook \(\alpha\) at 300 K violates this contract when Act II converged at \(T_w \approx 379\,\text{K}\) — the [epilogue Handshake 3](../epilogue/multiscale.md#handshake-3--thermal-strain--mechanical-stiffness-part-vi--iv) and [VI.2 \(\alpha\) handshake](../part06-continuum/02-stress-balance.md#scale-boundary-handshake-thermal-expansion-alpha) are the workflow-time mirrors; the Scale-boundary handshake at the end of this chapter is the reading-time mirror.
+
 ## Rayleigh–Ritz method
 
 The **Rayleigh–Ritz** method minimizes \(\Pi\) over a finite-dimensional subspace \(V_h\):

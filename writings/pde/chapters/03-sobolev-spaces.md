@@ -177,6 +177,19 @@ Refining the mesh (\(h \to 0\)) tightens the discrete Poincaré constant — the
 
 This table is not an abstract exercise: it is the **discrete coercivity budget** behind the stiffness matrix \(\mathbf{K}_{TT}\) in Act II and \(\mathbf{K}_{uu}\) in Act III. If a non-conforming scheme introduces spurious \(L^2\) energy on a coarse mesh (pressure oscillations in equal-order Stokes, or discontinuous temperature across elements), the discrete Poincaré constant effectively blows up — the numerical analogue of losing coercivity. Part IV.5 connects mesh refinement to energy-norm convergence; Part V's elliptic FVM schemes cite the same inequality on cell-average spaces.
 
+### Thermoelastic coupling in \(H^1\): one mesh, two fields
+
+Acts II and III share the same copper wire and, in production thermoelastic FEM, often the **same mesh**. The Sobolev contract applies independently to each field but on the **same domain** \(\Omega\):
+
+| Field | Sobolev space | Boundary data on wire | Coupling channel |
+|-------|---------------|----------------------|------------------|
+| Temperature \(T\) | \(H^1(\Omega)\) (or \(H^1\) with Dirichlet on thermocouple nodes) | Fixed ends at room value; Joule source in interior | Enters mechanical block via \(\varepsilon_{\text{th}} = \alpha(T - T_{\text{ref}})\) |
+| Axial displacement \(u\) | \(H^1_0(\Omega)\) (fixed grips) | Zero displacement at both ends | Mechanical strain drives no steady heat source; transient coupling via \(\rho c_p \dot T\) in Act II |
+
+Both fields must be **\(C^0\)** across element interfaces — the same conformity Part IV enforces with shared nodes. The coupling is **one-way at the Sobolev level** in the staggered steady problem: solve for \(T \in H^1\), then use \(T\) as data in the mechanical energy functional. Monolithic thermoelasticity treats \((u,T) \in H^1_0 \times H^1\) together; either way, a temperature jump across an element (\(T_h \notin H^1\)) corrupts both the thermal flux and the thermal eigenstrain load in the mechanical block.
+
+The discrete Poincaré table above applies to **each block** separately: \(\mathbf{K}_{TT}\) inherits coercivity from \(\|\nabla T_h\|_{L^2}^2\); \(\mathbf{K}_{uu}\) from \(\|\varepsilon(u_h)\|_{L^2}^2\) with thermal load subtracted. When Act III's load cell reads high stress at fixed grip displacement after Act II warming, check \(T_h \in H^1\) first — the failure is often a non-conforming thermal field, not a wrong plasticity model downstream. [III.4](04-energy-methods.md) packages the coupled energy; Part IV assigns node values to the blocks the discrete Poincaré budget already named here.
+
 ## Worked example: checking \(H^1\) membership
 
 On \(\Omega = (0,1)\), \(u(x) = x^{1/2}\) is in \(L^2\) but \(u'(x) = \tfrac{1}{2}x^{-1/2}\) is not square-integrable near \(0\), so \(u \notin H^1(0,1)\). By contrast, \(u(x) = x^{3/2}\) has \(u' \sim x^{1/2} \in L^2\) — admissible in a weak formulation on the full interval. This explains why singular corners and reentrant notches are trouble spots: local behavior mimics fractional powers that strip \(H^2\) regularity even when \(H^1\) membership holds.
