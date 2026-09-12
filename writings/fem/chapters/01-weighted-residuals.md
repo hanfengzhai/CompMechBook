@@ -130,6 +130,37 @@ Approximate with piecewise linear functions on a mesh of \(N\) elements. Galerki
 
 for all test functions \(v\) in the element's linear space. Assembly over the mesh yields the familiar tridiagonal stiffness — the discrete analog of \(-d/dx(EA\, d/dx)\). The natural boundary condition at \(x = L\) appears as the load term \(\int_{\Gamma_N} F v\, dS\) without any special "boundary element routine." That is the power of the weak form: boundary physics enters through the same integral machinery as body loads.
 
+## Weighted residuals for heat (Act II — Warming)
+
+**Act II** in the lab session switches on current while the grips hold fixed displacement. The thermocouple reports a temperature rise governed by steady (or quasi-steady) conduction with Joule source \(q(x)\). The strong form is \(-(k T')' = q\) on the wire axis — the scalar twin of the bar equation with conductivity \(k\) replacing \(EA\).
+
+Galerkin weighted residuals seek \(T_h = \sum_j T_j \phi_j\) such that
+
+\[
+\int_0^L k T_h' v' \, dx = \int_0^L q v \, dx \quad \forall v \in V_h,
+\]
+
+with essential temperatures at the grips (Dirichlet) and optional convection at the free surface entering as a Robin boundary integral after integration by parts. The **same hat functions** that will carry displacement in Act III carry temperature in Act II — only the bilinear form and load functional change.
+
+| Field | Operator | Weak form integrand | Lab instrument |
+|-------|----------|---------------------|----------------|
+| Displacement \(u\) (Act III) | \(-(EA u')'\) | \(\int EA u_h' v'\) | Load cell |
+| Temperature \(T\) (Act II) | \(-(k T')'\) | \(\int k T_h' v'\) | Thermocouple |
+
+This is not a separate course in heat transfer — it is the **same weighted-residual machinery** Part III wrote as \(a(u,v)=\ell(v)\), now instantiated twice on one mesh. [III.4](../part03-pdes/04-energy-methods.md#worked-example-thermoelastic-energy-on-the-wire) packaged the coupled energy; Part IV.2 will scatter \(\mathbf{K}_{TT}\) and \(\mathbf{K}_{uu}\) from the same connectivity.
+
+### Thermoelastic coupling preview
+
+When Acts II and III share the afternoon, thermal expansion enters the mechanical weighted residual as **equivalent eigenstrain**, not as a new differential operator:
+
+\[
+\int_\Omega \boldsymbol{\sigma}(\mathbf{u}_h) : \nabla \mathbf{v}\, d\Omega = \int_\Omega \mathbf{f}\cdot\mathbf{v}\, d\Omega + \int_\Omega \mathbb{C} : \boldsymbol{\varepsilon}_{\text{th}}(T_h) : \nabla \mathbf{v}\, d\Omega,
+\]
+
+with \(\boldsymbol{\varepsilon}_{\text{th}} = \alpha (T_h - T_{\text{ref}})\mathbf{I}\) in the isotropic 1D bar limit. The temperature field from the heat pass becomes a **load vector** in the elasticity pass — the discrete shadow of [III.4's coupled \(\Pi[u,T]\)](../part03-pdes/04-energy-methods.md#monolithic-vs-staggered-thermoelastic-energy). Staggered solution (heat → mechanics) is the weighted-residual analogue of alternating residual orthogonality on scalar then vector test spaces; monolithic solution couples blocks \(\mathbf{K}_{uu}\), \(\mathbf{K}_{TT}\), and optional \(\mathbf{K}_{uT}\) in one system ([IV.4](04-poisson-to-elasticity.md#coupled-thermoelasticity)).
+
+**Baby picture:** Act II makes the heat residual orthogonal to hat functions; Act III makes the mechanical residual orthogonal to the **same** hats (now vector-valued); thermal eigenstrain is the handshake between the two passes. When the load cell reads high in the linear regime, check whether the heat pass ran first — omitting Act II on the mesh is the most common source of "mysterious" elastic preload.
+
 ## Boundary conditions in weighted residual methods
 
 Boundary data split into two classes, inherited from Part III:
@@ -207,16 +238,28 @@ Scatter into global \(\mathbf{K}\), apply \(U_1=0\) and \(U_2=10\,\mu\text{m}\) 
 
 The weighted residual **is** the assembly loop in embryo: for each test function \(\phi_i\), enforce \(\int (EA u_h' \phi_i' - 0)\, dx = 0\). Part IV.2 automates the scatter; Part IV.3 adds quadrature on general elements. When the load cell trace is linear in Act III, every point is this two-equation system with a larger \(\mathbf{K}\).
 
+## Lab act extension: Joule heating on two elements (Act II — Warming)
+
+Reuse the **same three-node mesh** from the bar Lab act above. **Pass 1 — heat only:** fix \(T_0 = T_2 = 300\,\text{K}\), apply uniform Joule source \(q = 10^6\,\text{W/m}^3\) on \((0,L)\), conductivity \(k = 400\,\text{W/(m·K)}\) (copper order of magnitude). Galerkin on two linear elements gives the same tridiagonal pattern as elasticity, now for \(\mathbf{K}_{TT}\):
+
+\[
+\int_0^L k T_h' \phi_i' \, dx = \int_0^L q \phi_i \, dx, \qquad i = 1,2.
+\]
+
+Solve for free node \(T_1\). A coarse mesh underestimates mid-span temperature — the thermocouple climb is honest only when \(T_h \in H^1\) ([III.3](../part03-pdes/03-sobolev-spaces.md)) and the heat pass completes before the grip ramp.
+
+**Pass 2 preview (Act III — same mesh):** with \(\Delta T = T_1 - 300\,\text{K}\) and \(\alpha = 17 \times 10^{-6}\,\text{K}^{-1}\), thermal strain \(\varepsilon_{\text{th}} = \alpha \Delta T\) adds an equivalent compressive load in the mechanical weighted residual. [IV.2](02-galerkin-assembly.md) scatters both passes; [IV.4](04-poisson-to-elasticity.md#lab-act-one-mesh-two-fields-act-iiiii-on-the-copper-wire) completes the coupled solve. When Pass 1 is skipped, Pass 2 still runs — but the load cell lies about thermal pre-stress.
+
 ## Concept map checkpoint (weighted residuals)
 
 This chapter is where Part III's weak form becomes an **operational** approximation rule. Before assembly automates the scatter, summarize what weighted residuals established:
 
 | Question | Part IV answer (copper wire) |
 |----------|------------------------------|
-| What **object**? | Residual \(r = f - \mathcal{L}u_h\); weak residual \(R_{\text{weak}}(v; u_h)\) |
-| What **structure**? | Trial space \(V_h\), test space \(W_h\); Galerkin: \(W_h = V_h\) |
-| What **theorem**? | Rayleigh–Ritz equivalence for coercive self-adjoint problems; virtual work for elasticity |
-| What **breaks**? | Collocation on non-smooth \(u_h\); Petrov–Galerkin needed for advection; penalty ill-conditioning |
+| What **object**? | Residual \(r = f - \mathcal{L}u_h\); weak residual \(R_{\text{weak}}(v; u_h)\); **scalar heat and vector elasticity residuals on one mesh** |
+| What **structure**? | Trial space \(V_h\), test space \(W_h\); Galerkin: \(W_h = V_h\); thermal eigenstrain as mechanical load |
+| What **theorem**? | Rayleigh–Ritz equivalence for coercive self-adjoint problems; virtual work for elasticity; coupled \(\Pi[u,T]\) from [III.4](../part03-pdes/04-energy-methods.md) |
+| What **breaks**? | Collocation on non-smooth \(u_h\); Petrov–Galerkin needed for advection; **mechanical pass without heat pass** on a Joule-heated wire |
 
 The two-element bar Lab act is Galerkin in miniature: enforce \(\int (EA u_h' \phi_i' - 0)\, dx = 0\) for each hat function. Every industrial FEM code is this orthogonality condition with millions of test directions — the same character Part III introduced as \(a(u,v)=\ell(v)\), now restricted to \(V_h\).
 
@@ -239,6 +282,7 @@ Galerkin's method on a finite element space becomes a matrix system through **gl
 | Part I \(\mathbf{K}\mathbf{u}=\mathbf{f}\) | Galerkin orthogonality on \(V_h\) | Same sparsity pattern at scale | Wrong connectivity scatter |
 | Part II energy norm \(\|u\|_a\) | \(R_{\text{weak}}=0 \Leftrightarrow\) energy minimum | SPD \(\mathbf{K}\) when \(a\) is coercive | Petrov–Galerkin without adjoint care |
 | Part III \(a(u,v)=\ell(v)\) | Restrict to \(v=\phi_i \in V_h\) | \(\mathbf{K}\mathbf{U}=\mathbf{F}\) | Duplicated Neumann loads |
+| [III.4](../part03-pdes/04-energy-methods.md) coupled \(\Pi[u,T]\) | Heat residual then mechanics with \(\varepsilon_{\text{th}}(T_h)\) | Staggered \(\mathbf{K}_{TT}\), \(\mathbf{K}_{uu}\) ([IV.2](02-galerkin-assembly.md)) | Thermal stress omitted in pure mechanical run |
 
 Recall Part III's closing pipeline: strong PDE → weak form → **energy minimum** (Dirichlet principle) → discrete search on \(V_h\). Weighted residuals are the operational face of that minimum — enforcing \(R_{\text{weak}}(v; u_h) = 0\) for all test functions is equivalent to seeking the minimizer of a quadratic energy when the bilinear form is symmetric and coercive. The copper wire's tensile equilibrium from [III.4](../part03-pdes/04-energy-methods.md) arrives here as the same \(a(u,v) = \ell(v)\) restricted to piecewise linears; assembly is how we compute the matrix that Rayleigh–Ritz minimization demands.
 
