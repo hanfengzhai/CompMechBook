@@ -117,11 +117,11 @@ where \(c_v^{\text{eq}}\) is equilibrium vacancy concentration (from Part IX for
 
 **Act IV** bends the load cell curve because lines move under Peach–Köhler forces. Before OpenDiS can reproduce that bend, the mobility law \(M(\tau, T)\) must be calibrated — not copied from a literature table without pedigree. This Lab act extracts \(M\) from a Part VIII MD shear test on a dislocation-containing supercell, then exports a yaml table OpenDiS consumes.
 
-**Step 0 — temperature pedigree (Act II → Act IV).** If the wire is Joule-heated, mobility must be calibrated at **\(T_w\) from the conjugate heat transfer loop**, not at 300 K by default. Read \(T_w\) from [`cht_export.yaml`](../../scripts/parse_cht.sh) (produced by the [V.4 Picard Lab act](../part05-fvm/04-navier-stokes-cfd.md#lab-act-extension-two-domain-picard-loop-with-a-1d-fem-solid), typically \(T_w \approx 379\)–\(395\,\text{K}\) on the prologue wire). When cross-slip recovery matters at that temperature, run [VIII.3 parallel tempering + WHAM](../part08-md/03-ab-initio-and-coarse-graining.md#wham-part-vii-mobility-hinge-act-ii-temperature-pedigree) first and archive `wham_export.yaml` beside the mobility table — glide \(M(\tau, T_w)\) and recovery sinks must share the same \(T_w\) pedigree the epilogue names in Handshake 2.
+**Step 0 — temperature pedigree (Act II → Act IV).** If the wire is Joule-heated, mobility must be calibrated at **\(T_w\) from the conjugate heat transfer loop**, not at 300 K by default. Read \(T_w\) from [`fixtures/cht_export.yaml`](../../fixtures/cht_export.yaml) (produced by the [V.4 Picard Lab act](../part05-fvm/04-navier-stokes-cfd.md#lab-act-extension-two-domain-picard-loop-with-a-1d-fem-solid) via [`parse_cht.sh`](../../scripts/parse_cht.sh): \(T_w = 311.48\,\text{K}\), \(\Delta T = 11.48\,\text{K}\) on the prologue wire with 5 A Joule heating). When cross-slip recovery matters at that temperature, run [VIII.3 parallel tempering + WHAM](../part08-md/03-ab-initio-and-coarse-graining.md#wham-part-vii-mobility-hinge-act-ii-temperature-pedigree) first and archive `wham_export.yaml` beside the mobility table — glide \(M(\tau, T_w)\) and recovery sinks must share the same \(T_w\) pedigree the epilogue names in Handshake 2. Row 33 in the [Part VII → VIII descent hinge reunion index](../appendix/sources.md#part-vii-viii-descent-hinge-reunion-index-row-33) closes the navigation loop when this step is clear but Part VIII still feels disconnected.
 
 **Step 1 — build the MD cell.** Use the same EAM potential and \(a_0\) from [Part VIII.1 Lab act](../part08-md/01-potentials-phase-space.md#lab-act-eam-lattice-constant-from-energy-minimization-act-v--notch-prelude). Insert a straight screw dislocation on one {111}\(\langle 110\rangle\) system (Volterra construction or `dislocate` in LAMMPS). Cylindrical geometry: radius \(\geq 10\,b\), glide length \(\geq 20\,b\), flexible outer shell or fixed bottom layers to suppress spurious drift.
 
-**Step 2 — NVT shear protocol at \(T_w\).** Equilibrate in NVT at the converged wall temperature from Step 0 (typically \(T_w \approx 379\,\text{K}\) when Joule heating is active; use 300 K only for handbook comparison runs). Apply constant resolved shear stress \(\tau\) via `fix addforce` on a top layer (or `fix deform` with stress control). Log dislocation position \(x(t)\) and average glide velocity \(v = \dot{x}\) over 50–200 ps once transients decay.
+**Step 2 — NVT shear protocol at \(T_w\).** Equilibrate in NVT at the converged wall temperature from Step 0 (\(T_w = 311.48\,\text{K}\) from `cht_export.yaml` when Joule heating is active; use 300 K only for handbook comparison runs). Apply constant resolved shear stress \(\tau\) via `fix addforce` on a top layer (or `fix deform` with stress control). Log dislocation position \(x(t)\) and average glide velocity \(v = \dot{x}\) over 50–200 ps once transients decay.
 
 | Applied \(\tau\) (MPa) | Expected regime (Cu screw, 300 K) | Observable |
 |------------------------|-----------------------------------|------------|
@@ -135,18 +135,19 @@ where \(c_v^{\text{eq}}\) is equilibrium vacancy concentration (from Part IX for
 M(T) = M_0 \exp\!\left(-\frac{Q}{k_B T}\right)
 \]
 
-Archive fitted \(M_0\), \(Q\), and the raw \((\tau, v)\) pairs in `mobility_cu_screw_300K.yaml`.
+Archive fitted \(M_0\), \(Q\), and the raw \((\tau, v)\) pairs in `mobility_cu_screw_311K.yaml` (or `mobility_cu_screw_{T_w}K.yaml` with explicit temperature in the filename).
 
 **Step 4 — export to OpenDiS.** Map the yaml into OpenDiS material input:
 
 ```yaml
-# mobility_cu_screw_300K.yaml (illustrative)
+# mobility_cu_screw_311K.yaml (illustrative — T_w from cht_export.yaml)
 material: Cu
-temperature_K: 300
+temperature_K: 311.48
+T_w_source: fixtures/cht_export.yaml
 potential: Mishin_EAM_2001
 burgers_m: 2.556e-10
 mobility_law: linear
-M_m_per_Pa_s: 4.5e-11   # fit from Step 3
+M_m_per_Pa_s: 4.5e-11   # fit from Step 3 at T_w
 activation_eV: 0.15     # optional Arrhenius tail
 source_md: shear_supercell_256atoms.lammps
 ```
