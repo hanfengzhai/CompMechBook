@@ -550,11 +550,11 @@ Verlet integrators and NVT/NPT ensembles make classical MD a controlled experime
 
 | MD export (this chapter) | Audit gate | Upstream consumer | Failure mode |
 |--------------------------|------------|-------------------|--------------|
-| \(E\), \(\nu\) from NPT tension | NVE drift \(< 10^{-4}\); \(\langle T\rangle = 300 \pm 10\) K | Part IV elastic step; Part VI \(\mathbb{C}\) | Wrong ensemble during loading |
+| \(E\), \(\nu\) from NPT tension | NVE drift \(< 10^{-4}\); \(\langle T\rangle = T_w \pm 10\) K from `cht_export.yaml` | Part IV elastic step; Part VI \(\mathbb{C}\) | Wrong ensemble during loading |
 | \(D(T)\) from MSD / Einstein | Linear MSD window; NEB barrier cross-check at high \(T\) | Part VII climb; Part VI creep | Ballistic slope exported as diffusion |
 | Phonon peaks from VACF | Within 5–10% of DFT `dispersion.dat` | Part IX quasi-harmonic \(\alpha(T)\); Part I.3 modes | Bulk-fit EAM wrong at dislocation core |
 | NEB \(\Delta E_m\) for vacancy hop | Endpoints are local minima; CI-NEB saddle | KMC rate table; Part VII recovery | Wrong final vacancy site |
-| Stress–strain curve at 300 K NPT | Converged \(\Delta t\); equilibrated box | Part VII mobility \(M(\tau,T)\) fit | Transient thermostat exported as yield |
+| Stress–strain curve at \(T_w\) NPT | Converged \(\Delta t\); equilibrated box | Part VII mobility \(M(\tau,T)\) fit | Transient thermostat exported as yield |
 | Notch-root stress from NVT shear | Core structure stable over 100 ps | Part V **Act V** concentration check | Periodic boundary on open surface |
 
 Part I's pattern returns at atomistic scale: state vector \(\{\mathbf{r}_i,\mathbf{p}_i\}\), force update from \(\nabla V\), timestep loop as repeated evaluation — now with ensemble averages replacing a single equilibrium solve. The NVE drift audit is the MD analogue of Part IV's \(h\)-refinement and Part IX's cutoff sweep: do not export any number upward until the integrator certificate passes.
@@ -563,4 +563,4 @@ Return to the [prologue](../prologue/00-many-scales.md): **Act II — Heating** 
 
 The [preface descent continuity hinges](../preface.md#descent-continuity-hinges) name [VIII.1 → VIII.2](01-potentials-phase-space.md#bridge) as the **potentials → ensembles** turn — the second stitch in the atomistic descent. The [VIII.1 opening hinge](01-potentials-phase-space.md#opening-hinge-vii3-to-viii1) grounded mobility on \(\nabla V\); the [opening hinge above](#opening-hinge-viii1-to-viii2) is where `cu_eam_a0.txt` becomes NPT-averaged moduli and `MD_NVT_shear_PartVIII` runs at \(T_w\). The [VIII.3 opening hinge](03-ab-initio-and-coarse-graining.md#opening-hinge-viii2-to-viii3) is the third stitch — where trajectories become handoff tables with DFT pedigree gates.
 
-Turn the page when NVE drift is flat and NPT moduli match experiment in bulk but the EAM curve fails at the notch root — that is the signal to audit the potential against electronic structure.
+Turn the page when NVE drift is flat and NPT moduli match experiment in bulk but the EAM curve fails at the notch root — that is the signal to audit the potential against electronic structure. The [VIII.3 opening hinge](03-ab-initio-and-coarse-graining.md#opening-hinge-viii2-to-viii3) and [preface row 35 skill checkpoint](../preface.md#skill-navigation-row-35) reunite this Bridge with the export chapter when mobility archives exist but the [pedigree checklist](03-ab-initio-and-coarse-graining.md#pedigree-checklist-before-the-epilogue) has no DFT evidence column.
