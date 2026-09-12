@@ -229,7 +229,16 @@ Part II built the function spaces; this chapter names the PDEs those spaces will
 | What **theorem**? | Maximum principle (elliptic); classical existence when data and domain are smooth enough for \(C^2\) |
 | What **breaks**? | Grip corners; thermocouple welds; material interfaces; point loads — all fail the \(C^2\) contract |
 
-The Lab act's three-point table is the operational version of this checkpoint: midspan obeys the strong form; weld and interface do not. Part III.2's weak form is not a numerical compromise — it is the correct continuum statement when rows two and three apply. Every numbered chapter in Parts I–IX now ends with this four-question summary before its Bridge; use it to audit whether you are discretizing the right formulation.
+**Thermoelastic coupling row (Acts II and III on one bar):**
+
+| Question | Coupled strong-form answer |
+|----------|---------------------------|
+| What **object**? | Stacked fields \((T, \mathbf{u})\) on the **same** \(\Omega\) — not separate thermal and mechanical domains |
+| What **structure**? | Constitutive closure \(\boldsymbol{\sigma} = \mathbb{C}:(\boldsymbol{\varepsilon} - \alpha\Delta T\,\mathbf{I})\); Joule source \(q_{\text{Joule}}\) in heat equation |
+| What **theorem**? | Fixed grips block free expansion → \(\sigma_{\text{th}} \approx -E\alpha\Delta T\) even when mechanical body force \(f = 0\) |
+| What **breaks**? | Separate thermal and mechanical meshes; handbook \(\alpha\) on one code and FEM \(\alpha\) on another; Robin BC on lateral surface omitted in 1D bar model |
+
+The Lab act's three-point table is the operational version of the scalar checkpoint: midspan obeys the strong form; weld and interface do not. The thermoelastic row is the **coupled** version: when Act III grip reaction exceeds elastic prediction, check whether Act II's \(T(\mathbf{x})\) entered \(\boldsymbol{\sigma}(T)\) on the **same** domain with consistent \(\alpha\) and BCs — not whether the plasticity model is wrong. Part III.2's weak form is not a numerical compromise — it is the correct continuum statement when rows two and three apply (and when thermal strain must load the mechanical block). Every numbered chapter in Parts I–IX ends with this four-question summary before its Bridge; use it to audit whether you are discretizing the right formulation.
 
 ## Bridge
 

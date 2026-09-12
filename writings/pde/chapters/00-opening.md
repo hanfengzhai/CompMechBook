@@ -2,7 +2,7 @@
 
 Part II gave us function spaces, norms, and operators — the vocabulary in which infinite-dimensional mechanics is well posed. Part III applies that vocabulary to the **partial differential equations** that encode conservation and constitutive physics on continua.
 
-The copper wire from the prologue enters this part as a domain with boundary conditions: steady heat conduction along its length, transient heating when current flows, elastic equilibrium under tension. Each scenario begins as a **strong form** — a PDE satisfied pointwise — and is rewritten as a **weak form** suitable for computation. Sobolev spaces supply the regularity theory; energy methods package existence and uniqueness as minimization principles that Part IV will discretize.
+The copper wire from the prologue enters this part as a domain with boundary conditions: steady heat conduction along its length, transient heating when current flows, elastic equilibrium under tension. **Acts II and III in the lab run on the same specimen** — Joule heating raises \(T(\mathbf{x})\) while grips ramp displacement \(u(\mathbf{x})\) — so Part III's central thread is not two independent PDEs but a **thermoelastic stack** on one domain \(\Omega\). Each field begins as a **strong form** (pointwise PDE) and is rewritten as a **weak form** suitable for computation. Sobolev spaces supply the regularity theory; energy methods package existence and uniqueness as minimization principles that Part IV will discretize.
 
 The layout follows the **PDE Notes** in [`writings/pde/`](../../writings/pde/): four numbered chapters, mechanics examples throughout, and a **Bridge** at the end of each chapter pointing forward. Read them in order; they hand off directly to finite elements (Part IV) and finite volumes (Part V).
 
@@ -16,8 +16,8 @@ When strong forms look correct but meshes refuse to converge, read the sentence 
 
 | Chapter | Wire story beat | Core object | Handoff |
 |---------|-----------------|-------------|---------|
-| [III.1](01-strong-form.md) | Pointwise PDEs for heat and elasticity on the bar | Strong form, boundary conditions, where smoothness fails | Integration by parts → weak form in III.2 |
-| [III.2](02-weak-form.md) | Test functions replace pointwise satisfaction | Bilinear form \(a(u,v)\), natural BCs, virtual work | Regularity class → Sobolev spaces in III.3 |
+| [III.1](01-strong-form.md) | Pointwise PDEs for heat, elasticity, and **coupled thermoelastic stack** on the bar | Strong form, BCs, \(\sigma = E(\varepsilon - \alpha\Delta T)\); where \(C^2\) fails | Integration by parts → weak form in III.2 |
+| [III.2](02-weak-form.md) | Test functions replace pointwise satisfaction; thermal strain enters mechanical block | Bilinear form \(a(u,v)\), block weak form \((u,T)\), natural BCs | Regularity class → Sobolev spaces in III.3 |
 | [III.3](03-sobolev-spaces.md) | \(H^1\) displacement; \(L^2\) temperature | Weak derivatives, trace theorem, Poincaré inequality | Existence via energy → Lax–Milgram in III.4 |
 | [III.4](04-energy-methods.md) | Unique equilibrium and minimum principles | Energy functional, coercivity, well-posedness triangle | [Bridge to Part IV](04-energy-methods.md#bridge-to-part-iv) and Part V |
 
@@ -29,14 +29,16 @@ Part II named the function spaces — \(L^2\) for field energy, \(H^1\) for weak
 
 The physics at this scale is still continuum: steady axial conduction along the bar, elastic equilibrium under uniaxial tension, transient heating when current switches on. Each scenario begins as a **strong form** — a PDE satisfied pointwise — and must be rewritten as a **weak form** testable on a mesh. Part III is where the wire's equations become computable statements in the Sobolev spaces Part II defined.
 
-## The concept map
+## The concept map (ME 300B)
+
+The [Partial Differential Equations Notes](https://hanfengzhai.github.io/file/ME300B_PDE.pdf) are organized as a concept map, not a proof stack — the same habit Part II inherited from ME 412. At every step, ask:
 
 | Question | Example in this part |
 |----------|----------------------|
-| What **object** are we studying? | Fields \(u(\mathbf{x},t)\) on domains with boundary \(\partial\Omega\) |
-| What **structure** does it add? | Strong form (pointwise), weak form (test functions), energy functional |
+| What **object** are we studying? | Fields \(u(\mathbf{x},t)\), \(T(\mathbf{x},t)\) on domains with boundary \(\partial\Omega\) |
+| What **structure** does it add? | Strong form (pointwise), weak form (test functions), energy functional; **thermoelastic coupling** via \(\sigma(T)\) |
 | What **theorem** becomes possible? | Lax–Milgram existence, energy minimization, well-posedness in \(H^1\) |
-| What **breaks** if structure is missing? | Reentrant corners, delta loads, non-physical oscillations on coarse meshes |
+| What **breaks** if structure is missing? | Reentrant corners, delta loads, **decoupled thermal/mechanical meshes**, non-physical oscillations on coarse meshes |
 
 ```mermaid
 flowchart LR
@@ -45,9 +47,24 @@ flowchart LR
   H --> E[Energy principle]
   E --> FEM[FEM Part IV]
   E --> FVM[FVM Part V]
+  T[T thermoelastic coupling] --> W
+  T --> E
 ```
 
-**Baby picture:** write the physics as a PDE, relax smoothness to a weak statement testable on a mesh, identify the function space where the solution lives, then package existence as minimizing an energy. The copper wire's temperature profile and axial displacement are two instances of the same pipeline.
+**Baby picture:** write the physics as a PDE (or stacked PDE system when Acts II and III share one wire), relax smoothness to a weak statement testable on a mesh, identify the function space where the solution lives, then package existence as minimizing an energy. The copper wire's temperature profile and axial displacement are two instances of the same pipeline — and when both acts run together, the **thermal strain term** \(\alpha\Delta T\) in the mechanical weak form is the coupling channel the load cell reads in Act III.
+
+### Acts II and III together: thermoelastic thread
+
+The prologue's lab session does not treat heating and pulling as separate homework sets. **Act II — Warming** switches on current; **Act III — Pulling** ramps grip displacement — on the **same copper wire**, often within minutes. Part III tracks that coupling through four chapters:
+
+| Chapter | Thermoelastic move on the wire |
+|---------|--------------------------------|
+| [III.1](01-strong-form.md) | Stack \(-k\Delta T = q_{\text{Joule}}\) with \(-\nabla\cdot\boldsymbol{\sigma}=\mathbf{0}\) and \(\boldsymbol{\sigma} = \mathbb{C}:(\boldsymbol{\varepsilon} - \alpha\Delta T\,\mathbf{I})\) |
+| [III.2](02-weak-form.md) | Thermal strain load \(\int E\alpha(T-T_{\text{ref}}) v'\) in the mechanical block; block system preview |
+| [III.3](03-sobolev-spaces.md) | \(T \in H^1\) for conduction; \(u \in H^1_0\) for fixed grips — same spaces, coupled data |
+| [III.4](04-energy-methods.md) | Coupled energy \(\Pi[u,T]\); Lax–Milgram on the mechanical block with \(T\) as parameter or monolithic saddle |
+
+When the grip reaction in Act III exceeds what elastic strain alone predicts, the discrepancy is usually **thermal stress** from Act II — not a mystery in the plasticity model downstream. Part III names that channel in strong form ([III.1](01-strong-form.md)), weak form ([III.2](02-weak-form.md)), and energy ([III.4](04-energy-methods.md)) before Part IV assigns node values to \(\mathbf{K}_{uu}\), \(\mathbf{K}_{TT}\), and the coupling blocks.
 
 ## How Part III connects to Parts IV–V
 
