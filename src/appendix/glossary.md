@@ -120,12 +120,24 @@ When two parts feel adjacent but unrelated — say FEM (IV) and DDD (VII) — tr
 | CHT | Conjugate heat transfer | Part V.4, Epilogue |
 | WHAM | Weighted histogram analysis method — reweights parallel-tempering replica samples to a target temperature (e.g. Joule-heated \(T_w\)) before exporting cross-slip or mobility statistics | [VIII.3](../part08-md/03-ab-initio-and-coarse-graining.md#wham-part-vii-mobility-hinge-act-ii-temperature-pedigree) |
 
+## Appendix reference mode (row 22) {#appendix-reference-mode-row-22}
+
+Mid-project — tuning an input deck, debugging a unit mismatch, or jumping from Part IV assembly to Part IX phonons — you are not on [row 17's straight-through path](sources.md#continuous-read-through-guide). **Row 22** names which appendix to open first:
+
+| Stall | Open | Not |
+|-------|------|-----|
+| Symbol collision (\(\rho\), \(\alpha\), \(\mathbf{K}\)) | **This glossary** — [symbol collision guide](#symbol-collision-guide), [continuity threads](#continuity-threads-same-story-new-vocabulary) | Memory sheet workflow rows |
+| Plot feels disconnected mid-read | [Sources: row 21 decision ladder](sources.md#meta-stitch-decision-ladder-index-row-21) → [chapter roadmap](sources.md#chapter-roadmap-one-continuous-arc) | Glossary alone |
+| Handshake, habit, or trap audit | [Memory sheet](memory-sheet.md#continuity-hinges-master-map) rows 0–16 | Glossary symbol tables |
+
+The [appendix reference mode index](sources.md#appendix-reference-mode-index-row-22) draws the full three-way tree; the [preface row 22 skill checkpoint](../preface.md#skill-navigation-row-22) closes the competence loop when all three pages feel like menus.
+
 ## Canonical sources
 
 Chapter markdown is authored under [`writings/`](../../writings/) (Functional Analysis Notes layout) and synced into `src/` via [`scripts/sync-writings.sh`](../../scripts/sync-writings.sh). For PDF links, repositories, and the full chapter roadmap, see [Sources and Further Reading](sources.md).
 
 ## Bridge
 
-This page answers *what did that symbol mean last time?* The [chapter roadmap](sources.md) answers *where does each chapter sit in reading order?* The [Final Memory Sheet](memory-sheet.md) answers *what habits and traps should I carry to the next project?*
+This page answers *what did that symbol mean last time?* The [chapter roadmap](sources.md) answers *where does each chapter sit in reading order?* The [Final Memory Sheet](memory-sheet.md) answers *what habits and traps should I carry to the next project?* When all three questions arise at once, start at [row 22](sources.md#appendix-reference-mode-index-row-22) — glossary for symbols, sources row 21 for plot, memory sheet for workflow.
 
 Return to the [prologue](../prologue/00-many-scales.md) when a new specimen replaces copper — the four questions and six-act lab table apply to any material. Return to the [epilogue](../epilogue/multiscale.md) when you need to wire codes together rather than recall vocabulary.
