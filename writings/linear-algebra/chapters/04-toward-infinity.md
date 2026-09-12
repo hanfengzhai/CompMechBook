@@ -303,6 +303,8 @@ The wire began as a chain of springs — \(\mathbf{K}\mathbf{u}=\mathbf{f}\) at 
 
 ## Bridge to Part II {#bridge-to-part-ii}
 
+**Ascent gate (row 20).** If row 17's straight read stalled here, the [prologue row 20 closing stitch](../prologue/00-many-scales.md#row-20-closing-stitch) and [gate-chapter plot spine index](../appendix/sources.md#gate-chapter-plot-spine-index-row-20) reunite narrative and competence time — recite the [plot spine one line](#plot-spine-one-line) above aloud before continuing.
+
 Linear algebra taught us to solve \(\mathbf{K}\mathbf{u}=\mathbf{f}\). Mechanics asks us to solve PDEs. The bridge is:
 
 1. Write the PDE in **weak form** (multiply by a test function, integrate by parts).
