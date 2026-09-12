@@ -133,7 +133,7 @@ flowchart TB
 
 ## Continuity hinges master map {#continuity-hinges-master-map}
 
-When a chapter feels disconnected from the last, pause at the hinge for your reading position — same copper wire, richer vocabulary at each turn. The [preface](../preface.md) splits these into opening, ascent, midpoint, descent, and epilogue tables; this page collects all **seventeen narrative hinges** (rows 0–16) plus **rows 17–21** (continuous read-through, part-opening plot spine, numbered-chapter plot spine, gate-chapter plot spine, and meta-stitch decision ladder) in reading order.
+When a chapter feels disconnected from the last, pause at the hinge for your reading position — same copper wire, richer vocabulary at each turn. The [preface](../preface.md) splits these into opening, ascent, midpoint, descent, and epilogue tables; this page collects all **seventeen narrative hinges** (rows 0–16) plus **rows 17–22** (continuous read-through, part-opening plot spine, numbered-chapter plot spine, gate-chapter plot spine, meta-stitch decision ladder, and appendix reference mode) in reading order.
 
 | # | Phase | Hinge | When to pause |
 |---|-------|-------|---------------|
@@ -361,7 +361,7 @@ When a chapter feels abstract, pick the row that matches your reading position a
 
 ### Row 22 baby picture (appendix reference mode) {#row-22-baby-picture-appendix-reference-mode}
 
-**Row 22 baby picture:** when glossary, sources, and memory sheet feel like three menus mid-project, use the [appendix reference mode index](sources.md#appendix-reference-mode-index-row-22) — **glossary** for symbol collision, **sources row 21** for plot continuity, **memory sheet rows 0–16** for handshake and habit audits. Row 22 does not replace row 21 — row 21 decides **which meta-stitch layer** during a read; row 22 decides **which appendix page** during lookup. The [preface row 22 three-way audit](../preface.md#skill-navigation-row-22) and [epilogue Row 22 workflow exam](../epilogue/multiscale.md#row-22-workflow-exam) close the competence loop; the [glossary reference mode section](glossary.md#appendix-reference-mode-row-22) is the upstream entry when \(\rho\) or \(\alpha\) collision is the stall.
+**Row 22 baby picture:** when glossary, sources, and memory sheet feel like three menus mid-project, use the [appendix reference mode index](sources.md#appendix-reference-mode-index-row-22) — **glossary** for symbol collision, **sources row 21** for plot continuity, **memory sheet rows 0–16** for handshake and habit audits. Row 22 does not replace row 21 — row 21 decides **which meta-stitch layer** during a read; row 22 decides **which appendix page** during lookup. The [preface row 22 three-way audit](../preface.md#skill-navigation-row-22) and [epilogue Row 22 workflow exam](../epilogue/multiscale.md#row-22-workflow-exam) close the competence loop across prologue preview, skill checkpoint, and workflow exam; the [prologue row 22 closing stitch](../prologue/00-many-scales.md#row-22-closing-stitch) and [epilogue row 22 closing loop](../epilogue/multiscale.md#row-22-closing-loop) reunite when the three-way split can be narrated in one breath; the [glossary reference mode section](glossary.md#appendix-reference-mode-row-22) is the upstream entry when \(\rho\) or \(\alpha\) collision is the stall.
 
 ### Act VI baby picture (ME 412 coupling ladder) {#act-vi-baby-picture-me-412-coupling-ladder}
 
