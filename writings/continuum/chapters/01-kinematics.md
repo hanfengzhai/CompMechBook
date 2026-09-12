@@ -228,6 +228,44 @@ Measure with a micrometer (or simulate a 3D hex mesh with one constrained face):
 
 For finite strain preview: \(\mathbf{F} = \text{diag}(\lambda_1, \lambda_2, \lambda_2)\) with \(\lambda_2 = 1 + \varepsilon_{22}\) gives \(J = \lambda_1 \lambda_2^2 \approx 1 + (1-2\nu)\varepsilon_{11}\) to first order — the same volume change. When Act IV later ramps into plasticity, \(J\) and deviatoric \(\bar{\mathbf{F}}\) split in [VI.4](04-nonlinear-plasticity-preview.md); this Lab act is the linear elastic baseline those splits generalize.
 
+### Act II overlay: thermal eigenstrain from `cht_export.yaml` {#lab-act-act-ii-overlay-thermal-eigenstrain-from-cht-export}
+
+**Act II — Warming** runs in parallel with **Act III — Pulling** on the same afternoon. Row 30 archived one converged wall temperature in [`fixtures/cht_export.yaml`](../../fixtures/cht_export.yaml) — the export [`parse_cht.sh`](../../scripts/parse_cht.sh) writes beside FEM and FVM decks after the [V.4 Picard loop](../part05-fvm/04-navier-stokes-cfd.md#lab-act-extension-two-domain-picard-loop-with-a-1d-fem-solid). Kinematics must decompose **mechanical** stretch from grip displacement and **thermal** stretch from Joule heating before [VI.2](02-stress-balance.md) pairs strain with stress.
+
+Read the fixture (or regenerate with `./scripts/parse_cht.sh fixtures/cht_wire.conf`):
+
+| Field in `cht_export.yaml` | Value (fixture default) | Kinematic role |
+|----------------------------|-------------------------|----------------|
+| `T_wall_K` | \(311.48\,\text{K}\) | Reference temperature at the wire surface for \(\Delta T\) |
+| `delta_T_K` | \(11.48\,\text{K}\) | \(T_w - T_\infty\) with \(T_\infty = 300\,\text{K}\) |
+| `fixed_point_iterations` | 6 | Outer Picard converged before export |
+| `flux_balance_error_pct` | \(< 0.001\%\) | Joule in = convection out — Act II energy audit |
+
+**Pedigree note.** The [V.4 Ra/Nu Lab act](../part05-fvm/04-navier-stokes-cfd.md#lab-act-natural-convection-nusselt-number-on-the-heated-wire-act-ii--warming) estimates \(T_w \approx 379\,\text{K}\) with natural convection; the fixture uses lumped \(h = 15\,\text{W/m²K}\) for a fast regression test. Both are honest — pick **one** converged \(T_w\), document which model produced it, and carry that \(\Delta T\) through Acts II–III. Do not mix a 379 K hand calculation with a 311 K parser export in the same run.
+
+Take isotropic thermal expansion with handbook polycrystal copper \(\alpha = 16.5 \times 10^{-6}\,\text{K}^{-1}\) at 300 K (replace with quasiharmonic \(\alpha(T_w)\) from [IX.3](../part09-dft/03-dft-workflows.md#lab-act-quasiharmonic-alpha-handshake-3-pedigree) in production). Thermal eigenstrain is isotropic:
+
+\[
+\varepsilon_{\text{th}, ii} = \alpha\,\Delta T, \qquad \Delta T = 11.48\,\text{K} \quad \Rightarrow \quad \varepsilon_{\text{th}} \approx 1.89 \times 10^{-4}.
+\]
+
+| Strain component | Mechanical only (Act III, table above) | Thermal only (Act II, `cht_export.yaml`) | Superposed (same afternoon) |
+|------------------|----------------------------------------|------------------------------------------|----------------------------|
+| \(\varepsilon_{11}\) | \(+1.0 \times 10^{-4}\) (grip) | \(+1.89 \times 10^{-4}\) | \(+2.89 \times 10^{-4}\) |
+| \(\varepsilon_{22} = \varepsilon_{33}\) | \(-3.4 \times 10^{-5}\) (Poisson) | \(+1.89 \times 10^{-4}\) | \(+1.55 \times 10^{-4}\) |
+| Diameter change \(\Delta D/D\) | \(-34\,\mu\text{m}\) on \(D = 1\,\text{mm}\) | \(+189\,\mu\text{m}\) | \(+155\,\mu\text{m}\) net expansion |
+
+The micrometer now reads **competition**: Poisson contraction from the grip fights thermal expansion from current. If the operator measures only lateral strain and attributes all of it to \(\nu\), the kinematic half of Hooke's law will fail — the fault is missing \(\varepsilon_{\text{th}}\), not a bad caliper.
+
+In small strain, decompose \(\boldsymbol{\varepsilon} = \boldsymbol{\varepsilon}_{\text{mech}} + \varepsilon_{\text{th}}\mathbf{I}\). The deformation gradient for the mechanical part remains \(\mathbf{F}_{\text{mech}} \approx \mathbf{I} + \nabla\mathbf{u}\); thermal expansion adds \(\mathbf{F}_{\text{th}} \approx (1 + \alpha\Delta T)\mathbf{I}\) when the wire is free to expand. On **fixed grips**, thermal strain is kinematically admissible but mechanically constrained — [VI.2](02-stress-balance.md#scale-boundary-handshake-thermal-expansion-alpha) develops the compressive \(\sigma_{\text{th}}\) that stores the conflict; [VI.3](03-variational-elasticity.md#thermal-coupling-act-ii) writes the split into \(\Pi[\mathbf{u}]\).
+
+```bash
+# Audit trail beside the mesh (row 30 → VI.1)
+./scripts/parse_cht.sh fixtures/cht_wire.conf | tail -20   # diff against fixtures/cht_export.yaml
+```
+
+When row 30 restored one \(T_w\) but Part IV's \(\mathbf{K}\mathbf{U}=\mathbf{F}\) still feels like matrix homework disconnected from energy, proceed to [row 31](../appendix/sources.md#twin-ladder-virtual-work-reunion-index-row-31) — the twin-ladder → virtual work reunion that closes the Galerkin loop in [VI.3](03-variational-elasticity.md#lab-act-virtual-work-equals-load-cell-reading-act-iii--pulling).
+
 ## Concept map checkpoint (kinematics)
 
 This chapter is where Part IV's nodal displacements acquire geometric meaning. Before stress balance adds forces, summarize what kinematics established:
@@ -259,7 +297,7 @@ Kinematics names the geometric objects — \(\mathbf{F}\), \(\boldsymbol{\vareps
 | Deformation gradient \(\mathbf{F} = \mathbf{I} + \nabla\mathbf{u}\) | Cauchy stress \(\boldsymbol{\sigma}\); traction \(\boldsymbol{\sigma}\mathbf{n}\) | Part IV \(B\)-matrix in [IV.4](../part04-fem/04-poisson-to-elasticity.md) | Infinitesimal \(\boldsymbol{\varepsilon}\) when \(\|\nabla\mathbf{u}\|\) is not small |
 | Lateral contraction \(\varepsilon_{22} = -\nu\varepsilon_{11}\) | Hooke \(\boldsymbol{\sigma}=\mathbb{C}:\boldsymbol{\varepsilon}\) closes equilibrium | Micrometer check on wire diameter (Lab act) | 1D bar model ignoring Poisson effect |
 | Objectivity: \(\mathbf{F}=\mathbf{R}\mathbf{U}\) | Constitutive laws depend on stretch, not rotation | Isoparametric Jacobian in [IV.3](../part04-fem/03-elements-quadrature.md) | Mixing rigid rotation into strain measure |
-| Rate \(\mathbf{D}\) for transient kinematics | Thermal eigenstrain \(\varepsilon_{\text{th}}=\alpha\Delta T\) | Part V velocity field in [V.4](../part05-fvm/04-navier-stokes-cfd.md) | Thermal stress omitted in pure mechanical run |
+| Rate \(\mathbf{D}\) for transient kinematics | Thermal eigenstrain \(\varepsilon_{\text{th}}=\alpha\Delta T\) from [`cht_export.yaml`](../../fixtures/cht_export.yaml) | Part V velocity field in [V.4](../part05-fvm/04-navier-stokes-cfd.md) | Thermal stress omitted in pure mechanical run; 300 K \(\alpha\) when \(T_w\) is archived |
 | Volumetric/deviatoric split of \(\mathbf{F}\) | Energy balance for Joule heating (Act II) | Coupled thermoelastic assembly | Robin BC at wire surface not passed to FVM |
 
 The micrometer Lab act is the geometric patch test: if \(\varepsilon_{22}/\varepsilon_{11} \approx -\nu\) within experimental noise, the kinematic half of Hooke's law is consistent with the load cell reading from **Act III**. If lateral strain vanishes while axial stretch is nonzero, the fault is not the sensor — it is a constitutive or \(B\)-matrix mismatch between what Part IV assembled and what this chapter defines.
