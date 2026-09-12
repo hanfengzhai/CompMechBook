@@ -307,6 +307,36 @@ At convergence, mid-radius temperature \(\bar{T} \approx 395\,\text{K}\) — sti
 
 This extension closes the loop the prologue promised: Part IV assembles the solid operator, Part V supplies the fluid flux, and the interface handshake is a **fixed-point problem with physics constraints** — the template the epilogue generalizes to DFT → MD → DDD → FEM chains.
 
+### Parser checkpoint: archive `cht_export.yaml` {#parser-checkpoint-archive-cht-export-yaml}
+
+The hand calculation above used natural-convection \(\text{Nu}(\text{Ra})\) on a vertical cylinder — the physics story for Act II. Production decks archive numbers with a parser so Handshake 2 in the epilogue can verify flux balance without reopening the derivation.
+
+```bash
+./scripts/parse_cht.sh fixtures/cht_wire.conf > cht_run.log
+# YAML block at end of stdout → archive as cht_export.yaml beside FEM/FVM decks
+```
+
+The script runs the same partitioned loop this Lab act derived: guess \(T_w\) → solid conduction response → update \(h(T_w)\) or fixed \(h\) → under-relax until \(|T_w^{(k+1)} - T_w^{(k)}| < \text{TOL}\), then verify \(|\dot{Q}_{\text{Joule}} - \int q_w\, dS| / \dot{Q}_{\text{Joule}} < 1\%\). A reference export lives at [`fixtures/cht_export.yaml`](../../fixtures/cht_export.yaml) — run the command above and diff against it when wiring CI.
+
+| Field in `cht_export.yaml` | Pedagogical Lab act (Ra/Nu table) | Fixture default (`cht_wire.conf`) | Downstream consumer |
+|----------------------------|-----------------------------------|-----------------------------------|---------------------|
+| `T_wall_K` | \(\approx 379\,\text{K}\) after four Picard iterations | \(311.5\,\text{K}\) at \(h=15\,\text{W/m²K}\) | Part VII mobility \(M(\tau, T_w)\); Part VIII NVT |
+| `delta_T_K` | \(T_w - T_\infty\) for thermal strain | \(11.5\,\text{K}\) | Handshake 3 \(\sigma_{\text{th}} = E\alpha\Delta T\) |
+| `flux_balance_error_pct` | Energy residual column in Picard table | \(< 0.001\%\) | Epilogue Handshake 2 pass/fail |
+| `fixed_point_iterations` | 4 (under-relaxed Picard) | 6 (parser blend) | Audit trail beside `multiscale_export.yaml` |
+
+**Why two wall temperatures?** The Ra/Nu correlation in the Lab act teaches **fluid-side physics** on the heated cylinder; the fixture uses a lumped \(h\) for a fast flux-balance regression test. Both are honest — the correlation is the engineering estimate, the parser is the export discipline. Before opening Part VI or Part VII, pick one converged \(T_w\), document which model produced it, and archive `cht_export.yaml` beside the solid mesh — row 30 reunites the outer loop when FEM and FVM still feel like separate homework despite both tables above.
+
+**Outer-loop checklist (IV.5 → V.4 → VI).**
+
+| Step | Solid (Part IV) | Fluid (Part V) | Pass criterion |
+|------|-----------------|----------------|----------------|
+| 1 | [IV.5 thermoelastic \(h\)-study](../part04-fem/05-convergence.md#lab-act-extension-thermoelastic-h-refinement-on-one-mesh-acts-iiiii) | — | \(T_{\text{mid}}\) plateau on same \(\mathcal{G}\) |
+| 2 | Export \(T_w\) from converged solid | [V.0 CHT scene](../part05-fvm/00-opening.md#conjugate-heat-transfer-the-wire-meets-the-wind) | Robin BC replaced by resolved convection intent |
+| 3 | — | [V.2 boundary-layer patch test](02-fvm-1d.md#lab-act-1d-diffusion-on-the-wires-boundary-layer-act-ii-warmup) | Linear \(T\) exact on uniform mesh |
+| 4 | Neumann \(q_w\) from Picard | This chapter's Picard or [`parse_cht.sh`](../../scripts/parse_cht.sh) | \(|T_w^{(k+1)} - T_w^{(k)}| < 0.5\,\text{K}\) and flux \(< 1\%\) |
+| 5 | Archive `cht_export.yaml` | Same file names \(T_w\) for both domains | [VI.0 twin-ladder reunion](../part06-continuum/00-opening.md#the-twin-ladders-reunite-galerkin-and-conservation) reads one \(T_w\) |
+
 ### When Picard stalls: monolithic coupling
 
 The Picard loop above is a **partitioned** (staggered) scheme: solve the solid with frozen fluid data, then update the fluid with the new wall temperature, repeat. It is the default in many conjugate heat transfer workflows because each physics domain keeps its native discretization — Part IV's \(\mathbf{K}_T\) and Part V's FVM face fluxes — and legacy codes couple through a thin interface layer.
