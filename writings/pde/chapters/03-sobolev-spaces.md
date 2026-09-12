@@ -144,6 +144,39 @@ On a subdomain interface \(\Gamma\) between solid and fluid (copper wire and coo
 
 FVM (Part V) often works with **cell averages** in \(L^2\)-like spaces on dual meshes rather than nodal \(H^1\) conformity. Discontinuous fields across faces are expected; flux quadrature replaces weak derivatives of test functions. Sobolev theory still underlies stability proofs for elliptic FVM through discrete Poincaré inequalities on mesh-dependent spaces.
 
+### Worked example: discrete Poincaré on a uniform 1D mesh
+
+The continuum Poincaré inequality on \(H^1_0(0,L)\) controls \(\|u\|_{L^2}\) by \(\|u'\|_{L^2}\). FEM stability proofs need the **discrete** analogue on \(V_h \subset H^1_0\): find \(C_{P,h} > 0\) such that
+
+\[
+\|u_h\|_{L^2}^2 \le C_{P,h}^2 \int_0^L |u_h'|^2 \, dx \quad \forall u_h \in V_h,\ u_h(0)=u_h(L)=0.
+\]
+
+Take the copper wire segment \((0,L)\) with \(L = 1\,\text{m}\) and a **uniform** mesh of \(N\) elements (\(h = L/N\)). Let \(V_h\) be continuous piecewise-linear hat functions with zero Dirichlet data at both grips — the same space Part IV will use for Act II heating and Act III tension.
+
+For a single interior hat \(\phi_j\) peaked at node \(x_j = jh\),
+
+\[
+\|\phi_j\|_{L^2}^2 = \int_0^L \phi_j^2 \, dx = \frac{2h}{3}, \qquad
+\int_0^L |\phi_j'|^2 \, dx = \frac{2}{h}.
+\]
+
+Hence \(\|\phi_j\|_{L^2}^2 / \|\phi_j'\|_{L^2}^2 = h^2/3\). For **any** \(u_h = \sum_j U_j \phi_j\) with \(u_h(0)=u_h(L)=0\), the sharpest mesh-dependent constant satisfies
+
+\[
+C_{P,h} \le \frac{h}{\sqrt{3}} \quad \text{(worst case: single hat mode)}.
+\]
+
+Refining the mesh (\(h \to 0\)) tightens the discrete Poincaré constant — the discrete coercivity constant in Lax–Milgram **tracks mesh size**, which is why inf-sup and coercivity proofs for FEM often state bounds as \(a(u_h,u_h) \ge \alpha_h \|u_h\|_{H^1}^2\) with \(\alpha_h \sim h^0\) for fixed \(h\) but uniform in \(h\) as \(h \to 0\) when the continuum coercivity constant is positive.
+
+| Mesh level | \(h\) (m) | \(C_{P,h} \le h/\sqrt{3}\) | Interpretation on the wire |
+|------------|---------|--------------------------|----------------------------|
+| Coarse (3 nodes) | \(0.5\) | \(0.29\) | Single mid-span hat from Lab act — loose \(L^2\) control |
+| Standard (11 nodes) | \(0.1\) | \(0.058\) | Production thermal run for Act II |
+| Fine (101 nodes) | \(0.01\) | \(0.0058\) | Mesh convergence study before Act III grip ramp |
+
+This table is not an abstract exercise: it is the **discrete coercivity budget** behind the stiffness matrix \(\mathbf{K}_{TT}\) in Act II and \(\mathbf{K}_{uu}\) in Act III. If a non-conforming scheme introduces spurious \(L^2\) energy on a coarse mesh (pressure oscillations in equal-order Stokes, or discontinuous temperature across elements), the discrete Poincaré constant effectively blows up — the numerical analogue of losing coercivity. Part IV.5 connects mesh refinement to energy-norm convergence; Part V's elliptic FVM schemes cite the same inequality on cell-average spaces.
+
 ## Worked example: checking \(H^1\) membership
 
 On \(\Omega = (0,1)\), \(u(x) = x^{1/2}\) is in \(L^2\) but \(u'(x) = \tfrac{1}{2}x^{-1/2}\) is not square-integrable near \(0\), so \(u \notin H^1(0,1)\). By contrast, \(u(x) = x^{3/2}\) has \(u' \sim x^{1/2} \in L^2\) — admissible in a weak formulation on the full interval. This explains why singular corners and reentrant notches are trouble spots: local behavior mimics fractional powers that strip \(H^2\) regularity even when \(H^1\) membership holds.

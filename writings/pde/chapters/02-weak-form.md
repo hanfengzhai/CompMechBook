@@ -161,6 +161,37 @@ Multiply \(u_t - \alpha \Delta u = f\) by test \(v \in H^1_0(\Omega)\) and integ
 
 Semidiscretization: \(u_h = \sum_j U_j(t) \phi_j\) gives \(\mathbf{M}\dot{\mathbf{U}} + \alpha \mathbf{K}\mathbf{U} = \mathbf{F}\). The mass matrix \(\mathbf{M}\) comes from \(\int \phi_i \phi_j\); the stiffness from \(\int \nabla\phi_i \cdot \nabla\phi_j\). Time discretization (backward Euler, BDF, Runge–Kutta) is layered on top — Part IV for FEM, Part V for FVM flux differencing in fluids.
 
+### Coupled thermoelastic weak form (Acts II and III on one bar)
+
+[III.1](01-strong-form.md) stacked heat and elasticity in strong form; here both fields share one weak statement before Part IV assigns them node values. On \((0,L)\) with fixed grips \(u(0)=u(L)=0\) and fixed end temperatures \(T(0)=T(L)=T_0\), seek \((u,T) \in H^1_0 \times H^1\) such that for all \((v,w)\) in the same admissible spaces:
+
+\[
+\int_0^L EA\, u' v' \, dx = \int_0^L f v \, dx + \int_0^L E\alpha (T - T_{\text{ref}})\, v' \, dx,
+\]
+
+\[
+\int_0^L k T' w' \, dx = \int_0^L q_{\text{Joule}} w \, dx.
+\]
+
+The **thermal strain term** \(\int E\alpha (T - T_{\text{ref}}) v'\) is the weak-form fingerprint of \(\sigma = E(\varepsilon - \alpha\Delta T)\) with fixed ends: Act II raises \(T\); the pairing acts as an equivalent load on the mechanical block even when \(f = 0\). Discretizing yields the block system Part I.4 previewed:
+
+\[
+\begin{bmatrix} \mathbf{K}_{uu} & \mathbf{0} \\ \mathbf{0} & \mathbf{K}_{TT} \end{bmatrix}
+\begin{bmatrix} \mathbf{u} \\ \mathbf{T} \end{bmatrix}
+=
+\begin{bmatrix} \mathbf{f}_u + \mathbf{K}_{uT}\mathbf{T} \\ \mathbf{f}_T \end{bmatrix},
+\]
+
+where \(\mathbf{K}_{uT}\) assembles from \(\int E\alpha \phi_j' \psi_i'\) (or the symmetric thermoelastic coupling your code stores). A **staggered** solve — conduction, then mechanics with frozen \(T\) — is a Picard approximation to this monolithic weak form; convergence requires the same handshake as Part V's CHT loop.
+
+| Weak block | Integrand | Act | Strong-form parent |
+|------------|-----------|-----|-------------------|
+| Mechanical | \(EA u' v'\) | III — Pulling | \(-(EA u')' = f\) |
+| Thermal strain load | \(E\alpha(T-T_{\text{ref}}) v'\) | II → III coupling | \(\sigma = E(\varepsilon - \alpha\Delta T)\) |
+| Thermal | \(k T' w'\) | II — Warming | \(-(k T')' = q\) |
+
+When the grip reaction from Act III disagrees with a separate thermal run's \(\sigma_{\text{th}} = E\alpha\Delta T\) estimate, the break is usually here — not in the plasticity model downstream.
+
 ### Scale-boundary handshake: weak form meets Part I's block system
 
 Part I.4 previewed the coupled thermo-mechanical block matrix. Part III now states the **continuum weak forms** those blocks discretize:

@@ -82,6 +82,44 @@ with Lamé parameters \(\lambda, \mu\) derived from Young's modulus \(E\) and Po
 
 Nonlinear elasticity replaces Hooke's law with a nonlinear constitutive map; hyperelasticity derives stress from a strain energy density \(\psi(\mathbf{F})\). Large stretch of the copper wire eventually leaves the linear regime — the strong form still holds, but the system becomes nonlinear and may lose ellipticity at extreme deformation.
 
+## Coupled thermoelastic strong form (Acts II and III together)
+
+The prologue's lab session does not run heating and pulling on separate specimens. **Act II — Warming** and **Act III — Pulling** share one copper wire: current raises \(T(\mathbf{x})\) while grips ramp axial displacement \(u(\mathbf{x})\). At the continuum scale, that coupling is not two independent PDEs glued in post-processing — it is a **stacked strong-form system** on the same domain \(\Omega\).
+
+On a 1D bar model of length \(L\) (fixed grips at \(x=0,L\)):
+
+\[
+-\frac{d}{dx}\left(k \frac{dT}{dx}\right) = q_{\text{Joule}}(x), \qquad
+-\frac{d}{dx}\left(EA \frac{du}{dx}\right) = f(x),
+\]
+
+with constitutive closure tying mechanical strain to temperature:
+
+\[
+\varepsilon = \frac{du}{dx}, \qquad \sigma = E(\varepsilon - \alpha\,(T - T_{\text{ref}})), \qquad \sigma = EA\,\varepsilon_{\text{m}} / A.
+\]
+
+Here \(\alpha \approx 17 \times 10^{-6}\,\text{K}^{-1}\) for copper, \(T_{\text{ref}}\) is the stress-free temperature (often room temperature at mounting), and \(q_{\text{Joule}} = \rho_e |J|^2 / \sigma_e\) is the volumetric Joule source from Act II. The **mechanical** equation looks uncoupled from \(T\) in this 1D reduction — but fixed grips block free thermal expansion: \(\varepsilon_{\text{th}} = \alpha(T - T_{\text{ref}})\) generates **compressive stress** \(\sigma_{\text{th}} \approx -E\alpha\Delta T\) even when \(f = 0\). That is the strong-form signature of thermoelastic coupling on the load cell: Act II raises temperature; Act III reads force at fixed displacement; the two acts meet in \(\sigma = E(\varepsilon - \alpha\Delta T)\).
+
+In 3D, the coupled steady system on the wire body is
+
+\[
+-\nabla\cdot(k\nabla T) = q_{\text{Joule}}, \qquad
+-\nabla\cdot\boldsymbol{\sigma} = \mathbf{0}, \qquad
+\boldsymbol{\sigma} = \mathbb{C} : (\boldsymbol{\varepsilon} - \alpha\,(T - T_{\text{ref}})\mathbf{I}), \qquad
+\boldsymbol{\varepsilon} = \tfrac{1}{2}(\nabla\mathbf{u} + \nabla\mathbf{u}^T).
+\]
+
+Boundary data mix essential and natural types on the **same** surface patch: \(T = T_0\) at water-cooled grips (Dirichlet), Robin convection \(-k\partial T/\partial n = h(T - T_\infty)\) on the lateral surface to ambient air (natural), and \(\mathbf{u} = \mathbf{0}\) on the grip faces while traction may be free elsewhere. Part V's conjugate heat transfer adds a **third** strong-form block — Navier–Stokes in the fluid annulus around the wire — coupled through interface continuity of \(T\) and heat flux. The strong form is therefore a **system of PDE types** (parabolic or elliptic heat, elliptic elasticity, parabolic–hyperbolic fluid) on adjacent subdomains, not a single Laplacian.
+
+| Field | Strong-form operator | Act on the wire | Coupling channel |
+|-------|---------------------|-----------------|------------------|
+| \(T\) | \(-\nabla\cdot(k\nabla T) = q\) | Joule heating (Act II) | Drives \(\varepsilon_{\text{th}}\) in \(\boldsymbol{\sigma}\) |
+| \(u\) or \(\mathbf{u}\) | \(-\nabla\cdot\boldsymbol{\sigma} = \mathbf{0}\) | Grip displacement (Act III) | \(\boldsymbol{\sigma}\) depends on \(T\) through thermal strain |
+| \(\mathbf{v}, p\) (fluid) | Stokes / Navier–Stokes + \(\nabla\cdot\mathbf{v}=0\) | Air cooling (Act II extension) | Robin BC on wire surface sets \(h, T_\infty\) |
+
+**What breaks in practice.** Teams often solve \(-k\Delta T = q\) on a thermal mesh and \(-\nabla\cdot\boldsymbol{\sigma}=\mathbf{0}\) on a mechanical mesh with **handed-off** temperature, using different meshes or BC tags. The strong form above says that is only valid if interface traces, Robin coefficients, and \(\alpha(T - T_{\text{ref}})\) are **the same physical row** in both codes. A 10% error in \(\alpha\) or a grip temperature taken from a 1D bar while the 3D run uses convection on the lateral surface violates the coupled strong form — visible as grip reaction mismatch between Acts II and III before yield. Part III.2 writes the weak form of this stack; Part IV assembles the monolithic or staggered blocks; Part VI names the tensors inside the integrand.
+
 ## Fluid mechanics: Navier–Stokes
 
 For incompressible flow around a heated wire or through a surrounding channel,

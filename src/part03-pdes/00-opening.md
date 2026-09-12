@@ -56,6 +56,7 @@ Part III is the **analytical pipeline** both discretizations inherit:
 | Part III chapter | Structure or theorem | Where it reappears |
 |-----------------|---------------------|-------------------|
 | III.1 Strong form | PDE + BCs; where \(C^2\) fails | Part IV residual; Part V integral balance |
+| III.1 Strong form (coupled) | Thermoelastic stack: \(T\), \(\mathbf{u}\), \(\boldsymbol{\sigma}(T)\) on same \(\Omega\) | Part IV monolithic assembly; Part V CHT interface |
 | III.2 Weak form | Bilinear form \(a(u,v)=\ell(v)\) | Part IV Galerkin; Part VI virtual work |
 | III.3 Sobolev spaces | \(H^1\), \(L^2\), trace theorem | Part IV conforming elements; Part V cell averages |
 | III.4 Energy methods | Lax–Milgram; Dirichlet principle | Part IV Rayleigh–Ritz; Part IV.5 Céa's lemma |
