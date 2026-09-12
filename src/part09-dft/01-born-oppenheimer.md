@@ -9,7 +9,24 @@ For copper, DFT answers the most basic question the wire poses at the finest sca
 
 > **IX.1 — Act III — Descent:** Born–Oppenheimer separates fast electrons from slow nuclei — the finest scale split on copper.
 
-When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter. When row 36 restored SCF logs and phonon audits at \(T_w\) but Born–Oppenheimer still feels like standalone quantum chemistry, read the [preface row 37 skill checkpoint](../preface.md#skill-navigation-row-37) — the competence-time mirror of the [opening hinge from IX.0](#opening-hinge-ix0-to-ix1) below.
+
+## Closing the arc from Part IX.0 {#opening-hinge-ix0-to-ix1}
+
+If you have read linearly since the prologue, [IX.0](00-opening.md) closed with the [electronic audit hinge](00-opening.md#electronic-audit-hinge-descent-pedigree-and-tw-phonon) — SCF pedigree gates beside the [VIII.3 pedigree checklist](../part08-md/03-ab-initio-and-coarse-graining.md#pedigree-checklist-before-the-epilogue), [`parse_alpha.sh`](../../scripts/parse_alpha.sh) at converged \(T_w\) from [`fixtures/cht_export.yaml`](../../fixtures/cht_export.yaml), and the [opening hinge from VIII.3](00-opening.md#opening-hinge-viii3-to-ix) mapping handoff-table rows to QE logs — and a [Bridge](00-opening.md#bridge) that named **Born–Oppenheimer separation** without yet deriving it. Part IX.1 does not re-audit the foundation folder or re-run phonon parsers; it **derives** the timescale split and density functional theorems that make every SCF log in `cu.relax.out` meaningful:
+
+| Part IX.0 audit gate | Part IX.1 vocabulary |
+|----------------------|----------------------|
+| `cu.relax.out` with `convergence has been achieved` | Fixed nuclei \(\{\mathbf{R}_I\}\); electrons solve \(\hat{H}_{\text{el}}\Psi = E\Psi\) at each geometry |
+| Pedigree checklist row: \(E_{\text{coh}}\) from EAM fit | HK2: ground-state energy is a **functional** of \(\rho(\mathbf{r})\) alone |
+| Pedigree checklist row: \(a_0\), \(B_0\) from Murnaghan | BO surface \(V_{\text{BO}}(\{\mathbf{R}_I\}) = E_e(\{\mathbf{R}_I\})\) — the landscape Part VIII's MD slides on |
+| [Thermal phonon audit at \(T_w\)](00-opening.md#thermal-phonon-audit-at-tw) | BO holds for fcc Cu at laboratory \(T\); nuclear quantum corrections negligible |
+| EAM potential \(V(\{\mathbf{r}_i\})\) assumed in Part VIII | BO + HK justify treating nuclei as classical on an energy surface derived from \(\rho\) |
+| [IX.0 concept map](00-opening.md#the-concept-map): \(\rho(\mathbf{r})\) as state variable | HK1: \(\rho\) **uniquely determines** the external potential (up to a constant) |
+
+[IX.0's Bridge](00-opening.md#bridge) named the signal to turn the page: **separate electrons from nuclei and explain why the ground-state density alone determines the energy landscape**. The [electronic audit → Born–Oppenheimer reunion index](../appendix/sources.md#electronic-audit-born-oppenheimer-reunion-index-row-37) reunites this opening with [row 36](../preface.md#skill-navigation-row-36) when `cu.relax.out` sits beside `cu.elastic/` but Schrödinger's equation still feels disconnected from the EAM tables Part VIII consumed — same copper cell, same pedigree checklist, now with **theorems** naming why \(\rho(\mathbf{r})\) replaces the \(3N_e\)-dimensional wavefunction.
+
+Part IX.0 audited **whether** electronic-structure evidence exists; Part IX.1 explains **why** that evidence defines the potential energy surface every coarser model inherits. Classical MD assumed nuclei move on a Born–Oppenheimer surface without proof; Hohenberg–Kohn compresses the many-body problem to a scalar field on three dimensions — the same compression instinct Part II taught when stiffness matrices became operators on \(H^1\).
 
 ## Scene: electrons adjust in a blink
 
@@ -56,7 +73,7 @@ At fixed nuclei, the many-electron Schrödinger equation
 
 lives in \(3N_e\)-dimensional configuration space — intractable for direct wavefunction methods beyond small molecules. **Density functional theory** reduces the problem to a function of three spatial variables \(\rho(\mathbf{r})\).
 
-## Hohenberg–Kohn theorems (1964)
+## Hohenberg–Kohn theorems (1964) {#hohenberg-kohn-theorems-1964}
 
 For a non-degenerate ground state of a system of interacting electrons in an external potential \(v_{\text{ext}}(\mathbf{r})\) (from nuclei):
 
@@ -229,7 +246,7 @@ Ground-state DFT on fcc Cu locates the **Fermi level** \(E_F\) inside partially 
 
 Born–Oppenheimer and Hohenberg–Kohn justify the **bottom** of the ladder: why energy is a functional of \(\rho\), and why nuclear motion can be separated. Kohn–Sham DFT (next chapter) is how that functional is minimized in practice — in Quantum ESPRESSO, VASP, GPAW, and the workflows taught in courses like MSE 5720.
 
-## Lab act: Murnaghan fit on fcc Cu (Act VI — Foundation)
+## Lab act: Murnaghan fit on fcc Cu (Act VI — Foundation) {#lab-act-murnaghan-fit-on-fcc-cu-act-vi--foundation}
 
 **Act VI** runs in parallel with the wire-scale afternoon — someone must produce the **foundation deck** before \(E\), \(\nu\), and \(E_{\text{coh}}\) enter Part IV's input file. Born–Oppenheimer justifies treating nuclear coordinates as parameters; this Lab act is the first DFT calculation on the copper ladder.
 
@@ -292,4 +309,4 @@ Part II asked what **state variable** carries enough information for well-posed 
 
 Return to the prologue's **Act VI — Foundation**: before any wire-scale FEM run, someone chose \(E\), \(\nu\), and surface energies whose pedigree traces to calculations like those in this part. Part VIII's EAM potential and Part VII's stacking-fault energies consume what IX.1–IX.3 export; the epilogue wires those exports into multiscale pipelines no single code runs alone.
 
-[IX.2](02-kohn-sham.md) is the practitioner's chapter — SCF cycles, pseudopotentials, and the convergence checklist that separates chemistry from numerical artifact. Turn the page when "DFT gave a number" but cutoff, k-sampling, and functional choice were never documented — that is the signal the foundation run is not yet trustworthy enough to climb the ladder.
+[IX.2](02-kohn-sham.md) is the practitioner's chapter — SCF cycles, pseudopotentials, and the convergence checklist that separates chemistry from numerical artifact. Turn the page when "DFT gave a number" but cutoff, k-sampling, and functional choice were never documented — that is the signal the foundation run is not yet trustworthy enough to climb the ladder. The [IX.1 opening hinge from IX.0](#opening-hinge-ix0-to-ix1) and [preface row 37 skill checkpoint](../preface.md#skill-navigation-row-37) reunite this Bridge with the theorem chapter when SCF logs exist but Kohn–Sham still feels like a new course.

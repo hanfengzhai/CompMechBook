@@ -16,7 +16,7 @@ When EAM potentials match bulk moduli but no DFT deck is cited, read the sentenc
 
 | Chapter | Wire story beat | Core object | Handoff |
 |---------|-----------------|-------------|---------|
-| [IX.1](01-born-oppenheimer.md) | Fast electrons, slow nuclei on the fcc lattice | Born–Oppenheimer, Hohenberg–Kohn theorems | Kohn–Sham orbitals → SCF in IX.2 |
+| [IX.1](01-born-oppenheimer.md) | Fast electrons, slow nuclei on the fcc lattice | Born–Oppenheimer, Hohenberg–Kohn theorems | [Opening hinge from IX.0](01-born-oppenheimer.md#opening-hinge-ix0-to-ix1); Kohn–Sham orbitals → SCF in IX.2 |
 | [IX.2](02-kohn-sham.md) | Self-consistent field on a copper unit cell | Exchange–correlation, k-points, convergence | QE input decks → workflows in IX.3 |
 | [IX.3](03-dft-workflows.md) | Export \(a_0\), \(C_{ij}\), \(\gamma_{\text{sf}}\), \(E_f^v\) | Quantum ESPRESSO, Murnaghan fit, slab calculations | [Bridge to Epilogue](../epilogue/multiscale.md) |
 
@@ -235,4 +235,4 @@ The book's recurring character — weak form, virtual work, variational principl
 
 **Reading order** (VII → VIII → IX) descends to finer physics; **workflow order** (IX → VIII → VII → IV) is how practitioners build input decks — see the [two clocks note](../part08-md/00-opening.md#two-clocks-reading-order-vs-foundation-pedigree). Linear readers should finish Part IX before the epilogue so every upward export in the multiscale afternoon carries a pedigree traceable to SCF convergence logs.
 
-The first chapter below separates electrons from nuclei — Born–Oppenheimer — and explains why the ground-state density alone determines the energy landscape MD, DDD, and continuum elasticity ultimately rest on. Turn the page when you are ready to see where Young's modulus and stacking-fault energy actually live.
+The first chapter below separates electrons from nuclei — Born–Oppenheimer — and explains why the ground-state density alone determines the energy landscape MD, DDD, and continuum elasticity ultimately rest on. Turn the page when you are ready to see where Young's modulus and stacking-fault energy actually live. The [IX.1 opening hinge from IX.0](01-born-oppenheimer.md#opening-hinge-ix0-to-ix1) and [preface row 37 skill checkpoint](../preface.md#skill-navigation-row-37) reunite this Bridge with the theorem chapter when SCF logs exist but Schrödinger's equation still feels like standalone quantum chemistry.
