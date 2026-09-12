@@ -153,6 +153,14 @@ The prologue promised that the copper wire and the air around it are one story t
 
 No single matrix assembles both sides. A **fixed-point or monolithic coupling loop** alternates: given a wall temperature, update the fluid boundary layer; given the resulting flux, update the solid temperature; repeat until the interface residuals fall below tolerance. The epilogue generalizes this handshake from two meshes on one specimen to DFT→MD→DDD→FEM chains — but the intellectual habit is identical: export consistent interface data, document units, and verify convergence of the outer loop, not only of each inner solve.
 
+**Solid-side prerequisite (IV.5 → V.0).** Part IV's [thermoelastic \(h\)-refinement Lab act](../part04-fem/05-convergence.md#lab-act-extension-thermoelastic-h-refinement-on-one-mesh-acts-iiiii) is the reading-time gate before this CHT scene earns trust. Row 29 certifies that Pass 1 (heat) and Pass 2 (mechanics with \(\mathbf{F}_{\text{th}}\)) ran on the **same connectivity**; row 28 certifies that the exported \(T_w\) came from a mesh where \(T_{\text{mid}}\) had already plateaued. Starting the Picard loop while the solid temperature still moves with \(h\) is the failure mode where a beautiful fluid run chases a thermal field that is not yet a converged Galerkin solution — the Robin coefficient \(h\) in Part IV was a placeholder; Part V resolves convection, but only **after** the solid side has its own Céa certificate.
+
+| IV.5 export (solid mesh converged) | V.0 CHT consumer (this part) | Failure if skipped |
+|-----------------------------------|------------------------------|-------------------|
+| \(T_w = T_{\text{surface},h}\) from finest thermoelastic row | Fluid Dirichlet / flux BC at wall | Picard loop chases moving solid target |
+| \(\mathbf{F}_{\text{th}}\) archived for Act III load cell | Unchanged in first CHT pass; Handshake 3 later | Thermal pre-stress omitted in multiphysics deck |
+| Same \(\mathcal{G}\) for \(\mathbf{K}_{TT}\) and \(\mathbf{K}_{uu}\) | Solid mesh file in two-domain loop | Heat and mechanics connectivity diverge under refinement |
+
 Chapter 4 closes the loop on the wire: Joule heating in the solid, convection in the air, and the SIMPLE-type pressure–velocity coupling that makes incompressible CFD tractable.
 
 ## Closing the arc from Part I
@@ -201,9 +209,10 @@ Part IV assembled stiffness matrices from shape functions; [IV.5](../part04-fem/
 
 | FEM export ([Part IV](../part04-fem/00-opening.md)) | FVM output (this part) | Continuum consumer ([Part VI](../part06-continuum/00-opening.md)) | Failure mode |
 |-----------------------------------------------------|------------------------|-------------------------------------------------------------------|--------------|
-| Meshed solid; \(\mathbf{K}\mathbf{T}=\mathbf{q}\) for Joule heat | Cell flux balances in the air domain | Cauchy stress and rate-of-deformation tensors | Wall temperature mismatch at solid–fluid interface |
-| Robin BC \(q = h(T_w - T_\infty)\) as boundary data | Resolved convection boundary layer | Act II thermocouple response to cooling rate | Mass loss or spurious oscillations in fluid run |
-| Céa: energy-norm convergence as \(h \to 0\) on solid | CFL stability + TVD limiters on fluid grid | Conjugate heat fixed-point loop until interface residual \(< \varepsilon\) | Outer coupling not converged; only inner solves trusted |
+| Meshed solid; \(\mathbf{K}_{TT}\mathbf{T}=\mathbf{F}_T\) for Joule heat on converged \(\mathcal{G}\) | Cell flux balances in the air domain | Cauchy stress and rate-of-deformation tensors | Wall temperature mismatch at solid–fluid interface |
+| [IV.5 thermoelastic \(h\)-study](../part04-fem/05-convergence.md#lab-act-extension-thermoelastic-h-refinement-on-one-mesh-acts-iiiii): \(T_w\) export | Picard CHT loop; [V.4 Lab act](04-navier-stokes-cfd.md#lab-act-extension-two-domain-picard-loop-with-a-1d-fem-solid) | Act II thermocouple; `cht_export.yaml` pedigree | Solid \(T_h\) still moving with \(h\) while fluid Picard runs |
+| Robin BC \(q = h(T_w - T_\infty)\) as Part IV placeholder | Resolved convection boundary layer | Act II thermocouple response to cooling rate | Mass loss or spurious oscillations in fluid run |
+| Céa: energy-norm convergence as \(h \to 0\) on solid (both blocks) | CFL stability + TVD limiters on fluid grid | Conjugate heat fixed-point loop until interface residual \(< \varepsilon\) | Outer coupling not converged; only inner solves trusted |
 | Galerkin trial functions in \(H^1\) | Upwind bias and Riemann fluxes at steep gradients | Part VI names the flux tensors both discretizations approximate | Shock captured without entropy audit |
 
 The conjugate heat transfer scene above is the numerical face of this handshake: Joule heating in the solid (Part IV) and convection in the air (Part V) exchange wall temperature and heat flux until both sides agree — the same fixed-point discipline the [epilogue](../epilogue/multiscale.md) later generalizes to DFT→MD→DDD→FEM chains. Part VI reunites the fork by naming the Cauchy stress and flux tensors both dialects approximate. Part III wrote the Navier–Stokes and energy equations; Part V discretizes them with flux balances that respect the invariants Galerkin cannot guarantee at high Reynolds number.

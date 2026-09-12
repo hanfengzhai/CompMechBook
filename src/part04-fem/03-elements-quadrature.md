@@ -185,7 +185,7 @@ Use this checklist before committing to an element family:
 
 For introductory work and course problem sessions, P1 triangles in 2D remain the right default. For production analysis of the copper wire with contact, plasticity, or fine stress gradients, P2 or hexahedral elements with selective \(p\)-refinement are typical.
 
-## Shared P1 library for heat and mechanics (Acts II–III on one mesh)
+## Shared P1 library for heat and mechanics (Acts II–III on one mesh) {#shared-p1-library-for-heat-and-mechanics-acts-iiiii-on-one-mesh}
 
 [IV.1](01-weighted-residuals.md) enforced heat and elasticity residuals on the **same hat functions**; [IV.2](02-galerkin-assembly.md) scattered \(\mathbf{K}_{TT}\) and \(\mathbf{K}_{uu}\) from the **same connectivity array**. This chapter names what stays identical inside the element loop when Act II and Act III share an afternoon:
 

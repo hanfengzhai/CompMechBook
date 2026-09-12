@@ -305,16 +305,36 @@ Use P1 bar or axisymmetric solid elements with fixed grip displacement BC. Plot 
 
 Refine locally at the grip corner if stress concentrations matter — but for Act III's **global** load cell reading, a uniform bar mesh often suffices once the three-row table plateaus. This is the verification habit the chapter advocates, tied to the prologue scene: the operator trusts the ramp when refining the mesh stops moving the answer in a predictable way.
 
+## Lab act extension: thermoelastic \(h\)-refinement on one mesh (Acts II–III)
+
+The Act III table above certifies **mechanical** convergence on a bar with fixed BCs. [IV.4's one-mesh-two-fields workflow](04-poisson-to-elasticity.md#lab-act-one-mesh-two-fields-act-iiiii-on-the-copper-wire) adds a **scalar heat pass** whose mid-node temperature feeds \(\mathbf{F}_{\text{th}}\) in the mechanical pass. Before opening **Door A** to Part V's conjugate heat transfer, both passes must plateau on the **same connectivity** — otherwise the Picard loop at the solid–fluid interface chases a thermal field that still moves when \(h\) halves.
+
+**Prerequisites.** Archive \(\Delta T = T_1 - T_{\text{ref}}\) from the IV.4 Lab act at the finest mesh you intend to export. Running the convergence study on a coarser mesh than the CHT deck uses is the failure mode row 28 names when \(T_w\) lacks pedigree.
+
+**Setup.** Reuse the IV.4 three-node bar extended to uniform P1 meshes with \(N \in \{4, 16, 64\}\) elements (\(h = L/N\)): copper \(k_{\text{th}} = 400\,\text{W/(m·K)}\), \(q = 10^7\,\text{W/m}^3\), \(T(0)=T(L)=293\,\text{K}\), then Pass 2 with fixed grips and \(F = 1000\,\text{N}\) at \(x=L\). **Do not change the mesh file between Pass 1 and Pass 2** on any row — row 29's audit lives in that discipline.
+
+| Mesh \(N\) | \(h\) (m) | \(T_{\text{mid}}\) (K) | \(\|\varepsilon_{\text{th}}\|_\infty = \alpha\|\Delta T\|_\infty\) | Grip reaction \(F_{\text{cell}}\) (N) |
+|------------|-----------|------------------------|---------------------------------------------------------------------|---------------------------------------|
+| 4 | \(L/4\) | record | record | record |
+| 16 | \(L/16\) | record | should move toward limit | should move toward limit |
+| 64 | \(L/64\) | record | changes \(< 1\%\) vs row above → heat pass certified | changes \(< 1\%\) vs row above → load cell certified |
+
+Plot \(T_{\text{mid}}\) and \(F_{\text{cell}}\) versus \(h\) on log–log axes. Expect \(O(h^2)\) decay in \(L^2\) temperature error and \(O(h)\) in energy norm for P1 heat — the same slopes as the Poisson bar in the worked example above. If \(T_{\text{mid}}\) converges but \(F_{\text{cell}}\) does not, check whether Pass 2 omitted \(\mathbf{F}_{\text{th}}\) or used a different connectivity graph than Pass 1.
+
+**Door A gate.** Part V's [conjugate heat transfer opening](../part05-fvm/00-opening.md#conjugate-heat-transfer-the-wire-meets-the-wind) replaces the ad hoc Robin flux \(q = h(T_w - T_\infty)\) with a resolved fluid boundary layer — but only after the **solid-side** thermal field is mesh-converged. Export \(T_w = T_{\text{surface},h}\) from the finest row above into the CHT solid mesh; the outer Picard loop in [V.4](../part05-fvm/04-navier-stokes-cfd.md#lab-act-extension-two-domain-picard-loop-with-a-1d-fem-solid) then alternates fluid fluxes against that converged solid state, not a coarse placeholder.
+
+**Row 29 audit (read aloud after both tables plateau):** "Heat pass and mechanics pass on connectivity \(\mathcal{G}\); \(h\)-study certifies \(T_{\text{mid}}\) and \(F_{\text{cell}}\) on **the same** \(\mathcal{G}\); only then export \(T_w\) to Part V CHT." If Pass 1 and Pass 2 ever used different mesh files, return to the [Thermoelastic assembly reunion index](../appendix/sources.md#thermoelastic-assembly-reunion-index-row-29) before continuing to [Part V](../part05-fvm/00-opening.md#conjugate-heat-transfer-the-wire-meets-the-wind).
+
 ## Concept map checkpoint (Part IV)
 
 Part IV followed the FEM Notes from weighted residuals through error estimates. The four questions close the discretization arc for elliptic solids:
 
 | Question | Part IV answer (copper wire) |
 |----------|------------------------------|
-| What **object**? | Trial space \(V_h\), shape functions, assembled \(\mathbf{K}\) and \(\mathbf{f}\) |
-| What **structure**? | Galerkin orthogonality, isoparametric maps, \(h\)- and \(p\)-refinement |
-| What **theorem**? | Best approximation; Céa lemma; a priori convergence rates; Rayleigh–Ritz modal convergence |
-| What **breaks**? | Locking, hourglass modes, pollution on distorted elements; inconsistent \(\mathbf{M}\) breaks eigenfrequencies |
+| What **object**? | Trial space \(V_h\); block systems \(\mathbf{K}_{TT}\), \(\mathbf{K}_{uu}\); converged \(T_w\) export for CHT |
+| What **structure**? | Galerkin orthogonality; shared connectivity for heat and mechanics; \(h\)- and \(p\)-refinement on both blocks |
+| What **theorem**? | Céa lemma on each block; coupled audit: thermal eigenstrain load converges with displacement field |
+| What **breaks**? | Locking; inconsistent \(\mathbf{M}\); **mechanical pass on finer mesh than heat pass**; Robin BC trusted while solid \(T_h\) still moves with \(h\) |
 
 The pipeline from Part III is now complete:
 
@@ -344,8 +364,9 @@ Part IV answered *how* to discretize elliptic problems on meshes — and this ch
 
 | Convergence audit (this chapter) | Discretization consumer | Downstream scale | Failure mode |
 |----------------------------------|-------------------------|------------------|--------------|
-| Three-mesh \(h\)-study plateaus in energy norm | Part VI virtual work on same mesh | Part VII RVE homogenization | Texture-aware \(\mathbb{C}\) needed on drawn wire |
-| Céa certificate for Act III load cell | Part V Robin flux at wire surface | Act II conjugate heat transfer | Thermal BC wrong while mesh converges |
+| Three-mesh \(h\)-study plateaus in energy norm (Act III bar) | Part VI virtual work on same mesh | Part VII RVE homogenization | Texture-aware \(\mathbb{C}\) needed on drawn wire |
+| Thermoelastic \(h\)-study: \(T_{\text{mid}}\) and \(F_{\text{cell}}\) plateau on same \(\mathcal{G}\) | [Part V CHT opening](../part05-fvm/00-opening.md#conjugate-heat-transfer-the-wire-meets-the-wind); [V.4 Picard loop](../part05-fvm/04-navier-stokes-cfd.md#lab-act-extension-two-domain-picard-loop-with-a-1d-fem-solid) | Act II outer loop; `cht_export.yaml` \(T_w\) | Solid mesh unconverged while fluid Picard runs |
+| Céa certificate for Act III load cell with \(\mathbf{F}_{\text{th}}\) | Part V resolved convection replaces Robin \(h\) | Epilogue Handshake 2 \(\Delta T\) | Handbook Robin flux masks unconverged solid temperature |
 | A posteriori error at grip corner | Part VI nonlinear return-mapping | Part VII dislocation nucleation | Elastic mesh at plastic onset |
 | P1/P2 rate check on bar Poisson | Part VI \(\mathbb{C}\) from isotropic \(E,\nu\) | Part VIII EAM-fit moduli | Single-crystal rates on polycrystal specimen |
 
