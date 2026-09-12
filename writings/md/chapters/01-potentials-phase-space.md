@@ -24,7 +24,7 @@ If you have read linearly since the prologue, [VII.3](../part07-defects/03-polyc
 | Taylor \(\tau \propto \sqrt{\rho}\) hardening fit | Cohesive energy and elastic constants from bulk minimization |
 | `rate_handoff.txt` citing mobility at \(T_w\) | Hamiltonian \(H\) and phase space \((\{\mathbf{r}_i\}, \{\mathbf{p}_i\})\) at the same \(T_w\) |
 
-[VII.3's Bridge](../part07-defects/03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) named the **ink** behind dislocation lines — atomic bonding. The [Part VIII opening descent hinge](00-opening.md#descent-hinge-cores-mobility-and-tw-pedigree) closed the **temperature pedigree**: if Act II warmed the wire to \(T_w \approx 379\,\text{K}\) via [V.4 conjugate heat transfer](../part05-fvm/04-navier-stokes-cfd.md#lab-act-extension-two-domain-picard-loop-with-a-1d-fem-solid), every NVT shear that calibrates drag must read that temperature, not 300 K — archive `cht_export.yaml` beside `mobility_cu_screw_{T_w}K.yaml` before OpenDiS inherits the table. This chapter is where both contracts land in one place: **coordinates and forces** replace line singularities; **\(T_w\)** replaces handbook defaults before any trajectory is integrated.
+[VII.3's Bridge](../part07-defects/03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) named the **ink** behind dislocation lines — atomic bonding. The [Part VIII opening descent hinge](00-opening.md#descent-hinge-cores-mobility-and-tw-pedigree) closed the **temperature pedigree**: if Act II warmed the wire to \(T_w = 311.48\,\text{K}\) via [V.4 conjugate heat transfer](../part05-fvm/04-navier-stokes-cfd.md#parser-checkpoint-archive-cht-export-yaml) and [`fixtures/cht_export.yaml`](../../fixtures/cht_export.yaml), every NVT shear that calibrates drag must read that temperature, not 300 K — archive `cht_export.yaml` beside `mobility_cu_screw_{T_w}K.yaml` before OpenDiS inherits the table. This chapter is where both contracts land in one place: **coordinates and forces** replace line singularities; **\(T_w\)** replaces handbook defaults before any trajectory is integrated. When row 33 restored DDD pedigree but phase space still feels disconnected, read the [preface row 34 skill checkpoint](../preface.md#skill-navigation-row-34) after this chapter's Bridge — it reunites 0 K minimization with the NVT/NPT sampling [VIII.2](02-ensembles-integrators.md) performs.
 
 The wire's strength is a story written in dislocation lines; the lines borrow their mobility from phonons and cores the mesoscale cannot resolve. Part VIII.1 is the first page where those cores become **atoms on a potential surface** — still finite-dimensional in any simulation box, but now with the Born–Oppenheimer contract Part IX will derive from \(\rho(\mathbf{r})\). When Peierls stress or mobility tables feel like magic numbers, pause here — not at the integrator in [VIII.2](02-ensembles-integrators.md), not at the EAM fit in [VIII.3](03-ab-initio-and-coarse-graining.md) — because every later atomistic export inherits the potential and lattice parameter this chapter establishes.
 
@@ -34,7 +34,7 @@ The wire's strength is a story written in dislocation lines; the lines borrow th
 
 There is no \(\boldsymbol{\sigma}(\mathbf{x})\) field in the data — only positions \(\mathbf{r}_i(t)\) and forces \(\mathbf{F}_i = -\nabla_{\mathbf{r}_i} V\). The potential \(V\) might be an EAM fit to DFT energies from Part IX; the integrator might be velocity Verlet with a femtosecond timestep. Bonds at the tip stretch; a dislocation loop nucleates; the student watches plasticity begin as coordinated atomic motion, not as a yield surface parameter.
 
-This scene is why MD exists in the ladder. FEM on the wire tells us where stress concentrates; DDD tells us how lines move in response; MD tells us what happens when the smeared continuum finally resolves into neighbors swapping across a disturbed lattice. The rest of Part VIII supplies the Hamiltonian structure, potential forms, and LAMMPS workflows that make such a box simulation reproducible rather than anecdotal.
+This scene is why MD exists in the ladder. FEM on the wire tells us where stress concentrates; DDD tells us how lines move in response; MD tells us what happens when the smeared continuum finally resolves into neighbors swapping across a disturbed lattice. The rest of Part VIII supplies the Hamiltonian structure, potential forms, and LAMMPS workflows that make such a box simulation reproducible rather than anecdotal. The [potentials → ensembles reunion index](../appendix/sources.md#potentials-ensembles-reunion-index-row-34) names the audit when this Scene restores the specimen but [VIII.2's integrators](02-ensembles-integrators.md) still feel like a separate course — the EAM archive from this chapter's Lab act must become a trajectory at \(T_w\) before mobility exports upward.
 
 ## Phase space and the Hamiltonian
 
@@ -298,7 +298,7 @@ run             50000
 
 Potentials define forces; integrators and statistical ensembles define how trajectories sample the correct thermodynamic state — the subject of the next chapter.
 
-## Lab act: EAM lattice constant from energy minimization (Act V — Notch prelude)
+## Lab act: EAM lattice constant from energy minimization (Act V — Notch prelude) {#lab-act-eam-lattice-constant-from-energy-minimization-act-v--notch-prelude}
 
 **Act V** in the lab is the notch — stress concentration at a geometric defect. MD resolves the atomic distortion that continuum \(\mathbf{F}\) smooths over. Before running dynamics, **calibrate the ink**: the EAM lattice parameter \(a_0\) and cohesive energy must match bulk copper at 300 K.
 
@@ -339,7 +339,7 @@ Potentials define forces; integrators and statistical ensembles define how traje
 
 | What Part VII exported | What this chapter supplies | What [VIII.2](02-ensembles-integrators.md) must sample |
 |------------------------|----------------------------|--------------------------------------------------------|
-| Mobility \(M(\tau,T)\) fit from atomistic snapshots | EAM cohesive energy, lattice parameter \(a_0\) | NVT/NPT trajectories at the lab temperature (300 K) |
+| Mobility \(M(\tau,T)\) fit from atomistic snapshots | EAM cohesive energy, lattice parameter \(a_0\) | NVT/NPT trajectories at \(T_w\) from `cht_export.yaml` (311.48 K) |
 | Stacking-fault energy for partial dislocations | Generalized stacking-fault surface from slab pulls | Ensemble averages that define the stress–strain curve |
 | Core cutoff radius in OpenDiS | Physical core structure in a cylindrical RVE | Stable timesteps and thermostat transients |
 | Taylor hardening from link statistics | Nucleation barriers and cross-slip rates | Converged runs before exporting to DDD yaml tables |
@@ -348,10 +348,10 @@ Potentials define forces; integrators and statistical ensembles define how traje
 
 | Mesoscale request (Part VII) | Atomistic foundation (this chapter) | Dynamics audit (next chapter) | Failure mode |
 |------------------------------|-------------------------------------|-------------------------------|--------------|
-| Burgers vector \(b = a_0/\sqrt{2}\) | EAM-minimized \(a_0\) on fcc lattice | NPT equilibration at 300 K | Wrong lattice constant in DDD yaml |
+| Burgers vector \(b = a_0/\sqrt{2}\) | EAM-minimized \(a_0\) on fcc lattice | NPT equilibration at \(T_w\) from `cht_export.yaml` | Wrong lattice constant in DDD yaml |
 | Core cutoff \(r_c\) in OpenDiS | Physical core width from cylindrical RVE | Stable \(\Delta t\) under NVE check | Linear elasticity inside core |
 | \(\gamma_{\text{sf}}\) for partial dislocations | Generalized stacking-fault surface | Slab pull under NVT ensemble | Wrong stacking sequence in EAM fit |
-| Peierls threshold in segment law | Core structure at 0 K minimization | Finite-\(T\) phonon drag from NVT shear | 0 K barrier exported to 300 K DDD |
+| Peierls threshold in segment law | Core structure at 0 K minimization | Finite-\(T\) phonon drag from NVT shear at \(T_w\) | 0 K barrier exported to room-temperature DDD |
 
 Part VII's [Bridge](../part07-defects/03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) named the **ink** behind dislocation lines — atomic bonding. The copper lattice here is that ink: nuclei on a Born–Oppenheimer surface whose parameters were trusted in LAMMPS before Part IX derived them from \(\rho(\mathbf{r})\). The [two clocks note](00-opening.md#two-clocks-reading-order-vs-foundation-pedigree) at the Part VIII opening explains why you may already have run EAM fits in workflow order; linear readers arrive correctly after DDD and should treat this chapter as **resolving the core** the mesoscale model regularized with a cutoff.
 
@@ -368,4 +368,4 @@ The [preface descent continuity hinges](../preface.md#descent-continuity-hinges)
 | Bulk modulus from volumetric strain | `cu_eam_B.txt` | Part VI \(E,\nu\) handshake | Unconverged RVE size |
 | Thermal conductivity \(\kappa\) (Green–Kubo) | `kappa_md_300K.txt` | Part IV/V thermal blocks | Handbook \(k\) mixed with DFT moduli |
 
-[VIII.2](02-ensembles-integrators.md) makes sampling precise: Verlet integration, NVT and NPT control, and LAMMPS workflows that connect atomistic simulation to dislocation dynamics and beyond. Turn the page when the potential is specified and the EAM minimization archive is on disk, but the wire's laboratory temperature has not yet entered the simulation — that is the signal that phase space, not just energy minimization, is the correct stage.
+[VIII.2](02-ensembles-integrators.md) makes sampling precise: Verlet integration, NVT and NPT control, and LAMMPS workflows that connect atomistic simulation to dislocation dynamics and beyond. Turn the page when the potential is specified and the EAM minimization archive is on disk, but the wire's laboratory temperature has not yet entered the simulation — that is the signal that phase space, not just energy minimization, is the correct stage. The [VIII.2 opening hinge](02-ensembles-integrators.md#opening-hinge-viii1-to-viii2) and [preface row 34 skill checkpoint](../preface.md#skill-navigation-row-34) reunite this Bridge with the dynamics chapter when the foundation folder feels complete but `MD_NVT_shear_PartVIII` has not yet run at \(T_w\).
