@@ -602,6 +602,8 @@ Run one convergence check before archiving: double the plane-wave cutoff and con
 
 ## Bridge to the epilogue {#bridge-to-the-epilogue}
 
+**Coupling gate (row 20).** If row 17's straight read stalled here, the [prologue row 20 closing stitch](../prologue/00-many-scales.md#row-20-closing-stitch) and [gate-chapter plot spine index](../appendix/sources.md#gate-chapter-plot-spine-index-row-20) reunite narrative and competence time — recite the [plot spine one line](#plot-spine-one-line) above aloud before continuing.
+
 Part IX closes the **downward** audit: fcc Cu has converged SCF logs, elastic constants, vacancy and stacking-fault energies, and archived input decks. The copper wire on the bench — sag under self-weight, Joule heat in **Act II**, work hardening in **Act IV**, notch concentration in **Act V** — never lives in a 2-atom supercell. It lives in the **export chain** this chapter disciplined.
 
 | What Part IX (this chapter) exported | What the epilogue must couple upward |

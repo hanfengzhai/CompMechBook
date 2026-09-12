@@ -17,6 +17,8 @@ Return to the force–displacement trace from Part I: linear climb, then yield k
 
 ## Intermission: ascent ends, descent begins {#intermission-ascent-ends-descent-begins}
 
+**Midpoint gate (row 20).** If row 17's straight read stalled here, the [prologue row 20 closing stitch](../prologue/00-many-scales.md#row-20-closing-stitch) and [gate-chapter plot spine index](../appendix/sources.md#gate-chapter-plot-spine-index-row-20) reunite narrative and competence time — recite the [plot spine one line](#plot-spine-one-line) above aloud before continuing.
+
 If you have read linearly since the [preface ascent preview chain](../preface.md#ascent-preview-chain) and [continuity hinges](../preface.md#continuity-hinges-ascent-descent), Part VI's [midpoint anchor](00-opening.md#midpoint-ascent-complete-descent-ahead) marked the turn from mathematical climb to scale descent. This chapter is the last continuum stop on the ascent side of that hinge: it admits that cold-drawn copper, notch roots, and path-dependent hardening **break** the smooth fields FEM and FVM trusted in Parts IV–V. The [preface descent preview chain](../preface.md#descent-preview-chain) names what follows — dislocation forest, atomic lattice, electron density — without asking you to leave the wire on the bench. The specimen does not change; only the state variable does. When the J₂ return-mapping loop fits \(H\) and \(\sigma_{y0}\) but cannot explain **why** the curve bent, the plot turns downward: phenomenology has done its job; pedigree awaits in Part VII.
 
 ## When linear elasticity breaks down
