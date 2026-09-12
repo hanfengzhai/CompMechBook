@@ -144,6 +144,24 @@ On a subdomain interface \(\Gamma\) between solid and fluid (copper wire and coo
 
 FVM (Part V) often works with **cell averages** in \(L^2\)-like spaces on dual meshes rather than nodal \(H^1\) conformity. Discontinuous fields across faces are expected; flux quadrature replaces weak derivatives of test functions. Sobolev theory still underlies stability proofs for elliptic FVM through discrete Poincaré inequalities on mesh-dependent spaces.
 
+## Discrete Poincaré on the wire mesh (conditioning preview)
+
+Poincaré inequality controls coercivity — and therefore **stiffness matrix conditioning**. On a long thin domain (the copper wire modeled as a 1D bar of length \(L = 1\,\text{m}\) or a 3D cylinder with aspect ratio \(L/D \gg 1\)), the constant \(C_P\) in
+
+\[
+\|u\|_{L^2} \le C_P \|\nabla u\|_{L^2} \quad \forall u \in H^1_0(\Omega)
+\]
+
+grows with aspect ratio. For a uniform \(P1\) mesh with \(N\) elements on \((0,L)\), the **discrete Poincaré constant** scales as \(C_{P,h} \sim O(h^2)\) in 1D for the smallest nonzero eigenvalue of the Laplacian — equivalently, the smallest eigenvalue of \(\mathbf{K}\) (with Dirichlet BCs) scales like \(\pi^2/L^2\) as \(N \to \infty\).
+
+| Mesh | \(h = L/N\) | Smallest \(\mathbf{K}\) eigenvalue (1D P1, Dirichlet) | Conditioning intuition |
+|------|-------------|------------------------------------------------------|------------------------|
+| \(N = 2\) | \(0.5\,\text{m}\) | \(\approx 4/L^2\) | Coarse; poor resolution of gradient energy |
+| \(N = 10\) | \(0.1\,\text{m}\) | \(\approx \pi^2/L^2\) | Approaching continuum limit |
+| \(N = 100\) | \(0.01\,\text{m}\) | \(\approx \pi^2/L^2\) | Eigenvalue stable; \(\kappa(\mathbf{K})\) grows with \(N\) for fixed \(L\) |
+
+**Practical consequence:** refining the thermal mesh on the wire improves accuracy but can worsen linear solver conditioning unless preconditioners respect the energy norm. Part IV.5 connects this to a posteriori error estimates; here the Sobolev message is simpler — **Poincaré is the bridge between \(\|u\|_{H^1}\) and \(\|u\|_{L^2}\)**, and mesh geometry enters through \(C_P\). When a conjugate heat transfer run (Part V) couples a fine fluid mesh to a coarse solid mesh, mismatched Poincaré constants on the two sides are one reason staggered Picard loops converge slowly — not because the physics is wrong, but because the discrete energy norms on the two domains are poorly matched.
+
 ## Worked example: checking \(H^1\) membership
 
 On \(\Omega = (0,1)\), \(u(x) = x^{1/2}\) is in \(L^2\) but \(u'(x) = \tfrac{1}{2}x^{-1/2}\) is not square-integrable near \(0\), so \(u \notin H^1(0,1)\). By contrast, \(u(x) = x^{3/2}\) has \(u' \sim x^{1/2} \in L^2\) — admissible in a weak formulation on the full interval. This explains why singular corners and reentrant notches are trouble spots: local behavior mimics fractional powers that strip \(H^2\) regularity even when \(H^1\) membership holds.

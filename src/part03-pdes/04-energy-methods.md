@@ -118,6 +118,35 @@ J(u) = \tfrac{1}{2}a(u,u) - \ell(u).
 
 Coercivity gives \(J(u) \to +\infty\) as \(\|u\| \to \infty\) — **coercivity implies inf-sup for pure minimization**. Nonsymmetric problems (advection–diffusion with weak skew part) may still have weak solutions via Lax–Milgram without a minimization principle; stabilized Petrov–Galerkin methods (Part IV–V) restore usable variational structure.
 
+## Inf–sup toy example: why equal-order Stokes fails
+
+Before the full Stokes saddle functional, a **2×2 block matrix** captures the Ladyzhenskaya–Babuška–Brezzi (LBB) failure mode that appears when coolant flow around the wire is discretized with naive equal-order elements.
+
+Consider the abstract saddle problem: find \((\mathbf{v}, p)\) such that
+
+\[
+\begin{bmatrix} A & B^T \\ B & 0 \end{bmatrix}
+\begin{bmatrix} \mathbf{v} \\ p \end{bmatrix}
+=
+\begin{bmatrix} \mathbf{f} \\ 0 \end{bmatrix},
+\]
+
+where \(A\) is symmetric positive definite (viscous dissipation) and \(B\) enforces \(\nabla\cdot\mathbf{v} = 0\). **Inf–sup stability** requires
+
+\[
+\inf_{q \in Q_h} \sup_{\mathbf{v} \in V_h} \frac{q^T B \mathbf{v}}{\|\mathbf{v}\|_{V_h}\|q\|_{Q_h}} \ge \beta > 0.
+\]
+
+On a coarse 2D mesh of the channel around the wire, **equal-order \((P_1, P_1)\)** velocity–pressure pairs violate inf–sup: spurious pressure modes (checkerboard oscillations) satisfy \(B^T p \approx 0\) without forcing velocity — the discrete system is singular or ill-conditioned even though the continuum Stokes problem is well posed.
+
+| Discretization | Inf–sup | Pressure field on wire-adjacent mesh | Fix |
+|----------------|---------|--------------------------------------|-----|
+| \(P1\)–\(P1\) | Violated | Checkerboard \(p\) | Taylor–Hood \(P2\)–\(P1\) |
+| \(P2\)–\(P1\) | Stable | Smooth \(p\) gradient near wall | Standard in FEniCS / deal.II |
+| Stabilized \(P1\)–\(P1\) | Restored via penalty | Depends on stabilization parameter | SUPG/PSPG in Part IV |
+
+**Copper wire connection:** Part V.4's conjugate heat transfer couples solid conduction (elliptic minimization — coercivity suffices) to low-Re coolant flow (Stokes or Navier–Stokes — saddle point or non-convex stationarity). The energy methods chapter must distinguish **two well-posedness contracts** on the same afternoon: Lax–Milgram for the solid, LBB for the fluid. Mixing them — treating pressure as if it minimized a convex functional — is a category error the summary table below records explicitly.
+
 ## Saddle-point formulations
 
 Not all problems are minimization. Stokes flow seeks a saddle point of

@@ -153,6 +153,37 @@ In components, linear isotropic elasticity on the copper wire (3D body) reads
 
 Each displacement component satisfies a Poisson-like equation coupled to the others through \(\nabla\cdot\mathbf{u}\). Incompressible limits (\(\nu \to 1/2\), \(\lambda \to \infty\)) stress the elliptic system and require mixed or penalized formulations — the strong form still holds, but standard displacement-only FEM loses stability. Part III's saddle-point energy methods and Part IV's mixed elements address this failure mode.
 
+## Coupled thermoelastic strong form on the wire (Acts II–III)
+
+Real specimens do not separate heating from loading. On the copper wire, **Act II** (current on, grips fixed) and **Act III** (grip displacement ramp) run on the same bar. The coupled **steady** strong-form stack most codes eventually implement is:
+
+\[
+\text{(Heat)}\quad -\nabla\cdot(k\nabla T) = q_{\text{Joule}}(\mathbf{x}) \quad \text{in } \Omega,
+\]
+\[
+\text{(Mechanics)}\quad -\nabla\cdot\boldsymbol{\sigma} = \mathbf{0}, \qquad \boldsymbol{\sigma} = \mathbb{C} : \big(\boldsymbol{\varepsilon}(\mathbf{u}) - \alpha(T - T_{\text{ref}})\mathbf{I}\big) \quad \text{in } \Omega,
+\]
+
+with Dirichlet data on the grips (\(u = u_{\text{grip}}\) or fixed end, \(T = T_{\text{grip}}\) at water-cooled jaws) and Robin convection on the lateral surface (\(-k\partial T/\partial n = h(T - T_\infty)\)). The **thermal strain** \(\varepsilon_{\text{th}} = \alpha(T - T_{\text{ref}})\) is the coupling arrow: heat changes effective mechanical strain at fixed grip displacement; mechanical dissipation is negligible at steady state but enters transient models through \(\rho c_p \partial T/\partial t\).
+
+### 1D reduction for the tensile frame
+
+For uniaxial tension along the wire axis with uniform cross-section \(A\), the 1D strong forms read
+
+\[
+-k T''(x) = q(x), \qquad -(EA u'')' = 0 \quad \text{(with thermal eigenstrain } u' - \alpha(T - T_{\text{ref}})\text{)}.
+\]
+
+**Worked numbers (order-of-magnitude audit).** Copper at modest \(\Delta T = 50\,\text{K}\): \(\alpha \approx 17 \times 10^{-6}\,\text{K}^{-1}\), \(E \approx 120\,\text{GPa}\), so fully constrained thermal stress \(\sigma_{\text{th}} \approx E \alpha \Delta T \approx 100\,\text{MPa}\) — comparable to annealed yield. A grip displacement of \(0.1\%\) strain adds \(\sigma_{\text{mech}} \approx 120\,\text{MPa}\). **Act II and Act III are not additive in stress space** unless you track thermal eigenstrain in the mechanical equilibrium — the strong form makes that coupling explicit before Part III.4 packages it as a coupled energy functional.
+
+| Field | Strong-form equation | Act on wire | Consumer in later parts |
+|-------|---------------------|-------------|-------------------------|
+| \(T(x)\) | \(-kT'' = q\) steady | Joule heating midspan | Part V CHT → \(T_w\) at wall |
+| \(u(x)\) | \(-(EA u')' = 0\) with thermal strain | Grip ramp | Part IV elastic assembly |
+| Coupling | \(\varepsilon_{\text{eff}} = u' - \alpha(T - T_{\text{ref}})\) | Fixed grip + heated bar | Epilogue Handshake 3 (\(\alpha\Delta T\)) |
+
+This table is the **strong-form pedigree** for multiscale handshakes later: if thermal expansion is omitted in the mechanical block, the load cell curve is wrong even when the heat equation converges under mesh refinement.
+
 ## Maximum principle and physical bounds (elliptic)
 
 For \(-\Delta u = f\) with \(f \ge 0\) and \(u = 0\) on \(\partial\Omega\), the **maximum principle** gives \(u \ge 0\) in \(\Omega\). Temperature and displacement potentials inherit such sign properties under appropriate data — a sanity check for codes. Violating the maximum principle in a numerical solution usually signals a sign error in source assembly, wrong boundary tags, or an unstable scheme — not a failure of the continuum model.
