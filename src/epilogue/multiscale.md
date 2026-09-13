@@ -1277,7 +1277,62 @@ This subsection is the **downstream half** of [memory sheet row 42](../appendix/
 | 4 | Name Handshake 4b as downstream half | Step 4 — root-stress verification | Match [FE² worked example](#worked-example-fe-at-the-wire-notch-act-v--notch) |
 | 5 | [VII.3 → Handshake 4b reunion index](../appendix/sources.md#vii3-handshake4b-reunion-index-row-42) recitation | Step 5 — cross-links audit | IV.4 → VI.4 → VII.3 Step 4 → IX.3 GSF → Handshake 4b chain |
 
-When crystal plasticity is trusted at the notch root without uplift audit, start at the [opening hinge from VII.3 Step 4](#opening-hinge-vii3-handshake4b) — verify `fe2_notch_comparison.dat` lists crystal plasticity at 215 MPa and FE² at 238 MPa on fixture data. Run [`parse_fe2.sh`](../scripts/parse_fe2.sh) then [`parse_multiscale_workflow.sh`](../scripts/parse_multiscale_workflow.sh) and confirm the Handshake 4b slot in `multiscale_export.yaml`. Read [VII.3 Step 4](../part07-defects/03-polycrystal-and-fem-handoff.md#step-4--when-offline-calibration-fails-fe-at-the-notch) and walk the [FE² notch-localization cross-links audit](#opening-hinge-vii3-handshake4b) table aloud — each row should name the same localization contract at a different scale. The [memory sheet row 42 baby picture](../appendix/memory-sheet.md#row-42-baby-picture-vii3-handshake4b-reunion) compresses VII.3 Step 4 → Handshake 4b for index-card review. Do not conflate row 42 (Step 4 FE² ↔ root stress at notch) with row 41 (rate handshake ↔ \(\tau_{\text{lab}}\) at load cell) — row 42 names **notch localization at Handshake 4b**; row 41 names **rate extrapolation at Handshake 4a**; [row 15](../preface.md#skill-navigation-row-15) names the Handshake 4b chain in competence time. Proceed to [row 15](../preface.md#skill-navigation-row-15) when the optional notch activates FE², to [row 16](../preface.md#skill-navigation-row-16) when individual exports need orchestrated pedigree, to [row 10](../preface.md#skill-navigation-row-10) when Handshakes 4a/4b feel undifferentiated, or to [row 12](../preface.md#skill-navigation-row-12) when the copper story is complete.
+When crystal plasticity is trusted at the notch root without uplift audit, start at the [opening hinge from VII.3 Step 4](#opening-hinge-vii3-handshake4b) — verify `fe2_notch_comparison.dat` lists crystal plasticity at 215 MPa and FE² at 238 MPa on fixture data. Run [`parse_fe2.sh`](../scripts/parse_fe2.sh) then [`parse_multiscale_workflow.sh`](../scripts/parse_multiscale_workflow.sh) and confirm the Handshake 4b slot in `multiscale_export.yaml`. Read [VII.3 Step 4](../part07-defects/03-polycrystal-and-fem-handoff.md#step-4--when-offline-calibration-fails-fe-at-the-notch) and walk the [FE² notch-localization cross-links audit](#opening-hinge-vii3-handshake4b) table aloud — each row should name the same localization contract at a different scale. The [memory sheet row 42 baby picture](../appendix/memory-sheet.md#row-42-baby-picture-vii3-handshake4b-reunion) compresses VII.3 Step 4 → Handshake 4b for index-card review. Do not conflate row 42 (Step 4 FE² ↔ root stress at notch) with row 41 (rate handshake ↔ \(\tau_{\text{lab}}\) at load cell) — row 42 names **notch localization at Handshake 4b**; row 41 names **rate extrapolation at Handshake 4a**; [row 15](../preface.md#skill-navigation-row-15) names the Handshake 4b chain in competence time. Proceed to [row 43](#row-43-closing-loop) when rows 17–42 all read correctly but individual exports still lack orchestrated pedigree, to [row 15](../preface.md#skill-navigation-row-15) when the optional notch activates FE², to [row 16](../preface.md#skill-navigation-row-16) when the orchestrator has not yet run, to [row 10](../preface.md#skill-navigation-row-10) when Handshakes 4a/4b feel undifferentiated, or to [row 12](../preface.md#skill-navigation-row-12) when the copper story is complete.
+
+## Closing rows 17–42 from Row 16 orchestration {#opening-hinge-rows17-42-row16}
+
+If you have read linearly since the prologue, rows 17–42 restored every narrative layer — Scene, Bridge, plot spines, Lab acts, concept maps, schematics, Story so far, Closing the arc, scale boundaries, thermoelastic assembly, CHT, twin-ladder reunion, plasticity preview, descent hinges, and Handshakes 3/4a/4b opening hinges. Row 16's [orchestration checkpoint](../preface.md#skill-navigation-row-16) is the **downstream half** of that full-book audit — not a new subject, but the Act VI reading of whether every export composes in dependency order:
+
+| Meta-stitch layer (rows 17–42) | Row 16 orchestration consumer | Archive artifact |
+|--------------------------------|------------------------------|------------------|
+| Row 17 continuous read-through | Narrative rhythm validated | Scene → Bridge at every boundary |
+| Rows 18–20 plot spine gates | Part/chapter/gate one-liners recited | I.4, VI.4, IX.3 pauses complete |
+| Rows 21–27 reunion layers | Operator, Bridge, concept map, schematic, Story so far, symbol bridge | Copper wire visible at every scale |
+| Rows 28–32 export pedigree | Thermoelastic + CHT + virtual work + plasticity preview | `cht_export.yaml` with converged \(T_w\) |
+| Rows 33–39 descent hinges | Foundation folder grammar | `cu.foundation/` with SCF logs |
+| Row 40 IX.3 → Handshake 3 | Thermal eigenstrain at \(T_w\) | `alpha_export.yaml` with matching `target_temperature_K` |
+| Row 41 VII.3 → Handshake 4a | Lab-rate hardening knee | `rate_export.yaml` with `lab_target_strain_rate_s-1` |
+| Row 42 VII.3 → Handshake 4b | Notch-root FE² audit | `fe2_export.yaml` with `fe2_enrichment_required` |
+| **Row 16 orchestration** | **All slots in one chain** | **`multiscale_export.yaml` via [`parse_multiscale_workflow.sh`](../scripts/parse_multiscale_workflow.sh)** |
+
+**Orchestration pedigree (Handshakes 1 → OUT).** Row 16 must run only after rows 8–9, 13–15, and 40–42 close their individual handshake loops — the orchestrator inherits verified exports, it does not create them:
+
+```bash
+./scripts/test-fixtures.sh   # verify individual parsers first
+./scripts/parse_multiscale_workflow.sh fixtures/cu.foundation fixtures/cht_wire.conf
+grep -E 'delta_T_from_handshake_2|target_T_K|handshake_4b' multiscale_export.yaml
+```
+
+The [Rows 17–42 → Row 16 orchestration reunion index](../appendix/sources.md#rows17-42-row16-orchestration-reunion-index-row-43) reunites this opening with [row 42](../preface.md#skill-navigation-row-42) when every meta-stitch reads correctly but **`alpha_export.yaml`, `rate_export.yaml`, and `fe2_export.yaml` sit in separate folders** — same copper wire, same multiscale afternoon, but no single pedigree file links Handshakes 1–4b in dependency order.
+
+**Orchestration cross-links audit (reading-time ↔ workflow-time).** When row 16 feels disconnected from rows 17–42 despite complete individual exports, walk this chain — each row is a mirror of the same orchestration contract at a different scale:
+
+| Location | Anchor | Contract (read aloud) |
+|----------|--------|----------------------|
+| [IX.3 epilogue pedigree table](../part09-dft/03-dft-workflows.md#ix3-epilogue-pedigree-table) | Foundation-time | Every handshake maps to an archive artifact before orchestration runs |
+| [Preface row 16](../preface.md#skill-navigation-row-16) | Competence-time | Rows 8–9, 13–15 verified; then orchestrator in dependency order |
+| [Memory sheet Act VI baby picture](../appendix/memory-sheet.md#act-vi-baby-picture-me-412-coupling-ladder) | Index-card | Foundation slice (IX→IV) feeds orchestration slice (H1→OUT) |
+| [Script audit trail](#script-audit-trail-parse-scripts-handshakes) | Workflow-time | Per-handshake parsers + All — orchestrated chain row |
+| [Row 16 closing loop](#row-16-closing-loop) (this chapter) | Workflow-time downstream | Three-way audit: prologue preview ↔ skill checkpoint ↔ workflow exam |
+| [Sensitivity worksheet closing](#worked-example-sensitivity-ranks) | Verification-time | Handshakes 1–4b ran in dependency order after partial-derivative audit |
+| [Preface row 43](../preface.md#skill-navigation-row-43) | Meta-stitch closure | Rows 17–42 narrative layers reunite with row 16 orchestration |
+| [Epilogue ME 412 one-line summary](#row-12-closing-loop) | Book closure | Grammar → descent → homogenize upward with documented handshakes |
+
+The [preface row 43 skill checkpoint](../preface.md#skill-navigation-row-43) closes the competence loop; the [prologue row 43 closing stitch](../prologue/00-many-scales.md#row-43-closing-stitch) is the upstream half when rows 17–42 all read correctly but the epilogue closing arc still feels like separate terminal windows.
+
+### Row 43 closing loop (Rows 17–42 → Row 16 orchestration reunion) {#row-43-closing-loop}
+
+This subsection is the **downstream half** of [memory sheet row 43](../appendix/memory-sheet.md#continuity-hinges-master-map), the [preface row 43 skill checkpoint](../preface.md#skill-navigation-row-43), and the [Rows 17–42 → Row 16 orchestration reunion index](../appendix/sources.md#rows17-42-row16-orchestration-reunion-index-row-43). The [prologue row 43 preview](../prologue/00-many-scales.md#prologue-preview-row-43) and [prologue row 43 closing stitch](../prologue/00-many-scales.md#row-43-closing-stitch) are the **upstream halves** — return there when rows 17–42 all read correctly but **Handshakes 1–4b exist in separate folders without orchestrated `multiscale_export.yaml`**. Row 43 closes the full-book meta-stitch chain: every narrative layer from continuous read-through through Handshake 4b must receive **dependency-ordered orchestration** before the epilogue closing arc is fully closed.
+
+| Step | Prologue preview ([row 43](../prologue/00-many-scales.md#prologue-preview-row-43)) | [Preface row 43](../preface.md#skill-navigation-row-43) | Workflow exam ([Act VI row](#what-you-should-be-able-to-do-after-the-book) above) |
+|------|--------------------------------------------------------------------------------|-------------------------|-----------------------------------------------------------------------------------|
+| 1 | Name rows 8–9, 13–15, 40–42 complete before orchestration | Step 1 — upstream handshake gate | Individual export yamls verified |
+| 2 | Name IX.3 pedigree table before orchestrator | Step 2 — pedigree table audit | [IX.3 epilogue pedigree table](../part09-dft/03-dft-workflows.md#ix3-epilogue-pedigree-table) recited |
+| 3 | Name `parse_multiscale_workflow.sh` → `multiscale_export.yaml` | Step 3 — orchestrated chain | [`parse_multiscale_workflow.sh`](../scripts/parse_multiscale_workflow.sh) on fixtures |
+| 4 | Name `delta_T_from_handshake_2` and `target_T_K` audit | Step 4 — dependency verification | `./scripts/test-fixtures.sh` passes |
+| 5 | [Rows 17–42 → Row 16 reunion index](../appendix/sources.md#rows17-42-row16-orchestration-reunion-index-row-43) recitation | Step 5 — cross-links audit | Full H1→H2→H3→H4a→H4b→OUT chain in one file |
+
+When individual handshake exports exist but no orchestrated pedigree links them, start at the [opening hinge from rows 17–42 → row 16](#opening-hinge-rows17-42-row16) — verify [`parse_multiscale_workflow.sh`](../scripts/parse_multiscale_workflow.sh) emits `multiscale_export.yaml` with Handshake 2's \(\Delta T\) feeding Handshake 3 and phonon lifetime at \(T_w\) feeding Handshake 4a. Read the [IX.3 epilogue pedigree table](../part09-dft/03-dft-workflows.md#ix3-epilogue-pedigree-table) and walk the [orchestration cross-links audit](#opening-hinge-rows17-42-row16) table aloud — each row should name the same dependency contract at a different scale. The [memory sheet row 43 baby picture](../appendix/memory-sheet.md#row-43-baby-picture-rows17-42-row16-orchestration-reunion) compresses the full-book closing arc for index-card review. Do not conflate row 43 (meta-stitch → orchestration reunion) with row 16 (orchestration competence checkpoint) — row 43 names **when every narrative layer reads correctly but orchestration still feels disconnected**; row 16 names **how to run the orchestrator**; [row 12](../preface.md#skill-navigation-row-12) names the next-project restart after the arc closes. Proceed to [row 12](#row-12-closing-loop) when `multiscale_export.yaml` archives beside the Act VI folder and the copper story is complete, to [row 17](../preface.md#skill-navigation-row-17) when a straight read-through still feels choppy despite correct orchestration, or revisit rows 40–42 when individual handshake exports fail the fixture audit.
 
 ### Row 12 closing loop (epilogue → prologue) {#row-12-closing-loop}
 
