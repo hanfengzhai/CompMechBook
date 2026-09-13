@@ -42,17 +42,38 @@ def strip_anchor(link: str) -> str:
 
 def skip_link(link: str) -> bool:
     path_part = strip_anchor(link)
-    return not path_part or path_part.startswith("/") or path_part.startswith("\\")
+    if not path_part or path_part.startswith("/") or path_part.startswith("\\"):
+        return True
+    # LaTeX false positives, e.g. [\rho](\mathbf{r}) inside math prose
+    return "\\" in path_part
+
+
+def repo_root_path(path_part: str) -> Path | None:
+    for prefix in ("scripts/", "fixtures/"):
+        if path_part.startswith(prefix):
+            return (root / path_part).resolve()
+    for prefix in ("../scripts/", "../fixtures/", "../../scripts/", "../../fixtures/"):
+        if path_part.startswith(prefix):
+            return (root / path_part.removeprefix("../").removeprefix("../")).resolve()
+    return None
 
 
 def resolve_src(md: Path, link: str) -> Path | None:
     if skip_link(link):
         return Path("/dev/null")
     path_part = strip_anchor(link)
-    if path_part.startswith("scripts/") or path_part.startswith("fixtures/"):
-        target = (root / path_part).resolve()
+    anchored = repo_root_path(path_part)
+    if anchored is not None:
+        target = anchored
     else:
         target = (md.parent / path_part).resolve()
+        # preface.md lives at src/ root; ../part* links mean sibling part dirs
+        if (
+            not target.exists()
+            and md.parent == root / "src"
+            and path_part.startswith("../part")
+        ):
+            target = (root / "src" / path_part.removeprefix("../")).resolve()
     return target if target.exists() else None
 
 
