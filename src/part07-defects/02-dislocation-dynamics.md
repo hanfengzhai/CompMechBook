@@ -415,7 +415,9 @@ Before exporting DDD hardening laws to crystal plasticity or FEM:
 
 Unvalidated DDD is animated elasticity with pretty lines — the same warning Part VIII repeats for unconverged MD and Part IX repeats for unconverged plane-wave cutoff.
 
-## Lab act: read the hardening bend from forest density (Act IV)
+## Lab act: read the hardening bend from forest density (Act IV) {#lab-act-read-the-hardening-bend-from-forest-density-act-iv}
+
+**Forest → Handshake 4a reunion (row 33).** If rows 17–32 all read correctly but OpenDiS forest exports and lab-rate hardening still feel like separate subjects, read the [forest → Handshake 4a reunion index](../appendix/sources.md#forest-handshake-4a-reunion-index-row-33) — the meta stitch when \(\rho(\gamma)\) explains the knee on paper but mobility yaml still cites 300 K after Joule heating, or \(\tau(\gamma)\) at DDD timestep strain rate imports directly without power-law extrapolation. Run this forest Lab act first, then the [mobility Lab act](#lab-act-calibrate-screw-mobility-from-md-shear-act-iv--mobility-prelude) at \(T_w\), then read [VII.3's rate handshake](../part07-defects/03-polycrystal-and-fem-handoff.md#scale-boundary-handshake-ddd-strain-rate-to-quasi-static-fem). Row 33 does not replace row 32 — it reunites **moving forest with documented mobility and lab-rate exports** when fitted \(H\) is already understood as a placeholder for \(\rho\).
 
 **Act IV** is the upward bend on the force–displacement trace after yield. Part VI fitted it with a scalar hardening modulus \(H\); this Lab act estimates the same bend from **dislocation forest density** — the mesoscale object DDD simulates.
 
