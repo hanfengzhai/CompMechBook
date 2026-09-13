@@ -119,7 +119,7 @@ A 1 mm diameter copper wire, drawn 30% in area reduction, tested in tension at r
 
 Annealed copper yields near 50 MPa; drawing raises dislocation density \(\rho\) from \(\sim 10^{12}\) m\(^{-2}\) toward \(10^{14}\)–\(10^{15}\) m\(^{-2}\). The calibration must start from a **processed** state, not a perfect crystal.
 
-### Step 1 — OpenDiS RVE simulation
+### Step 1 — OpenDiS RVE simulation {#step-1--opendis-rve-simulation}
 
 **Geometry:** cubic RVE, edge length \(L = 2\) µm, single fcc crystal oriented with [110] along tensile axis (simplified; polycrystal RVE adds grain boundaries).
 
@@ -150,7 +150,7 @@ max_strain     0.05
 - Total dislocation density \(\rho(\gamma)\),
 - Link-length distribution \(P(l)\) at selected strains (connects to link-statistics research in Chapter 2).
 
-### Step 2 — Homogenize DDD to crystal plasticity parameters
+### Step 2 — Homogenize DDD to crystal plasticity parameters {#step-2--homogenize-ddd-to-crystal-plasticity-parameters}
 
 Map RVE volume-averaged quantities to DAMASK internal variables:
 
@@ -215,7 +215,7 @@ mobility_table_source: MD_NVT_shear_PartVIII     # git commit hash
 
 The rate handshake is the mesoscale counterpart of Part VI's [Voigt/Reuss elastic handshake](../part06-continuum/02-stress-balance.md#scale-boundary-handshake-dft-elastic-tensor-to-fem-material-card): two discretizations (DDD timestep vs. lab grip speed) must agree on the **observable** the load cell measures before crystal plasticity FEM inherits the curve. When in doubt, bracket: run DAMASK at both \(\tau_{\text{flow}}(\dot\varepsilon_{\text{DDD}})\) and \(\tau_{\text{flow}}(\dot\varepsilon_{\text{lab}})\) and report the band as uncertainty on the macroscopic prediction. The epilogue's [Handshake 4a worked example](../epilogue/multiscale.md#handshake-4--rate-dependent-hardening-and-notch-localization-part-vii--vi--viii) and [sensitivity derivation worksheet](../epilogue/multiscale.md#worked-example-sensitivity-ranks) quantify that band — on fixture data, direct import without extrapolation overpredicts flow stress by **35%**; run [`parse_rate.sh`](../../scripts/parse_rate.sh) on `ddd_tau_vs_rate.dat` to emit `rate_export.yaml` before the crystal-plasticity deck inherits \(\tau_{\text{lab}}\). The [prologue reading compass row for Handshake 4a](../prologue/00-many-scales.md#reading-compass-two-clocks-on-one-wire) names this stitch in narrative time; the [preface row 14 skill checkpoint](../preface.md#skill-navigation-row-14) and epilogue [Act IV hardening skill row](../epilogue/multiscale.md#what-you-should-be-able-to-do-after-the-book) are the competence-time mirrors.
 
-### Step 3 — Polycrystal FEM of the wire (DAMASK + mesh)
+### Step 3 — Polycrystal FEM of the wire (DAMASK + mesh) {#step-3--polycrystal-fem-of-the-wire-damask--mesh}
 
 **Mesh:** 1 mm length, axisymmetric or 3D hex mesh (Part IV); 8–32 grains from EBSD orientation map, or synthetic Voronoi polycrystal with drawing fiber texture.
 
@@ -231,6 +231,8 @@ postprocess.py         # compare force–displacement to tensile test
 ```
 
 **Success criterion:** macroscopic \(\sigma\)–\(\varepsilon\) within agreed tolerance of experiment **and** of single-element DAMASK replay of DDD curve — three-way consistency (DDD → single element → polycrystal FEM).
+
+**Polycrystal handoff → Handshake 4b reunion (row 34).** If rows 17–33 all read correctly but bulk crystal plasticity (Steps 1–3 above) and notch localization (Step 4 FE² / Handshake 4b) still feel like separate subjects, read the [polycrystal handoff → Handshake 4b reunion index](../appendix/sources.md#polycrystal-handshake-4b-reunion-index-row-34) — the meta stitch when OpenDiS → DAMASK → polycrystal FEM matches the Act IV load cell in bulk but crystal plasticity under-predicts peak von Mises stress at the notch root by 10–15%, or Step 4 FE² feels disconnected from the handoff bundle. Complete Steps 1–3 and the [Lab act](#lab-act-archive-the-opendis--damask--fem-handoff-act-ivv) verification loop first, then open Step 4 below. Row 34 does not replace row 33 — it reunites **bulk homogenization with notch pile-up physics** when \(\tau_{\text{lab}}\) from Handshake 4a is already credible.
 
 ### Step 4 — When offline calibration fails: FE² at the notch {#step-4--when-offline-calibration-fails-fe-at-the-notch}
 
