@@ -1332,7 +1332,62 @@ This subsection is the **downstream half** of [memory sheet row 43](../appendix/
 | 4 | Name `delta_T_from_handshake_2` and `target_T_K` audit | Step 4 — dependency verification | `./scripts/test-fixtures.sh` passes |
 | 5 | [Rows 17–42 → Row 16 reunion index](../appendix/sources.md#rows17-42-row16-orchestration-reunion-index-row-43) recitation | Step 5 — cross-links audit | Full H1→H2→H3→H4a→H4b→OUT chain in one file |
 
-When individual handshake exports exist but no orchestrated pedigree links them, start at the [opening hinge from rows 17–42 → row 16](#opening-hinge-rows17-42-row16) — verify [`parse_multiscale_workflow.sh`](../scripts/parse_multiscale_workflow.sh) emits `multiscale_export.yaml` with Handshake 2's \(\Delta T\) feeding Handshake 3 and phonon lifetime at \(T_w\) feeding Handshake 4a. Read the [IX.3 epilogue pedigree table](../part09-dft/03-dft-workflows.md#ix3-epilogue-pedigree-table) and walk the [orchestration cross-links audit](#opening-hinge-rows17-42-row16) table aloud — each row should name the same dependency contract at a different scale. The [memory sheet row 43 baby picture](../appendix/memory-sheet.md#row-43-baby-picture-rows17-42-row16-orchestration-reunion) compresses the full-book closing arc for index-card review. Do not conflate row 43 (meta-stitch → orchestration reunion) with row 16 (orchestration competence checkpoint) — row 43 names **when every narrative layer reads correctly but orchestration still feels disconnected**; row 16 names **how to run the orchestrator**; [row 12](../preface.md#skill-navigation-row-12) names the next-project restart after the arc closes. Proceed to [row 12](#row-12-closing-loop) when `multiscale_export.yaml` archives beside the Act VI folder and the copper story is complete, to [row 17](../preface.md#skill-navigation-row-17) when a straight read-through still feels choppy despite correct orchestration, or revisit rows 40–42 when individual handshake exports fail the fixture audit.
+When individual handshake exports exist but no orchestrated pedigree links them, start at the [opening hinge from rows 17–42 → row 16](#opening-hinge-rows17-42-row16) — verify [`parse_multiscale_workflow.sh`](../scripts/parse_multiscale_workflow.sh) emits `multiscale_export.yaml` with Handshake 2's \(\Delta T\) feeding Handshake 3 and phonon lifetime at \(T_w\) feeding Handshake 4a. Read the [IX.3 epilogue pedigree table](../part09-dft/03-dft-workflows.md#ix3-epilogue-pedigree-table) and walk the [orchestration cross-links audit](#opening-hinge-rows17-42-row16) table aloud — each row should name the same dependency contract at a different scale. The [memory sheet row 43 baby picture](../appendix/memory-sheet.md#row-43-baby-picture-rows17-42-row16-orchestration-reunion) compresses the full-book closing arc for index-card review. Do not conflate row 43 (meta-stitch → orchestration reunion) with row 16 (orchestration competence checkpoint) — row 43 names **when every narrative layer reads correctly but orchestration still feels disconnected**; row 16 names **how to run the orchestrator**; [row 44](../preface.md#skill-navigation-row-44) reunites orchestration with the epilogue → prologue book loop. Proceed to [row 44](#row-44-closing-loop) when `multiscale_export.yaml` archives beside the Act VI folder but the next terminal still opens with copper decks copied blindly, to [row 17](../preface.md#skill-navigation-row-17) when a straight read-through still feels choppy despite correct orchestration, or revisit rows 40–42 when individual handshake exports fail the fixture audit.
+
+## Closing rows 17–43 from Row 12 book loop {#opening-hinge-rows17-43-row12}
+
+If you have read linearly since the prologue, rows 17–43 restored every narrative layer — from Scene → Bridge rhythm through orchestrated `multiscale_export.yaml`. Row 12's [next-project restart](../preface.md#skill-navigation-row-12) is the **downstream half** of that full-book audit — not a new subject, but the landing at the [prologue reopening anchor](../prologue/00-many-scales.md#prologue-reopening-anchor) when the copper tutorial ends:
+
+| Meta-stitch layer (rows 17–43) | Row 12 book loop consumer | Archive artifact |
+|--------------------------------|---------------------------|------------------|
+| Rows 17–20 continuous read-through + plot spines | Narrative smoothness validated | Scene → Bridge at every boundary; gates at I.4, VI.4, IX.3 |
+| Rows 21–27 reunion layers | Operator visible at every scale | Lab acts, Scenes, Bridges, concept maps recited |
+| Rows 28–32 export pedigree | Thermoelastic + CHT + virtual work chain | `cht_export.yaml`, one-mesh assembly |
+| Rows 33–39 descent hinges | Foundation folder grammar | `cu.foundation/` with SCF logs |
+| Rows 40–42 handshake opening hinges | Individual export verification | `alpha_export.yaml`, `rate_export.yaml`, `fe2_export.yaml` |
+| Row 43 orchestration reunion | Dependency-ordered chain | `multiscale_export.yaml` via [`parse_multiscale_workflow.sh`](../scripts/parse_multiscale_workflow.sh) |
+| **Row 12 book loop** | **Epilogue → prologue restart** | **Rung audit + four questions + act template on new specimen** |
+
+**Book loop pedigree (epilogue → prologue → row 0).** Row 12 must run only after row 43 closes — the restart inherits verified orchestration, it does not skip the meta-stitch chain:
+
+```bash
+./scripts/test-fixtures.sh   # verify row 43 orchestration gate
+# Before copying copper decks to a new material:
+# 1. Recite ME 412 one-line summary
+# 2. Complete row 12 four-step audit at prologue reopening anchor
+# 3. Restart grammar at row 0 before mid-book handshakes
+```
+
+The [Rows 17–43 → Row 12 book loop closure index](../appendix/sources.md#rows17-43-row12-book-loop-closure-index-row-44) reunites this opening with [row 43](../preface.md#skill-navigation-row-43) when every meta-stitch reads correctly but **copper-wire input decks are copied to a new material without rung audit** — same ladder, same four questions, but a different specimen and active rung subset.
+
+**Book loop cross-links audit (reading-time ↔ workflow-time).** When row 12 feels disconnected from rows 17–43 despite verified orchestration, walk this chain — each row is a mirror of the same book-loop contract at a different scale:
+
+| Location | Anchor | Contract (read aloud) |
+|----------|--------|----------------------|
+| [Epilogue ME 412 one-line summary](#row-12-closing-loop) | Book closure | "Grammar → descent → homogenize upward with documented handshakes" |
+| [Preface row 12](../preface.md#skill-navigation-row-12) | Competence-time | Rung audit → four questions → act template → row 0 grammar restart |
+| [Prologue reopening anchor](../prologue/00-many-scales.md#prologue-reopening-anchor) | Narrative-time | Land here after epilogue — not at Part I.1 with copied copper decks |
+| [Memory sheet row 12 baby picture](../appendix/memory-sheet.md#row-12-baby-picture-next-project) | Index-card | Epilogue → prologue loop; copper was tutorial, not template material |
+| [Preface row 0](../preface.md#skill-navigation-row-0) | Grammar restart | Same four questions; new specimen; ladder reusable |
+| [Preface row 44](../preface.md#skill-navigation-row-44) | Meta-stitch closure | Rows 17–43 narrative layers reunite with row 12 book loop |
+| [Prologue concept map (whole book)](../prologue/00-many-scales.md#the-concept-map-whole-book) | Template | Substitute specimen; mark which acts activate |
+| [Memory sheet master map](../appendix/memory-sheet.md#continuity-hinges-master-map) | Navigation | Row 0 opens the loop; row 12 closes it; row 44 reunites the chain |
+
+The [preface row 44 skill checkpoint](../preface.md#skill-navigation-row-44) closes the competence loop; the [prologue row 44 closing stitch](../prologue/00-many-scales.md#row-44-closing-stitch) is the upstream half when rows 17–43 all read correctly but the epilogue → prologue transition still feels like separate terminal windows.
+
+### Row 44 closing loop (Rows 17–43 → Row 12 book loop closure) {#row-44-closing-loop}
+
+This subsection is the **downstream half** of [memory sheet row 44](../appendix/memory-sheet.md#continuity-hinges-master-map), the [preface row 44 skill checkpoint](../preface.md#skill-navigation-row-44), and the [Rows 17–43 → Row 12 book loop closure index](../appendix/sources.md#rows17-43-row12-book-loop-closure-index-row-44). The [prologue row 44 preview](../prologue/00-many-scales.md#prologue-preview-row-44) and [prologue row 44 closing stitch](../prologue/00-many-scales.md#row-44-closing-stitch) are the **upstream halves** — return there when rows 17–43 all read correctly but **`multiscale_export.yaml` exists yet the next terminal opens with copper input decks copied blindly**. Row 44 closes the full meta-stitch chain: every narrative layer from continuous read-through through orchestrated export must receive **epilogue → prologue book loop closure** before the copper arc is fully closed.
+
+| Step | Prologue preview ([row 44](../prologue/00-many-scales.md#prologue-preview-row-44)) | [Preface row 44](../preface.md#skill-navigation-row-44) | Workflow exam ([row 12 row](#what-you-should-be-able-to-do-after-the-book) above) |
+|------|--------------------------------------------------------------------------------|-------------------------|----------------------------------------------------------------------------------|
+| 1 | Name row 43 orchestration verified before restart | Step 1 — orchestration gate | `./scripts/test-fixtures.sh` passes |
+| 2 | Name ME 412 one-line summary before new material | Step 2 — ME 412 summary | Recite grammar → descent → homogenize upward |
+| 3 | Name row 12 four-step audit on new specimen | Step 3 — row 12 four-step audit | Rung sketch + four questions + act template |
+| 4 | Name material change ≠ method change | Step 4 — material vs method | Ladder reusable; active rungs differ |
+| 5 | [Rows 17–43 → Row 12 reunion index](../appendix/sources.md#rows17-43-row12-book-loop-closure-index-row-44) recitation | Step 5 — cross-links audit | Epilogue → prologue reopening anchor → row 0 |
+
+When orchestration is verified but the next project still feels like copying copper decks, start at the [opening hinge from rows 17–43 → row 12](#opening-hinge-rows17-43-row12) — recite the ME 412 one-line summary, complete the [row 12 four-step audit](../prologue/00-many-scales.md#prologue-reopening-anchor) on the new specimen, then restart grammar at [row 0](../preface.md#skill-navigation-row-0) before mid-book handshakes. Walk the [book loop cross-links audit](#opening-hinge-rows17-43-row12) table aloud — each row should name the same restart contract at a different scale. The [memory sheet row 44 baby picture](../appendix/memory-sheet.md#row-44-baby-picture-rows17-43-row12-book-loop-closure) compresses the full-book → next-project closing arc for index-card review. Do not conflate row 44 (meta-stitch → book loop closure) with row 12 (next-project restart competence checkpoint) — row 44 names **when every narrative layer reads correctly but the epilogue → prologue transition still feels disconnected**; row 12 names **how to restart on a new specimen**; [row 0](../preface.md#skill-navigation-row-0) names grammar restart on the new project. Proceed to [row 12](#row-12-closing-loop) when the four-step audit is complete on the new specimen, to [row 0](../preface.md#skill-navigation-row-0) when grammar needs refresh before descent, or revisit [row 43](#row-43-closing-loop) when orchestration has not yet verified.
 
 ### Row 12 closing loop (epilogue → prologue) {#row-12-closing-loop}
 
