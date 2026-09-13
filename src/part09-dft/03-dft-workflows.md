@@ -9,7 +9,25 @@ The narrative thread remains the copper wire. We will not simulate the whole wir
 
 > **IX.3 — Act III — Descent:** Quantum ESPRESSO workflows export pedigree numbers upward — the epilogue's Handshake 1 anchor.
 
-When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter. **Coupling gate (row 20):** this chapter is the third mandatory pause in row 17's straight read — recite the sentence above aloud, then read the [Bridge to the epilogue](#bridge-to-the-epilogue) before opening multiscale handshakes.
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter. **Coupling gate (row 20):** this chapter is the third mandatory pause in row 17's straight read — recite the sentence above aloud, then read the [Bridge to the epilogue](#bridge-to-the-epilogue) before opening multiscale handshakes. When row 38 restored BO/HK theorems and the SCF fixed-point loop but Quantum ESPRESSO workflows still feel like standalone coursework, read the [preface row 39 skill checkpoint](../preface.md#skill-navigation-row-39) — the competence-time mirror of the [opening hinge from IX.2](#opening-hinge-ix2-to-ix3) below.
+
+## Closing the arc from Part IX.2 {#opening-hinge-ix2-to-ix3}
+
+If you have read linearly since the prologue, [IX.2](02-kohn-sham.md) closed with a [Bridge](02-kohn-sham.md#bridge) that named **reproducible Quantum ESPRESSO workflows as the archive that makes SCF trustworthy** — input decks, pseudopotentials, k-mesh convergence logs beside every export — and a [cutoff-sweep Lab act](02-kohn-sham.md#lab-act-cutoff-sweep-on-fcc-cu-act-vi--convergence-certificate) where the smallest \(E_{\text{cut}}\) with \(\Delta E < 1\) meV/atom became the certificate before any cohesive energy climbed the ladder. Part IX.3 does not re-derive the Kohn–Sham equations or the SCF fixed-point loop; it **stages** the self-consistent cycle inside the calculation ladder every production run follows:
+
+| Part IX.2 theory output | Part IX.3 workflow implementation |
+|-------------------------|-----------------------------------|
+| SCF fixed-point: \(\rho^\star = \mathcal{G}(\rho^\star)\) | `pw.x` run with archived `cu.scf.in` + `cu.relax.out` showing `convergence has been achieved` |
+| \(\mathbf{H}[\rho]\mathbf{c}_n = \epsilon_n \mathbf{S}\mathbf{c}_n\) with feedback | Inner loop at each geometry step inside `vc-relax` and property extractions |
+| Cutoff convergence certificate | Swept `ecutwfc` table + plotted curve in foundation `README.md` |
+| Kerker mixing / smearing for metals | Documented `mixing_beta`, `degauss` in input deck — same diagnostic habit as Part I CG residuals |
+| Cohesive energy \(E_{\text{coh}}\) for Part VIII EAM | `cu.foundation/` folder with pseudo hash, QE version, converged \(E/N\) |
+| Elastic constants from strain derivatives | `cu.elastic/` strain series with symmetric \(C_{ij}\) for Part IV/VI |
+| Phonon DOS for thermal exports | `cu.phonon/` + [`parse_alpha.sh`](../../scripts/parse_alpha.sh) at \(T_w\) from `cht_export.yaml` |
+
+[IX.2's Bridge](02-kohn-sham.md#bridge) named the signal to turn the page: **the SCF loop converges in principle but no input file exists yet** — that is the signal reproducibility, not theory, separates research from folklore. The [Kohn–Sham → DFT workflows reunion index](../appendix/sources.md#kohn-sham-dft-workflows-reunion-index-row-39) reunites this opening with [row 38](../preface.md#skill-navigation-row-38) when cutoff sweeps produced converged energies but `cu.foundation/` has no archived deck connecting SCF to Parts VI–VIII — same copper cell, same SCF certificate, now with **the workflow ladder** that makes Handshake 1 auditable.
+
+Part IX.2 explained **how** the Hohenberg–Kohn functional is minimized on a computer; Part IX.3 shows **what to archive** before any number climbs upward. The cutoff-sweep Lab act is the electronic analogue of Part IV's \(h\)-refinement; this chapter is the electronic analogue of Part IV's mesh convergence study README — inputs, outputs, plots, and a parser script that emits `foundation_export.yaml`. Part VIII's EAM fit assumed DFT numbers without naming the folder structure beneath them; this chapter makes that structure explicit enough to run [`parse_dft_workflow.sh`](../../scripts/parse_dft_workflow.sh) before the epilogue opens.
 
 ## Scene: bulk copper in a workstation
 
