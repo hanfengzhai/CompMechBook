@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
 # Sync canonical Writings markdown into CompMechBook src/ chapters.
-# Usage: ./scripts/sync-writings.sh [--dry-run]
+# Usage: ./scripts/sync-writings.sh [--dry-run | --check]
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 DRY_RUN=false
+CHECK_ONLY=false
 [[ "${1:-}" == "--dry-run" ]] && DRY_RUN=true
+[[ "${1:-}" == "--check" ]] && CHECK_ONLY=true
+
+MISMATCH=0
 
 sync_file() {
   local src="$1" dst="$2"
@@ -13,7 +17,15 @@ sync_file() {
     echo "skip (missing): $src"
     return
   fi
-  if $DRY_RUN; then
+  if $CHECK_ONLY; then
+    if [[ ! -f "$dst" ]]; then
+      echo "missing dst: $dst"
+      MISMATCH=1
+    elif ! cmp -s "$src" "$dst"; then
+      echo "out of sync: $dst"
+      MISMATCH=1
+    fi
+  elif $DRY_RUN; then
     echo "would sync: $src -> $dst"
   else
     cp "$src" "$dst"
@@ -72,4 +84,12 @@ sync_part "$ROOT/writings/md/chapters" "$ROOT/src/part08-md" 01 02 03
 # Part IX: DFT Notes (01–03)
 sync_part "$ROOT/writings/dft/chapters" "$ROOT/src/part09-dft" 01 02 03
 
-echo "Done. Run 'mdbook build' from repo root to verify."
+if $CHECK_ONLY; then
+  if [[ $MISMATCH -ne 0 ]]; then
+    echo "Check failed: src/ differs from writings/. Run ./scripts/sync-writings.sh"
+    exit 1
+  fi
+  echo "OK: src/ matches writings/"
+else
+  echo "Done. Run 'mdbook build' from repo root to verify."
+fi
