@@ -4,16 +4,6 @@ The copper wire from the prologue was never purely elastic. Cold drawing pushed 
 
 This chapter is not a full treatise on plasticity theory — that would require its own book. It is the **bridge** between variational elasticity and the defect mechanics of Part VII: what changes when displacements are large, when energy is no longer quadratic, and when history matters.
 
-## Story so far (Prologue & Parts I–VI)
-
-| Stage | What the wire became | Key object |
-|-------|----------------------|------------|
-| Parts I–V | FEM/FVM discretizations; linear \(\mathbf{K}\mathbf{u}=\mathbf{f}\) | Small-strain bilinear forms |
-| [VI.1–VI.3](01-kinematics.md) | Kinematics, stress balance, variational elasticity | \(\boldsymbol{\sigma}\), \(\Pi[\mathbf{u}]\), \(\mathbb{C}\) |
-| **VI.4 (here)** | Yield knee on the load cell trace | Nonlinear energy; J₂ plasticity preview |
-
-The force–displacement curve from Part I bent at **Act IV — Hardening** — a knee linear elasticity cannot explain. This chapter names what changes when the tangent stiffness stops being constant: large strain, path-dependent hardening, return-mapping loops. Part VII will show that the knee's microscale reason is **dislocation motion**, not a magic adjustment to \(\mathbb{C}\).
-
 ## Scene: the curve bends, the model must follow
 
 Return to the force–displacement trace from Part I: linear climb, then yield knee, then hardening plateau. Linear elasticity explains only the first segment. Large strain, necking, and path-dependent hardening live outside the quadratic energy landscape — yet the same wire, same grips, same experiment. This chapter names what changes when the tangent stiffness stops being constant and points toward Part VII's defects as the microscale reason for the knee.
@@ -136,6 +126,42 @@ The continuum plasticity chapter in a standard course stops at phenomenological 
 
 The table is not a menu of unrelated codes. It is the same question — what state variable carries history upward? — with different answers at different scales.
 
+## Scale-boundary handshake: Taylor hardening from DDD to \(J_2\) plasticity
+
+Part [VI.3](03-variational-elasticity.md#scale-boundary-handshake-mathbbc-from-dftmd-to-variational-elasticity) traced the elastic tensor \(\mathbb{C}\) from DFT/MD upward. This section traces **hardening history** downward from dislocation dynamics (Part VII) into the scalar internal variable \(\alpha\) that \(J_2\) plasticity updates at each Gauss point.
+
+**Downward export (DDD → continuum).** OpenDiS (or ParaDiS) on a representative copper volume returns forest density \(\rho\) and link-length statistics. Taylor's relation maps forest to critical resolved shear stress:
+
+\[
+\tau_c = \tau_0 + \alpha_\text{Taylor}\, \mu b \sqrt{\rho},
+\]
+
+where \(\mu\) is shear modulus, \(b\) is Burgers vector magnitude, and \(\alpha_\text{Taylor} \approx 0.2\)–\(0.5\) for fcc metals. Uniaxial tension relates \(\tau_c\) to yield stress \(\sigma_y\) through the Schmid factor for dominant slip systems. The **handoff** to phenomenological plasticity is:
+
+| DDD export | \(J_2\) parameter | Pass criterion on drawn wire |
+|------------|-------------------|------------------------------|
+| \(\rho\) after simulated drawing pass | Initial \(\alpha_0 \propto \sqrt{\rho}\) or elevated \(\sigma_{y0}\) | Cold-drawn \(\sigma_y\) exceeds annealed at same geometry |
+| Link-length distribution \(L(\ell)\) | Hardening modulus \(H(\dot\varepsilon)\) or kinematic back stress | Post-yield slope stable when \(h\) refines (signal 2 in table below) |
+| Dislocation source density at notch | Nucleation criterion in crystal plasticity FEM | First plastic event location matches DDD/MD, not mesh artifact |
+
+**Upward import (FEM calibration → DDD audit).** When a tensile test fits \(\sigma_{y0} = 70\,\text{MPa}\) and \(H = 500\,\text{MPa}\) for annealed copper but the drawn wire needs \(\sigma_{y0} = 250\,\text{MPa}\) with no change in mesh, the **mesoscale explanation** is frozen forest density — not a different \(\mathbb{C}\). Archive `hardening.yaml` beside `elastic_constants/`:
+
+```yaml
+# Example handoff bundle (Act IV — Hardening)
+annealed:
+  sigma_y0_MPa: 70
+  H_MPa: 500
+  source: "J2 fit, mesh-converged FEM"
+drawn:
+  sigma_y0_MPa: 250
+  H_MPa: 800
+  rho_m2: 1.2e14          # from DDD after virtual drawing pass
+  taylor_alpha: 0.3
+  source: "OpenDiS export + Schmid mapping"
+```
+
+**What breaks without the handshake.** Fitting \(H\) from one macroscopic curve while DDD runs with a different \(\mu b\) product produces hardening that **looks** right on the load cell but predicts wrong springback after bending — history lives in \(\rho\), not in a scalar fit alone. Halving the FEM mesh and seeing unchanged post-yield slope (signal 2 below) means discretization converged but **constitutive physics did not**; that is the cue to descend to Part VII rather than refine \(H(T, \dot\varepsilon)\) further.
+
 ## Coupling back to Parts IV and V
 
 **Part IV** assembled linear \(\mathbf{K}\). Nonlinear solid mechanics replaces it with \(\mathbf{K}_T\) that changes every iteration and every increment. Mesh refinement studies from Part IV still apply: h-adaptivity near notches, p-refinement for smooth bulk fields, error indicators based on energy norms — now on incremental work conjugates rather than quadratic energy alone.
@@ -167,6 +193,75 @@ Part VI named the fields that Parts IV and V already approximated on meshes. Bef
 
 The copper wire under rising load follows this arc: Part IV's mesh computes \(\mathbf{u}\); Part VI explains that \(\mathbf{u}\) minimizes energy until yield; this chapter adds Newton–Raphson and \(J_2\) plasticity when the load cell curve bends. When the mesh is refined but the hardening law is wrong, the fault is not discretization — it is **constitutive physics** that lives at the dislocation scale. Part VII supplies that physics.
 
+### Three signals to descend from Part VI to Part VII
+
+Continuum mechanics does not announce "switch to dislocations" with a banner. The copper wire gives three practical signals that the smooth-field picture has reached its honest limit — the same signals an operator notices at the load cell:
+
+| Signal | What you observe | What Part VI can do | What Part VII must add |
+|--------|------------------|---------------------|------------------------|
+| **1. History** | Cold-drawn wire yields higher than annealed wire at the same geometry | Fit \(\sigma_{y0}\) and \(H\) from one test | Forest density \(\rho\) frozen by drawing; Taylor hardening from line statistics |
+| **2. Mesh independence failure** | Halving \(h\) does not fix the hardening slope after yield | Refine constitutive parameters \(H(\dot\varepsilon, T)\) | DDD link-length distributions that generate \(H\), not fit it |
+| **3. Geometry at the core** | Notch root stress blows up; crack tip needs regularization | Cutoff radius or phase-field regularization | Burgers circuit and dislocation core structure from atomistics (Part VIII) |
+
+If only signal 1 appears, phenomenological \(J_2\) plasticity may suffice for engineering design. If signals 2 or 3 appear on the same specimen, the narrative descends — not because continuum mechanics failed, but because its **homogenization assumption** (smooth fields, no explicit defects) was never meant to hold at the mesoscale. Part VII is the first part that simulates the objects Part VI homogenized.
+
+## Lab act: return-mapping on the load cell knee (Act IV — Hardening)
+
+**Act IV** is the upward bend on the force–displacement trace — the moment phenomenological plasticity replaces pure energy minimization. This Lab act walks one **return-mapping** increment on the copper wire in uniaxial tension so the load cell curve acquires history.
+
+Material: annealed copper at room temperature, \(\sigma_{y0} = 70\,\text{MPa}\), isotropic hardening \(H = 500\,\text{MPa}\), elastic \(E = 120\,\text{GPa}\). Trial elastic strain increment \(\Delta\varepsilon = 10^{-4}\) from a grip ramp step.
+
+| Return-map step | Formula | This increment |
+|-----------------|---------|----------------|
+| 1. Trial stress | \(\sigma^{\text{trial}} = \sigma_n + E \Delta\varepsilon\) | Start from \(\sigma_n = 69\,\text{MPa}\) (near yield) |
+| 2. Yield test | \(f = |\sigma^{\text{trial}}| - (\sigma_{y0} + H \alpha_n)\) | If \(f > 0\), plastic correction needed |
+| 3. Plastic multiplier | \(\Delta\gamma = f / (E + H)\) | Updates \(\alpha_{n+1} = \alpha_n + \Delta\gamma\) |
+| 4. Return stress | \(\sigma_{n+1} = \sigma^{\text{trial}} - E \,\Delta\gamma \,\text{sign}(\sigma^{\text{trial}})\) | Stress on expanded yield surface |
+
+Plot ten such increments: the **secant slope** (load cell stiffness) drops after the first yield crossing even though \(E\) is unchanged — that is work hardening in a scalar model. Compare cold-drawn wire (higher \(\sigma_{y0}\), larger initial \(H\)) to annealed wire on the same plot; Part VI fits both curves with two parameter sets, but only Part VII explains **why** drawing raised \(\sigma_{y0}\) via forest density.
+
+**Signal to descend:** halve the FEM mesh at the grip corner and the post-yield slope is unchanged — discretization is converged, but the hardening law is still a fit. That is the cue for Part VII's dislocation forest.
+
+## Lab act: Perzyna viscoplasticity and the strain-rate knee (Act IV — rate sensitivity)
+
+**Act IV** is not only isotropic hardening. When the load cell ramp slows from \(10^{-1}\,\text{s}^{-1}\) to \(10^{-3}\,\text{s}^{-1}\) — the range the prologue's tensile frame actually uses — fcc copper shows a measurable drop in flow stress. **Viscoplasticity** adds rate dependence without abandoning the return-mapping loop: plastic flow occurs only when the overstress exceeds a threshold scaled by a viscosity parameter.
+
+The **Perzyna** model writes the plastic multiplier as a power of normalized overstress:
+
+\[
+\dot{\gamma}^p = \frac{1}{\eta}\,\left\langle \frac{f}{\sigma_y} \right\rangle^N, \qquad f = |\mathbf{s}| - \sqrt{\tfrac{2}{3}}\,\sigma_y(\alpha),
+\]
+
+where \(\langle\cdot\rangle\) is the Macaulay bracket, \(\eta\) is a viscosity (Pa·s in SI), and \(N\) is the rate exponent (often \(N \approx 5\)–\(20\) for metals in phenomenological fits). At quasi-static rates, \(\eta\) is large and the response approaches rate-independent \(J_2\); at high rates, overstress drives additional plastic flow — the mesoscale counterpart of phonon drag in Part VIII.
+
+**One increment on the copper wire** (same material as the return-mapping Lab act above, now at \(\dot\varepsilon = 10^{-3}\,\text{s}^{-1}\)):
+
+| Quantity | Value | Note |
+|----------|-------|------|
+| \(\sigma_y\) at current \(\alpha\) | 85 MPa | After several hardening increments |
+| Trial deviatoric stress \(\|\mathbf{s}^{\text{trial}}\|\) | 92 MPa | Elastic predictor overshoots yield |
+| Overstress ratio \(f/\sigma_y\) | \((92 - 85)/85 \approx 0.082\) | Drives viscoplastic flow |
+| \(N, \eta\) | \(N = 10\), \(\eta = 10^4\,\text{Pa·s}\) | Illustrative quasi-static fit |
+| \(\dot{\gamma}^p\) | \(\approx (0.082)^{10} / \eta \sim 10^{-6}\,\text{s}^{-1}\) | Small at this overstress — nearly rate-independent |
+| Rate sensitivity \(m = \partial\ln\tau / \partial\ln\dot\varepsilon\) | \(\approx 0.02\) at 300 K | Matches Handshake 4 extrapolation in epilogue |
+
+Repeat the increment at \(\dot\varepsilon = 10^{2}\,\text{s}^{-1}\) (simulated impact grip): overstress grows, \(\dot{\gamma}^p\) rises by orders of magnitude, and flow stress exceeds the quasi-static curve by 5–15%. Plot both rates on the same force–displacement axes — the **rate knee** is the continuum preview of the DDD→lab extrapolation the epilogue's Handshake 4a formalizes.
+
+**Connection to Part VII and VIII.** OpenDiS mobility tables encode the same physics in \(\dot\varepsilon^p = M(\tau, T)\,\tau\) form; MD NVT shear calibrates \(M\) at atomistic rates. The Perzyna parameters \((N, \eta)\) are **FEM-side placeholders** until Handshake 4 maps DDD curves to lab strain rate. Archive `viscoplastic.yaml` beside `hardening.yaml`:
+
+```yaml
+# viscoplastic.yaml (Act IV — rate sensitivity)
+perzyna:
+  N: 10
+  eta_Pa_s: 1.0e4
+  m_ddd_fit: 0.022
+  lab_strain_rate_s-1: 1.0e-3
+  ddd_reference_rate_s-1: 1.0e3
+  source: "Perzyna fit; m from OpenDiS power law (epilogue Handshake 4a)"
+```
+
+When the load cell ramp rate changes but the FEM deck uses rate-independent \(J_2\) alone, Act IV is **incomplete** — the hardening knee may match at one rate and fail at another. That is the signal to export \(m\) from Part VII/VIII before certifying the wire for service.
+
 ## Bridge to Part VII
 
 Linear and nonlinear elasticity — geometric and material — exhaust what a **continuum field** can say before its assumptions fail at defects. The copper wire's cold-worked strength is not in \(\mathbb{C}\); it is in the dislocation forest frozen by manufacturing. Part VII names those defects, simulates their motion, and exports the hardening laws that make nonlinear FEM honest.
@@ -180,13 +275,4 @@ Return to the prologue's **Act IV — Hardening**: the load cell curve bent upwa
 | Cutoff-regularized singularities at notches | Line defects with Peach–Köhler forces and mobility laws |
 | Fitted \(H\) from macroscopic calibration | DDD link statistics exportable to crystal plasticity |
 
-Part VII opens with the same specimen at the yield point: polished copper showing faint **slip lines** on {111} planes — the visible trace of dislocation motion that J₂ plasticity homogenized into a scalar \(\alpha\). Remember also that the drawn wire is not a single crystal: cold drawing leaves a **polycrystal with grain boundaries** that homogenized \(H\) cannot see — the spool of wire in [VII.3](03-polycrystal-and-fem-handoff.md) is the same specimen at a finer organizational scale. [VII.1](01-defect-taxonomy.md) names the defect catalog; [VII.2](02-dislocation-dynamics.md) follows the forest as it moves, multiplies, and tangles under load.
-
-| Prologue act | Continuum phenomenology (Part VI) | Mesoscale descent (Part VII) |
-|--------------|-----------------------------------|------------------------------|
-| III — Pulling | Linear elastic climb before yield | Elastic constants unchanged; \(\mathbb{C}\) still from Part VI |
-| IV — Hardening | J₂ with fitted \(H\), \(\sigma_{y0}\) | Forest \(\rho\); Taylor \(\tau \propto \sqrt{\rho}\) from line statistics |
-| V — Notch | Cutoff-regularized stress peak | Dislocation pile-up; FE² when homogenization fails |
-| VI — Foundation (preview) | Mobility and SFE as input-deck numbers | DDD yaml tables trace to MD and DFT in Parts VIII–IX |
-
-Turn the page when the mesh is fine enough but the physics still wrong — that is the hinge between continuum and mesoscale.
+Part VII opens with the same specimen at the yield point: polished copper showing faint **slip lines** on {111} planes — the visible trace of dislocation motion that J₂ plasticity homogenized into a scalar \(\alpha\). Remember also that the drawn wire is not a single crystal: cold drawing leaves a **polycrystal with grain boundaries** that homogenized \(H\) cannot see — the spool of wire in [VII.3](03-polycrystal-and-fem-handoff.md) is the same specimen at a finer organizational scale. [VII.1](01-defect-taxonomy.md) names the defect catalog; [VII.2](02-dislocation-dynamics.md) follows the forest as it moves, multiplies, and tangles under load. Turn the page when the mesh is fine enough but the physics still wrong — that is the hinge between continuum and mesoscale.

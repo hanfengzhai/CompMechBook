@@ -4,20 +4,7 @@ The weak form is the computational mechanic's version of integration by parts: m
 
 [III.1](01-strong-form.md) wrote the copper wire's equilibrium and heating as **pointwise** PDEs — valid where \(C^2\) smoothness holds, failing at the grip corner, thermocouple weld, and mid-span load. This chapter is the corrective move the prologue's recurring character has been walking toward since Part I's nodal balance laws: multiply by a test function, integrate over the domain, integrate by parts once, and ask whether virtual work balances for all admissible perturbations. The answer lives in \(H^1\), not in classical \(C^2\).
 
-Part II's operators and dual loads supplied the vocabulary for that move: the weak residual is not a pointwise check but a **pairing** against test functions in \(H^1_0\) — the same duality [II.4](../part02-functional-analysis/04-operators-duality.md) built before Part III wrote any PDE. When the grip corner breaks \(C^2\) smoothness, integration by parts is not a trick to appease a mesh; it is the honest statement that equilibrium holds in integral form against every admissible virtual displacement.
-
 If the copper wire is fixed at both ends and loaded in the middle, the displacement field may be continuous but not twice differentiable at the load point — the strong form \(-EA u'' = f\) fails classically at a point force. The weak form still asks: for all admissible virtual displacements, is internal virtual work equal to external virtual work? That question has an answer in \(H^1\), and Galerkin discretization turns it into \(\mathbf{K}\mathbf{U}=\mathbf{F}\).
-
-## Story so far (Parts I–III.1)
-
-| Stage | What the wire became | Key object |
-|-------|----------------------|------------|
-| Part I | Spring network; \(\mathbf{K}\mathbf{u}=\mathbf{f}\) | Discrete equilibrium |
-| Part II | Fields in \(H^1\), \(L^2\); Lax–Milgram | Convergence target for refinement |
-| [III.1](01-strong-form.md) | Pointwise PDEs for heat and elasticity | Strong form — valid where \(C^2\) holds |
-| **III.2 (here)** | Virtual work at corners and welds | Weak form — honest at singularities |
-
-The [prologue](../../prologue/00-many-scales.md) introduced the weak form as a **recurring character**. Part I gave it a finite-dimensional prelude (nodal balance laws); Part II built \(H^1\) and dual loads; [III.1](01-strong-form.md) wrote the blackboard physics that breaks at the grip corner and thermocouple weld. This chapter is where the character speaks in full sentences — integration by parts, test functions, and the Galerkin system \(\mathbf{K}\mathbf{U}=\mathbf{F}\) that Part IV will assemble.
 
 ## Scene: the grip corner
 
@@ -167,6 +154,20 @@ Multiply \(u_t - \alpha \Delta u = f\) by test \(v \in H^1_0(\Omega)\) and integ
 
 Semidiscretization: \(u_h = \sum_j U_j(t) \phi_j\) gives \(\mathbf{M}\dot{\mathbf{U}} + \alpha \mathbf{K}\mathbf{U} = \mathbf{F}\). The mass matrix \(\mathbf{M}\) comes from \(\int \phi_i \phi_j\); the stiffness from \(\int \nabla\phi_i \cdot \nabla\phi_j\). Time discretization (backward Euler, BDF, Runge–Kutta) is layered on top — Part IV for FEM, Part V for FVM flux differencing in fluids.
 
+### Scale-boundary handshake: weak form meets Part I's block system
+
+Part I.4 previewed the coupled thermo-mechanical block matrix. Part III now states the **continuum weak forms** those blocks discretize:
+
+| Continuum weak form | Discrete block (Part I / IV) | Copper wire field |
+|---------------------|------------------------------|-------------------|
+| \(\int EA u' v' = \int f v\) | \(\mathbf{K}_{uu}\mathbf{u} = \mathbf{f}_u\) | Axial displacement under grip load |
+| \(\int k T' w' = \int \dot{q} w\) | \(\mathbf{K}_{TT}\mathbf{T} = \mathbf{f}_T\) | Joule heating along axis (Act II) |
+| \(\alpha E A \int T' v'\) (coupling) | \(\mathbf{K}_{uT}\mathbf{T}\) in load vector | Thermal strain blocked by fixed grips |
+
+The handshake is bidirectional: **downward**, Part III tells Part IV which integrals to assemble; **upward**, Part I's Lab act convergence tables certify that \(\mathbf{K}_{uu}\) approximates the bar operator in \(H^1_0\). If the heat weak form uses natural convection at the wire surface (Robin term from Part V.4), \(\mathbf{f}_T\) receives boundary contributions Part I's 1D toy omitted — the scale boundary is explicit about which physics each block carries.
+
+**What breaks without the handshake.** Solving \(\mathbf{K}_{uu}\mathbf{u} = \mathbf{f}_u\) with a temperature field from a separate conduction code that used different mesh or BCs violates the weak form's coupled structure — grip reaction from thermal stress will not match Part VI's \(\sigma = E\alpha\Delta T\) check. Monolithic assembly (single weak form for \((u,T)\)) or a documented staggered Picard loop with convergence tolerance is mandatory when Act II and Act III run together.
+
 ## Integration by parts in higher dimensions
 
 Green's first identity:
@@ -210,6 +211,40 @@ This is a linear system \(\mathbf{K}\mathbf{U} = \mathbf{F}\) with \(K_{ij} = a(
 
 The weak residual \(R(u_h; v) = a(u_h,v) - \ell(v)\) must vanish for all \(v \in V_h\). Galerkin chooses test functions equal to trial basis functions — the orthogonal projection of the solution onto \(V_h\) in the energy inner product. Part IV’s first chapter makes this equivalence explicit for self-adjoint elliptic problems.
 
+## Lab act: integrate by parts on the heated wire (Act II — Warming)
+
+**Act II** in the lab switches on current; the thermocouple at mid-span begins to climb. The strong form \(-(k T')' = q(x)\) on \((0,L)\) is awkward at the grip corners — \(T\) is continuous but \(T'\) may jump where contact resistance concentrates heat. The weak form is the contract the FEM code will enforce.
+
+Model steady Joule heating on the copper wire as a 1D bar with \(k = 400\,\text{W/m·K}\), length \(L = 1\,\text{m}\), uniform volumetric source \(q = 10^6\,\text{W/m}^3\), and \(T(0) = T(L) = 300\,\text{K}\). Seek \(T \in H^1_0(0,L)\) such that
+
+\[
+\int_0^L k T' v' \, dx = \int_0^L q v \, dx \quad \forall v \in H^1_0(0,L).
+\]
+
+| Step | By hand | What the weak form buys |
+|------|---------|-------------------------|
+| 1 | Choose test \(v = x(L-x)\) (bubble, zero at ends) | One equation without assuming \(T \in C^2\) |
+| 2 | Integrate by parts on \(\int k T' v'\) | Derivatives on **test** function only |
+| 3 | Substitute constant \(q\), evaluate integrals | \(\int_0^L q x(L-x)\, dx = q L^3/6\) |
+| 4 | For trial \(T_h = \alpha x(L-x)\), solve for \(\alpha\) | \(\alpha = q/(6k) \approx 417\,\text{K/m}^2\) → \(T(L/2) \approx 300 + 104\,\text{K}\) |
+
+The mid-span rise is crude (one quadratic mode) but **honest**: no second derivatives of \(T\) appear anywhere. When Part IV assembles \(\mathbf{K}\mathbf{T}=\mathbf{F}\) on ten line elements, it repeats this integration for every hat test function — the same move, automated.
+
+Compare to the strong-form particular solution \(T(x) = 300 + q x(L-x)/(2k)\), which gives \(T(L/2) = 300 + q L^2/(8k) \approx 300 + 156\,\text{K}\). The single-mode Galerkin underestimate previews Céa's lemma: refine \(V_h\), and the weak solution converges to the strong one where it exists. The thermocouple in Act II reports the experiment; this weak form is the first mesh-independent statement the simulation must match.
+
+## Concept map checkpoint (weak form)
+
+This chapter is the hinge where Part II's function spaces meet the copper wire's physics. Before Sobolev spaces formalize regularity, summarize what the weak form established:
+
+| Question | Weak-form answer (copper wire) |
+|----------|-------------------------------|
+| What **object**? | Trial field \(u\) (displacement or temperature) and test functions \(v\) in an admissible space |
+| What **structure**? | Bilinear form \(a(u,v)\) and linear functional \(\ell(v)\); integration by parts moves derivatives to tests |
+| What **theorem**? | Lax–Milgram (next chapter): if \(a\) is coercive and continuous, a unique weak solution exists |
+| What **breaks**? | Strong form at corners and point loads; discontinuous trial fields; wrong test space for advection |
+
+The prologue named the weak form a **recurring character**. Here it first speaks in full sentences: \(a(u,v)=\ell(v)\) for all admissible \(v\). Part IV will assemble \(\mathbf{K}\) from this identity; Part VI will call it virtual work; Part IX will recast electron density as a variational functional. The character does not change — only the space and the bilinear form do.
+
 ## Bridge
 
 Weak derivatives make sense in **Sobolev spaces**. The next chapter defines \(H^1\) rigorously enough to code with confidence — and explains why conforming finite elements must be continuous across element boundaries (for standard Lagrange elements). Without \(H^1\), we cannot state what "\(\nabla u\)" means when \(u\) is only piecewise smooth; with \(H^1\), the weak form of the copper wire's conduction and elasticity problems is not a hack but the correct continuum statement.
@@ -223,13 +258,4 @@ Weak derivatives make sense in **Sobolev spaces**. The next chapter defines \(H^
 
 The [prologue](../../prologue/00-many-scales.md) named this formulation a **recurring character** — born here as integration by parts, returning as Galerkin orthogonality in Part IV, virtual work in Part VI, and a variational statement on electron density in Part IX. Part II built the room (\(H^1\), dual loads, completeness); this chapter gave the character its first lines on stage. When the grip corner breaks classical \(C^2\) smoothness, the weak form still balances virtual work — that is the plot hinge the rest of the book assumes you will trust.
 
-| Prologue act | Strong form that breaks at corners | Weak form statement this chapter writes |
-|--------------|-------------------------------------|----------------------------------------|
-| II — Warming | \(-\nabla\cdot(k\nabla T)=q_J\) pointwise | Find \(T\in H^1\) s.t. \(\int k\nabla T\cdot\nabla v = \int q_J v\) for all \(v\in H^1_0\) |
-| III — Pulling | \(-\nabla\cdot(EA\nabla u)=f\) pointwise | Find \(u\in H^1_0\) s.t. \(\int EA u' v' = \int f v\) for all \(v\in H^1_0\) |
-| IV — Hardening (preview) | Nonlinear stress–strain history | Virtual work with evolving \(\boldsymbol{\sigma}\); Newton at each increment |
-| V — Notch (preview) | Concentrated traction at a scratch | Point load as \(\ell\in H^{-1}\), not an \(L^2\) density |
-
-The weak form is the **honest continuum contract** every discretization in Parts IV–IX inherits — Galerkin assembly, virtual work in Part VI, and the Hohenberg–Kohn variational principle in Part IX are the same insistence that residuals vanish against admissible test functions, in different Hilbert rooms. [III.1](01-strong-form.md) named the blackboard physics; [III.3](03-sobolev-spaces.md) makes "admissible" precise; [III.4](04-energy-methods.md) recasts the balance as minimization before Part IV turns it into \(\mathbf{K}\mathbf{U}=\mathbf{F}\).
-
-Turn the page when "test function" still feels informal — Sobolev spaces are the contract that makes FEM assembly honest.
+Energy methods ([III.4](04-energy-methods.md)) then recast \(a(u,v)=\ell(v)\) as minimization or saddle-point principles — the variational backbone of FEM and, in nonlinear settings, of hyperelastic and phase-field solvers. Turn the page when "test function" still feels informal — Sobolev spaces are the contract that makes FEM assembly honest.

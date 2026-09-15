@@ -6,6 +6,17 @@ We begin where most readers already have intuition: vectors, matrices, linear ma
 
 Four chapters follow the **Linear Algebra Notes** in [`writings/linear-algebra/`](../../writings/linear-algebra/): numbered files, mechanics examples, and **Bridge** sections at each handoff. Nothing here requires functional analysis; everything here prepares for it.
 
+## Chapter guide
+
+| Chapter | Wire story beat | Core object | Handoff |
+|---------|-----------------|-------------|---------|
+| [I.1](01-vectors-matrices.md) | Grips fixed, load cell at zero | \(\mathbf{u}\), \(\mathbf{K}\), \(\mathbf{f}\); energy \(\mathbf{u}^T\mathbf{K}\mathbf{u}\) | Sparsity from local coupling → assembly in I.2 |
+| [I.2](02-linear-maps.md) | Element local axes vs global numbering | Linear maps, bases, \(\mathbf{L}_e^T \mathbf{k}_e \mathbf{L}_e\) | Symmetry and SPD → eigenmodes in I.3 |
+| [I.3](03-eigenvalues.md) | Tap the wire; it rings at discrete pitches | \(\mathbf{K}\mathbf{v} = \omega^2 \mathbf{M}\mathbf{v}\); modal superposition | Decoupled modes → limit \(N\to\infty\) in I.4 |
+| [I.4](04-toward-infinity.md) | Mesh refines; fields replace nodal values | Operators, Gram matrices, preview of \(L^2\), \(H^1\) | [Bridge to Part II](04-toward-infinity.md#bridge-to-part-ii) |
+
+Read in order. Each chapter ends with a **Bridge** that states why the next chapter must exist; skipping ahead to eigenvalues without assembly is like listening to the wire's vibration modes before naming the springs that carry tension.
+
 ## Scene
 
 The prologue placed a cold-drawn copper wire under tension — heated by current, cooled by air, strengthened by a dislocation forest invisible at the engineering scale. Before we climb that ladder rung by rung, we need the **syntax** every rung shares: states collected into vectors, equilibrium written as linear systems, complexity decoupled by eigenmodes.
@@ -73,9 +84,36 @@ If you have read the prologue straight through, the copper wire has already appe
 
 The prologue asked *what is the minimal description at each scale?* Part I answers for the rung every code shares: **finite-dimensional algebra** with energy norms, symmetry, and sparsity. When Part II replaces vectors with functions, the moves learned here remain — inner products become \(L^2\) pairings, stiffness matrices become operators, and eigenmodes become normal modes in \(H^1\). The [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) replay this same table in infinite dimensions; Part I is the finite-dimensional rehearsal.
 
+## How Part I connects to the full ladder
+
+The prologue's ladder is not nine unrelated subjects — it is one specimen with the same computational skeleton repeated at every scale:
+
+| Later part | Part I move it inherits | Copper wire instance |
+|------------|-------------------------|----------------------|
+| Part II (function spaces) | \(N \to \infty\); eigenmodes → normal modes | Axial \(u(x)\) as limit of nodal values |
+| Part IV (FEM) | \(\mathbf{K}\mathbf{u}=\mathbf{f}\) assembly | Meshed bar under end load |
+| Part VII (dislocations) | Sparse local coupling; eigenstructure of stiffness | Forest stiffens effective \(\mathbf{K}\) |
+| Part VIII (MD) | State vector + time-step update | Atomic positions as a long vector |
+| Part IX (DFT) | Self-consistent linear solve on coefficients | Kohn–Sham as repeated \(\mathbf{H}\psi = \varepsilon\mathbf{S}\psi\) |
+
+Reading Part I is therefore not a detour before "real" mechanics — it is the **grammar** every later chapter speaks. When molecular dynamics integrates forces or DFT diagonalizes a Hamiltonian, the pattern is still: collect degrees of freedom, apply a linear map, iterate until balance.
+
 ## Lab act: I — Mounting
 
 In [laboratory time](../prologue/00-many-scales.md#the-experiment-as-plot), the operator has not yet switched on current or ramped grip displacement. The wire sits in wedge jaws; the load cell reads zero; the first honest model is a chain of bar elements with boundary conditions at the grips. **Act I** is where every later scale hides its linear algebra: \(\mathbf{K}\mathbf{u}=\mathbf{f}\) before fields, weak forms, or electrons enter the story. When a chapter in Part I feels abstract, return to the mounting scene — a cylinder gripped, a sparse matrix waiting to be assembled.
+
+### What you should be able to do after Part I
+
+Each chapter adds one move to a minimal workflow you can run on paper or in NumPy before opening Part II:
+
+| After chapter | Skill on the copper wire | Minimal artifact |
+|---------------|--------------------------|------------------|
+| I.1 | Name state, stiffness, load for a spring chain | \(\mathbf{K}\mathbf{u}=\mathbf{f}\) with numbers |
+| I.2 | Rotate a bar element; assemble a global matrix | \(4 \times 4\) block from \(\mathbf{R}^T\mathbf{k}\mathbf{R}\) |
+| I.3 | Tap the wire; read fundamental frequency | `eigh(K, M)` → Hz, compare to \(f_1 \approx 4.6\,\text{kHz}\) |
+| I.4 | Refine mesh; watch nodal values become a field | \(N = 5, 20, 100\) → plot \(u(x)\) approaching smooth curve |
+
+None of these require functional analysis — but each one is the finite-dimensional shadow of something Part II names rigorously. If you can assemble a three-node bar, solve for displacement, and extract a fundamental frequency, you have already done 80% of what a linear static/dynamic FEM code does on the first timestep. Parts II–IV replace vectors with functions and loops with weak forms; the **moves** stay the same.
 
 ## Bridge
 
@@ -89,14 +127,5 @@ The prologue introduced the copper wire at every scale and named the four questi
 | Weak form as recurring character (named, not yet spoken) | [I.4 Bridge](04-toward-infinity.md#bridge-to-part-ii): three-step handoff to Part II |
 
 The first chapter refreshes the language — inner products, norms, matrix structure — that Parts II through IX will generalize to functions and operators. Read it as the opening sentence of the novel after the prologue's panoramic view: the grips are still open, the load cell still reads zero, and the first honest model is already a sparse matrix waiting to be assembled.
-
-| Part I chapter | Grammar on the wire | Upward echo in later parts |
-|----------------|---------------------|----------------------------|
-| [I.1](01-vectors-matrices.md) | \(\mathbf{K}\mathbf{u}=\mathbf{f}\), energy \(\mathbf{u}^T\mathbf{K}\mathbf{u}\) | Part II: \(a(u,u)\); Part IV: assembled \(\mathbf{K}\) |
-| [I.2](02-linear-maps.md) | Assembly scatter maps, local/global frames | Part IV: isoparametric Jacobian; Part VI: push-forward of tensors |
-| [I.3](03-eigenvalues.md) | Normal modes of the spring chain | Part II.5: spectral theorem; Part V: CFL from flux Jacobian eigenvalues |
-| [I.4](04-toward-infinity.md) | \(N\to\infty\); fields replace vectors | Part II opening: operators on \(H^1\); Part III: weak PDEs |
-
-Part I is the **Act I — Mounting** chapter in reading order and the last chapter every multiscale workflow still depends on in workflow order — SCF diagonalization in Part IX is the same eigenvalue grammar with a different operator. When a symbol reappears under new vocabulary, consult the [glossary](../appendix/glossary.md) cross-scale index.
 
 Turn the page when the prologue's ladder feels like a menu of methods — Part I is where every later scale reveals the same \(\mathbf{A}\mathbf{x}=\mathbf{b}\) grammar underneath.

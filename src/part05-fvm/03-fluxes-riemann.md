@@ -4,17 +4,6 @@ At a discontinuity, pointwise PDEs fail but integral conservation holds. The fin
 
 The Sod shock tube — a diaphragm separating high- and low-pressure gas, ruptured at \(t = 0\) — is the canonical verification problem in the author's [FVM notes](https://hanfengzhai.github.io/note/FVM.pdf). It is to CFD what the patch test is to FEM: if your code fails Sod, nothing else matters.
 
-## Story so far (Parts I–V.2)
-
-| Stage | FVM milestone | Wire instance |
-|-------|---------------|---------------|
-| Parts I–IV | FEM conduction on the solid | Joule heating in the wire |
-| [V.1](01-conservation-integral.md) | Integral conservation laws | Mass, momentum, energy balances |
-| [V.2](02-fvm-1d.md) | Cell-average update; CFL; ghost cells | 1D cooling slice beside the wire |
-| **V.3 (here)** | Riemann solvers; shock capturing | Nonlinear fluxes when \(\mathbf{U}_L \neq \mathbf{U}_R\) |
-
-[V.2](02-fvm-1d.md) taught the conservation rhythm on uniform 1D grids — fluxes at faces, explicit stability, ghost-cell boundaries. This chapter supplies the **nonlinear engines** at each face: Godunov, Roe, HLL, limiters. Part IV's Galerkin method lacks built-in upwinding for advection; that split is why the book teaches FEM and FVM as complementary dialects on the same copper wire. [V.4](04-navier-stokes-cfd.md) adds viscosity, heat conduction, and the low-Re cooling flow around the specimen.
-
 ## Scene: a rupture in the cooling duct
 
 Imagine a shock tube test bench beside the wire experiment: a diaphragm bursts, pressure jumps, a contact discontinuity races down the tube. Pointwise derivatives fail at the jump, but the integral form still balances mass and momentum. Riemann solvers are how a cell face asks, "Given gas on my left and right, what flux crosses me?" The copper wire's cooling air can stay subsonic, but the same machinery governs supersonic jets and, in other contexts, shock heating that changes annealing behavior.
@@ -190,6 +179,68 @@ When a shock tube run fails, check in this order:
 
 Passing Sod at reasonable resolution is the gateway to 2D Riemann problems, nozzle flow, and eventually Navier–Stokes with viscous regularization of shocks.
 
+## Lab act: Sod shock tube sanity check (Act II — Warming side channel)
+
+**Act II** heats the wire; air around it carries heat away — a flow problem even if the operator only watches the thermocouple. Before coupling conjugate heat transfer in [V.4](04-navier-stokes-cfd.md), verify that your **hyperbolic kernel** is correct on the canonical 1D test every CFD course uses.
+
+Run a Sod shock tube (Toro, *Riemann Solvers*, Example 4.1.1) with domain \([0,1]\), diaphragm at \(x = 0.5\), and initial left/right states:
+
+| Quantity | Left (\(x < 0.5\)) | Right (\(x > 0.5\)) |
+|----------|-------------------|---------------------|
+| \(\rho\) | 1.0 | 0.125 |
+| \(u\) | 0.0 | 0.0 |
+| \(p\) | 1.0 | 0.1 |
+| \(\gamma\) | 1.4 | 1.4 |
+
+Use a first-order FVM with **HLLC** (or Roe + entropy fix) and CFL \(\approx 0.4\). At \(t = 0.2\):
+
+| Check | Pass criterion | If it fails |
+|-------|----------------|-------------|
+| Mass | \(\sum_j \rho_j \Delta x_j\) constant to machine precision | Flux not conservative — check face indexing |
+| Positivity | \(\rho > 0\), \(p > 0\) everywhere | Reduce CFL; switch to HLL |
+| Shock position | Contact near \(x \approx 0.68\), shock near \(x \approx 0.85\) | Wrong \(\gamma\) or ghost cells |
+| vs exact | L¹ error on \(\rho, u, p\) vs Toro reference \(< 5\%\) at 100 cells | Entropy fix or limiter missing |
+
+Conceptual Python/pseudocode skeleton:
+
+```python
+for n in range(n_steps):
+    for j in range(n_cells):
+        UL, UR = left_state(j), right_state(j)
+        F_star = hllc_flux(UL, UR, gamma=1.4)
+        dU[j] = -(F_star[j+1] - F_star[j]) / dx
+    U += dt * dU
+```
+
+This test has nothing to do with copper chemistry — it is the **trust gate** for the Riemann machinery that will later advect temperature in a boundary layer around the wire. Passing Sod at 100–200 cells takes minutes; failing it silently poisons every coupled solid–fluid run in Act II. Log the L¹ errors in a one-line regression test before touching wall heat flux handshakes with Part IV.
+
+### Scale-boundary handshake: hyperbolic fluxes meet FEM wall temperature
+
+Act II couples **solid conduction** (Part IV Galerkin on the wire) to **fluid advection–diffusion** (Part V FVM in the surrounding air). The handshake is not "run both solvers" — it is **consistent fluxes at the interface**:
+
+| Interface quantity | FEM side (wire surface) | FVM side (first fluid cell) | Failure mode |
+|--------------------|-------------------------|----------------------------|--------------|
+| Wall temperature \(T_w\) | Dirichlet or Robin from solid solve | Ghost-cell \(T_{\text{ghost}}\) for advection | 1–2 K mismatch → wrong Biot number |
+| Heat flux \(q''\) | \(-k_s \partial T / \partial n\) from solid | Convection \(h(T_w - T_\infty)\) in fluid | Flux imbalance → drifting \(T_w\) in Picard loop |
+| Mass flux (if blowing) | Usually zero for passive wire | Normal velocity at wall | Spurious mass source if not conservative |
+
+The Sod shock-tube test certifies the **Riemann kernel** in isolation; the 1D boundary-layer Lab act in [V.2](02-fvm-1d.md) certifies **diffusive fluxes** on linear profiles. Only after both pass should Part V.4's conjugate heat transfer Picard loop exchange \(T_w\) and \(q''\) with Part IV — the same staggered discipline Part I.4 named for thermo-mechanical blocks and Part III.2 named for coupled weak forms.
+
+**What breaks without the handshake.** A converged FEM solid mesh with an FVM air mesh that fails Sod conserves energy in the solid while **advecting negative density** in the fluid — the coupled run looks stable until the boundary layer temperature is wrong by 20 K and Joule heating predictions fail Act II validation.
+
+## Concept map checkpoint (Riemann fluxes)
+
+This chapter is where hyperbolic conservation laws receive **upwind stability**. Before Navier–Stokes adds viscous partners, summarize what Riemann solvers established:
+
+| Question | Part V answer (copper wire) |
+|----------|-----------------------------|
+| What **object**? | Left/right states \(U_L, U_R\); numerical flux \(F^*_{i+1/2}\); wave speeds |
+| What **structure**? | Godunov / Roe / HLLC flux functions; CFL limit \(\Delta t \sim \Delta x / \lambda_{\max}\) |
+| What **theorem**? | Rankine–Hugoniot jump conditions; discrete conservation with conservative flux differencing |
+| What **breaks**? | Entropy violations (expansion shocks); \(\rho<0\) or \(p<0\) without limiters; wrong ghost cells |
+
+The Sod shock-tube Lab act is the fluid-side patch test: mass conserved to machine precision, shock positions within 5% at 100 cells. Passing Sod before coupling FEM wall temperature to FVM air is the same discipline as Part IV's patch test before trusting Act II conjugate heat transfer.
+
 ## Bridge
 
 Navier–Stokes adds viscous fluxes, heat conduction, and the incompressibility constraint. CFD combines hyperbolic advection — FVM's strength — with parabolic diffusion and elliptic pressure fields that resemble Part IV's Stokes solvers.
@@ -202,23 +253,5 @@ Navier–Stokes adds viscous fluxes, heat conduction, and the incompressibility 
 | FVM integral balance on cells | Pressure–velocity coupling; turbulence closures at high Re |
 
 The copper wire heated by current needs air to carry heat away — a fluid problem sitting beside the solid conduction Part IV already meshed. Riemann solvers handled the **hyperbolic** vocabulary; Navier–Stokes adds the **parabolic** and **elliptic** partners that make conjugate heat transfer a coupled story rather than two unrelated codes. When the wall temperature and wall flux handshake between solid and fluid, you are watching Part IV and Part V speak at an interface — the same partitioned coupling pattern the epilogue generalizes to DFT→MD→DDD→FEM chains.
-
-Prologue **Act II — Warming** is where that handshake first matters in the lab: the thermocouple on the wire reports solid temperature; the air film carries enthalpy away at a rate set by Reynolds number and the Robin coefficient Part VI's thermal balance will write as a boundary condition. Part V supplies the flux vocabulary; Part VI names the coupled energy balance; the epilogue shows how teams partition solid and fluid solvers without breaking conservation.
-
-| Prologue act | Hyperbolic piece (this chapter) | What Navier–Stokes (next chapter) adds |
-|--------------|--------------------------------|--------------------------------------|
-| II — Warming | Upwind fluxes for enthalpy advection in air | Viscous and heat fluxes; low-Re film around the wire |
-| III — Pulling (preview) | — | FVM velocity field feeds \(\mathbf{D}\) in Part VI kinematics |
-| V — Notch (preview) | Shock-capturing for impulsive loads | Transient coupling with solid wave propagation |
-| VI — Foundation (preview) | Consistent fluxes as conservation contract | Same handshake pattern as DFT→MD→FEM in the epilogue |
-
-| Part I–II vocabulary | Riemann / FVM counterpart (this chapter) | Why the wire cares |
-|------------------------|------------------------------------------|-------------------|
-| Eigenvalues of \(\mathbf{K}\) | Eigenvalues of flux Jacobian \(\mathbf{A}=\partial\mathbf{F}/\partial\mathbf{U}\) | CFL limit on explicit timesteps for cooling air |
-| Modal decomposition ([I.3](../part01-linear-algebra/03-eigenvalues.md)) | Wave fan structure in the Riemann solution | Left/right states at a face = local modal split |
-| Sparsity from local coupling | Face flux depends only on neighboring cells | Same locality as spring chains, different physics |
-| [II.5](../part02-functional-analysis/05-spectral-theorem.md) spectral picture | Amplification factors for explicit updates | Stability is an eigenvalue story at every face |
-
-Return to [V.2](02-fvm-1d.md): the 1D update loop you implemented there becomes **nonlinear** when \(\mathbf{F}(\mathbf{U})\) is the Euler flux — Riemann solvers are how each face chooses a unique flux when \(\mathbf{U}_L \neq \mathbf{U}_R\). Part IV's Galerkin method lacks this built-in upwinding for advection; that discretization split is why the book teaches FEM and FVM as complementary dialects on the same copper wire.
 
 The next chapter situates the full fluid mechanics pipeline, from Reynolds number to turbulence models, with the copper wire's cooling flow as motivation. Turn the page when Sod passes but the wire still runs hot — that is the signal to add viscosity, conduction, and the shared continuum vocabulary Part VI will name.

@@ -6,6 +6,16 @@ Density functional theory makes the ground-state energy a functional of the elec
 
 Three chapters cover Born–Oppenheimer and the Hohenberg–Kohn framework, Kohn–Sham equations and convergence practice, and reproducible Quantum ESPRESSO workflows that export numbers to MD, DDD, and continuum models. The layout follows the **DFT Notes** in [`writings/dft/`](../../writings/dft/): numbered chapters with **Bridge** sections leading to the epilogue's multiscale coupling story.
 
+## Chapter guide
+
+| Chapter | Wire story beat | Core object | Handoff |
+|---------|-----------------|-------------|---------|
+| [IX.1](01-born-oppenheimer.md) | Fast electrons, slow nuclei on the fcc lattice | Born–Oppenheimer, Hohenberg–Kohn theorems | Kohn–Sham orbitals → SCF in IX.2 |
+| [IX.2](02-kohn-sham.md) | Self-consistent field on a copper unit cell | Exchange–correlation, k-points, convergence | QE input decks → workflows in IX.3 |
+| [IX.3](03-dft-workflows.md) | Export \(a_0\), \(C_{ij}\), \(\gamma_{\text{sf}}\), \(E_f^v\) | Quantum ESPRESSO, Murnaghan fit, slab calculations | [Bridge to Epilogue](../../epilogue/multiscale.md) |
+
+Read in order. Each chapter ends with a **Bridge** that states why the next chapter must exist; running Kohn–Sham without Born–Oppenheimer separation confuses electronic and nuclear degrees of freedom; exporting moduli without SCF convergence is the atomistic analogue of an unrefined FEM mesh.
+
 ## Scene
 
 Part VIII ended with nuclei vibrating on an interatomic potential — EAM parameters fit to experiments, MD trajectories, or machine-learned surfaces. That potential is a **practical fiction**: it assumes electrons adjust instantaneously to nuclear motion, and it hides the quantum mechanics that sets cohesive energy, stacking-fault energy, and vacancy formation enthalpy.
@@ -99,6 +109,18 @@ Part VIII already ran LAMMPS on an EAM potential **on trust** — cohesive energ
 | Part IX for Part VIII | Names the limit object (\(\rho(\mathbf{r})\), Kohn–Sham) behind every interatomic potential |
 
 **Chapter order** (VII → VIII → IX) descends to finer physics after continuum and atomistics show where parameters hide their history. **Workflow order** (IX → VIII → VII → IV) is how practitioners actually build input decks — documented in [Act VI of the sources appendix](../appendix/sources.md#six-acts--parts-laboratory-time) and the [two clocks note](../part08-md/00-opening.md#two-clocks-reading-order-vs-foundation-pedigree) at the Part VIII opening. Linear readers should treat Part IX as the **audit chapter**: the same copper cell Part VIII vibrated, now solved for \(\rho(\mathbf{r})\) before the epilogue climbs back up the ladder.
+
+### What you should be able to do after Part IX
+
+Each chapter adds one move to the electronic-structure workflow that grounds every upward export in the multiscale epilogue:
+
+| After chapter | Skill on the copper wire | Minimal artifact |
+|---------------|--------------------------|------------------|
+| IX.1 | State Born–Oppenheimer separation; cite Hohenberg–Kohn | \(E[\rho]\) depends only on ground-state \(\rho(\mathbf{r})\) |
+| IX.2 | Write Kohn–Sham equations; read SCF convergence in a log | `convergence has been achieved`; \(E_{\text{coh}}\) per atom |
+| IX.3 | Build a QE input deck; export \(C_{ij}\), \(\gamma_{\text{sf}}\) with pedigree | Functional, pseudopotential, cutoff, k-mesh in spreadsheet header |
+
+None of these require a national supercomputer allocation — but each one is the foundation Act VI runs in parallel with the tensile test. If you can explain why MD's potential is a functional of electron density, archive an SCF log beside every exported modulus, and trace Young's modulus from strained unit cells back to Kohn–Sham orbitals, you have closed the downward derivation before the epilogue wires the ladder together.
 
 ## Bridge
 

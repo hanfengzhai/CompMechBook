@@ -8,17 +8,6 @@ Pull the copper wire again and consider two displacement fields \(u\) and \(v\) 
 
 Clamp the wire and strike it softly: the fundamental bend and the second bend do not exchange energy arbitrarily — their displacements integrate to orthogonal patterns over the length. That decoupling is Hilbert geometry: an inner product turns mode orthogonality into a theorem, and Galerkin projection into best approximation in energy. The wire's vibration spectrum is a Hilbert-space story told before any tetrahedral mesh exists.
 
-## Story so far (Parts I–II.2)
-
-| Stage | Finite \(N\) (Part I) | Infinite limit (Parts II.1–II.2) | This chapter adds |
-|-------|----------------------|----------------------------------|-------------------|
-| State | \(\mathbf{u}\in\mathbb{R}^N\) | \(u(x)\in H^1\) | Inner product \((u,v)\); energy norm \(\|u\|_a\) |
-| Energy | \(\mathbf{u}^T\mathbf{K}\mathbf{u}\) | \(\|u\|_{H^1}^2\), strain-energy seminorm | Angles, orthogonality, best approximation |
-| Modes | \(\mathbf{K}\mathbf{v}=\lambda\mathbf{M}\mathbf{v}\) | Eigenfunctions of stiffness operator (preview) | Modal orthogonality in Hilbert space |
-| Convergence | Mesh \(N\to\infty\) without target | Banach completeness; equivalent norms | Galerkin projection is optimal in energy |
-
-[II.1](01-motivation.md) named the limit room; [II.2](02-normed-spaces.md) installed the ruler. Hilbert geometry is where **Act II — Warming** and **Act III — Pulling** share one mathematical habit — minimize a quadratic functional or solve the equivalent weak form — before Part III writes the PDEs both acts need.
-
 ## Definition
 
 An **inner product** on a real vector space \(V\) is a map \((\cdot,\cdot): V \times V \to \mathbb{R}\) such that for all \(u,v,w \in V\) and \(\alpha \in \mathbb{R}\):
@@ -215,6 +204,34 @@ has unique solution \(T \in H^1_0\) by Lax–Milgram. Riesz (or the energy minim
 
 Convection–diffusion \(-\varepsilon u'' + b u' = f\) produces a nonsymmetric bilinear form. Lax–Milgram still applies under coercivity and boundedness, but the energy is not a simple quadratic functional — Galerkin orthogonality holds in the bilinear form, not in a symmetric inner product. Petrov–Galerkin methods choose test spaces different from trial spaces to improve stability; the Hilbert geometry becomes a Banach-space story with different norms on trial and test sides. Part V on finite volumes treats advection-dominated problems with related stability concerns.
 
+## Lab act: project the grip load onto two bar modes (Act III prelude)
+
+**Act III** ramps grip displacement, but the load cell reading is a **single number** — total axial force — while the wire's displacement field lives in an infinite-dimensional space. Hilbert geometry explains how a scalar measurement relates to a field: the discrete load vector \(\mathbf{f}\) is a **Riesz representative** of a linear functional on \(V_h\), and Galerkin orthogonality says the FEM solution is the best approximation in energy norm.
+
+Take the fixed-fixed bar from [I.3](../part01-linear-algebra/03-eigenvalues.md) with two mode shapes \(\phi_1, \phi_2\) (fundamental and first harmonic, orthonormal in the mass inner product). A uniform end traction is not orthogonal to higher modes — but a **concentrated grip load** projects heavily onto \(\phi_1\).
+
+| Step | Operation | What Hilbert geometry buys |
+|------|-----------|----------------------------|
+| 1 | Form load functional \(\ell(v) = \int_0^L f v\, dx\) or nodal equivalent | Riesz: \(\ell(v) = (g, v)_M\) for some \(g\) |
+| 2 | Expand \(g = c_1 \phi_1 + c_2 \phi_2 + \cdots\) | Bessel: \(\|g\|^2 \ge c_1^2 + c_2^2\) |
+| 3 | Solve in 2-mode subspace \(W = \mathrm{span}\{\phi_1, \phi_2\}\) | Projection theorem: unique minimizer of \(\tfrac{1}{2}a(v,v) - \ell(v)\) |
+| 4 | Compare to full FEM on 20 elements | Céa: error \(\le C \inf_{w \in W} \|u - w\|_a\) |
+
+In NumPy, build \(\mathbf{K}\) and \(\mathbf{M}\) for a 10-element bar, extract the first two eigenvectors, and solve the 2×2 reduced system \(\mathbf{K}_r \mathbf{c} = \mathbf{f}_r\). The tip displacement from two modes should capture most of the Act III linear elastic response — the same reason commercial codes offer **modal superposition** for small-amplitude vibration. When the operator later trusts a coarse mesh near the grips, this table is the Hilbert justification: the error is projection error, not guesswork.
+
+## Concept map checkpoint (Hilbert spaces)
+
+Hilbert geometry turns loads into projections. Before operators generalize matrices, summarize:
+
+| Question | Hilbert-space answer (copper wire) |
+|----------|-------------------------------------|
+| What **object**? | Complete inner-product space; trial field \(u\) and test space \(V\) |
+| What **structure**? | Orthogonality, best approximation, Riesz representation of loads |
+| What **theorem**? | Lax–Milgram existence; Céa's lemma (FEM error is projection error) |
+| What **breaks**? | Non-coercive forms; wrong trial/test pairing for advection |
+
+Galerkin orthogonality \(a(u-u_h, v_h)=0\) is not a coding trick — it is the statement that the discrete solution is the energy-best approximation in \(V_h\). Act III's load cell reading is a single functional on this geometry.
+
 ## Bridge
 
 Hilbert spaces give us angles, projections, and representations of loads. The next step is **operators**: linear maps between such spaces that generalize matrices. Dual spaces generalize row vectors and Lagrange multipliers; weak and weak* convergence describe limits when norms alone fail to detect oscillations — the behavior we see near shocks, fine-scale microstructure, and unresolved boundary layers. Operators, duality, and compactness complete the analytic toolkit before spectral theory decouples time-dependent and vibration problems into modes.
@@ -226,22 +243,6 @@ Hilbert spaces give us angles, projections, and representations of loads. The ne
 | Riesz representation of loads \(\ell(v)=(f,v)\) | Dual spaces \(H^*\); point forces as functionals, not \(L^2\) functions |
 | Céa's lemma: best approximation in energy | Compact embeddings \(H^1 \hookrightarrow L^2\); Aubin–Nitsche preview |
 
-Return to the [prologue](../../prologue/00-many-scales.md): **Act II — Warming** turns on current through the copper wire, and the temperature field \(T(x)\) that Joule heating creates is not a vector in \(\mathbb{R}^N\) — it is an element of \(H^1\) whose gradient square-integrates. **Act III — Pulling** will ramp grip displacement on the same specimen; the axial displacement \(u(x)\) lives in the same Hilbert room with a different bilinear form. Lax–Milgram and Riesz in this chapter are why a mesh of piecewise linears can approximate both fields without demanding classical \(C^2\) smoothness at the thermocouple weld or grip corner. Part I's energy \(\mathbf{u}^T\mathbf{K}\mathbf{u}\) reappears here as \(\|u\|_a^2 = a(u,u)\); Part IV's assembly will be the Gram matrix of the same bilinear form restricted to \(V_h\).
-
-| Act on the wire | Field in \(H^1\) | Energy norm in this chapter |
-|-----------------|------------------|-----------------------------|
-| II — Warming | Temperature \(T(x)\) | \(\int (T')^2\) from Fourier conduction |
-| III — Pulling | Axial displacement \(u(x)\) | \(\int (EA u'^2)\) from elastic strain energy |
-
-The two acts share one mathematical habit: minimize a quadratic functional (or solve the equivalent weak form) in a complete inner-product space. Part III will write the PDEs both acts need; Part IV will discretize them on the same P1 elements with the same quadrature loop.
-
-| Part III chapter | Weak form on the wire | Hilbert tool from this chapter |
-|------------------|----------------------|--------------------------------|
-| [III.1](../part03-pdes/01-strong-form.md) | Strong forms at grip corner and thermocouple weld | Where classical \(C^2\) fails; why \(H^1\) suffices |
-| [III.2](../part03-pdes/02-weak-form.md) | Steady heat \(-kT''=q\) and axial elasticity | Lax–Milgram existence; Riesz representation of loads |
-| [III.3](../part03-pdes/03-sobolev-spaces.md) | Regularity for Joule source and traction BCs | Embedding \(H^1 \hookrightarrow L^2\); trace on boundaries |
-| [III.4](../part03-pdes/04-energy-methods.md) | Dirichlet principle before FEM assembly | Rayleigh–Ritz on \(V_h\) → Part IV's \(\mathbf{K}\) |
-
-Part III is not a detour from Hilbert geometry — it is where the inner products and projection theorems of this chapter become **equations** the copper wire obeys. When [II.4](04-operators-duality.md) names stiffness as an operator, remember that Part III will write the weak form that operator satisfies before Part IV projects it onto nodal coefficients.
+Return to the [prologue](../../prologue/00-many-scales.md): **Act II — Warming** turns on current through the copper wire, and the temperature field \(T(x)\) that Joule heating creates is not a vector in \(\mathbb{R}^N\) — it is an element of \(H^1\) whose gradient square-integrates. Lax–Milgram and Riesz in this chapter are why a mesh of piecewise linears can approximate that field without demanding classical \(C^2\) smoothness at the thermocouple weld. Part I's energy \(\mathbf{u}^T\mathbf{K}\mathbf{u}\) reappears here as \(\|u\|_a^2 = a(u,u)\); Part IV's assembly will be the Gram matrix of the same bilinear form restricted to \(V_h\).
 
 [II.2](02-normed-spaces.md) measured size; this chapter added **angles** — orthogonality, projection, and the representation theorem that turns loads into inner products. [II.4](04-operators-duality.md) names the maps between Hilbert spaces: stiffness as an operator, loads in the dual, weak convergence when norms alone miss oscillations. Turn the page when projection feels geometric but the word "operator" still sounds abstract — that is the signal Hilbert space is ready to host matrices that never fit in \(\mathbb{R}^{N \times N}\).

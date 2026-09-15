@@ -4,17 +4,6 @@ An finite element is three things bundled together: a **reference domain** with 
 
 Chapter 2 showed assembly as a scatter of local matrices. This chapter explains what happens inside the element loop — how geometry enters through the Jacobian, how polynomial order controls accuracy, and why bad elements (slivers, nearly incompressible materials on Q1 meshes) produce bad answers even when the assembly code is correct.
 
-## Story so far (Parts I–IV.2)
-
-| Stage | FEM milestone | Wire instance |
-|-------|---------------|---------------|
-| Parts I–III | \(\mathbf{K}\mathbf{U}=\mathbf{F}\) from weak form | Thermal + elastic PDEs in \(H^1\) |
-| [IV.1](01-weighted-residuals.md) | Weighted residuals; Galerkin orthogonality | Residual vanishes on trial space |
-| [IV.2](02-galerkin-assembly.md) | Global scatter of \(\mathbf{K}^e\), \(\mathbf{f}^e\) | Load cell curve from assembled system |
-| **IV.3 (here)** | Shape functions, Jacobian, quadrature | P1 triangles on the heated cross-section |
-
-[IV.2](02-galerkin-assembly.md) closed the loop from Part III's bilinear form to Part I's sparse matrix. This chapter opens the **element loop** — the machinery inside every `scatter`: reference elements, isoparametric maps, quadrature points. The copper wire's mesh is only as trustworthy as the P1 triangles and Gauss rules that define \(V_h\); [IV.4](04-poisson-to-elasticity.md) extends the same loop from scalar heat to vector elasticity under end load.
-
 ## Scene: the mesh becomes tiny shapes
 
 Zoom into the copper wire model until individual elements fill the screen: small triangles or bricks, each with the same reference template, stretched and rotated to fit the local geometry. Shape functions interpolate temperature and displacement inside each patch; quadrature integrates the weak form as a weighted sum of point values. A coarse mesh captures bulk stretch; a fine mesh resolves the hot spot where current density peaks — same element library, different resolution.
@@ -189,6 +178,36 @@ Use this checklist before committing to an element family:
 
 For introductory work and course problem sessions, P1 triangles in 2D remain the right default. For production analysis of the copper wire with contact, plasticity, or fine stress gradients, P2 or hexahedral elements with selective \(p\)-refinement are typical.
 
+## Lab act: patch test on two bar elements before Act III meshing
+
+**Act III** will mesh the tensile specimen — but a two-element bar is enough to verify that shape functions, quadrature, and assembly obey the **patch test** before trusting a 3D mesh at the grip corner.
+
+Problem: \( -u'' = 0\) on \((0,L)\) with \(u(0)=0\), \(u(L)=1\). Exact solution \(u(x) = x/L\) lies in the **P1 bar** space on any uniform partition.
+
+| Check | Two equal elements | Pass criterion |
+|-------|-------------------|----------------|
+| Partition of unity | \(\sum_i N_i(x) = 1\) on each element | Exact at any \(x\) |
+| Kronecker property | \(N_j(x_i) = \delta_{ij}\) at nodes | Exact |
+| Patch test | Assemble \(\mathbf{K}\), apply BCs, solve | \(u_h(x_i) = x_i/L\) at **every** node |
+| Quadrature | 1-point Gauss on \([0,1]\) reference bar | Exact for constant \(u''\) integrand |
+
+Implement the 2×2 global system by hand or in NumPy: element stiffness \(k_e = \frac{EA}{h}\begin{bmatrix}1&-1\\-1&1\end{bmatrix}\), scatter into \(\mathbf{K}\), impose Dirichlet rows. If the patch test fails, no amount of \(h\)-refinement in Act III will rescue the load cell curve — the bug is in shape functions or BC enforcement, not mesh density.
+
+Optional extension: repeat with a **distorted** two-element partition (lengths \(0.3L\) and \(0.7L\)). P1 bars still pass the patch test for linear solutions — a reminder that element quality matters for **higher-order** accuracy, not for representing linear fields exactly.
+
+## Concept map checkpoint (elements and quadrature)
+
+This chapter is where mesh geometry enters the energy integrals. Before vector elasticity extends the same loop, summarize what element technology established:
+
+| Question | Part IV answer (copper wire) |
+|----------|------------------------------|
+| What **object**? | Shape functions \(N_a\); reference element \(\hat{\Omega}\); Jacobian \(\mathbf{J}\) |
+| What **structure**? | Partition of unity; Kronecker property; isoparametric map \(\mathbf{x}(\xi)\) |
+| What **theorem**? | Patch test: exact when solution \(\in V_h\); \(O(h^p)\) rates for smooth fields |
+| What **breaks**? | Locking (\(\nu \to 1/2\)); hourglassing (reduced integration); distorted elements reduce order |
+
+The patch-test Lab act is the FEM analogue of Part I's three-node sanity check: if linear \(u(x)=x/L\) is not exact on two P1 bars, no amount of \(h\)-refinement in Act III will rescue the load cell curve. Quadrature and element order determine **accuracy**; assembly determines **structure**.
+
 ## Bridge
 
 Poisson's equation — scalar, symmetric, coercive — is the training ground where elements and quadrature behave well. Vector elasticity adds tensor constitutive laws, block stiffness structure, and traction boundary integrals. The assembly loop is unchanged; the integrand grows richer.
@@ -200,15 +219,6 @@ Poisson's equation — scalar, symmetric, coercive — is the training ground wh
 | Patch test and \(O(h^2)\) intuition for smooth heat | Anisotropic stiffness from texture (cold-drawn wire) |
 | \(p\)- vs. \(h\)-refinement tradeoffs | From heated cross-section to tensile specimen under end load |
 
-Return to the [prologue](../../prologue/00-many-scales.md): **Act III — Pulling**'s load cell measures force on a wire whose FEM mesh is built from the element families named here. Part III minimized thermal energy on the same P1 triangles during **Act II — Warming**; Part IV now carries **mechanical** degrees of freedom with the same quadrature loop. [I.2](../part01-linear-algebra/02-linear-maps.md) named the Jacobian map that stretches reference elements into physical space; [III.3](../part03-pdes/03-sobolev-spaces.md) required \(H^1\)-conforming continuity across element edges — both constraints appear in every `B^T C B` contraction at quadrature points.
+Return to the [prologue](../../prologue/00-many-scales.md): **Act III**'s load cell measures force on a wire whose FEM mesh is built from the element families named here. Part III minimized thermal energy on the same P1 triangles; Part IV now carries **mechanical** degrees of freedom with the same quadrature loop. [IV.4](04-poisson-to-elasticity.md) closes the scalar-to-vector jump — the chapter where the copper wire stops being a temperature field alone and becomes the tensile bar whose stress–strain curve the prologue will track through yield.
 
-Cold-drawn copper carries **texture**: the stiffness tensor \(\mathbb{C}\) is not isotropic on the wire cross-section even when the mesh uses isotropic material cards. P1 triangles on a circular section with centroid quadrature are the honest first mesh; anisotropic \(\mathbb{C}\) from EBSD or pole figures is the signal that element quality and constitutive orientation must be documented together, not treated as separate input-deck lines.
-
-| Element choice | Act on the wire | Failure mode if ignored |
-|----------------|-----------------|-------------------------|
-| P1 bar on 1D axis | Act II/III: quick thermal + tensile sanity check | Under-resolved gradients near grips |
-| P1 triangle on cross-section | Act II: Joule heating in 2D section | \(O(h)\) stress noise at curved boundary |
-| Quadratic tets for production | Act III–V: design-level stress | Singular \(\mathbf{K}\) from distorted tets |
-| Mixed u–p for near-incompressibility | Act III: large plastic strain preview | Locking without inf–sup stable pair |
-
-[IV.4](04-poisson-to-elasticity.md) closes the scalar-to-vector jump — the chapter where the copper wire stops being a temperature field alone and becomes the tensile bar whose stress–strain curve the prologue will track through yield. Turn the page when Poisson assembly feels routine but an elasticity run returns a singular or nonsymmetric matrix — that is the signal the block constitutive structure deserves its own chapter.
+Turn the page when Poisson assembly feels routine but an elasticity run returns a singular or nonsymmetric matrix — that is the signal the block constitutive structure deserves its own chapter.

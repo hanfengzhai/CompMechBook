@@ -6,6 +6,17 @@ The finite volume method discretizes those flux balances directly. When the copp
 
 The layout follows the **FVM Notes** in [`writings/fvm/`](../../writings/fvm/): four numbered chapters, **Bridge** sections at each handoff, and recurring connections to the weak-form ideas of Part III. Part VI unifies the continuum stress and balance language that both FEM and FVM ultimately approximate.
 
+## Chapter guide
+
+| Chapter | Wire story beat | Core object | Handoff |
+|---------|-----------------|-------------|---------|
+| [V.1](01-conservation-integral.md) | Heat leaves the wire by convection | Integral conservation, flux through faces, divergence theorem | 1D schemes and CFL → stability in V.2 |
+| [V.2](02-fvm-1d.md) | Upwind cooling along the wire axis | Cell averages, face fluxes, Godunov-type updates | Discontinuities and shocks → Riemann solvers in V.3 |
+| [V.3](03-fluxes-riemann.md) | Steep gradients at the hot surface | Approximate Riemann solvers, limiters, TVD property | Incompressible flow → Navier–Stokes in V.4 |
+| [V.4](04-navier-stokes-cfd.md) | Air boundary layer around the wire | Pressure–velocity coupling, SIMPLE/PISO, turbulence preview | [Bridge to Part VI](04-navier-stokes-cfd.md#bridge-to-part-vi) |
+
+Read in order. Each chapter ends with a **Bridge** that states why the next chapter must exist; applying FVM to Navier–Stokes without mastering 1D fluxes is like meshing a solid before understanding conservation.
+
 ## Scene
 
 Part IV meshed the copper wire as a solid: stiffness matrices from Galerkin assembly, convergence rates in the energy norm, and the two-door bridge at the end of Chapter 5 — either continue here to fluids or jump ahead to Part VI for stress and strain. If you chose Door A, you arrive with a mesh in hand and a question Part IV did not fully answer: *what happens outside the wire?*
@@ -116,6 +127,19 @@ Part IV assembled \(\mathbf{K}\) from shape-function integrals; Part V assembles
 
 **Act II** switches on current. The narrowest cross-section heats; air cools the surface; the thermocouple responds while the grips still hold fixed displacement. Part V is the **wind** in that scene — Navier–Stokes and FVM fluxes for the fluid domain coupled to FEM conduction in the solid from Part IV. Conjugate heat transfer is Act II's handshake: wall temperature and heat flux must agree at the interface. When Riemann solvers feel distant from the copper wire, return to the operator watching the thermocouple climb — the same specimen, second discretization dialect.
 
+### What you should be able to do after Part V
+
+Each chapter adds one move to a conservation-first workflow that complements Part IV's Galerkin habit:
+
+| After chapter | Skill on the copper wire | Minimal artifact |
+|---------------|--------------------------|------------------|
+| V.1 | Write integral balance over a control volume; identify fluxes | \(\frac{d}{dt}\int_V \rho E\, dV + \oint_{\partial V} \mathbf{F}\cdot\mathbf{n}\, dS = 0\) |
+| V.2 | Discretize 1D advection–diffusion; read upwind bias | Three-cell stencil; CFL limit \(\Delta t \lesssim \Delta x / |c|\) |
+| V.3 | Evaluate a Riemann flux at a face; explain shock capturing | Godunov or Lax–Friedrichs on a step initial condition |
+| V.4 | Sketch conjugate heat transfer loop: solid FEM ↔ fluid FVM | Wall \(T\) and flux handshake until interface residual \(< \varepsilon\) |
+
+None of these require a full CFD code — but each one is the transport dialect the air around the wire demands. If you can balance fluxes on three cells, state a CFL limit, and explain why wall temperature must match at a solid–fluid interface, you have the core of Act II's conjugate heat transfer before Part VI names the stress and flux tensors both sides approximate.
+
 ## Bridge
 
 Part IV assembled stiffness matrices from shape functions; [IV.5](../part04-fem/05-convergence.md#bridge-two-doors-from-here) named **Door A** — conservation on control volumes for fluids, shocks, and steep advection fronts. Part V walks through that door. The physics of the copper wire did not change; the **computational instinct** did.
@@ -128,13 +152,5 @@ Part IV assembled stiffness matrices from shape functions; [IV.5](../part04-fem/
 | Error estimates as \(h \to 0\) | Entropy conditions and shock capturing on coarse grids |
 
 The **conjugate heat transfer** scene above is why Door A is not optional on first reading for the full wire story: Joule heating in the solid (Part IV) and convection in the air (Part V) exchange wall temperature and heat flux until both sides agree — the same fixed-point handshake the epilogue later generalizes to DFT→MD→DDD→FEM chains. Part III wrote the Navier–Stokes and energy equations; Part V discretizes them with flux balances that respect the invariants Galerkin cannot guarantee at high Reynolds number.
-
-| If you arrived from… | Read first for continuity | Then continue here |
-|----------------------|---------------------------|-------------------|
-| [IV.5 Door A](../part04-fem/05-convergence.md#bridge-two-doors-from-here) | Two-door fork after FEM convergence | [V.1](01-conservation-integral.md) |
-| [III.4 Bridge](../part03-pdes/04-energy-methods.md#bridge-to-part-iv) | Weak-form pipeline before discretization split | [V.1](01-conservation-integral.md) |
-| Solids-first path (skipped Part V) | [VI.0](../part06-continuum/00-opening.md) for stress tensors, then return here for CHT | [V.4](04-navier-stokes-cfd.md) |
-
-Skipping Part V on a first read is allowed for solids-only projects — but the full copper wire story needs the air domain before Part VI names the coupled energy balance at the fluid–solid interface.
 
 The first chapter below begins with **integral forms of conservation laws** — the FVM dialect of the same balance laws Part VI will name in Cauchy stress and rate-of-deformation language. Turn the page when the thermocouple climbs and the air around the wire needs a discretization philosophy of its own.

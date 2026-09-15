@@ -6,6 +6,17 @@ The copper wire under tension is our specimen throughout. At this scale it is a 
 
 Four chapters follow in order: kinematics; stress and balance laws; variational elasticity; and a preview of geometric and material nonlinearity — the last continuum stop before Part VII. The layout follows the **Continuum Mechanics Notes** in [`writings/continuum/`](../../writings/continuum/): numbered chapters with **Bridge** sections linking geometry to energy principles and to the mesoscale models of Part VII.
 
+## Chapter guide
+
+| Chapter | Wire story beat | Core object | Handoff |
+|---------|-----------------|-------------|---------|
+| [VI.1](01-kinematics.md) | Grip displacement ramps; bar stretches and contracts laterally | \(\mathbf{F}\), \(\boldsymbol{\varepsilon}\), Green–Lagrange \(\mathbf{E}\) | Forces enter through stress → balance in VI.2 |
+| [VI.2](02-stress-balance.md) | Load cell records force; Cauchy stress balances momentum | Cauchy and Piola–Kirchhoff stress, conservation laws | Virtual work → energy principles in VI.3 |
+| [VI.3](03-variational-elasticity.md) | Elastic energy minimized under BCs | Strain energy density, hyperelasticity, FEM connection | Yield and hardening preview → Part VII in VI.4 |
+| [VI.4](04-nonlinear-plasticity-preview.md) | Force–displacement curve bends upward | \(J_2\) plasticity, isotropic hardening, return mapping | [Bridge to Part VII](04-nonlinear-plasticity-preview.md#bridge-to-part-vii) |
+
+Read in order. Each chapter ends with a **Bridge** that states why the next chapter must exist; naming stress without kinematics is force without geometry; fitting plasticity without Part VII is curve-fitting without a forest.
+
 ## Scene
 
 Whether you arrived from Part IV (Door B) or completed Part V (Door A), you have been solving PDEs on meshes without yet naming the **mechanical fields** those codes carry. Part IV's stiffness matrix encodes elastic energy; Part V's fluxes encode momentum and enthalpy transport around the hot wire — but neither part defines Cauchy stress, the deformation gradient, or the virtual work principle that makes \(\mathbf{K}\mathbf{U}=\mathbf{F}\) a statement about force balance rather than a sparse linear system.
@@ -87,9 +98,35 @@ Part II taught that the limit \(N\to\infty\) lives in \(H^1\); Part III wrote th
 
 The copper wire that began as a chain of coupled springs is now a cylinder with a stress tensor — still finite-dimensional on any mesh, still infinite-dimensional in the continuum limit, and still one specimen in a single story. Part VII will explain why cold-drawn strength is not in \(\mathbb{C}\) alone; Parts VIII–IX will ask where \(\mathbb{C}\) itself comes from.
 
+## How Part VI connects to the descent in scale
+
+Part VI is the **last continuum stop** before the book descends to mesoscale and atomistic models. Every field named here has a coarser or finer avatar:
+
+| Field / law (Part VI) | Part IV–V discretization | Part VII+ origin |
+|-----------------------|--------------------------|------------------|
+| Cauchy stress \(\boldsymbol{\sigma}\) | Nodal stress from shape-function gradients | Dislocation density and forest hardening |
+| Elastic tensor \(\mathbb{C}\) | Material card in \(\mathbf{B}^T\mathbb{C}\mathbf{B}\) | Polycrystal texture; MD/DFT moduli |
+| Virtual work | Galerkin \(\mathbf{K}\mathbf{U}=\mathbf{F}\) | Same principle at every scale |
+| Yield surface | Phenomenological \(J_2\) fit in VI.4 | DDD and crystal plasticity in Part VII |
+
+When the load cell curve bends upward in **Act IV**, Part VI's plasticity preview names the phenomenon — but Part VII will show the **mechanism**. When **Act V** needs atomistic resolution at a notch, Part VI explains why smooth \(\boldsymbol{\sigma}(\mathbf{x})\) was never sufficient there.
+
 ## Lab act: III–V — Pulling, hardening preview, and the notch
 
 **Act III** names what the load cell measures — Cauchy stress and virtual work behind the linear elastic climb. **Act IV** is the upward bend in the curve; Part VI's plasticity preview admits that bend without yet simulating the dislocation forest (Part VII). **Act V** is the optional scratch or grip corner where smooth fields break down and atomistic resolution may be needed (Part VIII). Part VI is the continuum floor where all three lab acts meet the same vocabulary: \(\mathbf{F}\), \(\boldsymbol{\sigma}\), and balance laws that make FEM and FVM approximations physically meaningful.
+
+### What you should be able to do after Part VI
+
+Each chapter adds one move to the continuum vocabulary that makes FEM and FVM outputs physically meaningful:
+
+| After chapter | Skill on the copper wire | Minimal artifact |
+|---------------|--------------------------|------------------|
+| VI.1 | Compute \(\mathbf{F}\), \(\mathbf{E}\), and axial stretch \(\lambda\) for uniaxial tension | \(\mathbf{F} = \lambda \mathbf{e}_x \otimes \mathbf{e}_x + \mathbf{e}_y \otimes \mathbf{e}_y + \cdots\) |
+| VI.2 | Write balance laws; interpret traction BCs at the grips | \(\nabla\cdot\boldsymbol{\sigma} = \mathbf{0}\); \(\boldsymbol{\sigma}\mathbf{n} = \mathbf{t}\) at loaded end |
+| VI.3 | State virtual work; connect to Part IV's \(\mathbf{K}\mathbf{U}=\mathbf{F}\) | \(\int \boldsymbol{\sigma}:\delta\boldsymbol{\varepsilon}\, d\Omega = \int \mathbf{t}\cdot\delta\mathbf{u}\, dS\) |
+| VI.4 | Name yield surface and hardening preview; cite when smooth fields fail | \(J_2\) yield; fitted \(H\); pointer to Part VII forest |
+
+None of these require running DDD or MD — but each one is the physics behind the numbers Part IV assembles. If you can compute axial stretch from a displacement field, write Cauchy stress balance, and explain why cold-drawn hardening is not in \(\mathbb{C}\) alone, you have the continuum floor before the book descends to dislocations and atoms.
 
 ## Bridge
 

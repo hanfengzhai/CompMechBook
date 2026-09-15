@@ -4,17 +4,6 @@ Kohn–Sham DFT turns the abstract Hohenberg–Kohn energy functional into a **s
 
 For copper, a typical calculation fits in a few hundred atoms' worth of plane-wave coefficients — yet supplies the cohesive energy and elastic constants that anchor every coarser model of the wire.
 
-## Story so far (Parts I–IX.1)
-
-| Stage | Electronic object | Wire instance |
-|-------|-------------------|---------------|
-| Parts I–VIII | Atoms on empirical \(V(\{\mathbf{r}_i\})\) | EAM LAMMPS deck on trust |
-| [IX.1](01-born-oppenheimer.md) | BO separation; HK theorems; \(E[\rho]\) | Why energy is a density functional |
-| **IX.2 (here)** | Kohn–Sham orbitals; SCF cycle | QE log: `convergence has been achieved` |
-| [IX.3](03-dft-workflows.md) (next) | Input decks; convergence sweeps | Reproducible foundation afternoon |
-
-[IX.1](01-born-oppenheimer.md) justified treating nuclei on a Born–Oppenheimer surface and energy as a functional of \(\rho(\mathbf{r})\). This chapter is the **practitioner's loop** — self-consistent field, plane waves, pseudopotentials, and the convergence discipline that separates physics from numerical artifact. Every Young's modulus and stacking-fault energy Part VII imports assumes this loop finished honestly.
-
 ## Scene: the self-consistent loop
 
 A Quantum ESPRESSO run on fcc copper begins with a guess for the electron density \(\rho(\mathbf{r})\). From that guess, build an effective potential; solve single-particle Schrödinger-like equations for orbitals; reconstruct a new density from occupied states; mix old and new densities; repeat until \(\rho\) stops changing — the **SCF cycle**. Each iteration is linear algebra on orbital coefficients; convergence is the signal that the Kohn–Sham equations are satisfied.
@@ -59,6 +48,41 @@ T = -\sum_i f_i \langle \psi_i | \nabla^2 | \psi_i \rangle.
 6. Repeat until \(\|\rho_{\text{new}} - \rho_{\text{old}}\|\) and total energy change fall below thresholds.
 
 Unconverged SCF is **structured noise** — energies and forces are meaningless. Metals like copper require **smearing** of occupations (Gaussian, Methfessel–Paxton) because Fermi surface crossings make zero-temperature SCF oscillate.
+
+### SCF as fixed-point iteration — the Part I eigenvalue loop with feedback
+
+The SCF cycle is a **fixed-point problem**: find \(\rho^\star\) such that \(\rho^\star = \mathcal{G}(\rho^\star)\), where \(\mathcal{G}\) maps an old density through build-potential → solve orbitals → construct new density. Each inner step — diagonalizing the Kohn–Sham Hamiltonian — is the **generalized eigenvalue problem** from [Part I.3](../../part01-linear-algebra/03-eigenvalues.md):
+
+\[
+\mathbf{H}[\rho]\,\mathbf{c}_n = \epsilon_n\,\mathbf{S}\,\mathbf{c}_n,
+\]
+
+with overlap matrix \(\mathbf{S}\) from non-orthogonal plane-wave or PAW bases. The outer loop is what Part I did not have: the matrix \(\mathbf{H}\) depends on the eigenvectors through the density, so the spectrum and the operator co-evolve until self-consistency.
+
+| Part I object | Kohn–Sham analogue | What changes in SCF |
+|---------------|---------------------|---------------------|
+| Fixed \(\mathbf{K}\) | \(\mathbf{H}[\rho]\) from converged density | \(\mathbf{H}\) updated each outer iteration |
+| CG on \(\mathbf{K}\mathbf{u}=\mathbf{f}\) | Pulay/Broyden mixing on \(\rho\) | Nonlinear fixed-point acceleration |
+| Jacobi preconditioner ([I.1](../../part01-linear-algebra/01-vectors-matrices.md)) | Kerker preconditioner on \(\delta\rho\) | Damp long-wavelength charge sloshing in metals |
+| Residual \(\|\mathbf{r}_k\|\) vs iteration | \(\|\rho_{\text{new}} - \rho_{\text{old}}\|\), \(\Delta E\) | Same diagnostic habit: plot until flat |
+| Ill-conditioned \(\mathbf{K}\) | SCF oscillation near \(E_F\) | Smearing replaces sharp Fermi step |
+
+**Kerker mixing as preconditioner.** In metals, low-\(\mathbf{G}\) components of \(\delta\rho = \rho_{\text{new}} - \rho_{\text{old}}\) oscillate slowly and destabilize linear mixing. Kerker scaling attenuates those components — the electronic analogue of Jacobi rescaling diagonal entries before CG. The engineering instinct is identical: identify the stiff modes (long-wavelength charge transfer), damp them, iterate on the well-conditioned remainder.
+
+**Convergence plot discipline.** Archive two curves for every production run:
+
+1. Total energy \(E[\rho_n]\) vs SCF iteration \(n\) — should decrease then flatten.
+2. Maximum residual force \(\max_I \|\mathbf{F}_I\|\) vs \(n\) — should fall below threshold (often 0.001 Ry/Bohr) before exporting elastic constants.
+
+If energy flattens but forces remain large, the calculation is **not converged** — the same trap as stopping CG when the residual looks small but the solution has not reached the true \(\mathbf{u}\). Part IV's mesh-refinement certificate and Part IX's SCF certificate are the same verification culture at different scales.
+
+**Smearing and the Fermi step.** At 0 K, occupation numbers are Heaviside functions: states below \(E_F\) are filled, above are empty. For copper, bands cross \(E_F\) at many \(\mathbf{k}\)-points; a sharp step makes \(\rho(\mathbf{k})\) discontinuous and SCF oscillates. **Gaussian smearing** replaces the step with a smooth Fermi–Dirac-like broadening:
+
+\[
+f(\epsilon_{n\mathbf{k}}) = \frac{1}{2}\left[1 - \mathrm{erf}\left(\frac{\epsilon_{n\mathbf{k}} - \mu}{\sigma}\right)\right],
+\]
+
+with smearing width \(\sigma\) (often 0.01–0.05 Ry). Too large \(\sigma\) blurs the Fermi surface and over-stabilizes SCF; too small \(\sigma\) restores oscillation. Converge \(\sigma\) downward: start with 0.02 Ry for fcc Cu bulk, halve until energy changes fall below 1 meV/atom — the electronic analogue of mesh refinement.
 
 ## Plane-wave basis and periodic crystals
 
@@ -203,6 +227,64 @@ Example logic for Cu bulk modulus:
 
 Archive inputs, pseudopotential files, and commit hash of the code — reproducibility is non-negotiable in multiscale research.
 
+## SCF as a generalized eigenvalue problem (Part I returns)
+
+The Kohn–Sham cycle is Part I's eigenvalue story in orbital clothing. In a plane-wave basis, each k-point Hamiltonian is a large Hermitian matrix \(\mathbf{H}[\rho]\) whose entries depend on the current density through \(V_{\text{eff}}[\rho]\). Solving
+
+\[
+\mathbf{H}[\rho]\,\mathbf{c}_n = \epsilon_n \,\mathbf{S}\,\mathbf{c}_n
+\]
+
+is a **generalized eigenvalue problem** — the same mathematical species as vibration modes \(\mathbf{K}\mathbf{v} = \omega^2 \mathbf{M}\mathbf{v}\) from [I.3](../part01-linear-algebra/03-eigenvalues.md), now with overlap matrix \(\mathbf{S}\) from non-orthogonal plane waves (often \(\mathbf{S} = \mathbf{I}\) after orthonormalization).
+
+| Part I (springs on the wire) | Part IX (electrons in Cu) |
+|------------------------------|---------------------------|
+| Stiffness \(\mathbf{K}\) | Kohn–Sham \(\mathbf{H}[\rho]\) |
+| Mass \(\mathbf{M}\) | Overlap \(\mathbf{S}\) (or identity in orthonormal PW basis) |
+| Eigenvectors \(\mathbf{v}\) | Orbital coefficients \(\mathbf{c}_n\) |
+| Eigenvalues \(\omega^2\) | Kohn–Sham energies \(\epsilon_n\) |
+| Fixed matrix | **Self-consistent** matrix: \(\mathbf{H}\) rebuilt each SCF iteration |
+
+Self-consistency is the new ingredient: eigenvectors from step \(k\) build a new density, which rebuilds \(\mathbf{H}\) for step \(k+1\). Convergence means the eigenpairs stop changing — the infinite-dimensional analogue of mesh refinement reaching a limit in Part II.
+
+Part IV's assembly loop and Part IX's SCF loop share the same engineering instinct: **do not trust outputs until the discrete system has converged**. Ill-conditioned \(\mathbf{K}\) and unconverged \(E_{\text{cut}}\) both produce structured noise dressed as physics.
+
+## Lab act: converge cutoff before trusting cohesive energy (Act VI)
+
+**Act VI** runs in parallel with the visible lab session — someone must choose moduli and potentials before the wire-scale job starts. This Lab act is the minimum DFT audit for fcc Cu: converge plane-wave cutoff on total energy per atom.
+
+**Step 1 — fixed geometry, sweep \(E_{\text{cut}}\).** Use experimental lattice constant \(a = 3.615\,\text{Å}\), PBE functional with matching pseudopotential, and a dense k-mesh (e.g. \(12\times12\times12\) Monkhorst–Pack). Run `scf` calculations at \(E_{\text{cut}} = 30, 40, 50, 60, 80\) Ry. Plot total energy per atom versus \(1/E_{\text{cut}}\) — the curve should flatten.
+
+**Step 2 — choose cutoff.** Pick the **smallest** \(E_{\text{cut}}\) where consecutive energy changes are below 1 meV/atom (tighter for forces and elastic constants). Document the choice in the project README — the same discipline Part IV demands for mesh size \(h\).
+
+**Step 3 — cross-check k-mesh.** At the chosen cutoff, repeat with k-meshes \(8^3\), \(10^3\), \(12^3\), \(14^3\). Metals require dense k-sampling because Fermi-surface integrals converge slowly; under-sampled k-meshes are the DFT analogue of too-coarse FEM on a reentrant corner.
+
+**Step 4 — export one number upward.** Report cohesive energy \(E_{\text{coh}} = (E_{\text{tot}}/N_{\text{atoms}}) - E_{\text{atom}}\) with documented cutoff, k-mesh, and functional. Part VIII's EAM fit and Part VI's sanity checks inherit this number — if no QE log exists, the multiscale chain has no floor.
+
+Example convergence table (illustrative — always run your own sweep):
+
+| \(E_{\text{cut}}\) (Ry) | \(E/N\) (eV/atom) | \(\Delta E\) (meV/atom) |
+|-------------------------|-------------------|-------------------------|
+| 40 | −3.724 | — |
+| 50 | −3.726 | 2 |
+| 60 | −3.726 | 0.3 |
+| 80 | −3.726 | 0.1 |
+
+When \(\Delta E < 1\) meV/atom, proceed to `vc-relax` and elastic-constant calculations in [IX.3](03-dft-workflows.md). Unconverged cutoff is structured noise — the DFT version of an unrefined mesh.
+
+## Concept map checkpoint (Kohn–Sham DFT)
+
+This chapter is where Part I's eigenvalue story reappears as self-consistent electronic structure. Before workflow chapters archive reproducible decks, summarize what Kohn–Sham established:
+
+| Question | Part IX answer (copper wire) |
+|----------|------------------------------|
+| What **object**? | Kohn–Sham orbitals \(\psi_n\); density \(\rho = \sum f_n |\psi_n|^2\); \(\mathbf{H}[\rho]\), \(\mathbf{S}\) |
+| What **structure**? | SCF loop: orbitals → density → potential → new \(\mathbf{H}\); plane-wave / k-point quadrature |
+| What **theorem**? | KS equations exact if \(E_{\text{xc}}[\rho]\) exact; variational principle on \(\rho\) |
+| What **breaks**? | Approximate XC (PBE); under-converged \(E_{\text{cut}}\) or k-mesh; SCF oscillation in metals |
+
+The cutoff-sweep Lab act is the DFT analogue of Part IV's \(h\)-refinement: pick the smallest \(E_{\text{cut}}\) where energy changes fall below 1 meV/atom before exporting \(E_{\text{coh}}\) to Part VIII's EAM fit. Generalized eigenvalue \(\mathbf{H}\mathbf{c}=\epsilon\mathbf{S}\mathbf{c}\) is Part I.3 with a self-consistent matrix.
+
 ## Common failure modes
 
 | Symptom | Likely cause |
@@ -241,25 +323,6 @@ Part I's eigenvalue loop reappears as the self-consistent cycle above; Part II's
 
 Return to the prologue's **Act VI — Foundation**: before the operator mounted the wire, someone chose Young's modulus and a yield stress. That invisible afternoon is now explicit: cohesive energy per atom, elastic constants \(C_{ij}\), vacancy formation enthalpy, and surface energies — each gated by SCF convergence and documented functional choice. Unconverged cutoff is the DFT analogue of an ill-conditioned \(\mathbf{K}\): structured noise dressed as physics.
 
-| Prologue act | DFT quantity computed here | Upward consumer in the book |
-|--------------|---------------------------|----------------------------|
-| VI — Foundation | Cohesive energy, \(a_0\), bulk modulus \(B\) | Young's modulus and Poisson ratio in Part VI |
-| IV — Hardening (preview) | Stacking-fault and vacancy formation energies | Peierls barriers and mobility in Part VII |
-| V — Notch (preview) | Surface energies and cleavage work | Crack nucleation models (epilogue workflows) |
-| II — Warming (preview) | Phonon frequencies, thermal expansion | MD thermostat checks in Part VIII |
-
-The [epilogue](../../epilogue/multiscale.md) reunites this foundation with the visible lab session: DFT supplies the numbers, MD fits the potential, DDD calibrates mobility, FEM runs the wire-scale job — four exports from one audit trail. Part IX is the last descent rung; what follows is coupling, not new physics.
-
-| Book part | Eigenvalue / SCF analogue | Export the wire needs |
-|-----------|---------------------------|----------------------|
-| Part I | \(\mathbf{K}\mathbf{u}=\mathbf{f}\); modal \(\mathbf{K}\phi=\lambda\mathbf{M}\phi\) | Sparse solve habits |
-| Part II | Self-adjoint operators; spectral theorem | Convergence targets for refinement |
-| Part IV | Assembly loops on basis functions | Plane-wave + k-point quadrature (same philosophy) |
-| Part VIII | EAM on trust until audited | Cohesive energy, \(a_0\), \(\gamma_{\text{sf}}\) from this chapter |
-| Part VI | Young's modulus from \(C_{ij}\) | Voigt/Reuss homogenization with documented functional |
-
 [IX.3](03-dft-workflows.md) walks through reproducible workflows — cutoff and k-mesh convergence, relaxation, equations of state, bands and phonons, defect supercells — using the MSE 5720 homework archive as a template. Those workflows produce the numbers Parts VI–VIII import before the [epilogue](../../epilogue/multiscale.md) wires DFT → MD → DDD → FEM into one multiscale afternoon.
 
 Turn the page when the SCF loop converges in principle but no input file exists yet — that is the signal that reproducibility, not theory, is what separates research from folklore.
-
-The [epilogue](../../epilogue/multiscale.md#lab-act-reunion-six-acts-one-afternoon) reunites this foundation with the visible lab session: **Act VI** supplies the numbers archived here; **Acts I–V** spend them on the same afternoon. Reading order ends at electrons; workflow order begins with them — both are valid when the export contract is documented.

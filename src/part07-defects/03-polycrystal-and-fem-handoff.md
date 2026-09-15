@@ -4,17 +4,6 @@ Dislocation dynamics resolves individual lines in an elastic medium — powerful
 
 The cold-drawn copper wire is not a single crystal. It is thousands of grains, each with its own slip systems, dislocation content, and orientation. DDD on one crystal explains one mechanism; engineering FEM needs **texture**, **hardening laws**, and **internal state variables** that summarize what DDD (or experiment) teaches.
 
-## Story so far (Parts I–VII.2)
-
-| Stage | Mesoscale object | Wire instance |
-|-------|------------------|---------------|
-| Parts I–VI | Continuum FEM; \(\boldsymbol{\sigma}\), virtual work | Load cell curve in elastic regime |
-| [VII.1](01-defect-taxonomy.md) | Point, line, surface defects | Cold-drawn forest before the test |
-| [VII.2](02-dislocation-dynamics.md) | Peach–Köhler motion; Taylor \(\tau(\rho)\) | Act IV hardening from line statistics |
-| **VII.3 (here)** | Polycrystal homogenization; FEM handoff | Texture + internal variables on the mesh |
-
-[VII.2](02-dislocation-dynamics.md) followed individual lines under resolved shear. This chapter closes Part VII by asking how DDD statistics **export upward** — crystal plasticity, internal state variables, Peierls parameters borrowed from MD — and where homogenization fails at notches. Part VIII supplies the atomic **ink** behind mobility tables and stacking-fault energies.
-
 ## Scene: from one crystal to a spool of wire
 
 A single-crystal DDD run explains how one slip system hardens under shear. The cold-drawn wire on the bench is thousands of grains twisted by drawing dies — texture, misorientation, grain-boundary barriers. This chapter asks how DDD statistics export upward: hardening laws for crystal plasticity, internal state variables for FEM, Peierls parameters borrowed from MD. The wire experiment is polycrystalline; the multiscale pipeline must be too.
@@ -181,6 +170,44 @@ DAMASK material.yaml:
 | \(\tau(\gamma)\) | `g^(s)` slip resistance | Pa |
 | Link density | optional damage / GND proxy | m\(^{-2}\) |
 
+### Scale-boundary handshake: DDD strain rate to quasi-static FEM
+
+OpenDiS timesteps and mobility-table resolution limit accessible RVE strain rates to \(\dot\varepsilon_{\text{DDD}} \sim 10^2\)–\(10^4\,\text{s}^{-1}\). The tensile frame in the prologue runs at \(\dot\varepsilon_{\text{lab}} \sim 10^{-3}\)–\(10^{-1}\,\text{s}^{-1}\) — three to six orders of magnitude slower. The handshake is not "run DDD slower until it matches"; it is a **documented extrapolation** through rate-dependent mobility and slip resistance before homogenized curves enter DAMASK or continuum FEM.
+
+**Step A — measure rate sensitivity in DDD.** Run the same RVE at two or three strain rates bracketing the accessible window (e.g. \(\dot\varepsilon = 10^2, 10^3, 10^4\,\text{s}^{-1}\) at fixed \(T = 300\,\text{K}\)). Extract flow stress \(\tau_{\text{flow}}\) at fixed \(\gamma = 0.01\). Fit a power law or sinh law:
+
+\[
+\tau_{\text{flow}}(\dot\varepsilon) = \tau_0 \left(\frac{\dot\varepsilon}{\dot\varepsilon_0}\right)^m, \qquad
+\text{or} \quad \dot\gamma = \dot\gamma_0 \sinh\left(\frac{\tau V}{k_B T}\right),
+\]
+
+where \(m\) is the strain-rate sensitivity exponent (copper fcc: \(m \approx 0.01\)–\(0.05\) at room temperature, higher near melt) and \(\tau_0\) is reference flow stress at \(\dot\varepsilon_0\).
+
+**Step B — extrapolate to lab rate.** Evaluate \(\tau_{\text{flow}}(\dot\varepsilon_{\text{lab}})\) from the fit — **not** by running OpenDiS at \(10^{-3}\,\text{s}^{-1}\) unless the mobility law is validated there:
+
+| Quantity | DDD at \(\dot\varepsilon = 10^3\,\text{s}^{-1}\) | Extrapolated to \(\dot\varepsilon = 10^{-3}\,\text{s}^{-1}\) | Typical shift (Cu, 300 K) |
+|----------|---------------------------------------------------|--------------------------------------------------------------|---------------------------|
+| \(\tau_{\text{flow}}\) at \(\gamma = 1\%\) | 45 MPa (illustrative) | 38–42 MPa for \(m = 0.02\) | 5–15% lower at lab rate |
+| Hardening slope \(H\) | from \(\tau\)–\(\gamma\) curve | same curve scaled by rate factor | Often weakly rate-dependent |
+| \(\rho(\gamma)\) | forest density at 1% strain | **not** rate-extrapolated | density is state, not rate |
+
+**Step C — export to FEM with provenance.** The DAMASK `material.yaml` and the continuum FEM deck must record:
+
+```text
+# rate_handoff.txt (archive beside opendis.restart)
+ddd_strain_rates_used: [1.0e2, 1.0e3, 1.0e4]  # s^-1
+lab_target_strain_rate: 1.0e-3                   # s^-1
+rate_sensitivity_m: 0.022                        # from DDD fit
+tau_flow_extrapolated_MPa: 40.2                  # at lab rate, gamma=0.01
+extrapolation_method: power_law                  # not direct DDD run
+temperature_K: 300
+mobility_table_source: MD_NVT_shear_PartVIII     # git commit hash
+```
+
+**What breaks without the handshake.** Importing a DDD stress–strain curve run at \(10^3\,\text{s}^{-1}\) directly into a quasi-static FEM run at \(10^{-3}\,\text{s}^{-1}\) **overpredicts** flow stress by 5–20% for rate-sensitive fcc metals — enough to miss yield in the load-cell comparison of Act III while still looking "physically reasonable" on a plot. The error is worse at elevated temperature (Joule heating in Act II), where \(m\) grows and mobility tables from Part VIII must be evaluated at the **same** \(T\) as the DDD run, not at 300 K by default.
+
+The rate handshake is the mesoscale counterpart of Part VI's [Voigt/Reuss elastic handshake](../part06-continuum/02-stress-balance.md#scale-boundary-handshake-dft-elastic-tensor-to-fem-material-card): two discretizations (DDD timestep vs. lab grip speed) must agree on the **observable** the load cell measures before crystal plasticity FEM inherits the curve. When in doubt, bracket: run DAMASK at both \(\tau_{\text{flow}}(\dot\varepsilon_{\text{DDD}})\) and \(\tau_{\text{flow}}(\dot\varepsilon_{\text{lab}})\) and report the band as uncertainty on the macroscopic prediction.
+
 ### Step 3 — Polycrystal FEM of the wire (DAMASK + mesh)
 
 **Mesh:** 1 mm length, axisymmetric or 3D hex mesh (Part IV); 8–32 grains from EBSD orientation map, or synthetic Voronoi polycrystal with drawing fiber texture.
@@ -230,6 +257,29 @@ Cost scales with `(# active Gauss points) × (DDD timesteps per macro step)`. Fo
 
 When all gates pass, the drawn copper wire story closes at the mesoscale: dislocation statistics become internal state variables on the same mesh Part IV taught us to assemble.
 
+## Lab act: archive the OpenDiS → DAMASK → FEM handoff (Act IV–V)
+
+**Act IV** hardening and **Act V** notch concentration both consume parameters that Part VII exports from dislocation statistics. This Lab act is the **folder discipline** — one git commit that lets a colleague reproduce the load cell curve without rerunning every scale.
+
+Create a handoff bundle for the drawn copper wire notch specimen:
+
+| File | Minimum contents | Downstream consumer |
+|------|------------------|---------------------|
+| `opendis.restart` | Final link-length distribution, forest density \(\rho\) | Taylor hardening input |
+| `mobility.yaml` | \(M(\tau, T=300\,\text{K})\) from NVT shear (Part VIII) | OpenDiS segment law |
+| `damask.yaml` | `h_0`, `g_sat`, initial CRSS per slip system from DDD averages | Crystal plasticity FEM |
+| `fem.inp` | Polycrystal RVE mesh, grain orientations (EBSD or synthetic) | Abaqus/DAMASK driver |
+| `units.txt` | Pa, m, s; Burgers vector \(b = 2.56 \times 10^{-10}\,\text{m}\) for Cu | Prevents silent unit bugs |
+
+**Verification loop** (matches the checklist above):
+
+1. Run OpenDiS to fixed strain \(\bar\varepsilon = 0.02\); export \(\bar\tau(\dot\varepsilon)\) and \(\rho\).
+2. Fit Taylor law \(\tau = \alpha \mu b \sqrt{\rho}\) with \(\alpha \approx 0.3\); compare to DAMASK initial hardening rate.
+3. Run polycrystal FEM with exported yaml; compare force–displacement to the **Act IV** load cell trace within 10%.
+4. If FE² is needed at the notch root, mark Gauss points within 50 µm as DDD-active and repeat only there.
+
+When the archived bundle reproduces the hardening knee without refitting \(H\) by hand, the mesoscale chapter has done its job — statistics became internal state variables on Part IV's mesh. If step 3 fails while step 1 passes, the fault is almost always **texture** (wrong grain orientations) or **elastic mismatch** (\(\mu, \nu\) inconsistent between OpenDiS and FEM), not insufficient mesh refinement.
+
 ## Concept map checkpoint (Part VII)
 
 Part VII followed the Defects Notes from taxonomy through crystal plasticity handoff. The four questions summarize the mesoscale arc:
@@ -262,13 +312,6 @@ Crystal plasticity and calibrated DDD close the mesoscale chapter: they explain 
 | FE² at notches when homogenization fails | Bond breaking and chemistry (e.g. surface oxidation) |
 
 Return to the [prologue](../../prologue/00-many-scales.md): **Act IV** hardening and **Act V** notch stress concentration both lean on parameters whose **ink** is atomic — the same copper lattice Part VIII will traverse with Newton's equations and empirical or *ab initio* potentials. Part IX follows when even EAM parameters need first-principles validation of formation energies and band structure.
-
-| Prologue act | Mesoscale export (Part VII) | Atomistic resolution (Part VIII) |
-|--------------|----------------------------|----------------------------------|
-| IV — Hardening | Taylor \(\tau(\rho)\) from DDD link statistics | Stacking-fault energy from slab pulls |
-| V — Notch | FE² when polycrystal homogenization fails | Core structure and bond breaking at the tip |
-| VI — Foundation | Mobility \(M(\tau,T)\) yaml tables | NVT shear tests; phonon drag from trajectories |
-| III — Pulling (audit) | Elastic constants unchanged at mesoscale | EAM fit validated against DFT \(C_{ij}\) |
 
 The wire's strength is a story written in dislocation lines; the lines borrow their mobility from phonons and cores the mesoscale cannot resolve. [VIII.1](../part08-md/01-potentials-phase-space.md) begins with interatomic potentials and phase space — the next rung down on the ladder, same specimen, stricter export contract.
 

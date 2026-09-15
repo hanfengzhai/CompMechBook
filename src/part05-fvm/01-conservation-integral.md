@@ -1,20 +1,8 @@
 # Integral Forms of Conservation Laws
 
-[IV.5](../fem/chapters/05-convergence.md) closed Part IV with Céa's lemma — proof that the Galerkin mesh converges to the weak solution Part II promised — and offered **Door A** to this part: when the thermocouple climbs and Robin fluxes at the wire surface feel like placeholders, the surrounding air needs its own discretization. Part IV meshed conduction **inside** the solid; Part V begins **outside** it, with a different philosophy that respects the same physics.
-
 Where FEM whispers "multiply by a test function and integrate by parts," FVM declares "integrate the conservation law over a control volume and balance fluxes." Both respect the same physics; the bookkeeping differs. Part III wrote PDEs in strong form; Part IV discretized elliptic operators with trial functions. Part V begins with the form that hyperbolic and conservation-law physics prefer: **integral balance** on control volumes.
 
 The copper wire reappears in a different guise. Solid mechanics on the wire still favors FEM, but imagine air cooling the heated specimen, or a shock tube test validating a CFD code before it simulates that cooling jet. Those flows are governed by conservation of mass, momentum, and energy — laws that make sense even when the pointwise PDE breaks down at shocks.
-
-## Story so far (Parts I–IV)
-
-| Stage | What the wire became | Key object |
-|-------|----------------------|------------|
-| Parts I–III | Weak forms; \(H^1\) fields; strong-form PDEs | Elliptic operators on the solid |
-| Part IV | Galerkin assembly; \(\mathbf{K}\mathbf{U}=\mathbf{F}\); Céa convergence | FEM inside the copper wire |
-| **V.1 (here)** | Integral balance on control volumes | Conservation contract for the fluid side |
-
-Part IV meshed conduction **inside** the solid; this chapter states the **conservation contract** for the air **outside** it — what enters a control volume must equal what leaves plus what accumulates. The [prologue](../../prologue/00-many-scales.md) **Act II — Warming** showed the wire surface running hot; conjugate heat transfer in [V.4](04-navier-stokes-cfd.md) will handshake FEM temperature fields with FVM enthalpy fluxes named here.
 
 ## Scene: air leaving the wire
 
@@ -185,6 +173,39 @@ In 2D, control volumes are polygonal cells; in 3D, polyhedral cells (hexes, tets
 
 where the sum is over faces \(f\) with area \(A_f\) and outward normal. Unstructured FVM stores face–cell connectivity and face normals; the 1D flux-difference logic is unchanged — only geometry bookkeeping grows. A triangular mesh around the copper wire in cross-flow uses the same conservation statement as the 1D shock tube, with face fluxes computed along each edge normal.
 
+## Lab act: global heat balance on a 1D wire segment (Act II side channel)
+
+**Act II** heats the copper wire; conduction inside the solid (Part IV) must **balance** with convection at the surface (Part V). Before building a 3D CFD mesh, verify the **integral conservation contract** on a 1D slab:
+
+Steady energy balance on control volume \([x_{i-1/2}, x_{i+1/2}]\):
+
+\[
+q_{i-1/2} - q_{i+1/2} + \int_{x_{i-1/2}}^{x_{i+1/2}} \dot{q}_{\text{Joule}}\, dx = 0
+\]
+
+| Face flux | Physical meaning on the wire |
+|-----------|------------------------------|
+| \(q_{i-1/2}\) | Heat leaving left face (W/m² in 1D flux form) |
+| \(q_{i+1/2}\) | Heat entering right face |
+| Source integral | Joule heating \(\dot{q} = \sigma |J|^2\) from Act II current |
+
+Discretize three cells with uniform \(h\), constant \(k\), and known interior source. Sum the three cell balances: **interior face fluxes cancel**, leaving global balance \(q_{\text{in}} - q_{\text{out}} + Q_{\text{total}} = 0\). This is discrete conservation — the property FVM guarantees but Galerkin does not automatically enforce for hyperbolic fluxes.
+
+When a conjugate heat-transfer run in [V.4](04-navier-stokes-cfd.md) couples FEM temperature to FVM fluid, this 1D check is the sanity test: if global energy is not conserved at the discrete level, the handshake at the wire surface is broken before Navier–Stokes enters the story.
+
+## Concept map checkpoint (integral conservation)
+
+This chapter is where Part III's variational forms meet their **conservation-first** counterpart. Before 1D FVM implements the update loop, summarize what the integral form established:
+
+| Question | Part V answer (copper wire) |
+|----------|-----------------------------|
+| What **object**? | Cell average \(U_i\); face flux \(F_{i+1/2}\); source integral |
+| What **structure**? | Control volume \(\Omega_i\); divergence theorem on fluxes |
+| What **theorem**? | Discrete global conservation: interior face fluxes cancel in sum |
+| What **breaks**? | Galerkin drift for hyperbolic fluxes; non-conservative splitting schemes |
+
+The three-cell heat-balance Lab act verified that Joule heating and face fluxes sum to global balance — the contract conjugate heat transfer in [V.4](04-navier-stokes-cfd.md) must honor at the wire surface. Part IV minimizes energy on trial spaces; FVM **balances fluxes** on volumes.
+
 ## Bridge
 
 Discretizing the integral form on a 1D grid yields the classic FVM update: cell averages change by net flux through faces. The next chapter writes that algorithm explicitly — semi-discrete form, time stepping, CFL stability, and the conservative property that makes global balances exact on any mesh.
@@ -198,27 +219,4 @@ Discretizing the integral form on a 1D grid yields the classic FVM update: cell 
 
 Return to the prologue's **Act II — Warming**: current switched on, the wire surface runs hot, and air carries heat away by convection. Part IV computed conduction inside the solid from weak forms; this chapter states the **conservation contract** for the fluid side — what enters a control volume must equal what leaves plus what accumulates. [V.2](02-fvm-1d.md) is where that contract becomes an update loop the conjugate heat-transfer scene in [V.4](04-navier-stokes-cfd.md) will handshake with FEM temperature fields.
 
-Part III's weak forms minimized energy on trial spaces; FVM **balances fluxes** on control volumes — the discretization philosophy Part IV's elliptic FEM does not automatically guarantee for advection.
-
-| Prologue act | Conservation object on the wire | FEM partner at the interface | Proof style |
-|--------------|--------------------------------|------------------------------|-------------|
-| II — Warming | Enthalpy flux from air to wire surface | FEM Robin BC / wall temperature handshake | Céa energy norm (Part IV) + exact flux balance (Part V) |
-| III — Pulling (preview) | Momentum flux in cooling jet | Solid traction BC from Part IV | Shared \(\boldsymbol{\sigma}\mathbf{n}\) in Part VI |
-| V — Notch (preview) | Shock-capturing if flow separates | Stress concentrator in solid mesh | Limiters + CFL, not finer \(\Delta x\) alone |
-| VI — Foundation (preview) | Same integral contract from shock tubes to CFD | Shared \(\boldsymbol{\sigma}\mathbf{n}\) language in Part VI | Conservation as multiscale handshake habit |
-
-| Part IV FEM artifact | Part V FVM counterpart | Interface handshake |
-|---------------------|------------------------|---------------------|
-| Nodal temperature \(T_i\) | Cell-average enthalpy \(\bar{h}_j\) | Wall Robin BC / flux matching |
-| \(\mathbf{K}_T \mathbf{T}=\mathbf{q}\) | Face flux sum \(\sum_f F_f A_f\) | Conjugate heat transfer loop |
-| Energy norm convergence (Céa) | Discrete conservation + CFL stability | Same wire, complementary proofs |
-
-Part I's **local coupling** reappears on a different stencil: face fluxes play the role of off-diagonal entries in \(\mathbf{K}\), but the contract is integral balance rather than energy minimization. [I.3](../part01-linear-algebra/03-eigenvalues.md) linked mesh eigenvalues to natural frequencies; here the eigenvalues of the flux Jacobian set the CFL timestep for explicit cooling-air updates around the wire — the same spectral habit on a hyperbolic operator.
-
-| Part I habit | FVM expression on the wire | Why Act II needs both Parts IV and V |
-|--------------|---------------------------|--------------------------------------|
-| Sparsity from neighbor coupling | Face flux depends only on adjacent cells | Solid conduction (FEM) + air transport (FVM) |
-| Eigenvalues of discrete operator | Wave speeds at cell interfaces | Stable \(\Delta t\) for transient conjugate heat transfer |
-| Global balance \(\mathbf{1}^T\mathbf{K}\mathbf{u}=\mathbf{1}^T\mathbf{f}\) | Exact sum of cell updates = domain sources | Wall flux matches Robin BC from Part IV |
-
-Turn the page when the integral balance is clear but no cell-averaged update exists yet — that is the signal that conservation wants a mesh of volumes, not a mesh of trial functions.
+Part III's weak forms minimized energy on trial spaces; FVM **balances fluxes** on control volumes — the discretization philosophy Part IV's elliptic FEM does not automatically guarantee for advection. Turn the page when the integral balance is clear but no cell-averaged update exists yet — that is the signal that conservation wants a mesh of volumes, not a mesh of trial functions.

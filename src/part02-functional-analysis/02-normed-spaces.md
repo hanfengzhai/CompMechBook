@@ -4,16 +4,6 @@ When the copper wire heats under current, we may ask how far its temperature fie
 
 We begin with metric spaces, because convergence is fundamentally about distance. Norms are the most important way mechanics assigns distance, but not the only one.
 
-## Story so far (Parts I–II.1)
-
-| Stage | Vocabulary | Wire instance |
-|-------|------------|---------------|
-| Part I | \(\mathbf{K}\mathbf{u}=\mathbf{f}\); eigenmodes; \(N\to\infty\) | Spring chain → fields \(u(x)\), \(T(x)\) |
-| [II.1](01-motivation.md) | Weak-form pipeline; Galerkin as projection | Mesh refines forever; corners break \(C^2\) |
-| **II.2 (here)** | Norms, completeness, Banach hierarchy | Rulers for thermal and elastic FEM convergence |
-
-[II.1](01-motivation.md) named the **limit problem** — the boundary value problem behind every mesh — and showed why classical smoothness fails at the grip corner. This chapter supplies the **rulers** that judge whether discrete solutions approach that limit: \(\|T\|_{H^1}\) for thermal gradients, energy norms for displacement, completeness so Cauchy sequences of mesh solutions stay inside the admissible class. [II.3](03-hilbert-spaces.md) will add inner-product geometry and prove Galerkin optimality in those norms.
-
 ## Scene: how wrong is "wrong enough"?
 
 Two temperature fields along the heated wire can disagree by at most 0.1 K everywhere, or agree on average yet differ by 5 K at the clamp. Those are different notions of "close" — sup norm versus \(L^2\). When the engineer asks whether the thermal FEM is converged, the answer depends on which ruler we use. Normed spaces name those rulers and let mesh-refinement arguments conclude in the norm the physics actually cares about.
@@ -201,6 +191,43 @@ When \(k\) is bounded above and below by positive constants, \(\|\cdot\|_a\) is 
 
 **Maximum principle and \(L^\infty\).** Elliptic maximum principles bound \(\|u\|_{L^\infty}\) by boundary data and source terms for classical solutions. Weak solutions in \(H^1\) do not automatically lie in \(L^\infty\) in high dimension — another instance where the chosen norm encodes what we can guarantee. For the wire in one space dimension, \(H^1(0,L) \hookrightarrow L^\infty(0,L)\), so pointwise values along the specimen are well-defined without extra regularity.
 
+## Lab act: compare energy norms on a hat function (Act III prelude)
+
+**Act III** in the lab will ramp grip displacement and record force on the load cell. Before that ramp, Part II must answer a quieter question: *when two meshes disagree slightly, which norm tells us they disagree?* The answer is not "maximum nodal difference" alone — it is the **energy norm** tied to the bilinear form the wire obeys.
+
+Take the 1D bar from [I.1](../part01-linear-algebra/01-vectors-matrices.md) with \(L = 1\,\text{m}\), fixed left end, and a **hat function** trial displacement on a uniform mesh with spacing \(h\):
+
+\[
+u_h(x) = \begin{cases} x/h & 0 \le x \le h \\ 1 & h \le x \le L \end{cases}
+\]
+
+(Dirichlet \(u(0)=0\), \(u(L)=1\) enforced at nodes; the kink at \(x=h\) is the whole point.)
+
+| Quantity | Formula on one element | What it measures |
+|----------|------------------------|------------------|
+| \(\|u_h\|_{L^2}^2\) | \(\int_0^L u_h^2 \, dx\) | Mean-square displacement — smooth-looking error |
+| \(\|u_h\|_{H^1}^2\) | \(\int_0^L (u_h')^2 \, dx + \|u_h\|_{L^2}^2\) | Strain energy plus \(L^2\) content |
+| \(\|u_h'\|_{L^2}^2\) | Spike \(\sim 1/h\) at the kink | **Dominates** as \(h \to 0\) — the norm sees the corner |
+
+Compute \(\|u_h'\|_{L^2}^2 \approx 1/h\) from the slope jump: one element carries gradient \(1/h\), width \(h\), so the integral of \((u')^2\) is \(\mathcal{O}(1/h)\). Refining the mesh **without** smoothing the kink does not drive the energy norm to zero — completeness in \(H^1\) guarantees a limit exists, but a sequence of kinky hats is not Cauchy in the **energy** norm unless the kink moves toward a smooth target.
+
+In Python or a spreadsheet, plot \(\|u_h\|_{L^2}\) and \(\|u_h'\|_{L^2}\) versus \(h\) for three mesh sizes (\(h = 0.25, 0.1, 0.05\,\text{m}\)). The \(L^2\) norm changes slowly; the \(H^1\) seminorm blows up as the kink sharpens. That is the numerical face of "classical \(C^2\) smoothness fails at corners" from [II.1](01-motivation.md) — and the reason Act III's linear elastic climb is trustworthy only after weak forms (Part III) replace pointwise derivatives with norms that measure strain, not just nodal values.
+
+When the operator later reads a converged FEM log reporting "energy error," this table is what the code is counting.
+
+## Concept map checkpoint (normed spaces)
+
+Norms are the rulers that make convergence honest. Before Hilbert geometry adds angles, summarize:
+
+| Question | Normed-space answer (copper wire) |
+|----------|-----------------------------------|
+| What **object**? | Functions measured by \(L^2\), \(H^1\), or energy norm \(\|\cdot\|_a\) |
+| What **structure**? | Complete metric spaces (Banach); equivalent norms |
+| What **theorem**? | Cauchy sequences converge inside the space; Banach fixed point for coupled iterations |
+| What **breaks**? | Judging error by nodal max alone; kinks invisible to \(L^2\) but loud in \(H^1\) |
+
+The hat-function Lab act is the numerical face of "corners break classical smoothness": \(\|u_h'\|_{L^2}\) spikes at a kink even when nodal values look reasonable.
+
 ## Bridge
 
 Norms measure size; inner products measure angle and projection. When the norm comes from an inner product via \(\|u\| = \sqrt{(u,u)}\), geometry enters: orthogonality, best approximation, Riesz representation. **Hilbert spaces** — complete inner-product spaces — are where Galerkin orthogonality and energy minimization become rigorous.
@@ -212,17 +239,4 @@ Norms measure size; inner products measure angle and projection. When the norm c
 | Banach completeness: limits stay inside the space | Best approximation: FEM error is projection error in energy norm |
 | \(L^2\) for temperature; energy norm for displacement | Céa's lemma preview: discrete solution is optimal in \(V_h\) |
 
-Part I diagonalized \(\mathbf{K}\) by finding orthogonal eigenvectors in \(\mathbb{R}^N\). The copper wire's vibration modes in the limit are the same idea — but orthogonality is now \((u_i, u_j) = 0\) in \(H^1\), not \(\mathbf{u}_i^T \mathbf{u}_j = 0\). The next chapter develops that geometry and connects it directly to the finite element method through best approximation and Céa's lemma.
-
-Return to the [prologue](../../prologue/00-many-scales.md): **Act II — Warming** asks which norm judges whether the thermal FEM has converged; **Act III — Pulling** asks which energy norm judges whether the displacement field is close enough for the load cell to trust. This chapter named both rulers; [II.3](03-hilbert-spaces.md) will prove that Galerkin projection is optimal in the energy norm those rulers define.
-
-| Prologue act | Norm question on the wire | What completeness guarantees |
-|--------------|---------------------------|------------------------------|
-| II — Warming | \(\|T\|_{H^1}\) vs. \(\|T\|_{L^2}\) for thermal FEM | Refined meshes converge to a field, not a longer vector |
-| III — Pulling | Energy norm \(\|u\|_{H^1}\) for displacement | Cauchy sequences of mesh solutions stay in \(H^1\) |
-| I — Mounting | Equivalent norms on the same spring chain | Same physics, different error constants — not different limits |
-| VI — Foundation (preview) | Phonon DOS lives in \(L^2\)-type spaces | Atomic vibration limits have a Banach/Hilbert target |
-
-Part I's eigenvalues governed spring-chain stability; Part V will show that **face flux Jacobians** have eigenvalues that set the CFL timestep for explicit updates on the air cooling the wire. The norm language in this chapter — measuring size, comparing equivalent rulers, demanding completeness — is what makes both convergence stories honest: mesh refinement in Parts III–IV and cell refinement in Part V both need a well-defined limit object, not a longer finite vector.
-
-Turn the page when you are ready to see why "Galerkin is projection" is a theorem, not a slogan.
+Part I diagonalized \(\mathbf{K}\) by finding orthogonal eigenvectors in \(\mathbb{R}^N\). The copper wire's vibration modes in the limit are the same idea — but orthogonality is now \((u_i, u_j) = 0\) in \(H^1\), not \(\mathbf{u}_i^T \mathbf{u}_j = 0\). The next chapter develops that geometry and connects it directly to the finite element method through best approximation and Céa's lemma. Turn the page when you are ready to see why "Galerkin is projection" is a theorem, not a slogan.

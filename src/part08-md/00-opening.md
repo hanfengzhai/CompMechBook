@@ -6,6 +6,16 @@ Molecular dynamics is the workhorse of atomistic materials mechanics. It supplie
 
 Three chapters cover potentials and phase space, ensembles and integrators, then ab initio MD, coarse-graining, and potential fitting. The layout follows the **MD Notes** in [`writings/md/`](../../writings/md/): numbered chapters with **Bridge** sections and explicit upward links to DDD (Part VII) and DFT (Part IX).
 
+## Chapter guide
+
+| Chapter | Wire story beat | Core object | Handoff |
+|---------|-----------------|-------------|---------|
+| [VIII.1](01-potentials-phase-space.md) | Copper lattice as \(N\) interacting particles | Lennard-Jones, EAM, periodic boundaries, cutoff | Thermostats and timestep → integrators in VIII.2 |
+| [VIII.2](02-ensembles-integrators.md) | NVT equilibration; NPT elastic response | Verlet, Nose–Hoover, stress–strain from MD | Potential fitting and AIMD → coarse-graining in VIII.3 |
+| [VIII.3](03-ab-initio-and-coarse-graining.md) | EAM fit exports \(\gamma_{\text{sf}}\), \(E_{\text{coh}}\) | LAMMPS workflows, DeepMD, handoff tables | [Bridge to Part IX](03-ab-initio-and-coarse-graining.md#bridge-to-part-ix) |
+
+Read in order. Each chapter ends with a **Bridge** that states why the next chapter must exist; running MD without understanding ensembles is energy drift disguised as physics; fitting EAM without DFT anchors is multiscale folklore.
+
 ## Scene
 
 Part VII ended with dislocation lines gliding through a polycrystal, exporting hardening laws and link statistics to crystal plasticity FEM. That picture is still **coarse-grained**: the dislocation core is a line singularity regularized by a cutoff radius; mobility tables are fit from experiments or atomistic snapshots, not derived from first principles.
@@ -47,6 +57,30 @@ flowchart LR
 ```
 
 **Baby picture:** write Newton's equations for nuclei on a potential surface, choose an ensemble (NVT, NPT), integrate with a stable timestep, then fit EAM parameters and export moduli to continuum models. The copper lattice vibrates here; DDD mobility and FEM stiffness inherit the averages.
+
+## How Part VIII connects to Parts II–IX
+
+Part VIII is the **finest discrete scale** before electrons enter explicitly. Like Part II's contract for FEM, each export upward must name its consumer and its audit downward:
+
+| Part VIII chapter | Structure or theorem | Where it reappears |
+|-------------------|---------------------|-------------------|
+| VIII.1 Potentials | Hamiltonian on BO surface; EAM cutoff | Part VII core width; Part IX \(E_{\text{coh}}\) audit |
+| VIII.2 Ensembles | Symplectic Verlet; NVT/NPT sampling | Part VI thermal expansion; Part V boundary \(T\) |
+| VIII.3 Coarse-graining | Handoff tables; EAM-fit acceptance | Part IV \(\mathbb{C}\); Part VII \(M(\tau,T)\), \(\gamma_{\text{sf}}\) |
+
+**Mathematical lineage (Part I → Part VIII).** Part I's \(\mathbf{K}\mathbf{u}=\mathbf{f}\) becomes dynamic Newton's laws: forces from \(\nabla V\), equilibrium from \(\nabla V = 0\), normal modes from the Hessian eigensystem. Part II's completeness instinct reappears as **RVE convergence** — halving the simulation cell and checking \(a_0\), \(\kappa\), or \(\gamma_{\text{sf}}\) is the atomistic mesh-refinement study. Part IV's scatter loop is the static limit; velocity Verlet is the same sparsity pattern executed \(10^7\) times per nanosecond of physical time.
+
+**Scale-boundary discipline.** Every quantity MD exports must carry a pedigree row in the foundation folder (see [Act VI in the sources appendix](../appendix/sources.md#six-acts--parts-laboratory-time)):
+
+| Export | Minimum MD evidence | Downstream consumer |
+|--------|---------------------|---------------------|
+| \(a_0\), \(E_{\text{coh}}\) | Minimized bulk cell; pressure \(\approx 0\) | EAM sanity; Burgers \(b = a_0/\sqrt{2}\) for DDD |
+| \(\mathbb{C}_{ij}\) or \(E, \nu\) | NPT small-strain response | Part IV elastic step; Part VI.3 handshake |
+| \(\gamma_{\text{sf}}\) | Generalized stacking-fault slab | Part VII partial separation; Peierls stress |
+| \(\kappa(T)\) | Green–Kubo or NEMD | Part III/V thermal fields on heated wire |
+| \(M(\tau, T)\) | NVT shear on dislocation core | OpenDiS mobility tables |
+
+If a row lists only "Mishin EAM, 2001" with no phonon or DFT cross-check, Part IX is the audit chapter — the same role Part II played when Part I's stiffness matrix needed an \(H^1\) limit. Linear readers arrive here after DDD; workflow readers may have run EAM fits before OpenDiS — both paths converge when the handoff table is populated before the epilogue's multiscale afternoon.
 
 ## Representative schematics (Atomistic Modeling Notes)
 
@@ -102,6 +136,18 @@ Part I's coupled springs become Part VIII's coupled nuclei on a potential surfac
 ## Lab act: V–VI — Notch and offline foundation
 
 **Act V** is the optional scratch or grip corner where continuum fields predict *where* stress concentrates but cannot resolve bond breaking — MD's representative volume lives here. **Act VI** is the prequel every practitioner runs offline: EAM parameters, mobility tables, and elastic constants that Part VII and Part IV consume without re-deriving them each run. Part VIII connects both acts: atomistic trajectories at the notch tip and potential fitting that feeds the whole ladder upward.
+
+### What you should be able to do after Part VIII
+
+Each chapter adds one move to the atomistic workflow that supplies numbers the mesoscale and continuum codes trust:
+
+| After chapter | Skill on the copper wire | Minimal artifact |
+|---------------|--------------------------|------------------|
+| VIII.1 | Write Hamiltonian for N atoms; state phase-space dimension | \(H = \sum_i \|\mathbf{p}_i\|^2/(2m_i) + V(\{\mathbf{r}_i\})\); \(6N\) DOFs |
+| VIII.2 | Choose NVT ensemble; implement velocity-Verlet; estimate \(\Delta t\) | Energy drift \(< 10^{-4}\) over 10 ps; \(\Delta t \sim 1\,\text{fs}\) for Cu |
+| VIII.3 | Fit EAM to bulk properties; coarse-grain to export moduli upward | \(a_0\), \(E\), \(\gamma_{\text{sf}}\) from a 500-atom fcc box |
+
+None of these require a full ab initio MD production run — but each one is the atomistic audit Part IX will derive from first principles. If you can integrate Newton's equations with a thermostat, read a LAMMPS log for temperature and pressure, and explain what an EAM potential assumes about electron density, you have the finest discrete scale before Kohn–Sham replaces the potential with orbitals.
 
 ## Bridge
 

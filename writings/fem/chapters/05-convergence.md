@@ -4,16 +4,6 @@ A finite element mesh of the copper wire can look impressively fine — thousand
 
 This chapter connects Part I's discrete norms, Part II's function-space error analysis, and Part IV's implementation choices (\(h\), \(p\), element type) into a coherent refinement strategy.
 
-## Story so far (Prologue & Parts I–IV)
-
-| Stage | What the wire became | Key object |
-|-------|----------------------|------------|
-| Parts I–II | Norms on vectors and fields; Galerkin best approximation | \(\|u-u_h\|_a\); Céa's lemma preview |
-| [IV.1–IV.4](01-weighted-residuals.md) | Full FEM pipeline: residual → assembly → elasticity | \(\mathbf{K}\mathbf{U}=\mathbf{F}\) on the wire mesh |
-| **IV.5 (here)** | Refinement strategy with a certificate | Error norms; expected \(O(h^p)\) decay |
-
-A fine mesh with pretty contours is not verification. This chapter closes Part IV by answering the question every computational mechanician must ask before trusting **Act III — Pulling**: if I refine \(h\), does error fall at a predictable rate? Part II's Céa's lemma and Part III's Sobolev regularity supply the theory; this chapter connects them to element choice and boundary modeling on the copper wire.
-
 ## Scene: finer mesh, same answer?
 
 The analyst refines the wire mesh once, twice, five times — stress contour colors shift, peak values creep downward, then stabilize. Is the solution converged, or merely pretty? Without a norm and an expected decay rate, refinement is guesswork dressed as diligence. This chapter gives the wire plot a certificate: in the energy norm, error should fall like \(h^p\), and when it does not, the element type or boundary model — not the solver — is suspect.
@@ -168,6 +158,121 @@ Engineers often care not about \(\|u - u_h\|_{H^1}\) but about a **quantity of i
 
 This adjoint viewpoint connects FEM error analysis to design optimization and sensitivity analysis: the same dual problem that estimates error also supplies gradients for shape optimization.
 
+## Dynamic FEM: modal cross-links from Part I through Part II
+
+Static equilibrium \(\mathbf{K}\mathbf{U}=\mathbf{F}\) dominated Part IV so far — the copper wire under tension and Joule heating. **Dynamic FEM** adds the mass matrix \(\mathbf{M}\) and the same eigenvalue problem Part I.3 solved on the spring chain:
+
+\[
+\mathbf{K}\boldsymbol{\phi}_n = \omega_n^2 \mathbf{M}\boldsymbol{\phi}_n.
+\]
+
+Each discrete mode \(\boldsymbol{\phi}_n\) oscillates at angular frequency \(\omega_n\); modal superposition decouples the dynamics exactly as Part I promised for the tapped wire.
+
+### The cross-scale modal pipeline
+
+| Stage | Location | Object | Theorem / habit |
+|-------|----------|--------|-----------------|
+| Discrete modes | [I.3](../part01-linear-algebra/03-eigenvalues.md) | \(\mathbf{K}\), \(\mathbf{M}\), \(\omega_n\), \(\boldsymbol{\phi}_n\) | Spectral theorem (finite); modal decoupling |
+| Limit \(N \to \infty\) | [I.4](../part01-linear-algebra/04-toward-infinity.md) | \(\sin(n\pi x/L)\) as continuum eigenfunctions | Fourier modes = Laplacian eigenvectors |
+| Operator spectrum | [II.5](../part02-functional-analysis/05-spectral-theorem.md) | Compact self-adjoint \(A\); Rayleigh quotient | Galerkin eigenvalues converge to continuous spectrum |
+| Assembly | [IV.2](../part04-fem/02-galerkin-assembly.md) | Same scatter for \(\mathbf{K}\) and \(\mathbf{M}\) | \(M_{ij} = \int \phi_i \phi_j\, d\Omega\) |
+| Convergence | This chapter | \(\|\omega_{n,h} - \omega_n\|\) as \(h \to 0\) | Same Céa / approximation theory on \(H^1\) |
+
+The copper wire's **first bending mode** in a grip fixture — the frequency that fatigue analysis cares about — is not a separate topic from static FEM. It is the **same mesh**, the same shape functions, and a second matrix assembled with one different integrand.
+
+### Undamped modal FEM
+
+For undamped free vibration, expand displacement in modal coordinates:
+
+\[
+\mathbf{U}(t) = \sum_n q_n(t)\,\boldsymbol{\phi}_n.
+\]
+
+Orthogonality of modes with respect to \(\mathbf{K}\) and \(\mathbf{M}\) gives decoupled scalar oscillators:
+
+\[
+\ddot{q}_n + \omega_n^2 q_n = 0, \qquad q_n(t) = A_n\cos(\omega_n t) + B_n\sin(\omega_n t).
+\]
+
+**Rayleigh–Ritz eigenvalue problem.** Part II.5 showed that minimizing the Rayleigh quotient over \(V_h\) recovers discrete eigenvalues. Assembly computes
+
+\[
+\mathbf{K}\boldsymbol{\Phi} = \lambda \mathbf{M}\boldsymbol{\Phi}, \qquad \lambda = \omega^2,
+\]
+
+with the same \(\mathbf{K}\) from static elasticity and \(\mathbf{M}\) from the transient heat section of [IV.2](../part04-fem/02-galerkin-assembly.md). Part III's energy methods and Part IV's Galerkin assembly are therefore the **static and spectral faces of one projector** — exactly the Functional Analysis Notes roadmap from operators to weak PDE/FEM.
+
+### Damped and forced dynamics on the wire
+
+Real grip fixtures add damping (friction, polymer pads) and harmonic forcing (vibration shaker). **Rayleigh damping** \(\mathbf{C} = \alpha_R \mathbf{M} + \beta_R \mathbf{K}\) keeps modal decoupling approximate. Forced response at frequency \(\omega\):
+
+\[
+(\mathbf{K} - \omega^2 \mathbf{M} + i\omega\mathbf{C})\mathbf{U} = \mathbf{F},
+\]
+
+or, in modal coordinates with modal damping \(\zeta_n\), each mode satisfies
+
+\[
+\ddot{q}_n + 2\zeta_n \omega_n \dot{q}_n + \omega_n^2 q_n = \frac{\boldsymbol{\phi}_n^T \mathbf{F}}{m_n}.
+\]
+
+**Resonance warning.** If a shaker hits \(\omega \approx \omega_n\), displacement amplifies by \(\sim 1/(2\zeta_n)\) — the discrete analogue of Part I.3's Lab act on the spring chain. Mesh refinement must converge **eigenvalues** as well as static displacement: halving \(h\) shifts \(\omega_n\) toward the continuum limit the same way Céa's lemma bounds static error.
+
+| Quantity | Static FEM (Act III) | Dynamic FEM (same mesh) |
+|----------|----------------------|-------------------------|
+| Primary unknown | \(\mathbf{U}\) (equilibrium) | \(\mathbf{U}(t)\) or modal \(q_n(t)\) |
+| Primary matrix | \(\mathbf{K}\) | \(\mathbf{K}\), \(\mathbf{M}\) (and \(\mathbf{C}\) if damped) |
+| Convergence target | \(\|u - u_h\|_{H^1}\) | \(\|\omega_{n,h} - \omega_n\|\) for tracked modes |
+| Part I link | \(\mathbf{K}\mathbf{u}=\mathbf{f}\) | \(\mathbf{K}\mathbf{v} = \omega^2 \mathbf{M}\mathbf{v}\) |
+| Part II link | Lax–Milgram / Céa | Spectral theorem; Rayleigh–Ritz convergence |
+
+### Thermal load in modal coordinates (Handshake 3 preview)
+
+Act II's blocked thermal expansion enters dynamics as a **static preload** plus optional transient heating. The thermal load vector \(\mathbf{f}_{\text{th}}\) projects onto mode \(n\) as
+
+\[
+f_{\text{th},n} = \boldsymbol{\phi}_n^T \mathbf{f}_{\text{th}}.
+\]
+
+Symmetric fixed–fixed modes carry the thermal reaction; antisymmetric modes do not ([I.3](../part01-linear-algebra/03-eigenvalues.md)). The epilogue's Handshake 3 sensitivity analysis uses the same projection when estimating load-cell readings — static and dynamic FEM share one modal basis.
+
+### Lab act: first three eigenfrequencies on the 1D copper bar
+
+Reuse the three-node bar from [IV.4](../part04-fem/04-poisson-to-elasticity.md): assemble \(\mathbf{K}\) (axial bar) and consistent lumped or consistent \(\mathbf{M}\). Solve the generalized eigenproblem; compare \(\omega_{1,h}\) to the continuum string estimate \(\omega_1 \approx \pi c / L\) with \(c = \sqrt{E/\rho}\).
+
+| Mesh (elements) | \(\omega_{1,h}\) (rad/s) | Relative error vs continuum |
+|-----------------|--------------------------|----------------------------|
+| 3 | record | \(O(1)\) — too coarse for modes |
+| 11 | record | decreasing |
+| 41 | record | \(< 2\%\) for first mode |
+
+Plot \(\omega_{n,h}\) versus \(h\) on log–log axes — the slope should match the \(H^1\) approximation rate for the same elements. If static displacement converges but \(\omega_1\) does not, check **mass matrix assembly** (consistent vs lumped) before refining further. This is the dynamic counterpart to the Act III grip refinement Lab act below.
+
+### Modal handshake expansion: static, dynamic, and multiscale (Handshake 4 preview)
+
+The epilogue's **Handshake 4** couples rate-dependent plasticity to the load-cell curve — but the same copper wire also **vibrates** when the grip fixture is tapped or when a harmonic shaker runs a fatigue screen. Static FEM (Act III) and dynamic FEM (this section) share one mesh and one modal basis; the handshakes below show how that basis propagates upward and downward.
+
+**Handshake 4a — Static preload → dynamic perturbation.** Act III's grip displacement \(\delta\) preloads the wire; Act II's thermal strain \(\varepsilon_{\text{th}} = \alpha \Delta T\) adds a second preload. In modal coordinates, each mode's equilibrium offset is
+
+\[
+q_n^{(0)} = \frac{\boldsymbol{\phi}_n^T (\mathbf{K}\boldsymbol{\delta} + \mathbf{f}_{\text{th}})}{\omega_n^2 m_n},
+\]
+
+and small-amplitude vibration about that offset satisfies \(\ddot{q}_n + \omega_n^2 q_n = 0\) with shifted center. The load cell reading in Act III is the **static** sum \(\sum_n q_n^{(0)} \boldsymbol{\phi}_n\); a tap on the fixture excites **dynamic** \(q_n(t)\) on top — same \(\boldsymbol{\phi}_n\), different physics.
+
+| Quantity | Static FEM (Act III) | Dynamic FEM (tap / shaker) | Shared object |
+|----------|----------------------|----------------------------|---------------|
+| Primary output | Tip force \(F = \mathbf{k}^T \mathbf{U}\) | Resonance peak at \(\omega \approx \omega_n\) | Modal basis \(\{\boldsymbol{\phi}_n\}\) |
+| Convergence target | \(\|u - u_h\|_{H^1}\) | \(\|\omega_{n,h} - \omega_n\|\) | Same mesh refinement |
+| Part I link | \(\mathbf{K}\mathbf{u}=\mathbf{f}\) | \(\mathbf{K}\boldsymbol{\phi}=\omega^2\mathbf{M}\boldsymbol{\phi}\) | Same \(\mathbf{K}\) assembly |
+| Part II link | Céa's lemma | Rayleigh–Ritz eigenvalue convergence | Same \(V_h \subset H^1\) |
+
+**Handshake 4b — Modal → rate plasticity (epilogue).** When Act IV turns on Perzyna viscoplasticity, the tangent stiffness \(\mathbf{K}_T\) shifts with strain rate — but the **mass matrix \(\mathbf{M}\)** and the first few eigenvectors often remain stable until necking localizes. Explicit dynamics with rate-dependent \(\mathbf{K}_T(\dot\varepsilon)\) uses the same Newmark integrator as linear dynamics; the modal decoupling is approximate once plasticity enters, but tracking \(\omega_1(t)\) during a tensile ramp flags **geometric softening** before the load cell drops.
+
+**Handshake 4c — FEM modes → MD phonons (Part VIII audit).** The continuum limit of the bar's first bending mode is a Laplacian eigenfunction ([I.4](../part01-linear-algebra/04-toward-infinity.md)). Part VIII's [phonon validation Lab act](../part08-md/02-ensembles-integrators.md#scale-boundary-handshake-phonons-from-dft-to-md-validation) compares DFT phonon frequencies to MD velocity-autocorrelation spectra. For a 1D wire mesh, plot \(\omega_{n,h}\) versus \(n\) alongside the MD acoustic branch — agreement within 10% at long wavelength confirms the elastic constants and mass density fed into \(\mathbf{K}\) and \(\mathbf{M}\) are consistent with the atomistic foundation.
+
+**Archive discipline.** Store `modal_eigenvalues.dat` (columns: \(n, \omega_{n,h}, h\)) beside the Act III static convergence table and the Act IV Perzyna increment log. The epilogue's multiscale afternoon asks whether static, dynamic, and rate-dependent solves share one pedigree — this file is the dynamic row in that audit.
+
 ## Software verification habits
 
 Before trusting a mesh for a design decision:
@@ -179,6 +284,20 @@ Before trusting a mesh for a design decision:
 
 These habits mirror verification protocols in the FEA teaching notes and align with ASME and NASA CFD verification guidelines extended to solids.
 
+## Lab act: \(h\)-refinement at the grip corner during Act III
+
+**Act III** records force versus displacement on the load cell. Before declaring the linear elastic segment trustworthy, run a **three-mesh convergence study** on the same tensile bar — the empirical face of Céa's lemma.
+
+| Mesh | Characteristic \(h\) | Tip displacement \(u_{\text{tip}}\) | Energy error indicator (if available) |
+|------|---------------------|-------------------------------------|---------------------------------------|
+| Coarse | \(L/5\) | record | — |
+| Medium | \(L/20\) | record | should move toward limit |
+| Fine | \(L/80\) | record | changes \(< 1\%\) → acceptable for Act III |
+
+Use P1 bar or axisymmetric solid elements with fixed grip displacement BC. Plot \(u_{\text{tip}}\) versus \(h\) on log–log axes; expect slope \(\approx 2\) in \(L^2\) quantities and \(\approx 1\) in energy norm for smooth problems. If the curve **does not stabilize**, check: (1) insufficient quadrature on curved grips, (2) locking in nearly incompressible models, (3) linear solver tolerance looser than discretization error.
+
+Refine locally at the grip corner if stress concentrations matter — but for Act III's **global** load cell reading, a uniform bar mesh often suffices once the three-row table plateaus. This is the verification habit the chapter advocates, tied to the prologue scene: the operator trusts the ramp when refining the mesh stops moving the answer in a predictable way.
+
 ## Concept map checkpoint (Part IV)
 
 Part IV followed the FEM Notes from weighted residuals through error estimates. The four questions close the discretization arc for elliptic solids:
@@ -187,8 +306,8 @@ Part IV followed the FEM Notes from weighted residuals through error estimates. 
 |----------|------------------------------|
 | What **object**? | Trial space \(V_h\), shape functions, assembled \(\mathbf{K}\) and \(\mathbf{f}\) |
 | What **structure**? | Galerkin orthogonality, isoparametric maps, \(h\)- and \(p\)-refinement |
-| What **theorem**? | Best approximation; Céa lemma; a priori convergence rates |
-| What **breaks**? | Locking, hourglass modes, pollution on distorted elements |
+| What **theorem**? | Best approximation; Céa lemma; a priori convergence rates; Rayleigh–Ritz modal convergence |
+| What **breaks**? | Locking, hourglass modes, pollution on distorted elements; inconsistent \(\mathbf{M}\) breaks eigenfrequencies |
 
 The pipeline from Part III is now complete:
 
@@ -200,24 +319,10 @@ The copper wire's tensile equilibrium, steady heating, and elastic step all occu
 
 ## Bridge: two doors from here
 
-Part IV answered *how* to discretize elliptic problems on meshes. Céa lemma and the convergence rates in this chapter are the numerical proof that Part II's function-space promise was honest: as \(h \to 0\), the discrete minimizer tracks the continuous one in the energy norm. Two natural continuations follow — and both converge on the same continuum vocabulary of Part VI before the book descends to dislocations, atoms, and electrons.
-
-| Door | Next part | Copper wire story beat | When to choose it |
-|------|-----------|------------------------|-------------------|
-| **A** | [Part V](../part05-fvm/00-opening.md) — conservation on cells | **Act II — Warming**: Joule heat in the solid (Part IV) meets convection in the air (Part V); conjugate heat transfer at the wall | Fluids, CFD, shocks, or the full wire-plus-air multiphysics arc |
-| **B** | [Part VI](../part06-continuum/00-opening.md) — continuum mechanics | **Act III — Pulling**: name \(\mathbf{F}\), \(\boldsymbol{\sigma}\), virtual work behind the load cell's linear elastic climb | Solid-dominated tension/bending first; return to Part V for cooling later |
+Part IV answered *how* to discretize elliptic problems on meshes. Two natural continuations follow — and both converge on the same continuum vocabulary of Part VI.
 
 **Door A — Part V (conservation on cells).** Fluids at high Reynolds number, shocks, and steep advection fronts favor a different philosophy from Galerkin trial functions: integrate conservation laws over control volumes and balance **fluxes** across faces. The finite volume method is that story — complementary to FEM, not competing with it. When the copper wire heats in air, Part V discretizes the cooling flow; Part IV discretizes conduction in the solid; a fixed-point loop at the wall couples them (conjugate heat transfer). Read Part V next if fluids and CFD are your immediate goal.
 
 **Door B — Part VI (continuum mechanics).** If your specimen is solid-dominated — tension, bending, thermal strain without resolving the surrounding fluid — you may skip Part V on first reading and go directly to Part VI. There we name the fields Part IV's code already approximates: deformation gradient, strain, Cauchy stress, virtual work. The stiffness matrix from Chapter 2 is the discrete shadow of a hyperelastic energy; convergence rates from this chapter justify trusting that shadow as \(h \to 0\).
 
-Return to the [prologue](../../prologue/00-many-scales.md): the six-act lab session was always one afternoon — mounting, warming, pulling, hardening, notch, foundation — even though the book teaches grammar before multiphysics and descent before audit. **Door A** keeps **Act II** honest (thermocouple climb needs air, not only a Robin coefficient). **Door B** keeps **Act III** honest (the load cell curve needs Cauchy stress, not only nodal \(\mathbf{U}\)). Either path is valid; Part V ends with its own bridge into Part VI; the [epilogue](../../epilogue/multiscale.md#lab-act-reunion-six-acts-one-afternoon) later reunites both doors in workflow time.
-
-| Part I (springs on the wire) | Part IV closing (meshed wire) | Door A (fluid) | Door B (continuum) |
-|------------------------------|-------------------------------|----------------|---------------------|
-| \(\mathbf{K}\mathbf{u}=\mathbf{f}\) at equilibrium | \(\mathbf{K}\mathbf{U}=\mathbf{F}\) with Céa justification | Face flux balances beside the same \(\mathbf{K}\mathbf{T}=\mathbf{q}\) | \(\boldsymbol{\sigma}\), \(\boldsymbol{\varepsilon}\) behind the same \(\mathbf{K}\) |
-| Mesh refinement sends \(N\to\infty\) | \(h\to 0\) error rates in energy norm | CFL + limiters on the air grid | Virtual work as force balance, not array exercise |
-
-What matters is not the order of Doors A and B, but that you eventually reach Part VI before Parts VII–IX — continuum stress and balance language is the shared floor under both FEM and FVM, and the mesoscale descent assumes you can name what the mesh already computed.
-
-Turn the page through **Door A** when the thermocouple climbs and Robin fluxes feel like placeholders; turn through **Door B** when the load cell reads force but \(\boldsymbol{\sigma}\) is still unnamed — both doors lead to the same copper wire, told in complementary discretization dialects.
+Either path is valid. Part V ends with its own bridge into Part VI; the epilogue later treats both discretizations as dialects of one multiphysics story. What matters is not the order of Doors A and B, but that you eventually reach Part VI before descending to dislocations and atoms — continuum stress and balance language is the shared floor under both FEM and FVM.

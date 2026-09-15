@@ -1,18 +1,6 @@
 # Compactness and the Spectral Theorem
 
-[II.4](04-operators-duality.md) named stiffness as a bounded operator, loads as elements of the dual \(H^*\), and weak convergence as the limit behavior norms alone miss — the vocabulary Part III needs when concentrated forces and oscillatory residuals appear at grip corners. This chapter closes Part II by asking what happens when that operator is **self-adjoint and compact**: eigenvalues become real, eigenmodes become orthogonal, and the discrete spectra from Part I's spring network acquire a continuum limit worth trusting.
-
 Eigenvalues decouple finite-dimensional vibration problems. A symmetric stiffness matrix diagonalizes in orthonormal modes; each mode oscillates at its own frequency, independently of the others. The **spectral theorem** for self-adjoint operators on Hilbert spaces is the same story without a fixed matrix size. It governs the normal modes of a copper wire, the buckling loads of a slender column, the diffusion rates of heat along that wire, and the convergence of finite element eigenvalues as the mesh refines. Part II has built the spaces, the inner products, and the compactness that make this theorem true. Here we state it, apply it, and hand the toolkit to Part III.
-
-## Story so far (Prologue & Parts I–II)
-
-| Stage | What the wire became | Key object |
-|-------|----------------------|------------|
-| Part I | \(\mathbf{K}\mathbf{u}=\mathbf{f}\); eigenmodes decouple vibration | Discrete stiffness and mass matrices |
-| [II.1–II.4](01-motivation.md) | Fields \(u(x)\), \(T(x)\) in \(H^1\); operators, duality | Bilinear forms, weak convergence, Galerkin projector |
-| **II.5 (here)** | Normal modes of the continuous bar | Self-adjoint compact operators; spectral theorem |
-
-Part I's eigenvalues on the spring chain were a finite-dimensional rehearsal. Part II built the room those modes converge toward as \(h \to 0\). This chapter closes Part II's [**concept map**](00-opening.md#the-concept-map-me-412) with the theorem that certifies modal analysis: real eigenvalues, orthogonal mode shapes, Rayleigh quotients that FEM eigenvalue solvers approximate. Part III will write the PDEs whose eigenfunctions those discrete modes chase.
 
 ## Scene: the wire sings
 
@@ -180,6 +168,22 @@ where \(a\) is stiffness and \(m\) is mass — both symmetric, \(a\) coercive, \
 
 For the wire with non-uniform cross-section, \(a\) and \(m\) vary spatially through elastic modulus and density. The spectral theorem applies to the operator \(\mathbf{M}^{-1}\mathbf{K}\) on the discrete side and to the continuous generalized problem on \(H^1_0\). Orthogonality of modes is with respect to both forms: \(a(\phi_i, \phi_j) = \lambda_i m(\phi_i, \phi_j)\) and \(m(\phi_i, \phi_j) = 0\) for \(i \ne j\) after scaling.
 
+## Lab act: discrete bar eigenvalues versus the analytical spectrum (Act III vibration check)
+
+Before **Act III** ramps displacement, the operator may tap the wire and listen — a quick sanity check that the meshed bar still **rings at the right pitch**. Part I extracted \((\mathbf{K}, \mathbf{M})\) eigenpairs; this chapter says those discrete values converge to eigenvalues of a **self-adjoint compact operator** as \(h \to 0\).
+
+For a uniform fixed-fixed bar of length \(L\), the \(n\)-th bending-mode angular frequency (Euler–Bernoulli idealization) scales as \(\omega_n \propto n^2\). A spring-network or 1D bar-element mesh gives a **finite** spectrum \(\omega_{1,h}, \ldots, \omega_{N,h}\).
+
+| Mesh | DOFs \(N\) | \(\omega_{1,h}/(2\pi)\) (Hz) | Relative error vs. coarse analytical estimate |
+|------|------------|-------------------------------|-----------------------------------------------|
+| 5 elements | 6 | (compute) | baseline |
+| 20 elements | 21 | (compute) | should decrease |
+| 100 elements | 101 | (compute) | should plateau |
+
+Run `scipy.linalg.eigh(K, M)` (or the Part I workflow) on three refinements. Plot \(\omega_{1,h}\) versus \(h\): Rayleigh–Ritz theory guarantees \(\omega_{1,h} \ge \omega_1^{\text{exact}}\) for fixed-end string models discretized with conforming \(H^1\) elements — the discrete spectrum **approaches from above**. If the fundamental frequency **drops** with refinement, check mass matrix lumping, boundary condition tags, or a non-self-adjoint damping term sneaking into the eigenproblem.
+
+When the tap test and the FEM eigenvalue agree within a few percent, Act III's linear elastic ramp starts on trustworthy modal ground — the same spectral theorem that will later connect heat decay modes and buckling loads to operator eigenvalues.
+
 ## Concept map checkpoint (Part II)
 
 Part II followed the Functional Analysis Notes concept map chapter by chapter. Before Part III writes weak PDEs, the four questions summarize the whole part:
@@ -219,17 +223,4 @@ Part III applies this toolkit to **partial differential equations** directly. We
 
 The [prologue](../../prologue/00-many-scales.md) named the weak form a **recurring character** — born here as integration by parts, destined to become Galerkin assembly in Part IV, virtual work in Part VI, and a variational statement on electron density in Part IX. Part II built the room that character speaks in: \(H^1\) for admissible fields, dual spaces for concentrated loads, compact embeddings so Galerkin projections have targets. Part III is the act where the character first has lines on stage: multiply by a test function, integrate by parts, and ask whether internal and external virtual work balance for every admissible virtual displacement. The copper wire at the grip corner — where Part III opens — is where that character stops pretending every field is \(C^2\).
 
-| Prologue act | Spectral object on the wire | Part II theorem that certifies it |
-|--------------|----------------------------|-----------------------------------|
-| II — Warming | Thermal modes of the 1D rod; decay rates of Fourier harmonics | Self-adjoint heat operator; Rayleigh quotients for \(T(x)\) |
-| III — Pulling | Axial vibration modes before plasticity | Stiffness operator on \(H^1_0\); Galerkin eigenvalue convergence |
-| VI — Foundation (preview) | Phonon frequencies feeding MD and elasticity | Same eigenvalue loop, now on atomic cells from Part IX |
-
-Part I's discrete eigenmodes on the spring chain were the finite-dimensional rehearsal of this chapter's spectral theorem. Part III will write the PDEs whose eigenfunctions those modes approximate as \(h \to 0\). Turn the page when modal analysis on a mesh still feels like linear algebra with extra steps — strong forms first: what the blackboard demands at every point, and where that demand breaks.
-
-| Part II chapter | Operator vocabulary on the wire | Part III chapter that uses it |
-|-----------------|--------------------------------|------------------------------|
-| II.2 Normed spaces | \(\|u\|_{H^1}\), completeness | III.3 Sobolev spaces |
-| II.3 Hilbert spaces | Lax–Milgram, Galerkin orthogonality | III.2 Weak form, III.4 Energy methods |
-| II.4 Operators/duality | Dual loads, weak convergence | III.2 Point forces as \(\ell \in H^{-1}\) |
-| II.5 Spectral theorem (here) | Normal modes, Rayleigh quotients | III.1 Heat/wave eigenstructure |
+Turn the page. Strong forms first: what the blackboard demands at every point, and where that demand breaks.

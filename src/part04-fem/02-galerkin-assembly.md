@@ -1,21 +1,8 @@
 # Galerkin's Method and Global Assembly
 
-[IV.1](01-weighted-residuals.md) posed the operational question Part III deferred: given a weak form, how do we approximate the solution on a mesh? Weighted residuals answered with a family of methods; Galerkin chose test functions from the same space as trials — the orthogonal projection of the true solution onto \(V_h\) in the energy inner product Part II named. This chapter is where that projection becomes **code**: loop over elements, form local contributions, scatter into global sparse structure.
-
 Weighted residuals gave us the logic: enforce \(\int r\, w_i = 0\) for chosen weights. Galerkin chose \(w_i = \phi_i\). The finite element method chooses the \(\phi_i\) to be local, piecewise-polynomial **shape functions** on a mesh. What remains is the algorithm that every FEM code shares — from a twenty-line Matlab script for a homework bar problem to Abaqus assembling a million-element turbine disk.
 
 That algorithm is **global assembly**: loop over elements, compute local contributions, scatter into a global sparse matrix. It is structured linear algebra — the change-of-basis story from Part I, executed millions of times with a sparsity pattern dictated by mesh connectivity.
-
-## Story so far (Parts I–III & IV.1)
-
-| Stage | What the wire became | Key object |
-|-------|----------------------|------------|
-| Part I | \(\mathbf{K}\mathbf{u}=\mathbf{f}\); scatter maps \(\mathbf{L}_e\) | Finite-dimensional equilibrium |
-| Part II–III | Weak form \(a(u,v)=\ell(v)\); energy minimum on \(V_h\) | Continuum target for refinement |
-| [IV.1](01-weighted-residuals.md) | Galerkin: test = trial | Orthogonal projection in energy norm |
-| **IV.2 (here)** | Global \(\mathbf{K}\), \(\mathbf{F}\) from element loops | Assembly as structured linear algebra |
-
-The [prologue](../../prologue/00-many-scales.md) promised that **Act III — Pulling** would turn grip displacement into numbers on the load cell. Assembly is the backstage step that makes that act honest — each scatter into \(\mathbf{K}\) is the finite-dimensional echo of the energy inner product Part II defined and Part III minimized.
 
 ## Scene: the mesh becomes a matrix
 
@@ -161,6 +148,32 @@ A minimal FEM implementation stores:
 
 High-level frameworks — **FEniCS**, **Firedrake**, **deal.II** — accept UFL/Symbolic weak forms and generate assembly loops automatically. The FEA notes include FEniCS and Firedrake tutorials for 2D Poisson; understanding the generated loop remains essential for debugging wrong boundary conditions, incorrect Jacobians, and locking in nearly incompressible materials.
 
+## CSR sparsity pattern from the mesh graph
+
+Before filling \(\mathbf{K}\), production codes **preallocate** a compressed sparse row (CSR) structure from mesh connectivity alone — no quadrature required. The rule is simple: global entry \(K_{ij}\) can be nonzero only if nodes \(i\) and \(j\) share at least one element.
+
+For the three-node bar mesh, the mesh graph has edges \((1,2)\) and \((2,3)\). The sparsity pattern is tridiagonal:
+
+| Row | Column indices with possible nonzeros |
+|-----|---------------------------------------|
+| 1 | 1, 2 |
+| 2 | 1, 2, 3 |
+| 3 | 2, 3 |
+
+Assembly then **scatters** into fixed locations: a wrong connectivity array writes \(k_{ab}^e\) to the wrong \((i,j)\) slot without changing the sparsity count — the matrix looks structurally fine but the physics is wrong. This is why the Lab act below verifies the middle diagonal entry \(2k\) before trusting a load–displacement curve.
+
+For a 2D P1 triangle mesh on the wire cross-section, each interior node typically couples to six neighbors (the discrete Laplacian stencil). Vector elasticity multiplies by \(d^2\) block entries per node pair but preserves the same graph. Precomputing CSR once and reusing it across Newton iterations (nonlinear elasticity) or time steps (transient heat) avoids repeated allocation — the scatter loop is \(O(\text{nonzeros})\) per assembly pass.
+
+```mermaid
+flowchart LR
+  mesh[Mesh connectivity] --> graph[Mesh graph]
+  graph --> csr[CSR row pointers / col indices]
+  csr --> scatter[Element scatter into fixed slots]
+  scatter --> solve[Linear solve K U = F]
+```
+
+The pipeline mirrors Part I's sparse matrix story: topology determines **where** entries may live; element integrals determine **what** values they carry. When debugging the copper wire model, print the sparsity pattern before the first quadrature call — if row 2 has only two neighbors on a three-node bar, the connectivity file is wrong before any constitutive law is tested.
+
 ## Assembly for time-dependent and nonlinear problems
 
 For parabolic problems \(u_t - \Delta u = f\), backward Euler gives
@@ -173,6 +186,40 @@ where \(\mathbf{M}\) is the **mass matrix** \(M_{ij} = \int \phi_i \phi_j\, d\Om
 
 For nonlinear problems, assembly runs inside Newton iterations. The **tangent stiffness** \(\mathbf{K}_T = \partial \mathbf{R}/\partial \mathbf{U}\) is assembled from derivatives of the weak form with respect to nodal values — conceptually the same loop, with a different integrand.
 
+## Operator handshake (Part II.4 → assembly)
+
+Part [II.4](../../part02-functional-analysis/04-operators-duality.md) named the continuous objects assembly discretizes. This section is the **acceptance test** for Act III: every row in the scatter loop must represent the same operator story Part II proved on \(H^1\).
+
+| Part II.4 object | Discrete assembly object | Copper wire instance |
+|------------------|--------------------------|----------------------|
+| Stiffness operator \(A: H \to H'\) via \(a(u,v)\) | Global \(\mathbf{K}\) with \(K_{ij} = a(\phi_j, \phi_i)\) | Axial bar: tridiagonal from \(-(EA u')'\) |
+| Load functional \(\ell \in H'\) | Nodal load \(\mathbf{F}\) with \(F_i = \ell(\phi_i)\) | Body weight \(\int f \phi_i\) plus grip traction |
+| Galerkin projector \(P_h: H \to V_h\) | Solve \(\mathbf{K}\mathbf{U}=\mathbf{F}\) for coefficients of \(u_h = \sum U_j \phi_j\) | Best energy-norm approximation before yield |
+| Weak\* convergence \(\ell_N \to \ell\) | Consistent load lumping as mesh refines | Midspan deflection stabilizes under \(h\)-refinement |
+
+**Downward import (continuous → discrete).** The bilinear form from Part III becomes element integrals:
+
+\[
+K_{ij} = \sum_e \int_{\Omega_e} \nabla \phi_j \cdot \nabla \phi_i \, d\Omega, \qquad F_i = \ell(\phi_i) = \int_\Omega f \phi_i \, d\Omega + \int_{\Gamma_N} t \phi_i \, dS.
+\]
+
+The scatter loop is bookkeeping for these sums — not a separate physics layer.
+
+**Upward export (discrete → continuous).** When \(h \to 0\) with \(V_h \subset H^1_0\) conforming, Céa's lemma ([IV.5](05-convergence.md)) guarantees \(\|u - u_h\|_a \le C \inf_{v \in V_h} \|u - v\|_a\). The assembled \(\mathbf{K}\) is therefore a **stable discretization** of the operator Part II.4 bounded — provided loads enter through \(\ell(\phi_i)\), not ad hoc point forces that fail to converge weakly.
+
+**What breaks without the handshake.** A transposed connectivity array produces a structurally valid \(\mathbf{K}\) with wrong physics — the CSR pattern looks fine while the load cell trace is nonsense. A duplicated Neumann contribution double-counts boundary traction. A penalty Dirichlet row with huge \(\alpha\) mimics a constraint but destroys conditioning — the discrete analogue of an unbounded operator. Part II.4's Lab act (distributed body load versus equivalent nodal forces on a simply supported bar) is the one-dimensional audit: run it before trusting the three-node scatter Lab act below.
+
+```mermaid
+flowchart LR
+  ell[Load functional ell in H prime] --> Fi[F_i = ell phi_i]
+  A[Operator A via a u,v] --> Kij[K_ij = a phi_j, phi_i]
+  Fi --> sys[K U = F]
+  Kij --> sys
+  sys --> Ph[Galerkin u_h = P_h u]
+```
+
+When midspan displacement **oscillates** without trend as \(h\) halves, suspect \(\ell_N \not\to \ell\) before blaming quadrature — the same diagnostic [II.4](../../part02-functional-analysis/04-operators-duality.md) named for operators, now visible on the copper wire's load–displacement trace.
+
 ## Connection to Part I and Part III
 
 Assembly is where the abstract meets the concrete:
@@ -182,6 +229,48 @@ Assembly is where the abstract meets the concrete:
 - Part II's best approximation property holds because \(\mathbf{K}\) is the Gram matrix of the energy inner product on \(V_h\).
 
 The copper wire's displacement field, once meshed, is a vector \(\mathbf{U} \in \mathbb{R}^N\). Assembly is the map from continuum physics to that vector equation.
+
+## Lab act: scatter one bar element into global \(\mathbf{K}\) (Act III — Pulling)
+
+**Act III** is where grip displacement becomes numbers on the load cell. Assembly is the backstage step — each `scatter` into \(\mathbf{K}\) and \(\mathbf{f}\) is the finite-dimensional echo of the energy inner product Part II defined and Part III minimized.
+
+Reproduce the three-node bar from [I.1](../part01-linear-algebra/01-vectors-matrices.md) in **assembly language**:
+
+| Object | Symbol | Value for one element \((1 \to 2)\) |
+|--------|--------|--------------------------------------|
+| Local stiffness | \(\mathbf{k}^e\) | \(k\begin{bmatrix}1&-1\\-1&1\end{bmatrix}\) |
+| Local DOF map | \(\mathbf{L}_e\) | Maps local \((u_1, u_2)\) to global indices |
+| Global contribution | \(\mathbf{K} \mathrel{+}= \mathbf{L}_e^T \mathbf{k}^e \mathbf{L}_e\) | Adds into rows/cols 1–2 of global \(\mathbf{K}\) |
+
+For **two elements** on three nodes, run the scatter twice — element \((1,2)\) then \((2,3)\) — and verify the middle row of \(\mathbf{K}\) has coefficient \(2k\) on the diagonal (node 2 feels both neighbors). This is the same tridiagonal pattern Part I derived by hand; here it is the **scatter loop** every commercial code runs.
+
+Optional check in Python:
+
+```python
+import numpy as np
+k = 2.4e8
+ke = k * np.array([[1, -1], [-1, 1]])
+K = np.zeros((3, 3))
+for (i, j) in [(0, 1), (1, 2)]:
+    L = np.zeros((3, 2)); L[i, 0] = L[j, 1] = 1
+    K += L.T @ ke @ L
+# K matches the tridiagonal from I.1
+```
+
+When the linear elastic climb on the force–displacement trace disagrees with experiment, check this scatter before blaming constitutive physics — a transposed connectivity array or wrong DOF map corrupts the story before dislocations or yield enter.
+
+## Concept map checkpoint (Galerkin assembly)
+
+This chapter is where the copper wire's weak form becomes \(\mathbf{K}\mathbf{U}=\mathbf{F}\). Before element technology refines the integrands, summarize what assembly established:
+
+| Question | Part IV answer (copper wire) |
+|----------|------------------------------|
+| What **object**? | Global stiffness \(\mathbf{K}\), load \(\mathbf{F}\); local \(\mathbf{k}^e\), \(\mathbf{f}^e\) |
+| What **structure**? | Scatter map \(\mathbf{L}_e\); mesh graph → CSR sparsity pattern |
+| What **theorem**? | \(\mathbf{K}\) is Gram matrix of energy inner product on \(V_h\); Galerkin orthogonality of error |
+| What **breaks**? | Wrong connectivity (correct sparsity, wrong physics); missing BC rows; duplicated Neumann loads |
+
+The scatter Lab act verified that node 2 feels both neighbors (\(2k\) on the diagonal) — the same tridiagonal Part I derived by hand, now produced by a loop every commercial code runs. Assembly is not bookkeeping separate from physics; it is how Part III's bilinear form becomes Part I's matrix.
 
 ## Bridge
 
@@ -198,32 +287,4 @@ Recall the pipeline from [Part III.4](../part03-pdes/04-energy-methods.md#bridge
 
 Return to the [prologue](../../prologue/00-many-scales.md): **Act III — Pulling** is where grip displacement becomes numbers on the load cell. Assembly is the backstage step that makes that act honest — each `scatter` into \(\mathbf{K}\) and \(\mathbf{f}\) is the finite-dimensional echo of the energy inner product Part II defined and Part III minimized. Part I taught the pattern as \(\mathbf{L}_e^T \mathbf{k}_e \mathbf{L}_e\); here the same map runs on millions of elements. When the linear elastic climb on the force–displacement trace disagrees with experiment, check assembly before blaming constitutive physics — a transposed connectivity array or wrong DOF map corrupts the story before dislocations or yield enter.
 
-| Prologue act | Assembly artifact on the wire | Upstream chapter that defined it |
-|--------------|-------------------------------|----------------------------------|
-| I — Mounting | Global DOF map and BC rows | Part I scatter maps; Part III Dirichlet tags |
-| II — Warming | Thermal \(\mathbf{K}_T\), \(\mathbf{f}_q\) from Joule source | Part III.4 energy minimum on \(V_h\) |
-| III — Pulling | Mechanical \(\mathbf{K}\), \(\mathbf{f}\) from end displacement | Part IV.1 Galerkin orthogonality |
-| VI — Foundation (preview) | Mass matrix \(\mathbf{M}\) for dynamics | Part I eigenmodes; Part II spectral theory |
-
-| Assembly step | Part I vocabulary | Part III weak form | What IV.3 specifies |
-|---------------|-------------------|--------------------|---------------------|
-| Local \(\mathbf{k}_e\) | Element stiffness | \(\int a(\phi_i,\phi_j)\) | Shape functions \(\phi_i\), quadrature |
-| Scatter into \(\mathbf{K}\) | \(\mathbf{L}_e^T\mathbf{k}_e\mathbf{L}_e\) | Global bilinear form | DOF map, sparsity pattern |
-| Load vector \(\mathbf{f}\) | Nodal forces | \(\ell(\phi_i)\) | Consistent vs. lumped loads |
-
 Turn the page when assembly feels like bookkeeping but the stress contour still jumps between meshes — the fault is usually element order or quadrature, not the scatter loop.
-
-| Prologue act | Assembly output | Next chapter's element question |
-|--------------|-----------------|--------------------------------|
-| II — Warming | Thermal \(\mathbf{K}_T\), \(\mathbf{f}_q\) | P1 triangles vs. quadrature on \(\int k\|\nabla T\|^2\) |
-| III — Pulling | Mechanical \(\mathbf{K}\), \(\mathbf{f}\) | Block \(\mathbf{B}^T\mathbb{C}\mathbf{B}\) at Gauss points |
-| IV — Hardening (preview) | Same mesh, evolving \(\mathbb{C}\) | Anisotropic texture from cold-drawn wire |
-
-When the load cell curve eventually bends upward in **Act IV**, the mesh from this chapter is reused — only the constitutive update at quadrature points changes. Part VII's DDD export and Part VI's J₂ plasticity both consume the same DOF map and scatter pattern established here; descent to finer scales changes parameters, not the assembly grammar Part I introduced as \(\mathbf{L}_e^T \mathbf{k}_e \mathbf{L}_e\).
-
-| Multiscale consumer | What this chapter's mesh supplies | What changes downstream |
-|--------------------|-----------------------------------|-------------------------|
-| Part VI virtual work | Nodal \(\mathbf{U}\), Gauss-point strains | Tensor naming of the same \(B\)-matrix |
-| Part VII crystal plasticity | Element connectivity, texture frames | Internal variables at quadrature points |
-| Part VIII atomistic RVE | Stress concentrator geometry from FEM | Finer box at the notch root |
-| Epilogue coupling | Interface DOFs and flux handshakes | Outer fixed-point loop, same sparsity pattern |

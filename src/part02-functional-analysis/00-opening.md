@@ -6,6 +6,18 @@ This part builds the language of those spaces: norms that measure energy and mea
 
 The layout follows the **Functional Analysis Notes** in [`writings/functional-analysis/`](../../writings/functional-analysis/): numbered chapters, worked examples tied to mechanics, and a **Bridge** at the end of each chapter pointing to the next idea. Read the five chapters in order; they hand off directly to Part III, where weak forms of boundary value problems are written in the spaces defined here.
 
+## Chapter guide
+
+| Chapter | Wire story beat | Core object | Handoff |
+|---------|-----------------|-------------|---------|
+| [II.1](01-motivation.md) | Mesh refines; nodal values become fields | \(L^2\), \(H^1\) as limits of \(\mathbb{R}^N\) | Norms measure energy → completeness in II.2 |
+| [II.2](02-normed-spaces.md) | Elastic energy and mean-square error on the bar | Banach spaces, equivalent norms, Cauchy sequences | Inner product adds angles → Hilbert in II.3 |
+| [II.3](03-hilbert-spaces.md) | Orthogonal vibration modes of the wire | Inner product, projection, Riesz representation | Dual functionals → operators in II.4 |
+| [II.4](04-operators-duality.md) | Stiffness as operator; loads as dual functionals | Bounded operators, weak convergence, compactness | Spectral theory → Galerkin convergence in II.5 |
+| [II.5](05-spectral-theorem.md) | Discrete eigenmodes converge to normal modes | Compact self-adjoint operators, spectral theorem | [Bridge to Part III](05-spectral-theorem.md#bridge-to-part-iii) |
+
+Read in order. Each chapter ends with a **Bridge** that states why the next chapter must exist; jumping to Sobolev spaces without understanding completeness is like writing a weak form without naming the function space it lives in.
+
 ## Scene
 
 Part I ended with a limit: as the spring network refines, the copper wire's displacement and temperature are no longer vectors in \(\mathbb{R}^N\) for any fixed \(N\). They become **fields** — functions of position along the bar — and the stiffness matrix is a finite-dimensional shadow of an operator we have not yet named.
@@ -37,6 +49,20 @@ flowchart LR
 ```
 
 **Baby picture:** first build the room (vector space), then add a ruler (norm), then close the holes (Banach/Hilbert completeness), then add angles (inner product), then write weak PDEs and trust that FEM is projection, not guesswork. The copper wire's displacement lives in that room long before any mesh assigns it node values.
+
+## How Part II connects to Parts III–IV
+
+Part II is the **analytical contract** every discretization in later parts must honor:
+
+| Part II chapter | Theorem or structure | Where it reappears |
+|-----------------|---------------------|-------------------|
+| II.1 Motivation | Weak forms replace pointwise derivatives | Part III.2 weak Poisson; Part IV Galerkin |
+| II.2 Normed spaces | Energy norm \(\|u\|_a\); completeness | Part IV.5 convergence in energy |
+| II.3 Hilbert spaces | Lax–Milgram; best approximation | Part IV.2 Céa's lemma |
+| II.4 Operators | Dual loads; weak\* convergence | Part IV grip BCs; Part III point loads |
+| II.5 Spectral | Rayleigh–Ritz; modal convergence | Part I.3 eigenmodes; dynamic FEM |
+
+If you read only one part before writing a weak form or running a mesh convergence study, read this one. Part III writes the PDEs; Part IV assembles the matrices — but Part II proves the limit exists and the discrete solution is optimal in \(V_h\).
 
 ## Representative schematics (ME 412)
 
@@ -86,26 +112,22 @@ Part I showed that every mesh gives linear algebra; Part II names the **limit ob
 
 **Act III** in the lab is the force–displacement ramp — but the operator cannot trust that curve until **Act III in the book** has a convergence target. Part II supplies the function spaces (\(H^1\), \(L^2\)) and the theorems (Lax–Milgram, Galerkin best approximation) that make mesh refinement honest. When the grips tighten in Part IV, every node value is a projection of a field defined here. Read Part II as the backstage justification for the linear elastic climb on the load cell.
 
+### What you should be able to do after Part II
+
+Each chapter adds one move to a workflow that turns "the mesh looks smooth" into a theorem:
+
+| After chapter | Skill on the copper wire | Minimal artifact |
+|---------------|--------------------------|------------------|
+| II.1 | Argue why \(N\to\infty\) needs a function \(u(x)\), not a longer vector | Mesh-refinement plot from [I.1](../part01-linear-algebra/01-vectors-matrices.md) Lab act |
+| II.2 | Name the norm that measures elastic energy; state what completeness buys | \(\|u\|_{H^1}\) vs \(\|u\|_{L^2}\) on a hat function |
+| II.3 | Project a load onto a subspace; cite Riesz for "load as functional" | Best approximation in a 2-D subspace of \(H^1\) |
+| II.4 | Distinguish strong, weak, and weak\* convergence | Sequence of hat functions on refining meshes |
+| II.5 | Connect discrete eigenvalues to operator spectrum | \((\mathbf{K},\mathbf{M})\) eigenvalues vs bending-mode limit |
+
+None of these require running a commercial FEM code — but each one is the infinite-dimensional justification for what Part IV assembles. If you can state the weak form of \(-u''=f\) on \((0,1)\), name the space \(u \in H^1_0\), and explain why Galerkin is projection rather than guesswork, you have the core of ME 412 on the copper wire. Parts III–IV replace definitions with PDEs and loops; the **moves** stay the same.
+
 ## Bridge
 
 Part I ended with a promise: as the mesh refines, the copper wire's displacement and temperature fields live in infinite-dimensional spaces, not in \(\mathbb{R}^N\) for any fixed \(N\). [I.4](../part01-linear-algebra/04-toward-infinity.md#bridge-to-part-ii) named the three-step bridge — weak form, subspace \(V_h \subset H^1\), matrix system — and deferred steps 1–2 to this part. The first chapter below makes that promise precise: why weak forms appear, why classical smoothness fails at corners, and why the stiffness matrix is a Galerkin projection rather than an arbitrary sparse array.
 
 The [prologue](../../prologue/00-many-scales.md) introduced the weak form as a **recurring character** that will outlive every mesh. Part I gave it a finite-dimensional prelude — \(\mathbf{K}\mathbf{u}=\mathbf{f}\) as nodal equilibrium — and Chapter 4 showed that prelude converges toward a field \(u(x)\) as \(h \to 0\). Part II is where that field acquires a norm, an inner product, and a completeness theorem worth trusting. When Act III in the lab session ramps grip displacement, the load cell curve is honest only because the limit object defined here makes mesh refinement meaningful.
-
-| Prologue act | Field Part II must host | What breaks without this part |
-|--------------|-------------------------|-------------------------------|
-| II — Warming | Temperature \(T(x)\in H^1\) | Mesh refinement has no \(L^2\) target for gradients |
-| III — Pulling | Displacement \(u(x)\in H^1\) | \(\mathbf{K}_N\) has no operator limit as \(N\to\infty\) |
-| IV — Hardening (preview) | Dual loads for concentrated forces | Point constraints are not honest \(L^2\) sources |
-| VI — Foundation (preview) | Spectral convergence of eigenmodes | Discrete modes have no continuum normal modes |
-
-| Part I vocabulary | Part II limit object | Where the wire uses it first |
-|-------------------|----------------------|------------------------------|
-| \(\mathbf{K}\mathbf{u}=\mathbf{f}\) | Operator \(A: H^1\to H^*\); weak form \(a(u,v)=\ell(v)\) | [II.1](01-motivation.md): why corners break \(C^2\) |
-| \(\mathbf{u}^T\mathbf{K}\mathbf{u}\) | Energy norm \(\|u\|_a^2=a(u,u)\) | [II.3](03-hilbert-spaces.md): Lax–Milgram on the heated bar |
-| Eigenmodes of \(\mathbf{K}\) | Normal modes of a self-adjoint operator | [II.5](05-spectral-theorem.md): vibration and buckling |
-| Mesh refinement \(N\to\infty\) | Completeness: Cauchy sequences stay in \(H^1\) | [II.2](02-normed-spaces.md): Banach/Hilbert hierarchy |
-
-The [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) are the layout model for this part and for every `writings/` subtree — numbered chapters, concept maps at openings, **Bridge** sections at handoffs. Part II is not a detour from the copper wire; it is the proof that Part I's assembly converges to something physical when the grips tighten and the thermocouple climbs.
-
-Turn the page when Part I's matrices feel finite but the wire's temperature and displacement refuse to live in \(\mathbb{R}^N\) — function spaces are where that refusal becomes a theorem.

@@ -131,6 +131,20 @@ flowchart TB
 22. **Surrogates** trained on one loading path fail on another — frame indifference and thermodynamic consistency are not optional.
 23. **Skipping manufacturing history** (draw, anneal, service) predicts the wrong wire even with perfect DFT moduli.
 
+## One-line course summaries (ME 412 style)
+
+The [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) close with compressed sentences that fit on an index card. This book extends that habit across scales:
+
+| Scope | One-line summary |
+|-------|------------------|
+| **Parts I–III** | Linear algebra → operator equations → well-posedness → weak PDE. |
+| **Parts I–IV** | Choose the right space → prove the weak solution exists → approximate it by Galerkin projection. |
+| **Parts I–VI** | Norm = ruler, Banach = no holes, Hilbert = geometry, Sobolev = PDE-ready; continuum stress names what FEM already meshed. |
+| **Parts I–IX** | Same ladder from \(\mathbb{R}^N\) to \(\rho(\mathbf{r})\); homogenize upward with documented handshakes. |
+| **Whole book** | One copper wire, four questions at every scale: state, equations, discretization, upward export. |
+
+When a chapter feels abstract, pick the row that matches your reading position and read it aloud — it is the plot spine in one breath.
+
 ## One-page copper wire recap
 
 | Act | Lab beat | Part | State on the wire | Upward export |
@@ -144,17 +158,33 @@ flowchart TB
 
 Read the [prologue](../prologue/00-many-scales.md#the-experiment-as-plot) for the six-act table in narrative form; read the [epilogue](../epilogue/multiscale.md) for how to wire the acts into one afternoon workflow.
 
+## Handshake interface checklist
+
+Multiscale workflows fail at **interfaces**, not inside solvers. Before merging outputs from two codes, verify each row — the epilogue's four-handshake example on the heated wire is the template.
+
+| Interface | Quantity crossing | Unit check | Frame check | Convergence artifact |
+|-----------|-------------------|------------|-------------|----------------------|
+| DFT → MD | \(E_{\text{coh}}\), \(a_0\), \(C_{ij}\), \(\gamma_{\text{sf}}\) | eV → eV/atom; Å → Å; GPa from Voigt average | Same crystal orientation as MD box | SCF log; k-mesh table; cutoff test |
+| MD → DDD | \(M(\tau, T)\), core structure, \(\gamma_{\text{sf}}\) | Pa, m/s; mJ/m² | Slip system labels match OpenDiS input | Autocorrelation \(\tau\); equilibration length |
+| DDD → FEM | \(\tau(\gamma)\), \(\rho(\gamma)\), hardening modulus | Pa; m⁻² | Same strain rate as lab frame | Forest density vs strain curve |
+| FEM solid → FVM fluid | Wall \(T\), heat flux \(q''\), \(h\) | K; W/m²; W/(m²·K) | Outward normal consistent on both meshes | CHT fixed-point iteration log |
+| FEM mechanical → FEM thermal | \(\varepsilon_{\text{th}}(T)\), temperature-dependent \(E\) | K⁻¹; GPa vs temperature table | Same mesh or consistent interpolation | Staggered coupling iteration count |
+
+**Archive rule:** every arrow in a workflow folder gets a README line with (1) source commit or run ID, (2) convergence parameter that was tested, (3) known sensitivity from the epilogue table. Future-you should not inherit a number without inheriting its pedigree.
+
+## Reading rhythm reminder (ME 412 layout)
+
+Each numbered chapter follows the same five-beat rhythm the Functional Analysis Notes use, extended with narrative Scene and Lab act sections:
+
+1. **Scene** — return to the copper wire in the lab
+2. **Concept map checkpoint** (mid- or end-chapter) — object, structure, theorem, failure mode — present in all **35 numbered chapters** (I.1–IX.3)
+3. **Lab act** — one computational move you can run
+4. **Bridge** — why the next chapter must exist
+
+When abstraction rises mid-chapter, pause at the next **Scene** or **Lab act** before continuing — the plot resumes there even if the theorem does not.
+
 ## Bridge
 
 The memory sheet closes the book the way ME 412 closes the Functional Analysis Notes — habits and traps, not proofs. Return to the [glossary](glossary.md) when a symbol reappears under new vocabulary; return to [sources](sources.md) when you need the PDF behind a part; return to the [prologue](../prologue/00-many-scales.md) when a new project needs scale discipline from day one.
 
-| When you need | Where to turn |
-|---------------|---------------|
-| The six-act plot in narrative form | [Prologue: The experiment as plot](../prologue/00-many-scales.md#the-experiment-as-plot) |
-| Workflow order vs. reading order | [Epilogue: Lab act reunion](../epilogue/multiscale.md#lab-act-reunion-six-acts-one-afternoon) |
-| Concept-map questions (object / structure / theorem / breaks) | Any part opening from I through IX |
-| Export pedigree before trusting an input deck | [Part IX workflows](../part09-dft/03-dft-workflows.md) and the one-page recap table above |
-
 The copper wire does not care which chapter you finished last. It responds to physics. Your craft is to make that physics computable, connected, and credible — one continuous story from \(\mathbb{R}^N\) to \(\rho(\mathbf{r})\) and back upward through homogenization.
-
-Turn the page to the [glossary](glossary.md) when a symbol changed meaning between parts; turn back to the [prologue](../prologue/00-many-scales.md) when a new specimen needs the same four questions from day one.

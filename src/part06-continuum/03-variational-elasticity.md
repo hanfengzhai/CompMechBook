@@ -1,22 +1,8 @@
 # Variational Elasticity and Nonlinear Extensions
 
-[VI.2](02-stress-balance.md) named the forces that kinematics alone could not supply — Cauchy stress, Piola–Kirchhoff stress, balance laws that constrain how stress varies in space and time. Parts III and IV already solved the discrete shadow of those laws as \(\mathbf{K}\mathbf{U}=\mathbf{F}\); this chapter explains **why** that linear system is the first variation of an energy functional, and when the energy picture survives load increments versus when history and defects force a different story.
-
 Static equilibrium of an elastic body is equivalent to minimizing total potential energy — or finding a saddle point when constraints appear. This is where continuum theory and FEM meet on equal footing: the weak form Part III derived is the first variation of an energy; the assembly loop Part IV implemented is Rayleigh–Ritz on that energy.
 
 The copper wire under tension minimizes (or rather, stationarizes) elastic energy stored in its stretched atomic lattice — a minimization FEM approximates on a mesh. When the load exceeds yield, minimization gives way to incremental variational inequalities; when deformation grows large, the energy depends on \(\mathbf{F}\), not \(\boldsymbol{\varepsilon}\). This chapter walks that path.
-
-## Story so far (Parts I–VI.2)
-
-| Stage | Continuum object | Wire instance |
-|-------|------------------|---------------|
-| Parts I–IV | \(\mathbf{K}\mathbf{U}=\mathbf{F}\) from Galerkin | Meshed tensile + thermal solve |
-| Part V | FVM fluxes; conjugate heat transfer | Cooling air beside the wire |
-| [VI.1](01-kinematics.md) | \(\mathbf{F}\), \(\boldsymbol{\varepsilon}\), stretch \(\lambda\) | Grip displacement → deformation gradient |
-| [VI.2](02-stress-balance.md) | Cauchy stress; balance laws | Axial force on the load cell |
-| **VI.3 (here)** | Total potential energy \(\Pi[\mathbf{u}]\); virtual work | Why \(\mathbf{K}\) is Rayleigh–Ritz on energy |
-
-Parts IV and V computed fields on meshes; [VI.1](01-kinematics.md)–[VI.2](02-stress-balance.md) named the **tensor vocabulary** those fields carry. This chapter unifies the discrete and continuum pictures: equilibrium is stationary energy, virtual work is the first variation, and FEM assembly is Rayleigh–Ritz on the same functional Part III minimized. [VI.4](04-nonlinear-plasticity-preview.md) is where the energy picture breaks — yield, history, and the upward bend on the load cell.
 
 ## Scene: energy stored in the stretch
 
@@ -213,6 +199,99 @@ Variational structure (conservative forces from potentials) aids stable coupling
 
 The prologue's copper wire: DFT gives cohesion; MD gives thermal motion; DDD gives work hardening; FEM (Part IV) gives bending and tension; CFD (Part V) gives cooling; Part VI explains why those simulations are minimizing energy or balancing virtual work — until they are not, and we descend further.
 
+## Scale-boundary handshake: \(\mathbb{C}\) from DFT/MD to variational elasticity
+
+Part VI writes \(\Pi[\mathbf{u}] = \int_\Omega \psi(\boldsymbol{\varepsilon})\, d\Omega\). The elastic tensor \(\mathbb{C} = \partial^2 \psi / \partial \boldsymbol{\varepsilon}^2\) is not a free parameter — it is the object Parts VIII–IX derive and Part IV consumes in \(\mathbf{B}^T \mathbb{C} \mathbf{B}\). Variational elasticity is where **pedigree meets physics**: the same \(\mathbb{C}\) must appear in the energy functional, the virtual work integrand, and the FEM material card.
+
+| Rung | Delivers | Requires |
+|------|----------|----------|
+| DFT (IX) | \(C_{11}, C_{12}, C_{44}\) for single-crystal fcc Cu | Converged SCF + small-strain cells (±0.5% uniaxial) |
+| MD (VIII) | Polycrystal-averaged \(E\), \(\nu\) from NPT stress fluctuations | Audited EAM; optional grain structure if texture matters |
+| Continuum (VI) | \(\psi(\boldsymbol{\varepsilon})\) or isotropic \(\mathbb{C}\) in virtual work | Documented Voigt/Reuss reduction from crystal data |
+| FEM (IV) | Element stiffness from \(\mathbf{B}^T \mathbb{C} \mathbf{B}\) | **Same** \(\mathbb{C}\) as VI.3 energy functional |
+
+**Isotropic reduction for the wire.** Cold-drawn copper is polycrystalline; a single-crystal DFT cell gives moduli that bracket but do not equal the engineering wire. Standard practice:
+
+| Source | Typical \(E\) (GPa) | Typical \(\nu\) | Wire context |
+|--------|----------------------|-----------------|--------------|
+| DFT (PBE, fcc Cu) | 110–130 | 0.33–0.36 | Single crystal along [100] |
+| MD NPT (256–500 atom fcc) | 105–125 | 0.32–0.35 | Same; potential-dependent |
+| Handbook (OFHC polycrystal) | 110–130 | 0.34 | Engineering design value |
+| Tensile test (Act III) | Secant slope before yield | From transverse strain | **Measured** on the specimen |
+
+Voigt and Reuss bounds on \(E\) for a random polycrystal lie between single-crystal extremes. If Part IV's elastic step uses \(E = 120\,\text{GPa}\) from a handbook but Part VIII's NPT average on a 500-atom fcc box gives \(E = 95\,\text{GPa}\), the fault is **scale mismatch** (single crystal vs drawn wire), not necessarily a bad potential — but the mismatch must be documented in the foundation folder, not silently ignored.
+
+**Thermal coupling (Act II).** Variational elasticity with thermal strain writes \(\boldsymbol{\varepsilon} = \boldsymbol{\varepsilon}_{\text{mech}} + \alpha \Delta T \mathbf{I}\). The thermal stress estimate \(\sigma \approx E \alpha \Delta T\) from [VI.2](02-stress-balance.md) inherits the same \(E\) as \(\Pi\). Mixing DFT \(E\) in the mechanical block and handbook \(\alpha\) without cross-checking against DFT quasi-harmonic expansion (Part IX) is a **pedigree fracture** at the continuum scale.
+
+**What breaks without the handshake.** Fitting \(\psi\) from a tensile test while using DFT moduli in a coupled thermoelastic run couples two different material definitions. A 10% modulus error is a 10% force error at the same grip displacement — visible on the load cell before yield. Archive `elastic_constants/` beside `kappa_md_300K.txt` and `cu.phonon/` in the foundation folder: one row per source (handbook, DFT, MD, tensile test), one \(\mathbb{C}\) chosen for production FEM with a citation. Part VI.3's virtual work is only honest when that row exists.
+
+## Lab act: virtual work equals load cell reading (Act III — Pulling)
+
+**Act III** ramps grip displacement and the load cell reports force. Variational elasticity states that equilibrium is \(\delta \Pi = 0\) — virtual work done by internal stress equals virtual work done by external loads. This Lab act verifies that statement on the same three-element bar Part IV will mesh.
+
+Fixed end at \(x = 0\), prescribed displacement \(\delta = 0.1\,\text{mm}\) at \(x = L = 1\,\text{m}\), \(EA = 120\,\text{GPa} \times 10^{-6}\,\text{m}^2 = 120\,\text{kN}\). The exact axial force is \(F = EA\,\delta/L = 12\,\text{N}\).
+
+| Virtual work check | Statement | Numeric |
+|--------------------|-----------|---------|
+| External virtual work | \(\delta W_{\text{ext}} = F_{\text{applied}} \,\delta u(L)\) with virtual \(\delta u(L) = 1\) | \(F = 12\,\text{N}\) |
+| Internal virtual work | \(\delta W_{\text{int}} = \int_0^L \sigma \,\delta\varepsilon \, A \, dx = \sigma A \,\delta u(L)\) for uniform bar | Same \(12\,\text{N}\) when \(\sigma = E\delta/L\) |
+| Energy minimizer | \(\Pi = \tfrac{1}{2}EA(\delta/L)^2 L - F\delta\); \(\partial \Pi / \partial \delta = 0\) | \(F = EA\delta/L\) |
+| Discrete (3 P1 elements) | Rayleigh–Ritz on \(V_h\) from [VI.3 worked example](#worked-example-three-element-bar) | **Exact** at nodes because \(u(x)\) is linear |
+
+Plot force versus \(\delta\) from the load cell against the analytical line — slope \(EA/L\). Before yield (Act IV), the curve should be straight; variational elasticity explains **why** Part IV's \(\mathbf{K}\mathbf{U}=\mathbf{F}\) is force balance, not merely matrix algebra. When thermal strain \(\alpha \Delta T\) from Act II is present, subtract it from mechanical strain in \(\Pi\): the load cell reads lower force at the same grip displacement because the wire already expanded.
+
+## Lab act: finite strain versus small strain on the same grip (Act III — Pulling, finite-strain preview)
+
+**Act III** keeps the wire in the linear elastic regime, but the prologue's grip displacement \(\delta = 0.10\,\text{mm}\) on \(L = 100\,\text{mm}\) is not infinitesimal — it is \(\delta/L = 10^{-3}\), large enough that the **Green–Lagrange strain** and the small-strain tensor \(\varepsilon_{xx} = \delta/L\) disagree at the third decimal. This Lab act compares the two energy functionals on the same specimen before [VI.4](04-nonlinear-plasticity-preview.md) turns on Newton–Raphson and plastic history.
+
+**Setup.** Uniaxial tension of the 1 mm copper wire; reference length \(L_0 = 100\,\text{mm}\), current length \(L = L_0 + \delta\). Stretch \(\lambda = L/L_0 = 1 + \delta/L_0\). For \(\delta = 0.10\,\text{mm}\): \(\lambda = 1.001\).
+
+**Small-strain energy (Part VI.3 quadratic \(\Pi\)).** With \(\varepsilon_{xx} = \lambda - 1 = 10^{-3}\):
+
+\[
+\Pi_{\text{small}} = \tfrac{1}{2} E \varepsilon_{xx}^2 A L_0 = \tfrac{1}{2} E A L_0 (\lambda - 1)^2.
+\]
+
+**Finite-strain energy (Saint-Venant–Kirchhoff preview).** Green–Lagrange strain \(E_{11} = \tfrac{1}{2}(\lambda^2 - 1)\). For \(\lambda = 1.001\): \(E_{11} = 1.0005 \times 10^{-3}\) — **0.05% larger** than \(\varepsilon_{xx}\). Strain energy \(\Pi_{\text{GL}} = \tfrac{1}{2} E E_{11}^2 A L_0\) integrated on the reference domain (valid while \(\lambda\) stays near unity):
+
+| Strain measure | Value at \(\lambda = 1.001\) | Stored energy \(\Pi\) (mJ) | Reaction force \(F = \partial\Pi/\partial\delta\) (N) |
+|----------------|------------------------------|----------------------------|--------------------------------------------------------|
+| Small \(\varepsilon = \lambda - 1\) | \(1.000 \times 10^{-3}\) | 4.60 | 92.0 |
+| Green–Lagrange \(E_{11} = \tfrac{1}{2}(\lambda^2-1)\) | \(1.0005 \times 10^{-3}\) | 4.61 | 92.1 |
+| True neo-Hookean (1D) \(\Pi = \tfrac{1}{2}E A L_0 (\ln\lambda)^2\) | — | 4.60 | 92.0 |
+
+At \(\delta/L = 10^{-3}\), the three models agree within **0.1%** — linear FEM and variational elasticity are honest for Act III. The table becomes a **convergence study in strain measure**, not in mesh size:
+
+| \(\delta/L\) | Relative error: small strain vs GL energy | Wire context |
+|--------------|------------------------------------------|--------------|
+| \(10^{-4}\) | \(< 0.01\%\) | Elastic climb on load cell |
+| \(10^{-3}\) | \(\sim 0.05\%\) | Prologue Act III setpoint |
+| \(10^{-2}\) | \(\sim 0.5\%\) | Still elastic; nonlinear FEM advisable |
+| \(5 \times 10^{-2}\) | \(\sim 2.5\%\) | Approaching necking; geometric nonlinearity mandatory |
+
+**Finite-element check.** On the three-element bar from the [worked example](#worked-example-the-copper-wire-as-rayleigh-ritz), small-displacement FEM uses \(\mathbf{B}\) with \(\partial u/\partial x\). A **Updated Lagrangian** step with the same mesh and \(\lambda = 1.001\) updates \(\mathbf{F}\) at each Gauss point:
+
+\[
+F_{11} = \frac{\partial x}{\partial X} = \lambda, \qquad E_{11} = \tfrac{1}{2}(F_{11}^2 - 1),
+\]
+
+and assembles \(\mathbf{K}_T\) from \(\partial^2 \psi / \partial \mathbf{F}^2\). One Newton iteration from \(\lambda = 1\) should recover the GL force within 0.1% — if not, the tangent is inconsistent with the energy (the same lesson as return-mapping in [VI.4](04-nonlinear-plasticity-preview.md)).
+
+**Bridge to VI.4.** Act III's straight load-cell line used quadratic \(\Pi\). When Act IV bends the curve, part of the bend is **material** (plasticity) and part is **geometric** (necking, \(\lambda\) far from 1). This Lab act separates the geometric branch: at prologue displacements, geometry is still negligible; at ultimate tensile strength, \(\Pi_{\text{small}}\) and \(\Pi_{\text{GL}}\) diverge and only hyperelastic or Updated Lagrangian FEM is credible. Archive `strain_measure_check.dat` with columns \((\delta/L, \Pi_{\text{small}}, \Pi_{\text{GL}}, F_{\text{small}}, F_{\text{GL}})\) beside the Act III load-cell trace — the epilogue's Handshake 4 uses the same discipline when rate-dependent plasticity enters the story.
+
+## Concept map checkpoint (variational elasticity)
+
+This chapter is where FEM's matrix equation receives its continuum philosophical source. Before nonlinear plasticity admits history, summarize what variational elasticity established:
+
+| Question | Part VI answer (copper wire) |
+|----------|------------------------------|
+| What **object**? | Strain energy density \(\psi(\boldsymbol{\varepsilon})\); total potential \(\Pi\) |
+| What **structure**? | Virtual work \(\delta\Pi=0\); path independence in hyperelasticity |
+| What **theorem**? | Dirichlet principle: equilibrium = energy minimum in \(H^1\) |
+| What **breaks**? | Dissipation (plasticity, viscosity); non-conservative loading; fitted \(H\) without dislocations |
+
+The three-element bar worked example closed the loop from Part I's springs through Part IV's assembly: Rayleigh–Ritz on a quadratic energy returns exact linear solutions when \(u(x)\in V_h\). Act IV's upward bend signals the energy is no longer a simple quadratic in \(\mathbf{u}\) — the cue for [VI.4](04-nonlinear-plasticity-preview.md) and Part VII's forest.
+
 ## Bridge
 
 Variational elasticity closes the loop the book has traced since Part I's spring network: minimize energy in \(H^1\), derive virtual work, assemble \(\mathbf{K}\) — and recognize the discrete solve as Rayleigh–Ritz on the same functional Part III named.
@@ -226,19 +305,4 @@ Variational elasticity closes the loop the book has traced since Part I's spring
 
 Return to the [prologue](../../prologue/00-many-scales.md): **Act III** measured the linear elastic climb on the load cell; **Act IV** is the upward bend that variational elasticity cannot explain with a quadratic \(\psi\) alone. Part IV assembled \(\mathbf{K}\) from bilinear forms; this chapter named the stress and strain those forms integrate. [VI.4](04-nonlinear-plasticity-preview.md) is the last continuum stop — phenomenological hardening without dislocations, a fitted curve waiting for Part VII's forest to supply \(\sigma_{y0}\) and \(H\).
 
-| Prologue act | Variational statement on the wire | Where the energy picture breaks |
-|--------------|-----------------------------------|--------------------------------|
-| III — Pulling | Minimize \(\Pi[\mathbf{u}]=\int\psi(\boldsymbol{\varepsilon})\,\mathrm{d}V\); \(\delta\Pi=0\) | Still valid in the linear elastic regime |
-| II — Warming | Coupled thermal–mechanical energy (preview) | Temperature enters moduli and thermal strain |
-| IV — Hardening | Path-dependent dissipation; no single \(\psi\) | History and defects require internal variables |
-| V — Notch | Concentrated energy at a scratch | Finite-strain and damage force descent to Part VII |
-
 Turn the page when the wire's stress–strain curve bends upward after cold drawing but your elastic energy minimization still returns a straight line — that is the signal history and mesoscale defects have entered the story.
-
-| Energy picture (this chapter) | Where it stops being enough | Part that continues the plot |
-|------------------------------|----------------------------|------------------------------|
-| Quadratic \(\psi(\boldsymbol{\varepsilon})\) | Yield and path dependence | [VI.4](04-nonlinear-plasticity-preview.md) |
-| Path-independent hyperelasticity | Dislocation forest from cold work | [Part VII](../part07-defects/00-opening.md) |
-| Virtual work \(\delta\Pi=0\) | Atomistic nucleation at a notch | [Part VIII](../part08-md/00-opening.md) |
-
-The [prologue](../../prologue/00-many-scales.md) promised one specimen through six acts: **Act III** is the linear elastic climb this chapter explains; **Act IV** is where \(\delta\Pi=0\) with a single quadratic \(\psi\) stops being enough. Part IV assembled the mesh; Part VI named the energy; Part VII will show the forest that cold drawing stored before the operator ever closed the grips.

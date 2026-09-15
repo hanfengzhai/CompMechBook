@@ -215,6 +215,305 @@ The wire's **manufacturing history** (draw, anneal, redraw) is itself a multisca
 
 Skipping history and jumping from bulk DFT modulus to in-service performance predicts the wrong wire. Internal state variables exist to carry **path dependence** upward when pure elasticity cannot.
 
+## Worked example: one service load, four handshakes
+
+The copper wire from the prologue — 1 mm diameter, 100 mm gauge, cold-drawn OFHC copper — makes a concrete multiscale afternoon if we trace **one** engineering question: *At 5 A DC and 50 N tension, does thermal softening change the elastic stiffness enough to matter before the load cell reaches yield?*
+
+No single code answers that. A disciplined workflow chains four handshakes with archived inputs at every arrow.
+
+### Handshake 1 — DFT → continuum elastic constants (Part IX → VI)
+
+A Quantum ESPRESSO `vc-relax` on fcc Cu with PBE pseudopotentials (documented in [IX.3](../part09-dft/03-dft-workflows.md)) yields:
+
+| Export | DFT (GGA-PBE) | Experiment | Used in FEM |
+|--------|---------------|------------|-------------|
+| Lattice \(a_0\) | 3.55 Å | 3.61 Å | Reference only; do not silently overwrite |
+| Bulk modulus \(B\) | \(\sim 140\) GPa | \(\sim 140\) GPa | Sanity check |
+| \(C_{11}, C_{12}, C_{44}\) | 168, 122, 75 GPa | 168, 121, 75 GPa | Voigt \(E \approx 130\) GPa, \(\nu \approx 0.34\) |
+
+Voigt averaging gives \(E = 130\,\text{GPa}\), \(\nu = 0.34\) for the isotropic elastic step in Part IV — **not** because copper is isotropic (cold drawing breaks symmetry), but because the first elastic FEM pass needs a documented starting point. Texture from drawing enters later via crystal plasticity (Part VII handoff).
+
+### Handshake 2 — Joule heating → conjugate heat transfer (Part IV ↔ V)
+
+Steady current \(I = 5\,\text{A}\) in a 1 mm wire with resistivity \(\rho_e \approx 1.7 \times 10^{-8}\,\Omega\cdot\text{m}\) gives volumetric heating
+
+\[
+q = \frac{I^2 \rho_e}{\pi (d/2)^2} \approx 2.2 \times 10^7\,\text{W/m}^3.
+\]
+
+Part IV's FEM solves \(-k\nabla^2 T = q\) in the solid with \(k \approx 400\,\text{W/m·K}\). Part V's FVM (or a correlation from [V.4](../part05-fvm/04-navier-stokes-cfd.md)) supplies \(h \approx 15\,\text{W/m}^2\text{K}\) on the surface. **Partitioned fixed-point loop:**
+
+1. Guess wall temperature \(T_w = 350\,\text{K}\); apply \(q_w = h(T_w - T_\infty)\) with \(T_\infty = 300\,\text{K}\).
+2. Solve solid conduction; read new \(T_w\) from surface nodes.
+3. Repeat until \(|T_w^{(k+1)} - T_w^{(k)}| < 0.5\,\text{K}\).
+
+Typical convergence: \(T_w \approx 385\)–\(395\,\text{K}\) at mid-span — warm to the touch, consistent with Act II in the prologue. **Sanity check:** integrated surface heat flux equals integrated Joule source (Part V Lab act).
+
+### Handshake 3 — Thermal strain → mechanical stiffness (Part VI → IV)
+
+Mechanical load 50 N gives engineering stress \(\sigma \approx 6.4\,\text{MPa}\) — far below yield (\(\sim 200\,\text{MPa}\)). Thermal expansion adds
+
+\[
+\varepsilon_{\text{th}} = \alpha \Delta T \approx 17 \times 10^{-6}\,\text{K}^{-1} \times 90\,\text{K} \approx 1.5 \times 10^{-3},
+\]
+
+while elastic strain from load is \(\varepsilon_{\text{m}} \sim 5 \times 10^{-5}\). Thermal strain dominates **displacement** but not **stress** in a free-expansion sense; in the fixed-grip tensile frame, thermal stress is tens of MPa and can shift the effective tangent stiffness the load cell sees.
+
+A coupled thermoelastic FEM (Part IV mesh + Part VI virtual work with \(\boldsymbol{\varepsilon} = \boldsymbol{\varepsilon}_{\text{m}} + \alpha\Delta T\,\mathbf{I}\)) reports whether the 50 N ramp remains in the linear regime. **Export upward to Part VII:** if \(\sigma + \sigma_{\text{th}}\) approaches yield, dislocation sources activate — the hardening curve in Act IV is no longer optional.
+
+#### Worked example: load-cell reading under fixed grips
+
+The sensitivity table ranks Handshake 3 first for fixed-grip stress. Here is the same calculation on the **three-node bar** from [IV.4](../part04-fem/04-poisson-to-elasticity.md#lab-act-one-mesh-two-fields-act-iiiii-on-the-copper-wire), with numbers tied to the converged Handshake 2 temperature rise.
+
+**Given.** \(L = 1\,\text{m}\), \(A = 1\,\text{mm}^2\), \(E = 120\,\text{GPa}\), fixed grips (\(u(0)=u(L)=0\)), \(\Delta T = 90\,\text{K}\) from Handshake 2, mechanical load \(F = 50\,\text{N}\) at mid-span (equivalent to uniform body-force approximation for illustration).
+
+**Thermal strain (blocked).** With both ends fixed, uniform \(\Delta T\) produces
+
+\[
+\varepsilon_{\text{th}} = \alpha \Delta T.
+\]
+
+Using handbook \(\alpha = 17 \times 10^{-6}\,\text{K}^{-1}\): \(\varepsilon_{\text{th}} = 1.53 \times 10^{-3}\). Thermal stress (if the wire were free to expand but grips prevent it):
+
+\[
+\sigma_{\text{th}} = -E\,\varepsilon_{\text{th}} \approx -184\,\text{MPa}
+\]
+
+(compressive — the wire wants to expand but cannot).
+
+**Mechanical strain from 50 N.** Engineering stress \(\sigma_{\text{m}} = F/A = 50\,\text{N} / 10^{-6}\,\text{m}^2 = 50\,\text{MPa}\) tension if applied uniformly; on the 1 m bar with fixed ends and point load, peak axial stress is order \(10\,\text{MPa}\) depending on load path — use \(\sigma_{\text{m}} \approx 6.4\,\text{MPa}\) as the prologue's global estimate for the thin wire.
+
+**Superposed axial stress (1D estimate).**
+
+\[
+\sigma_{\text{total}} \approx \sigma_{\text{m}} + \sigma_{\text{th}} \approx 6.4 - 184 \approx -178\,\text{MPa}.
+\]
+
+The load cell in a **fixed-grip** frame measures reaction against thermal compression — the 50 N tension barely offsets the thermal term. This is why Handshake 3 dominates: mechanical load is a perturbation on a thermal background set by Handshake 2.
+
+**Sensitivity to \(\alpha\).** Part IX quasi-harmonic phonons may give \(\alpha = 15.5 \times 10^{-6}\,\text{K}^{-1}\) (PBE Cu at 300 K) versus handbook \(17 \times 10^{-6}\,\text{K}^{-1}\) — a \(-8.8\%\) change:
+
+| \(\alpha\) source | \(\varepsilon_{\text{th}}\) | \(\sigma_{\text{th}}\) (MPa) | Change in \(\sigma_{\text{th}}\) |
+|-------------------|----------------------------|------------------------------|----------------------------------|
+| Handbook \(17 \times 10^{-6}\) | \(1.53 \times 10^{-3}\) | \(-184\) | baseline |
+| DFT phonon \(15.5 \times 10^{-6}\) | \(1.40 \times 10^{-3}\) | \(-168\) | \(+16\,\text{MPa}\) (less compression) |
+| Perturbed \(18.7 \times 10^{-6}\) (+10%) | \(1.68 \times 10^{-3}\) | \(-202\) | \(-18\,\text{MPa}\) |
+
+A \(\pm 10\%\) error in \(\alpha\) shifts fixed-grip thermal stress by \(\pm 18\,\text{MPa}\) — **three times** the 50 N mechanical stress. The load-cell **tangent stiffness** during a small displacement ramp is also affected: thermal pre-stress changes the linearization point even before yield.
+
+**Modal cross-check (Part I.3).** The thermal load vector \(\mathbf{f}_{\text{th}} \propto \alpha \Delta T \int E \,\mathbf{B}^T \mathbf{1}\, d\Omega\) projects onto eigenmodes of the fixed–fixed bar. Only **symmetric** modes carry thermal stress; antisymmetric modes have zero projection ([I.3](../part01-linear-algebra/03-eigenvalues.md#lab-act-modal-thermal-handshake-act-ii-preview)). Computing modes once and projecting \(\mathbf{f}_{\text{th}}\) verifies the 1D estimate above on the same mesh Part IV uses for Act III — the dynamic/modal handshake between Parts I, IV, and VI.
+
+**Archive requirement.** Store `alpha_cu_300K.dat` beside `cu.phonon/` with source (handbook, DFT quasi-harmonic, or NPT MD thermal expansion). If the FEM deck cites handbook \(\alpha\) while `cu.phonon/` exists, Handshake 3 is **partially audited** — the same pedigree gap Part IX.3 flags before the epilogue.
+
+### Handshake 4 — Rate-dependent hardening and notch localization (Part VII → VI → VIII)
+
+Act IV on the load cell is not a single physics story. The upward bend after yield combines **forest hardening** (dislocation density from Part VII), **strain-rate sensitivity** (mobility and phonon drag from Part VIII), and — when a micro-notch is present (Act V) — **stress localization** that homogenized crystal plasticity may smear. Handshake 4 wires all three; the epilogue treats them as one interface because the same archived `hardening.yaml` feeds the FEM deck whether or not a notch is present.
+
+#### 4a — DDD strain rate to quasi-static load cell (Act IV — Hardening)
+
+OpenDiS timesteps and mobility-table resolution limit accessible RVE strain rates to \(\dot\varepsilon_{\text{DDD}} \sim 10^2\)–\(10^4\,\text{s}^{-1}\). The tensile frame in the prologue runs at \(\dot\varepsilon_{\text{lab}} \sim 10^{-3}\)–\(10^{-1}\,\text{s}^{-1}\) — three to six orders of magnitude slower. Importing a DDD stress–strain curve at \(10^3\,\text{s}^{-1}\) directly into quasi-static FEM **overpredicts** flow stress by 5–20% for rate-sensitive fcc copper — enough to miss yield in Act III while still looking plausible on a plot.
+
+**Workflow (from [VII.3](../part07-defects/03-polycrystal-and-fem-handoff.md#scale-boundary-handshake-ddd-strain-rate-to-quasi-static-fem)):**
+
+1. Run the same OpenDiS RVE at \(\dot\varepsilon \in \{10^2, 10^3, 10^4\}\,\text{s}^{-1}\) at fixed \(T = 300\,\text{K}\) (or the Joule-heated temperature from Handshake 2 if Act II is active).
+2. Extract \(\tau_{\text{flow}}\) at fixed plastic strain \(\gamma = 0.01\); fit power-law sensitivity \(m\):
+
+\[
+\tau_{\text{flow}}(\dot\varepsilon) = \tau_0 \left(\frac{\dot\varepsilon}{\dot\varepsilon_0}\right)^m, \qquad m \approx 0.01\text{–}0.05 \text{ for Cu at 300 K}.
+\]
+
+3. Extrapolate to \(\dot\varepsilon_{\text{lab}}\) — **do not** run OpenDiS at \(10^{-3}\,\text{s}^{-1}\) unless the mobility law is validated there.
+4. Export \(\sigma_{y0}\), \(H\), and rate factor to `hardening.yaml` with provenance:
+
+```yaml
+# rate_handoff (archive beside opendis.restart)
+ddd_strain_rates_s-1: [1.0e2, 1.0e3, 1.0e4]
+lab_target_strain_rate_s-1: 1.0e-3
+rate_sensitivity_m: 0.022
+tau_flow_extrapolated_MPa: 40.2
+mobility_table_source: "Part VIII NVT shear — commit hash"
+temperature_K: 300
+```
+
+**Worked example on the prologue wire.** DDD at \(\dot\varepsilon = 10^3\,\text{s}^{-1}\) gives \(\tau_{\text{flow}} = 45\,\text{MPa}\) at \(\gamma = 1\%\). With \(m = 0.022\), extrapolation to \(\dot\varepsilon_{\text{lab}} = 10^{-3}\,\text{s}^{-1}\):
+
+\[
+\tau_{\text{lab}} = 45 \left(\frac{10^{-3}}{10^3}\right)^{0.022} \approx 45 \times 0.90 \approx 40.5\,\text{MPa}.
+\]
+
+Schmid factor \(\approx 0.408\) for dominant fcc slip gives \(\sigma_y \approx 99\,\text{MPa}\) at lab rate vs \(\approx 110\,\text{MPa}\) if the DDD curve is imported without extrapolation — an **11% overprediction** on yield that Handshake 3's thermal stress would compound. Archive both numbers; report the band as uncertainty on Act IV's hardening knee.
+
+| Quantity | DDD at \(10^3\,\text{s}^{-1}\) | Extrapolated to lab rate | FEM parameter |
+|----------|-------------------------------|--------------------------|---------------|
+| \(\tau_{\text{flow}}\) at \(\gamma = 1\%\) | 45 MPa (illustrative) | 40–42 MPa | Initial CRSS in DAMASK |
+| Hardening slope \(H\) | from \(\tau\)–\(\gamma\) | weakly rate-dependent | `g_sat`, `h_0` in yaml |
+| Forest density \(\rho\) | state variable | **not** rate-extrapolated | Taylor \(\alpha\sqrt{\rho}\) |
+
+When Joule heating raises \(T\) to 380 K (Handshake 2), \(m\) grows and mobility tables from Part VIII must be evaluated at the **same** \(T\) as the DDD run — not at 300 K by default. Rate-dependent plasticity is the mesoscale counterpart of Handshake 3's \(\alpha\) sensitivity: a 10% error in rate mapping shifts the hardening knee by the same order as a 10% error in thermal expansion shifts fixed-grip stress.
+
+#### 4b — When continuum fails at the notch: MD subdomain (Act V — Notch)
+
+If the wire has a micro-notch (Act V), continuum FEM gives stress concentration \(K_t \approx 3\) at the root. Peak stress \(\sim 20\,\text{MPa}\) still looks elastic — but **gradient** of stress over atomic spacing matters for nucleation. A concurrent MD/FEM domain hands atomistic resolution within 2 nm of the notch tip while FEM carries the bulk field (Part VIII, [VIII.3](../part08-md/03-ab-initio-and-coarse-graining.md)).
+
+The localization handshake table:
+
+| Region | Model | State | Export across interface |
+|--------|-------|-------|-------------------------|
+| Bulk | FEM + crystal plasticity | \(\mathbf{u}\), \(T\), internal vars from 4a | Displacement BC to MD box |
+| Notch tip | MD (EAM from DFT) | \(\{\mathbf{r}_i\}\) | Traction on FEM boundary |
+| Defect kinetics (optional) | DDD / FE² | Dislocation density at Gauss points | Extra hardening if pile-ups matter |
+
+**FE² trigger.** When sequential homogenization with one scalar \(H\) from 4a under-predicts notch-root plastic strain, mark Gauss points within 50 µm of the notch as DDD-active ([VII.3](../part07-defects/03-polycrystal-and-fem-handoff.md#step-4--when-offline-calibration-fails-fe-at-the-notch)). Cost scales with active points × DDD timesteps; offline calibration (4a alone) remains the default for production wire design.
+
+#### Worked example: FE² at the wire notch (Act V — Notch)
+
+The prologue's optional micro-notch has radius \(r = 50\,\mu\text{m}\) on a wire diameter \(d = 1\,\text{mm}\). Sequential crystal plasticity with scalar hardening from Handshake 4a predicts a peak von Mises stress \(\sigma_{\text{eq}} \approx 210\,\text{MPa}\) at the root under 50 N tension — below bulk yield for annealed copper but **above** the drawn-wire local yield after cold work. FE² asks whether dislocation pile-ups at the notch root add extra hardening that scalar \(H\) cannot capture.
+
+**Setup (illustrative numbers, reproducible workflow):**
+
+| Item | Value | Source |
+|------|-------|--------|
+| Macro mesh | 2,400 tetrahedra, notch RVE from Part IV | `wire_notch.inp` |
+| DDD-active Gauss points | 48 points within 50 µm of root | Marked in `fe2_zones.txt` |
+| RVE size | \(2\,\mu\text{m}\) cube, periodic BC | OpenDiS box from Part VII |
+| Macro strain rate | \(\dot\varepsilon = 10^{-3}\,\text{s}^{-1}\) | Lab frame (Handshake 4a) |
+| DDD subcycling | 200 OpenDiS steps per macro increment | Mobility from Part VIII |
+
+**One macro load increment** (displacement control, \(\Delta u = 0.5\,\mu\text{m}\) at grips):
+
+1. **Macro predictor.** Standard crystal plasticity FEM computes trial \(\bar{\boldsymbol{\varepsilon}}\) at each Gauss point. Inactive points use exported `damask.yaml` from Handshake 4a; active points **pause** the scalar law.
+2. **RVE handoff.** For each active point, pass \(\bar{\boldsymbol{\varepsilon}}\) (or velocity gradient \(\mathbf{L}\)) to a \(2\,\mu\text{m}\) OpenDiS cube with the same crystallographic orientation as the host element. Run DDD subcycling until macro \(\Delta t\) elapses.
+3. **Homogenize return.** Volume-average PK stress from the RVE: \(\bar{\boldsymbol{\sigma}} = \langle \boldsymbol{\sigma} \rangle_{V_{\text{RVE}}}\). Replace the Gauss-point stress in the macro assembly.
+4. **Macro corrector.** Newton iteration on the global residual until \(\|\mathbf{R}\| < 10^{-6}\).
+
+**Results on the copper wire notch (illustrative):**
+
+| Model | Peak \(\sigma_{\text{eq}}\) at root (MPa) | Plastic zone depth (µm) | CPU time (relative) |
+|-------|-------------------------------------------|-------------------------|---------------------|
+| Scalar \(J_2\) + Handshake 4a | 198 | 120 | 1× |
+| Crystal plasticity (DAMASK) | 215 | 145 | 3× |
+| FE² (48 active Gauss points) | 238 | 185 | 85× |
+
+FE² raises peak stress by \(\sim 10\)–\(15\%\) over crystal plasticity alone — pile-ups at the notch root increase back stress faster than Taylor hardening with a spatially uniform \(\rho\). The plastic zone deepens because dislocations emitted at the root cannot escape as easily as in a uniform RVE.
+
+**Pass/fail criteria before trusting FE²:**
+
+| Check | Criterion | Failure action |
+|-------|-----------|----------------|
+| RVE size | \(\bar{\boldsymbol{\sigma}}\) stable when RVE doubled to \(4\,\mu\text{m}\) | Enlarge box; check image forces |
+| Active zone | Only notch-root points active; bulk uses offline yaml | Reduce active count if cost prohibitive |
+| Rate | DDD subcycling mapped to lab \(\dot\varepsilon\) via Handshake 4a | Re-fit \(m\); do not import \(10^3\,\text{s}^{-1}\) curve directly |
+| Three-way compare | FE² root stress within 15% of MD subdomain (2 nm box) if available | Fall back to QM/MM or MD/FEM concurrent coupling |
+
+Archive `fe2_notch.log` with macro mesh, active-point list, OpenDiS restart per RVE, and the comparison table above. Run [`parse_fe2.sh`](../../scripts/parse_fe2.sh) on the comparison table to emit `fe2_export.yaml` with pass/fail flags for enrichment vs offline calibration. When FE² and crystal plasticity agree within 5%, **offline calibration suffices** — the notch is not localization-limited. When FE² exceeds crystal plasticity by more than 10%, export the RVE-averaged back stress as an enriched internal variable for production runs that cannot afford 48 concurrent DDD solves.
+
+```mermaid
+flowchart LR
+  Macro[FEM macro increment] -->|strain at 48 Gauss pts| RVE[OpenDiS 2µm cubes]
+  RVE -->|homogenized stress| Macro
+  Bulk[Remaining Gauss pts] -->|damask.yaml| Macro
+```
+
+This worked example closes Handshake 4b: the same `hardening.yaml` from 4a feeds bulk elements, while the notch root receives explicit dislocation physics when homogenization under-predicts localization — the multiscale afternoon's Act V in executable form.
+
+#### Handshake 4 sensitivity rank (Act IV + Act V combined)
+
+| Perturbed input | Sub-handshake | Effect on hardening knee | Effect on notch nucleation |
+|-----------------|---------------|--------------------------|----------------------------|
+| Skip rate extrapolation | 4a | +5–20% flow stress | Earlier spurious yield in bulk |
+| Wrong \(T\) on mobility | 4a | \(m\) error at heated grip | MD/DDD disagree on drag |
+| Notch radius ±50% | 4b | Minor in bulk | Threshold shifts \(\sim K_t\) |
+| Missing FE² at notch | 4b | Bulk curve OK | Under-predict localization |
+
+For the prologue load case (50 N, 5 A, optional notch), **4a dominates Act IV** whenever DDD exports feed the FEM deck; **4b activates only with Act V**. Document which sub-handshake controlled the answer in the workflow archive — the same habit as Handshake 3's \(\alpha\) table.
+
+### What this example teaches
+
+The four handshakes reuse the **same four questions** from the prologue at every interface:
+
+| Interface | State | Equations | Discretization | Export |
+|-----------|-------|-----------|----------------|--------|
+| DFT → FEM | \(\rho(\mathbf{r})\) | Kohn–Sham | Plane waves | \(C_{ij}\), \(E\), \(\nu\) |
+| FEM ↔ FVM | \(T\) | Heat + convection | Tet mesh + cell averages | \(T_w\), \(q_w\) |
+| Thermal → mechanical | \(\mathbf{u}\), \(T\) | Thermoelasticity | Same FEM mesh | Effective stiffness, yield margin |
+| DDD → FEM (rate) | \(\tau(\dot\varepsilon)\), \(\rho\) | Power-law / sinh mobility | OpenDiS RVE | \(\sigma_{y0}\), \(H\) at lab rate |
+| FEM → MD | \(\mathbf{u}\) near notch | Newton + EAM | Atomistic subdomain | Nucleation criterion |
+| DDD → FEM | \(\tau(\gamma)\), rate factor \(m\) | Lab strain rate | Crystal plasticity / \(J_2\) | Hardening knee (Act IV) |
+
+None of this runs unattended in one executable. The discipline is **traceability**: each number in the table carries a convergence log, a functional choice, and a unit check. That is multiscale computational mechanics in practice — not a longer single-scale run, but a **composed** story the epilogue's opening Scene already sketched on four screens.
+
+### Script audit trail (parse scripts ↔ handshakes)
+
+The repository ships small parsers beside the Lab acts so handshake exports are **machine-readable**, not notebook scribbles. Run them after each scale's production calculation and archive the yaml beside the source data:
+
+| Handshake | Script | Input artifact | Export |
+|-----------|--------|----------------|--------|
+| **All** — orchestrated chain | [`parse_multiscale_workflow.sh`](../scripts/parse_multiscale_workflow.sh) | `cu.foundation/` + `cht_wire.conf` | `multiscale_export.yaml` linking Handshakes 1–4b; phonon lifetime at converged \(T_w\) |
+| 1 — DFT → FEM | [`parse_dft_workflow.sh`](../scripts/parse_dft_workflow.sh) | `cu.foundation/` folder | `foundation_export.yaml` with \(C_{ij}\), Voigt \(E\), \(\nu\), optional `md_phonon_dos:`, `phonon_lifetime:`, `ddd_rate_extrapolation:` |
+| 1 — elastic only | [`parse_elastic.sh`](../scripts/parse_elastic.sh) | six `pw.x` strain logs in `cu.elastic/` | `C11`, `C12`, `C44`, \(B\), \(G\) |
+| 2 — Joule ↔ CHT | [`parse_cht.sh`](../scripts/parse_cht.sh) | wire geometry + load config (`cht_wire.conf`) | `cht_export.yaml` with \(T_w\), flux balance, iteration count |
+| 3 — Thermal → FEM | [`parse_alpha.sh`](../scripts/parse_alpha.sh) | `cu.phonon/a_vs_T.dat` from quasiharmonic scan | `alpha_export.yaml` with \(\alpha\), \(\varepsilon_{\text{th}}\), fixed-grip \(\sigma_{\text{th}}\) |
+| 4 — GSF → DDD | [`parse_gsf.sh`](../scripts/parse_gsf.sh) | `gsf_cu111.dat` from DFT sweep or metadynamics | `gsf_export.yaml` with \(\gamma_{\text{sf}}\), partial separation |
+| 4a — DDD → FEM rate | [`parse_rate.sh`](../scripts/parse_rate.sh) | `ddd_tau_vs_rate.dat` from OpenDiS sweep | `rate_export.yaml` with \(\tau_{\text{flow}}\) extrapolated to lab rate |
+| 4b — FE² at notch | [`parse_fe2.sh`](../scripts/parse_fe2.sh) | `fe2_notch_comparison.dat` from macro/DDD run | `fe2_export.yaml` with uplift vs crystal plasticity |
+| MD — phonon DOS | [`parse_vacf.sh`](../scripts/parse_vacf.sh) | `phonon_dos_md.dat` from NVT VACF | `vacf_export.yaml` with acoustic peak vs DFT LA |
+| MD — phonon lifetime | [`parse_lifetime.sh`](../scripts/parse_lifetime.sh) | `phonon_lifetime.dat` or `phonon_lifetime_vs_T.dat` | `lifetime_export.yaml` with LA \(\tau_n\) (optionally vs \(T\)) for mobility drag |
+| 4 — replica MD | [`parse_wham.sh`](../scripts/parse_wham.sh) | replica-exchange histogram | `wham_export.yaml` at target \(T\) |
+
+Illustrative inputs live under [`fixtures/`](../fixtures/); verify the chain with `./scripts/test-fixtures.sh` before trusting a new parser version. For a single command that runs Handshakes 1–4b in dependency order — including Handshake 3 with \(\Delta T\) from the converged CHT loop and phonon lifetime at \(T_w\) rather than 300 K — use [`parse_multiscale_workflow.sh`](../scripts/parse_multiscale_workflow.sh) and archive the emitted `multiscale_export.yaml` beside the Act VI folder. Handshake 3 exports \(\alpha(300\,\text{K})\) from `cu.phonon/a_vs_T.dat` via [`parse_alpha.sh`](../scripts/parse_alpha.sh) — the same script runs automatically when [`parse_dft_workflow.sh`](../scripts/parse_dft_workflow.sh) finds phonon data in the foundation folder. When `cu.phonon/phonon_dos_md.dat` is archived beside the DFT phonon folder, the same workflow runs [`parse_vacf.sh`](../scripts/parse_vacf.sh) and merges acoustic-peak pass/fail into `foundation_export.yaml` under `md_phonon_dos:`; when `cu.phonon/phonon_lifetime.dat` or `phonon_lifetime_vs_T.dat` is present, [`parse_lifetime.sh`](../scripts/parse_lifetime.sh) merges LA linewidth and lifetime under `phonon_lifetime:` (temperature sweep adds `ln_tau_vs_T_slope` for Handshake 4a drag at elevated \(T\)) — one Act VI audit for elastic constants, quasiharmonic \(\alpha\), stacking-fault energy, MD phonon validation, and acoustic drag pedigree. When `ddd_tau_vs_rate.dat` is archived in the same foundation folder, [`parse_rate.sh`](../scripts/parse_rate.sh) merges Handshake 4a lab-rate extrapolation under `ddd_rate_extrapolation:` so a single `foundation_export.yaml` carries both electronic-structure and DDD-rate pedigree. Archive `alpha_cu_300K.dat` beside `cu.phonon/` as in [IX.3](../part09-dft/03-dft-workflows.md#thermal-expansion-from-quasiharmonic-phonons-handshake-3-pedigree). Handshake 4a also exports standalone via [`parse_rate.sh`](../scripts/parse_rate.sh); Handshake 4b audits FE² notch uplift via [`parse_fe2.sh`](../scripts/parse_fe2.sh). Handshakes 1, 2, 3, 4a, and 4b exports should always cite a script name in the yaml header, the same way SCF logs cite `pw.x` version strings.
+
+### Sensitivity: which handshake matters most?
+
+The four handshakes are not equally influential on the engineering question. A one-at-a-time sensitivity scan — perturb each input by \(\pm 10\%\) while holding others fixed — ranks where the workflow is fragile:
+
+| Perturbed parameter | Handshake | Effect on mid-span \(T_w\) | Effect on load-cell stiffness |
+|---------------------|-----------|----------------------------|-------------------------------|
+| \(h\) (convection) | 2 | \(\pm 15\)–\(25\,\text{K}\) | Indirect via thermal stress |
+| \(\alpha\) (CTE) | 3 | None (steady \(T\)) | \(\pm 30\%\) on thermal strain |
+| \(C_{11}\) from DFT | 1 | None | \(\pm 5\%\) on elastic slope |
+| Notch radius | 4b | Minor | Nucleation threshold shifts |
+| Rate sensitivity \(m\) | 4a | \(\pm 5\)–\(15\%\) on flow stress | Indirect via yield margin |
+
+For this load case — 50 N tension, 5 A current — **Handshake 2 dominates temperature** and **Handshake 3 dominates fixed-grip stress**. Handshake 1 (elastic constants) matters less in the linear regime but becomes critical once yield approaches: a 10% error in \(C_{44}\) from a wrong DFT functional shifts the resolved shear stress on active slip systems by the same fraction, and Taylor hardening amplifies that into a measurably different hardening slope in Act IV. **Handshake 4 (4a)** ranks next when DDD exports feed the plasticity deck — rate extrapolation errors of 10% on \(\tau_{\text{flow}}\) shift the hardening knee by the same order; **4b** only when a notch or surface defect is present.
+
+This ranking is itself a multiscale deliverable. Before launching a full DFT campaign, ask: *Which handshake controls the quantity I need to certify?* If the question is deflection under 50 N at room temperature, Handshake 1 alone may suffice. If the question is whether thermal softening triggers yield during the ramp, Handshakes 2 and 3 must converge first — and Handshake 4 only if a notch or surface defect is present.
+
+Document the sensitivity table beside every workflow archive. When a colleague reuses your DFT elastic constants six months later, they inherit not only \(C_{ij}\) but the knowledge that those numbers were third in importance for the original question — a habit that prevents expensive fine-scale runs from substituting for missing coarse-scale coupling.
+
+### Worked example: deriving the sensitivity ranks
+
+The table above is not intuition — it follows from the same formulas Handshakes 1–3 already used. Take the converged mid-span wall temperature \(T_w \approx 390\,\text{K}\) with \(T_\infty = 300\,\text{K}\), so \(\Delta T = T_w - T_\infty \approx 90\,\text{K}\).
+
+**Handshake 2 — convection coefficient \(h\).** At the converged fixed point, integrated Joule source balances surface convection: \(P \approx h A \Delta T\). Differentiate:
+
+\[
+\frac{\partial T_w}{\partial h} = -\frac{P}{h^2 A} \approx -\frac{\Delta T}{h}.
+\]
+
+A \(\pm 10\%\) perturbation in \(h\) shifts \(\Delta T\) by \(\mp 10\%\) at first order — about \(\mp 9\,\text{K}\) on this baseline. The partitioned FEM–FVM loop in Handshake 2 widens that band: when solid conduction is not uniform, halving \(h\) can drop mid-span \(T_w\) by \(15\)–\(25\,\text{K}\) before the loop re-converges, because the surface flux couples back into the volumetric source distribution. **Record both** the linear estimate and the converged loop result in the archive.
+
+**Handshake 3 — thermal expansion \(\alpha\).** With fixed grips, thermal strain is \(\varepsilon_{\text{th}} = \alpha \Delta T \approx 1.5 \times 10^{-3}\). A \(\pm 10\%\) change in \(\alpha\) moves \(\varepsilon_{\text{th}}\) by the same fraction — the \(\pm 30\%\) entry in the table refers to the **thermal contribution to total strain** when mechanical strain is only \(\varepsilon_{\text{m}} \sim 5 \times 10^{-5}\): the ratio \(\varepsilon_{\text{th}} / \varepsilon_{\text{m}} \approx 30\), so a 10% error in \(\alpha\) shifts the thermal-to-mechanical strain balance by roughly 30% of the mechanical term. Fixed-grip stress \(\sigma_{\text{th}} \approx E \varepsilon_{\text{th}} \approx 200\,\text{MPa}\) then competes with the 6.4 MPa tensile stress from 50 N — Handshake 3 dominates the load-cell tangent even though Handshake 2 set \(\Delta T\).
+
+**Handshake 1 — elastic constant \(C_{11}\).** Voigt \(E\) depends linearly on \(C_{11}\) at leading order; a \(\pm 10\%\) perturbation in \(C_{11}\) shifts the elastic slope by \(\sim \pm 5\%\) after averaging — visible in a refinement-quality mesh but secondary to thermal stress at this load. Near yield, the same 10% error in \(C_{44}\) propagates to resolved shear on {111} slip systems and amplifies through Taylor hardening — Handshake 1 rises in the ranking.
+
+**Handshake 4a — rate sensitivity \(m\) (from [`parse_rate.sh`](../scripts/parse_rate.sh)).** The epilogue's Handshake 4a worked example fits \(\tau_{\text{flow}}(\dot\varepsilon) = \tau_0 (\dot\varepsilon/\dot\varepsilon_0)^m\) to OpenDiS RVE sweeps and extrapolates to lab rate. On the fixture `ddd_tau_vs_rate.dat`, the parser reports \(m = 0.022\), \(\tau_{\text{flow}} = 45\,\text{MPa}\) at \(\dot\varepsilon = 10^3\,\text{s}^{-1}\), and \(\tau_{\text{lab}} = 33.2\,\text{MPa}\) at \(\dot\varepsilon_{\text{lab}} = 10^{-3}\,\text{s}^{-1}\) — a **35% overprediction** if the DDD curve is imported without extrapolation. Differentiate the power law at fixed lab rate:
+
+\[
+\frac{\partial \tau_{\text{lab}}}{\partial m} = \tau_{\text{lab}} \ln\left(\frac{\dot\varepsilon_{\text{lab}}}{\dot\varepsilon_0}\right).
+\]
+
+With \(\dot\varepsilon_{\text{lab}}/\dot\varepsilon_0 = 10^{-6}\), \(\ln(10^{-6}) \approx -13.8\). A \(\pm 10\%\) perturbation in \(m\) (e.g. \(0.022 \to 0.0242\)) shifts \(\tau_{\text{lab}}\) by \(\sim \mp 10\% \times 13.8\,\text{MPa} \approx \mp 1.4\,\text{MPa}\) at first order — modest on \(\tau\) alone but **5–15% on macro flow stress** after Schmid conversion (\(\sigma_y = \tau/m_{\text{Schmid}}\)), matching the sensitivity table's Handshake 4a column. When Joule heating raises \(T\) to 380 K (Handshake 2), \(m\) grows with phonon drag; archive [`parse_lifetime.sh`](../scripts/parse_lifetime.sh) output beside mobility tables so rate and drag share the same temperature pedigree. If the converged wire temperature \(T_w\) falls between phonon-lifetime sweep nodes (typical when CHT reports 380 K but the MD sweep was run at 300, 400, and 500 K), the parser **linearly interpolates** \(\tau_n(T_w)\) and flags `interpolation = interpolated` in `lifetime_export.yaml`; when \(T_w\) hits a sweep node exactly, the flag reads `exact`. Check that field before coupling drag to Handshake 4a — extrapolating \(m\) from a nearest-node guess can overstate drag by 10–20% at intermediate temperatures.
+
+| Perturbation | First-order estimate | Converged workflow note |
+|--------------|---------------------|-------------------------|
+| \(h \to 1.1h\) | \(\Delta T_w \approx -9\,\text{K}\) | FEM–FVM loop may report \(-15\) to \(-25\,\text{K}\) |
+| \(\alpha \to 1.1\alpha\) | \(\varepsilon_{\text{th}} \uparrow 10\%\) | Fixed-grip stress shifts \(\sim 20\,\text{MPa}\) |
+| \(C_{11} \to 1.1 C_{11}\) | \(E \uparrow \sim 5\%\) | Linear regime only; dominates near yield |
+| \(m \to 1.1m\) | \(\tau_{\text{lab}} \downarrow \sim 1.4\,\text{MPa}\) | `parse_rate.sh` reports 35% direct-import overprediction |
+| Skip rate extrapolation | \(\tau_{\text{lab}} \to \tau_{\text{DDD}}\) | +35% flow stress on fixture data |
+
+This worksheet is the multiscale analogue of Part IV's mesh refinement log: before trusting the load-cell answer, show which partial derivative controlled it.
+
 ## Handshake mechanics: what crosses interfaces
 
 Successful coupling specifies **consistent** quantities at interfaces:
@@ -308,34 +607,6 @@ The wire does not care which chapter we finished last. It responds to physics. O
 
 ## Bridge
 
-The ladder ends here, but the references do not — and the copper wire does not vanish when the book closes. Every part from linear algebra through DFT was one continuous story: the same specimen, the same four questions, the same export discipline at every interface.
+The ladder ends here, but the references do not. The [Sources appendix](../appendix/sources.md) lists the PDF notes, coursework repositories, and external texts behind each part. The [Final Memory Sheet](../appendix/memory-sheet.md) collects the book-wide habits and traps in the ME 412 style. When `Writings.git` is linked, canonical chapter markdown lives under `writings/` in the Functional Analysis Notes layout; run `./scripts/sync-writings.sh` after upstream edits to refresh this book.
 
-| Where to go next | What it gives you |
-|------------------|-------------------|
-| [Prologue](../prologue/00-many-scales.md) | Scale discipline for a new project — state, equations, discretization, upward export |
-| [Sources appendix](../appendix/sources.md) | PDF notes, coursework repos, and chapter roadmap behind each part |
-| [Final Memory Sheet](../appendix/memory-sheet.md) | Book-wide habits and traps in the ME 412 concept-map style |
-| [Glossary](../appendix/glossary.md) | Cross-scale index when \(\mathbf{K}\) becomes an operator, then a bilinear form, then \(\mathbb{C}\) |
-
-| Reading order (Parts I → IX) | Workflow order (Acts VI → I) | What reunites them |
-|------------------------------|------------------------------|-------------------|
-| Grammar before multiphysics | Foundation before mounting | [Lab act reunion](#lab-act-reunion-six-acts-one-afternoon) |
-| Descent after continuum | DFT before FEM input deck | Export tables with archived convergence logs |
-| Weak form before electrons | Parameters before load ramp | Four questions at every interface |
-
-Return to the [**Lab act reunion**](#lab-act-reunion-six-acts-one-afternoon) whenever workflow order and reading order disagree: **Act VI** supplies the numbers; **Acts I–V** spend them on the same afternoon. Part I began with \(\mathbf{K}\mathbf{u}=\mathbf{f}\) on a spring chain; Part IX ended with SCF on \(\rho(\mathbf{r})\); this epilogue is the handshake that makes both ends of the ladder talk without unit mistakes or unconverged exports.
-
-| Prologue act | Reading-order climax | Workflow-order foundation |
-|--------------|---------------------|---------------------------|
-| I — Mounting | Part IV mesh + BC tags | FEM deck built from homogenized moduli |
-| II — Warming | Part III–V conjugate heat loop | Robin coefficient from FVM film solve |
-| III — Pulling | Part II–IV Galerkin convergence | \(\mathbf{K}\) from audited \(E\), \(\nu\) |
-| IV — Hardening | Part VII Taylor law | DDD yaml fed by MD mobility |
-| V — Notch | Part VIII atomistic box | Nucleation barriers from DFT + MD |
-| VI — Foundation | Part IX SCF (last in reading order) | DFT first in workflow order |
-
-The weak form that appeared in Part III as integration by parts, became Galerkin assembly in Part IV, reappeared as virtual work in Part VI, and found its electronic analogue in the Hohenberg–Kohn variational principle — is the same recurring character the prologue promised. Eigenmodes that decoupled the spring network in Part I reappear as Kohn–Sham orbitals at the finest scale. The story is not a catalog of methods; it is one specimen traced from \(\mathbb{R}^N\) to function spaces to meshes to defects to atoms to electrons — and back upward through homogenization.
-
-When `Writings.git` is linked, canonical chapter markdown lives under `writings/` in the Functional Analysis Notes layout; run `./scripts/sync-writings.sh` after upstream edits to refresh this book.
-
-Turn the page to the appendix when you need a symbol or a source — turn back to the prologue when you need the plot. The wire is still under tension; only the vocabulary changed from electrons to engineering and back again.
+Return to the [prologue](../prologue/00-many-scales.md) whenever a new project needs scale discipline — the four questions (state, equations, discretization, upward exports) apply to every material, not only copper.

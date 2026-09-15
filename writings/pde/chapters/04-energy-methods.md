@@ -4,15 +4,6 @@ Many PDEs of mechanics are Euler–Lagrange equations of an energy functional. M
 
 Pull the copper wire in tension: in linear elasticity, equilibrium minimizes stored elastic energy minus work done by the load. Heat the wire: steady conduction minimizes a thermal dissipation functional subject to boundary data. Even when the physics is not literally "energy" (electrostatics, Darcy flow), a convex functional often lurks behind the PDE — and convexity is what makes minimizers unique and computable.
 
-## Story so far (Prologue & Parts I–III)
-
-| Stage | What the wire became | Key object |
-|-------|----------------------|------------|
-| [III.1–III.3](01-strong-form.md) | Strong and weak PDEs; \(H^1\) membership for mesh fields | Weak derivatives, Dirichlet BC in \(H^1_0\) |
-| **III.4 (here)** | Equilibrium as energy minimization | Dirichlet principle; \(\delta\Pi[u]=0\) |
-
-Part III closes by packaging every weak form from [III.2](02-weak-form.md) as a **variational statement**: find the field that minimizes (or stationarizes) an energy functional. That is the same pattern Part IV will discretize as Rayleigh–Ritz on \(V_h\) — and the same pattern Part VI will extend to nonlinear elasticity and Part IX will meet again on electron density.
-
 ## Scene: the wire finds its rest
 
 Load the copper wire in the tensile frame and hold the grip displacement fixed. Microscopically, atoms rearrange for milliseconds; macroscopically, the wire **settles** to an equilibrium shape that minimizes total potential energy — elastic stored energy minus work done by the grips. Plot energy versus a trial displacement field: the true equilibrium sits at the bottom of a bowl; perturb it slightly and the energy rises, a sign of stability.
@@ -74,6 +65,23 @@ Hyperelastic materials use nonlinear strain energy \(\psi(\mathbf{F})\); Neo-Hoo
 | Linear elastic | \(\tfrac{1}{2}\boldsymbol{\varepsilon}:\mathbb{C}:\boldsymbol{\varepsilon}\) | Small strain copper wire |
 | Neo-Hookean | \(\tfrac{\mu}{2}(I_1 - 3) - \mu\ln J + \tfrac{\lambda}{2}(J-1)^2\) | Moderate rubber-like stretch |
 | Phase-field fracture | \(\psi(\boldsymbol{\varepsilon}) + G_c \gamma(\phi)\) | Crack on wire surface |
+
+### Worked example: thermoelastic energy on the wire
+
+Return to prologue **Act II — Heating**: steady current raises the copper wire's temperature above room value, and thermal expansion adds strain even before the grips ramp load. The coupled stationary problem minimizes a **sum of energies** — mechanical plus thermal — subject to the heat equation as a constraint (or solved in staggered fashion).
+
+For a 1D bar of length \(L\), cross-section \(A\), fixed at \(x=0\), free at \(x=L\) with tensile traction \(F\), and Joule heating \(q(x)\):
+
+\[
+\Pi(u, T) = \int_0^L \left[\tfrac{EA}{2}\left(u' - \alpha(T - T_{\text{ref}})\right)^2 + \tfrac{kA}{2}(T')^2\right] dx - F\, u(L).
+\]
+
+Stationarity in \(u\) at fixed \(T\) gives the mechanical equilibrium with thermal eigenstrain \(\varepsilon_{\text{th}} = \alpha(T - T_{\text{ref}})\). Stationarity in \(T\) gives steady conduction \(-(kT')' = q(x)/A\) with natural boundary conditions at the ends. The two fields **talk through \(\alpha\)**:
+
+1. Heat raises \(T\); thermal strain lowers effective mechanical strain and stress at fixed grip displacement.
+2. Mechanical work done at \(x=L\) does not appear in the heat equation at steady state — but transient heating (Act II in lab time) couples through \(\rho c_p \partial T/\partial t\).
+
+Numbers for copper at modest \(\Delta T = 50\,\text{K}\): \(\alpha \approx 17 \times 10^{-6}\,\text{K}^{-1}\), so \(\varepsilon_{\text{th}} \approx 8.5 \times 10^{-4}\). With \(E = 120\,\text{GPa}\), the thermal stress if expansion were fully constrained would be \(\sigma_{\text{th}} \approx E \varepsilon_{\text{th}} \approx 100\,\text{MPa}\) — comparable to yield in annealed copper and a reminder that **Act II and Act III are not independent** on the same specimen. Part IV's thermoelastic assembly (Chapter 4) and Part V's conjugate heat transfer implement this split functional on the same mesh; Part VI names the tensors inside the integrand.
 
 ## Rayleigh–Ritz method
 
@@ -186,9 +194,36 @@ Strong PDE  →  Weak form  →  Energy / saddle functional  →  (Part IV) disc
 
 The copper wire's tensile equilibrium, steady heating, and low-Re cooling flow each occupy a row in the summary table above. Part IV does not change the physics — it chooses \(V_h\), computes integrals, and assembles the \(\mathbf{K}\) that Rayleigh–Ritz minimization demands.
 
+## Lab act: minimize thermal energy on two bar elements (Act II — Warming)
+
+**Act II** holds grip displacement fixed while current heats the wire. Part III closes with the variational statement that steady temperature **minimizes** a quadratic functional — the thermal analogue of elastic energy minimization in Act III.
+
+Model steady conduction on \((0,L)\), \(L = 1\,\text{m}\), with conductivity \(k = 400\,\text{W/m·K}\), uniform Joule source \(q = 10^6\,\text{W/m}^3}\), and \(T(0) = T(L) = 300\,\text{K}\). The Dirichlet functional is
+
+\[
+\Pi(T) = \int_0^L \left[\tfrac{k}{2}(T')^2 - q T\right] dx.
+\]
+
+Discretize with **two equal bar elements** (three nodes). Use linear hat functions; unknowns are \(T_1 = 300\) (fixed), \(T_2\) at mid-span, \(T_3 = 300\) (fixed).
+
+| Step | Rayleigh–Ritz move | Result |
+|------|-------------------|--------|
+| 1 | Express \(T_h = N_1 T_1 + N_2 T_2 + N_3 T_3\) with \(T_1 = T_3 = 300\) | One free DOF: \(T_2\) |
+| 2 | Substitute into \(\Pi(T_h)\); set \(\partial \Pi / \partial T_2 = 0\) | Scalar equation \(K_{22} T_2 = F_2\) |
+| 3 | Compare to weak form \(\int k T' v' = \int q v\) with test hat at node 2 | **Same** \(K_{22}\) and \(F_2\) — Galerkin = energy minimization |
+| 4 | Solve for \(T_2\); compare to analytical \(T(L/2) = 300 + qL^2/(8k)\) | Coarse mesh underestimates peak; refine \(h\) |
+
+The mid-span temperature you read on the thermocouple is the **minimizer** of \(\Pi\) in \(V_h\). When Part IV assembles \(\mathbf{K}\mathbf{T} = \mathbf{F}\) for the coupled thermoelastic wire, the mechanical block minimizes elastic energy and the thermal block minimizes this functional — two bowls, one afternoon. If you add thermal expansion \(\varepsilon_{\text{th}} = \alpha(T - T_{\text{ref}})\) before Act III ramps load, the two functionals **couple**: heat lowers effective stress at fixed grip displacement, previewing the thermoelastic energy in the worked example above.
+
 ## Bridge to Part IV
 
-Part III closes the analytical arc the [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) promised: strong form for intuition, weak form for computation, Sobolev spaces for regularity, energy methods for existence and algorithms. Part IV is where that pipeline becomes **code** — weighted residuals, element loops, quadrature, and convergence rates on the copper wire's mesh.
+We have:
+
+- Weak forms from integration by parts
+- Sobolev spaces for admissible fields
+- Energy principles for well-posedness and algorithms
+
+Part IV asks: how do we choose \(V_h\), compute integrals, and assemble \(\mathbf{K}\)? The finite element method is the answer — weighted residuals, element-by-element assembly, quadrature rules, and convergence theory that make the copper wire’s discrete model faithful to the continuum energy we minimized here.
 
 | What Part III completed | What Part IV opens |
 |-------------------------|-------------------|
@@ -198,15 +233,6 @@ Part III closes the analytical arc the [Functional Analysis Notes](https://hanfe
 | Sobolev \(H^1\) regularity | \(H^1\)-conforming shape functions (continuous across elements) |
 | [III.4 checkpoint](#concept-map-checkpoint-part-iii) energy pipeline | [IV opening](../part04-fem/00-opening.md#closing-the-arc-from-part-iii) **Closing the arc from Part III** |
 
-Return to the [prologue](../../prologue/00-many-scales.md): **Act III — Pulling** will ramp grip displacement on the load cell, but the operator cannot trust that linear elastic climb until the energy minimum defined here has a discrete search space \(V_h \subset H^1\). Part I's \(\mathbf{K}\mathbf{u}=\mathbf{f}\) was nodal equilibrium without integration by parts; Part II's completeness made mesh refinement meaningful; this chapter showed why minimizing \(\Pi[u]\) and solving \(a(u,v)=\ell(v)\) are the same statement for coercive problems. Part IV's assembly is not a new subject — it is Rayleigh–Ritz on the wire's tensile and thermal energies, one element at a time.
+If you need the fluid fork after FEM, [IV.5](../part04-fem/05-convergence.md#bridge-two-doors-from-here) names **Door A** (Part V: FVM and conjugate heat transfer) and **Door B** (Part VI: continuum stress–strain vocabulary) — the canonical place to choose, so this chapter can stay focused on energy → assembly.
 
-The [prologue](../../prologue/00-many-scales.md) named the weak form a **recurring character** — born in [III.2](02-weak-form.md), dressed as energy in this chapter, destined to become Galerkin orthogonality in Part IV, virtual work in Part VI, and a variational principle on \(\rho(\mathbf{r})\) in Part IX. If you need the fluid fork after FEM, [IV.5](../part04-fem/05-convergence.md#bridge-two-doors-from-here) names **Door A** (Part V: FVM and conjugate heat transfer) and **Door B** (Part VI: continuum stress–strain vocabulary) — the canonical place to choose, so this chapter can stay focused on energy → assembly.
-
-| Prologue act | Energy functional on the wire | What Part IV assembles from it |
-|--------------|------------------------------|-------------------------------|
-| II — Warming | Minimize thermal energy \(\int k\|\nabla T\|^2 - q_J T\) | Thermal \(\mathbf{K}_T\), Joule source \(\mathbf{f}_q\) on P1 mesh |
-| III — Pulling | Minimize elastic energy \(\int \tfrac{1}{2}EA (u')^2 - fu\) | Mechanical \(\mathbf{K}\), end-load vector \(\mathbf{f}\) |
-| IV — Hardening (preview) | Convexity lost after yield — energy minimum splits | Nonlinear Newton loops; Part VI–VII supply new \(\Pi\) |
-| VI — Foundation (preview) | Same Dirichlet principle on \(\rho(\mathbf{r})\) in Part IX | Kohn–Sham as constrained energy minimization |
-
-Turn the page when "minimize energy" and "solve \(\mathbf{K}\mathbf{U}=\mathbf{F}\)" still feel like separate subjects — assembly is where Part III's variational statement becomes the sparse matrix Part I taught you to trust.
+Turn the page. Assembly awaits: the same \(\mathbf{K}\mathbf{U}=\mathbf{F}\) from Part I, now built from shape functions, Jacobians, and the bilinear forms defined in Part III.

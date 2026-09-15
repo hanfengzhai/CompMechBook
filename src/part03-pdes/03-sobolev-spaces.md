@@ -4,16 +4,6 @@ Sobolev spaces measure how much smoothness a function has in an \(L^2\) sense. T
 
 When we approximate the temperature on the copper wire with piecewise-linear hat functions, the discrete field is continuous but has kinks at nodes. It is not twice differentiable in the classical sense — yet finite element solutions of Poisson's equation are meaningful because kinks are allowed in \(H^1\): only the **first** weak derivative must live in \(L^2\). Sobolev spaces encode exactly that level of regularity.
 
-## Story so far (Prologue & Parts I–III)
-
-| Stage | What the wire became | Key object |
-|-------|----------------------|------------|
-| Parts I–II | Function spaces \(H^1\), \(L^2\); weak forms as integration by parts | Norms, completeness, Lax–Milgram |
-| [III.1–III.2](01-strong-form.md) | Strong PDEs at points; weak forms with test functions | Bilinear form \(a(u,v)=\ell(v)\) |
-| **III.3 (here)** | Piecewise-linear \(T(x)\) with kinks at nodes | Sobolev membership: \(\nabla u \in L^2\) |
-
-The [prologue](../../prologue/00-many-scales.md) promised the weak form as a **recurring character**. Parts I–II built the room; III.1–III.2 gave it lines on stage. This chapter names the **regularity contract** FEM codes assume: conforming elements live in \(H^1\), concentrated loads live in \(H^{-1}\), and optimal \(O(h^2)\) rates need \(H^2\) on the true solution — not on the mesh field itself.
-
 ## Scene: kinks at the nodes
 
 Mesh the copper wire for steady Joule heating with ten linear bar elements. Plot the temperature: a continuous broken line, slope changing abruptly at each node, nowhere twice differentiable in the classical sense. A mathematician trained on \(C^2\) solutions might reject the picture; a finite element practitioner recognizes it as a **conforming \(H^1\)** approximation — continuous across elements, square-integrable gradient piecewise constant.
@@ -163,6 +153,40 @@ Piecewise-linear finite element fields on the copper wire are globally in \(H^1\
 | \(H^{-1}\) load | Point forces, concentrated fluxes |
 | \(H^2\) regularity | Enables \(O(h^2)\) convergence for P1 on Poisson |
 
+## Lab act: patch-test \(H^1\) membership on the heated wire (Act II — Warming)
+
+**Act II** reports a thermocouple climb while the grips stay fixed. The FEM temperature you will assemble in Part IV is not a smooth \(C^2\) curve — it is a broken line of hat functions, kinked at every node. Sobolev spaces are the contract that makes those kinks legal.
+
+Take the copper wire segment \((0,L)\) with \(L = 1\,\text{m}\) and a **three-node** mesh: nodes at \(0\), \(L/2\), and \(L\), with \(T(0) = T(L) = 300\,\text{K}\). Approximate the interior rise with a single hat function \(\phi_1(x)\) peaked at mid-span:
+
+\[
+T_h(x) = 300 + \Delta T \,\phi_1(x), \qquad \phi_1(x) = \begin{cases} 2x/L & x \le L/2 \\ 2(L-x)/L & x \ge L/2 \end{cases}
+\]
+
+| Check | Computation | Verdict |
+|-------|-------------|---------|
+| \(T_h \in L^2\)? | \(\|T_h\|_{L^2}^2 = \int (300 + \Delta T \phi_1)^2 < \infty\) | Yes — bounded on finite domain |
+| Weak derivative \(T_h' \in L^2\)? | \(T_h' = \Delta T \cdot (\pm 2/L)\) piecewise constant | Yes — jump at \(L/2\) is fine in \(L^2\) |
+| \(T_h \in H^2\)? | \(T_h''\) is a delta at the node, not an \(L^2\) function | **No** — explains why P1 gives \(O(h)\), not \(O(h^2)\), without extra regularity |
+| Dirichlet trace | \(T_h(0) = T_h(L) = 300\) | Satisfied — \(H^1\) conformity for scalar Lagrange elements |
+
+Now refine to ten equal elements and plot \(\|T_h'\|_{L^2}^2 = \int (T_h')^2 \, dx\) versus mesh size \(h\). The gradient energy should stabilize toward the true \(\int (T')^2\) as \(h \to 0\) even though kinks persist at nodes — completeness (Part II) guarantees the limit stays in \(H^1\).
+
+**Failure mode to watch:** if you accidentally allow a temperature **jump** across an element interface (discontinuous \(T_h\)), the weak derivative produces a delta-like distribution and \(T_h \notin H^1\). Conforming FEM avoids this by enforcing \(C^0\) continuity — the same reason Part IV's shape functions share nodes. When the thermocouple reading disagrees with a coarse three-node mesh, the fix is refinement in \(H^1\), not higher classical smoothness.
+
+## Concept map checkpoint (Sobolev spaces)
+
+Sobolev spaces are the **room** where the weak form from [III.2](02-weak-form.md) lives. Before energy methods package existence as minimization, name what \(H^1\) and \(L^2\) buy on the copper wire:
+
+| Question | Sobolev answer (copper wire) |
+|----------|------------------------------|
+| What **object**? | Fields \(u \in H^1(\Omega)\) with \(\nabla u \in L^2\); temperature \(T \in H^1\), flux in \(L^2\) |
+| What **structure**? | Weak derivatives; trace theorem (boundary values); Poincaré inequality on \(H^1_0\) |
+| What **theorem**? | Rellich–Kondrachov compactness in 2D/3D; embedding \(H^1 \hookrightarrow L^2\) |
+| What **breaks**? | Discontinuous \(T_h\) across elements (\(T_h \notin H^1\)); assuming \(H^2\) when only \(H^1\) is guaranteed |
+
+The thermocouple in Act II measures a **continuous** temperature field even when Joule heating kinks the gradient at weld points — that is \(H^1\) membership, not classical \(C^2\) smoothness. Part IV's conforming shape functions are designed to stay inside this room; Part V's cell averages live in a different room (conservation-first, not variational). When mesh refinement stalls, ask whether the discrete field still belongs to the Sobolev space the weak form assumed — the same audit Part II taught for completeness.
+
 ## Bridge
 
 Energy methods package weak forms as minimization problems. They unify FEM, provide physical intuition, and extend naturally to nonlinear elasticity where the energy functional may be polyconvex rather than quadratic. The Dirichlet principle identifies weak solutions of Poisson with minimizers of \(\Pi(u)\); coercivity on \(H^1_0\) is the same hypothesis as in Lax–Milgram.
@@ -177,20 +201,5 @@ Energy methods package weak forms as minimization problems. They unify FEM, prov
 The copper wire's displacement minimizes elastic energy in \(H^1\); its temperature minimizes a quadratic functional with conductivity \(k(x)\). Those are not separate tricks — they are the same variational pattern [III.2](02-weak-form.md) wrote as \(a(u,v)=\ell(v)\), now dressed as \(\delta\Pi[u]=0\). When incompressibility or mixed stress–displacement formulations appear, minimization alone is insufficient; saddle-point structure (LBB) enters — the same inf–sup language Part IV will meet again for Stokes.
 
 Return to the [prologue](../../prologue/00-many-scales.md): in **Act II — Warming**, the thermocouple climbs while the grips still hold fixed displacement. The temperature field \(T(x)\) that drives that reading must live in \(H^1\) — continuous across the wire, with square-integrable gradient — even though Joule heating and surface convection make \(T\) kinked at the thermocouple weld and insulator corner. Piecewise-linear FEM temperatures are globally in \(H^1\) but not in \(H^2\); that gap is exactly why optimal \(O(h^2)\) rates need smoother true solutions than the discrete fields themselves possess. Sobolev membership is not pedantry — it is the contract the thermocouple and the load cell both assume.
-
-| Sobolev symbol | FEM consumer in Part IV | FVM consumer in Part V |
-|----------------|-------------------------|------------------------|
-| \(H^1_0\) trial space | P1 shape functions; Dirichlet on grips | Cell-average temperatures with flux BCs at wall |
-| \(\|\nabla u\|_{L^2}\) seminorm | Strain energy in \(\mathbf{K}\) | Diffusive flux through faces |
-| \(H^{-1}\) loads | Nodal forces, concentrated Joule sources | Source terms in cell updates |
-| \(H^2\) regularity | \(O(h^2)\) convergence rates on Poisson | Second-order reconstruction where fields are smooth |
-
-| Part I–II vocabulary | Sobolev formalization (this chapter) | Where the wire uses it first |
-|------------------------|--------------------------------------|------------------------------|
-| Nodal vector \(\mathbf{u}\) | \(u\in H^1(\Omega)\) with weak \(\nabla u\) | Act III — Pulling: axial displacement field |
-| \(\mathbf{u}^T\mathbf{K}\mathbf{u}\) | \(\|u\|_{H^1}^2\) or energy seminorm | Act II — Warming: thermal gradient energy |
-| Refinement \(N\to\infty\) | Membership in \(H^1\) independent of mesh count | Every FEM run that claims convergence |
-| Concentrated nodal force | Load functional \(\ell\in H^{-1}\) | Grip load and thermocouple weld |
-| [II.2](../part02-functional-analysis/02-normed-spaces.md) completeness | \(H^1\) is complete; limits stay admissible | Cauchy sequences of mesh solutions |
 
 The next chapter develops that variational picture and closes Part III with the energy pipeline that Part IV discretizes: strong PDE → weak form → energy or saddle functional → search on \(V_h\). Turn the page when you want to see why "assemble \(\mathbf{K}\) from shape functions" is Rayleigh–Ritz minimization in disguise.

@@ -4,15 +4,6 @@ Perfect crystals exist in textbooks. Real materials carry **defects** — locali
 
 Continuum elasticity in Part VI describes smooth displacement fields. Defects are where that smoothness fails — and where mesoscale models begin.
 
-## Story so far (Prologue & Parts I–VI)
-
-| Stage | What the wire became | Key object |
-|-------|----------------------|------------|
-| Parts I–VI | Continuum fields; FEM assembly; yield knee on load cell | \(\boldsymbol{\sigma}\), J₂ hardening parameters \(\sigma_{y0}\), \(H\) |
-| **VII.1 (here)** | Slip lines on the wire surface; Burgers circuits | Point, line, surface defect taxonomy |
-
-Part VI fitted hardening with a single modulus \(H\) but did not explain **where** \(\sigma_{y0}\) and \(H\) come from. The [prologue](../../prologue/00-many-scales.md) promised a ladder of scales; Part VII descends from continuum smoothness to the **localized disruptions** — vacancies, dislocations, grain boundaries — that make cold-drawn copper stronger and the yield knee inevitable. This chapter names what broke the smooth picture.
-
 ## Scene: the wire yields
 
 Part VI ended with J₂ plasticity and isotropic hardening — \(\sigma_y = \sigma_{y0} + H\alpha\) — parameters that made the return-mapping loop converge but did not explain **where** \(H\) and \(\sigma_{y0}\) came from. The force–displacement curve from Part I finally bends at the same yield knee those parameters were fitted to mimic. The load cell still reads force, but the slope drops: the wire is **plastic**. A polished surface that was mirror-smooth now shows faint **slip lines** — traces of dislocation motion on {111} planes. Continuum FEM with isotropic elasticity predicted a straight elastic segment forever; the experiment crossed a yield point that lives not in \(\mathbb{C}\) alone but in a **forest of line defects** stored by cold drawing.
@@ -163,6 +154,35 @@ Elastic fields of dislocations assume a known **core structure** — the arrange
 
 The scale hierarchy is not a one-way street. Coarse models suggest where fine models must focus; fine models supply parameters coarse models cannot compute from first principles alone.
 
+## Lab act: read the slip lines before the load cell bends (Act IV — Hardening)
+
+**Act IV** in the lab is when the force–displacement trace bends upward after yield. Part VI fitted that bend with phenomenological \(H\) and \(\sigma_{y0}\); this chapter names the **objects** that bend was homogenizing.
+
+Before running DDD, inspect the cold-drawn copper wire under a low-power microscope (or a published EBSD micrograph of drawn copper):
+
+| Defect class | What to look for on the wire | What the taxonomy calls it |
+|--------------|----------------------------|----------------------------|
+| **Line** | Faint parallel streaks on the surface — slip traces on {111} planes | Edge/screw dislocations; forest density \(\rho\) |
+| **Surface** | Grain boundaries visible as etched lines if polycrystalline | Barriers to slip; sources for new segments |
+| **Point** | Not visible optically; inferred from resistivity drop after anneal | Vacancies frozen by drawing; recovery on heating |
+
+Counting lines is not required — **classifying** is. Ask: which defect type carries the history cold drawing wrote into the wire before the test began? The answer is **line defects**: a forest whose density \(\rho\) makes Taylor hardening \(\tau \propto \sqrt{\rho}\) the mesoscale origin of the \(H\) that Part VI borrowed without derivation.
+
+When \(\rho\) is only a label on an FEM input deck, the taxonomy has not yet become geometry. [VII.2](02-dislocation-dynamics.md) is where the forest becomes computable lines.
+
+## Concept map checkpoint (defect taxonomy)
+
+This chapter is where Part VI's fitted hardening parameters receive a geometric inventory. Before DDD simulates moving lines, summarize what the taxonomy established:
+
+| Question | Part VII answer (copper wire) |
+|----------|-------------------------------|
+| What **object**? | Point (vacancy, interstitial), line (dislocation), surface (GB, SF) defects |
+| What **structure**? | Burgers vector \(\mathbf{b}\); slip systems {111}\(\langle 110 \rangle\) in FCC Cu |
+| What **theorem**? | Taylor hardening \(\tau \propto \sqrt{\rho}\) from forest statistics |
+| What **breaks**? | Scalar \(\rho\) when link topology matters; continuum elasticity at the core (\(<1\) nm) |
+
+The Act IV Lab act classified slip traces on cold-drawn copper before the load cell bent — line defects carry the history drawing wrote into the wire. When \(\rho\) is only a label on an input deck, the taxonomy has not yet become geometry; [VII.2](02-dislocation-dynamics.md) is where the forest becomes computable lines.
+
 ## Bridge
 
 Dislocation dynamics simulates line defects directly — too coarse for every atom, too fine for pure FEM. It is the mesoscale chapter of our copper wire story: the place where work hardening becomes geometry and statistics rather than a fitted curve.
@@ -177,16 +197,5 @@ Dislocation dynamics simulates line defects directly — too coarse for every at
 The taxonomy above named what broke the smooth continuum picture: point defects (vacancies from annealing), line defects (dislocations from cold drawing), and surface defects (grain boundaries, stacking faults). The next chapter follows those **lines** as they move under Peach–Köhler forces, multiply through Frank–Read sources, and tangle into the forest whose density \(\rho\) makes Taylor hardening \(\tau \propto \sqrt{\rho}\) — the mesoscale origin of the \(H\) and \(\sigma_{y0}\) that Part VI's J₂ preview borrowed without derivation.
 
 Return to the [prologue](../../prologue/00-many-scales.md): **Act IV — Hardening** is when the load cell curve bends upward after yield. Part VI fitted that bend with phenomenological plasticity; Part VII explains the **geometry** cold drawing wrote into the wire before the test began. When mobility laws or core energies are still adjustable knobs, the signal to descend further is Part VIII — atomistics at the notch root and dislocation core.
-
-**Act V — Notch** is the exception the taxonomy prepares for: wherever a scratch, grip corner, or grain boundary concentrates stress beyond what smooth \(\boldsymbol{\sigma}(\mathbf{x})\) can regularize, line and surface defects in the table above become the relevant state variables. The taxonomy tells you *which* defect class to simulate; [VII.2](02-dislocation-dynamics.md) follows the lines; Part VIII resolves the core.
-
-| Part VI phenomenology | Defect class that carries the physics | Finer-scale audit in Parts VIII–IX |
-|-----------------------|---------------------------------------|-------------------------------------|
-| Yield stress \(\sigma_{y0}\) | Line defects from cold drawing | Peierls barrier from DFT; core structure from MD |
-| Hardening modulus \(H\) | Dislocation forest density \(\rho\) | Taylor law from DDD; mobility from MD |
-| Texture / anisotropic \(\mathbb{C}\) | Grain boundaries, surface defects | Polycrystal homogenization in [VII.3](03-polycrystal-and-fem-handoff.md) |
-| Notch sensitivity | Surface defects + line sources | MD nucleation; DFT surface energies |
-
-Cold drawing is not a comment in the material card — it is a **history** written as dislocation density and grain structure before the operator ever mounted the wire. The taxonomy is the index that tells you which defect class to open when a phenomenological parameter in Part VI stops being trustworthy.
 
 Turn the page when \(\rho\) is a label on an input deck rather than a count of moving lines — dislocation dynamics is where the forest becomes computable geometry.

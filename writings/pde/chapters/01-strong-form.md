@@ -6,17 +6,6 @@ The copper wire in the prologue reappears here as a domain — a one-dimensional
 
 Part II's closing checkpoint promised that reentrant corners and concentrated loads break classical smoothness but not virtual work balance. This chapter makes that promise concrete on the blackboard: strong forms state what holds **pointwise** when \(C^2\) regularity is available, and name precisely where it fails on the wire's grip corner, insulator interface, and mid-span load. The next chapter is not a detour — it is the correct continuum statement the prologue's recurring character has been walking toward since Part I's nodal balance laws.
 
-## Story so far (Parts I–II & III opening)
-
-| Stage | What the wire became | Key object |
-|-------|----------------------|------------|
-| Part I | Discrete equilibrium on a spring chain | \(\mathbf{K}\mathbf{u}=\mathbf{f}\) |
-| Part II | Fields in \(H^1\), \(L^2\); Lax–Milgram; spectra | Operator \(A: H^1\to H^*\) |
-| [III opening](00-opening.md) | Domains, BC tags, well-posedness triangle | Where fields live on the wire |
-| **III.1 (here)** | Pointwise PDE for heat and elasticity | Strong form — power and failure modes |
-
-Part II built the rooms where weak solutions live; this chapter writes the **blackboard physics** those rooms serve. The [prologue](../../prologue/00-many-scales.md) introduced the weak form as a recurring character — born here as equations that hold at every interior point, broken at the grip corner and thermocouple weld where [III.2](02-weak-form.md) takes over.
-
 ## Scene: heat at every point
 
 The tensile frame from Part I is still running, but the operator has raised the current. A thermal camera shows the copper wire no longer uniform: the center runs hotter than the grips, and the hottest strip follows the narrowest cross-section where Joule heating concentrates. An engineer writes on a whiteboard:
@@ -170,6 +159,33 @@ For \(-\Delta u = f\) with \(f \ge 0\) and \(u = 0\) on \(\partial\Omega\), the 
 | Point load at a point? | Requires delta source | Functional on test space |
 | FEM assembly entry point? | Differentiate twice | One integration by parts |
 
+## Lab act: write the strong form at three points on the heated wire (Act II)
+
+**Act II — Warming** switches on current. The thermal camera shows a hot center and cooler ends — but the **strong-form Laplacian** \(-k\Delta T = q\) is only meaningful where \(T \in C^2\). At three locations on the copper wire, decide whether the strong form applies pointwise:
+
+| Location | Strong form valid? | Why |
+|----------|-------------------|-----|
+| Midspan, smooth interior | Yes (if \(q\) smooth) | \(T\) is \(C^\infty\) in ideal 1D Joule heating |
+| Thermocouple weld (point sensor) | No — kink in BC data | Welded probe imposes a mixed/constrained patch; corners in 2D cross-section |
+| Insulator–grip interface | No — material jump | \(k\) discontinuous; flux continuous, \(\Delta T\) not classical |
+
+For each row, write the **strong-form equation** you would put on a blackboard (steady heat: \(-\frac{d}{dx}\left(k\frac{dT}{dx}\right) = q(x)\) in 1D; full \(-k\Delta T = q\) in 3D). Then note what breaks: second derivatives at the weld, coefficient jump at the interface, or nothing at midspan.
+
+This 5-minute table is the experiment-facing version of the decision matrix above. Part III.2 replaces pointwise Laplacians with **weak forms** precisely because rows two and three fail the \(C^2\) contract while row one succeeds. When a thermal FEM run converges under mesh refinement despite a thermocouple weld in the model, the weak form — not the strong form at every point — is the honest continuum statement.
+
+## Concept map checkpoint (strong form)
+
+Part II built the function spaces; this chapter names the PDEs those spaces will serve. Before integration by parts in the next chapter, summarize what the strong form demands and where it fails on the wire:
+
+| Question | Part III.1 answer (copper wire) |
+|----------|--------------------------------|
+| What **object**? | Fields \(T(\mathbf{x})\), \(\mathbf{u}(\mathbf{x})\) satisfying PDEs **pointwise** in \(\Omega\) |
+| What **structure**? | Elliptic / parabolic / hyperbolic classification; Dirichlet, Neumann, Robin BCs on \(\partial\Omega\) |
+| What **theorem**? | Maximum principle (elliptic); classical existence when data and domain are smooth enough for \(C^2\) |
+| What **breaks**? | Grip corners; thermocouple welds; material interfaces; point loads — all fail the \(C^2\) contract |
+
+The Lab act's three-point table is the operational version of this checkpoint: midspan obeys the strong form; weld and interface do not. Part III.2's weak form is not a numerical compromise — it is the correct continuum statement when rows two and three apply. Every numbered chapter in Parts I–IX now ends with this four-question summary before its Bridge; use it to audit whether you are discretizing the right formulation.
+
 ## Bridge
 
 The strong form is what physicists write. The weak form is what variational algorithms implement. Multiplying by a test function, integrating over \(\Omega\), and integrating by parts moves derivatives from the unknown onto smooth test functions — trading pointwise \(C^2\) requirements for integral balance in \(H^1\).
@@ -185,36 +201,4 @@ The copper wire's tensile equilibrium and steady heating look elliptic and innoc
 
 Return to this chapter's opening **Scene**: the thermal camera in prologue **Act II — Warming** demands a strong-form equation at every interior point — and previews why the weak form in [III.2](02-weak-form.md) is the honest continuum statement at the thermocouple weld and insulator corner. Part I's nodal balance laws were the finite-dimensional prelude; Part II's Sobolev spaces are the limit room; this chapter is the blackboard physics both must approximate.
 
-The [prologue](../../prologue/00-many-scales.md) introduced the weak form as a **recurring character**. It first speaks in full sentences in [III.2](02-weak-form.md); Sobolev spaces in [III.3](03-sobolev-spaces.md) make "test function" precise; energy methods in [III.4](04-energy-methods.md) recast the same balance as minimization.
-
-| Prologue act | Strong form on the wire | Where it breaks without weak form |
-|--------------|-------------------------|-----------------------------------|
-| II — Warming | \(-\nabla\cdot(k\nabla T)=q_J\) pointwise | Thermocouple weld: no classical \(C^2\) temperature |
-| III — Pulling | \(-\nabla\cdot\boldsymbol{\sigma}=\mathbf{0}\) pointwise | Grip corner: stress singularities, no smooth \(u\) |
-| IV — Hardening (preview) | Yield surface in stress space | History and defects leave smooth elasticity |
-| V — Notch (preview) | Concentrated traction at a scratch | Point load needs a dual, not an \(L^2\) density |
-| VI — Foundation (preview) | Electronic Poisson equation for \(\rho(\mathbf{r})\) | Part IX: strong form intuition before Kohn–Sham weak form |
-
-| Part II theorem | Strong-form equation on the wire | Weak-form home in [III.2](02-weak-form.md) |
-|-----------------|-----------------------------------|-------------------------------------------|
-| Lax–Milgram on \(H^1_0\) | Steady heat \(-(kT')'=q_J\) on the bar | \(\int k T' v'\,dx = \int q_J v\,dx\) |
-| Riesz representation of loads | End traction on the tensile specimen | \(\int f v\,dx + t v|_{\Gamma_N}\) |
-| Trace / dual loads | Thermocouple weld as flux discontinuity | Natural BC from integration by parts |
-
-[II.5](../part02-functional-analysis/05-spectral-theorem.md) closed Part II with the well-posedness triangle — strong form for intuition, weak form for computation, Sobolev spaces for regularity. This chapter is the **intuition** vertex; the next two chapters are computation and regularity. The weak form is not a numerical trick layered on physics — it is the continuum statement the thermocouple and load cell already assume when corners break classical smoothness.
-
-| Strong-form equation | Where it holds on the wire | Weak-form escape hatch in [III.2](02-weak-form.md) |
-|---------------------|---------------------------|---------------------------------------------------|
-| \(-(kT')'=q_J\) (1D heat) | Interior of the gauge section | Integral balance with \(T\in H^1\) |
-| \(-\nabla\cdot\boldsymbol{\sigma}=\mathbf{0}\) | Away from grip singularities | Virtual work with \(\boldsymbol{\sigma}\in L^2\) |
-| \(-\Delta u = f\) (Poisson prototype) | Smooth domains | \(\int\nabla u\cdot\nabla v = \int f v\) |
-
-| Strong-form scene on the wire | Weak-form home in [III.2](02-weak-form.md) | FEM consumer in Part IV |
-|------------------------------|-------------------------------------------|-------------------------|
-| Joule heat \(q(x)\) in the gauge section | \(\int q v\,dx\) as source functional | Thermal load vector \(\mathbf{f}_q\) |
-| End traction on the tensile bar | \(\int t v\,dS\) on Neumann boundary | Consistent nodal forces |
-| Fixed grip displacement | Essential BC in \(H^1_0\) subspace | Penalty or elimination rows in \(\mathbf{K}\) |
-
-[III.2](02-weak-form.md) is the chapter where the prologue's recurring character speaks in full sentences — integration by parts, test functions, and the Lax–Milgram gate that Part IV will discretize as assembly.
-
-Turn the page when the strong form feels correct but the mesh refuses to converge — that is the signal that pointwise derivatives were the wrong contract.
+The [prologue](../../prologue/00-many-scales.md) introduced the weak form as a **recurring character**. It first speaks in full sentences in [III.2](02-weak-form.md); Sobolev spaces in [III.3](03-sobolev-spaces.md) make "test function" precise; energy methods in [III.4](04-energy-methods.md) recast the same balance as minimization. Turn the page when the strong form feels correct but the mesh refuses to converge — that is the signal that pointwise derivatives were the wrong contract.

@@ -4,18 +4,6 @@ Kinematics describes how bodies move and deform. **Balance laws** relate stress 
 
 Part IV assembled \(\int \boldsymbol{\varepsilon}(\mathbf{u}):\mathbb{C}:\boldsymbol{\varepsilon}(\mathbf{v})\). Part V balanced fluxes of momentum. This chapter explains what \(\boldsymbol{\sigma}\) and \(\mathbb{C}\) mean, where the equilibrium equation comes from, and how copper, air, and plastic metal differ at the constitutive level.
 
-Part I's \(\mathbf{K}\mathbf{u}=\mathbf{f}\) was always a discrete force balance; [VI.1](01-kinematics.md) named the deformation that produces strain. This chapter completes the mechanical vocabulary: the **Cauchy stress tensor** whose weak divergence Part IV's assembly approximates, and the **constitutive map** \(\mathbb{C}\) that Parts VII–IX will trace from dislocation forests and electron density back to the numbers typed into the mesh script.
-
-## Story so far (Prologue & Parts I–VI)
-
-| Stage | What the wire became | Key object |
-|-------|----------------------|------------|
-| Parts I–V | Discrete and continuum PDEs; FEM and FVM discretizations | \(\mathbf{K}\mathbf{u}=\mathbf{f}\); flux balance |
-| [VI.1](01-kinematics.md) | Deformation gradient, strain measures | \(\mathbf{F}\), \(\boldsymbol{\varepsilon}\), objectivity |
-| **VI.2 (here)** | Stress, momentum balance, constitutive laws | \(\boldsymbol{\sigma}\), \(\nabla\cdot\boldsymbol{\sigma}+\mathbf{f}=\rho\ddot{\mathbf{u}}\) |
-
-Part IV assembled elasticity without deriving where \(\boldsymbol{\sigma}\) comes from. This chapter supplies the continuum foundation: balance laws from conservation of momentum, Cauchy stress as the force per area carrier, and constitutive relations that distinguish copper from air from plastic metal. The load cell reading in **Act III — Pulling** is the integral of \(\boldsymbol{\sigma}\) over the grip cross-section.
-
 ## Scene: three balances on one wire
 
 The tensile frame from Part I is still running, but the operator has raised the current. Three instruments watch the same copper cylinder:
@@ -155,6 +143,101 @@ or in Voigt notation for implementation:
 
 Plane stress and plane strain modify \(\mathbb{C}\) by eliminating out-of-plane components algebraically — the reductions used in 2D FEM (Part IV, Chapter 4).
 
+### Scale-boundary handshake: DFT elastic tensor to FEM material card
+
+Part IX computes single-crystal elastic constants \(C_{11}, C_{12}, C_{44}\) in GPa from strained DFT cells. Part IV's `*MATERIAL` card expects isotropic \(E\) and \(\nu\) (or a full anisotropic \(\mathbb{C}_{\text{Voigt}}\)). The wire on the bench is **polycrystalline** — so the handshake has two rungs: **crystal → effective isotropic moduli**, then **effective moduli → assembled \(\mathbf{K}\)**.
+
+**Step 1 — DFT to Voigt matrix (Part IX).** From [IX.3](../part09-dft/03-dft-workflows.md), a converged fcc Cu elastic run might yield (PBE, illustrative):
+
+| Constant | Value (GPa) | Role |
+|----------|-------------|------|
+| \(C_{11}\) | 168 | Axial stiffness along \(\langle 100\rangle\) |
+| \(C_{12}\) | 122 | Transverse coupling |
+| \(C_{44}\) | 76 | Shear on \(\{111\}\) planes |
+
+Voigt matrix (6×6) in GPa:
+
+\[
+\mathbb{C}_{\text{Voigt}} = \begin{bmatrix}
+C_{11} & C_{12} & C_{12} & 0 & 0 & 0 \\
+C_{12} & C_{11} & C_{12} & 0 & 0 & 0 \\
+C_{12} & C_{12} & C_{11} & 0 & 0 & 0 \\
+0 & 0 & 0 & C_{44} & 0 & 0 \\
+0 & 0 & 0 & 0 & C_{44} & 0 \\
+0 & 0 & 0 & 0 & 0 & C_{44}
+\end{bmatrix}.
+\]
+
+**Step 2 — polycrystal homogenization (Part VI).** For a texture-free random polycrystal, **Voigt** (strain average) and **Reuss** (stress average) bound the effective moduli:
+
+\[
+E_{\text{Voigt}} = \frac{(C_{11}+2C_{12})(C_{11}-C_{12}+3C_{44})}{C_{11}+C_{12}+C_{44}}, \qquad
+\nu_{\text{Voigt}} = \frac{C_{11}+4C_{12}-2C_{44}}{2(C_{11}+C_{12}+2C_{44})}.
+\]
+
+With the numbers above, \(E_{\text{Voigt}} \approx 140\,\text{GPa}\), \(\nu_{\text{Voigt}} \approx 0.34\) — stiffer than the **120 GPa** often used for cold-drawn wire because (i) DFT is 0 K and defect-free, (ii) drawing introduces texture and dislocation hardening that lower effective stiffness in tension, (iii) the lab card may cite handbook room-temperature polycrystal data rather than quantum single-crystal bounds.
+
+| Source | \(E\) (GPa) | \(\nu\) | Wire context |
+|--------|-------------|---------|--------------|
+| DFT Voigt (0 K, perfect crystal) | \(\sim 140\) | \(\sim 0.34\) | Upper bound; audit trail from `cu.elastic/` |
+| MD NPT at 300 K (Part VIII) | \(\sim 110\)–\(130\) | \(\sim 0.33\)–\(0.35\) | Finite-T anharmonicity |
+| Handbook / tensile test (drawn wire) | \(\sim 120\) | \(\sim 0.34\) | What the load cell and FEM deck often use |
+| Reuss lower bound | \(\sim 130\) | — | Softer than Voigt; bracket for texture sensitivity |
+
+**Step 3 — FEM material card (Part IV).** Map \((E, \nu)\) to Lamé parameters for the 1D bar Lab act in [I.1](../part01-linear-algebra/01-vectors-matrices.md):
+
+\[
+\lambda = \frac{E\nu}{(1+\nu)(1-2\nu)}, \qquad \mu = \frac{E}{2(1+\nu)}, \qquad k_{\text{bar}} = \frac{EA}{L}.
+\]
+
+For axisymmetric or full 3D meshes, the same \((E,\nu)\) populate \(\mathbb{C}_{\text{Voigt}}\) in the isotropic form — Part IV's B-matrix contraction \(\mathbf{B}^T \mathbb{C} \mathbf{B}\) is the continuum handshake executed at every Gauss point.
+
+**Acceptance test.** Before trusting Act III's linear elastic climb on the load cell:
+
+1. Archive the DFT `README.md` with functional, cutoff, and converged \(C_{ij}\) ([IX.3 Lab act](../part09-dft/03-dft-workflows.md#lab-act-archive-the-foundation-run-before-the-wire-scale-solve-act-vi--foundation)).
+2. Compute \(E_{\text{Voigt}}\) and \(E_{\text{Reuss}}\); confirm the FEM value \(E = 120\,\text{GPa}\) lies between them or document why drawing texture shifts it outside the bracket.
+3. Run the three-node bar from Part I with both \(E = 140\) and \(E = 120\,\text{GPa}\); the 17% stiffness gap predicts a 17% force gap at the same grip displacement — the same sensitivity Part I.1's condition-number table warned about for material contrast.
+
+**What breaks without the handshake.** A wire FEM model that imports \(E = 120\,\text{GPa}\) from a handbook without citing whether it came from DFT Voigt averaging, MD at 300 K, or a tensile test on cold-drawn stock carries **silent temperature, texture, and defect assumptions**. When DDD (Part VII) or MD (Part VIII) export moduli that disagree with the FEM card by 15%, the fault is usually missing homogenization — not a bug in OpenDiS or LAMMPS. This section is the engineering-scale counterpart of Part VIII's phonon handshake: two discretizations of the same copper lattice must agree on the observable the load cell measures before coarser models inherit the numbers.
+
+### Scale-boundary handshake: thermal expansion coefficient \(\alpha\) (DFT phonons → MD NPT → FEM thermal strain)
+
+The elastic handshake above sets \(E\) and \(\nu\) on the FEM card. **Act II — Warming** also needs the **coefficient of thermal expansion** \(\alpha\) that converts Joule-heated temperature rise into thermal strain \(\varepsilon_{\text{th}} = \alpha \Delta T\) and, with fixed grips, into compressive stress \(\sigma_{\text{th}} \approx E \alpha \Delta T\). That number appears in every coupled thermoelastic deck — yet teams often import \(\alpha = 17 \times 10^{-6}\,\text{K}^{-1}\) from a handbook without tracing it to the same DFT foundation run that supplied \(C_{ij}\).
+
+**Step 1 — DFT phonon Grüneisen route (Part IX).** From converged bulk Cu with `ph.x` output, extract the **Grüneisen parameter** \(\gamma\) relating phonon frequency shifts to volume strain, or compute \(\alpha\) directly from the quasiharmonic approximation: run `vc-relax` at several volumes (or temperatures via phonon free energy), fit the equilibrium lattice parameter \(a(T)\), and differentiate:
+
+\[
+\alpha = \frac{1}{a}\frac{da}{dT}\Big|_{P=0}.
+\]
+
+Typical PBE results for fcc Cu: \(\alpha \approx 15\)–\(18 \times 10^{-6}\,\text{K}^{-1}\) at 300 K (anharmonic corrections matter; 0 K DFT alone underestimates \(\alpha\)). Archive the phonon DOS and the \(a(T)\) table beside `cu.elastic/` — the epilogue's **Handshake 3** sensitivity analysis assumes this pedigree.
+
+**Step 2 — MD NPT validation (Part VIII).** Equilibrate a bulk Cu supercell in **NPT** at 300 K and 600 K (Joule-heated wire mid-span order-of-magnitude). Measure \(\alpha_{\text{MD}} = \frac{1}{L}\frac{dL}{dT}\) from the mean box length in production runs:
+
+| Source | \(\alpha\) (\(10^{-6}\,\text{K}^{-1}\)) | Temperature | Wire context |
+|--------|------------------------------------------|-------------|--------------|
+| Experiment (polycrystal Cu) | \(\sim 16.5\)–\(17.0\) | 300 K | Handbook default |
+| DFT quasiharmonic (PBE) | \(\sim 15\)–\(18\) | 300 K | Foundation run export |
+| MD NPT with Mishin EAM | \(\sim 16\)–\(19\) | 300–600 K | Finite-T anharmonicity |
+| FEM deck (often uncited) | \(\sim 17\) | 300 K | Act II thermal strain load |
+
+**Step 3 — FEM thermal strain (Part IV).** Map \(\alpha\) into the coupled block system from [I.4](../part01-linear-algebra/04-toward-infinity.md): thermal load vector \(\mathbf{f}_u^{\text{th}} = \int \alpha E (T - T_{\text{ref}}) \mathbf{B}^T \mathbf{1}\, d\Omega\) on the wire mesh. For the Lab act in this chapter (\(\Delta T \approx 35\,^\circ\text{C}\), fixed grips):
+
+\[
+\varepsilon_{\text{th}} = \alpha \Delta T \approx 17 \times 10^{-6} \times 35 \approx 6 \times 10^{-4}, \qquad
+\sigma_{\text{th}} \approx E \varepsilon_{\text{th}} \approx 120 \times 10^9 \times 6 \times 10^{-4} \approx 72\,\text{MPa}.
+\]
+
+A **10% error in \(\alpha\)** shifts \(\sigma_{\text{th}}\) by \(\sim 7\,\text{MPa}\) — comparable to the 6.4 MPa tensile stress from a 50 N load on the 1 mm wire. When the load cell drifts during Act II without applied force change, the first suspect is missing or inconsistent thermal expansion, not a bad sensor.
+
+**Acceptance test** (archive beside the elastic handshake checklist):
+
+1. DFT phonon or quasiharmonic \(\alpha\) within 10% of experiment at 300 K.
+2. MD NPT \(\alpha\) within 10% of DFT at the same potential used for production runs.
+3. FEM `*EXPANSION` or equivalent card cites the same \(\alpha\) with temperature reference \(T_{\text{ref}}\) matching the pre-heating state (Act I mounting temperature).
+
+**What breaks without the handshake.** Importing handbook \(\alpha\) while using DFT-derived \(E\) mixes pedigree levels: the thermal stress scale is wrong even when elastic stiffness is right. Fixed-grip multiphysics runs then over- or under-predict load-cell drift during Joule heating — the epilogue ranks this among the **dominant sensitivities** when mechanical strain is small compared to thermal strain. The phonon handshake in Part VIII validates the potential; this handshake validates the **thermal eigenstrain** that potential implies at finite temperature.
+
 ## Plasticity and inelasticity
 
 Beyond elastic yield, copper **work-hardens**: dislocations multiply and impede further slip (Part VII). Phenomenological **J2 plasticity** uses
@@ -197,6 +280,28 @@ A complete solid mechanics problem specifies:
 
 Well-posedness requires ellipticity of the operator (Lax–Milgram for linear elasticity) or coercivity of the energy in nonlinear settings. Ill-posed problems (insufficient constraints, soft mechanisms) produce singular \(\mathbf{K}\) in FEM.
 
+## Lab act: three instruments, one wire (Act II — Warming)
+
+**Act II** is the moment the operator raises current through the mounted wire. Three instruments read three balance laws on the same specimen — mechanical, thermal, and constitutive — and Part VI is where those readings become tensors instead of dashboard numbers.
+
+**Setup.** Copper cylinder: gauge length \(L = 0.5\,\text{m}\), diameter \(d = 1\,\text{mm}\), resistivity \(\rho_e \approx 1.7\times 10^{-8}\,\Omega\cdot\text{m}\), thermal conductivity \(\kappa \approx 400\,\text{W/(m·K)}\), Young's modulus \(E = 120\,\text{GPa}\), coefficient of thermal expansion \(\alpha \approx 17\times 10^{-6}\,\text{K}^{-1}\). Current \(I = 5\,\text{A}\); ambient air \(T_\infty = 25\,^\circ\text{C}\); heat transfer coefficient \(h \approx 10\,\text{W/(m}^2\cdot\text{K)}\) on the lateral surface.
+
+**Step 1 — mechanical balance (load cell).** Before current, axial tension \(T\) gives \(\sigma_{xx} = T/A\) with \(A = \pi d^2/4\). The load cell reads force; Cauchy stress is the continuum name for that reading divided by area. Part IV's FEM mesh assembles the same equilibrium weak form this section wrote in tensor notation.
+
+**Step 2 — thermal balance (thermocouple + camera).** Joule heating per unit volume is \(\dot{q} = \rho_e J^2 = \rho_e (I/A)^2 \approx 1.1\times 10^8\,\text{W/m}^3\). For a long thin wire in steady state with lateral convection, a lumped estimate gives mid-span excess temperature \(\Delta T \sim \dot{q} d / (4 h) \approx 30\)–\(40\,^\circ\text{C}\) — order-of-magnitude consistent with the hot stripe the thermal camera shows. The thermocouple at the grip reads boundary data; the 1D profile \(T(x)\) is what Part III's weak heat equation and Part V's FVM air mesh approximate on either side of the interface.
+
+**Step 3 — constitutive coupling (why one code is not enough).** Thermal strain \(\varepsilon_{\text{th}} = \alpha \Delta T\) adds to mechanical strain. If the grips are fixed, \(\sigma_{xx} \approx E \alpha \Delta T \approx 60\)–\(80\,\text{MPa}\) of compressive thermal stress — enough to shift the load cell reading even without changing the applied end load. Multiphysics is this coupling: temperature from energy balance changes stress through Hooke's law; stress changes resistance and therefore Joule heating.
+
+| Instrument | Balance law | Continuum object | Part that discretizes |
+|------------|-------------|------------------|------------------------|
+| Load cell | Momentum | Cauchy stress \(\boldsymbol{\sigma}\) | Part IV FEM |
+| Thermocouple | Energy (boundary) | Temperature \(T\) | Part IV coupled / Part V FVM |
+| Thermal camera | Energy (field) | Heat flux \(\mathbf{q} = -\kappa \nabla T\) | Part V FVM on air domain |
+
+**Step 4 — export discipline.** Write down which quantities pass between codes: Robin BC \( - \kappa \partial T / \partial n = h(T - T_\infty)\) at the wire surface links Part IV's solid mesh to Part V's fluid mesh; \(\varepsilon_{\text{th}}(T)\) links the thermal solution back to mechanical equilibrium. This is the same upward/downward contract the epilogue will formalize — here at the engineering scale, before dislocations or atoms enter the story.
+
+When the three instruments disagree (hot stripe but cold grip, or load cell drift without applied force change), the fault is usually **missing coupling**, not a bad sensor. That diagnostic habit survives every scale descent in Parts VII–IX.
+
 ## Concept map checkpoint (balance laws)
 
 Parts I–V built the same four-question discipline the Functional Analysis Notes use — object, structure, theorem, failure mode. At the balance-law scale the answers split across the three instruments in the opening scene:
@@ -222,16 +327,5 @@ Balance laws, stress, and constitutive relations complete the **field vocabulary
 | Thermal balance and Fourier law for Joule heating | Coupled energy functional when temperature feeds moduli (preview) |
 
 The virtual work equation in this chapter is the same balance Part IV assembled — continuum mechanics **names** the tensors the FEM code already integrated. The load cell's linear elastic climb (prologue **Act III**) measures stress derived here; when the curve bends (**Act IV**), smooth fields and isotropic \(\mathbb{C}\) stop being enough.
-
-Prologue **Act II — Warming** re-enters here as the thermal partner of the mechanical balance: Joule heating supplies a volumetric source in the energy equation; the Robin condition at the air interface is the flux handshake Part V's Navier–Stokes chapter will compute. Parts IV and V discretized those balances; Part VI states them as field laws before Part VII asks what microstructure hides inside \(\mathbb{C}\) and \(\sigma_{y0}\).
-
-| Discretization in Parts IV–V | Continuum name in this chapter | Where the wire uses it |
-|------------------------------|-------------------------------|------------------------|
-| \(\mathbf{K}\mathbf{u}=\mathbf{f}\) from Galerkin | Momentum balance \(\nabla\cdot\boldsymbol{\sigma}+\mathbf{f}=\mathbf{0}\) | Act III — Pulling: axial stress from end load |
-| Thermal \(\mathbf{K}_T\mathbf{T}=\mathbf{f}_q\) | Energy balance with Fourier law | Act II — Warming: thermocouple climb |
-| Robin flux at wall faces | Conjugate heat transfer BC | Act II: air cooling the wire surface |
-| Traction BC integrals | Cauchy \(\boldsymbol{\sigma}\mathbf{n}=\mathbf{t}\) | Grips and optional notch loading |
-
-Part VI is the **unification part** for the two discretization philosophies: FEM and FVM both approximate the same balance laws named here. When \(\boldsymbol{\sigma}=\mathbb{C}:\boldsymbol{\varepsilon}\) is imported from a DFT-averaged polycrystal without documenting texture, the error is not in the mesh — it is in skipping the export discipline the epilogue reunites with **Act VI — Foundation**.
 
 [VI.3](03-variational-elasticity.md) makes the energy statement explicit, closes the upward arc from Part I's spring network, and previews when hyperelasticity and yield force a descent to Part VII. Turn the page when \(\boldsymbol{\sigma}=\mathbb{C}:\boldsymbol{\varepsilon}\) feels like a constitutive plug-in rather than the consequence of minimizing elastic energy — variational elasticity reunifies the story.

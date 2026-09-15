@@ -2,21 +2,9 @@
 
 Part IV discretized elliptic problems on the copper wire — tension, conduction, bending — with trial functions and global stiffness. Part V turns to **conservation laws** and **hyperbolic fluxes**: the language of cooling air around a heated conductor, shock waves in a gas, and any field whose evolution is governed by net flux through control surfaces rather than by minimizing a quadratic energy.
 
-Where Part III minimized energy and Part IV projected onto trial spaces, Part V honors **flux balance first** — the discretization philosophy conjugate heat transfer demands when the air around the wire is neither elliptic nor static. The same copper cylinder that Part IV meshes for conduction now sits in a fluid domain whose state advances by net flux through cell faces; the handshake at the wire surface exchanges FEM nodal temperatures for FVM wall heat fluxes.
-
 The integral form of a conservation law balances fluxes through control volume boundaries. The finite volume method (FVM) replaces continuous averages with **cell averages** and exact fluxes with **numerical flux functions** that depend on data from neighboring cells. The 1D algorithm is clean enough to implement in an afternoon and rich enough to capture shocks — the standard first milestone in CFD education.
 
 The author's FVM notes and CFD curriculum treat 1D advection and the Sod shock tube as mandatory verification cases before advancing to 2D grids and Navier–Stokes. This chapter follows that path.
-
-## Story so far (Prologue & Parts I–V)
-
-| Stage | What the wire became | Key object |
-|-------|----------------------|------------|
-| Parts III–IV | Elliptic PDEs; FEM energy minimization on the solid | \(\mathbf{K}\mathbf{u}=\mathbf{f}\); trial functions |
-| [V.1](01-conservation-integral.md) | Conservation as integral balance on control volumes | Flux through faces; cell averages |
-| **V.2 (here)** | 1D thermal boundary layer normal to the wire | Cell updates; numerical flux at interfaces |
-
-Part IV meshed the wire for conduction inside the solid. Part V asks how heat leaves the surface into moving air — a problem governed by **flux balance**, not energy minimization. The 1D algorithm here is the clean milestone: partition a boundary-layer slice, store cell averages, balance fluxes at faces. The conjugate heat transfer handshake in [V.4](04-navier-stokes-cfd.md) will exchange these fluxes with FEM nodal temperatures.
 
 ## Scene: hot wire, cool air
 
@@ -196,6 +184,24 @@ A minimal 1D Euler solver requires:
 
 Under 100 lines in Python or C for first-order HLL flux — enough to reproduce Sod's solution and build intuition before OpenFOAM.
 
+## Lab act: 1D diffusion on the wire's boundary layer (Act II warmup)
+
+Before shock tubes and Navier–Stokes, the air film cooling the hot wire in **Act II** is often modeled as a **thin diffusive boundary layer** — the scalar limit of FVM where flux is proportional to gradient. Discretize steady 1D diffusion \(-\nu u'' = 0\) on \([0,1]\) with \(u(0)=T_{\text{wire}}\), \(u(1)=T_{\infty}\):
+
+\[
+F_{j+1/2} = -\nu \frac{u_{j+1} - u_j}{\Delta x}, \quad u_j^{n+1} = u_j^n - \frac{\Delta t}{\Delta x}(F_{j+1/2} - F_{j-1/2})
+\]
+
+For steady state, the cell update reduces to **harmonic averaging** of face fluxes — discrete conservation with zero net flux at interior faces.
+
+| Cells \(N\) | \(u\) at mid-domain | Max face flux error vs. analytical |
+|-------------|---------------------|-------------------------------------|
+| 5 | record | baseline |
+| 20 | record | should decrease |
+| 80 | record | should plateau |
+
+Analytical solution: \(u(x) = T_{\text{wire}} + (T_{\infty} - T_{\text{wire}})\, x\). Verify **exact** linear profile on any uniform mesh (FVM diffusion is conservative and second-order for smooth solutions). This is the fluid-side counterpart to Part IV's patch test — if linear temperature fails, the face flux routine is wrong before coupling to the solid in [V.4](04-navier-stokes-cfd.md).
+
 ## Source terms and splitting
 
 Many applications add stiff source terms \(S(U)\) — chemical reaction, gravity, friction. **Operator splitting** advances advection and sources separately: Strang splitting for second-order accuracy, or implicit treatment of stiff sources (IMEX) while keeping advection explicit under CFL. The 1D update becomes
@@ -210,6 +216,19 @@ where \(\mathcal{A}_{\Delta t}\) is the source integrator. Splitting errors appe
 
 On uniform grids, first-order FVM with upwind flux equals first-order finite differences on cell averages. The FVM framework generalizes naturally to unstructured meshes via face areas and cell volumes, whereas classical FD stencils assume structured topology. For CFD on complex domains (cooling channels around the copper wire), FVM or FV-based DG on general meshes is the practical choice.
 
+## Concept map checkpoint (1D FVM)
+
+This chapter is where conservation replaces minimization as the organizing principle. Before Riemann solvers handle discontinuities, summarize what the 1D algorithm established:
+
+| Question | 1D FVM answer (copper wire) |
+|----------|----------------------------|
+| What **object**? | Cell averages \(U_j\), face fluxes \(F_{j+1/2}\) |
+| What **structure**? | Discrete conservation: net flux = rate of change + source |
+| What **theorem**? | CFL stability from flux Jacobian eigenvalues; patch test on linear profiles |
+| What **breaks**? | \(\rho < 0\) from explicit overshoot; first-order smearing at shocks; ghost-cell BC errors |
+
+The boundary-layer Lab act is the fluid-side patch test: linear temperature must be exact on any uniform mesh before coupling to Part IV's solid conduction in Act II. Conjugate heat transfer is a handshake between this rhythm and Galerkin assembly — not two unrelated solvers.
+
 ## Bridge
 
 First-order FVM on cell averages taught the **conservation rhythm** Part V builds on: fluxes at faces, CFL limits, ghost cells at boundaries. That rhythm is exact on uniform 1D grids — but Sod's shock tube and the copper wire's supersonic cooling jet are **nonlinear**, and a first-order upwind flux smears discontinuities over \(O(\Delta x)\) cells without physical fidelity.
@@ -221,12 +240,6 @@ First-order FVM on cell averages taught the **conservation rhythm** Part V build
 | CFL stability from flux Jacobian eigenvalues | Limiters and MUSCL reconstruction for \(O(\Delta x^2)\) |
 | Ghost-cell BCs on a 1D line | Shock capturing without spurious oscillations |
 
-Return to the [prologue](../../prologue/00-many-scales.md): in **Act II — Warming**, Part IV's wire conducts heat smoothly while Part V's air cools it — first with low-Re boundary-layer flow, later with compressible regimes where density and velocity jump across shocks and shear layers. The thermocouple climb during warming is the **same specimen** Part III's energy equation and Part IV's P1 triangles already approximated; the 1D FVM slice here is how the cooling side of that story becomes computable without abandoning conservation. The 1D Euler update you coded here is the inner loop every OpenFOAM cell executes in three dimensions — the difference is only face area and volume weighting. [V.3](03-fluxes-riemann.md) supplies the **Riemann engines** that translate left/right cell states into a unique face flux when the solution is discontinuous.
+Return to the [prologue](../../prologue/00-many-scales.md): in **Act II — Warming**, Part IV's wire conducts heat smoothly while Part V's air cools it — first with low-Re boundary-layer flow, later with compressible regimes where density and velocity jump across shocks and shear layers. The 1D Euler update you coded here is the inner loop every OpenFOAM cell executes in three dimensions — the difference is only face area and volume weighting. [V.3](03-fluxes-riemann.md) supplies the **Riemann engines** that translate left/right cell states into a unique face flux when the solution is discontinuous.
 
-| Multiphysics handshake | FEM side (Part IV) | FVM side (Part V) |
-|------------------------|-------------------|-------------------|
-| Joule heating in the wire | Source \(\mathbf{f}_q\) in thermal \(\mathbf{K}_T\) | Optional coupling through temperature-dependent \(\rho\) |
-| Convection at the surface | Robin BC or flux load vector | Wall flux from Navier–Stokes in [V.4](04-navier-stokes-cfd.md) |
-| CFL / timestep stability | Implicit thermal step (often uncoupled) | Explicit advection limited by flux Jacobian eigenvalues |
-
-Part I's eigenvalue picture reappears in the CFL limit: explicit stability is governed by the **spectrum of the flux Jacobian** at each face — discrete analogues of the operator eigenvalues [II.5](../part02-functional-analysis/05-spectral-theorem.md) connected to spatial modes. Turn the page when first-order Sod's problem converges but the shock front is three cells thick — that is the signal numerical flux design, not finer \(\Delta x\) alone, must improve the physics at the face.
+Turn the page when first-order Sod's problem converges but the shock front is three cells thick — that is the signal numerical flux design, not finer \(\Delta x\) alone, must improve the physics at the face.

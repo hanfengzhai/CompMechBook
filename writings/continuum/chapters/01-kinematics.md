@@ -6,17 +6,6 @@ Parts IV and V discretized PDEs on meshes. Part VI asks what those PDEs mean phy
 
 The copper wire under tension is our recurring specimen — at the continuum scale, it is a cylinder of copper with a displacement field and a deformation gradient that Part IV's elasticity code approximates node by node, while the air cooling it (Part V) carries a velocity field whose gradient enters the rate-of-deformation tensor in the fluid stress.
 
-## Story so far (Parts I–V)
-
-| Stage | What the wire became | Key object |
-|-------|----------------------|------------|
-| Parts I–III | Fields, weak forms, PDEs on domains | \(u(x)\), \(T(x)\) as continuum objects |
-| Part IV | Nodal \(\mathbf{U}\); \(B\)-matrix strain | Discrete shadow of displacement |
-| Part V | Cell-averaged velocity \(\bar{\mathbf{v}}\) | Discrete shadow of fluid motion |
-| **VI.1 (here)** | \(\mathbf{F}\), \(\boldsymbol{\varepsilon}\), \(\mathbf{E}\), \(\mathbf{D}\) | Continuous maps both discretizations sample |
-
-Parts IV and V computed numbers on meshes; Part VI names the **continuous objects** those numbers approximate. The [prologue](../../prologue/00-many-scales.md) **Act III — Pulling** ramped grip displacement — kinematics records **how** each material point moved and stretched so stress and balance laws in [VI.2](02-stress-balance.md) have geometric input.
-
 ## Scene: the wire in the tensile frame
 
 Picture a 1 mm diameter copper wire, 100 mm gauge length, gripped at both ends in a tensile frame. A 50 N axial load produces a modest engineering strain \(\varepsilon \approx \sigma/E \sim 10^{-4}\) — well within the linear elastic range Part IV assumed when assembling \(\mathbf{K}\). Every node on the FEM mesh carries a displacement vector; kinematics asks what **continuous map** those nodal values sample.
@@ -144,6 +133,14 @@ Then \(\mathbf{F} = \text{diag}(\lambda, 1, 1)\), \(J = \lambda\). Green–Lagra
 
 Poisson contraction in real copper gives \(F_{22} = F_{33} = \sqrt{1/\lambda}\) approximately for incompressible limit — or \(F_{22} = 1 - \nu(\lambda - 1)\) in linear theory.
 
+### Worked example: 0.1% axial strain on the wire
+
+Take the prologue specimen: \(L = 1\,\text{m}\), grip displacement \(\Delta = 1\,\text{mm}\) so \(\lambda = 1.001\) and \(\varepsilon_{11} \approx \Delta/L = 10^{-3}\). With copper \(\nu \approx 0.34\), linear kinematics predicts lateral contraction \(\varepsilon_{22} = \varepsilon_{33} \approx -\nu\varepsilon_{11} \approx -3.4 \times 10^{-4}\) — the wire narrows slightly as it lengthens, a geometric fact every tensile test records even when the load cell dominates the display.
+
+In finite strain language, \(F_{11} = 1.001\) and \(F_{22} \approx 1 - \nu(\lambda - 1) \approx 0.99966\), so \(J = \det\mathbf{F} \approx 0.99933 < 1\): the bar loses a small amount of volume in linear theory because Poisson contraction does not fully compensate axial stretch. Part IV's 3D elasticity code computes these contractions from the \(B\)-matrix automatically; this chapter names the \(\mathbf{F}\) those shape-function gradients assemble.
+
+When the grips ramp further and the force–displacement curve bends (**Act IV**), \(\mathbf{F}\) ceases to be close to \(\mathbf{I} + \nabla\mathbf{u}\) and Green–Lagrange \(\mathbf{E}\) replaces the infinitesimal strain — the kinematic handoff [VI.4](04-nonlinear-plasticity-preview.md) develops.
+
 ## Example: simple shear
 
 \[
@@ -186,6 +183,57 @@ Nearly incompressible materials respond stiffly to volumetric strain — the kin
 
 For small strain, the trace \(\text{tr}(\boldsymbol{\varepsilon}) = \nabla\cdot\mathbf{u}\) plays the same volumetric role. Poisson's ratio \(\nu\) controls how axial stretch of the copper wire couples to lateral contraction — a kinematic constraint encoded in the elastic tensor.
 
+## Polar decomposition: stretch and rotation on the wire
+
+The polar decomposition \(\mathbf{F} = \mathbf{R}\mathbf{U}\) separates **how much** a material line stretches from **how much** it rotates. For the copper wire in a tensile frame with negligible grip misalignment, \(\mathbf{R} \approx \mathbf{I}\) and \(\mathbf{U} \approx \mathbf{I} + \boldsymbol{\varepsilon}\) in the linear elastic regime — but the split becomes essential when torsion, bending, or large rigid-body motion enters the story.
+
+Take uniaxial tension along \(\mathbf{e}_1\) with small engineering strain \(\varepsilon_{11} = 10^{-3}\) and Poisson contraction \(\varepsilon_{22} = \varepsilon_{33} = -\nu\varepsilon_{11}\). In matrix form (Voigt-style ordering for intuition):
+
+\[
+\mathbf{F} \approx \begin{bmatrix} 1.001 & 0 & 0 \\ 0 & 0.99966 & 0 \\ 0 & 0 & 0.99966 \end{bmatrix}, \qquad \mathbf{R} \approx \mathbf{I}.
+\]
+
+The stretch tensor \(\mathbf{U} = \sqrt{\mathbf{F}^T\mathbf{F}}\) has eigenvalues \(\lambda_i = 1 + \varepsilon_{ii}\) on the principal axes — the same numbers Part IV's \(B\)-matrix assembles from shape-function gradients. If the grips introduce a 0.1° misalignment, a small rotation \(\mathbf{R}\) appears; subtracting it before comparing to a 1D bar model prevents attributing geometric tilt to material nonlinearity.
+
+| Object | Role on the wire | FEM/FVM counterpart |
+|--------|------------------|----------------------|
+| \(\mathbf{R}\) | Rigid rotation of the specimen in the frame | Rigid-body mode removal in assembly |
+| \(\mathbf{U}\) | Symmetric stretch from reference to current | Strain at Gauss points from \(\mathbf{F}\) |
+| \(J = \det\mathbf{F}\) | Volume ratio | Volumetric locking checks (\(\nu \to 1/2\)) |
+| \(\bar{\mathbf{F}} = J^{-1/d}\mathbf{F}\) | Isochoric (shape) part | Split formulations in hyperelasticity |
+
+When the wire necks in **Act IV**, \(\mathbf{F}\) is no longer diagonal: \(\mathbf{U}\) captures the local axial thinning and circumferential contraction, while \(\mathbf{R}\) tracks how material lines rotate into the neck. Part IV's nonlinear extensions evaluate \(\mathbf{F}\) at quadrature points and pass \(\mathbf{U}\) or \(\mathbf{E} = \tfrac{1}{2}(\mathbf{F}^T\mathbf{F}-\mathbf{I})\) to the constitutive routine — the polar split is the geometric sanity check that rigid motion does not generate spurious stress.
+
+## Lab act: read lateral contraction from grip displacement (Act III)
+
+**Act III** prescribes axial end displacement; a caliper on the wire diameter tells a kinematic story Part IV's 1D bar model ignores. Continuum kinematics names that story before Part VI.2 adds stress.
+
+Take uniaxial tension along the wire axis \(\mathbf{e}_1\), small strain, isotropic copper with \(\nu = 0.34\). The grip holds \(\varepsilon_{11} = \Delta L/L = 10^{-4}\) (10 microstrain on a 1 m gauge length — still in the linear elastic climb before Act IV hardening).
+
+| Object | Formula | Numeric value |
+|--------|---------|---------------|
+| Axial stretch | \(\lambda_1 = 1 + \varepsilon_{11}\) | \(1.0001\) |
+| Lateral strains | \(\varepsilon_{22} = \varepsilon_{33} = -\nu \varepsilon_{11}\) | \(-3.4 \times 10^{-5}\) |
+| Diameter change | \(\Delta D/D \approx \varepsilon_{22}\) (small strain) | \(-34\,\mu\text{m}\) on \(D = 1\,\text{mm}\) |
+| Volume change (small strain) | \(\varepsilon_v = \varepsilon_{11} + \varepsilon_{22} + \varepsilon_{33} = (1-2\nu)\varepsilon_{11}\) | \(\approx 3.2 \times 10^{-5}\) |
+
+Measure with a micrometer (or simulate a 3D hex mesh with one constrained face): if \(\varepsilon_{22} \approx 0\) while \(\varepsilon_{11} > 0\), the material model is **not** isotropic Hooke — or the \(B\)-matrix is wrong. If \(\varepsilon_{22}/\varepsilon_{11} \approx -\nu\) within experimental noise, the kinematic half of Hooke's law is consistent with the load cell reading from Act III.
+
+For finite strain preview: \(\mathbf{F} = \text{diag}(\lambda_1, \lambda_2, \lambda_2)\) with \(\lambda_2 = 1 + \varepsilon_{22}\) gives \(J = \lambda_1 \lambda_2^2 \approx 1 + (1-2\nu)\varepsilon_{11}\) to first order — the same volume change. When Act IV later ramps into plasticity, \(J\) and deviatoric \(\bar{\mathbf{F}}\) split in [VI.4](04-nonlinear-plasticity-preview.md); this Lab act is the linear elastic baseline those splits generalize.
+
+## Concept map checkpoint (kinematics)
+
+This chapter is where Part IV's nodal displacements acquire geometric meaning. Before stress balance adds forces, summarize what kinematics established:
+
+| Question | Part VI answer (copper wire) |
+|----------|------------------------------|
+| What **object**? | Deformation gradient \(\mathbf{F}\); strain \(\boldsymbol{\varepsilon}\), \(\mathbf{E}\), rate \(\mathbf{D}\) |
+| What **structure**? | Polar decomposition \(\mathbf{F}=\mathbf{R}\mathbf{U}\); volumetric/deviatoric split |
+| What **theorem**? | Objectivity: constitutive laws depend on stretch, not rigid rotation |
+| What **breaks**? | Infinitesimal \(\boldsymbol{\varepsilon}\) when \(\|\nabla\mathbf{u}\|\) is not small; 1D bar ignores lateral contraction |
+
+The Lab act linked grip displacement to measurable diameter change via \(\varepsilon_{22} = -\nu\varepsilon_{11}\). Part IV's \(B\)-matrix is the discrete shadow of \(\boldsymbol{\varepsilon}(\mathbf{u})\) defined here; Part V's velocity field is the rate counterpart \(\mathbf{D}\).
+
 ## Bridge
 
 Kinematics names the geometric objects — \(\mathbf{F}\), \(\boldsymbol{\varepsilon}\), \(\mathbf{E}\), \(\mathbf{D}\). Forces enter through **stress tensors** and **balance laws** that constrain how stress varies in space and time.
@@ -199,20 +247,4 @@ Kinematics names the geometric objects — \(\mathbf{F}\), \(\boldsymbol{\vareps
 
 Return to the prologue's **Act III — Pulling**: grip displacement ramps, and the load cell records force. Parts IV and V already computed temperature and flux fields on their respective meshes; Part IV assembled nodal displacements from shape functions. This chapter explains **what those numbers mean geometrically** — axial stretch \(\lambda = 1 + u'/L\), lateral contraction from \(\nu\), and the finite-strain objects that nonlinear extensions in [VI.4](04-nonlinear-plasticity-preview.md) require. The \(B\)-matrix in every FEM code is the discrete shadow of \(\boldsymbol{\varepsilon}(\mathbf{u})\) defined here; the FVM velocity field in the cooling air is the rate counterpart \(\mathbf{D}\).
 
-| Prologue act | Mesh output from Parts IV–V | Continuum object named here |
-|--------------|----------------------------|-----------------------------|
-| II — Warming | Nodal temperatures; enthalpy flux at the wall | Thermal strain \(\alpha\Delta T\); volumetric \(J\) from heating |
-| III — Pulling | Nodal \(\mathbf{U}\); axial force from \(\mathbf{K}\mathbf{U}=\mathbf{F}\) | \(\mathbf{F}\), \(\boldsymbol{\varepsilon}\), axial stretch \(\lambda\) |
-| V — Notch (preview) | Refined mesh at stress concentrator | Finite-strain \(\mathbf{E}\) where \(\|\nabla\mathbf{u}\|\) is no longer small |
-
-[I.2](../part01-linear-algebra/02-linear-maps.md) taught change of basis on elements; [III.2](../part03-pdes/02-weak-form.md) wrote virtual work in test functions; this chapter is where those habits acquire **tensor names** on the same copper wire. [VI.2](02-stress-balance.md) completes the picture with Cauchy stress, Piola–Kirchhoff stress, and balance laws that FEM and FVM discretize.
-
-| Discretization (Parts IV–V) | Continuum object (this chapter) | Balance law (VI.2) |
-|-----------------------------|--------------------------------|-------------------|
-| Nodal \(\mathbf{U}_i\) | \(\mathbf{u}(\mathbf{X})\), \(\mathbf{F}=\mathbf{I}+\nabla\mathbf{u}\) | \(\nabla\cdot\boldsymbol{\sigma}=\mathbf{0}\) |
-| \(B\)-matrix strain at Gauss points | \(\boldsymbol{\varepsilon}\), Green–Lagrange \(\mathbf{E}\) | \(\boldsymbol{\sigma}=\mathbb{C}:\boldsymbol{\varepsilon}\) |
-| FVM \(\bar{\mathbf{v}}_j\) | Velocity \(\mathbf{v}(\mathbf{x})\), rate \(\mathbf{D}\) | \(\rho(\dot{\mathbf{v}}+\mathbf{v}\cdot\nabla\mathbf{v})=\nabla\cdot\boldsymbol{\sigma}\) |
-
-Part VI is the **naming chapter** for everything Parts IV–V computed without tensors: the same copper wire, the same mesh, now with Cauchy stress and balance laws that DDD (Part VII) will interrupt when lines move. When kinematics feels complete but forces are still "nodal reactions," [VI.2](02-stress-balance.md) supplies the stress conjugates.
-
-Turn the page when displacement fields need a stress conjugate — kinematics without balance is geometry without physics.
+The next chapter completes the continuum picture: Cauchy stress, Piola–Kirchhoff stress, conservation of mass and momentum, and constitutive relations that FEM and FVM discretize. Turn the page when displacement fields need a stress conjugate — kinematics without balance is geometry without physics.

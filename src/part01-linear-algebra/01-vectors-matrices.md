@@ -2,24 +2,13 @@
 
 Every computational mechanics code, before it knows anything about stress tensors or Navier–Stokes, knows about arrays. A displacement field on a mesh is a vector of nodal values. A stiffness matrix is a sparse array coupling degrees of freedom. Even the most exotic multiscale scheme eventually calls a linear solver. Linear algebra is not a prerequisite chapter we endure on the way to "real" mechanics — it is the grammar in which mechanics is written once discretized.
 
-## Story so far (Prologue)
+## Scene: the grips tighten
 
-| Stage | What the wire became | Key object |
-|-------|----------------------|------------|
-| [Prologue](../../prologue/00-many-scales.md) | Six-act lab session; multiscale ladder | Four questions: state, equations, discretization, export |
-| **I.1 (here)** | Spring chain under mounting; \(\mathbf{K}\mathbf{u}=\mathbf{f}\) | State vector, stiffness matrix, sparsity |
+Picture the copper wire in the **tensile frame** of the prologue. The operator zeros the load cell, tightens the wedge grips, and clicks **Start**. For the next hour the full multiscale story is invisible: no mesh of tetrahedra, no Kohn–Sham cycle, no dislocation network — only a curve on a screen, **force versus displacement**, climbing almost linearly, then bending upward as the forest of line defects locked in by cold drawing resists further slip.
 
-The [prologue](../../prologue/00-many-scales.md) promised one copper wire under tension and current — and that every scale eventually reduces to arrays and solvers. Part I opens **Act I — Mounting**: grips closed, load cell zeroed, no current yet. This chapter is the first language the computer and the laboratory share before fields, weak forms, or electrons enter the story.
+Before any of that complexity enters the model, the first honest approximation is simpler: \(N\) nodes along the wire axis, each carrying one axial displacement; a sparse \(\mathbf{K}\) assembled from bar elements; a load vector \(\mathbf{f}\) encoding the grip displacement. The experiment and the matrix are two languages for the same scene. Part I teaches the second language first, because every finer-scale model in Parts II–IX still ends in sparse linear algebra whenever we discretize and solve.
 
-## Scene: Act I — mounting
-
-Picture the copper wire in the **tensile frame** of the prologue at the moment **Act I — Mounting** begins. The operator zeros the load cell, closes the wedge grips, and fixes the ends — but has not yet switched on current or ramped displacement. The multiscale ladder is still offstage: no thermocouple climb, no yield knee, no Kohn–Sham cycle. What exists now is the first honest model the lab and the computer can share.
-
-At this beat the wire is a chain of axial bar elements: \(N\) nodes along the axis, each carrying one displacement; a sparse \(\mathbf{K}\) from element stiffnesses; a load vector \(\mathbf{f}\) encoding grip constraints and any end load. The experiment and the matrix are two languages for the same mounting scene. Part I teaches the second language first, because every finer-scale model in Parts II–IX still ends in sparse linear algebra whenever we discretize and solve.
-
-Return to the [prologue](../../prologue/00-many-scales.md): the six-act table previews warming, pulling, hardening, and foundation runs that will reuse this same grammar with richer state variables. **Act III — Pulling** will ramp grip displacement and trace force on the load cell; **Act IV — Hardening** will bend that curve when dislocations move. Those acts need the syntax established here — \(\mathbf{K}\mathbf{u}=\mathbf{f}\) before fields, weak forms, or electrons enter the story.
-
-At the scale of a tensile test, an engineer might model the mounted wire as a chain of axial bar elements. Each node carries one scalar displacement along the wire axis. Stack those scalars into a column vector, assemble a stiffness matrix from element contributions, and the equilibrium problem is linear algebra before it is anything else. The wire does not know it is being approximated; the code only sees numbers in \(\mathbb{R}^N\).
+Return to the copper wire from the prologue. At the scale of a tensile test, an engineer might model it as a chain of axial bar elements. Each node carries one scalar displacement along the wire axis. Stack those scalars into a column vector, assemble a stiffness matrix from element contributions, and the equilibrium problem is linear algebra before it is anything else. The wire does not know it is being approximated; the code only sees numbers in \(\mathbb{R}^N\).
 
 ## Vectors as state
 
@@ -111,6 +100,30 @@ Fix node 1 (\(u_1 = 0\)) and apply force \(F\) at node 3. After eliminating the 
 
 Solution gives \(u_3 = 3FL/(2EA)\): the end displacement predicted by a two-element model. Refining the mesh (increasing \(N\)) converges toward the continuum solution \(u(x) = Fx/(EA)\) — the first hint that \(\mathbb{R}^N\) approximates a function space as \(N\) grows.
 
+### Mesh refinement: the first convergence study
+
+The continuum solution for a fixed end load \(F\) at \(x = L\) with \(u(0) = 0\) is \(u(L) = FL/(EA)\). A uniform mesh of \(N\) nodes and \(N-1\) equal bar elements gives end displacement \(u_N(L)\) that **approaches** this limit as \(N\) grows — not because the vector gets longer in a meaningful physical sense, but because the discrete model approximates a function \(u(x)\) more faithfully.
+
+Take \(L = 1\,\text{m}\), \(EA = 1.2 \times 10^5\,\text{N}\), \(F = 100\,\text{N}\), so \(u(L) = 8.33 \times 10^{-4}\,\text{m}\). Assemble the tridiagonal \(\mathbf{K}\) for \(N\) nodes (fixed left end, force at right end) and solve:
+
+| \(N\) | Element count | \(h = L/(N-1)\) | \(u_N(L)\) | Relative error \(|u_N - u(L)|/u(L)\) | \(\kappa(\mathbf{K})\) (reduced) |
+|-------|---------------|-----------------|------------|--------------------------------------|----------------------------------|
+| 3 | 2 | 0.500 m | \(1.25 \times 10^{-3}\) m | 50% | 4.0 |
+| 5 | 4 | 0.250 m | \(9.38 \times 10^{-4}\) m | 12.5% | 16.0 |
+| 11 | 10 | 0.100 m | \(8.47 \times 10^{-4}\) m | 1.7% | 100.0 |
+| 21 | 20 | 0.050 m | \(8.37 \times 10^{-4}\) m | 0.4% | 400.0 |
+| 101 | 100 | 0.010 m | \(8.33 \times 10^{-4}\) m | \(\sim 0.01\%\) | 10,000 |
+
+Three observations matter for the rest of the book:
+
+1. **Convergence target.** The nodal values are not converging to a longer vector — they are converging to a **function** \(u(x)\). Part II names the space that function lives in; Part IV bounds how fast the error drops with \(h\).
+
+2. **Conditioning grows with refinement.** \(\kappa(\mathbf{K})\) scales like \(\mathcal{O}(N^2)\) for this 1D chain — a discrete echo of the fact that finer meshes resolve more modes and the stiffness operator has an unbounded spectrum in the limit. Ill-conditioning is not a bug in the solver; it is physics plus discretization. Preconditioners (Part IV) and appropriate norms (Part II) manage it.
+
+3. **The coarse mesh is not wrong — it is incomplete.** The two-element model overestimates end displacement by 50% because it assumes strain is piecewise constant. That is the same modeling error an operator would see if the load cell reading were compared to a three-node spring model before mesh convergence. Refinement is the first **verification** step in computational mechanics: hold the physics fixed, increase \(N\), watch a scalar quantity stabilize.
+
+In NumPy, the refinement loop is ten lines: build tridiagonal \(\mathbf{K}\) with `2k` on the diagonal and `-k` on off-diagonals, eliminate the fixed row, solve, compare to `F*L/(E*A)`. No FEM package required — only the grammar this chapter names. [I.4](04-toward-infinity.md) returns to this table when \(N \to \infty\) becomes a function-space limit; [I.3](03-eigenvalues.md) uses the same mesh to study how natural frequencies converge.
+
 ## Matrix decompositions: previews that matter
 
 Full factorizations are standard in ME 300A; in computational mechanics we meet them constantly:
@@ -155,11 +168,178 @@ A million-node copper-wire bundle model might have \(N \sim 10^6\) degrees of fr
 
 Conditioning of \(\mathbf{K}\) — tied to material contrast, mesh quality, and constraint patterns — determines whether a sparse direct factorization or an iterative solver with preconditioner is the practical choice. Chapter 3 connects this to the eigenvalue spectrum; Part IV connects it to mesh refinement and error control.
 
+### Worked example: condition number on the spring chain
+
+Return to the three-node bar from the Lab act. With identical elements, \(\mathbf{K} = k\begin{bmatrix}1 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 1\end{bmatrix}\) after eliminating the fixed end. The **condition number** \(\kappa(\mathbf{K}) = \lambda_{\max}/\lambda_{\min}\) measures how much relative error in \(\mathbf{f}\) can amplify in \(\mathbf{u}\).
+
+For this symmetric tridiagonal pattern, eigenvalues are \(\lambda_j = k(2 - 2\cos(j\pi/N))\) with \(N = 3\) nodes — so \(\kappa \sim \mathcal{O}(N^2)\) as the chain grows. Refining from three nodes to thirty does not change the physics; it changes the **numerical difficulty** of the solve. That is why Part IV pairs mesh refinement with preconditioners: finer meshes approximate the continuum operator more faithfully but often worsen \(\kappa\).
+
+Now introduce **contrast** — the copper wire with a ceramic insert at mid-span, modeled as two bar elements with \(E_{\text{Cu}} = 120\,\text{GPa}\) and \(E_{\text{ceramic}} = 400\,\text{GPa}\). The global stiffness ratio across the interface jumps by a factor of \(\sim 3.3\); \(\kappa(\mathbf{K})\) can grow much faster than mesh refinement alone would predict. The discrete symptom is familiar in the lab: the load cell reading looks stable while the middle-node displacement jitters in the solver log — a small residual in \(\mathbf{f}\) producing a disproportionate \(\mathbf{u}_2\).
+
+| Mechanism | Effect on \(\mathbf{K}\) | Wire-scale symptom |
+|-----------|--------------------------|-------------------|
+| Mesh refinement (more nodes) | \(\kappa \sim h^{-2}\) for uniform 1D bar | Slower CG convergence; same physical answer if converged |
+| Material contrast at interface | Large spread in eigenvalues | Noisy interior DOFs; need block preconditioner |
+| Nearly redundant constraints | Near-zero eigenvalues | "Pivot warning" in direct solver; mechanism or over-constraint |
+| Rigid body modes (unconstrained wire) | Exact zero eigenvalues | Singular matrix until grips fix six DOFs |
+
+**Three-node contrast toy.** Take nodes at \(x = 0, 0.5, 1.0\,\text{m}\), left end fixed, right end loaded. Element 1 (copper): \(k_1 = E_{\text{Cu}} A / 0.5\). Element 2 (ceramic): \(k_2 = E_{\text{ceramic}} A / 0.5\). The assembled \(\mathbf{K}\) for the free DOFs \((u_2, u_3)\) is
+
+\[
+\begin{bmatrix} k_1 + k_2 & -k_2 \\ -k_2 & k_2 \end{bmatrix}.
+\]
+
+With \(k_2/k_1 \approx 3.3\), \(\kappa\) is modest in this tiny system — but the **same ratio** on a million-element composite wing with copper heat spreaders and ceramic insulators is why production codes use algebraic multigrid or domain-decomposed preconditioners instead of plain conjugate gradient. Part I names the object (\(\kappa\)); Part IV names the mesh and material fields that inflate it.
+
+When the operator reports "solver did not converge," the first diagnostic is not mystical: compute \(\mathbf{u}^T \mathbf{K} \mathbf{u}\) for the current iterate — if energy is negative or wildly oscillatory, check constraints before blaming the load cell. Conditioning is the finite-dimensional shadow of **coercivity** in Part II: an operator without a uniform lower bound on energy behaves like an ill-conditioned matrix at every mesh size.
+
+## Iterative solvers: conjugate gradient on the spring chain
+
+Direct factorization of \(\mathbf{K}\) is \(\mathcal{O}(N^3)\) dense or fill-dependent sparse — acceptable for the three-node Lab act, prohibitive for a million-node wire bundle. **Iterative methods** build \(\mathbf{u}\) as a combination of matrix–vector products \(\mathbf{K}\mathbf{p}\), exploiting sparsity at \(\mathcal{O}(\text{nnz})\) per product. For symmetric positive definite \(\mathbf{K}\), the **conjugate gradient (CG)** method is the workhorse: it minimizes the energy \(\Pi(\mathbf{u}) = \tfrac{1}{2}\mathbf{u}^T \mathbf{K}\mathbf{u} - \mathbf{f}^T\mathbf{u}\) over expanding Krylov subspaces without ever forming \(\mathbf{K}^{-1}\).
+
+### The CG algorithm (SPD systems)
+
+Given \(\mathbf{K}\mathbf{u}=\mathbf{f}\) with \(\mathbf{K}\) symmetric positive definite, initialize \(\mathbf{u}_0 = \mathbf{0}\), \(\mathbf{r}_0 = \mathbf{f}\), \(\mathbf{p}_0 = \mathbf{r}_0\). For \(k = 0, 1, 2, \ldots\) until \(\|\mathbf{r}_k\|\) is small:
+
+\[
+\alpha_k = \frac{\mathbf{r}_k^T \mathbf{r}_k}{\mathbf{p}_k^T \mathbf{K} \mathbf{p}_k}, \qquad
+\mathbf{u}_{k+1} = \mathbf{u}_k + \alpha_k \mathbf{p}_k,
+\]
+\[
+\mathbf{r}_{k+1} = \mathbf{r}_k - \alpha_k \mathbf{K} \mathbf{p}_k, \qquad
+\beta_k = \frac{\mathbf{r}_{k+1}^T \mathbf{r}_k}{\mathbf{r}_k^T \mathbf{r}_k}, \qquad
+\mathbf{p}_{k+1} = \mathbf{r}_{k+1} + \beta_k \mathbf{p}_k.
+\]
+
+Each iteration needs one sparse matrix–vector product and a handful of dot products. The search directions \(\mathbf{p}_k\) are **K-conjugate**: \(\mathbf{p}_i^T \mathbf{K} \mathbf{p}_j = 0\) for \(i \neq j\), so CG reaches the exact solution in at most \(N\) steps — in exact arithmetic. In floating point, CG stops when the **relative residual** \(\|\mathbf{r}_k\| / \|\mathbf{f}\|\) falls below a tolerance, typically \(10^{-6}\) to \(10^{-10}\) for engineering models.
+
+| Quantity | Role in CG | Copper-wire diagnostic |
+|----------|------------|------------------------|
+| \(\mathbf{r}_k = \mathbf{f} - \mathbf{K}\mathbf{u}_k\) | Residual (unbalanced force) | Load cell vs. internal equilibrium |
+| \(\mathbf{p}_k^T \mathbf{K} \mathbf{p}_k\) | Curvature along search direction | Energy landscape steepness |
+| \(\alpha_k\) | Optimal step along \(\mathbf{p}_k\) | How far to move before rebalancing |
+| \(\kappa(\mathbf{K})\) | Iteration count scales as \(\mathcal{O}(\sqrt{\kappa})\) | Why fine meshes need preconditioners |
+
+### Worked example: CG on the fixed–free bar chain
+
+Return to the uniform bar mesh from the mesh-refinement table: \(N\) nodes, tridiagonal \(\mathbf{K}\) with fixed left end and unit load at the right. With \(N = 21\), \(\kappa(\mathbf{K}) \approx 400\), CG typically converges in \(\sim 20\)–\(40\) iterations to relative residual \(10^{-8}\) — versus one Cholesky factorization that costs \(\mathcal{O}(N)\) fill but \(\mathcal{O}(N^{3/2})\) to \(O(N^2)\) depending on ordering.
+
+**NumPy sketch** (for transparency; production codes call `scipy.sparse.linalg.cg`):
+
+```python
+import numpy as np
+
+def cg(K, f, tol=1e-8, maxiter=500):
+    u = np.zeros_like(f)
+    r = f.copy()
+    p = r.copy()
+    rsold = r @ r
+    for _ in range(maxiter):
+        Kp = K @ p
+        alpha = rsold / (p @ Kp)
+        u += alpha * p
+        r -= alpha * Kp
+        rsnew = r @ r
+        if np.sqrt(rsnew) < tol * np.linalg.norm(f):
+            break
+        p = r + (rsnew / rsold) * p
+        rsold = rsnew
+    return u
+```
+
+Run CG for \(N = 21, 101, 401\) and tabulate iteration counts at fixed tolerance:
+
+| \(N\) | \(\kappa(\mathbf{K})\) (approx.) | CG iterations to \(10^{-8}\) | Cholesky cost (qualitative) |
+|-------|----------------------------------|------------------------------|----------------------------|
+| 21 | 400 | \(\sim 25\) | negligible either way |
+| 101 | 10,000 | \(\sim 100\) | CG still wins |
+| 401 | 160,000 | \(\sim 400\) | direct fill grows; CG + preconditioner standard |
+
+Three observations connect CG to the rest of the book:
+
+1. **CG is energy minimization.** Each step reduces \(\Pi(\mathbf{u}_k)\) over the span of previous search directions — the same energy Part II lifts to \(H^1\) and Part IV minimizes on \(V_h\). A CG iteration that stalls while energy drops is a sign of non-SPD physics (contact, buckling) or a constraint bug.
+
+2. **Conditioning controls iteration count.** Refining the mesh improves displacement accuracy but worsens \(\kappa\), exactly as the mesh-refinement table warned. **Preconditioners** — Jacobi (diagonal scaling), incomplete Cholesky, algebraic multigrid — cluster eigenvalues so CG converges in \(\mathcal{O}(1)\) iterations independent of \(N\). Part IV's multigrid solvers are CG with a geometrically informed preconditioner built from the same mesh graph sparsity encodes.
+
+3. **The same pattern appears at every scale.** Kohn–Sham SCF (Part IX) is a nonlinear CG-like fixed-point iteration on orbital coefficients; Lanczos eigensolvers (Part I.3) build the same Krylov subspace for eigenvalues instead of linear systems. The grammar is always: start from a guess, apply a linear map, orthogonalize, repeat until residual falls.
+
+### Jacobi preconditioner: rescaling the spectrum
+
+A **preconditioner** \(\mathbf{M}\) approximates \(\mathbf{K}^{-1}\) cheaply so that CG applied to the **preconditioned system** \(\mathbf{M}^{-1}\mathbf{K}\mathbf{u} = \mathbf{M}^{-1}\mathbf{f}\) converges in far fewer iterations. The simplest choice is **Jacobi** (diagonal) preconditioning:
+
+\[
+\mathbf{M} = \text{diag}(\mathbf{K}), \qquad \tilde{\mathbf{K}} = \mathbf{M}^{-1/2}\mathbf{K}\mathbf{M}^{-1/2}.
+\]
+
+Each CG step on the symmetrically scaled system costs one diagonal solve (elementwise division) plus the usual sparse product. For a tridiagonal bar stiffness, \(\mathbf{M}\) captures the local spring stiffness at each node; off-diagonal coupling becomes a perturbation on a nearly diagonal operator — exactly the spectral clustering CG needs.
+
+**Worked example: Jacobi on the \(N = 401\) bar chain.** Return to the fixed–free mesh with unit end load. Plain CG at tolerance \(10^{-8}\) typically needs \(\sim 400\) iterations when \(\kappa(\mathbf{K}) \approx 1.6 \times 10^5\). With Jacobi preconditioning:
+
+| Solver | \(N = 401\) iterations to \(10^{-8}\) | Effective \(\kappa\) (qualitative) |
+|--------|---------------------------------------|-----------------------------------|
+| Unpreconditioned CG | \(\sim 400\) | \(\mathcal{O}(N^2)\) |
+| Jacobi-preconditioned CG | \(\sim 25\)–\(40\) | Clustered; weak \(N\) dependence |
+| Cholesky (direct) | 1 factorization | exact (modulo roundoff) |
+
+The iteration ratio tracks \(\sqrt{\kappa}\): halving the effective condition number cuts iterations by roughly half. **Algebraic multigrid** (Part IV) extends the same idea across mesh levels — coarsen the spring network, solve a cheap correction on a coarse graph, prolongate back to fine nodes. Multigrid is Jacobi with geometry: the coarse level is not arbitrary diagonal scaling but a physically meaningful coarser spring chain on the same copper wire.
+
+**NumPy sketch** (Jacobi left/right scaling for SPD \(\mathbf{K}\)):
+
+```python
+import numpy as np
+
+def jacobi_precond_cg(K, f, tol=1e-8, maxiter=200):
+    d = np.diag(K)
+    Dinv = 1.0 / d
+    Khat = (Dinv[:, None] ** 0.5) * K * (Dinv[None, :] ** 0.5)
+    fhat = (Dinv ** 0.5) * f
+    uhat = cg(Khat, fhat, tol, maxiter)  # reuse cg() from above
+    return (Dinv ** 0.5) * uhat
+```
+
+Run both solvers on the same \(\mathbf{K}\) and plot \(\|\mathbf{r}_k\| / \|\mathbf{f}\|\) versus iteration on a log scale. The unpreconditioned curve decays linearly on the semilog plot with slope set by \(\sqrt{\kappa}\); the Jacobi curve drops steeply in the first ten iterations — the same diagnostic habit Part IV recommends before trusting a million-node wire solve.
+
+**Scale-boundary handshake (Part I → Part IV).** When Act III's FEM mesh refines from \(h = 0.05\,\text{m}\) to \(h = 0.0125\,\text{m}\), displacement accuracy improves but CG iteration counts grow unless a preconditioner travels with the mesh. Archive both the mesh convergence table and the solver iteration count in the same run log: if \(u_h\) converges but iterations explode, the physics discretization is fine and the **linear algebra layer** needs the rescaling this section names. Part IV's multigrid solvers are the production implementation of that rescaling.
+
+### When CG is not enough
+
+CG requires **symmetry and positive definiteness**. Nonsymmetric systems (convection–diffusion, unsymmetric contact Jacobians) use **GMRES** or **BiCGSTAB**; indefinite saddle-point systems (mixed velocity–pressure in Part V) use block preconditioners with MINRES or GMRES on the Schur complement. The diagnostic habit from this section survives: plot residual versus iteration before trusting the solution — the same verification instinct as mesh refinement in the table above.
+
 ## Why this matters for the story
 
 Computational mechanics does not replace linear algebra with something exotic. It **lifts** linear algebra to functions, then **projects** back to finite dimensions. The stiffness matrix is not an ad hoc data structure; it is the Riesz representation of a bilinear form restricted to a finite-dimensional subspace.
 
 Finite volume methods (Part V) assemble conservation balances that also reduce to sparse linear systems — different discretization philosophy, same \(\mathbf{A}\mathbf{x}=\mathbf{b}\) at the end of the day. Molecular dynamics integrators advance a state vector by matrix–vector products with the Hessian of an interatomic potential. The copper wire at every scale eventually asks: what is the state vector, and what matrix maps it forward or toward equilibrium? Part I answers that question in finite dimensions; Part II and Part III lift it to fields.
+
+## Lab act: three nodes, one load cell reading (Act I — Mounting)
+
+**Act I** in the lab is mounting: the wire sits in wedge grips, the load cell reads zero, and the first honest model is a chain of bar elements. Before any current flows or any grip displacement ramps, write the numbers that a code would assemble on the first timestep.
+
+Take a 1 m segment of the copper wire modeled as **three axial bar nodes** at \(x = 0, 0.5, 1.0\,\text{m}\). Cross-section \(A = 1\,\text{mm}^2\), Young's modulus \(E = 120\,\text{GPa}\). Each half-meter element has stiffness \(k = EA/L = 2.4 \times 10^8\,\text{N/m}\). With the left grip fixed (\(u_1 = 0\)) and a prescribed end displacement \(u_3 = 10\,\mu\text{m}\) at the right grip (still zero force on the load cell until the ramp begins — this is the **boundary data** the matrix will enforce):
+
+| Step | Action | Result |
+|------|--------|--------|
+| 1 | Write \(\mathbf{K}\) for three nodes (two elements) | Tridiagonal pattern from the worked example above |
+| 2 | Apply BCs: eliminate row/col 1; move \(u_3\) to the load side | Reduced system for \(u_2\) only, or full system with constraint |
+| 3 | Solve \(\mathbf{K}\mathbf{u}=\mathbf{f}\) | Middle node displacement \(u_2 \approx 5\,\mu\text{m}\) (halfway, by symmetry of uniform bar) |
+| 4 | Recover reaction force \(F = k(u_3 - u_2)\) | \(\approx 1.2\,\text{kN}\) — the number the load cell will read when the grip holds \(10\,\mu\text{m}\) |
+
+In NumPy, the pattern is `K = k * np.array([[1,-1,0],[-1,2,-1],[0,-1,1]])` followed by `np.linalg.solve` on the reduced system. No FEM package required — only the grammar this chapter names.
+
+When the operator later clicks **Start** and the force–displacement trace begins its linear climb, every point on that curve is a sequence of solves exactly like this one, with \(\mathbf{K}\) growing from three nodes to millions. Part I teaches the three-node version so the million-node version is recognizable, not magic.
+
+## Concept map checkpoint (vectors and matrices)
+
+This chapter is where the copper wire first becomes a computer object. Before linear maps change coordinates, summarize what the matrix grammar established:
+
+| Question | Part I answer (copper wire) |
+|----------|----------------------------|
+| What **object**? | State vector \(\mathbf{u}\), stiffness \(\mathbf{K}\), load \(\mathbf{f}\) |
+| What **structure**? | Inner product (energy), symmetry (reciprocity), sparsity (local coupling) |
+| What **theorem**? | SPD \(\mathbf{K}\) \(\Rightarrow\) unique equilibrium; spectral decomposition preview |
+| What **breaks**? | Ill-conditioning; rank deficiency (rigid modes); treating \(\mathbf{K}\) as arbitrary data |
+
+The prologue's Act I mounting is already a solve: three nodes, one prescribed displacement, one reaction force on the load cell. Every later method — FEM, FVM, MD — returns to state plus update rule; Part I names that pattern in \(\mathbb{R}^N\).
 
 ## Bridge
 
@@ -169,34 +349,11 @@ With vectors and matrices in hand, we next examine **linear maps** abstractly: c
 |-------------------------------|----------------------------------------|
 | State vector \(\mathbf{u}\) and equilibrium \(\mathbf{K}\mathbf{u}=\mathbf{f}\) | Linear maps as the rules behind assembly and coordinate change |
 | Inner product \(\mathbf{u}^T\mathbf{v}\) as energy pairing | Rotations, local/global frames, scatter maps \(\mathbf{L}_e\) |
-| Sparsity from local coupling on the spring chain | Isoparametric Jacobian preview: volume maps before Part IV |
+| Sparsity from local coupling on the spring chain | Explicit gather/scatter: \(\mathbf{K} = \sum_e \mathbf{L}_e^T \mathbf{k}_e \mathbf{L}_e\) |
+| Mesh refinement convergence toward \(u(x)\) | Isoparametric Jacobian preview: volume maps before Part IV |
 | Column space / null space of \(\mathbf{K}\) | Rigid-body modes the grips must constrain |
 
 Return to the [prologue](../../prologue/00-many-scales.md): **Act I — Mounting** fixes the wire in grips whose end displacement is a single global degree of freedom, yet every bar element still carries its own local axis. Assembly is the map that declares those languages equivalent — the same book-keeping Part IV will automate on millions of elements. When the map is wrong, the wire appears to stretch when only one end moves; when the basis is ill-chosen, \(\mathbf{K}\) is dense and ill-conditioned even though the physics is local.
 
-The copper wire, meshed or unmeshed, is the same physical object in every basis we choose. Part II will ask what happens when \(N\) grows without bound and \(\mathbf{K}\) becomes an operator on a function space; Part IV will show that the same scatter map \(\mathbf{L}_e\) on millions of elements is the assembly loop behind **Act III — Pulling**. For now, the experiment needs only a handful of nodes and one honest matrix.
-
-| Prologue act | First finite-dimensional model on the wire | What breaks without this chapter |
-|--------------|---------------------------------------------|----------------------------------|
-| I — Mounting | \(\mathbf{K}\mathbf{u}=\mathbf{f}\) with grip BCs | No honest global equilibrium on a meshed specimen |
-| II — Warming (preview) | Thermal conductance matrix on a spring chain | Nodal temperatures cannot map to fluxes at interfaces |
-| III — Pulling (preview) | End displacement as a single controlled DOF | Local spring laws stay invisible without assembly |
-| VI — Foundation (preview) | Phonon Hessian as \(\mathbf{K}\) at atomic scale | Same matrix grammar recurs through Parts VIII–IX |
-
-| Prologue question | Answer in this chapter | Where it recurs |
-|-------------------|------------------------|-----------------|
-| What is the **state**? | \(\mathbf{u}\in\mathbb{R}^N\) of nodal displacements | Part II: \(u(x)\in H^1\); Part VIII: \((\mathbf{r},\mathbf{p})\) |
-| What are the **equations**? | \(\mathbf{K}\mathbf{u}=\mathbf{f}\) | Part III weak form; Part IV assembly |
-| What is the **discretization**? | Spring chain / bar elements | Part IV shape functions; Part V cell averages |
-| What **exports upward**? | Stiffness pattern, conditioning | Part II operator limit; Part VII homogenization |
-
-| Reading order (Parts I → IX) | Workflow order (Act VI → I) | Same grammar on the wire |
-|------------------------------|-----------------------------|--------------------------|
-| Part I teaches vectors first | SCF diagonalization runs last | Both end in sparse \(\mathbf{A}\mathbf{x}=\mathbf{b}\) |
-| Fields replace vectors in Part II | DFT exports moduli before mounting | Stiffness is always a bilinear form restricted to DOFs |
-| Weak forms arrive in Part III | FEM deck built from homogenized \(E,\nu\) | Assembly scatter maps from [I.2](02-linear-maps.md) |
-
-The [epilogue](../../epilogue/multiscale.md#lab-act-reunion-six-acts-one-afternoon) reunites these two clocks on one afternoon — **Act I** here is the mounting scene whose matrix every later act still spends.
-
-Turn the page when \(\mathbf{K}\mathbf{u}=\mathbf{f}\) feels like a table of numbers rather than a coordinate story — linear maps are where that table acquires geometry.
+The copper wire, meshed or unmeshed, is the same physical object in every basis we choose. Turn the page when \(\mathbf{K}\mathbf{u}=\mathbf{f}\) feels like a table of numbers rather than a coordinate story — linear maps are where that table acquires geometry.
 

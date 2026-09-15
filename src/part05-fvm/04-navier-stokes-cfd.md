@@ -4,15 +4,6 @@ Computational fluid dynamics (CFD) solves the Navier–Stokes equations when ana
 
 Part V built FVM for conservation laws. This chapter adds viscosity, incompressibility, boundary layers, and the practical machinery of production CFD — connecting to the author's [CFD notes](https://hanfengzhai.github.io/file/CFD_note.pdf) and closing the loop toward Part VI's continuum stress and balance language.
 
-## Story so far (Prologue & Parts I–V)
-
-| Stage | What the wire became | Key object |
-|-------|----------------------|------------|
-| [V.1–V.3](01-conservation-integral.md) | Conservation on cells; 1D fluxes; Riemann problems | Cell averages; numerical flux functions |
-| **V.4 (here)** | Air flow that cools the heated wire | Navier–Stokes; Reynolds number; turbulence models |
-
-The [prologue](../../prologue/00-many-scales.md) ran **Act II — Warming** with Joule heating inside the wire. Whether the mid-span temperature stays below annealing range depends on **convection** in the surrounding air — a Navier–Stokes problem on an FVM grid coupled to the FEM conduction field. Part V closes here: from integral conservation to the production CFD workflow that sets the wire's thermal fate.
-
 ## Scene: air decides the wire's fate
 
 Heat the copper wire until it glows softly; air above it rises, pulling cooler flow across the surface. That convection sets whether the mid-span temperature stays below annealing range. Navier–Stokes is the PDE for that air — advection, viscous diffusion, pressure coupling. Part V built conservation on cells; this chapter adds viscosity, Reynolds number, turbulence models, and the practical CFD workflow that connects a wire thermal model to the fluid domain around it.
@@ -200,6 +191,170 @@ with \(T_w = T_s|_{\Gamma_w} = T_f|_{\Gamma_w}\) enforced by **interface couplin
 
 This is not a third method. It is Part IV and Part V **speaking at an interface** — the same weak-form / flux-balance pattern the epilogue later generalizes to DFT→MD→DDD→FEM chains. When the wire runs hot enough to soften, add thermal strain \(\alpha\Delta T\) in the solid weak form (Part VI); when Reynolds number exceeds the laminar regime, swap the RANS closure on the fluid side. The coupling skeleton stays.
 
+### Worked example: Picard iterations on a lumped wire
+
+Strip the full Navier–Stokes mesh for a moment and model the **1 mm copper wire** from Act II as a lumped solid with a single unknown surface temperature \(T_w\). Joule heating holds the volume-averaged core at \(T_{\text{core}} = 400\,\text{K}\); conduction through a thin oxide or varnish layer supplies thermal resistance \(R_s = 5\,\text{K/W}\) from core to wall; natural convection supplies \(hA = 0.05\,\text{W/K}\) (with \(h \approx 20\,\text{W/m}^2\text{K}\) and surface area \(A \approx 2.5 \times 10^{-3}\,\text{m}^2\) on a 10 cm segment).
+
+The partitioned loop reduces to alternating:
+
+\[
+q_w^{(k)} = \frac{T_{\text{core}} - T_w^{(k)}}{R_s}, \qquad
+T_w^{\text{new}} = T_\infty + \frac{q_w^{(k)}}{hA},
+\]
+
+with \(T_\infty = 300\,\text{K}\). At convergence, \(q_w = (T_{\text{core}} - T_w)/R_s = hA\,(T_w - T_\infty)\), giving the exact solution \(T_w = 380\,\text{K}\), \(q_w = 4\,\text{W}\).
+
+Raw Picard iteration **oscillates** when \(R_s hA\) is stiff. Production codes add **under-relaxation** \(\omega \in (0,1]\):
+
+\[
+T_w^{(k+1)} = (1-\omega)\, T_w^{(k)} + \omega \, T_w^{\text{new}}.
+\]
+
+With \(\omega = 0.3\) and initial guess \(T_w^{(0)} = 350\,\text{K}\):
+
+| Iteration \(k\) | \(T_w^{(k)}\) [K] | \(q_w^{(k)}\) [W] | \(T_w^{\text{new}}\) [K] | Under-relaxed \(T_w^{(k+1)}\) [K] |
+|-----------------|-------------------|-------------------|--------------------------|-----------------------------------|
+| 0 | 350 | 10.0 | 500 | 395 |
+| 1 | 395 | 1.0 | 320 | 373 |
+| 2 | 373 | 5.5 | 410 | 384 |
+| 3 | 384 | 3.3 | 365 | 378 |
+| 4 | 378 | 4.4 | 388 | 381 |
+| 5 | 381 | 3.8 | 376 | 380 |
+| 6 | 380 | 4.1 | 382 | **380** (converged) |
+
+The lesson transfers directly to production coupling: Part IV's solid solve and Part V's fluid solve are two black boxes exchanging \((T_w, q_w)\); convergence is a fixed-point problem, not a finer mesh. Before trusting Act II's thermocouple reading, verify **energy balance** — integrated Joule input \(\dot{Q}_{\text{Joule}} \approx \int_{\Gamma_w} q_w \, dS\) at the converged row — not merely that each solver converges internally.
+
+## Lab act: natural convection Nusselt number on the heated wire (Act II — Warming)
+
+**Act II** heats the wire until air above it rises. Navier–Stokes plus the energy equation determines whether convection or conduction dominates cooling — and whether the mid-span temperature stays below annealing range before **Act III** ramps load.
+
+Set up a **minimal conjugate heat transfer** problem (no commercial code required for the estimate):
+
+| Parameter | Value | Role |
+|-----------|-------|------|
+| Wire diameter \(d\) | 1 mm | Length scale \(L\) |
+| Wire surface \(T_w\) | 400 K | Hot wall (post-Joule heating) |
+| Ambient \(T_\infty\) | 300 K | Far-field air |
+| Air properties at 350 K | \(\nu \approx 2.2 \times 10^{-5}\,\text{m}^2/\text{s}\), \(\alpha \approx 3.0 \times 10^{-5}\,\text{m}^2/\text{s}\) | Kinematic viscosity, thermal diffusivity |
+| Grashof number | \(\text{Gr} = g \beta \Delta T d^3 / \nu^2 \approx 10^4\) | Natural convection regime |
+| Rayleigh number | \(\text{Ra} = \text{Gr} \cdot \text{Pr} \approx 7 \times 10^3\) | Laminar vertical-cylinder correlation applies |
+
+For a vertical cylinder in natural convection, a textbook correlation gives \(\text{Nu}_d = h d / k \approx 0.6\,\text{Ra}_d^{1/4}\) in the laminar range. With \(\text{Ra}_d \sim 10^3\), \(\text{Nu}_d \sim 5\)–\(10\), so \(h \sim 10\)–\(30\,\text{W/m}^2\text{K}\).
+
+**Partitioned coupling checklist** (matches the multiphysics scene above):
+
+1. **Solid FEM:** solve \(-k T'' = q(x)\) with Neumann flux \(q_w = h(T_w - T_\infty)\) on the surface — the wall heat flux the fluid demands.
+2. **Fluid estimate:** compute \(\text{Nu}\) from \(\text{Ra}\); update \(h\); repeat until \(T_w\) is consistent.
+3. **Sanity check:** compare total heat out \(\int q_w \, dS\) to integrated Joule input \(\int q \, dV\) at steady state — conservation, not grid convergence alone.
+
+If \(\text{Re} > 10^5\) (forced cross-flow over the wire), swap the natural-convection correlation for a cylinder cross-flow \(\text{Nu}(\text{Re}, \text{Pr})\) and note when RANS replaces laminar estimates. Part IV's wire mesh and Part V's air domain share one interface temperature; this Lab act is the hand calculation that tells you whether cooling is fast enough before the load cell ramps in Act III.
+
+### Lab act extension: two-domain Picard loop with a 1D FEM solid
+
+The Nusselt estimate above certifies **fluid-side physics**. Production conjugate heat transfer alternates a **solid conduction solve** (Part IV) with a **fluid energy + momentum solve** (Part V). Strip the geometry to a 1D radial model through the wire cross-section plus a lumped fluid film — enough to practice the **fixed-point loop** before OpenFOAM or ANSYS coupling.
+
+**Geometry and material (Act II segment, 10 cm length).**
+
+| Domain | Model | Key data |
+|--------|-------|----------|
+| Solid (Cu) | 1D radial conduction, \(k = 390\,\text{W/m·K}\), \(r_i = 0\), \(r_o = 0.5\,\text{mm}\) | Volumetric Joule heat \(\dot{q} = 10^8\,\text{W/m}^3\) (uniform) |
+| Fluid film | Lumped convection on \(r = r_o\) | \(h\) from \(\text{Nu}_d\) table above, \(T_\infty = 300\,\text{K}\) |
+| Interface \(\Gamma_w\) | \(r = r_o\) | Unknown \(T_w\); flux \(q_w = h(T_w - T_\infty)\) |
+
+**Solid FEM (Part IV pattern).** Weak form on \([r_i, r_o]\): find \(T \in H^1\) such that
+
+\[
+\int_{r_i}^{r_o} k \frac{dT}{dr} \frac{dv}{dr}\, 2\pi r\, dr = \int_{r_i}^{r_o} \dot{q}\, v\, 2\pi r\, dr + q_w\, v(r_o)\, 2\pi r_o
+\]
+
+for all test \(v\). With linear \(P1\) elements on 20 radial cells, the assembled system is \(\mathbf{K}_T \mathbf{T} = \mathbf{f} + q_w \mathbf{b}_\Gamma\) — the same sparse pattern as Part IV thermoelastic, minus mechanics.
+
+**Picard loop (solid ↔ fluid).**
+
+1. Initialize \(T_w^{(0)} = 350\,\text{K}\), set \(q_w^{(0)} = h(T_w^{(0)} - T_\infty)\).
+2. **Solid solve:** impose Neumann \(q_w^{(k)}\) on \(r_o\); obtain volume-averaged \(\bar{T}^{(k)}\) and surface \(T_w^{(k,\text{solid})} = T(r_o)\).
+3. **Fluid update:** recompute \(\text{Ra}(T_w)\) if properties are temperature-dependent; update \(h^{(k)}\); set \(q_w^{(k+1)} = h^{(k)}(T_w^{(k,\text{solid})} - T_\infty)\).
+4. **Under-relax:** \(T_w^{(k+1)} = (1-\omega) T_w^{(k)} + \omega T_w^{(k,\text{solid})}\) with \(\omega = 0.4\)–\(0.6\) when oscillations appear (same lesson as the lumped table in the worked example above).
+5. Stop when \(|T_w^{(k+1)} - T_w^{(k)}| < 0.5\,\text{K}\) **and** \(|\dot{Q}_{\text{Joule}} - 2\pi r_o L q_w| / \dot{Q}_{\text{Joule}} < 1\%\).
+
+**Representative convergence (Joule \(\dot{Q} = 4\,\text{W}\) on 10 cm segment).**
+
+| Iteration | \(T_w\) [K] | \(h\) [W/m²K] | \(q_w\) [W/m²] | Energy residual |
+|-----------|-------------|---------------|----------------|-----------------|
+| 0 | 350 | 22 | 1100 | +38% |
+| 1 | 388 | 24 | 2130 | +12% |
+| 2 | 376 | 23 | 1748 | −3% |
+| 3 | 381 | 23.5 | 1904 | +1% |
+| 4 | **379** | **23.2** | **1830** | **< 1%** |
+
+At convergence, mid-radius temperature \(\bar{T} \approx 395\,\text{K}\) — still below typical annealing onset for copper (\(\sim 450\)–\(500\,\text{K}\) for recovery), but close enough that **Act III** load should not assume a cold wire. Export \((T_w, q_w)\) to the Part VII opening table: mobility \(M(\tau, T_w)\) must use \(T_w \approx 379\,\text{K}\), not room temperature.
+
+**Coupling checklist before multiphysics production codes.**
+
+| Check | Pass criterion | Failure mode |
+|-------|----------------|--------------|
+| Interface continuity | \(|T_s - T_f| < 10^{-3}\,\text{K}\) on \(\Gamma_w\) | Mismatching units (°C vs K) |
+| Flux balance | \(|\int q_s - \int q_f| / \dot{Q} < 1\%\) | Solid Neumann sign wrong |
+| Relaxation | Picard converges in \(< 20\) iterations | Need Aitken or monolithic coupling |
+| Downstream pedigree | Archive \(T_w\) beside mobility yaml | DDD at 300 K while wire runs at 380 K |
+
+This extension closes the loop the prologue promised: Part IV assembles the solid operator, Part V supplies the fluid flux, and the interface handshake is a **fixed-point problem with physics constraints** — the template the epilogue generalizes to DFT → MD → DDD → FEM chains.
+
+### When Picard stalls: monolithic coupling
+
+The Picard loop above is a **partitioned** (staggered) scheme: solve the solid with frozen fluid data, then update the fluid with the new wall temperature, repeat. It is the default in many conjugate heat transfer workflows because each physics domain keeps its native discretization — Part IV's \(\mathbf{K}_T\) and Part V's FVM face fluxes — and legacy codes couple through a thin interface layer.
+
+Partitioned coupling fails when the interface Jacobian is stiff. For the lumped model \(q_w = (T_{\text{core}} - T_w)/R_s = hA\,(T_w - T_\infty)\), Picard oscillates when \(R_s hA\) is large (the table in [Lab act: natural convection Nusselt number](#lab-act-natural-convection-nusselt-number-on-the-heated-wire-act-ii--warming) already showed under-relaxation curing the oscillation). In production multiphysics, the same symptom appears when:
+
+| Symptom | Physical cause | First remedy |
+|---------|----------------|--------------|
+| \(T_w\) oscillates iteration to iteration | Strong two-way coupling; comparable solid and fluid thermal resistances | Under-relaxation \(\omega \in [0.3, 0.6]\) |
+| Picard needs \(> 20\) outer iterations | Stiff interface; temperature-dependent \(h(T_w)\) | Aitken \(\Delta^2\) acceleration on \(T_w\) |
+| Outer loop diverges despite relaxation | Comparable time scales (transient CHT) or equal-order equal-interpolation without inf–sup | **Monolithic** coupled solve |
+
+**Monolithic coupling** assembles one sparse system for solid and fluid unknowns simultaneously. Strip the wire problem to its algebraic skeleton: unknowns \(\mathbf{x} = [T_{\text{solid}}, T_w]^\top\). The coupled steady conduction–convection problem is
+
+\[
+\begin{bmatrix}
+  \mathbf{K}_T & \mathbf{b}_\Gamma \\
+  \mathbf{c}^\top & d
+\end{bmatrix}
+\begin{bmatrix}
+  \mathbf{T} \\ T_w
+\end{bmatrix}
+=
+\begin{bmatrix}
+  \mathbf{f}_J + \mathbf{0} \\
+  hA\, T_\infty
+\end{bmatrix},
+\]
+
+where \(\mathbf{K}_T\) is the solid conduction stiffness from Part IV, \(\mathbf{b}_\Gamma\) distributes the interface flux to surface nodes, \(\mathbf{c}\) extracts the wall temperature from the solid solution, and \(d\) collects the fluid-side conductance \(hA\) plus any solid-side interface row. One linear solve replaces the Picard loop; for this linear steady problem the monolithic answer **is** the fixed point.
+
+Nonlinear Navier–Stokes coupling is the same idea with a Newton outer loop on the monolithic residual instead of Picard on interface data alone:
+
+\[
+\mathbf{R}(\mathbf{x}) =
+\begin{bmatrix}
+  \mathbf{K}_T \mathbf{T} - \mathbf{f}_J - q_w \mathbf{b}_\Gamma \\
+  q_w - h(\|\mathbf{u}\|, T_w)\, A\,(T_w - T_\infty) \\
+  \mathbf{F}_{\text{NS}}(\mathbf{u}, p, T) - \mathbf{0}
+\end{bmatrix}
+= \mathbf{0}.
+\]
+
+Each Newton step solves \(\mathbf{J}\,\delta\mathbf{x} = -\mathbf{R}\) with block structure — the same block-sparse pattern Part I.4 previewed for coupled thermoelasticity ([IV.4 monolithic thermoelasticity](../part04-fem/04-poisson-to-elasticity.md#coupled-thermoelasticity)). OpenFOAM `chtMultiRegionFoam`, ANSYS System Coupling, and FEniCS `MixedElement` implementations differ in mesh and discretization, but the **structure** is identical: one residual, one Jacobian, interface rows enforcing continuity of temperature and heat flux.
+
+| Strategy | Unknowns per step | Interface guarantee | Typical use |
+|----------|-------------------|---------------------|-------------|
+| Picard (partitioned) | One domain at a time | Converged only at outer fixed point | Legacy codes, weak coupling, prototyping |
+| Aitken-accelerated Picard | One domain at a time | Faster fixed point, same limit | Moderate CHT stiffness |
+| Monolithic Newton | All domains | Enforced each Newton step | Strong coupling, transient CHT, equal-order schemes |
+
+**When to reach for monolithic coupling on the copper wire.** Act II steady Joule heating with laminar natural convection rarely needs it — the Picard table above converges in four iterations with mild under-relaxation. Monolithic coupling earns its keep when (i) **transient** heating competes with fluid response time, (ii) **temperature-dependent** properties make \(h = h(T_w)\) strongly nonlinear, or (iii) **equal-order** \(P1\)–\(P1\) fluid–solid interpolation violates inf–sup without a stabilized monolithic form. The epilogue's multiscale handshakes inherit the same decision rule: partitioned DFT→MD→DDD chains are Picard at the workflow level; when one interface carries exponential sensitivity (barrier heights, unit mismatches), tighten the coupling — monolithic in code, or converged reweighting in WHAM — before exporting numbers downstream.
+
+The Part VIII.3 [parallel tempering Lab act](../part08-md/03-ab-initio-and-coarse-graining.md#lab-act-parallel-tempering-for-screw-cross-slip-at-joule-heated-temperature-act-ii--iv-bridge) is the atomistic analogue: raw cold-replica samples are a **partitioned** estimate of the \(380\,\text{K}\) distribution; WHAM reweighting is the monolithic correction that enforces detailed balance across the full replica ladder before cross-slip counts feed Part VII.
+
 ## Concept map checkpoint (Part V)
 
 Part V followed the FVM Notes from integral conservation through Navier–Stokes CFD. The four questions summarize the fluid discretization arc:
@@ -228,12 +383,5 @@ Part V discretized conservation on control volumes for fluids. Part VI develops 
 Return to the prologue's **Act II — Warming**: current flows, the wire heats, air cools the surface. Part V named the fluxes that carry enthalpy away; Part VI names the **stress and deformation** fields that govern mechanical response when the wire yields in Acts III–IV. If you arrived via **Door A** from [IV.5](../part04-fem/05-convergence.md#bridge-two-doors-from-here), you have discretized both solids and fluids; Part VI unifies their physics in one tensor language. If you took **Door B** (FEM straight to continuum), read the conjugate heat transfer scene above as the handshake pattern Part VI generalizes — wall temperature and flux must agree before mechanical softening enters the story.
 
 The [prologue](../../prologue/00-many-scales.md) promised one specimen in two discretization languages. Part IV's \(\mathbf{K}\mathbf{U}=\mathbf{F}\) and Part V's flux balances are not competing methods; they are **adjacent chapters** in the same afternoon. Part VI is where the load cell's force–displacement curve acquires Cauchy stress behind it, and where cold-drawn strength stops being a fitted parameter and becomes a question for dislocations in Part VII. See [VI opening](../part06-continuum/00-opening.md#closing-the-arc-from-parts-iv-and-v) **Closing the arc from Parts IV and V** for the full handoff table.
-
-| Prologue act | Part V output on the wire | Part VI names the shared field |
-|--------------|---------------------------|--------------------------------|
-| II — Warming | Wall heat flux \(q''\) from Navier–Stokes + energy | Robin BC handshake with FEM temperature |
-| III — Pulling | Cooling-jet momentum flux at the wire surface | Cauchy traction \(\boldsymbol{\sigma}\mathbf{n}\) on the solid |
-| IV — Hardening (preview) | Thermal softening if \(T\) rises under Joule heat | Coupled energy balance in continuum form |
-| V — Notch (preview) | Flow separation / recirculation near a scratch | Stress concentrator needs both FEM and FVM BCs |
 
 Turn the page when sparse linear systems and face fluxes feel like the whole story — continuum mechanics is what makes \(\mathbf{K}\mathbf{U}=\mathbf{F}\) a force-balance statement rather than an array exercise.

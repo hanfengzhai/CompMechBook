@@ -4,15 +4,6 @@ Return to the copper wire from the prologue. At the engineering scale we want it
 
 The answer begins not with triangles and quadrature, but with a family of methods united by one idea. **Weighted residual methods** seek an approximate field \(u_h\) that makes the PDE residual small in a weighted average sense. The finite element method is the most important member of that family — Galerkin's method on a piecewise-polynomial space — but understanding the family clarifies why FEM is structured the way it is, and why alternatives (collocation, least squares, Petrov–Galerkin) appear when elliptic intuition fails.
 
-## Story so far (Prologue & Parts I–III)
-
-| Stage | What the wire became | Key object |
-|-------|----------------------|------------|
-| Parts I–III | Weak PDEs in \(H^1\); energy minimization | Bilinear form \(a(u,v)=\ell(v)\); Dirichlet principle |
-| **IV.1 (here)** | Residual forced small in weighted average | Weighted residuals; Galerkin orthogonality preview |
-
-Part III answered *what* equation the wire satisfies. Part IV asks *how to approximate it on a mesh*. Weighted residuals are the operational bridge: instead of demanding the PDE hold at every point, demand the residual vanish against a finite set of test functions — the discrete shadow of Part II's orthogonality. Galerkin's choice (trial and test from the same space) is the decision that makes FEM what it is.
-
 ## Scene: a guess that almost works
 
 Joule heating has raised the copper wire's temperature profile above ambient. An analyst guesses a simple shape — perhaps a straight line from hot grip to cool grip — plugs it into the heat equation, and finds the **residual** nonzero everywhere: the guess violates the PDE at almost every point. Weighted residuals ask a softer question: can we adjust the guess so that, when weighted and averaged over the domain, the residual vanishes in a finite number of directions?
@@ -42,6 +33,21 @@ If \(u_h\) were the exact solution, \(r \equiv 0\). For a nontrivial approximati
 for a chosen set of **weight functions** (or **test functions**) \(\{w_i\}\). Each equation is one scalar constraint. With \(N\) unknown coefficients in \(u_h\), we need \(N\) independent weights.
 
 This is the discrete shadow of Part II's orthogonality: the error is forced to be "invisible" to a finite set of observers.
+
+### Handshake with Part II.4: loads, projectors, and residuals
+
+[Part II.4](../../part02-functional-analysis/04-operators-duality.md) named two objects weighted residuals inherit without re-deriving them:
+
+| Part II.4 object | Weighted residual form | FEM manifestation |
+|------------------|------------------------|-------------------|
+| Load functional \(\ell(v)\) | Right-hand side \(\ell(\phi_i)\) in each weighted equation | Nodal forces from \(\int f \phi_i\, dx\) |
+| Stiffness operator \(A\) | Bilinear form \(a(u_h, \phi_i)\) on the left | Entries of assembled \(\mathbf{K}\) |
+| Galerkin projector \(P_h\) | Residual orthogonal to \(V_h\) | \(u_h\) is best energy fit when \(A\) is self-adjoint |
+| Weak* convergence \(\ell_N \to \ell\) | Same limit equations as mesh refines | Load lumping that preserves midspan displacement trend |
+
+The **residual orthogonality** \(\int r\, w_i = 0\) is Galerkin's way of saying the error \(u - u_h\) is invisible to the test space in the energy inner product — the finite-dimensional echo of Part II.3's projection theorem. When the right-hand side is a concentrated grip load, II.4's weak* limit justifies replacing a distributed contact pressure with equivalent nodal forces as the mesh refines; when that replacement fails, the weighted residual equations are solving the **wrong** physics even if assembly is flawless.
+
+Part [IV.2](02-galerkin-assembly.md) automates the scatter; Part [IV.5](05-convergence.md) proves \(P_h u\) tracks \(u\) as \(h \to 0\). This chapter is the hinge: residuals first, then assembly, then convergence — the same order Part II used for operators, then spectra, then weak PDEs.
 
 ## The approximation space
 
@@ -178,17 +184,48 @@ Galerkin's method on a finite element space becomes a matrix system through **gl
 
 Recall Part III's closing pipeline: strong PDE → weak form → **energy minimum** (Dirichlet principle) → discrete search on \(V_h\). Weighted residuals are the operational face of that minimum — enforcing \(R_{\text{weak}}(v; u_h) = 0\) for all test functions is equivalent to seeking the minimizer of a quadratic energy when the bilinear form is symmetric and coercive. The copper wire's tensile equilibrium from [III.4](../part03-pdes/04-energy-methods.md) arrives here as the same \(a(u,v) = \ell(v)\) restricted to piecewise linears; assembly is how we compute the matrix that Rayleigh–Ritz minimization demands.
 
-Return to the [prologue](../../prologue/00-many-scales.md): **Act II — Warming** already needs weighted residuals on the thermal side — a residual \(R_{\text{weak}}(v;T_h)\) that vanishes for all test temperatures is the same Galerkin habit before **Act III — Pulling** turns mechanical orthogonality into numbers the load cell trusts. Part I named \(\mathbf{K}\mathbf{u}=\mathbf{f}\); Part II proved the limit lives in \(H^1\); Part III wrote the bilinear form. [IV.2](02-galerkin-assembly.md) is where the operator becomes code — the stiffness matrix is not magic, but the Gram matrix of the energy inner product on \(V_h\).
+Return to the [prologue](../../prologue/00-many-scales.md): **Act III — Pulling** turns abstract Galerkin orthogonality into numbers the load cell trusts. Part I named \(\mathbf{K}\mathbf{u}=\mathbf{f}\); Part II proved the limit lives in \(H^1\); Part III wrote the bilinear form. [IV.2](02-galerkin-assembly.md) is where the operator becomes code — the stiffness matrix is not magic, but the Gram matrix of the energy inner product on \(V_h\).
 
-Part VI will later **name** the tensors inside those integrals — Cauchy stress \(\boldsymbol{\sigma}\), strain \(\boldsymbol{\varepsilon}\), elastic tensor \(\mathbb{C}\) — and show that virtual work is the vector-valued weighted residual you already enforced here. The load cell curve is therefore not a separate experiment from the FEM solve; it is the same balance law, first as \(R_{\text{weak}}(v; u_h)=0\), then as \(\boldsymbol{\sigma}:\nabla\mathbf{v}\) integrated over the meshed wire.
+## Lab act: weighted residual on two bar elements (Act III — Pulling)
 
-Part II's Hilbert-space inner product is what makes this orthogonality meaningful: \(R_{\text{weak}}(v; u-u_h)=0\) for all \(v \in V_h\) is **projection** of the true solution onto the trial subspace in the energy norm induced by \(a(\cdot,\cdot)\) — not a separate numerical recipe layered on top of Part I's \(\mathbf{K}\mathbf{u}=\mathbf{f}\). [II.3](../part02-functional-analysis/03-hilbert-spaces.md) supplied the geometry; Part III wrote the bilinear form; weighted residuals are the insistence that the discrete error is orthogonal to the trial space in that geometry.
+**Act III** ramps end displacement; the load cell reads reaction force. Weighted residuals are the **orthogonality condition** that turns that ramp into a matrix system before any industrial assembly loop obscures the pattern.
 
-| Prologue act | Weighted residual on the wire | Assembly output in [IV.2](02-galerkin-assembly.md) |
-|--------------|----------------------------|-----------------------------------------------------|
-| II — Warming | \(R_{\text{weak}}(v;T_h)=0\) for thermal test \(v\) | \(\mathbf{K}_T\mathbf{T}=\mathbf{f}_q\) from Joule heating |
-| III — Pulling | \(R_{\text{weak}}(v;u_h)=0\) for mechanical test \(v\) | \(\mathbf{K}\mathbf{u}=\mathbf{f}\) from end load |
-| V — Notch (preview) | Concentrated traction as dual load | Nodal force scatter from \(\int \mathbf{t}\cdot\mathbf{v}\) |
-| VI — Foundation (preview) | SCF residual on Kohn–Sham orbitals | Part IX: same orthogonality on a different basis |
+Reuse the three-node bar from [I.1](../part01-linear-algebra/01-vectors-matrices.md): \(L = 1\,\text{m}\), \(EA = 2.4 \times 10^8\,\text{N·m}\), \(u(0)=0\), prescribed \(u(1)=10\,\mu\text{m}\). Discretize with **two linear hat functions** \(\phi_1(x)\) on \([0,0.5]\), \(\phi_2(x)\) on \([0.5,1]\) (standard FEM basis).
+
+Weak form for \(-(EA u')' = 0\):
+
+\[
+\int_0^L EA u_h' v' \, dx = 0 \quad \forall v \in V_h.
+\]
+
+With \(u_h = U_1 \phi_1 + U_2 \phi_2\) and Galerkin test \(v = \phi_i\):
+
+| Index \(i\) | Residual equation | Physical meaning |
+|-------------|-------------------|------------------|
+| \(i=1\) | \(K_{11} U_1 + K_{12} U_2 = 0\) | Force balance at interior node |
+| \(i=2\) | \(K_{21} U_1 + K_{22} U_2 = F_2\) | Prescribed displacement enters as load |
+
+Element stiffness contributions (each half-meter bar, \(k = EA/L_e\)):
+
+\[
+\mathbf{K}^e = k \begin{bmatrix} 1 & -1 \\ -1 & 1 \end{bmatrix}.
+\]
+
+Scatter into global \(\mathbf{K}\), apply \(U_1=0\) and \(U_2=10\,\mu\text{m}\) (or eliminate DOF 1), solve for the free unknown — recover the same \(u_2 = 5\,\mu\text{m}\) and reaction \(\approx 1.2\,\text{kN}\) from the Lab act in I.1.
+
+The weighted residual **is** the assembly loop in embryo: for each test function \(\phi_i\), enforce \(\int (EA u_h' \phi_i' - 0)\, dx = 0\). Part IV.2 automates the scatter; Part IV.3 adds quadrature on general elements. When the load cell trace is linear in Act III, every point is this two-equation system with a larger \(\mathbf{K}\).
 
 Turn the page when the weak form is clear but no matrix exists yet — that is the signal that weighted residuals need an assembly loop.
+
+## Concept map checkpoint (weighted residuals)
+
+This chapter is where Part III's weak form becomes an **operational** approximation rule. Before assembly automates the scatter, summarize what weighted residuals established:
+
+| Question | Part IV answer (copper wire) |
+|----------|------------------------------|
+| What **object**? | Residual \(r = f - \mathcal{L}u_h\); weak residual \(R_{\text{weak}}(v; u_h)\) |
+| What **structure**? | Trial space \(V_h\), test space \(W_h\); Galerkin: \(W_h = V_h\) |
+| What **theorem**? | Rayleigh–Ritz equivalence for coercive self-adjoint problems; virtual work for elasticity |
+| What **breaks**? | Collocation on non-smooth \(u_h\); Petrov–Galerkin needed for advection; penalty ill-conditioning |
+
+The two-element bar Lab act is Galerkin in miniature: enforce \(\int (EA u_h' \phi_i' - 0)\, dx = 0\) for each hat function. Every industrial FEM code is this orthogonality condition with millions of test directions — the same character Part III introduced as \(a(u,v)=\ell(v)\), now restricted to \(V_h\).

@@ -6,6 +6,17 @@ The copper wire from the prologue enters this part as a domain with boundary con
 
 The layout follows the **PDE Notes** in [`writings/pde/`](../../writings/pde/): four numbered chapters, mechanics examples throughout, and a **Bridge** at the end of each chapter pointing forward. Read them in order; they hand off directly to finite elements (Part IV) and finite volumes (Part V).
 
+## Chapter guide
+
+| Chapter | Wire story beat | Core object | Handoff |
+|---------|-----------------|-------------|---------|
+| [III.1](01-strong-form.md) | Pointwise PDEs for heat and elasticity on the bar | Strong form, boundary conditions, where smoothness fails | Integration by parts → weak form in III.2 |
+| [III.2](02-weak-form.md) | Test functions replace pointwise satisfaction | Bilinear form \(a(u,v)\), natural BCs, virtual work | Regularity class → Sobolev spaces in III.3 |
+| [III.3](03-sobolev-spaces.md) | \(H^1\) displacement; \(L^2\) temperature | Weak derivatives, trace theorem, Poincaré inequality | Existence via energy → Lax–Milgram in III.4 |
+| [III.4](04-energy-methods.md) | Unique equilibrium and minimum principles | Energy functional, coercivity, well-posedness triangle | [Bridge to Part IV](04-energy-methods.md#bridge-to-part-iv) and Part V |
+
+Read in order. Each chapter ends with a **Bridge** that states why the next chapter must exist; discretizing a strong form before writing the weak form is the most common source of non-converging meshes.
+
 ## Scene
 
 Part II named the function spaces — \(L^2\) for field energy, \(H^1\) for weak derivatives — and promised that Galerkin convergence is projection, not guesswork. The copper wire now enters as a **domain** with boundary conditions: fixed grips at the ends, a heat flux from Joule heating, perhaps convection at the surface once we couple to fluid in Part V.
@@ -100,6 +111,19 @@ Read Part IV first if solids and elliptic PDEs are your immediate goal; read Par
 
 In [laboratory time](../prologue/00-many-scales.md#the-experiment-as-plot), **Act II** switches on current and **Act III** ramps grip displacement — but both acts share the same mathematical habit: write the physics as a PDE, relax it to a weak form, and identify the Sobolev space where the solution lives. Part III is where Joule heating and elastic equilibrium become **computable statements** before FEM or FVM assign them node values or cell fluxes. When you read about strong versus weak forms here, picture the thermocouple warming and the grips tightening as two instances of one pipeline.
 
+### What you should be able to do after Part III
+
+Each chapter adds one move to the analytical pipeline that turns a blackboard PDE into a weak form Parts IV and V can discretize:
+
+| After chapter | Skill on the copper wire | Minimal artifact |
+|---------------|--------------------------|------------------|
+| III.1 | Write strong forms for axial elasticity and steady heat; name where \(C^2\) fails | \(-(EA u')' = f\); \(-k T'' = q\) with grip BCs |
+| III.2 | Derive the weak form by integration by parts; identify test space | \(\int EA u' v'\, dx = \int f v\, dx\) for \(v \in H^1_0\) |
+| III.3 | State \(H^1_0\) membership; explain weak derivatives on hat functions | Corner singularity at grip; \(u \in H^1\) but not \(C^2\) |
+| III.4 | Write Dirichlet energy; connect minimization to Lax–Milgram | \(\Pi[u] = \tfrac{1}{2}a(u,u) - \ell(u)\); Euler–Lagrange = weak form |
+
+None of these require assembling a mesh — but each one is the continuum statement FEM enforces at the limit. If you can write the weak form of \(-u''=f\) on \((0,L)\), name \(u \in H^1_0\), and explain why the energy minimum equals virtual work, you have the analytical core that Parts IV–VI discretize and interpret.
+
 ## Bridge
 
 Part II ended with a promise: the copper wire's displacement and temperature live in Sobolev spaces, not in \(\mathbb{R}^N\) for any fixed mesh. [II.5](../part02-functional-analysis/05-spectral-theorem.md#bridge) named the weak form a **recurring character** about to speak on stage — multiply by a test function, integrate by parts, balance virtual work for every admissible displacement. Part III is that act.
@@ -112,14 +136,5 @@ Part II ended with a promise: the copper wire's displacement and temperature liv
 | Galerkin best approximation on \(V_h\) | The equations Parts IV and V will discretize |
 
 The first chapter below writes **strong forms** — what the blackboard demands at every point — and names where classical \(C^2\) smoothness fails on the wire's grip corner, insulator interface, and mid-span load. That failure is not a bug in the physics; it is the plot hinge the prologue's recurring character has been walking toward since Part I's nodal balance laws. [III.2](02-weak-form.md) gives the character its first lines; [III.4](04-energy-methods.md) closes the analytical pipeline before FEM and FVM turn weak forms into code.
-
-| Prologue act | Strong form on the wire | Weak form destination in this part |
-|--------------|-------------------------|-------------------------------------|
-| II — Warming | \(-k\Delta T = q\) with Joule source \(q\) | Steady heat in \(H^1\); natural BC at the air interface |
-| III — Pulling | \(-\nabla\cdot(EA\nabla u) = f\) axial elasticity | Virtual work in \(H^1_0\) on the tensile bar |
-
-Both acts share one pipeline: strong form for intuition, weak form for computation, energy method for existence. Part IV will discretize the same weak statements on P1 elements; Part V will discretize the fluid-side heat equation on control volumes when conjugate transfer couples Act II to the air around the wire.
-
-The [SUMMARY](../../SUMMARY.md) allows **solids-first** (IV → VI) or **fluids-first** (V → VI) through the middle acts; either path must pass through this part's weak forms before discretization splits into Galerkin trial functions or cell fluxes. The epilogue's conjugate heat-transfer handshake assumes both dialects were built from the equations written here.
 
 Turn the page when you are ready to see where pointwise PDEs break — and why the weak form is the correct continuum statement, not a numerical convenience.

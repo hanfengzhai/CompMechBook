@@ -4,20 +4,6 @@ Part I ended with the spring network on the copper wire refining without bound: 
 
 A mesh with a million nodes is enormous by linear-algebra standards, but it is still finite. When we prove that the discrete solution converges as the element size \(h \to 0\), we are letting the number of degrees of freedom grow without bound. The **limit problem** — the boundary value problem the mesh is supposed to approximate — lives in an infinite-dimensional space. Functional analysis is the calculus of those spaces. It is not abstraction for its own sake. It is the vocabulary in which existence, uniqueness, stability, and convergence are stated precisely enough that a code's colorful plots can be trusted.
 
-## Story so far (Part I)
-
-Part I ended with a promise and a question. [I.4](../part01-linear-algebra/04-toward-infinity.md) showed that refining the spring network sends \(N \to \infty\) and replaces nodal vectors with fields \(u(x)\) and \(T(x)\). The stiffness matrix becomes an operator; eigenmodes become normal modes of a differential equation. Part II must name the **room** those limits live in before Part III writes PDEs and Part IV assembles another \(\mathbf{K}\).
-
-| Part I vocabulary (spring network on the wire) | Part II limit object (this part) | Prologue act that needs it |
-|-----------------------------------------------|----------------------------------|----------------------------|
-| State vector \(\mathbf{u}\in\mathbb{R}^N\) | Field \(u(x)\in H^1\), \(T(x)\in H^1\) | III — Pulling; II — Warming |
-| Stiffness matrix \(\mathbf{K}\) | Bilinear form \(a(u,v)\); operator on \(H^1\) | III — Pulling (load cell curve) |
-| Energy \(\mathbf{u}^T\mathbf{K}\mathbf{u}\) | Norm \(\|u\|_{H^1}^2\), strain-energy seminorm | II — Warming (thermal FEM convergence) |
-| Eigenvectors of \(\mathbf{K}\) | Orthonormal modes in Hilbert space | VI — Foundation (phonon preview) |
-| Mesh refinement \(N\to\infty\) | Completeness: Cauchy sequences stay in \(H^1\) | Every act that trusts mesh refinement |
-
-The [Part II opening](00-opening.md#closing-the-arc-from-part-i) replays this table with function-space vocabulary and links to the Functional Analysis Notes concept map. Read Part I's bridges as finite-dimensional rehearsals of the theorems ahead — not as a separate subject from the copper wire.
-
 ## Scene: the mesh refines forever
 
 Return to the spring network from Part I, now with element size halving on each pass. A coarse mesh gives \(N = 10\) nodes and a vector \(\mathbf{u}_{10}\); refine once and \(N = 20\); refine again and \(N = 40\). Each solve returns a different column vector, yet the plotted displacement profile along the wire axis looks smoother with every pass. The engineer asks the question Part I could not answer: **where does this family settle** as \(h \to 0\)?
@@ -194,6 +180,35 @@ The chapters ahead do not ask you to memorize abstract definitions for their own
 
 With that map in hand, we turn to the first technical layer: how to measure distance, size, and convergence in spaces of functions.
 
+## Lab act: refine the bar mesh and watch a field appear (Act III prelude)
+
+**Act III** in the lab is the force–displacement ramp — but the operator cannot trust that curve until mesh refinement has a **limit object** to converge toward. This chapter's argument is not abstract: you can run it on the same three-node bar from [I.1](../part01-linear-algebra/01-vectors-matrices.md) in five minutes.
+
+Fix the left end (\(u=0\)), prescribe \(u=10\,\mu\text{m}\) at the right, and solve for \(N = 5, 20, 100\) equally spaced nodes along the 1 m wire. Plot nodal displacement \(u_i\) against node position \(x_i\):
+
+| Mesh size \(N\) | What you see | What Part II names |
+|-----------------|--------------|-------------------|
+| 5 | Piecewise linear, kinks at nodes | \(u_h \in V_h\), a finite-dimensional subspace |
+| 20 | Smoother polyline, same end values | Finer \(V_h\), same boundary data |
+| 100 | Visually indistinguishable from a straight line | \(u_h \to u\) in \(H^1\) for this uniform bar |
+
+The **limit** \(u(x) = 10x\,\mu\text{m}\) is a function, not a longer vector. The energy \(\mathbf{u}^T\mathbf{K}\mathbf{u}\) on each mesh approximates \(\int_0^1 \frac{1}{2} E A (u')^2\, dx\) — the strain-energy norm Part II will write as \(\|u\|_{H^1}\). When two meshes with the same \(N\) but different connectivity give different curves, the relevant question is not "how many DOFs?" but "how well does \(V_h\) approximate the energy space?" — exactly the distinction this chapter draws between engineering vectors and continuum fields.
+
+Run this experiment before reading [II.2](02-normed-spaces.md). Norms and completeness are the theorems that make the visual convergence judgment honest.
+
+## Concept map checkpoint (motivation)
+
+This chapter names the limit object behind every mesh. Before norms measure distance in function space, summarize:
+
+| Question | Motivation answer (copper wire) |
+|----------|--------------------------------|
+| What **object**? | Field \(u(x)\), not vector \(\mathbf{u}\in\mathbb{R}^N\) for fixed \(N\) |
+| What **structure**? | Nested subspaces \(V_h \subset H^1\); bilinear form \(a(\cdot,\cdot)\) as continuous limit of \(\mathbf{K}\) |
+| What **theorem**? | Well-posedness pipeline: existence, uniqueness, stability, convergence |
+| What **breaks**? | Refining \(N\) without a target space; incompatible BCs; coarse mesh on gradients |
+
+The Lab act's bar refinement experiment is the numerical proof sketch: piecewise linears approach a straight line because the energy space is \(H^1\), not because "more nodes look smoother."
+
 ## Bridge
 
 With motivation in place, we begin where all analysis begins: measuring distance and size. Metric spaces formalize convergence before norms specialize the notion of length. Normed spaces carry the energy and mean-square measures that mechanics demands; completeness — the property that Cauchy sequences converge inside the space — distinguishes the function spaces where finite element limits live from spaces where discrete solutions could converge to something outside the admissible class.
@@ -206,14 +221,5 @@ With motivation in place, we begin where all analysis begins: measuring distance
 | \(\mathbf{K}\) as shadow of bilinear form \(a(\cdot,\cdot)\) | Equivalent norms and why FEM error measures do not depend on one choice |
 
 Return to the [prologue](../../prologue/00-many-scales.md): the weak form was introduced there as a **recurring character** that outlives every mesh. Part I gave it a finite-dimensional prelude — nodal equilibrium — and [I.4](../part01-linear-algebra/04-toward-infinity.md) showed refinement sending \(N\) without bound. This chapter named **why** that limit must live in a function space before Part III writes weak PDEs and Part IV assembles \(\mathbf{K}\) from shape functions. Inner products and Hilbert geometry follow in [II.3](03-hilbert-spaces.md); the next chapter builds the normed-space foundation they rest on.
-
-| Prologue act | Finite-dimensional preview (Part I) | Infinite-dimensional limit (this chapter) |
-|--------------|-------------------------------------|-------------------------------------------|
-| I — Mounting | \(\mathbf{K}\mathbf{u}=\mathbf{f}\) on \(N\) springs | Operator limit behind every \(\mathbf{K}_N\) |
-| II — Warming | Nodal temperatures converge on a chain | Field \(T(x)\) with square-integrable gradient |
-| III — Pulling | Mesh displacement vectors grow with refinement | Field \(u(x)\in H^1\) as the convergence target |
-| VI — Foundation | Eigenmodes on a fixed mesh | Spectral problem for a differential operator |
-
-Part II is the **convergence target** the prologue's six-act lab session already assumes: when the thermocouple climbs in Act II or the load cell ramps in Act III, mesh refinement only means something because the limit object defined here exists. The [epilogue](../../epilogue/multiscale.md#closing-the-full-arc) closes the same four questions at every rung; this chapter is where "discretization" acquires a limit worth trusting.
 
 Turn the page when "the mesh looks smooth" is not yet a theorem — norms and completeness are what make that visual judgment honest.

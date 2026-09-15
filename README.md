@@ -2,7 +2,7 @@
 
 A continuous narrative from linear algebra through functional analysis, finite elements and volumes, continuum mechanics, dislocation dynamics, molecular dynamics, and density functional theory — told as one story about a copper wire at every scale.
 
-**~119,000 words** · **35 numbered chapters** · **9 parts** · built with [mdBook](https://github.com/rust-lang/mdBook)
+**~156,836 words** · **35 numbered chapters** · **9 parts** · built with [mdBook](https://github.com/rust-lang/mdBook)
 
 ## Read the book
 
@@ -18,7 +18,7 @@ Read straight through for the full arc. Parts IV (FEM) and V (FVM) may be swappe
 
 ## Narrative structure
 
-The book follows the **Functional Analysis Notes** (ME 412) layout: numbered chapters, **concept maps** (object → structure → theorem → failure mode) at every part opening, **representative schematics** indexed to source notes at every part opening (I–IX), **Scene** sections that return to the copper wire, and **Bridge** sections at every chapter end explaining why the next chapter exists.
+The book follows the **Functional Analysis Notes** (ME 412) layout: numbered chapters, **concept maps** (object → structure → theorem → failure mode) at every part opening, **representative schematics** indexed to source notes at every part opening (I–IX), **Scene** sections that return to the copper wire, **Lab act** sections tying chapters to the six-act lab session, and **Bridge** sections at every chapter end explaining why the next chapter exists.
 
 ```mermaid
 flowchart TB
@@ -65,7 +65,9 @@ Output appears in `book/`. Build standalone part notes with `./scripts/build-all
 ```
 writings/          # Canonical markdown (Functional Analysis Notes layout)
 src/               # Unified book (synced from writings/)
-scripts/           # sync-writings.sh, install-mdbook.sh, word-count.sh
+scripts/           # sync-writings.sh, install-mdbook.sh, word-count.sh, parse_*.sh (elastic, gsf, wham, dft, cht, alpha, rate, vacf, lifetime sweep, fe2, multiscale)
+                   # parse_alpha.sh accepts --no-write to skip archive sidecars (CI / fixture-safe); parse_multiscale_workflow.sh passes it automatically
+fixtures/          # Illustrative inputs for parse script smoke tests (elastic, GSF, WHAM, CHT, DFT foundation, phonon α, VACF DOS, FE² notch, DDD rate)
 book.toml          # mdBook configuration
 theme/             # Custom CSS
 ```

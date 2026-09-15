@@ -6,6 +6,18 @@ The finite element method is the answer for elliptic and parabolic problems on c
 
 The layout follows the **FEM Notes** in [`writings/fem/`](../../writings/fem/): five numbered chapters from residuals through error estimates, with **Bridge** sections linking each chapter to the next. Part V offers the complementary philosophy for fluids and hyperbolic conservation laws; both discretizations approximate the PDEs defined here.
 
+## Chapter guide
+
+| Chapter | Wire story beat | Core object | Handoff |
+|---------|-----------------|-------------|---------|
+| [IV.1](01-weighted-residuals.md) | Residual must vanish in a test space | Weighted residuals, Galerkin choice, Petrov–Galerkin | Global assembly → sparse \(\mathbf{K}\) in IV.2 |
+| [IV.2](02-galerkin-assembly.md) | Element loops scatter local stiffness | Shape functions, element matrices, BC enforcement | Quadrature and element types in IV.3 |
+| [IV.3](03-elements-quadrature.md) | P1 bars and triangles on the wire mesh | Reference elements, isoparametric map, Gauss rules | Scalar Poisson → vector elasticity in IV.4 |
+| [IV.4](04-poisson-to-elasticity.md) | Heat plus tension on the same mesh | \(\mathbf{B}^T\mathbb{C}\mathbf{B}\), thermoelastic coupling | Error bounds and refinement in IV.5 |
+| [IV.5](05-convergence.md) | Halving \(h\) at the grip corner | Céa's lemma, \(h\)- and \(p\)-rates, a posteriori estimators | [Bridge to Part V](05-convergence.md#bridge-to-part-v) or Part VI |
+
+Read in order. Each chapter ends with a **Bridge** that states why the next chapter must exist; assembling elements without understanding weighted residuals turns FEM into a black box that fails at reentrant corners.
+
 ## Scene
 
 Part III wrote the weak forms — virtual work for elasticity, the heat equation in \(H^1\), energy functionals with unique minimizers — and identified the Sobolev regularity FEM solutions possess. The copper wire is now ready for a **mesh**: tetrahedra or hexahedra along its length, shape functions on each element, quadrature rules that assemble local stiffness into a global \(\mathbf{K}\).
@@ -73,6 +85,23 @@ If you have read linearly since the prologue, Part III's closing checkpoint comp
 
 Part III answered *what* equation the wire satisfies and *why* it is well posed in \(H^1\). Part IV answers *how* to compute it: the energy functional Part III minimized becomes a quadratic form on nodal coefficients; the bilinear form \(a(u,v)\) becomes element stiffness integrals. When [IV.5](05-convergence.md) names two exit doors — Part V for fluids or Part VI for continuum stress — remember that both doors assume the weak forms and energy principles defined in Part III. The copper wire's tensile equilibrium is the same minimum principle; only the discretization dialect changes at the fork.
 
+## Closing the arc from Part II
+
+If you have read linearly since the prologue, Part II's operator chapter ([II.4](../../part02-functional-analysis/04-operators-duality.md)) named the backstage machinery FEM assumes before the first element is meshed:
+
+| Part II.4 (operators on the wire) | Part IV (FEM on the wire) |
+|-----------------------------------|---------------------------|
+| Load functional \(\ell(v)=\int f v\, dx\) | Nodal force vector \(\mathbf{f}\) from equivalent load lumping |
+| Bounded stiffness operator \(A: H \to H\) | Assembled \(\mathbf{K}\) as Gram matrix of energy form on \(V_h\) |
+| Galerkin projector \(P_h\) onto \(V_h\) | Best approximation in energy norm (Céa's lemma in [IV.5](05-convergence.md)) |
+| Weak* convergence of nodal loads | Load lumping schemes that stabilize under mesh refinement |
+| Aubin–Nitsche preview for \(L^2\) error | Dual problem for post-processed displacement error in [IV.5](05-convergence.md) |
+| Uniform boundedness of solution operators | Stability constant \(C\) independent of \(h\) in a priori bounds |
+
+Part II.4's Lab act — distributed body weight versus equivalent nodal forces on a simply supported bar — is the **acceptance test** for Act III's grip modeling. Part IV scatters loads into \(\mathbf{f}\) only because II.4 proved the limit is honest when \(\ell_N \to \ell\) weakly and the solution map \(S: \ell \mapsto u\) is stable (Lax–Milgram). When midspan displacement **oscillates** without trend as the mesh refines, suspect load lumping before blaming shape functions — the same diagnostic Part II.4 named for operators, now visible on the load cell trace.
+
+The **Galerkin projector** is the narrative hinge between Parts II and IV: Part II proved \(u_h = P_h u\) is optimal in energy norm for conforming spaces; Part IV builds \(P_h\) from shape functions and quadrature. When assembly feels like bookkeeping, return to that projection — the stiffness matrix is not a guess; it is the matrix representation of \(a(\cdot,\cdot)\) restricted to \(V_h\).
+
 ## Closing the arc from Part I
 
 If you have read linearly since the prologue, notice how the **same four questions** from the opening table reappear here with discretization vocabulary — and how the **same mathematical moves** from Part I return at the mesh scale:
@@ -90,6 +119,20 @@ Part II proved that the limit lives in \(H^1\) and that Galerkin is **best appro
 ## Lab act: III — Pulling
 
 **Act III** is the force–displacement ramp on the load cell. Part IV is where that scene becomes a meshed solid: Galerkin assembly, shape functions, and convergence rates that justify trusting the almost-linear climb before yield. Every chapter below answers a question the operator implicitly asks when the curve looks trustworthy: *Why does refining the mesh change the answer in a predictable way?* When assembly feels like bookkeeping, return to the grips tightening — the experiment and the stiffness matrix are two languages for the same Act.
+
+### What you should be able to do after Part IV
+
+Each chapter adds one move to a minimal FEM workflow you can run on paper, in NumPy, or in a course code before opening Part V or VI:
+
+| After chapter | Skill on the copper wire | Minimal artifact |
+|---------------|--------------------------|------------------|
+| IV.1 | State the weighted residual; choose Galerkin test space | \(\int ( -u'' - f) v\, dx = 0\) with \(v \in V_h\) |
+| IV.2 | Assemble one bar element; enforce Dirichlet rows | 2×2 \(k_e\); global \(\mathbf{K}\mathbf{U}=\mathbf{F}\) |
+| IV.3 | Pass a patch test; pick quadrature order | Linear \(u=x/L\) exact on two P1 elements |
+| IV.4 | Extend scalar assembly to vector elasticity | Block \(\mathbf{K}\) from \(\mathbf{B}^T\mathbb{C}\mathbf{B}\) |
+| IV.5 | Run three-mesh \(h\)-refinement; read convergence slope | \(u_{\text{tip}}\) versus \(h\) log–log plot |
+
+None of these require a commercial solver — but each one is the discretization move Part VI will name with stress tensors and virtual work. If you can assemble a bar, pass a patch test, and show tip displacement stabilizes under refinement, you have the core of Act III's linear elastic FEM before yield, hardening, or atomistic resolution enter the story.
 
 ## Bridge
 
