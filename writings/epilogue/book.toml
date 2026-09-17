@@ -1,0 +1,13 @@
+[book]
+title = "Computational Mechanics — Epilogue"
+authors = ["Hanfeng Zhai"]
+description = "Multiscale coupling — DFT, MD, DDD, continuum FEM, and CFD workflows."
+language = "en"
+multilingual = false
+src = "chapters"
+
+[build]
+create-missing = false
+
+[output.html]
+mathjax-support = true
