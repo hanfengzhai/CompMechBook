@@ -1,0 +1,6 @@
+# fe2_notch_comparison.dat — notch-root stress comparison (Handshake 4b fixture)
+# Columns: model  peak_sigma_eq_MPa  plastic_zone_um  cpu_relative
+# Illustrative numbers from epilogue Act V worked example
+scalar_j2_4a          198  120   1
+crystal_plasticity    215  145   3
+fe2_48_active         238  185  85
