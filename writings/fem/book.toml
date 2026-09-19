@@ -1,0 +1,13 @@
+[book]
+title = "Finite Element Method Notes"
+authors = ["Hanfeng Zhai"]
+description = "Weighted residuals, Galerkin assembly, elements, elasticity, convergence. — source notes for CompMechBook."
+language = "en"
+multilingual = false
+src = "chapters"
+
+[build]
+create-missing = false
+
+[output.html]
+mathjax-support = true
