@@ -1,0 +1,6 @@
+# phonon_lifetime.dat — acoustic mode lifetimes (Part VIII VACF width / IX ph.x)
+# Columns: mode  omega_THz  linewidth_GHz  lifetime_ps  source
+# LA lifetime ~15 ps at 300 K for bulk Cu (illustrative; archive production values)
+LA  1.30  0.065  15.4  VACF_FWHM
+TA  0.85  0.120  8.3   VACF_FWHM
+TO  2.15  0.450  2.2   ph.x_anharmonic
