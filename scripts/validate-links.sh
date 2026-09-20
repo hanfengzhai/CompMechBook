@@ -42,6 +42,9 @@ def strip_anchor(link: str) -> str:
 
 def skip_link(link: str) -> bool:
     path_part = strip_anchor(link)
+    # LaTeX false positives, e.g. [\rho](\mathbf{r}) inside math prose
+    if "\\" in path_part:
+        return True
     return not path_part or path_part.startswith("/") or path_part.startswith("\\")
 
 
