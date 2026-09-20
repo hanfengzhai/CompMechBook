@@ -1,0 +1,13 @@
+[book]
+title = "Linear Algebra Notes"
+authors = ["Hanfeng Zhai"]
+description = "Vectors, matrices, and eigenstructure as the grammar of discretized mechanics — source notes for CompMechBook Part I."
+language = "en"
+multilingual = false
+src = "chapters"
+
+[build]
+create-missing = false
+
+[output.html]
+mathjax-support = true
