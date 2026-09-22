@@ -2,6 +2,8 @@
 
 Read in order from the **Preface** through the **Epilogue** for the full narrative. Each numbered chapter ends with a **Bridge** that explains why the next chapter exists; part openings add a **concept map** (object, structure, theorem, failure mode) following the Functional Analysis Notes (ME 412) layout. Parts IV and V may be swapped if you already know FEM and want CFD first — both paths converge at Part VI.
 
+**One arc in one breath:** A copper wire in wedge grips teaches linear algebra as \(\mathbf{K}\mathbf{u}=\mathbf{f}\), then functional analysis as fields in \(H^1\) and \(L^2\), then weak PDEs and Sobolev regularity, then FEM on the solid and FVM in the cooling air, then continuum stress and virtual work at the midpoint; when fitted hardening fails, the same specimen descends through dislocation dynamics, molecular dynamics, and Kohn–Sham DFT until the epilogue reunites every export in one multiscale pedigree — always the same afternoon, only the ruler changes.
+
 **Navigation when a transition feels abrupt:** [Preface — story & continuity hinges](./preface.md) (sections *The story in one page*, *Ascent continuity hinges*, *Descent continuity hinges*) · [Appendix — continuity hinges index](./appendix/sources.md) · [Writings synopsis](../writings/SUMMARY.md) (canonical source index; see *Synopsis*).
 
 [Preface](./preface.md)
