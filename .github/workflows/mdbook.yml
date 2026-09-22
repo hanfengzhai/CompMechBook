@@ -44,7 +44,9 @@ jobs:
         run: ./scripts/test-fixtures.sh
 
       - name: Build book
-        run: mdbook build
+        run: |
+          mdbook build
+          ./scripts/clean-mdbook-stubs.sh
 
       - name: Build standalone Writings mdBooks
         run: ./scripts/build-all-writings.sh

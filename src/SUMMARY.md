@@ -2,7 +2,7 @@
 
 Read in order from the **Preface** through the **Epilogue** for the full narrative. Each numbered chapter ends with a **Bridge** that explains why the next chapter exists; part openings add a **concept map** (object, structure, theorem, failure mode) following the Functional Analysis Notes (ME 412) layout. Parts IV and V may be swapped if you already know FEM and want CFD first — both paths converge at Part VI.
 
-**Navigation when a transition feels abrupt:** [The story in one page](./preface.md#the-story-in-one-page) · [Ascent hinges I→VI](./preface.md#ascent-continuity-hinges) · [Descent hinges VII→epilogue](./preface.md#descent-continuity-hinges) · [Continuity hinges index](./appendix/sources.md#continuity-hinges-index-when-the-plot-stutters) · [Writings synopsis](../writings/SUMMARY.md#synopsis--computational-mechanics-as-one-story) (canonical source index).
+**Navigation when a transition feels abrupt:** [Preface — story & continuity hinges](./preface.md) (sections *The story in one page*, *Ascent continuity hinges*, *Descent continuity hinges*) · [Appendix — continuity hinges index](./appendix/sources.md) · [Writings synopsis](../writings/SUMMARY.md) (canonical source index; see *Synopsis*).
 
 [Preface](./preface.md)
 

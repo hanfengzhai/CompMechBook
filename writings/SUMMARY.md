@@ -77,7 +77,7 @@ Upstream course notes (vendored here until the `Writings` submodule links) suppl
 | VIII | [md](./md/chapters/SUMMARY.md) | [Atomistic modeling](https://hanfengzhai.github.io/file/AtomModel_note.pdf) | 01–03 |
 | IX | [dft](./dft/chapters/SUMMARY.md) | MSE 5720 coursework / QE workflows (see [IX.0 schematics](./dft/chapters/00-opening.md)) | 01–03 |
 
-**Edit workflow:** change markdown under `writings/<topic>/chapters/`, run `./scripts/sync-writings.sh`, then `mdbook build`. The [multiscale story arc](#multiscale-story-arc-one-table) table above is the one-page plot; the [appendix sources chapter](./appendix/chapters/sources.md#continuity-hinges-index-when-the-plot-stutters) is the full continuity-hinge index when a transition still feels abrupt.
+**Edit workflow:** change markdown under `writings/<topic>/chapters/`, run `./scripts/sync-writings.sh`, then `mdbook build`. The [multiscale story arc](#multiscale-story-arc-one-table) table above is the one-page plot; the [appendix sources chapter](./appendix/chapters/sources.md) (*Continuity hinges index*) is the full continuity-hinge index when a transition still feels abrupt.
 
 ## Synopsis — computational mechanics as one story
 
@@ -87,7 +87,7 @@ The book is written to read cover-to-cover like a novel, not a stack of course n
 
 **Descent (Parts VII–IX).** When fitted hardening cannot survive mesh refinement, the story descends: [dislocation dynamics](./defects/chapters/SUMMARY.md) explains the knee with forests and OpenDiS mobility; [molecular dynamics](./md/chapters/SUMMARY.md) resolves cores and exports rates and phonon lifetimes at atomic timestep; [DFT](./dft/chapters/SUMMARY.md) grounds moduli and \(\alpha(T_w)\) in Kohn–Sham self-consistency. The [epilogue](./epilogue/chapters/multiscale.md) documents handshakes from Quantum ESPRESSO → LAMMPS → DDD → FEM so macro inputs carry **pedigree**, not handbook defaults.
 
-**Smooth reading contract:** each numbered chapter ends with a **Bridge** (why the next chapter is forced by the wire). Part openings add **Scene**, **Lab act**, and **concept map** checkpoints in ME 412 style. If a jump still feels abrupt, use the [chapter roadmap](./appendix/chapters/sources.md#chapter-roadmap-one-continuous-arc) and [continuity hinges index](./appendix/chapters/sources.md#continuity-hinges-index-when-the-plot-stutters) — they are the navigation layer the Functional Analysis Notes template assumes at book scale.
+**Smooth reading contract:** each numbered chapter ends with a **Bridge** (why the next chapter is forced by the wire). Part openings add **Scene**, **Lab act**, and **concept map** checkpoints in ME 412 style. If a jump still feels abrupt, use the [appendix sources chapter](./appendix/chapters/sources.md) (*Chapter roadmap* and *Continuity hinges index*) — the navigation layer the Functional Analysis Notes template assumes at book scale.
 
 | Topic you need | Where it lives in this book | Upstream note (vendored in `writings/`) |
 |----------------|----------------------------|----------------------------------------|
