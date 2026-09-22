@@ -1,0 +1,13 @@
+[book]
+title = "Computational Mechanics — Prologue"
+authors = ["Hanfeng Zhai"]
+description = "The copper wire at every scale — multiscale motivation for the full book."
+language = "en"
+multilingual = false
+src = "chapters"
+
+[build]
+create-missing = false
+
+[output.html]
+mathjax-support = true
