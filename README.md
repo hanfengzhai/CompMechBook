@@ -4,7 +4,7 @@ A continuous narrative book — from linear algebra through functional analysis,
 
 **~289k words** · **35 numbered chapters** · **9 parts** · **mdBook** · canonical sources in [`writings/`](writings/)
 
-Last verified: Sep 22 2026 11:11 UTC (cron) — sync OK, fixtures PASS, mdbook build OK (no `#`-stub artifacts), links OK (src + writings), build-all-writings OK, 288705 words.
+Last verified: Sep 22 2026 12:09 UTC (cron) — sync OK, fixtures PASS, mdbook build OK (no `#`-stub artifacts), links OK (src + writings), build-all-writings OK, 288705 words.
 
 ## Read the book
 
