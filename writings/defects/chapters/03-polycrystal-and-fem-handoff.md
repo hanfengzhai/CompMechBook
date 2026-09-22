@@ -316,6 +316,46 @@ DDD assumes **closed cores** and empirical short-range rules. When dislocations 
 
 The wire's strength is a story written in dislocation lines; the **ink** is atomic bonding. We have named the lines and their statistics. Next we resolve the atoms that give those lines their mobility.
 
+## Closing Handshake 4a from Part VII.3 {#opening-hinge-vii3-to-handshake4a}
+
+If you have read linearly since the prologue, this chapter documented the [rate handshake](#scale-boundary-handshake-ddd-strain-rate-to-quasi-static-fem) — OpenDiS RVE sweeps at \(\dot\varepsilon \sim 10^2\)–\(10^4\,\text{s}^{-1}\), power-law fit for \(m\), and `rate_export.yaml` provenance beside `hardening.yaml`. The epilogue's [Handshake 4a](../epilogue/multiscale.md#4a--ddd-strain-rate-to-quasi-static-load-cell-act-iv--hardening) is the **downstream half** of that export — not a new subject, but the load-cell reading of \(\tau_{\text{lab}}\) at lab grip speed before crystal plasticity FEM inherits the curve:
+
+| Part VII.3 export (Act IV — Hardening) | Epilogue Handshake 4a (Act IV — Hardening) |
+|----------------------------------------|---------------------------------------------|
+| [Rate handshake](#scale-boundary-handshake-ddd-strain-rate-to-quasi-static-fem) Steps A–C (upstream half) | [Handshake 4a worked example](../epilogue/multiscale.md#4a--ddd-strain-rate-to-quasi-static-load-cell-act-iv--hardening) (downstream half) |
+| `ddd_tau_vs_rate.dat` from OpenDiS sweeps | [`parse_rate.sh`](../../scripts/parse_rate.sh) → `rate_export.yaml` with explicit `lab_target_strain_rate_s-1` |
+| \(\tau_{\text{flow}}(\dot\varepsilon_{\text{DDD}})\) at \(\gamma = 1\%\) | \(\tau_{\text{lab}}\) at \(\dot\varepsilon_{\text{lab}} = 10^{-3}\,\text{s}^{-1}\) — **not** raw DDD curve |
+| [VII.2 forest Lab act](02-dislocation-dynamics.md#lab-act-read-the-hardening-bend-from-forest-density-act-iv) supplies \(\tau(\gamma)\), \(\rho(\gamma)\) | Power-law \(m\) bridges timestep to grip speed — [sensitivity worksheet](../epilogue/multiscale.md#worked-example-sensitivity-ranks) (4a column) ranks next for Act IV |
+
+**Rate pedigree (mobility → \(m\) → \(\tau_{\text{lab}}\)).** Handshake 4a must evaluate \(m\) with mobility tables at the same \(T_w\) [Handshake 2](../epilogue/multiscale.md#handshake-2--joule-heating--conjugate-heat-transfer-part-iv--v) converged — not 300 K defaults when Act II is active:
+
+```bash
+TW=$(grep wall_temperature_K fixtures/cht_export.yaml | awk '{print $2}')
+./scripts/parse_rate.sh fixtures/ddd_tau_vs_rate.dat --lab-rate 1.0e-3 --temperature "$TW"
+```
+
+The [VII.3 → Handshake 4a reunion index](../appendix/sources.md#vii3-handshake4a-reunion-index-row-41) reunites this opening with [row 40](../preface.md#skill-navigation-row-40) when Handshake 3's thermal pre-stress is verified but OpenDiS exports still feed the plasticity deck at \(10^3\,\text{s}^{-1}\) without extrapolation — same copper wire, same afternoon, but the hardening knee arrives early because DDD timestep strain rate was conflated with lab grip speed. Read the [epilogue opening hinge from VII.3](../epilogue/multiscale.md#opening-hinge-vii3-handshake4a) for the full rate-extrapolation cross-links audit across Parts VI–VIII before opening Handshake 4b. The [preface row 41 skill checkpoint](../preface.md#skill-navigation-row-41) closes the competence loop when the rate handshake exists in Part VII but the epilogue Act IV section feels like standalone homework.
+
+## Closing Handshake 4b from Part VII.3 {#opening-hinge-vii3-to-handshake4b}
+
+If you have read linearly since the prologue, [Step 4 above](#step-4--when-offline-calibration-fails-fe-at-the-notch) documented FE² at selected Gauss points — `fe2_notch_comparison.dat`, crystal plasticity vs two-scale DDD at the notch root. The epilogue's [Handshake 4b](../epilogue/multiscale.md#4b--when-continuum-fails-at-the-notch-md-subdomain-act-v--notch) is the **downstream half** of that export — not a new subject, but the Act V reading of whether scalar hardening from 4a suffices at \(K_t \approx 3\):
+
+| Part VII.3 export (Act V — Notch) | Epilogue Handshake 4b (Act V — Notch) |
+|-----------------------------------|----------------------------------------|
+| [Step 4 FE² procedure](#step-4--when-offline-calibration-fails-fe-at-the-notch) (upstream half) | [Handshake 4b worked example](../epilogue/multiscale.md#worked-example-fe-at-the-wire-notch-act-v--notch) (downstream half) |
+| `fe2_notch_comparison.dat` with three-row schema | [`parse_fe2.sh`](../../scripts/parse_fe2.sh) → `fe2_export.yaml` with `fe2_enrichment_required` flag |
+| Crystal plasticity peak \(\sigma_{\text{eq}} \approx 215\,\text{MPa}\) at root | FE² peak \(\sigma_{\text{eq}} \approx 238\,\text{MPa}\) — **10–15% uplift** over homogenized CP |
+| Bulk `hardening.yaml` from Steps 1–3 (inherits 4a \(\tau_{\text{lab}}\)) | [`multiscale_export.yaml`](../../scripts/parse_multiscale_workflow.sh) orchestrated chain includes `fe2_export.yaml` beside `rate_export.yaml` — [row 16](../preface.md#skill-navigation-row-16) |
+
+**Notch pedigree (4a bulk → FE² root).** Handshake 4b must inherit the same `rate_export.yaml` [Handshake 4a](../epilogue/multiscale.md#4a--ddd-strain-rate-to-quasi-static-load-cell-act-iv--hardening) calibrated — bulk adequacy does not imply notch adequacy:
+
+```bash
+./scripts/parse_fe2.sh fixtures/fe2_notch_comparison.dat
+grep fe2_enrichment_required fe2_export.yaml   # yes when uplift > 10%
+```
+
+The [VII.3 → Handshake 4b reunion index](../appendix/sources.md#vii3-handshake4b-reunion-index-row-42) reunites this opening with [row 41](../preface.md#skill-navigation-row-41) when Handshake 4a's bulk knee matches the load cell but `fe2_notch_comparison.dat` exists without `fe2_export.yaml` or crystal plasticity is trusted at the notch root without a 10–15% audit — same copper wire, same afternoon, but peak von Mises stress at \(K_t \approx 3\) under-predicts pile-up physics. Read the [epilogue opening hinge from VII.3 Step 4](../epilogue/multiscale.md#opening-hinge-vii3-handshake4b) for the full FE² notch-localization cross-links audit across Parts IV–IX before opening [`parse_multiscale_workflow.sh`](../../scripts/parse_multiscale_workflow.sh). The [preface row 42 skill checkpoint](../preface.md#skill-navigation-row-42) closes the competence loop when Step 4 exists in Part VII but the epilogue Act V section feels like standalone homework.
+
 ## Bridge to Part VIII {#bridge-to-part-viii}
 
 Crystal plasticity and calibrated DDD close the mesoscale chapter: they explain why the drawn copper wire yields and hardens without resolving every atom. The OpenDiS → DAMASK → polycrystal FEM pipeline above is the **export discipline** the prologue promised — statistics become internal state variables on the mesh Part IV taught us to assemble. But mobility laws, Peierls thresholds, and stacking-fault energies in that pipeline are not adjustable forever.

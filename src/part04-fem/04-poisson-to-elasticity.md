@@ -171,12 +171,35 @@ where \(\alpha\) is the coefficient of thermal expansion and \(\Delta T = T - T_
 
 <a id="coupled-thermoelasticity"></a>
 
+### Thermoelastic assembly thread (IV.1 → IV.4)
+
+Parts [IV.1](01-weighted-residuals.md)–[IV.3](03-elements-quadrature.md) built the staggered pass in layers — not as separate homework sets:
+
+| Chapter | Thermoelastic move | Artifact on wire |
+|---------|-------------------|------------------|
+| [IV.1](01-weighted-residuals.md#weighted-residuals-for-heat-act-ii--warming) | Heat and mechanics weighted residuals on same hats | Residual orthogonality for scalar then vector fields |
+| [IV.2](02-galerkin-assembly.md#thermoelastic-block-assembly-preview-acts-iiiii-on-one-mesh) | Scatter \(\mathbf{K}_{TT}\), then \(\mathbf{F}_{\text{th}}\), then \(\mathbf{K}_{uu}\) | Same \(\mathbf{L}_e\) connectivity |
+| [IV.3](03-elements-quadrature.md#shared-p1-library-for-heat-and-mechanics-acts-iiiii-on-one-mesh) | Same \(N_a\), \(\mathbf{J}\), quadrature at \(\xi_q\) | \(T_h(\xi_q)\) feeds \(\varepsilon_{\text{th}}\) |
+| **IV.4 (here)** | \(\mathbf{B}^T\mathbb{C}\mathbf{B}\) + thermal load vector | Load cell reads tension **and** thermal pre-stress |
+
+When the grip reaction exceeds elastic prediction in the linear regime, trace backward along this table before opening Part VI plasticity — the gap is often a skipped heat pass, not a missing yield surface. The [Part IV opening thermoelastic thread](00-opening.md#acts-ii-and-iii-together-thermoelastic-assembly-thread) and [Thermoelastic assembly reunion index](../appendix/sources.md#thermoelastic-assembly-reunion-index-row-29) (row 29) close the competence loop when Acts II–III feel disconnected despite correct theory.
+
 **Coupled thermoelasticity** alternates or monolithically solves:
 
 1. Heat equation: \(\rho c_p\, \partial T/\partial t - \nabla\cdot(k\nabla T) = q\) (FEM, scalar field).
 2. Elasticity with thermal eigenstrain (FEM, vector field).
 
-Each step uses the same assembly infrastructure. The copper wire carrying current heats up, expands, and changes stress — three physics, one discretization philosophy.
+Each step uses the same assembly infrastructure from [IV.2](02-galerkin-assembly.md) and the same element library from [IV.3](03-elements-quadrature.md#shared-p1-library-for-heat-and-mechanics-acts-iiiii-on-one-mesh). The copper wire carrying current heats up, expands, and changes stress — three physics, one discretization philosophy.
+
+**Staggered pass (recommended first implementation):**
+
+\[
+\mathbf{K}_{TT}\mathbf{T} = \mathbf{F}_T, \qquad
+\varepsilon_{\text{th}} = \alpha(T_h - T_{\text{ref}}), \qquad
+\mathbf{K}_{uu}\mathbf{U} = \mathbf{F}_u + \mathbf{F}_{\text{th}}(\mathbf{T}).
+\]
+
+For isotropic thermal strain without temperature-dependent moduli, off-diagonal blocks \(\mathbf{K}_{uT}\) vanish and staggered solution is **exact** — the coupling lives entirely in \(\mathbf{F}_{\text{th}}\), as [III.4](../part03-pdes/04-energy-methods.md#monolithic-vs-staggered-thermoelastic-energy) proved in energy language. Monolithic assembly stacks \((\mathbf{U}, \mathbf{T})\) when \(E(T)\) or transverse coupling requires simultaneous solution.
 
 ## Body forces and initial stress
 
@@ -226,9 +249,11 @@ When extending a Poisson solver to elasticity:
 
 ## Lab act: one mesh, two fields (Act II–III on the copper wire)
 
-When current flows through the wire (Act II — warming), Joule heating produces a scalar temperature field; when grips ramp displacement (Act III — pulling), a vector displacement field appears on the **same** mesh. This lab act walks through coupling both on a minimal 1D bar mesh — the same infrastructure Part IV uses for 3D thermoelasticity.
+When current flows through the wire (Act II — warming), Joule heating produces a scalar temperature field; when grips ramp displacement (Act III — pulling), a vector displacement field appears on the **same** mesh. This lab act **completes** the chain [IV.1](01-weighted-residuals.md#lab-act-extension-joule-heating-on-two-elements-act-ii--warming) → [IV.2](02-galerkin-assembly.md#lab-act-extension-scatter-mathbfk_tt-on-the-same-mesh-act-ii--warming) → [IV.3](03-elements-quadrature.md#lab-act-extension-same-element-loop-heat-quadrature-before-mechanics-act-ii--warming) on a minimal 1D bar — the same infrastructure Part IV uses for 3D thermoelasticity.
 
-**Setup.** Three-node bar from the worked example above: \(L = 1\,\text{m}\), \(A = 1\,\text{mm}^2\), copper properties \(E = 120\,\text{GPa}\), \(\nu = 0.34\), \(\alpha = 17 \times 10^{-6}\,\text{K}^{-1}\), thermal conductivity \(k_{\text{th}} = 400\,\text{W/(m·K)}\). Uniform Joule heating \(q = 10^7\,\text{W/m}^3\) (order of magnitude for a thin wire carrying a few amperes).
+**Prerequisites.** Before opening this Lab act, archive \(\Delta T = T_1 - T_{\text{ref}}\) from IV.2 Step 4 or IV.3's heat quadrature extension. Running Pass 2 without Pass 1 is the failure mode row 29 names when the load cell omits thermal pre-stress.
+
+**Setup.** Three-node bar from the worked example above: \(L = 1\,\text{m}\), \(A = 1\,\text{mm}^2\), copper properties \(E = 120\,\text{GPa}\), \(\nu = 0.34\), \(\alpha = 17 \times 10^{-6}\,\text{K}^{-1}\), thermal conductivity \(k_{\text{th}} = 400\,\text{W/(m·K)}\). Uniform Joule heating \(q = 10^7\,\text{W/m}^3\) (order of magnitude for a thin wire carrying a few amperes). Use **handbook \(\alpha\) only as a placeholder** — the [epilogue Handshake 3](../epilogue/multiscale.md#handshake-3--thermal-strain--mechanical-stiffness-part-vi--iv) expects quasiharmonic \(\alpha(T_w)\) from Part IX when Act II converged above ambient.
 
 **Pass 1 — scalar heat (Poisson pipeline).** Solve \(-k_{\text{th}} T'' = q\) with \(T(0) = T(L) = 293\,\text{K}\). On three nodes the discrete system is the same tridiagonal pattern as the bar stiffness but with \(k_{\text{th}}/h\) replacing \(EA/h\). The mid-node temperature rises above the grips — parabolic profile, maximum at center.
 
@@ -249,6 +274,8 @@ With grips fixed (\(u = 0\) at both ends), the wire cannot expand freely: therma
 **Pass 3 — mechanical load on top.** Add tensile force \(F = 1000\,\text{N}\) at \(x = L\) (Act III). The total stress is superposition of thermal compression and mechanical tension. If \(F\) is small, the wire remains in net compression; above a threshold, the load cell shows tension — the same superposition Part VI writes as total strain splitting.
 
 **What this lab act teaches:** Poisson and elasticity are not two solvers — they are one assembly loop with different DOF counts and constitutive tensors. Multiphysics codes (CalculiX, FEniCS, MOOSE) alternate Pass 1 and Pass 2 on the same mesh; the copper wire in the lab never separates heating from stretching, and neither should the FEM deck. When Part V adds air cooling at the surface, the heat pass gains a Robin boundary flux; the elastic pass is unchanged — same pattern, richer boundary data.
+
+**Row 29 audit (read aloud after Pass 3):** "Heat pass on connectivity \(\mathcal{G}\); store \(\Delta T\); mechanical pass on **the same** \(\mathcal{G}\) with \(\mathbf{F}_{\text{th}}(\Delta T)\); load cell = mechanical tension minus thermal compression." If any step used a different mesh file, return to the [Thermoelastic assembly reunion index](../appendix/sources.md#thermoelastic-assembly-reunion-index-row-29) before continuing to [IV.5](05-convergence.md).
 
 ## Concept map checkpoint (Poisson to elasticity)
 

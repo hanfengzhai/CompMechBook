@@ -294,7 +294,7 @@ for all test \(v\). With linear \(P1\) elements on 20 radial cells, the assemble
 | 3 | 381 | 23.5 | 1904 | +1% |
 | 4 | **379** | **23.2** | **1830** | **< 1%** |
 
-At convergence, mid-radius temperature \(\bar{T} \approx 395\,\text{K}\) — still below typical annealing onset for copper (\(\sim 450\)–\(500\,\text{K}\) for recovery), but close enough that **Act III** load should not assume a cold wire. Export \((T_w, q_w)\) to the Part VII opening table: mobility \(M(\tau, T_w)\) must use \(T_w \approx 379\,\text{K}\), not room temperature.
+At convergence, mid-radius temperature \(\bar{T} \approx 395\,\text{K}\) — still below typical annealing onset for copper (\(\sim 450\)–\(500\,\text{K}\) for recovery), but close enough that **Act III** load should not assume a cold wire. The Ra/Nu table above is the **engineering estimate** (\(T_w \approx 379\,\text{K}\)); downstream pedigree must archive one converged export via [`parse_cht.sh`](../../scripts/parse_cht.sh) — the fixture canonical is \(T_w = 311.48\,\text{K}\) in [`fixtures/cht_export.yaml`](../../fixtures/cht_export.yaml). Mobility \(M(\tau, T_w)\) must read that archived column, not room temperature.
 
 **Coupling checklist before multiphysics production codes.**
 
@@ -303,9 +303,39 @@ At convergence, mid-radius temperature \(\bar{T} \approx 395\,\text{K}\) — sti
 | Interface continuity | \(|T_s - T_f| < 10^{-3}\,\text{K}\) on \(\Gamma_w\) | Mismatching units (°C vs K) |
 | Flux balance | \(|\int q_s - \int q_f| / \dot{Q} < 1\%\) | Solid Neumann sign wrong |
 | Relaxation | Picard converges in \(< 20\) iterations | Need Aitken or monolithic coupling |
-| Downstream pedigree | Archive \(T_w\) beside mobility yaml | DDD at 300 K while wire runs at 380 K |
+| Downstream pedigree | Archive \(T_w\) beside mobility yaml | DDD at 300 K while `cht_export.yaml` documents a different \(T_w\) |
 
 This extension closes the loop the prologue promised: Part IV assembles the solid operator, Part V supplies the fluid flux, and the interface handshake is a **fixed-point problem with physics constraints** — the template the epilogue generalizes to DFT → MD → DDD → FEM chains.
+
+### Parser checkpoint: archive `cht_export.yaml` {#parser-checkpoint-archive-cht-export-yaml}
+
+The hand calculation above used natural-convection \(\text{Nu}(\text{Ra})\) on a vertical cylinder — the physics story for Act II. Production decks archive numbers with a parser so Handshake 2 in the epilogue can verify flux balance without reopening the derivation.
+
+```bash
+./scripts/parse_cht.sh fixtures/cht_wire.conf > cht_run.log
+# YAML block at end of stdout → archive as cht_export.yaml beside FEM/FVM decks
+```
+
+The script runs the same partitioned loop this Lab act derived: guess \(T_w\) → solid conduction response → update \(h(T_w)\) or fixed \(h\) → under-relax until \(|T_w^{(k+1)} - T_w^{(k)}| < \text{TOL}\), then verify \(|\dot{Q}_{\text{Joule}} - \int q_w\, dS| / \dot{Q}_{\text{Joule}} < 1\%\). A reference export lives at [`fixtures/cht_export.yaml`](../../fixtures/cht_export.yaml) — run the command above and diff against it when wiring CI.
+
+| Field in `cht_export.yaml` | Pedagogical Lab act (Ra/Nu table) | Fixture default (`cht_wire.conf`) | Downstream consumer |
+|----------------------------|-----------------------------------|-----------------------------------|---------------------|
+| `T_wall_K` | \(\approx 379\,\text{K}\) after four Picard iterations | \(311.5\,\text{K}\) at \(h=15\,\text{W/m²K}\) | Part VII mobility \(M(\tau, T_w)\); Part VIII NVT |
+| `delta_T_K` | \(T_w - T_\infty\) for thermal strain | \(11.5\,\text{K}\) | Handshake 3 \(\sigma_{\text{th}} = E\alpha\Delta T\) |
+| `flux_balance_error_pct` | Energy residual column in Picard table | \(< 0.001\%\) | Epilogue Handshake 2 pass/fail |
+| `fixed_point_iterations` | 4 (under-relaxed Picard) | 6 (parser blend) | Audit trail beside `multiscale_export.yaml` |
+
+**Why two wall temperatures?** The Ra/Nu correlation in the Lab act teaches **fluid-side physics** on the heated cylinder; the fixture uses a lumped \(h\) for a fast flux-balance regression test. Both are honest — the correlation is the engineering estimate, the parser is the export discipline. Before opening Part VI or Part VII, pick one converged \(T_w\), document which model produced it, and archive `cht_export.yaml` beside the solid mesh — row 30 reunites the outer loop when FEM and FVM still feel like separate homework despite both tables above.
+
+**Outer-loop checklist (IV.5 → V.4 → VI).**
+
+| Step | Solid (Part IV) | Fluid (Part V) | Pass criterion |
+|------|-----------------|----------------|----------------|
+| 1 | [IV.5 thermoelastic \(h\)-study](../part04-fem/05-convergence.md#lab-act-extension-thermoelastic-h-refinement-on-one-mesh-acts-iiiii) | — | \(T_{\text{mid}}\) plateau on same \(\mathcal{G}\) |
+| 2 | Export \(T_w\) from converged solid | [V.0 CHT scene](../part05-fvm/00-opening.md#conjugate-heat-transfer-the-wire-meets-the-wind) | Robin BC replaced by resolved convection intent |
+| 3 | — | [V.2 boundary-layer patch test](02-fvm-1d.md#lab-act-1d-diffusion-on-the-wires-boundary-layer-act-ii-warmup) | Linear \(T\) exact on uniform mesh |
+| 4 | Neumann \(q_w\) from Picard | This chapter's Picard or [`parse_cht.sh`](../../scripts/parse_cht.sh) | \(|T_w^{(k+1)} - T_w^{(k)}| < 0.5\,\text{K}\) and flux \(< 1\%\) |
+| 5 | Archive `cht_export.yaml` | Same file names \(T_w\) for both domains | [VI.0 twin-ladder reunion](../part06-continuum/00-opening.md#the-twin-ladders-reunite-galerkin-and-conservation) reads one \(T_w\) |
 
 ### When Picard stalls: monolithic coupling
 
@@ -379,7 +409,7 @@ The conjugate heat transfer scene above is Part IV and Part V **speaking at an i
 
 Part V discretized conservation on control volumes for fluids. Part VI develops the **kinematics and stress measures** that both FEM solid codes and FVM fluid codes ultimately approximate — deformation gradient and strain for solids, rate of deformation for fluids, Cauchy stress and balance laws for both. The copper wire under tension and the air cooling it are one multiphysics story told in two discretization languages; Part VI supplies the shared continuum vocabulary.
 
-**CHT coupling hinge (V.4 → VI).** The Picard loop in the Lab act extension above converged at \(T_w \approx 379\,\text{K}\) with four outer iterations — partitioned coupling was sufficient for steady Joule heating with laminar natural convection. That number is not a footnote: Part VI's virtual work principle will write thermal strain \(\varepsilon_{\text{th}} = \alpha\Delta T\) into the same energy functional Part IV assembled, and [VI.4's return-mapping](../part06-continuum/04-nonlinear-plasticity-preview.md#lab-act-return-mapping-on-the-load-cell-knee-act-iv-hardening) at the heated grip must use \(T_w\), not room temperature, when mobility and yield enter the story. When the Picard table needs more than twenty iterations or oscillates despite under-relaxation, reach for the monolithic block in [When Picard stalls](#when-picard-stalls-monolithic-coupling) — the same block-sparse pattern [IV.4 thermoelasticity](../part04-fem/04-poisson-to-elasticity.md#coupled-thermoelasticity) already previewed. Part VI does not re-derive CHT; it names the **continuum fields** (\(T(\mathbf{x})\), \(\boldsymbol{\sigma}\)) whose coupling the Picard or monolithic loop enforced at the wire surface. Archive converged \(T_w\) and flux balance in `cht_export.yaml` before opening Part VI — the epilogue's Handshake 2 inherits the same discipline.
+**CHT coupling hinge (V.4 → VI).** The Ra/Nu Picard table above converged at \(T_w \approx 379\,\text{K}\) in four outer iterations — partitioned coupling was sufficient for steady Joule heating with laminar natural convection. **Downstream pedigree** uses the archived export: \(T_w = 311.48\,\text{K}\) from [`fixtures/cht_export.yaml`](../../fixtures/cht_export.yaml) (see [parser checkpoint](#parser-checkpoint-archive-cht-export-yaml)). That number is not a footnote: Part VI's virtual work principle will write thermal strain \(\varepsilon_{\text{th}} = \alpha\Delta T\) into the same energy functional Part IV assembled, and [VI.4's return-mapping](../part06-continuum/04-nonlinear-plasticity-preview.md#lab-act-return-mapping-on-the-load-cell-knee-act-iv-hardening) at the heated grip must use the **same archived** \(T_w\), not room temperature, when mobility and yield enter the story. When the Picard table needs more than twenty iterations or oscillates despite under-relaxation, reach for the monolithic block in [When Picard stalls](#when-picard-stalls-monolithic-coupling) — the same block-sparse pattern [IV.4 thermoelasticity](../part04-fem/04-poisson-to-elasticity.md#coupled-thermoelasticity) already previewed. Part VI does not re-derive CHT; it names the **continuum fields** (\(T(\mathbf{x})\), \(\boldsymbol{\sigma}\)) whose coupling the Picard or monolithic loop enforced at the wire surface. Archive converged \(T_w\) and flux balance in `cht_export.yaml` before opening Part VI — the epilogue's Handshake 2 inherits the same discipline.
 
 | What Part V completed | What Part VI opens |
 |-----------------------|-------------------|

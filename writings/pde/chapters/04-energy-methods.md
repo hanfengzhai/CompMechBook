@@ -90,6 +90,19 @@ Stationarity in \(u\) at fixed \(T\) gives the mechanical equilibrium with therm
 
 Numbers for copper at modest \(\Delta T = 50\,\text{K}\): \(\alpha \approx 17 \times 10^{-6}\,\text{K}^{-1}\), so \(\varepsilon_{\text{th}} \approx 8.5 \times 10^{-4}\). With \(E = 120\,\text{GPa}\), the thermal stress if expansion were fully constrained would be \(\sigma_{\text{th}} \approx E \varepsilon_{\text{th}} \approx 100\,\text{MPa}\) — comparable to yield in annealed copper and a reminder that **Act II and Act III are not independent** on the same specimen. Part IV's thermoelastic assembly (Chapter 4) and Part V's conjugate heat transfer implement this split functional on the same mesh; Part VI names the tensors inside the integrand.
 
+### Monolithic vs staggered thermoelastic energy
+
+Industrial codes implement the coupled functional \(\Pi[u,T]\) in two patterns. Both require the exports from [III.3](03-sobolev-spaces.md) — \(T, u \in H^1\) on the same mesh — but they differ in how stationarity is enforced:
+
+| Pattern | Variational move | Discrete system | When it fits the wire |
+|---------|------------------|-----------------|----------------------|
+| **Staggered** | Minimize \(\Pi_T[T]\) at fixed \(u\); then \(\Pi_u[u;T]\) at fixed \(T\) | Block Gauss–Seidel on \(\mathbf{K}_{TT}\), \(\mathbf{K}_{uu}\) | Weak coupling: modest \(\Delta T\), linear elasticity |
+| **Monolithic** | Stationarity of \(\Pi[u,T]\) in both variables simultaneously | Single saddle or block system with off-diagonal \(\mathbf{K}_{uT}\) | Strong coupling: large thermal strain, shared nodes mandatory |
+
+At the linearized level, staggered iteration is equivalent to one pass of block Jacobi on the coupled stiffness matrix — convergent when off-diagonal blocks are small compared to diagonal coercivity constants. The [III.3 discrete Poincaré table](03-sobolev-spaces.md#worked-example-discrete-poincaré-on-a-uniform-1d-mesh) names those coercivity budgets: if \(\mathbf{K}_{TT}\) is ill-conditioned on a coarse thermal mesh, staggered coupling may stall before the mechanical block sees the correct thermal eigenstrain.
+
+**Export contract (Acts II → III).** The thermal block exports nodal \(T_h\); the mechanical block consumes \(\varepsilon_{\text{th}} = \alpha(T_h - T_{\text{ref}})\) as an equivalent load vector, not as a separate material card. Handbook \(\alpha\) at 300 K violates this contract when Act II archived \(T_w = 311.48\,\text{K}\) in [`fixtures/cht_export.yaml`](../../fixtures/cht_export.yaml) — the [epilogue Handshake 3](../epilogue/multiscale.md#handshake-3--thermal-strain--mechanical-stiffness-part-vi--iv) and [VI.2 \(\alpha\) handshake](../part06-continuum/02-stress-balance.md#scale-boundary-handshake-thermal-expansion-alpha) are the workflow-time mirrors; the Scale-boundary handshake at the end of this chapter is the reading-time mirror.
+
 ## Rayleigh–Ritz method
 
 The **Rayleigh–Ritz** method minimizes \(\Pi\) over a finite-dimensional subspace \(V_h\):
@@ -133,6 +146,31 @@ leading to mixed finite elements (Taylor–Hood \(P2/P1\), stabilized equal-orde
 \]
 
 Coolant flowing around the copper wire in the low-Reynolds limit may be Stokes-like near the surface; pressure is not determined by minimization alone — it is a Lagrange multiplier enforcing \(\nabla\cdot\mathbf{v}=0\).
+
+### Toy inf–sup example: equal-order vs Taylor–Hood on a 2×2 Stokes patch
+
+The inf–sup condition is easiest to **violate on purpose** before trusting a CHT run around the wire. Consider steady 2D Stokes on a unit square \(\Omega = (0,1)^2\) — a cartoon of the fluid annulus flattened to a box — with \(\mathbf{v}=\mathbf{0}\) on \(\partial\Omega\) and no body force:
+
+\[
+-\mu \Delta \mathbf{v} + \nabla p = \mathbf{0}, \qquad \nabla\cdot\mathbf{v} = 0.
+\]
+
+Discretize with a **single** square split into two triangles (a minimal \(2 \times 2\) macro mesh). Compare two element pairs on the **same** mesh:
+
+| Element pair | Pressure space | Inf–sup on coarse patch | What you see in pressure |
+|--------------|----------------|-------------------------|--------------------------|
+| \(P1\)–\(P1\) | Continuous \(P1\) | **Fails** LBB (\(\beta_h \to 0\)) | Checkerboard pressure modes; non-physical oscillations |
+| Taylor–Hood \(P2\)–\(P1\) | Continuous \(P1\) | **Satisfies** LBB (\(\beta_h > 0\)) | Single smooth pressure level per cell cluster |
+
+On the \(P1\)–\(P1\) pair, spurious modes satisfy \(\nabla\cdot\mathbf{v}_h \approx 0\) while \(\|\nabla p_h\|\) remains large — the discrete analogue of a **zero inf–sup constant**. A Picard loop coupling this unstable fluid block to the wire's Robin thermal BC (Part V.4) can report converged temperature while **pressure is meaningless**; conjugate heat transfer then uses wrong wall fluxes even when the solid mesh is fine.
+
+The **toy audit** before running `chtMultiRegionFoam` on the copper wire:
+
+1. Solve Stokes on a unit-square patch with \(P1\)–\(P1\) and read \(\max |p_h|\) — often \(\mathcal{O}(1)\) with zero mean force.
+2. Repeat with \(P2\)–\(P1\) on the same mesh — pressure collapses toward a constant (physically, reference pressure gauge).
+3. Record the ratio as a qualitative inf–sup diagnostic: if \(P1\)–\(P1\) pressure energy does not vanish under mesh refinement, the **saddle-point structure** is wrong, not the copper material model.
+
+This is the same Ladyzhenskaya–Babuška–Brezzi inequality stated above, reduced to a **two-minute numerical experiment** you can run before coupling Act II heating to coolant flow. Elliptic Poisson and linear thermoelasticity on the wire rely on **coercivity** (Dirichlet energy); Stokes and incompressible limits rely on **inf–sup**. Part IV's mixed elements and Part V's stabilized schemes exist to restore \(\beta_h > 0\); skipping the check is how multiphysics decks pass regression tests yet fail the load cell.
 
 | Formulation | Structure | Stability condition |
 |-------------|-----------|---------------------|

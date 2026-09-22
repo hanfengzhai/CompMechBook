@@ -9,7 +9,23 @@ For copper, a typical calculation fits in a few hundred atoms' worth of plane-wa
 
 > **IX.2 — Act III — Descent:** Kohn–Sham SCF is the self-consistent loop that makes DFT computationally tractable.
 
-When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter. When row 37 restored BO/HK theorems but Kohn–Sham SCF still feels like standalone quantum chemistry, read the [preface row 38 skill checkpoint](../preface.md#skill-navigation-row-38) — the competence-time mirror of the [opening hinge from IX.1](#opening-hinge-ix1-to-ix2) below.
+
+## Closing the arc from Part IX.1 {#opening-hinge-ix1-to-ix2}
+
+If you have read linearly since the prologue, [IX.1](01-born-oppenheimer.md) closed with a [Bridge](01-born-oppenheimer.md#bridge) that named **Kohn–Sham DFT as the practical minimization of the Hohenberg–Kohn functional** — auxiliary orbitals with the same density, plane-wave bases, and the convergence rituals that separate chemistry from numerical artifact — and a [Murnaghan Lab act](01-born-oppenheimer.md#lab-act-murnaghan-fit-on-fcc-cu-act-vi--foundation) where each volume point held nuclei fixed while SCF found the electronic ground state on the Born–Oppenheimer surface. Part IX.2 does not re-derive Born–Oppenheimer separation or Hohenberg–Kohn existence; it **implements** the variational principle as the self-consistent field cycle every `pw.x` log records:
+
+| Part IX.1 theorem output | Part IX.2 implementation |
+|----------------------------|--------------------------|
+| HK variational principle: \(E[\rho] \geq E_0\), equality at ground state | SCF fixed-point loop: \(\rho \to V_{\text{eff}}[\rho] \to \psi_i \to \rho'\) until \(\|\rho' - \rho\|\) falls below threshold |
+| BO: nuclei fixed at \(\{\mathbf{R}_I\}\) while electrons equilibrate | Each SCF iteration solves single-particle equations at fixed geometry — the inner loop of the Murnaghan volume scan |
+| \(E[\rho]\) depends only on ground-state \(\rho(\mathbf{r})\) | Density reconstructed from occupied Kohn–Sham orbitals: \(\rho = \sum_i f_i |\psi_i|^2\) |
+| Murnaghan \(a_0\), \(B_0\) from converged energies at each volume | Convergence certificate: `convergence has been achieved` in `cu.relax.out` before trusting any modulus |
+| Part II state-variable discipline: \(\rho(\mathbf{r})\) replaces wavefunction | Part I eigenvalue loop reappears: \(\mathbf{H}[\rho]\mathbf{c}_n = \epsilon_n \mathbf{S}\mathbf{c}_n\) with **feedback** — \(\mathbf{H}\) depends on eigenvectors through \(\rho\) |
+
+[IX.1's Bridge](01-born-oppenheimer.md#bridge) named the signal to turn the page: **"DFT gave a number" but cutoff, k-sampling, and functional choice were never documented** — that is the signal the foundation run is not yet trustworthy enough to climb the ladder. The [Born–Oppenheimer → Kohn–Sham reunion index](../appendix/sources.md#born-oppenheimer-kohn-sham-reunion-index-row-38) reunites this opening with [row 37](../preface.md#skill-navigation-row-37) when Murnaghan fits produced \(a_0\) and \(B_0\) but the SCF cycle inside each volume point still feels like a black box disconnected from Part I's generalized eigenvalue problem — same copper cell, same BO surface, now with **the fixed-point loop** that makes `cu.relax.out` reproducible.
+
+Part IX.1 explained **why** energy is a functional of \(\rho(\mathbf{r})\); Part IX.2 shows **how** that functional is minimized on a computer. The Hohenberg–Kohn theorems guarantee existence; Kohn–Sham equations supply a tractable ansatz — non-interacting orbitals that reproduce the interacting density — and the SCF cycle is the engineering iteration that finds the fixed point. Part VIII's EAM potential assumed a BO surface without naming the electronic loop beneath it; this chapter makes that loop explicit enough to audit.
 
 ## Scene: the self-consistent loop
 
@@ -56,7 +72,7 @@ T = -\sum_i f_i \langle \psi_i | \nabla^2 | \psi_i \rangle.
 
 Unconverged SCF is **structured noise** — energies and forces are meaningless. Metals like copper require **smearing** of occupations (Gaussian, Methfessel–Paxton) because Fermi surface crossings make zero-temperature SCF oscillate.
 
-### SCF as fixed-point iteration — the Part I eigenvalue loop with feedback
+### SCF as fixed-point iteration — the Part I eigenvalue loop with feedback {#scf-as-fixed-point-iteration--the-part-i-eigenvalue-loop-with-feedback}
 
 The SCF cycle is a **fixed-point problem**: find \(\rho^\star\) such that \(\rho^\star = \mathcal{G}(\rho^\star)\), where \(\mathcal{G}\) maps an old density through build-potential → solve orbitals → construct new density. Each inner step — diagonalizing the Kohn–Sham Hamiltonian — is the **generalized eigenvalue problem** from [Part I.3](../part01-linear-algebra/03-eigenvalues.md):
 
@@ -256,7 +272,7 @@ Self-consistency is the new ingredient: eigenvectors from step \(k\) build a new
 
 Part IV's assembly loop and Part IX's SCF loop share the same engineering instinct: **do not trust outputs until the discrete system has converged**. Ill-conditioned \(\mathbf{K}\) and unconverged \(E_{\text{cut}}\) both produce structured noise dressed as physics.
 
-## Lab act: converge cutoff before trusting cohesive energy (Act VI)
+## Lab act: converge cutoff before trusting cohesive energy (Act VI) {#lab-act-cutoff-sweep-on-fcc-cu-act-vi--convergence-certificate}
 
 **Act VI** runs in parallel with the visible lab session — someone must choose moduli and potentials before the wire-scale job starts. This Lab act is the minimum DFT audit for fcc Cu: converge plane-wave cutoff on total energy per atom.
 
@@ -342,4 +358,4 @@ Return to the prologue's **Act VI — Foundation**: before the operator mounted 
 
 [IX.3](03-dft-workflows.md) walks through reproducible workflows — cutoff and k-mesh convergence, relaxation, equations of state, bands and phonons, defect supercells — using the MSE 5720 homework archive as a template. Those workflows produce the numbers Parts VI–VIII import before the [epilogue](../epilogue/multiscale.md) wires DFT → MD → DDD → FEM into one multiscale afternoon.
 
-Turn the page when the SCF loop converges in principle but no input file exists yet — that is the signal that reproducibility, not theory, is what separates research from folklore.
+Turn the page when the SCF loop converges in principle but no input file exists yet — that is the signal that reproducibility, not theory, is what separates research from folklore. The [IX.1 opening hinge from IX.0](01-born-oppenheimer.md#opening-hinge-ix0-to-ix1) and [preface row 37 skill checkpoint](../preface.md#skill-navigation-row-37) reunite the theorem chapter with the audit when SCF logs exist but BO separation is unnamed; the [opening hinge from IX.1](#opening-hinge-ix1-to-ix2) and [preface row 38 skill checkpoint](../preface.md#skill-navigation-row-38) reunite this Bridge with the SCF implementation when theorems are understood but the fixed-point loop still feels like a new course; the [IX.3 opening hinge from IX.2](03-dft-workflows.md#opening-hinge-ix2-to-ix3) and [preface row 39 skill checkpoint](../preface.md#skill-navigation-row-39) reunite this Bridge with the workflow archive when SCF is understood but `cu.foundation/` still feels like standalone coursework.

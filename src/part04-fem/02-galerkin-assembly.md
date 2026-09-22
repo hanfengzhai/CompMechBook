@@ -141,6 +141,26 @@ K_{(a,i)(b,j)} = \int_{\Omega_e} \mathbb{C}_{ikjl}\, \partial_k N_a\, \partial_l
 
 The **DOF map** assigns a global index to each (node, component) pair. Boundary conditions on individual components — roller supports, symmetry planes — modify rows and columns of \(\mathbf{K}\) accordingly.
 
+### Thermoelastic block assembly preview (Acts II–III on one mesh)
+
+The prologue's lab session does not assemble heat and mechanics on different meshes. On the **same connectivity**, Part IV maintains separate block systems:
+
+| Block | Bilinear form | Assembly output | Lab act |
+|-------|---------------|-----------------|---------|
+| Thermal | \(a_T(T,\psi) = \int k \nabla T \cdot \nabla \psi\) | \(\mathbf{K}_{TT}\), load from Joule \(q\) | Act II — thermocouple |
+| Mechanical | \(a_u(\mathbf{u},\mathbf{v}) = \int \boldsymbol{\sigma} : \nabla \mathbf{v}\) | \(\mathbf{K}_{uu}\), traction + body force | Act III — load cell |
+| Coupling (optional) | \(\int \mathbb{C} : \boldsymbol{\varepsilon}_{\text{th}}(T) : \nabla \mathbf{v}\) | \(\mathbf{F}_{\text{th}}(\mathbf{T})\) or off-diagonal \(\mathbf{K}_{uT}\) | Thermal pre-stress on grip ramp |
+
+**Staggered assembly** (the pattern most course codes teach first):
+
+1. Scatter \(\mathbf{K}_{TT}\) and \(\mathbf{F}_T\); solve \(\mathbf{K}_{TT}\mathbf{T} = \mathbf{F}_T\) for nodal temperatures.
+2. Form thermal load \(\mathbf{F}_{\text{th}}\) from \(\varepsilon_{\text{th}} = \alpha(T_h - T_{\text{ref}})\) at quadrature points.
+3. Scatter \(\mathbf{K}_{uu}\); solve \(\mathbf{K}_{uu}\mathbf{U} = \mathbf{F}_u + \mathbf{F}_{\text{th}}\).
+
+**Monolithic assembly** stacks DOFs \((\mathbf{U}, \mathbf{T})\) into one vector and assembles block matrix \(\begin{bmatrix}\mathbf{K}_{uu} & \mathbf{K}_{uT} \\ \mathbf{K}_{Tu} & \mathbf{K}_{TT}\end{bmatrix}\). For uncoupled conductivity and isotropic thermal strain, \(\mathbf{K}_{uT}\) may vanish and staggered passes are exact — the coupling lives entirely in \(\mathbf{F}_{\text{th}}\). [III.4](../part03-pdes/04-energy-methods.md#monolithic-vs-staggered-thermoelastic-energy) names when monolithic structure matters (temperature-dependent \(E(T)\), transverse coupling).
+
+The scatter loop from [IV.1](01-weighted-residuals.md) runs **twice** with the same \(\mathbf{L}_e\) connectivity — once for scalar hats, once for vector shape functions — before [IV.4](04-poisson-to-elasticity.md#coupled-thermoelasticity) adds \(\mathbf{B}^T\mathbb{C}\mathbf{B}\) on the mechanical pass. When Act II and Act III feel like separate homework sets, return to this table: one mesh, two residuals, one thermal handshake.
+
 ## Data structures in production codes
 
 A minimal FEM implementation stores:
@@ -266,16 +286,29 @@ for (i, j) in [(0, 1), (1, 2)]:
 
 When the linear elastic climb on the force–displacement trace disagrees with experiment, check this scatter before blaming constitutive physics — a transposed connectivity array or wrong DOF map corrupts the story before dislocations or yield enter.
 
+## Lab act extension: scatter \(\mathbf{K}_{TT}\) on the same mesh (Act II — Warming)
+
+Before the mechanical scatter Lab act above, run the **thermal pass** on the identical three-node connectivity:
+
+| Step | Operation | Result on wire |
+|------|-----------|----------------|
+| 1 | Assemble \(\mathbf{K}_{TT}\) with \(k/h\) bar elements (same pattern as \(\mathbf{K}_{uu}\) with \(EA/h\)) | Tridiagonal thermal stiffness |
+| 2 | Load vector \(F_{T,i} = \int q \phi_i \, dx\) from Joule source | Mid-node heat generation |
+| 3 | Dirichlet \(T_0 = T_2 = 300\,\text{K}\); solve for \(T_1\) | Thermocouple reading at mid-span |
+| 4 | Store \(\Delta T = T_1 - 300\,\text{K}\) for mechanical pass | Thermal eigenstrain input to Act III |
+
+**Handshake audit:** compare \(T_1\) from this coarse mesh to the converged value after \(h\)-refinement in [IV.5](05-convergence.md). Compare \(\mathbf{K}_{TT}\) sparsity pattern to \(\mathbf{K}_{uu}\) — identical graph, different material constant in the element integrand. When the mechanical Lab act runs without Step 4, the load cell omits thermal pre-stress — the failure mode [III.4](../part03-pdes/04-energy-methods.md#bridge-to-part-iv) and [IV.0](../part04-fem/00-opening.md#acts-ii-and-iii-together-thermoelastic-assembly-thread) both name.
+
 ## Concept map checkpoint (Galerkin assembly)
 
 This chapter is where the copper wire's weak form becomes \(\mathbf{K}\mathbf{U}=\mathbf{F}\). Before element technology refines the integrands, summarize what assembly established:
 
 | Question | Part IV answer (copper wire) |
 |----------|------------------------------|
-| What **object**? | Global stiffness \(\mathbf{K}\), load \(\mathbf{F}\); local \(\mathbf{k}^e\), \(\mathbf{f}^e\) |
-| What **structure**? | Scatter map \(\mathbf{L}_e\); mesh graph → CSR sparsity pattern |
+| What **object**? | Global \(\mathbf{K}\), \(\mathbf{F}\); block systems \(\mathbf{K}_{TT}\), \(\mathbf{K}_{uu}\), thermal load \(\mathbf{F}_{\text{th}}\) |
+| What **structure**? | Scatter map \(\mathbf{L}_e\); **same connectivity for scalar and vector DOFs**; staggered vs monolithic thermoelastic |
 | What **theorem**? | \(\mathbf{K}\) is Gram matrix of energy inner product on \(V_h\); Galerkin orthogonality of error |
-| What **breaks**? | Wrong connectivity (correct sparsity, wrong physics); missing BC rows; duplicated Neumann loads |
+| What **breaks**? | Wrong connectivity; **different meshes for heat vs mechanics**; mechanical pass without thermal \(\mathbf{F}_{\text{th}}\) |
 
 The scatter Lab act verified that node 2 feels both neighbors (\(2k\) on the diagonal) — the same tridiagonal Part I derived by hand, now produced by a loop every commercial code runs. Assembly is not bookkeeping separate from physics; it is how Part III's bilinear form becomes Part I's matrix.
 
@@ -298,6 +331,7 @@ Global assembly is the map from continuum physics to \(\mathbf{K}\mathbf{U}=\mat
 | Global scatter into CSR \(\mathbf{K}\) | Gauss quadrature exact on polynomial order | Transient heat (Act II) mass matrix | Under-integration → soft elements |
 | \(\ell(\phi_i)\) → nodal \(\mathbf{F}\) | Neumann face quadrature consistent with volume rule | Body weight + grip traction split | Oscillating midspan without \(h\)-trend |
 | Operator handshake ([II.4](../part02-functional-analysis/04-operators-duality.md)) | Patch test on triangles/tets | Part IV.4 vector elasticity on wire cross-section | Hourglassing in reduced Q1 integration |
+| [III.4](../part03-pdes/04-energy-methods.md) coupled \(\Pi[u,T]\) | Staggered \(\mathbf{K}_{TT}\) then \(\mathbf{K}_{uu}+\mathbf{F}_{\text{th}}\) | Act II thermocouple + Act III load cell on same mesh | Thermal pass omitted before grip ramp |
 
 Recall the pipeline from [Part III.4](../part03-pdes/04-energy-methods.md#bridge-to-part-iv): weak form → energy minimum → Rayleigh–Ritz on \(V_h\). Assembly is the operational half of Rayleigh–Ritz; element technology is the other half. The copper wire's tensile mesh is only as trustworthy as the P1 bar elements (1D), triangles (2D cross-section), or tets (3D grip region) that define \(V_h\).
 

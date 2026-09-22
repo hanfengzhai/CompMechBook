@@ -228,14 +228,22 @@ Typical PBE results for fcc Cu: \(\alpha \approx 15\)–\(18 \times 10^{-6}\,\te
 | MD NPT with Mishin EAM | \(\sim 16\)–\(19\) | 300–600 K | Finite-T anharmonicity |
 | FEM deck (often uncited) | \(\sim 17\) | 300 K | Act II thermal strain load |
 
-**Step 3 — FEM thermal strain (Part IV).** Map \(\alpha\) into the coupled block system from [I.4](../part01-linear-algebra/04-toward-infinity.md): thermal load vector \(\mathbf{f}_u^{\text{th}} = \int \alpha E (T - T_{\text{ref}}) \mathbf{B}^T \mathbf{1}\, d\Omega\) on the wire mesh. For the Lab act in this chapter (\(\Delta T \approx 35\,^\circ\text{C}\), fixed grips):
+**Step 3 — FEM thermal strain (Part IV).** Map \(\alpha\) into the coupled block system from [I.4](../part01-linear-algebra/04-toward-infinity.md): thermal load vector \(\mathbf{f}_u^{\text{th}} = \int \alpha E (T - T_{\text{ref}}) \mathbf{B}^T \mathbf{1}\, d\Omega\) on the wire mesh. Use the **converged** \(\Delta T\) from [`fixtures/cht_export.yaml`](../../fixtures/cht_export.yaml) — the artifact [`parse_cht.sh`](../../scripts/parse_cht.sh) writes after the [V.4 Picard loop](../part05-fvm/04-navier-stokes-cfd.md#lab-act-extension-two-domain-picard-loop-with-a-1d-fem-solid), not a hand estimate:
+
+| Field in `cht_export.yaml` | Fixture value | Role |
+|----------------------------|---------------|------|
+| `T_wall_K` | \(311.48\,\text{K}\) | Wall temperature after outer-loop convergence |
+| `delta_T_K` | \(11.48\,\text{K}\) | \(T_w - T_\infty\) with \(T_\infty = 300\,\text{K}\) |
+| `fixed_point_iterations` | 6 | Picard converged before export |
+
+For fixed grips with \(\alpha = 17 \times 10^{-6}\,\text{K}^{-1}\) and \(\Delta T = 11.48\,\text{K}\):
 
 \[
-\varepsilon_{\text{th}} = \alpha \Delta T \approx 17 \times 10^{-6} \times 35 \approx 6 \times 10^{-4}, \qquad
-\sigma_{\text{th}} \approx E \varepsilon_{\text{th}} \approx 120 \times 10^9 \times 6 \times 10^{-4} \approx 72\,\text{MPa}.
+\varepsilon_{\text{th}} = \alpha \Delta T \approx 1.95 \times 10^{-4}, \qquad
+\sigma_{\text{th}} \approx E \varepsilon_{\text{th}} \approx 120 \times 10^9 \times 1.95 \times 10^{-4} \approx 23\,\text{MPa}.
 \]
 
-A **10% error in \(\alpha\)** shifts \(\sigma_{\text{th}}\) by \(\sim 7\,\text{MPa}\) — comparable to the 6.4 MPa tensile stress from a 50 N load on the 1 mm wire. When the load cell drifts during Act II without applied force change, the first suspect is missing or inconsistent thermal expansion, not a bad sensor.
+A **10% error in \(\alpha\)** shifts \(\sigma_{\text{th}}\) by \(\sim 2.3\,\text{MPa}\) — still comparable to the 6.4 MPa tensile stress from a 50 N load on the 1 mm wire. When the load cell drifts during Act II without applied force change, the first suspect is missing or inconsistent thermal expansion, not a bad sensor. The [V.4 Ra/Nu Lab act](../part05-fvm/04-navier-stokes-cfd.md#lab-act-natural-convection-nusselt-number-on-the-heated-wire-act-ii--warming) estimates \(T_w \approx 379\,\text{K}\) with natural convection — a larger \(\Delta T\) and \(\sigma_{\text{th}} \approx 72\,\text{MPa}\); both are honest if **one** converged export is archived and cited everywhere (VI.1 overlay, VI.3 \(\Pi[\mathbf{u}]\), VI.4 return-mapping pre-stress).
 
 **Acceptance test** (archive beside the elastic handshake checklist):
 
@@ -297,7 +305,7 @@ Well-posedness requires ellipticity of the operator (Lax–Milgram for linear el
 
 **Step 2 — thermal balance (thermocouple + camera).** Joule heating per unit volume is \(\dot{q} = \rho_e J^2 = \rho_e (I/A)^2 \approx 1.1\times 10^8\,\text{W/m}^3\). For a long thin wire in steady state with lateral convection, a lumped estimate gives mid-span excess temperature \(\Delta T \sim \dot{q} d / (4 h) \approx 30\)–\(40\,^\circ\text{C}\) — order-of-magnitude consistent with the hot stripe the thermal camera shows. The thermocouple at the grip reads boundary data; the 1D profile \(T(x)\) is what Part III's weak heat equation and Part V's FVM air mesh approximate on either side of the interface.
 
-**Step 3 — constitutive coupling (why one code is not enough).** Thermal strain \(\varepsilon_{\text{th}} = \alpha \Delta T\) adds to mechanical strain. If the grips are fixed, \(\sigma_{xx} \approx E \alpha \Delta T \approx 60\)–\(80\,\text{MPa}\) of compressive thermal stress — enough to shift the load cell reading even without changing the applied end load. Multiphysics is this coupling: temperature from energy balance changes stress through Hooke's law; stress changes resistance and therefore Joule heating.
+**Step 3 — constitutive coupling (why one code is not enough).** Thermal strain \(\varepsilon_{\text{th}} = \alpha \Delta T\) adds to mechanical strain. Read \(\Delta T\) from [`cht_export.yaml`](../../fixtures/cht_export.yaml) after running `./scripts/parse_cht.sh fixtures/cht_wire.conf` — the fixture default gives \(\Delta T = 11.48\,\text{K}\) and \(\varepsilon_{\text{th}} \approx 1.95 \times 10^{-4}\). If the grips are fixed, \(\sigma_{xx} \approx E \alpha \Delta T \approx 23\,\text{MPa}\) of compressive thermal stress — enough to shift the load cell reading even without changing the applied end load. Multiphysics is this coupling: temperature from energy balance changes stress through Hooke's law; stress changes resistance and therefore Joule heating. The same \(\Delta T\) must appear in [VI.1's Act II overlay](01-kinematics.md#lab-act-act-ii-overlay-thermal-eigenstrain-from-cht-export) and [VI.3's thermal coupling](03-variational-elasticity.md#thermal-coupling-act-ii) — row 30 archives the number; row 31 carries it into \(\Pi[\mathbf{u}]\); this Lab act is the balance-law checkpoint.
 
 | Instrument | Balance law | Continuum object | Part that discretizes |
 |------------|-------------|------------------|------------------------|

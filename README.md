@@ -2,7 +2,9 @@
 
 A continuous narrative book — from linear algebra through functional analysis, finite elements and volumes, continuum mechanics, dislocation dynamics, molecular dynamics, and density functional theory — told through one copper wire under tension and current.
 
-**~190k words** · **35 numbered chapters** · **mdBook** · canonical sources in [`writings/`](writings/)
+**~289k words** · **35 numbered chapters** · **9 parts** · **mdBook** · canonical sources in [`writings/`](writings/)
+
+Last verified: Sep 22 2026 23:00 UTC (cron) — sync OK, fixtures PASS, mdbook build OK, links OK, ~289k words.
 
 ## Read the book
 
