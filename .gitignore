@@ -1,0 +1,7 @@
+/book/
+/target/
+writings/**/book/
+writings/SUMMARY.html
+/mdbook
+# mdBook with create-missing=true once treated "file.md#anchor" as literal paths
+*#*
