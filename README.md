@@ -4,13 +4,13 @@ A continuous narrative book — from linear algebra through functional analysis,
 
 **~289k words** · **35 numbered chapters** · **9 parts** · **mdBook** · canonical sources in [`writings/`](writings/)
 
-Last verified: Sep 22 2026 08:08 UTC (cron) — sync OK, fixtures PASS, mdbook build OK (no `#`-stub artifacts), links OK, build-all-writings OK, ~289k words.
+Last verified: Sep 22 2026 09:15 UTC (cron) — sync OK, fixtures PASS, mdbook build OK (no `#`-stub artifacts), links OK, build-all-writings OK, ~289k words.
 
 ## Read the book
 
 ```bash
 ./scripts/install-mdbook.sh   # once
-export PATH="/usr/local/cargo/bin:$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 mdbook build
 mdbook serve                 # http://localhost:3000
 ```
