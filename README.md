@@ -4,7 +4,7 @@ A continuous narrative book — from linear algebra through functional analysis,
 
 **~289k words** · **35 numbered chapters** · **9 parts** · **mdBook** · canonical sources in [`writings/`](writings/)
 
-Last verified: Sep 22 2026 05:00 UTC (cron) — sync OK, fixtures PASS, mdbook build OK, links OK, build-all-writings OK, ~289k words.
+Last verified: Sep 22 2026 06:00 UTC (cron) — sync OK, fixtures PASS, mdbook build OK, links OK, build-all-writings OK, ~289k words.
 
 ## Read the book
 
@@ -45,7 +45,7 @@ The book follows the **Functional Analysis Notes** (ME 412) layout — numbered 
 | Epilogue | Multiscale coupling | — |
 | Appendices | Glossary, sources, memory sheet | — |
 
-See [`src/SUMMARY.md`](src/SUMMARY.md) for the full table of contents.
+See [`src/SUMMARY.md`](src/SUMMARY.md) for the full table of contents. For a one-page narrative map (linear algebra through DFT on the same copper wire), see [`writings/SUMMARY.md`](writings/SUMMARY.md#synopsis--computational-mechanics-as-one-story).
 
 ## Writings source integration
 

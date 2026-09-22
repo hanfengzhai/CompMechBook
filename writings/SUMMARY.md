@@ -78,3 +78,25 @@ Upstream course notes (vendored here until the `Writings` submodule links) suppl
 | IX | [dft](./dft/chapters/SUMMARY.md) | MSE 5720 coursework / QE workflows (see [IX.0 schematics](./dft/chapters/00-opening.md)) | 01–03 |
 
 **Edit workflow:** change markdown under `writings/<topic>/chapters/`, run `./scripts/sync-writings.sh`, then `mdbook build`. The [multiscale story arc](#multiscale-story-arc-one-table) table above is the one-page plot; the [appendix sources chapter](./appendix/chapters/sources.md#continuity-hinges-index-when-the-plot-stutters) is the full continuity-hinge index when a transition still feels abrupt.
+
+## Synopsis — computational mechanics as one story
+
+The book is written to read cover-to-cover like a novel, not a stack of course notes. A single copper wire in wedge grips carries tension and current; every part changes the **ruler** (nodes, mesh, control volume, continuum field, dislocation line, atom, electron density) while the **specimen** stays the same afternoon in the lab.
+
+**Ascent (Parts I–VI).** [Linear algebra](./linear-algebra/chapters/SUMMARY.md) names the grammar every simulator shares: state vector, sparse stiffness, modes that decouple vibration, and the limit \(N\to\infty\) that sends nodal values toward fields. [Functional analysis](./functional-analysis/chapters/SUMMARY.md) replays that grammar in \(H^1\) and \(L^2\) using the same **Functional Analysis Notes** layout as ME 412 — object, structure, theorem, failure mode at every opening. [PDEs and Sobolev spaces](./pde/chapters/SUMMARY.md) write equilibrium and heat as weak forms when strong forms fail at corners. [FEM](./fem/chapters/SUMMARY.md) and [FVM](./fvm/chapters/SUMMARY.md) are twin discretizations on the wire: Galerkin assembly on the solid, flux balance in the air that sets the wall temperature \(T_w\). [Continuum mechanics](./continuum/chapters/SUMMARY.md) reunites those outputs in \(\mathbf{F}\), \(\boldsymbol{\sigma}\), and virtual work — the midpoint where ascent ends and the load cell curve can still lie.
+
+**Descent (Parts VII–IX).** When fitted hardening cannot survive mesh refinement, the story descends: [dislocation dynamics](./defects/chapters/SUMMARY.md) explains the knee with forests and OpenDiS mobility; [molecular dynamics](./md/chapters/SUMMARY.md) resolves cores and exports rates and phonon lifetimes at atomic timestep; [DFT](./dft/chapters/SUMMARY.md) grounds moduli and \(\alpha(T_w)\) in Kohn–Sham self-consistency. The [epilogue](./epilogue/chapters/multiscale.md) documents handshakes from Quantum ESPRESSO → LAMMPS → DDD → FEM so macro inputs carry **pedigree**, not handbook defaults.
+
+**Smooth reading contract:** each numbered chapter ends with a **Bridge** (why the next chapter is forced by the wire). Part openings add **Scene**, **Lab act**, and **concept map** checkpoints in ME 412 style. If a jump still feels abrupt, use the [chapter roadmap](./appendix/chapters/sources.md#chapter-roadmap-one-continuous-arc) and [continuity hinges index](./appendix/chapters/sources.md#continuity-hinges-index-when-the-plot-stutters) — they are the navigation layer the Functional Analysis Notes template assumes at book scale.
+
+| Topic you need | Where it lives in this book | Upstream note (vendored in `writings/`) |
+|----------------|----------------------------|----------------------------------------|
+| Linear algebra | Part I | [ME 300A](https://hanfengzhai.github.io/file/ME300A_LinAlg.pdf) |
+| Functional analysis | Part II | [ME 412](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) |
+| Weak PDEs / Sobolev | Part III | [ME 300B](https://hanfengzhai.github.io/file/ME300B_PDE.pdf) |
+| Finite element method | Part IV | [FEA notes](https://hanfengzhai.github.io/file/FEA_notes.pdf) |
+| Finite volume / CFD | Part V | [FVM](https://hanfengzhai.github.io/note/FVM.pdf) · [CFD](https://hanfengzhai.github.io/file/CFD_note.pdf) |
+| Continuum / plasticity preview | Part VI | [Elasticity notes](https://hanfengzhai.github.io/file/elasticity_notes.pdf) |
+| Dislocation dynamics | Part VII | [Defects notes](https://hanfengzhai.github.io/file/defects_notes.pdf) |
+| Molecular dynamics | Part VIII | [Atomistic modeling](https://hanfengzhai.github.io/file/AtomModel_note.pdf) |
+| DFT / workflows | Part IX | MSE 5720 / QE (see [IX.0](./dft/chapters/00-opening.md)) |

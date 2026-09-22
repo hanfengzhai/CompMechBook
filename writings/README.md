@@ -76,4 +76,4 @@ git submodule update --init --recursive
 ./scripts/sync-writings.sh
 ```
 
-See [SUMMARY.md](./SUMMARY.md) for the full index of subtrees, the [multiscale story arc](./SUMMARY.md#multiscale-story-arc-one-table) reading map, and the [Functional Analysis Notes layout parity](./SUMMARY.md#functional-analysis-notes-layout-writingsgit-parity) table (upstream PDF ↔ `writings/` subtree ↔ `src/partNN-*`).
+See [SUMMARY.md](./SUMMARY.md) for the full index of subtrees, the [synopsis](./SUMMARY.md#synopsis--computational-mechanics-as-one-story) (linear algebra → DFT in one narrative arc), the [multiscale story arc](./SUMMARY.md#multiscale-story-arc-one-table) reading map, and the [Functional Analysis Notes layout parity](./SUMMARY.md#functional-analysis-notes-layout-writingsgit-parity) table (upstream PDF ↔ `writings/` subtree ↔ `src/partNN-*`).
