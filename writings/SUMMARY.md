@@ -50,7 +50,7 @@ The book climbs **up** from discrete algebra to continuum PDEs and FEM/FVM (Part
 | Epilogue | Coupled codes | Handshakes 1–4, pedigree YAML | Same afternoon: DFT → MD → DDD → FEM reunion |
 | Appendix | Reference | Glossary, sources, memory sheet | When the plot stutters, use continuity-hinge rows |
 
-**Smooth reading rule:** never skip a chapter **Bridge** — it is the hinge that explains why the next scale (or the next discretization) is forced by the physics, not by the syllabus.
+**Smooth reading rule:** never skip a chapter **Bridge** — it is the hinge that explains why the next scale (or the next discretization) is forced by the physics, not by the syllabus. When a turn feels mechanical **inside** Parts I–V, use the [intra-part Bridge reunion tables](./appendix/chapters/sources.md#bridge-reunion-intra-part-ascent-i-v) (each part `README.md` links its row).
 
 ## Functional Analysis Notes layout (Writings.git parity)
 

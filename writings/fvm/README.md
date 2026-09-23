@@ -32,3 +32,12 @@ mdbook build
 ```
 
 When the external `Writings` git submodule is linked, prefer upstream content here and re-run the sync script.
+
+## Reading map (continuous book)
+
+| When the plot stutters | Open |
+|------------------------|------|
+| Part V feels like 1D FVM homework separate from CFD | [Bridge reunion — Part V (intra-part)](../appendix/chapters/sources.md#bridge-reunion-intra-part-v) |
+| Solid FEM vs fluid FVM | [CHT outer-loop reunion (row 30)](../appendix/chapters/sources.md#cht-outer-loop-reunion-index-row-30) |
+
+Upstream: [FVM.pdf](https://hanfengzhai.github.io/note/FVM.pdf) · [CFD_note.pdf](https://hanfengzhai.github.io/file/CFD_note.pdf). Book part: [Part V in `src/part05-fvm/`](../../src/part05-fvm/).

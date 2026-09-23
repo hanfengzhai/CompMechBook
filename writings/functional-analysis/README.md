@@ -33,3 +33,13 @@ mdbook build
 ```
 
 When the external `Writings` git submodule is linked, prefer upstream content here and re-run the sync script.
+
+## Reading map (continuous book)
+
+| When the plot stutters | Open |
+|------------------------|------|
+| Part II feels like disconnected theorems | [Bridge reunion — Part II (intra-part)](../appendix/chapters/sources.md#bridge-reunion-intra-part-ii) |
+| Proofs need structure | [Concept map reunion — Part II](../appendix/chapters/sources.md#concept-map-reunion-index-row-24) |
+| Proofs need a diagram | [Schematic reunion — ME 412](../appendix/chapters/sources.md#schematic-reunion-index-row-25) |
+
+Template subtree for all `writings/` folders. Upstream: [ME412 Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf). Book part: [Part II in `src/part02-functional-analysis/`](../../src/part02-functional-analysis/).

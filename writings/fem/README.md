@@ -33,3 +33,13 @@ mdbook build
 ```
 
 When the external `Writings` git submodule is linked, prefer upstream content here and re-run the sync script.
+
+## Reading map (continuous book)
+
+| When the plot stutters | Open |
+|------------------------|------|
+| Part IV feels like five unrelated FEA assignments | [Bridge reunion — Part IV (intra-part)](../appendix/chapters/sources.md#bridge-reunion-intra-part-iv) |
+| Act II + III on one mesh | [Thermoelastic assembly reunion (row 29)](../appendix/chapters/sources.md#thermoelastic-assembly-reunion-index-row-29) |
+| Door A vs Door B after IV.5 | [IV.5 two doors](../chapters/05-convergence.md#bridge-two-doors-from-here) |
+
+Upstream: [FEA_notes.pdf](https://hanfengzhai.github.io/file/FEA_notes.pdf). Book part: [Part IV in `src/part04-fem/`](../../src/part04-fem/).

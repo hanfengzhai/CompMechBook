@@ -255,9 +255,80 @@ Each row below is a **part-boundary Bridge anchor** (the hinge where one scale o
 | [IX.3 → Epilogue](../part09-dft/03-dft-workflows.md#bridge-to-the-epilogue) | Coupling gate | SCF exports compose into Handshakes 1–4b on the pedigree diagram. | [Epilogue opening hinge](../epilogue/multiscale.md#opening-hinge-ix3-to-epilogue) |
 | [Epilogue → restart](../epilogue/multiscale.md#row-12-closing-loop) | Book loop | Four questions restart on the next specimen — copper was the tutorial. | [Prologue reopening anchor](../prologue/00-many-scales.md#prologue-reopening-anchor) |
 
-**Spot audit (any chapter boundary).** When a transition feels abrupt mid-part, read only the **opening sentence** of the prior chapter's **Bridge** section aloud — it states why the next chapter must exist. Every numbered chapter ends with a Bridge; the [chapter roadmap](#chapter-roadmap-one-continuous-arc) names each chapter's role if the Bridge table feels too coarse.
+**Spot audit (any chapter boundary).** When a transition feels abrupt **between parts**, use the table above. When it feels abrupt **inside** Parts I–V during the grammar climb or discretization fork, open the [intra-part ascent Bridge reunion](#bridge-reunion-intra-part-ascent-i-v) for the part you are in — read the **opening sentence** of the prior chapter's **Bridge** section aloud. Every numbered chapter ends with a Bridge; the [chapter roadmap](#chapter-roadmap-one-continuous-arc) names each chapter's role if the Bridge table feels too coarse.
 
-**Baby picture:** row 17 is **how** to read (Scene → Bridge); rows 18–20 are **what the plot should sound like**; row 21 is **what the operator's hands should do**; row 22 is **what the operator's eyes should see**; row 23 is **why the next chapter must exist** on the same afternoon. When transitions feel mechanical, read the Bridge one-line hinge aloud, then turn the page. The [preface row 23 skill checkpoint](../preface.md#skill-navigation-row-23) closes the competence loop; the [memory sheet row 23 baby picture](memory-sheet.md#row-23-baby-picture-bridge-reunion) compresses the twelve part-boundary hinges for index-card review.
+**Baby picture:** row 17 is **how** to read (Scene → Bridge); rows 18–20 are **what the plot should sound like**; row 21 is **what the operator's hands should do**; row 22 is **what the operator's eyes should see**; row 23 is **why the next chapter must exist** on the same afternoon. When transitions feel mechanical, read the Bridge one-line hinge aloud, then turn the page. Part-boundary hinges live in the table above; mid-part hinges live in [Bridge reunion — intra-part ascent (Parts I–V)](#bridge-reunion-intra-part-ascent-i-v). The [preface row 23 skill checkpoint](../preface.md#skill-navigation-row-23) closes the competence loop; the [memory sheet row 23 baby picture](memory-sheet.md#row-23-baby-picture-bridge-reunion) compresses the twelve part-boundary hinges for index-card review.
+
+## Bridge reunion — intra-part ascent (Parts I–V) {#bridge-reunion-intra-part-ascent-i-v}
+
+Row 23's [part-boundary index](#bridge-reunion-index-row-23) names the twelve turns between preface, prologue, Parts I–IX, and epilogue. The tables below name **chapter-to-chapter** Bridge hinges **inside** each ascent part — the stitches that keep Part I from reading like four separate linear-algebra lectures, or Part IV like five unrelated FEA homework sets.
+
+| Part | Intra-part index | Chapters linked by Bridge |
+|------|------------------|---------------------------|
+| I | [Part I](#bridge-reunion-intra-part-i) | I.0 → I.1 → I.2 → I.3 → I.4 |
+| II | [Part II](#bridge-reunion-intra-part-ii) | II.0 → II.1 → … → II.5 |
+| III | [Part III](#bridge-reunion-intra-part-iii) | III.0 → III.1 → … → III.4 |
+| IV | [Part IV](#bridge-reunion-intra-part-iv) | IV.0 → IV.1 → … → IV.5 |
+| V | [Part V](#bridge-reunion-intra-part-v) | V.0 → V.1 → … → V.4 |
+
+**Reading map (Writings.git parity).** Each part's `README.md` under `writings/<topic>/` links here — same discipline as the [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) chapter guide, but for **Bridge** vocabulary on the copper wire.
+
+### Part I — Linear algebra {#bridge-reunion-intra-part-i}
+
+| Transition | Bridge anchor | One-line hinge on the wire (read aloud) | Then read |
+|------------|---------------|----------------------------------------|-----------|
+| [I.0 → I.1](../part01-linear-algebra/00-opening.md#bridge) | Opening → vectors | DOFs become vectors and \(\mathbf{K}\mathbf{u}=\mathbf{f}\) before the wire is a field. | [I.1](../part01-linear-algebra/01-vectors-matrices.md) |
+| [I.1 → I.2](../part01-linear-algebra/01-vectors-matrices.md#bridge) | Vectors → maps | Local bar stiffness needs coordinate change — linear maps assemble the global system. | [I.2](../part01-linear-algebra/02-linear-maps.md) |
+| [I.2 → I.3](../part01-linear-algebra/02-linear-maps.md#bridge) | Maps → modes | Diagonalizing the map names the wire's discrete ringing pitches before \(N\to\infty\). | [I.3](../part01-linear-algebra/03-eigenvalues.md) |
+| [I.3 → I.4](../part01-linear-algebra/03-eigenvalues.md#bridge) | Modes → fields | Refinement sends eigenvalues to a spectrum — fields at every point replace nodal lists. | [I.4](../part01-linear-algebra/04-toward-infinity.md) |
+
+Part boundary: [I.4 → II](../part01-linear-algebra/04-toward-infinity.md#bridge-to-part-ii) — listed in the [part-boundary index](#bridge-reunion-index-row-23).
+
+### Part II — Functional analysis {#bridge-reunion-intra-part-ii}
+
+| Transition | Bridge anchor | One-line hinge on the wire (read aloud) | Then read |
+|------------|---------------|----------------------------------------|-----------|
+| [II.0 → II.1](../part02-functional-analysis/00-opening.md#bridge) | Part I handoff → motivation | Weak forms and Galerkin projection are why \(\mathbf{K}\) is not an arbitrary sparse array. | [II.1](../part02-functional-analysis/01-motivation.md) |
+| [II.1 → II.2](../part02-functional-analysis/01-motivation.md#bridge) | Motivation → norms | Measuring size and completeness is where finite-element limits live. | [II.2](../part02-functional-analysis/02-normed-spaces.md) |
+| [II.2 → II.3](../part02-functional-analysis/02-normed-spaces.md#bridge) | Norms → Hilbert | Inner products bring angles, orthogonality, and energy minimization. | [II.3](../part02-functional-analysis/03-hilbert-spaces.md) |
+| [II.3 → II.4](../part02-functional-analysis/03-hilbert-spaces.md#bridge) | Hilbert → operators | Loads and fluxes become operators and dual pairings before spectra decouple modes. | [II.4](../part02-functional-analysis/04-operators-duality.md) |
+| [II.4 → II.5](../part02-functional-analysis/04-operators-duality.md#bridge) | Operators → spectrum | Self-adjoint compact operators diagonalize like symmetric matrices at infinite \(N\). | [II.5](../part02-functional-analysis/05-spectral-theorem.md) |
+
+Part boundary: [II.5 → III](../part02-functional-analysis/05-spectral-theorem.md#bridge-to-part-iii).
+
+### Part III — PDEs {#bridge-reunion-intra-part-iii}
+
+| Transition | Bridge anchor | One-line hinge on the wire (read aloud) | Then read |
+|------------|---------------|----------------------------------------|-----------|
+| [III.0 → III.1](../part03-pdes/00-opening.md#bridge) | Part II handoff → strong form | The weak form's recurring character steps on stage — strong form first for physics intuition. | [III.1](../part03-pdes/01-strong-form.md) |
+| [III.1 → III.2](../part03-pdes/01-strong-form.md#bridge) | Strong → weak | Integration by parts trades pointwise smoothness for \(H^1\) balance on the wire. | [III.2](../part03-pdes/02-weak-form.md) |
+| [III.2 → III.3](../part03-pdes/02-weak-form.md#bridge) | Weak → Sobolev | \(H^1\) names what \(\nabla u\) means when \(u\) is only piecewise smooth on the mesh. | [III.3](../part03-pdes/03-sobolev-spaces.md) |
+| [III.3 → III.4](../part03-pdes/03-sobolev-spaces.md#bridge) | Sobolev → energy | Dirichlet's principle packages existence as minimizing \(\Pi(u)\) on the same domain. | [III.4](../part03-pdes/04-energy-methods.md) |
+
+Part boundary: [III.4 → IV](../part03-pdes/04-energy-methods.md#bridge-to-part-iv).
+
+### Part IV — FEM {#bridge-reunion-intra-part-iv}
+
+| Transition | Bridge anchor | One-line hinge on the wire (read aloud) | Then read |
+|------------|---------------|----------------------------------------|-----------|
+| [IV.0 → IV.1](../part04-fem/00-opening.md#bridge) | Part III handoff → weighted residuals | Test functions as trial functions discretize the weak form the wire already satisfies. | [IV.1](../part04-fem/01-weighted-residuals.md) |
+| [IV.1 → IV.2](../part04-fem/01-weighted-residuals.md#bridge) | WR → assembly | Galerkin becomes the element loop that scatters into \(\mathbf{K}\mathbf{U}=\mathbf{F}\). | [IV.2](../part04-fem/02-galerkin-assembly.md) |
+| [IV.2 → IV.3](../part04-fem/02-galerkin-assembly.md#bridge) | Assembly → elements | Shape functions, maps, and quadrature decide whether P1 suffices or hourglassing appears. | [IV.3](../part04-fem/03-elements-quadrature.md) |
+| [IV.3 → IV.4](../part04-fem/03-elements-quadrature.md#bridge) | Scalar → vector | Poisson's training ground extends to elasticity — same loop, richer integrand. | [IV.4](../part04-fem/04-poisson-to-elasticity.md) |
+| [IV.4 → IV.5](../part04-fem/04-poisson-to-elasticity.md#bridge) | Elasticity → convergence | Patch tests are not enough — \(h\) and \(p\) tie error to the norms Part II named. | [IV.5](../part04-fem/05-convergence.md) |
+
+Part boundary: [IV.5 fork](../part04-fem/05-convergence.md#bridge-two-doors-from-here) (Door A → Part V, Door B → Part VI).
+
+### Part V — FVM / CFD {#bridge-reunion-intra-part-v}
+
+| Transition | Bridge anchor | One-line hinge on the wire (read aloud) | Then read |
+|------------|---------------|----------------------------------------|-----------|
+| [V.0 → V.1](../part05-fvm/00-opening.md#bridge) | Door A → conservation | The wire's physics unchanged — integral balance replaces shape-function assembly for fluids. | [V.1](../part05-fvm/01-conservation-integral.md) |
+| [V.1 → V.2](../part05-fvm/01-conservation-integral.md#bridge) | Integral → 1D FVM | Cell averages update by face fluxes — CFL and ghost cells on the cooling channel. | [V.2](../part05-fvm/02-fvm-1d.md) |
+| [V.2 → V.3](../part05-fvm/02-fvm-1d.md#bridge) | Linear → Riemann | Nonlinear jets and shock tubes need flux limiters, not first-order smearing alone. | [V.3](../part05-fvm/03-fluxes-riemann.md) |
+| [V.3 → V.4](../part05-fvm/03-fluxes-riemann.md#bridge) | Riemann → Navier–Stokes | Viscosity, heat conduction, and pressure complete the conjugate-heat story on the wire. | [V.4](../part05-fvm/04-navier-stokes-cfd.md) |
+
+Part boundary: [V.4 → VI](../part05-fvm/04-navier-stokes-cfd.md#bridge-to-part-vi) (\(T_w\) reunites warming with tensor mechanics).
 
 ## Concept map reunion index (row 24) {#concept-map-reunion-index-row-24}
 

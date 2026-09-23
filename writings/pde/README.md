@@ -32,3 +32,12 @@ mdbook build
 ```
 
 When the external `Writings` git submodule is linked, prefer upstream content here and re-run the sync script.
+
+## Reading map (continuous book)
+
+| When the plot stutters | Open |
+|------------------------|------|
+| Part III feels like strong/weak/Sobolev in isolation | [Bridge reunion — Part III (intra-part)](../appendix/chapters/sources.md#bridge-reunion-intra-part-iii) |
+| Variational ladder lost | [III.0 variational ladder](../chapters/00-opening.md#the-variational-ladder-me-412-schematic-14) |
+
+Upstream: [ME300B_PDE.pdf](https://hanfengzhai.github.io/file/ME300B_PDE.pdf). Book part: [Part III in `src/part03-pdes/`](../../src/part03-pdes/).
