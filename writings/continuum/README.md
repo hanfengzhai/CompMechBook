@@ -32,3 +32,11 @@ mdbook build
 ```
 
 When the external `Writings` git submodule is linked, prefer upstream content here and re-run the sync script.
+
+## Reading map (continuous book)
+
+| When the plot stutters | Open |
+|------------------------|------|
+| Part VI feels like kinematics homework separate from virtual work | [Bridge reunion — Part VI (intra-part)](../appendix/chapters/sources.md#bridge-reunion-intra-part-vi) |
+| Twin ladders and \(\mathbf{K}\) still feel disconnected | [Twin-ladder → virtual work reunion](../appendix/chapters/sources.md#twin-ladder-virtual-work-reunion-index-row-31) |
+| Row 23 — transitions feel mechanical | [Bridge reunion index](../appendix/chapters/sources.md#bridge-reunion-index-row-23) · [intra-part descent VI–IX](../appendix/chapters/sources.md#bridge-reunion-intra-part-descent-vi-ix) |

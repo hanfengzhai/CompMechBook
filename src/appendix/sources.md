@@ -255,9 +255,9 @@ Each row below is a **part-boundary Bridge anchor** (the hinge where one scale o
 | [IX.3 → Epilogue](../part09-dft/03-dft-workflows.md#bridge-to-the-epilogue) | Coupling gate | SCF exports compose into Handshakes 1–4b on the pedigree diagram. | [Epilogue opening hinge](../epilogue/multiscale.md#opening-hinge-ix3-to-epilogue) |
 | [Epilogue → restart](../epilogue/multiscale.md#row-12-closing-loop) | Book loop | Four questions restart on the next specimen — copper was the tutorial. | [Prologue reopening anchor](../prologue/00-many-scales.md#prologue-reopening-anchor) |
 
-**Spot audit (any chapter boundary).** When a transition feels abrupt **between parts**, use the table above. When it feels abrupt **inside** Parts I–V during the grammar climb or discretization fork, open the [intra-part ascent Bridge reunion](#bridge-reunion-intra-part-ascent-i-v) for the part you are in — read the **opening sentence** of the prior chapter's **Bridge** section aloud. Every numbered chapter ends with a Bridge; the [chapter roadmap](#chapter-roadmap-one-continuous-arc) names each chapter's role if the Bridge table feels too coarse.
+**Spot audit (any chapter boundary).** When a transition feels abrupt **between parts**, use the table above. When it feels abrupt **inside** Parts I–V during the grammar climb or discretization fork, open the [intra-part ascent Bridge reunion](#bridge-reunion-intra-part-ascent-i-v) for the part you are in — read the **opening sentence** of the prior chapter's **Bridge** section aloud. When the stall is **inside** Parts VI–IX during the continuum reunion or scale descent (for example VI.2 → VI.3 or VIII.1 → VIII.2), open the [intra-part descent Bridge reunion](#bridge-reunion-intra-part-descent-vi-ix) instead. Every numbered chapter ends with a Bridge; the [chapter roadmap](#chapter-roadmap-one-continuous-arc) names each chapter's role if the Bridge table feels too coarse.
 
-**Baby picture:** row 17 is **how** to read (Scene → Bridge); rows 18–20 are **what the plot should sound like**; row 21 is **what the operator's hands should do**; row 22 is **what the operator's eyes should see**; row 23 is **why the next chapter must exist** on the same afternoon. When transitions feel mechanical, read the Bridge one-line hinge aloud, then turn the page. Part-boundary hinges live in the table above; mid-part hinges live in [Bridge reunion — intra-part ascent (Parts I–V)](#bridge-reunion-intra-part-ascent-i-v). The [preface row 23 skill checkpoint](../preface.md#skill-navigation-row-23) closes the competence loop; the [memory sheet row 23 baby picture](memory-sheet.md#row-23-baby-picture-bridge-reunion) compresses the twelve part-boundary hinges for index-card review.
+**Baby picture:** row 17 is **how** to read (Scene → Bridge); rows 18–20 are **what the plot should sound like**; row 21 is **what the operator's hands should do**; row 22 is **what the operator's eyes should see**; row 23 is **why the next chapter must exist** on the same afternoon. When transitions feel mechanical, read the Bridge one-line hinge aloud, then turn the page. Part-boundary hinges live in the table above; mid-part hinges live in [Bridge reunion — intra-part ascent (Parts I–V)](#bridge-reunion-intra-part-ascent-i-v) and [Bridge reunion — intra-part descent (Parts VI–IX)](#bridge-reunion-intra-part-descent-vi-ix). The [preface row 23 skill checkpoint](../preface.md#skill-navigation-row-23) closes the competence loop; the [memory sheet row 23 baby picture](memory-sheet.md#row-23-baby-picture-bridge-reunion) compresses the twelve part-boundary hinges for index-card review.
 
 ## Bridge reunion — intra-part ascent (Parts I–V) {#bridge-reunion-intra-part-ascent-i-v}
 
@@ -329,6 +329,60 @@ Part boundary: [IV.5 fork](../part04-fem/05-convergence.md#bridge-two-doors-from
 | [V.3 → V.4](../part05-fvm/03-fluxes-riemann.md#bridge) | Riemann → Navier–Stokes | Viscosity, heat conduction, and pressure complete the conjugate-heat story on the wire. | [V.4](../part05-fvm/04-navier-stokes-cfd.md) |
 
 Part boundary: [V.4 → VI](../part05-fvm/04-navier-stokes-cfd.md#bridge-to-part-vi) (\(T_w\) reunites warming with tensor mechanics).
+
+## Bridge reunion — intra-part descent (Parts VI–IX) {#bridge-reunion-intra-part-descent-vi-ix}
+
+Row 23's [part-boundary index](#bridge-reunion-index-row-23) names the twelve turns between preface, prologue, Parts I–IX, and epilogue. The tables below name **chapter-to-chapter** Bridge hinges **inside** each descent part — the stitches that keep Part VI from reading like kinematics homework separate from virtual work, Part VII like taxonomy slides separate from OpenDiS, Part VIII like a LAMMPS manual separate from DFT audit, or Part IX like three disconnected QM lectures.
+
+| Part | Intra-part index | Chapters linked by Bridge |
+|------|------------------|---------------------------|
+| VI | [Part VI](#bridge-reunion-intra-part-vi) | VI.0 → VI.1 → VI.2 → VI.3 → VI.4 |
+| VII | [Part VII](#bridge-reunion-intra-part-vii) | VII.0 → VII.1 → VII.2 → VII.3 |
+| VIII | [Part VIII](#bridge-reunion-intra-part-viii) | VIII.0 → VIII.1 → VIII.2 → VIII.3 |
+| IX | [Part IX](#bridge-reunion-intra-part-ix) | IX.0 → IX.1 → IX.2 → IX.3 |
+
+**Reading map (Writings.git parity).** Each part's `README.md` under `writings/<topic>/` links here — same discipline as the [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) chapter guide, but for **Bridge** vocabulary on the copper wire during the scale descent.
+
+### Part VI — Continuum mechanics {#bridge-reunion-intra-part-vi}
+
+| Transition | Bridge anchor | One-line hinge on the wire (read aloud) | Then read |
+|------------|---------------|----------------------------------------|-----------|
+| [VI.0 → VI.1](../part06-continuum/00-opening.md#bridge) | Twin ladders → kinematics | FEM and FVM solved PDEs; Part VI names \(\mathbf{F}\), strain, and stress on the same mesh. | [VI.1](../part06-continuum/01-kinematics.md) |
+| [VI.1 → VI.2](../part06-continuum/01-kinematics.md#bridge) | Kinematics → balance | Geometry is named; Cauchy stress and momentum balance close the field system. | [VI.2](../part06-continuum/02-stress-balance.md) |
+| [VI.2 → VI.3](../part06-continuum/02-stress-balance.md#bridge) | Balance → virtual work | Tensors are named; static equilibrium is also Dirichlet's minimum principle. | [VI.3](../part06-continuum/03-variational-elasticity.md) |
+| [VI.3 → VI.4](../part06-continuum/03-variational-elasticity.md#bridge) | Virtual work → plasticity preview | \(\mathbf{K}\mathbf{U}=\mathbf{F}\) reunites with Part I; the load-cell knee needs history beyond \(\mathbb{C}\). | [VI.4](../part06-continuum/04-nonlinear-plasticity-preview.md) |
+
+Part boundary: [VI.4 → VII](../part06-continuum/04-nonlinear-plasticity-preview.md#bridge-to-part-vii) — listed in the [part-boundary index](#bridge-reunion-index-row-23).
+
+### Part VII — Defects and dislocation dynamics {#bridge-reunion-intra-part-vii}
+
+| Transition | Bridge anchor | One-line hinge on the wire (read aloud) | Then read |
+|------------|---------------|----------------------------------------|-----------|
+| [VII.0 → VII.1](../part07-defects/00-opening.md#bridge) | Smooth fields → taxonomy | Variational elasticity assumed smoothness; cold drawing stored lines the load cell now feels. | [VII.1](../part07-defects/01-defect-taxonomy.md) |
+| [VII.1 → VII.2](../part07-defects/01-defect-taxonomy.md#bridge) | Taxonomy → DDD | Burgers geometry is named; Peach–Köhler motion makes the forest computable. | [VII.2](../part07-defects/02-dislocation-dynamics.md) |
+| [VII.2 → VII.3](../part07-defects/02-dislocation-dynamics.md#bridge-to-vii3) | Single crystal → handoff | One slip system hardens; polycrystal FEM needs exported \(\tau(\gamma)\) and texture. | [VII.3](../part07-defects/03-polycrystal-and-fem-handoff.md) |
+
+Part boundary: [VII.3 → VIII](../part07-defects/03-polycrystal-and-fem-handoff.md#bridge-to-part-viii).
+
+### Part VIII — Molecular dynamics {#bridge-reunion-intra-part-viii}
+
+| Transition | Bridge anchor | One-line hinge on the wire (read aloud) | Then read |
+|------------|---------------|----------------------------------------|-----------|
+| [VIII.0 → VIII.1](../part08-md/00-opening.md#bridge-epilogue-hinge) | Mesoscale → phase space | Line cores and mobility tables need atomic coordinates and EAM forces in a nanobox. | [VIII.1](../part08-md/01-potentials-phase-space.md) |
+| [VIII.1 → VIII.2](../part08-md/01-potentials-phase-space.md#bridge) | Potentials → ensembles | 0 K minimization is not the wire at \(T_w\); thermostats sample the correct thermodynamic state. | [VIII.2](../part08-md/02-ensembles-integrators.md) |
+| [VIII.2 → VIII.3](../part08-md/02-ensembles-integrators.md#bridge) | Trajectories → coarse-graining | Audited NVT/NPT runs exist; exports need pedigree tables before Part IX opens. | [VIII.3](../part08-md/03-ab-initio-and-coarse-graining.md) |
+
+Part boundary: [VIII.3 → IX](../part08-md/03-ab-initio-and-coarse-graining.md#bridge-to-part-ix).
+
+### Part IX — Density functional theory {#bridge-reunion-intra-part-ix}
+
+| Transition | Bridge anchor | One-line hinge on the wire (read aloud) | Then read |
+|------------|---------------|----------------------------------------|-----------|
+| [IX.0 → IX.1](../part09-dft/00-opening.md#bridge) | EAM trust → Born–Oppenheimer | LAMMPS ran on trust; the same fcc cell is solved for \(\rho(\mathbf{r})\) with theorems. | [IX.1](../part09-dft/01-born-oppenheimer.md) |
+| [IX.1 → IX.2](../part09-dft/01-born-oppenheimer.md#bridge) | BO/HK → Kohn–Sham | Energy is a functional of density; the SCF loop is Part I's eigenvalue iteration at electrons. | [IX.2](../part09-dft/02-kohn-sham.md) |
+| [IX.2 → IX.3](../part09-dft/02-kohn-sham.md#bridge) | Theory → workflows | Kohn–Sham converges in principle; archived QE decks make Handshake 1 auditable. | [IX.3](../part09-dft/03-dft-workflows.md) |
+
+Part boundary: [IX.3 → Epilogue](../part09-dft/03-dft-workflows.md#bridge-to-the-epilogue).
 
 ## Concept map reunion index (row 24) {#concept-map-reunion-index-row-24}
 

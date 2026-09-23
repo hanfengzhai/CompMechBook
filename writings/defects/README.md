@@ -31,3 +31,11 @@ mdbook build
 ```
 
 When the external `Writings` git submodule is linked, prefer upstream content here and re-run the sync script.
+
+## Reading map (continuous book)
+
+| When the plot stutters | Open |
+|------------------------|------|
+| Part VII feels like taxonomy slides separate from OpenDiS | [Bridge reunion — Part VII (intra-part)](../appendix/chapters/sources.md#bridge-reunion-intra-part-vii) |
+| DDD and polycrystal FEM handoff feel disconnected | [VII.3 → Handshake 4a reunion](../appendix/chapters/sources.md#vii3-handshake4a-reunion-index-row-41) |
+| Row 23 — transitions feel mechanical | [Bridge reunion index](../appendix/chapters/sources.md#bridge-reunion-index-row-23) · [intra-part descent VI–IX](../appendix/chapters/sources.md#bridge-reunion-intra-part-descent-vi-ix) |
