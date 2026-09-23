@@ -208,6 +208,18 @@ Each chapter adds one move to the mesoscale pipeline that turns phenomenological
 
 None of these require a production polycrystal run — but each one is the mechanism behind Part VI's fitted \(H\). If you can name the forest that cold drawing stored, explain why \(\tau \propto \sqrt{\rho}\), and sketch the handoff from DDD statistics to FEM internal variables, you have the mesoscale narrator for Act IV's upward bend.
 
+## Bridge reunion (intra-part VII) {#bridge-reunion-intra-part-vii}
+
+Row 23 names part-boundary hinges ([VI.4 → VII](../part06-continuum/04-nonlinear-plasticity-preview.md#bridge-to-part-vii), [VII.3 → VIII](../part07-defects/03-polycrystal-and-fem-handoff.md#bridge-to-part-viii)). When taxonomy, DDD, and polycrystal export each read correctly but **VII.1–VII.3 feel like three courses on dislocations**, return to the prior chapter's **Bridge** — the mesoscale story is **classify → simulate → homogenize** on the same drawn wire.
+
+| Transition | Bridge anchor | One-line hinge on the wire (read aloud) |
+|------------|---------------|----------------------------------------|
+| [VII.0 → VII.1](#bridge) | Opening → taxonomy | \(J_2\) fitted the knee; line defects name the forest cold drawing stored. |
+| [VII.1 → VII.2](01-defect-taxonomy.md#bridge) | Taxonomy → DDD | Peach–Köhler motion turns Burgers geometry into the upward bend on the load cell. |
+| [VII.2 → VII.3](02-dislocation-dynamics.md#bridge-to-vii3) | DDD → polycrystal handoff | Single-crystal statistics must become crystal plasticity on the mesh Part IV assembled. |
+
+**Baby picture:** Act IV hardening is not a magic \(H\) — it is line motion, export, and FEM handoff in three deliberate turns. See [Bridge reunion index (descent intra-part)](../appendix/sources.md#bridge-reunion-intra-part-descent-vi-ix).
+
 ## Bridge
 
 Part VI closed with variational elasticity: energy minimization and virtual work for **smooth** fields. The drawn copper wire violates that smoothness at the mesoscale — dislocation lines, grain boundaries, and vacancy clusters are the mechanisms behind **Act IV** hardening on the load cell. Part VII is the first **descent** on the prologue ladder: the same specimen, a smaller state variable, export discipline unchanged.

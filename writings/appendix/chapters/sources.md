@@ -257,7 +257,20 @@ Each row below is a **part-boundary Bridge anchor** (the hinge where one scale o
 
 **Spot audit (any chapter boundary).** When a transition feels abrupt mid-part, read only the **opening sentence** of the prior chapter's **Bridge** section aloud — it states why the next chapter must exist. Every numbered chapter ends with a Bridge; the [chapter roadmap](#chapter-roadmap-one-continuous-arc) names each chapter's role if the Bridge table feels too coarse.
 
-**Baby picture:** row 17 is **how** to read (Scene → Bridge); rows 18–20 are **what the plot should sound like**; row 21 is **what the operator's hands should do**; row 22 is **what the operator's eyes should see**; row 23 is **why the next chapter must exist** on the same afternoon. When transitions feel mechanical, read the Bridge one-line hinge aloud, then turn the page. The [preface row 23 skill checkpoint](../preface.md#skill-navigation-row-23) closes the competence loop; the [memory sheet row 23 baby picture](memory-sheet.md#row-23-baby-picture-bridge-reunion) compresses the twelve part-boundary hinges for index-card review.
+### Bridge reunion intra-part (descent, Parts VI–IX) {#bridge-reunion-intra-part-descent-vi-ix}
+
+When part-boundary row 23 hinges read correctly but **descent chapters feel like separate courses mid-part**, open the part-opening **Bridge reunion (intra-part)** table and read one hinge aloud before continuing. Each anchor is indexed in the part README and `00-opening.md`.
+
+| Part | Intra-part reunion anchor | Chapter transitions covered |
+|------|----------------------------|---------------------------|
+| VI | [Bridge reunion intra-part VI](../part06-continuum/00-opening.md#bridge-reunion-intra-part-vi) | VI.0→VI.1 through VI.3→VI.4 (geometry → balance → energy → \(J_2\)) |
+| VII | [Bridge reunion intra-part VII](../part07-defects/00-opening.md#bridge-reunion-intra-part-vii) | VII.0→VII.1 through VII.2→VII.3 (taxonomy → DDD → polycrystal export) |
+| VIII | [Bridge reunion intra-part VIII](../part08-md/00-opening.md#bridge-reunion-intra-part-viii) | VIII.0→VIII.1 through VIII.2→VIII.3 (potential → ensemble at \(T_w\) → coarse-graining) |
+| IX | [Bridge reunion intra-part IX](../part09-dft/00-opening.md#bridge-reunion-intra-part-ix) | IX.0→IX.1 through IX.2→IX.3 (Born–Oppenheimer → Kohn–Sham → QE pedigree) |
+
+The [epilogue row 23 Step 3](../epilogue/multiscale.md#row-23-closing-loop) descent audit and [preface row 23 Step 4](#bridge-reunion-index-row-23) full audit assume these intra-part tables when VI.4's intermission is clear but VII.1 still feels like a syllabus reset.
+
+**Baby picture:** part-boundary row 23 is **why the next part must exist**; intra-part reunion is **why the next chapter must exist** inside Act II reunion (Part VI) and Act III descent (Parts VII–IX). Row 17 is **how** to read (Scene → Bridge); rows 18–20 are **what the plot should sound like**; row 21 is **what the operator's hands should do**; row 22 is **what the operator's eyes should see**; row 23 is **why the next chapter must exist** on the same afternoon. When transitions feel mechanical, read the Bridge one-line hinge aloud, then turn the page. The [preface row 23 skill checkpoint](../preface.md#skill-navigation-row-23) closes the competence loop; the [memory sheet row 23 baby picture](memory-sheet.md#row-23-baby-picture-bridge-reunion) compresses the twelve part-boundary hinges for index-card review.
 
 ## Concept map reunion index (row 24) {#concept-map-reunion-index-row-24}
 

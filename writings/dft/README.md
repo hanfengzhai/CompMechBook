@@ -17,6 +17,10 @@ dft/
 
 Chapter numbering `00`–`03` matches `src/part09-dft/` in CompMechBook. Bridge sections connect atomistic potentials to Born–Oppenheimer separation and the Kohn–Sham equations; Chapter 02 hands off to reproducible QE workflows; Chapter 03 hands off to the epilogue on multiscale coupling.
 
+## Reading map (Bridge reunion, intra-part)
+
+When IX.1–IX.3 feel like standalone quantum chemistry, use [Bridge reunion intra-part IX](chapters/00-opening.md#bridge-reunion-intra-part-ix) — [appendix index](../appendix/chapters/sources.md#bridge-reunion-intra-part-descent-vi-ix).
+
 ## Build standalone
 
 ```bash

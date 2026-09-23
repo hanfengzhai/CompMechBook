@@ -18,6 +18,10 @@ continuum/
 
 Chapter numbering `00`–`04` matches `src/part06-continuum/` in CompMechBook. Bridge sections connect FEM discretization to the virtual work principle; Chapter 03 hands off to nonlinear plasticity; Chapter 04 hands off to Part VII (defects and dislocations).
 
+## Reading map (Bridge reunion, intra-part)
+
+When chapter transitions feel mechanical inside Part VI, use [Bridge reunion intra-part VI](chapters/00-opening.md#bridge-reunion-intra-part-vi) — indexed in the [appendix Bridge reunion descent table](../appendix/chapters/sources.md#bridge-reunion-intra-part-descent-vi-ix).
+
 ## Build standalone
 
 ```bash

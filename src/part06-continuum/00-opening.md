@@ -192,6 +192,19 @@ Each chapter adds one move to the continuum vocabulary that makes FEM and FVM ou
 
 None of these require running DDD or MD — but each one is the physics behind the numbers Part IV assembles. If you can compute axial stretch from a displacement field, write Cauchy stress balance, and explain why cold-drawn hardening is not in \(\mathbb{C}\) alone, you have the continuum floor before the book descends to dislocations and atoms.
 
+## Bridge reunion (intra-part VI) {#bridge-reunion-intra-part-vi}
+
+Row 23 in the [Bridge reunion index](../appendix/sources.md#bridge-reunion-index-row-23) lists **part-boundary** hinges (V→VI, VI→VII). When Cauchy stress, virtual work, and \(J_2\) preview each read correctly but **chapters VI.1–VI.4 feel like separate elasticity homework**, read the prior chapter's **Bridge** opening sentence aloud — the descent half of the book still climbs **geometry → balance → energy → nonlinearity** on the same afternoon.
+
+| Transition | Bridge anchor | One-line hinge on the wire (read aloud) |
+|------------|---------------|----------------------------------------|
+| [VI.0 → VI.1](#bridge) | Opening → kinematics | Meshes carried nodal \(\mathbf{U}\); \(\mathbf{F}\) and strain name the stretch before stress enters. |
+| [VI.1 → VI.2](01-kinematics.md#bridge) | Kinematics → balance | Geometry without \(\boldsymbol{\sigma}\) is stretch without a load cell reading. |
+| [VI.2 → VI.3](02-stress-balance.md#bridge) | Balance → variational form | Static equilibrium is also a minimum principle — FEM's \(\mathbf{K}\) is virtual work discretized. |
+| [VI.3 → VI.4](03-variational-elasticity.md#bridge) | Energy → plasticity preview | Smooth hyperelasticity exhausts the field; the cold-drawn knee needs history Part VII supplies. |
+
+**Baby picture:** read one hinge aloud at each turn; if the wire's stretch, stress, energy, and yield knee still feel disconnected, you skipped a **Bridge** paragraph — not a missing theorem. The [epilogue row 23 Step 3](../epilogue/multiscale.md#row-23-closing-loop) descent audit pairs with this table when Part VI mid-read stalls after Part V's CHT fork.
+
 ## Bridge
 
 Parts IV and V solved PDEs on meshes. Part VI names the fields those PDEs carry — deformation gradient, strain, stress — and derives the virtual work principle that both discretizations inherit. The first chapter begins with the geometry of deformation: how the copper wire stretches, rotates, and changes volume when pulled.

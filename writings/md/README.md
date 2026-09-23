@@ -17,6 +17,10 @@ md/
 
 Chapter numbering `00`–`03` matches `src/part08-md/` in CompMechBook. Bridge sections connect dislocation-scale physics to interatomic potentials and LAMMPS workflows; Chapter 03 hands off to Part IX (density functional theory).
 
+## Reading map (Bridge reunion, intra-part)
+
+When VIII.1–VIII.3 feel disconnected, use [Bridge reunion intra-part VIII](chapters/00-opening.md#bridge-reunion-intra-part-viii) — mobility at \(T_w\) threads every hinge; [appendix index](../appendix/chapters/sources.md#bridge-reunion-intra-part-descent-vi-ix).
+
 ## Build standalone
 
 ```bash

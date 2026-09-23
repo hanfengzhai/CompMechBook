@@ -17,6 +17,10 @@ defects/
 
 Chapter numbering `00`–`03` matches `src/part07-defects/` in CompMechBook. Bridge sections connect continuum elasticity to mesoscale plasticity; Chapter 03 hands off to Part VIII (molecular dynamics).
 
+## Reading map (Bridge reunion, intra-part)
+
+When VII.1–VII.3 feel like separate courses, use [Bridge reunion intra-part VII](chapters/00-opening.md#bridge-reunion-intra-part-vii) — see [appendix index](../appendix/chapters/sources.md#bridge-reunion-intra-part-descent-vi-ix).
+
 ## Build standalone
 
 ```bash

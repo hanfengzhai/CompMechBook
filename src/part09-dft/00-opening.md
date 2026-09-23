@@ -220,6 +220,18 @@ Each chapter adds one move to the electronic-structure workflow that grounds eve
 
 None of these require a national supercomputer allocation — but each one is the foundation Act VI runs in parallel with the tensile test. If you can explain why MD's potential is a functional of electron density, archive an SCF log beside every exported modulus, and trace Young's modulus from strained unit cells back to Kohn–Sham orbitals, you have closed the downward derivation before the epilogue wires the ladder together.
 
+## Bridge reunion (intra-part IX) {#bridge-reunion-intra-part-ix}
+
+Row 23 names [VIII.3 → IX](../part08-md/03-ab-initio-and-coarse-graining.md#bridge-to-part-ix) and [IX.3 → epilogue](../part09-dft/03-dft-workflows.md#bridge-to-the-epilogue). When Born–Oppenheimer, Kohn–Sham, and QE workflows each read correctly but **IX.1–IX.3 feel like standalone quantum chemistry**, read the prior chapter's **Bridge** — electronic descent is **separate electrons → SCF theory → archived foundation exports**.
+
+| Transition | Bridge anchor | One-line hinge on the wire (read aloud) |
+|------------|---------------|----------------------------------------|
+| [IX.0 → IX.1](#bridge) | Opening → Born–Oppenheimer | EAM was on trust; \(\rho(\mathbf{r})\) is the audit object behind every modulus. |
+| [IX.1 → IX.2](01-born-oppenheimer.md#bridge) | HK theorems → Kohn–Sham | Energy as a density functional becomes the SCF loop MD cannot invent. |
+| [IX.2 → IX.3](02-kohn-sham.md#bridge) | Theory → workflows | Converged orbitals mean nothing without input decks and pedigree beside `pw.x` logs. |
+
+**Baby picture:** Act VI foundation runs in parallel with Acts I–V — IX.3's checklist is the upward arrow the epilogue orchestrates. Pair with [Bridge reunion intra-part descent](../appendix/sources.md#bridge-reunion-intra-part-descent-vi-ix).
+
 ## Bridge
 
 Part VIII ran LAMMPS on an EAM potential **on trust** — cohesive energy, lattice parameter, mobility tables appeared without a full electronic-structure derivation. [VIII.3](../part08-md/03-ab-initio-and-coarse-graining.md#bridge-to-part-ix) named the quantities DFT must re-derive and pointed here. Part IX is the **audit chapter**: the same fcc copper cell Part VIII vibrated, now solved for \(\rho(\mathbf{r})\).

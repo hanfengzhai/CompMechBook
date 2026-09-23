@@ -183,6 +183,18 @@ None of these require a full ab initio MD production run — but each one is the
 
 When Act II warmed the wire but mobility folders still cite 300 K, pause at the [preface row 8 skill checkpoint](../preface.md#skill-navigation-row-8) before trusting any NVT shear or WHAM export — [`parse_cht.sh`](../../scripts/parse_cht.sh) must emit `cht_export.yaml` with converged \(T_w\) first; the [descent hinge](#descent-hinge-cores-mobility-and-tw-pedigree) above and [memory sheet rows 8–9 baby picture](../appendix/memory-sheet.md#rows-8-9-baby-picture-tw-temperature-pedigree) draw the same chain from CHT through MD mobility to DFT phonon audits in Part IX.
 
+## Bridge reunion (intra-part VIII) {#bridge-reunion-intra-part-viii}
+
+Row 23 names [VII.3 → VIII](../part07-defects/03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) and [VIII.3 → IX](../part08-md/03-ab-initio-and-coarse-graining.md#bridge-to-part-ix). When potentials, thermostats, and coarse-graining each read correctly but **VIII.1–VIII.3 feel like separate LAMMPS homework**, read the prior chapter's **Bridge** — atomistic descent is **\(V(\mathbf{r})\) → ensembles at \(T_w\) → audited exports**.
+
+| Transition | Bridge anchor | One-line hinge on the wire (read aloud) |
+|------------|---------------|----------------------------------------|
+| [VIII.0 → VIII.1](#bridge-epilogue-hinge) | Opening → phase space | Line cores need atoms; \(\{\mathbf{r}_i\}\) replaces the DDD cutoff. |
+| [VIII.1 → VIII.2](01-potentials-phase-space.md#bridge) | Potentials → ensembles | 0 K EAM minimum is not the wire at \(T_w\) — NVT samples the grip-heated specimen. |
+| [VIII.2 → VIII.3](02-ensembles-integrators.md#bridge) | Trajectories → coarse-graining | Empirical \(V\) is trusted until ab initio and yaml exports audit Part VII. |
+
+**Baby picture:** mobility at \(T_w\), not 300 K, threads every hinge — see [intra-part descent index](../appendix/sources.md#bridge-reunion-intra-part-descent-vi-ix) and [Closing the arc (VIII)](../appendix/sources.md#closing-the-arc-reunion-index-row-27).
+
 ## Bridge {#bridge-epilogue-hinge}
 
 Part VII ended with dislocation forests, Taylor hardening, and the admission that **cores and crack tips need atoms**. [VII.3](../part07-defects/03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) named the quantities MD must supply — stacking-fault energy, core width, mobility tables — and deferred their microscopic origin to this part. Part VIII puts the atoms back on stage.
