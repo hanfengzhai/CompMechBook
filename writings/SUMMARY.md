@@ -102,7 +102,7 @@ Upstream course notes (vendored here until the `Writings` submodule links) suppl
 | V | [fvm](./fvm/chapters/SUMMARY.md) | [FVM](https://hanfengzhai.github.io/note/FVM.pdf) · [CFD](https://hanfengzhai.github.io/file/CFD_note.pdf) · [reading map](./fvm/README.md#fvm--cfd-reading-map-template-for-part-v) | 01–04 |
 | VI | [continuum](./continuum/chapters/SUMMARY.md) | [Elasticity & inelasticity](https://hanfengzhai.github.io/file/elasticity_notes.pdf) · [reading map](./continuum/README.md#continuum-mechanics-reading-map-template-for-part-vi) | 01–04 |
 | VII | [defects](./defects/chapters/SUMMARY.md) | [Defects & disorders](https://hanfengzhai.github.io/file/defects_notes.pdf) · [reading map](./defects/README.md#defects--ddd-reading-map-template-for-part-vii) | 01–03 |
-| VIII | [md](./md/chapters/SUMMARY.md) | [Atomistic modeling](https://hanfengzhai.github.io/file/AtomModel_note.pdf) | 01–03 |
-| IX | [dft](./dft/chapters/SUMMARY.md) | MSE 5720 coursework / QE workflows (see [IX.0 schematics](./dft/chapters/00-opening.md)) | 01–03 |
+| VIII | [md](./md/chapters/SUMMARY.md) | [Atomistic modeling](https://hanfengzhai.github.io/file/AtomModel_note.pdf) · [reading map](./md/README.md#md--atomistics-reading-map-template-for-part-viii) | 01–03 |
+| IX | [dft](./dft/chapters/SUMMARY.md) | MSE 5720 coursework / QE workflows (see [IX.0 schematics](./dft/chapters/00-opening.md)) · [reading map](./dft/README.md#dft--electronic-structure-reading-map-template-for-part-ix) | 01–03 |
 
 **Edit workflow:** change markdown under `writings/<topic>/chapters/`, run `./scripts/sync-writings.sh`, then `mdbook build`. The [multiscale story arc](#multiscale-story-arc-one-table) table above is the one-page plot; the [appendix sources chapter](./appendix/chapters/sources.md#continuity-hinges-index-when-the-plot-stutters) is the full continuity-hinge index when a transition still feels abrupt.
