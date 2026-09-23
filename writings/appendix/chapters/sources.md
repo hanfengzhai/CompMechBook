@@ -257,6 +257,20 @@ Each row below is a **part-boundary Bridge anchor** (the hinge where one scale o
 
 **Spot audit (any chapter boundary).** When a transition feels abrupt mid-part, read only the **opening sentence** of the prior chapter's **Bridge** section aloud — it states why the next chapter must exist. Every numbered chapter ends with a Bridge; the [chapter roadmap](#chapter-roadmap-one-continuous-arc) names each chapter's role if the Bridge table feels too coarse.
 
+### Bridge reunion intra-part (ascent, Parts I–V) {#bridge-reunion-intra-part-ascent-i-v}
+
+When part-boundary row 23 hinges read correctly but **ascent chapters feel like separate courses mid-part**, open the part-opening **Bridge reunion (intra-part)** table and read one hinge aloud before continuing. Each anchor is indexed in the part README and `00-opening.md`.
+
+| Part | Intra-part reunion anchor | Chapter transitions covered |
+|------|----------------------------|---------------------------|
+| I | [Bridge reunion intra-part I](../part01-linear-algebra/00-opening.md#bridge-reunion-intra-part-i) | I.0→I.1 through I.3→I.4 (vectors → maps → modes → \(N\to\infty\)) |
+| II | [Bridge reunion intra-part II](../part02-functional-analysis/00-opening.md#bridge-reunion-intra-part-ii) | II.0→II.1 through II.4→II.5 (motivation → norms → Hilbert → operators → spectrum) |
+| III | [Bridge reunion intra-part III](../part03-pdes/00-opening.md#bridge-reunion-intra-part-iii) | III.0→III.1 through III.3→III.4 (strong → weak → Sobolev → energy) |
+| IV | [Bridge reunion intra-part IV](../part04-fem/00-opening.md#bridge-reunion-intra-part-iv) | IV.0→IV.1 through IV.4→IV.5 (residuals → assembly → elements → elasticity → convergence) |
+| V | [Bridge reunion intra-part V](../part05-fvm/00-opening.md#bridge-reunion-intra-part-v) | V.0→V.1 through V.3→V.4 (conservation → 1D FVM → Riemann → Navier–Stokes + CHT) |
+
+The [epilogue row 23 Step 1b / 2b](../epilogue/multiscale.md#row-23-closing-loop) ascent and discretization audits assume these intra-part tables when [I.4](../part01-linear-algebra/04-toward-infinity.md#bridge-to-part-ii) is clear but [II.1](../part02-functional-analysis/01-motivation.md) still feels like a syllabus reset, or when [IV.5](../part04-fem/05-convergence.md#bridge-two-doors-from-here) is clear but [V.2](../part05-fvm/02-fvm-1d.md) still feels like a separate CFD course.
+
 ### Bridge reunion intra-part (descent, Parts VI–IX) {#bridge-reunion-intra-part-descent-vi-ix}
 
 When part-boundary row 23 hinges read correctly but **descent chapters feel like separate courses mid-part**, open the part-opening **Bridge reunion (intra-part)** table and read one hinge aloud before continuing. Each anchor is indexed in the part README and `00-opening.md`.
@@ -270,7 +284,7 @@ When part-boundary row 23 hinges read correctly but **descent chapters feel like
 
 The [epilogue row 23 Step 3](../epilogue/multiscale.md#row-23-closing-loop) descent audit and [preface row 23 Step 4](#bridge-reunion-index-row-23) full audit assume these intra-part tables when VI.4's intermission is clear but VII.1 still feels like a syllabus reset.
 
-**Baby picture:** part-boundary row 23 is **why the next part must exist**; intra-part reunion is **why the next chapter must exist** inside Act II reunion (Part VI) and Act III descent (Parts VII–IX). Row 17 is **how** to read (Scene → Bridge); rows 18–20 are **what the plot should sound like**; row 21 is **what the operator's hands should do**; row 22 is **what the operator's eyes should see**; row 23 is **why the next chapter must exist** on the same afternoon. When transitions feel mechanical, read the Bridge one-line hinge aloud, then turn the page. The [preface row 23 skill checkpoint](../preface.md#skill-navigation-row-23) closes the competence loop; the [memory sheet row 23 baby picture](memory-sheet.md#row-23-baby-picture-bridge-reunion) compresses the twelve part-boundary hinges for index-card review.
+**Baby picture:** part-boundary row 23 is **why the next part must exist**; intra-part reunion is **why the next chapter must exist** inside Act I grammar (Parts I–III), Act II discretization (Parts IV–V), Act II reunion (Part VI), and Act III descent (Parts VII–IX). Row 17 is **how** to read (Scene → Bridge); rows 18–20 are **what the plot should sound like**; row 21 is **what the operator's hands should do**; row 22 is **what the operator's eyes should see**; row 23 is **why the next chapter must exist** on the same afternoon. When transitions feel mechanical, read the Bridge one-line hinge aloud, then turn the page. The [preface row 23 skill checkpoint](../preface.md#skill-navigation-row-23) closes the competence loop; the [memory sheet row 23 baby picture](memory-sheet.md#row-23-baby-picture-bridge-reunion) compresses the twelve part-boundary hinges for index-card review.
 
 ## Concept map reunion index (row 24) {#concept-map-reunion-index-row-24}
 

@@ -18,6 +18,8 @@ pde/
 
 Chapter numbering `00`–`04` matches `src/part03-pdes/` in CompMechBook. Bridge sections connect Part II function spaces to Part IV discretization; Chapter 04 hands off to the finite element method.
 
+When III.1–III.4 feel like a PDE catalog, use [Bridge reunion intra-part III](chapters/00-opening.md#bridge-reunion-intra-part-iii) — [appendix ascent index](../appendix/chapters/sources.md#bridge-reunion-intra-part-ascent-i-v).
+
 ## Build standalone
 
 ```bash

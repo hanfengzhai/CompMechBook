@@ -18,6 +18,8 @@ linear-algebra/
 
 Chapter numbering `00`–`04` matches `src/part01-linear-algebra/` in CompMechBook. Each chapter ends with a **Bridge** section that connects the narrative to the next topic; Chapter 04 introduces function spaces and motivates Part II.
 
+When I.1–I.4 feel disconnected, use [Bridge reunion intra-part I](chapters/00-opening.md#bridge-reunion-intra-part-i) — indexed in the [appendix ascent table](../appendix/chapters/sources.md#bridge-reunion-intra-part-ascent-i-v).
+
 ## Build standalone
 
 ```bash

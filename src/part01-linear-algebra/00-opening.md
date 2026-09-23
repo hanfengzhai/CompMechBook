@@ -143,6 +143,19 @@ Each chapter adds one move to a minimal workflow you can run on paper or in NumP
 
 None of these require functional analysis — but each one is the finite-dimensional shadow of something Part II names rigorously. If you can assemble a three-node bar, solve for displacement, and extract a fundamental frequency, you have already done 80% of what a linear static/dynamic FEM code does on the first timestep. Parts II–IV replace vectors with functions and loops with weak forms; the **moves** stay the same.
 
+## Bridge reunion (intra-part I) {#bridge-reunion-intra-part-i}
+
+Row 23 in the [Bridge reunion index](../appendix/sources.md#bridge-reunion-index-row-23) lists **part-boundary** hinges (Prologue→I, I→II). When \(\mathbf{K}\mathbf{u}=\mathbf{f}\), assembly, and eigenmodes each read correctly but **chapters I.1–I.4 feel like separate linear-algebra homework**, read the prior chapter's **Bridge** opening sentence aloud — Act I still climbs **vectors → maps → modes → \(N\to\infty\)** on the same cold copper wire.
+
+| Transition | Bridge anchor | One-line hinge on the wire (read aloud) |
+|------------|---------------|----------------------------------------|
+| [I.0 → I.1](#bridge) | Opening → vectors | Panorama becomes explicit DOFs: state, stiffness, and load on the gripped wire. |
+| [I.1 → I.2](01-vectors-matrices.md#bridge) | Vectors → linear maps | Local bar stiffness must rotate and assemble before the global matrix is honest. |
+| [I.2 → I.3](02-linear-maps.md#bridge) | Maps → eigenvalues | Assembly is not the whole story — diagonalizing the map names the wire's ringing modes. |
+| [I.3 → I.4](03-eigenvalues.md#bridge) | Modes → limit | Fixed \(N\) exhausts discrete spectra; refinement sends nodal values toward a field. |
+
+**Baby picture:** read one hinge aloud at each turn; if springs, rotation, and mesh refinement still feel disconnected, you skipped a **Bridge** paragraph — not a missing theorem. The [epilogue row 23 Step 1b](../epilogue/multiscale.md#row-23-closing-loop) ascent audit pairs with this table when Part I mid-read stalls before [I.4's Part II gate](04-toward-infinity.md#bridge-to-part-ii).
+
 ## Bridge
 
 The prologue introduced the copper wire at every scale and named the four questions every rung must answer. Part I begins at the rung every simulation shares — degrees of freedom collected into vectors, evolution and equilibrium written as linear systems — before the wire becomes a field, a mesh, or an electron density.

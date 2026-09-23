@@ -182,6 +182,19 @@ Each chapter adds one move to the analytical pipeline that turns a blackboard PD
 
 None of these require assembling a mesh — but each one is the continuum statement FEM enforces at the limit. If you can write the weak form of \(-u''=f\) on \((0,L)\), name \(u \in H^1_0\), and explain why the energy minimum equals virtual work, you have the analytical core that Parts IV–VI discretize and interpret.
 
+## Bridge reunion (intra-part III) {#bridge-reunion-intra-part-iii}
+
+Row 23 in the [Bridge reunion index](../appendix/sources.md#bridge-reunion-index-row-23) lists **part-boundary** hinges (II→III, III→IV). When strong forms, weak forms, and Sobolev membership each read correctly but **chapters III.1–III.4 feel like a PDE catalog**, read the prior chapter's **Bridge** opening sentence aloud — Schematic 14 still climbs **strong → weak → \(H^1\) → energy minimum** on the same grip corner and thermocouple.
+
+| Transition | Bridge anchor | One-line hinge on the wire (read aloud) |
+|------------|---------------|----------------------------------------|
+| [III.0 → III.1](#bridge) | Opening → strong form | Function spaces from Part II now carry pointwise physics — and name where \(C^2\) fails on the wire. |
+| [III.1 → III.2](01-strong-form.md#bridge) | Strong → weak | Pointwise Laplacians yield to integral balance — the FEM's native language. |
+| [III.2 → III.3](02-weak-form.md#bridge) | Weak → Sobolev | Integration by parts only makes sense once \(\nabla u\) is defined for hat functions. |
+| [III.3 → III.4](03-sobolev-spaces.md#bridge) | Sobolev → energy | Well-posed weak forms become minimization — Lax–Milgram before any mesh exists. |
+
+**Baby picture:** read one hinge aloud at each turn; if heat and elasticity still feel like separate courses mid-part, you skipped a **Bridge** paragraph. Pair with [intra-part ascent index](../appendix/sources.md#bridge-reunion-intra-part-ascent-i-v) and [epilogue row 23 Step 1b](../epilogue/multiscale.md#row-23-closing-loop).
+
 ## Bridge
 
 Part II ended with a promise: the copper wire's displacement and temperature live in Sobolev spaces, not in \(\mathbb{R}^N\) for any fixed mesh. [II.5](../part02-functional-analysis/05-spectral-theorem.md#bridge-to-part-iii) named the weak form a **recurring character** about to speak on stage — multiply by a test function, integrate by parts, balance virtual work for every admissible displacement. Part III is that act.

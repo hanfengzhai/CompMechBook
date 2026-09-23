@@ -19,6 +19,8 @@ fem/
 
 Chapter numbering `00`–`05` matches `src/part04-fem/` in CompMechBook. Bridge sections connect weighted residuals to Galerkin assembly, elements, elasticity, and convergence. Chapter 05 offers **two doors**: Door A continues to Part V (finite volumes and conservation laws); Door B skips ahead to Part VI (continuum mechanics and stress–balance language). Both paths reconverge before Part VII.
 
+When IV.1–IV.5 feel like separate FEA homework, use [Bridge reunion intra-part IV](chapters/00-opening.md#bridge-reunion-intra-part-iv) — [appendix ascent index](../appendix/chapters/sources.md#bridge-reunion-intra-part-ascent-i-v).
+
 ## Build standalone
 
 ```bash

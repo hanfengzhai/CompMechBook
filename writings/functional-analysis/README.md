@@ -19,6 +19,8 @@ functional-analysis/
 
 Chapter numbering `00`–`05` matches `src/part02-functional-analysis/` in CompMechBook. Each chapter ends with a **Bridge** section that connects the narrative to the next topic; Chapter 05 hands off to Part III (PDEs and weak forms).
 
+When II.1–II.5 feel like separate analysis courses, use [Bridge reunion intra-part II](chapters/00-opening.md#bridge-reunion-intra-part-ii) — [appendix ascent index](../appendix/chapters/sources.md#bridge-reunion-intra-part-ascent-i-v).
+
 ## Build standalone
 
 ```bash

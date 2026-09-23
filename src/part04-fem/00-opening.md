@@ -201,6 +201,20 @@ Each chapter adds one move to a minimal FEM workflow you can run on paper, in Nu
 
 None of these require a commercial solver — but each one is the discretization move Part VI will name with stress tensors and virtual work. If you can assemble a bar, pass a patch test, run the [IV.4 one-mesh-two-fields lab act](04-poisson-to-elasticity.md#lab-act-one-mesh-two-fields-act-iiiii-on-the-copper-wire), and show tip displacement stabilizes under refinement, you have the core of Acts II–III's linear thermoelastic FEM before yield, hardening, or atomistic resolution enter the story.
 
+## Bridge reunion (intra-part IV) {#bridge-reunion-intra-part-iv}
+
+Row 23 in the [Bridge reunion index](../appendix/sources.md#bridge-reunion-index-row-23) lists **part-boundary** hinges (III→IV, IV→V/VI). When weighted residuals, assembly, and patch tests each read correctly but **chapters IV.1–IV.5 feel like separate FEA homework**, read the prior chapter's **Bridge** opening sentence aloud — the Galerkin ladder still runs **residual → assembly → elements → vector physics → convergence** on one meshed wire.
+
+| Transition | Bridge anchor | One-line hinge on the wire (read aloud) |
+|------------|---------------|----------------------------------------|
+| [IV.0 → IV.1](#bridge) | Opening → weighted residuals | Part III's energy minimum becomes an orthogonality condition on \(V_h\). |
+| [IV.1 → IV.2](01-weighted-residuals.md#bridge) | Residuals → assembly | Galerkin on elements scatters local stiffness into the global \(\mathbf{K}\mathbf{U}=\mathbf{F}\) Part I introduced. |
+| [IV.2 → IV.3](02-galerkin-assembly.md#bridge) | Assembly → elements | Global matrices are only as honest as shape functions, maps, and quadrature inside each element. |
+| [IV.3 → IV.4](03-elements-quadrature.md#bridge) | Scalar → vector | Poisson's training ground extends to elasticity and thermoelastic coupling on the same connectivity. |
+| [IV.4 → IV.5](04-poisson-to-elasticity.md#bridge) | Physics → convergence | A smooth mesh is not proof — Céa ties \(h\) and \(p\) to load-cell trust before yield. |
+
+**Baby picture:** read one hinge aloud at each turn; if assembly, patch tests, and \(h\)-refinement still feel disconnected, you skipped a **Bridge** paragraph. Pair with [intra-part ascent index](../appendix/sources.md#bridge-reunion-intra-part-ascent-i-v) and [epilogue row 23 Step 2b](../epilogue/multiscale.md#row-23-closing-loop).
+
 ## Bridge
 
 Part III ended with energy methods and the promise of assembly. The first chapter below introduces weighted residuals — the unifying idea behind Galerkin's method — and shows why choosing test functions as trial functions is the natural discretization of the weak form the copper wire's equilibrium demands.

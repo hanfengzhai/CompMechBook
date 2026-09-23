@@ -194,6 +194,19 @@ Each chapter adds one move to a conservation-first workflow that complements Par
 
 None of these require a full CFD code — but each one is the transport dialect the air around the wire demands. If you can balance fluxes on three cells, state a CFL limit, and explain why wall temperature must match at a solid–fluid interface, you have the core of Act II's conjugate heat transfer before Part VI names the stress and flux tensors both sides approximate.
 
+## Bridge reunion (intra-part V) {#bridge-reunion-intra-part-v}
+
+Row 23 in the [Bridge reunion index](../appendix/sources.md#bridge-reunion-index-row-23) lists **part-boundary** hinges (IV→V, V→VI). When integral balances, upwind stencils, and Riemann fluxes each read correctly but **chapters V.1–V.4 feel like separate CFD homework**, read the prior chapter's **Bridge** opening sentence aloud — the conservation ladder still runs **integral form → 1D FVM → nonlinear fluxes → Navier–Stokes + CHT** around the same hot wire.
+
+| Transition | Bridge anchor | One-line hinge on the wire (read aloud) |
+|------------|---------------|----------------------------------------|
+| [V.0 → V.1](#bridge) | Opening → conservation | Door A from Part IV: cell averages replace trial functions, but fluxes must still balance Joule heat leaving the surface. |
+| [V.1 → V.2](01-conservation-integral.md#bridge) | Integral → semi-discrete | The conservation rhythm becomes an explicit face-flux update with a CFL clock. |
+| [V.2 → V.3](02-fvm-1d.md#bridge) | Linear → nonlinear | First-order upwind smears shocks — Riemann fluxes restore entropy on steep fronts. |
+| [V.3 → V.4](03-fluxes-riemann.md#bridge) | Hyperbolic → Navier–Stokes | Viscous fluxes and incompressibility couple the air boundary layer to FEM conduction at \(T_w\). |
+
+**Baby picture:** read one hinge aloud at each turn; if CFL limits and CHT still feel distant from the thermocouple, you skipped a **Bridge** paragraph. Pair with [intra-part ascent index](../appendix/sources.md#bridge-reunion-intra-part-ascent-i-v) and [epilogue row 23 Step 2b](../epilogue/multiscale.md#row-23-closing-loop).
+
 ## Bridge
 
 Part IV assembled stiffness matrices from shape functions; [IV.5](../part04-fem/05-convergence.md#bridge-two-doors-from-here) named **Door A** — conservation on control volumes for fluids, shocks, and steep advection fronts. Part V walks through that door. The physics of the copper wire did not change; the **computational instinct** did.

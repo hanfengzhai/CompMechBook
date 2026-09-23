@@ -18,6 +18,8 @@ fvm/
 
 Chapter numbering `00`–`04` matches `src/part05-fvm/` in CompMechBook. Topics include conservation form, cell averages, eigenstructure, shock-tube verification, and Navier–Stokes CFD. Bridge sections connect Part IV (FEM for elliptic solids) to integral flux balance on the copper wire's cooling flow.
 
+When V.1–V.4 feel like separate CFD homework, use [Bridge reunion intra-part V](chapters/00-opening.md#bridge-reunion-intra-part-v) — [appendix ascent index](../appendix/chapters/sources.md#bridge-reunion-intra-part-ascent-i-v).
+
 ## Build standalone
 
 ```bash

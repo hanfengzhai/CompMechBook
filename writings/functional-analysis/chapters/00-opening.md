@@ -146,6 +146,20 @@ Each chapter adds one move to a workflow that turns "the mesh looks smooth" into
 
 None of these require running a commercial FEM code — but each one is the infinite-dimensional justification for what Part IV assembles. If you can state the weak form of \(-u''=f\) on \((0,1)\), name the space \(u \in H^1_0\), and explain why Galerkin is projection rather than guesswork, you have the core of ME 412 on the copper wire. Parts III–IV replace definitions with PDEs and loops; the **moves** stay the same.
 
+## Bridge reunion (intra-part II) {#bridge-reunion-intra-part-ii}
+
+Row 23 in the [Bridge reunion index](../appendix/sources.md#bridge-reunion-index-row-23) lists **part-boundary** hinges (I→II, II→III). When norms, Hilbert geometry, and operators each read correctly but **chapters II.1–II.5 feel like separate analysis courses**, read the prior chapter's **Bridge** opening sentence aloud — the grammar climb still runs **motivation → measure → geometry → maps → spectrum** on the same mesh-refinement plot from Part I.
+
+| Transition | Bridge anchor | One-line hinge on the wire (read aloud) |
+|------------|---------------|----------------------------------------|
+| [II.0 → II.1](#bridge) | Opening → motivation | Part I's \(N\to\infty\) promise needs a room where Cauchy sequences stay inside the admissible class. |
+| [II.1 → II.2](01-motivation.md#bridge) | Motivation → normed spaces | Weak forms need a length measure before inner products add angles. |
+| [II.2 → II.3](02-normed-spaces.md#bridge) | Norms → Hilbert spaces | Energy norms from inner products make Galerkin orthogonality geometric, not algebraic luck. |
+| [II.3 → II.4](03-hilbert-spaces.md#bridge) | Hilbert → operators | Projections and Riesz loads become matrices-in-the-limit: stiffness as an operator. |
+| [II.4 → II.5](04-operators-duality.md#bridge) | Operators → spectrum | Self-adjoint compact maps diagonalize — discrete \((\mathbf{K},\mathbf{M})\) modes preview the limit. |
+
+**Baby picture:** read one hinge aloud at each turn; if completeness, duality, and spectral language still feel stitched at the seams, you skipped a **Bridge** paragraph. Pair with [intra-part ascent index](../appendix/sources.md#bridge-reunion-intra-part-ascent-i-v) and [epilogue row 23 Step 1b](../epilogue/multiscale.md#row-23-closing-loop).
+
 ## Bridge
 
 Part I ended with a promise: as the mesh refines, the copper wire's displacement and temperature fields live in infinite-dimensional spaces, not in \(\mathbb{R}^N\) for any fixed \(N\). [I.4](../part01-linear-algebra/04-toward-infinity.md#bridge-to-part-ii) named the three-step bridge — weak form, subspace \(V_h \subset H^1\), matrix system — and deferred steps 1–2 to this part. The first chapter below makes that promise precise: why weak forms appear, why classical smoothness fails at corners, and why the stiffness matrix is a Galerkin projection rather than an arbitrary sparse array.
