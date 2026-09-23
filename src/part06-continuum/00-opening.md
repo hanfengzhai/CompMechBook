@@ -192,7 +192,9 @@ Each chapter adds one move to the continuum vocabulary that makes FEM and FVM ou
 
 None of these require running DDD or MD — but each one is the physics behind the numbers Part IV assembles. If you can compute axial stretch from a displacement field, write Cauchy stress balance, and explain why cold-drawn hardening is not in \(\mathbb{C}\) alone, you have the continuum floor before the book descends to dislocations and atoms.
 
-## Bridge
+## Bridge {#bridge}
+
+**One-line hinge (read aloud):** FEM and FVM already computed nodal \(\mathbf{U}\) and cell fluxes — kinematics is where those numbers become a deformation gradient on the same copper wire.
 
 Parts IV and V solved PDEs on meshes. Part VI names the fields those PDEs carry — deformation gradient, strain, stress — and derives the virtual work principle that both discretizations inherit. The first chapter begins with the geometry of deformation: how the copper wire stretches, rotates, and changes volume when pulled.
 

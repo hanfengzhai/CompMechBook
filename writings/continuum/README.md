@@ -30,6 +30,8 @@ Chapter numbering `00`–`04` matches `src/part06-continuum/` in CompMechBook. B
 
 See the [unified arc diagram](../SUMMARY.md#one-diagram-ascent-then-descent) for where Part VI closes the ascent before descent to defects and atoms.
 
+**Intra-part Bridge reunion (row 23).** When VI.1–VI.4 feel like separate courses despite correct Scene prose, use the [Part VI intra-part bridge table](../appendix/chapters/sources.md#bridge-reunion-intra-part-vi) — read the prior chapter's Bridge one-liner, then the next chapter's opening hinge (`#opening-hinge-vi0-to-vi1` through `#opening-hinge-vi3-to-vi4`).
+
 ## Build standalone
 
 ```bash

@@ -11,6 +11,19 @@ Part IV assembled \(\int \boldsymbol{\varepsilon}(\mathbf{u}):\mathbb{C}:\boldsy
 
 When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
 
+## Closing the arc from Part VI.1 {#opening-hinge-vi1-to-vi2}
+
+If you have read linearly since the prologue, [VI.1](01-kinematics.md) linked grip displacement to \(\mathbf{F}\), Poisson contraction, and the \(B\)-matrix shadow Part IV already integrated — geometry without yet naming what the load cell measures. Part VI.2 **closes the force loop**:
+
+| Part VI.1 export (kinematics) | Part VI.2 vocabulary |
+|-------------------------------|----------------------|
+| \(\mathbf{F}\), \(\boldsymbol{\varepsilon}\), objectivity | Cauchy stress \(\boldsymbol{\sigma}\); traction \(\boldsymbol{\sigma}\mathbf{n}\) |
+| Micrometer Lab act: \(\varepsilon_{22}/\varepsilon_{11} \approx -\nu\) | Momentum balance \(\nabla\cdot\boldsymbol{\sigma}+\mathbf{b}=\mathbf{0}\) |
+| Thermal eigenstrain from [`cht_export.yaml`](../../fixtures/cht_export.yaml) | Hooke \(\boldsymbol{\sigma}=\mathbb{C}:(\boldsymbol{\varepsilon}-\boldsymbol{\varepsilon}_{\text{th}})\) |
+| [VI.1 Bridge](01-kinematics.md#bridge-to-vi2) | Three-instrument Lab act: load cell, thermocouple, camera |
+
+The [Part VI intra-part bridge table](../appendix/sources.md#bridge-reunion-intra-part-vi) reunites this opening with [row 23](../preface.md#skill-navigation-row-23) when kinematics reads correctly but balance laws feel like a new subject — read [VI.1's Bridge](01-kinematics.md#bridge-to-vi2) one line aloud before continuing.
+
 ## Scene: three balances on one wire
 
 The tensile frame from Part I is still running, but the operator has raised the current. Three instruments watch the same copper cylinder:
@@ -330,7 +343,9 @@ Parts I–V built the same four-question discipline the Functional Analysis Note
 
 **Part I recap:** the wire's FEM solve is still \(\mathbf{K}\mathbf{u}=\mathbf{f}\). The entries of \(\mathbf{K}\) are integrals of \(\mathbb{C}:\boldsymbol{\varepsilon}(\mathbf{N}_I):\boldsymbol{\varepsilon}(\mathbf{N}_J)\) — the continuum tensors above, projected onto shape functions. Part VI.4 closes the part-level checkpoint with hyperelasticity, yield, and the doorway to dislocations.
 
-## Bridge
+## Bridge {#bridge-to-vi3}
+
+**One-line hinge (read aloud):** Cauchy stress and Hooke's law name the load cell reading, but \(\mathbf{K}\mathbf{U}=\mathbf{F}\) is credible only when virtual work proves assembly is energy minimization — not sparse algebra alone.
 
 Balance laws, stress, and constitutive relations complete the **field vocabulary** Part IV and Part V approximated on meshes and control volumes — but the copper wire's elastic response is not finished with naming tensors. Static equilibrium is also a **minimum principle**.
 

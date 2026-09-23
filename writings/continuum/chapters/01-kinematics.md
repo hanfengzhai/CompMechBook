@@ -13,6 +13,19 @@ The copper wire under tension is our recurring specimen — at the continuum sca
 
 When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
 
+## Closing the arc from Part VI.0 {#opening-hinge-vi0-to-vi1}
+
+If you have read linearly since the prologue, [VI.0](00-opening.md) reunited Part IV's Galerkin ladder with Part V's conservation ladder — twin discretizations on one specimen, Cauchy stress named at the midpoint, `cht_export.yaml` ready for thermal eigenstrain. Part VI.1 does not re-derive assembly; it **geometrizes** what the mesh already stores:
+
+| Part VI.0 export (continuum opening) | Part VI.1 vocabulary |
+|--------------------------------------|----------------------|
+| Nodal \(\mathbf{U}\) from shape functions | Displacement field \(\mathbf{u}(\mathbf{X})\); \(\mathbf{F}=\mathbf{I}+\nabla\mathbf{u}\) |
+| Twin ladders → virtual work preview | Axial stretch \(\lambda\) and Poisson contraction on the wire |
+| Wall \(T_w\) from CHT | Thermal strain increment \(\alpha\Delta T\,\mathbf{I}\) superposed on mechanical \(\boldsymbol{\varepsilon}\) |
+| [V.4 → VI Bridge](../part05-fvm/04-navier-stokes-cfd.md#bridge-to-part-vi) | Rate counterpart \(\mathbf{D}\) when transient kinematics matter |
+
+The [Part VI intra-part bridge table](../appendix/sources.md#bridge-reunion-intra-part-vi) reunites this opening with [row 23](../preface.md#skill-navigation-row-23) when Scene and twin-ladder prose read correctly but VI.0 and VI.1 still feel like separate courses — read [VI.0's Bridge](00-opening.md#bridge) one line aloud before continuing.
+
 ## Scene: the wire in the tensile frame
 
 Picture a 1 mm diameter copper wire, 100 mm gauge length, gripped at both ends in a tensile frame. A 50 N axial load produces a modest engineering strain \(\varepsilon \approx \sigma/E \sim 10^{-4}\) — well within the linear elastic range Part IV assumed when assembling \(\mathbf{K}\). Every node on the FEM mesh carries a displacement vector; kinematics asks what **continuous map** those nodal values sample.
@@ -279,7 +292,9 @@ This chapter is where Part IV's nodal displacements acquire geometric meaning. B
 
 The Lab act linked grip displacement to measurable diameter change via \(\varepsilon_{22} = -\nu\varepsilon_{11}\). Part IV's \(B\)-matrix is the discrete shadow of \(\boldsymbol{\varepsilon}(\mathbf{u})\) defined here; Part V's velocity field is the rate counterpart \(\mathbf{D}\).
 
-## Bridge
+## Bridge {#bridge-to-vi2}
+
+**One-line hinge (read aloud):** \(\mathbf{F}\) and \(\boldsymbol{\varepsilon}\) are geometry without a load cell reading until Cauchy stress and balance laws pair stretch with traction on the grips.
 
 Kinematics names the geometric objects — \(\mathbf{F}\), \(\boldsymbol{\varepsilon}\), \(\mathbf{E}\), \(\mathbf{D}\). Forces enter through **stress tensors** and **balance laws** that constrain how stress varies in space and time.
 

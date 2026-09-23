@@ -11,6 +11,19 @@ The copper wire under tension minimizes (or rather, stationarizes) elastic energ
 
 When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
 
+## Closing the arc from Part VI.2 {#opening-hinge-vi2-to-vi3}
+
+If you have read linearly since the prologue, [VI.2](02-stress-balance.md) wrote momentum and energy balance with the three-instrument Lab act — load cell, thermocouple, thermal camera on the same Joule-heated wire. Part VI.3 **variationalizes** that equilibrium:
+
+| Part VI.2 export (balance laws) | Part VI.3 vocabulary |
+|---------------------------------|----------------------|
+| \(\nabla\cdot\boldsymbol{\sigma}+\mathbf{f}=\mathbf{0}\) | Stationarity \(\delta\Pi[\mathbf{u}]=0\) of total potential energy |
+| Hooke \(\boldsymbol{\sigma}=\mathbb{C}:\boldsymbol{\varepsilon}\) | Strain energy density \(\psi(\boldsymbol{\varepsilon})\) integrated over \(\Omega\) |
+| Part IV \(\mathbf{K}\) as discrete equilibrium | Rayleigh–Ritz: \(\mathbf{K}\mathbf{U}=\mathbf{F}\) is the first variation of \(\Pi\) on \(V_h\) |
+| [VI.2 Bridge](02-stress-balance.md#bridge-to-vi3) | Virtual work reunites Part III weak forms with Part IV assembly |
+
+The [Part VI intra-part bridge table](../appendix/sources.md#bridge-reunion-intra-part-vi) reunites this opening with [row 23](../preface.md#skill-navigation-row-23) when balance laws read correctly but \(\delta\Pi=0\) still feels disconnected from the load cell — read [VI.2's Bridge](02-stress-balance.md#bridge-to-vi3) one line aloud before continuing.
+
 ## Scene: energy stored in the stretch
 
 Return to the tensile frame with the load cell climbing. Below yield, the wire lengthens elastically: each increment of grip displacement adds work, and most of that work is **stored** as elastic strain energy recoverable on unloading. Plot \(\Pi(\mathbf{u})\) — total potential energy as a functional of the displacement field — and the equilibrium path is the trajectory that keeps \(\Pi\) stationary under admissible variations.
@@ -314,7 +327,9 @@ The three-element bar worked example closed the loop from Part I's springs throu
 
 The [VI.4 opening hinge from VI.3](04-nonlinear-plasticity-preview.md#opening-hinge-vi3-to-vi4) is the downstream half of this table — turn there when the load cell knee appears but your energy functional still returns a straight line.
 
-## Bridge
+## Bridge {#bridge-to-vi4}
+
+**One-line hinge (read aloud):** Quadratic \(\Pi\) explains Act III's straight load-cell line — the knee in Act IV breaks energy minimization until history and yield enter the story.
 
 Variational elasticity closes the loop the book has traced since Part I's spring network: minimize energy in \(H^1\), derive virtual work, assemble \(\mathbf{K}\) — and recognize the discrete solve as Rayleigh–Ritz on the same functional Part III named.
 
