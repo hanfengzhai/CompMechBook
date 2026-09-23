@@ -20,7 +20,7 @@ The unified book in [`src/`](../src/SUMMARY.md) reads like one novel: a copper w
 | [defects](./defects/chapters/SUMMARY.md) | Part VII | 00, 01–03 |
 | [md](./md/chapters/SUMMARY.md) | Part VIII | 00, 01–03 |
 | [dft](./dft/chapters/SUMMARY.md) | Part IX | 00, 01–03 |
-| [appendix](./appendix/chapters/SUMMARY.md) | Appendices | glossary, sources, memory-sheet |
+| [appendix](./appendix/chapters/SUMMARY.md) | Appendices | glossary, sources, memory-sheet · [continuity reading map](./appendix/README.md#appendix-reading-map-continuity-when-the-plot-stutters) |
 
 Sync into the main book:
 
