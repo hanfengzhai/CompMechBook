@@ -52,6 +52,34 @@ The book climbs **up** from discrete algebra to continuum PDEs and FEM/FVM (Part
 
 **Smooth reading rule:** never skip a chapter **Bridge** — it is the hinge that explains why the next scale (or the next discretization) is forced by the physics, not by the syllabus.
 
+### One diagram (ascent, then descent)
+
+The plot is not a syllabus stack — it is one afternoon on one wire, climbing discretization until Cauchy stress is named, then descending until electron density audits the potential.
+
+```mermaid
+flowchart TB
+  subgraph ascent["Ascent — same copper wire, finer rulers"]
+    LA["Part I<br/>Linear algebra<br/>K u = f"]
+    FA["Part II<br/>Functional analysis<br/>H¹, operators"]
+    PDE["Part III<br/>Weak PDEs<br/>Sobolev"]
+    FEM["Part IV<br/>FEM / Galerkin"]
+    FVM["Part V<br/>FVM / CHT"]
+    CON["Part VI<br/>Continuum<br/>σ, virtual work"]
+    LA --> FA --> PDE --> FEM --> FVM --> CON
+  end
+  subgraph descent["Descent — same wire, smaller state variables"]
+    DEF["Part VII<br/>DDD, forest"]
+    MD["Part VIII<br/>MD, EAM"]
+    DFT["Part IX<br/>DFT, Kohn–Sham"]
+    DEF --> MD --> DFT
+  end
+  CON -->|"VI.4 Bridge: mesh fine, physics wrong"| DEF
+  DFT -->|"IX.3 → epilogue handshakes"| EP["Epilogue<br/>DFT→MD→DDD→FEM"]
+  EP -.->|"pedigree YAML"| CON
+```
+
+Read **Bridge** sections in chapter order — they are the edges the diagram cannot draw: thermocouple beats, load-cell knees, and export tables between codes.
+
 ## Functional Analysis Notes layout (Writings.git parity)
 
 Every subtree under `writings/` mirrors the [**Functional Analysis Notes**](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) (ME 412) discipline — not by copying proofs, but by repeating the same **reading contract**:
