@@ -98,7 +98,7 @@ Upstream course notes (vendored here until the `Writings` submodule links) suppl
 | I | [linear-algebra](./linear-algebra/chapters/SUMMARY.md) | [ME 300A Linear Algebra](https://hanfengzhai.github.io/file/ME300A_LinAlg.pdf) · [reading map](./linear-algebra/README.md#me-300a-reading-map-template-for-part-i) | 01–04 |
 | II | [functional-analysis](./functional-analysis/chapters/SUMMARY.md) | [ME 412 Functional Analysis](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) · [reading map](./functional-analysis/README.md#me-412-reading-map-template-for-all-writings-subtrees) | 01–05 |
 | III | [pde](./pde/chapters/SUMMARY.md) | [ME 300B PDE](https://hanfengzhai.github.io/file/ME300B_PDE.pdf) · [reading map](./pde/README.md#me-300b-reading-map-template-for-part-iii) | 01–04 |
-| IV | [fem](./fem/chapters/SUMMARY.md) | [FEA notes](https://hanfengzhai.github.io/file/FEA_notes.pdf) | 01–05 |
+| IV | [fem](./fem/chapters/SUMMARY.md) | [FEA notes](https://hanfengzhai.github.io/file/FEA_notes.pdf) · [reading map](./fem/README.md#fea-reading-map-template-for-part-iv) | 01–05 |
 | V | [fvm](./fvm/chapters/SUMMARY.md) | [FVM](https://hanfengzhai.github.io/note/FVM.pdf) · [CFD](https://hanfengzhai.github.io/file/CFD_note.pdf) | 01–04 |
 | VI | [continuum](./continuum/chapters/SUMMARY.md) | [Elasticity & inelasticity](https://hanfengzhai.github.io/file/elasticity_notes.pdf) | 01–04 |
 | VII | [defects](./defects/chapters/SUMMARY.md) | [Defects & disorders](https://hanfengzhai.github.io/file/defects_notes.pdf) | 01–03 |
