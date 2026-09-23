@@ -17,6 +17,17 @@ defects/
 
 Chapter numbering `00`–`03` matches `src/part07-defects/` in CompMechBook. Bridge sections connect continuum elasticity to mesoscale plasticity; Chapter 03 hands off to Part VIII (molecular dynamics).
 
+## Defects & DDD reading map (template for Part VII)
+
+| Chapter | Defects Notes object | Wire beat | Hands off to |
+|---------|----------------------|-----------|--------------|
+| 00 Opening | Concept map: object → structure → theorem → failure; descent begins | VI.4 knee was fitted \(H\); slip lines appear at yield | 01 |
+| 01 Defect taxonomy | Point, line, surface defects; Burgers vector \(\mathbf{b}\) | Cold-drawn forest before the test; \(T_w\) from CHT softens glide | 02 |
+| 02 Dislocation dynamics | Peach–Köhler, mobility, Taylor hardening, OpenDiS | Lines multiply under FEM stress; GSF ribbon links to DFT | 03 |
+| 03 Polycrystal & FEM handoff | RVE homogenization, crystal plasticity, DAMASK | OpenDiS \(\rho(\gamma)\) exports replace phenomenological \(H\) | [Part VIII](../md/chapters/00-opening.md) |
+
+See the [unified arc diagram](../SUMMARY.md#one-diagram-ascent-then-descent) for where Part VII begins the descent after Part VI closes the ascent.
+
 ## Build standalone
 
 ```bash

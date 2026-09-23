@@ -101,7 +101,7 @@ Upstream course notes (vendored here until the `Writings` submodule links) suppl
 | IV | [fem](./fem/chapters/SUMMARY.md) | [FEA notes](https://hanfengzhai.github.io/file/FEA_notes.pdf) · [reading map](./fem/README.md#fea-reading-map-template-for-part-iv) | 01–05 |
 | V | [fvm](./fvm/chapters/SUMMARY.md) | [FVM](https://hanfengzhai.github.io/note/FVM.pdf) · [CFD](https://hanfengzhai.github.io/file/CFD_note.pdf) · [reading map](./fvm/README.md#fvm--cfd-reading-map-template-for-part-v) | 01–04 |
 | VI | [continuum](./continuum/chapters/SUMMARY.md) | [Elasticity & inelasticity](https://hanfengzhai.github.io/file/elasticity_notes.pdf) · [reading map](./continuum/README.md#continuum-mechanics-reading-map-template-for-part-vi) | 01–04 |
-| VII | [defects](./defects/chapters/SUMMARY.md) | [Defects & disorders](https://hanfengzhai.github.io/file/defects_notes.pdf) | 01–03 |
+| VII | [defects](./defects/chapters/SUMMARY.md) | [Defects & disorders](https://hanfengzhai.github.io/file/defects_notes.pdf) · [reading map](./defects/README.md#defects--ddd-reading-map-template-for-part-vii) | 01–03 |
 | VIII | [md](./md/chapters/SUMMARY.md) | [Atomistic modeling](https://hanfengzhai.github.io/file/AtomModel_note.pdf) | 01–03 |
 | IX | [dft](./dft/chapters/SUMMARY.md) | MSE 5720 coursework / QE workflows (see [IX.0 schematics](./dft/chapters/00-opening.md)) | 01–03 |
 

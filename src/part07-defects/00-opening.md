@@ -20,7 +20,7 @@ When yield surfaces feel like curve-fitting, read the sentence above aloud — i
 | [VII.2](02-dislocation-dynamics.md) | Lines glide under the FEM stress field | Mobility laws, time integration, Taylor hardening | Export \(\rho\), \(\tau(\gamma)\) → crystal plasticity in VII.3 |
 | [VII.3](03-polycrystal-and-fem-handoff.md) | OpenDiS statistics feed DAMASK polycrystal FEM | Homogenization, internal variables, mesh handoff | [Bridge to Part VIII](03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) |
 
-Read in order. Each chapter ends with a **Bridge** that states why the next chapter must exist; simulating DDD without defect taxonomy is motion without Burgers geometry; exporting hardening without link statistics is curve-fitting without a forest.
+Read in order. Each chapter ends with a **Bridge** that states why the next chapter must exist; simulating DDD without defect taxonomy is motion without Burgers geometry; exporting hardening without link statistics is curve-fitting without a forest. The chapter guide table above is the in-book reading map; the standalone [Defects & DDD reading map](https://github.com/hanfengzhai/CompMechBook/blob/main/writings/defects/README.md#defects--ddd-reading-map-template-for-part-vii) in `writings/defects/` indexes the same beats against the Defects Notes PDF (ME 412-style parity).
 
 ## Scene
 
