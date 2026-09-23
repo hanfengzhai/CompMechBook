@@ -11,6 +11,19 @@ Continuum elasticity in Part VI describes smooth displacement fields. Defects ar
 
 When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
 
+## Closing the arc from Part VII.0 {#opening-hinge-vii0-to-vii1}
+
+If you have read linearly since the prologue, [VII.0](00-opening.md) closed with phenomenological \(J_2\) hardening from Part VI — fitted \(H\), \(\sigma_{y0}\), return-mapping at the load cell knee — and a Bridge that named the dislocation forest cold drawing stored without yet classifying Burgers geometry. Part VII.1 does not re-derive virtual work; it **inventories** what broke the smooth continuum picture:
+
+| Part VII.0 export (descent opening) | Part VII.1 vocabulary |
+|-------------------------------------|------------------------|
+| Fitted hardening modulus \(H\) | Line defects with Burgers vector \(\mathbf{b}\) |
+| Isotropic yield surface | Slip systems {111}\(\langle 110 \rangle\) on drawn copper |
+| Continuum stress from Part IV FEM | Slip traces visible after yield — mesoscale evidence |
+| [VI.4 Bridge](../part06-continuum/04-nonlinear-plasticity-preview.md#bridge-to-part-vii) | Point, line, and surface defect taxonomy |
+
+The [Part VII intra-part bridge table](../appendix/sources.md#bridge-reunion-intra-part-vii) reunites this opening with [row 23](../preface.md#skill-navigation-row-23) when Scene and Lab acts read correctly but VII.0 and VII.1 still feel like separate courses — read [VII.0's Bridge](00-opening.md#bridge) one line aloud before continuing.
+
 ## Scene: the wire yields
 
 Part VI ended with J₂ plasticity and isotropic hardening — \(\sigma_y = \sigma_{y0} + H\alpha\) — parameters that made the return-mapping loop converge but did not explain **where** \(H\) and \(\sigma_{y0}\) came from. The force–displacement curve from Part I finally bends at the same yield knee those parameters were fitted to mimic. The load cell still reads force, but the slope drops: the wire is **plastic**. A polished surface that was mirror-smooth now shows faint **slip lines** — traces of dislocation motion on {111} planes. Continuum FEM with isotropic elasticity predicted a straight elastic segment forever; the experiment crossed a yield point that lives not in \(\mathbb{C}\) alone but in a **forest of line defects** stored by cold drawing.

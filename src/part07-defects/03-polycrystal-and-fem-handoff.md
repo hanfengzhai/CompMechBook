@@ -11,6 +11,19 @@ The cold-drawn copper wire is not a single crystal. It is thousands of grains, e
 
 When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
 
+## Closing the arc from Part VII.2 {#opening-hinge-vii2-to-vii3}
+
+If you have read linearly since the prologue, [VII.2](02-dislocation-dynamics.md) closed with converged OpenDiS exports — \(\tau(\gamma)\), \(\rho(\gamma)\), link-length statistics, mobility yaml at \(T_w\) — and a [Bridge to VII.3](02-dislocation-dynamics.md#bridge-to-vii3) that named polycrystal texture without yet homogenizing across drawing dies. Part VII.3 does not re-derive Peach–Köhler; it **exports** DDD statistics to crystal plasticity and the FEM mesh Part IV assembled:
+
+| Part VII.2 export (DDD) | Part VII.3 vocabulary |
+|-------------------------|------------------------|
+| Single-crystal RVE stress curve | Texture average over grain orientations |
+| OpenDiS yaml for one slip system | DAMASK / polycrystal internal state variables |
+| Taylor fit to \(\tau(\sqrt{\rho})\) | Voce hardening \(k_1\), \(g_{\text{sat}}\) on the wire spool |
+| Mobility \(M(\tau,T)\) tables | Rate handshake toward epilogue Handshake 4a |
+
+The [Part VII intra-part bridge table](../appendix/sources.md#bridge-reunion-intra-part-vii) reunites this opening with [row 23](../preface.md#skill-navigation-row-23) when OpenDiS converges on one orientation but the macroscopic hardening curve still disagrees — read [VII.2's Bridge to VII.3](02-dislocation-dynamics.md#bridge-to-vii3) one line aloud before homogenizing texture.
+
 ## Scene: from one crystal to a spool of wire
 
 A single-crystal DDD run explains how one slip system hardens under shear. The cold-drawn wire on the bench is thousands of grains twisted by drawing dies — texture, misorientation, grain-boundary barriers. This chapter asks how DDD statistics export upward: hardening laws for crystal plasticity, internal state variables for FEM, Peierls parameters borrowed from MD. The wire experiment is polycrystalline; the multiscale pipeline must be too.

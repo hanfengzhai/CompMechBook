@@ -16,9 +16,9 @@ When yield surfaces feel like curve-fitting, read the sentence above aloud — i
 
 | Chapter | Wire story beat | Core object | Handoff |
 |---------|-----------------|-------------|---------|
-| [VII.1](01-defect-taxonomy.md) | Cold drawing left a forest before the test began | Point, line, surface defects; Burgers vector \(\mathbf{b}\) | Peach–Köhler forces → DDD in VII.2 |
-| [VII.2](02-dislocation-dynamics.md) | Lines glide under the FEM stress field | Mobility laws, time integration, Taylor hardening | Export \(\rho\), \(\tau(\gamma)\) → crystal plasticity in VII.3 |
-| [VII.3](03-polycrystal-and-fem-handoff.md) | OpenDiS statistics feed DAMASK polycrystal FEM | Homogenization, internal variables, mesh handoff | [Bridge to Part VIII](03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) |
+| [VII.1](01-defect-taxonomy.md) | Cold drawing left a forest before the test began | Point, line, surface defects; Burgers vector \(\mathbf{b}\) | [Opening hinge from VII.0](01-defect-taxonomy.md#opening-hinge-vii0-to-vii1); Peach–Köhler → DDD in VII.2 |
+| [VII.2](02-dislocation-dynamics.md) | Lines glide under the FEM stress field | Mobility laws, time integration, Taylor hardening | [Opening hinge from VII.1](02-dislocation-dynamics.md#opening-hinge-vii1-to-vii2); export \(\rho\), \(\tau(\gamma)\) → VII.3 |
+| [VII.3](03-polycrystal-and-fem-handoff.md) | OpenDiS statistics feed DAMASK polycrystal FEM | Homogenization, internal variables, mesh handoff | [Opening hinge from VII.2](03-polycrystal-and-fem-handoff.md#opening-hinge-vii2-to-vii3); [Bridge to Part VIII](03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) |
 
 Read in order. Each chapter ends with a **Bridge** that states why the next chapter must exist; simulating DDD without defect taxonomy is motion without Burgers geometry; exporting hardening without link statistics is curve-fitting without a forest. The chapter guide table above is the in-book reading map; the standalone [Defects & DDD reading map](https://github.com/hanfengzhai/CompMechBook/blob/main/writings/defects/README.md#defects--ddd-reading-map-template-for-part-vii) in `writings/defects/` indexes the same beats against the Defects Notes PDF (ME 412-style parity).
 

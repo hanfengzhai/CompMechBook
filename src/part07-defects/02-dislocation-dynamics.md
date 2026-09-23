@@ -9,6 +9,19 @@ When metal yields, dislocations multiply and tangle. **Dislocation dynamics (DDD
 
 When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
 
+## Closing the arc from Part VII.1 {#opening-hinge-vii1-to-vii2}
+
+If you have read linearly since the prologue, [VII.1](01-defect-taxonomy.md) classified point, line, and surface defects — Burgers vector \(\mathbf{b}\), forest density \(\rho\) as an internal variable, Hall–Petch grain boundaries — and a Bridge that named Peach–Köhler motion without yet integrating segment timesteps. Part VII.2 does not re-derive the taxonomy table; it **simulates** line networks under the Cauchy stress Part IV exported:
+
+| Part VII.1 export (taxonomy) | Part VII.2 vocabulary |
+|------------------------------|------------------------|
+| Scalar \(\rho\) on an input deck | Segment network with \(\mathbf{b}\), \(\boldsymbol{\xi}\) |
+| Taylor \(\tau \propto \sqrt{\rho}\) as a theorem | \(\tau(\gamma)\), link-length histograms from OpenDiS |
+| Mobility tables cited from Part VIII | Peach–Köhler \(\mathbf{f}_{\text{PK}}\); law \(\dot{\mathbf{r}} = M\mathbf{f}_{\text{PK}}\) |
+| [VII.1 Bridge](01-defect-taxonomy.md#bridge) | DDD time integration at \(T_w\) from [`cht_export.yaml`](../../fixtures/cht_export.yaml) |
+
+The [Part VII intra-part bridge table](../appendix/sources.md#bridge-reunion-intra-part-vii) reunites this opening with [row 23](../preface.md#skill-navigation-row-23) when taxonomy reads correctly but DDD feels like a new subject — read [VII.1's Bridge](01-defect-taxonomy.md#bridge) one line aloud, then open the [forest-density Lab act](#lab-act-read-the-hardening-bend-from-forest-density-act-iv) below.
+
 ## Scene: the forest grows
 
 Resume the tensile test where Part VI left it — load increasing, stress beyond yield. Inside the copper crystal, dislocation lines **glide** on {111} planes, **multiply** at Frank–Read sources, and **tangle** into a forest whose density rises with plastic strain. The load cell registers hardening: more stress needed for the next increment of stretch. No phenomenological law was typed in by hand; the curve bends because moving lines must push through a thickening forest.

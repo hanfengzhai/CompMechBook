@@ -28,6 +28,8 @@ Chapter numbering `00`–`03` matches `src/part07-defects/` in CompMechBook. Bri
 
 See the [unified arc diagram](../SUMMARY.md#one-diagram-ascent-then-descent) for where Part VII begins the descent after Part VI closes the ascent.
 
+**Intra-part Bridge reunion (row 23).** When VII.1–VII.3 feel like separate courses despite correct Scene prose, use the [Part VII intra-part bridge table](../appendix/chapters/sources.md#bridge-reunion-intra-part-vii) — read the prior chapter's Bridge one-liner, then the next chapter's opening hinge (`#opening-hinge-vii0-to-vii1`, `#opening-hinge-vii1-to-vii2`, `#opening-hinge-vii2-to-vii3`).
+
 ## Build standalone
 
 ```bash
