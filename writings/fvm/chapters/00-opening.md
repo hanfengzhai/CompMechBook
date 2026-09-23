@@ -74,7 +74,7 @@ The [Finite Volume Method Notes](https://hanfengzhai.github.io/note/FVM.pdf) and
 
 Each schematic answers the four concept-map questions for one transport layer. When a mesh converges in FEM but a fluid run loses mass or oscillates at a shock, return to the matching row: *what object, what structure, what theorem, what breaks?* Part III wrote the PDEs; Part IV discretized elliptic solids; Part V discretizes **fluxes** for the air that cools the wire.
 
-## Story so far (Parts I–IV)
+## Story so far (Parts I–IV) {#story-so-far-parts-i-iv}
 
 The ladder from the prologue now has a **computational spine** — not only equations, but algorithms:
 
@@ -87,7 +87,7 @@ Part IV answered *how* to discretize elliptic problems on complex geometry. Part
 
 The copper wire you meshed in Part IV still carries current and heat. The air around it was implicit in boundary conditions — a convection coefficient, perhaps a Robin flux. Part V makes that air **explicit**: a fluid domain with cell-averaged velocity and temperature, coupled back to the solid at the interface. Same wire, second discretization dialect; Part VI will name the stress and flux tensors both dialects approximate.
 
-## Closing the arc from Part IV
+## Closing the arc from Part IV {#closing-the-arc-from-part-iv}
 
 If you arrived through [IV.5 Door A](../part04-fem/05-convergence.md#bridge-two-doors-from-here), Part IV's closing checkpoint just proved Céa lemma and named two exit doors. Part V is **Door A** — the complementary discretization for the air Part IV left as a Robin boundary condition:
 

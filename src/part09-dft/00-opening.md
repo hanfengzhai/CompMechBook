@@ -134,7 +134,7 @@ The [MSE 5720 DFT coursework](https://github.com/hanfengzhai/MSE5720-HW) and tea
 
 Each schematic answers the four concept-map questions for one electronic layer. When an EAM potential in Part VIII feels like a black box, return to the matching row: *what object, what structure, what theorem, what breaks?* Part I's eigenvalue loop reappears here as Kohn–Sham orbitals; Part IV's basis discretization reappears as plane waves and k-points.
 
-## Story so far (Parts I–VIII)
+## Story so far (Parts I–VIII) {#story-so-far-parts-i-viii}
 
 The descent from continuum to atoms is complete; Part IX reaches the **finest rung**:
 
@@ -160,7 +160,7 @@ If you have read linearly since the prologue, [VIII.3](../part08-md/03-ab-initio
 
 [VIII.3's Bridge](../part08-md/03-ab-initio-and-coarse-graining.md#bridge-to-part-ix) named the signal to turn the page: **EAM matches bulk moduli but no one can cite the DFT input deck**. The [electronic audit hinge](#electronic-audit-hinge-descent-pedigree-and-tw-phonon) below and the [coarse-graining → electronic audit reunion index](../appendix/sources.md#coarse-graining-electronic-audit-reunion-index-row-36) reunite this opening with [row 35](../preface.md#skill-navigation-row-35) when yaml handoff tables exist but SCF logs do not — same copper cell, finer state variable \(\rho(\mathbf{r})\), same \(T_w\) column from [`fixtures/cht_export.yaml`](../../fixtures/cht_export.yaml).
 
-## Closing the arc from Part VIII
+## Closing the arc from Part VIII {#closing-the-arc-from-part-viii}
 
 If you have read linearly since the prologue, Part VIII's closing checkpoint fitted EAM potentials and exported moduli upward on **trust** — with mobility and phonon lifetimes tied to \(T_w\) at the [descent hinge](../part08-md/00-opening.md#descent-hinge-cores-mobility-and-tw-pedigree). The [VIII.3 opening hinge](../part08-md/03-ab-initio-and-coarse-graining.md#opening-hinge-viii2-to-viii3) is where [VIII.2's](../part08-md/02-ensembles-integrators.md#bridge) dynamics audit compressed into the [pedigree checklist](../part08-md/03-ab-initio-and-coarse-graining.md#pedigree-checklist-before-the-epilogue) Part VIII enforces. Part IX is the **audit chapter** — where every interatomic parameter receives an electronic pedigree, and the [thermal phonon audit at \(T_w\)](#thermal-phonon-audit-at-tw) confirms \(\alpha\) and drag are not room-temperature folklore:
 

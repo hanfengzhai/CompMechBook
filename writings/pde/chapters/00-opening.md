@@ -93,7 +93,7 @@ The [Partial Differential Equations Notes](https://hanfengzhai.github.io/file/ME
 
 Each schematic answers the four concept-map questions for one stage of the PDE-to-computation road. When a strong-form equation looks correct but a mesh refuses to converge, return to the matching row: *what object, what structure, what theorem, what breaks?* Parts IV and V will discretize the weak forms defined here — FEM by trial functions, FVM by cell fluxes — but the pipeline is already complete in Part III.
 
-## Story so far (Parts I–II)
+## Story so far (Parts I–II) {#story-so-far-parts-i-ii}
 
 The mathematical foundations are now in place. The same copper wire has changed representation twice without changing material:
 
@@ -104,7 +104,7 @@ The mathematical foundations are now in place. The same copper wire has changed 
 
 Part II promised that mesh refinement has a **target** — a function \(u \in H^1(\Omega)\) — and that the stiffness matrix is a Galerkin projection of a bilinear form. Part III writes the **equations** those projections discretize: Poisson conduction along the wire, elastic equilibrium under tension, transient heating when current flows. Each begins as a strong form (pointwise PDE), fails at corners and concentrated loads, and is rewritten as a weak form testable on a mesh. Sobolev spaces supply the regularity theory; energy methods package existence as minimization — the last purely analytical chapter before FEM and FVM turn weak forms into code.
 
-## Closing the arc from Part II
+## Closing the arc from Part II {#closing-the-arc-from-part-ii}
 
 If you have read linearly since the prologue, Part II's closing checkpoint named the **limit object** behind every stiffness matrix. Part III is where that object receives **equations**:
 

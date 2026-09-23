@@ -112,7 +112,7 @@ The [Atomistic Modeling Notes](https://hanfengzhai.github.io/file/AtomModel_note
 
 Each schematic answers the four concept-map questions for one atomistic layer. When a cutoff radius or timestep choice feels arbitrary, return to the matching row: *what object, what structure, what theorem, what breaks?* Part VII regularized dislocation cores with a cutoff; Part VIII resolves those cores as vibrating nuclei on a potential surface.
 
-## Story so far (Parts I–VII)
+## Story so far (Parts I–VII) {#story-so-far-parts-i-vii}
 
 The wire has been a spring network, a meshed solid, a stress field, a dislocation forest, and now becomes a **lattice of nuclei**:
 
@@ -123,7 +123,7 @@ The wire has been a spring network, a meshed solid, a stress field, a dislocatio
 
 MD closes the gap at **cores, grain boundaries, and fracture surfaces** — regions where Part VII's line singularities and Part VI's continuum fields need atomic resolution. The representative volume is the narrative device: we cannot simulate \(10^{23}\) atoms, so we simulate the smallest patch that still answers the upstream question (stacking-fault energy for DDD mobility, cohesive law for a notch). Part IX will derive the potential surface MD assumes; Part VIII shows how timesteps, thermostats, and LAMMPS workflows make that assumption computable.
 
-## Closing the arc from Part VII
+## Closing the arc from Part VII {#closing-the-arc-from-part-vii}
 
 If you have read linearly since the prologue, Part VII's closing checkpoint exported hardening laws and link statistics from dislocation dynamics to crystal plasticity FEM. Part VIII is the next **descent** — where line singularities become vibrating nuclei. The [VIII.1 opening hinge](01-potentials-phase-space.md#opening-hinge-vii3-to-viii1) is the first numbered chapter where that descent becomes explicit grammar — phase space, Hamiltonian, and EAM forces replacing mobility yaml rows that cited Part VIII without yet showing the atomic box:
 

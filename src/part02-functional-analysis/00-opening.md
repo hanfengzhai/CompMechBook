@@ -99,7 +99,7 @@ When you finish Part II and want the ladder drawn as a single narrative diagram 
 
 When you finish Part IV and want to see how Schematic 14 completes in assembly code, jump to [Part IV's Galerkin ladder section](../part04-fem/00-opening.md#the-galerkin-ladder-me-412-schematic-14-continued) — weighted residuals, global assembly, and Céa's lemma on the copper wire. [Part V's conservation ladder](../part05-fvm/00-opening.md#the-conservation-ladder-fvm-parallel-to-schematic-14) is the transport twin for conjugate heat transfer in Act II: same Part III weak forms, different discretization instinct for the air outside the wire.
 
-## Story so far (Prologue & Part I)
+## Story so far (Prologue & Part I) {#story-so-far-prologue--part-i}
 
 The prologue introduced the copper wire as a **ladder of scales** — continuum, dislocations, atoms, electrons — and the four questions every rung answers: state, equations, discretization, upward export. Part I made the bottom rung of that ladder explicit in finite dimensions:
 
@@ -112,7 +112,7 @@ The prologue introduced the copper wire as a **ladder of scales** — continuum,
 
 Part I ended with a question Part II must answer: if every mesh gives a matrix \(\mathbf{K}_N\), what object does \(\mathbf{K}_N\) approximate as \(N\) grows? The answer is not "a bigger matrix" — it is an **operator** on a space of functions. Part II builds that space, names the norms that measure elastic energy, and proves that Galerkin FEM is honest projection rather than ad hoc linear algebra.
 
-## Closing the arc from Part I
+## Closing the arc from Part I {#closing-the-arc-from-part-i}
 
 If you have read linearly since the prologue, notice how the **same four questions** from the opening table reappear here with function-space vocabulary — and how the **same mathematical moves** from Part I return in the infinite-dimensional limit:
 

@@ -65,7 +65,7 @@ The [Elasticity & Inelasticity Notes](https://hanfengzhai.github.io/file/elastic
 
 Each schematic answers the four concept-map questions for one mechanical layer. When a stiffness matrix feels disconnected from physics, return to the matching row: *what object, what structure, what theorem, what breaks?* Part IV assembled \(\mathbf{K}\); Part VI names the stress and strain tensors that make that assembly a force-balance statement.
 
-## Story so far (Parts I–V)
+## Story so far (Parts I–V) {#story-so-far-parts-i-v}
 
 Whether you read Part V or skipped from Part IV to here, the **computational spine** of the book is complete:
 
@@ -77,7 +77,7 @@ Whether you read Part V or skipped from Part IV to here, the **computational spi
 
 Parts IV and V solved **equations on meshes** without fully naming the mechanical objects those meshes carry. Part IV's nodal displacements sample a continuous \(\mathbf{u}(\mathbf{X})\); Part V's cell-averaged velocities sample \(\mathbf{v}(\mathbf{x})\) in the fluid domain. Part VI supplies the **continuum vocabulary** — deformation gradient \(\mathbf{F}\), Cauchy stress \(\boldsymbol{\sigma}\), virtual work — that makes \(\mathbf{K}\mathbf{U}=\mathbf{F}\) a force-balance statement rather than a sparse linear algebra exercise. It also admits what neither FEM nor FVM can resolve alone: cold-drawn strength, notch singularities, and yield surfaces that demand mesoscale physics in Part VII.
 
-## Closing the arc from Parts IV and V
+## Closing the arc from Parts IV and V {#closing-the-arc-from-parts-iv-and-v}
 
 If you have read linearly since the prologue, Parts IV and V completed the **discretization arc** — Galerkin assembly for elliptic solids, flux balances for transport fluids. Part VI is where those algorithms receive **physical names**:
 

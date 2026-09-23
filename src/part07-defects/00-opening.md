@@ -102,7 +102,7 @@ The [Defects & Disorders Notes](https://hanfengzhai.github.io/file/defects_notes
 
 Each schematic answers the four concept-map questions for one mesoscale layer. When a yield surface feels like a fitted curve rather than physics, return to the matching row: *what object, what structure, what theorem, what breaks?* Part VI's J₂ plasticity preview fit \(H\) and \(\sigma_{y0}\); Part VII shows where those numbers hide their history in line motion.
 
-## Story so far (Parts I–VI)
+## Story so far (Parts I–VI) {#story-so-far-parts-i-vi}
 
 The climb upward is complete for the **continuum floor**. Every rung below Part VII exported numbers upward; Part VII is the first descent that explains where those numbers hid their history:
 
@@ -114,7 +114,7 @@ The climb upward is complete for the **continuum floor**. Every rung below Part 
 
 Part VI admitted that cold-drawn copper work-hardens and that notch roots break smooth-field assumptions — but it could not **simulate** the dislocation forest that drawing created. Phenomenological plasticity fits curves; dislocation dynamics **generates** the curves from line motion. The prologue's processing history (draw, anneal, load) now gets a mesoscale narrator: Burgers vectors, Peach–Köhler forces, Taylor \(\sqrt{\rho}\) hardening. Parts VIII–IX will ask where mobility and stacking-fault energy come from; Part VII asks how plasticity **moves** before we shrink to atoms and electrons.
 
-## Closing the arc from Part VI
+## Closing the arc from Part VI {#closing-the-arc-from-part-vi}
 
 If you have read linearly since the prologue, [Part VI's intermission](../part06-continuum/04-nonlinear-plasticity-preview.md#intermission-ascent-ends-descent-begins) named the hinge where ascent ends and descent begins — smooth elasticity exhausted, phenomenological \(J_2\) placeholders awaiting a forest. Part VII is the first **descent** that explains where those parameters hide their history:
 

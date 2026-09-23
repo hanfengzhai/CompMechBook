@@ -2,6 +2,8 @@
 
 Read in order from the **Preface** through the **Epilogue** for the full narrative. Each numbered chapter ends with a **Bridge** that explains why the next chapter exists; part openings add a **concept map** (object, structure, theorem, failure mode) following the Functional Analysis Notes (ME 412) layout. Parts IV and V may be swapped if you already know FEM and want CFD first — both paths converge at Part VI.
 
+For a one-page plot of the multiscale arc (linear algebra → DFT and back through handshakes), see the [Writings source index](../writings/SUMMARY.md#multiscale-story-arc-one-table). When the timeline blurs mid-chapter, use part-opening **Story so far** sections ([row 26 reunion](appendix/sources.md#story-so-far-reunion-index-row-26)); when notation feels like a subject change, use **Closing the arc** ([row 27 reunion](appendix/sources.md#closing-the-arc-reunion-index-row-27)).
+
 [Preface](./preface.md)
 
 ---

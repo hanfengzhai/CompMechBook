@@ -14,7 +14,7 @@ A third terminal launches OpenDiS on a single-crystal RVE under the same strain 
 
 The copper wire on the bench — cold-drawn, carrying current, warm to the touch — is unchanged. What changed is the reader's ability to name where each number in the workflow came from, what was homogenized away, and which interface would break first if the ladder were climbed too carelessly. That afternoon is not a fantasy pipeline every laptop runs unattended. It is the **discipline** the book has been building toward since the prologue: state, equations, discretization, upward export — now at the boundaries between codes, not only within a single mesh. When the afternoon feels like disconnected terminal windows, return to [Part VIII's epilogue hinge](../part08-md/00-opening.md#bridge-epilogue-hinge) — the Bridge that names Acts V–VI in lab reunion time before Part IX closes the electronic audit.
 
-## Story so far (Parts I–IX)
+## Story so far (Parts I–IX) {#story-so-far-parts-i-ix}
 
 If you have read linearly since the prologue, the copper wire has changed language nine times without changing material:
 
@@ -32,7 +32,9 @@ If you have read linearly since the prologue, the copper wire has changed langua
 
 The epilogue asks what none of these parts alone can answer: **how do we compose them** when the wire's lifetime spans every row of the table?
 
-## Closing the arc from Part IX {#opening-hinge-ix3-to-epilogue}
+## Closing the arc from Part IX {#closing-the-arc-from-part-ix}
+
+<a id="opening-hinge-ix3-to-epilogue"></a>
 
 If you have read linearly since the prologue, Part IX's closing checkpoint archived converged SCF results — functional, pseudopotential, plane-wave cutoff, k-mesh — beside every export upward. The epilogue is where those numbers **compose** with the meshes, forests, and trajectories built in earlier parts:
 

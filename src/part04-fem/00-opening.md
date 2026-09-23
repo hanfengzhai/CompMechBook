@@ -96,7 +96,7 @@ The [Finite Element Analysis Notes](https://hanfengzhai.github.io/file/FEA_notes
 
 Each schematic answers the four concept-map questions for one discretization layer. When assembly feels like bookkeeping, return to the matching row: *what object, what structure, what theorem, what breaks?* Part II's Galerkin projection becomes code here; Part III's weak form is the input.
 
-## Story so far (Parts I–III)
+## Story so far (Parts I–III) {#story-so-far-parts-i-iii}
 
 If you have read linearly since the prologue, the same specimen has changed language three times without changing material:
 
@@ -108,7 +108,7 @@ If you have read linearly since the prologue, the same specimen has changed lang
 
 Part III ended with a promise: the weak form of equilibrium is a **minimum principle** (or saddle point for mixed problems), and the minimizer lives in \(H^1\). Part IV is where that promise becomes code — shape functions on elements, quadrature at Gauss points, scatter into global stiffness matrices \(\mathbf{K}_{uu}\) and \(\mathbf{K}_{TT}\), thermal eigenstrain into the mechanical load vector. The copper wire that was a spring network in Part I and a field in Part II is now a **meshed solid** whose node values are the discrete shadow of the continuous solution. Convergence as \(h\to 0\) is the story Part II told in function spaces, made numerical in Chapter 5.
 
-## Closing the arc from Part III
+## Closing the arc from Part III {#closing-the-arc-from-part-iii}
 
 If you have read linearly since the prologue, Part III's closing checkpoint completed the analytical pipeline — strong form, weak form, Sobolev regularity, energy minimum. Part IV is the **first code chapter**:
 

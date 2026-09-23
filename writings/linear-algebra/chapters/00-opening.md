@@ -87,7 +87,7 @@ flowchart LR
 
 **Baby picture:** ME 300A teaches you to collect DOFs, write \(\mathbf{K}\mathbf{u}=\mathbf{f}\), and decouple with eigenmodes. ME 412 asks what happens when \(N\) grows without bound — the same four concept-map questions, now with \(u \in H^1\) instead of \(\mathbf{u} \in \mathbb{R}^N\). The copper wire's spring chain in Part I is the **discrete shadow** every mesh in Part IV refines toward the limit Part II names. When Part III's variational ladder ([Schematic 14](../part03-pdes/00-opening.md#the-variational-ladder-me-412-schematic-14)) or the full-book [coupling ladder](../part09-dft/00-opening.md#the-coupling-ladder-me-412-reunion) ([row 16](../appendix/memory-sheet.md#continuity-hinges-master-map); [epilogue Act VI reunion](../epilogue/multiscale.md#lab-act-reunion-six-acts-one-afternoon)) feel distant, return here: the grammar is already in hand — only the room grows.
 
-## Story so far (Prologue)
+## Story so far (Prologue) {#story-so-far-prologue}
 
 The prologue introduced a single copper wire as a **ladder of scales** — from continuum stress and FEM meshes down through dislocations, atoms, and electrons — and the four questions every rung answers: state, equations, discretization, upward export. Before climbing that ladder mathematically, Part I pauses at the rung every simulation shares:
 
@@ -99,7 +99,9 @@ The prologue introduced a single copper wire as a **ladder of scales** — from 
 
 The wire at this scale is still a chain of coupled springs — not yet a PDE, not yet a mesh of tetrahedra. Part I supplies the syntax every later part generalizes: collect degrees of freedom, write balance as a linear system, decouple complexity with eigenmodes, then ask what happens when \(N \to \infty\) in Chapter 4.
 
-## Closing the arc from the Prologue {#opening-hinge-prologue-to-part-i}
+## Closing the arc from the Prologue {#closing-the-arc-from-the-prologue}
+
+<a id="opening-hinge-prologue-to-part-i"></a>
 
 If you have read the prologue straight through, the copper wire has already appeared as a continuum member, a dislocation forest, an atomic lattice, and a sea of electrons. Part I does not repeat those scenes — it **grounds** them in the grammar every later scale inherits:
 
