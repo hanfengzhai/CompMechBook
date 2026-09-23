@@ -23,6 +23,19 @@ When FEM converges but the fluid run loses mass, read the sentence above aloud �
 
 Read in order. Each chapter ends with a **Bridge** that states why the next chapter must exist; applying FVM to Navier–Stokes without mastering 1D fluxes is like meshing a solid before understanding conservation.
 
+## Intra-part Bridge reunion (ascent) {#bridge-reunion-intra-part-v}
+
+[Row 23](../appendix/sources.md#bridge-reunion-index-row-23) names part-boundary Bridge hinges; this table is the **intra-part ascent audit** for Part V — read the prior chapter's Bridge opening sentence aloud when FVM chapters feel like separate homework sets outside the wire.
+
+| Transition | Bridge anchor | One-line hinge on the wire (read aloud) |
+|------------|---------------|----------------------------------------|
+| [V.0 → V.1](01-conservation-integral.md) | [Opening Bridge](#bridge) | [IV.5 Door A](../part04-fem/05-convergence.md#bridge-two-doors-from-here) chose flux balance — integral conservation is the wire's cooling language. |
+| [V.1 → V.2](02-fvm-1d.md) | [V.1 Bridge](01-conservation-integral.md#bridge) | The integral form on a 1D grid yields cell updates, CFL limits, and exact global balances on the axis. |
+| [V.2 → V.3](03-fluxes-riemann.md) | [V.2 Bridge](02-fvm-1d.md#bridge) | First-order upwind smears shocks — nonlinear fluxes and Riemann solvers restore steep gradients at the hot surface. |
+| [V.3 → V.4](04-navier-stokes-cfd.md) | [V.3 Bridge](03-fluxes-riemann.md#bridge) | Navier–Stokes adds viscous fluxes and pressure coupling — CFD completes Act II convection around the wire. |
+
+**Baby picture:** Part V is the conservation ladder parallel to Part IV's Galerkin ladder — same specimen, flux vocabulary outside the mesh. When \(T_w\) from the Picard loop feels arbitrary, read [V.4's Bridge to Part VI](04-navier-stokes-cfd.md#bridge-to-part-vi) after this table — thermal strain in Part VI inherits that export.
+
 ## Scene
 
 Part IV meshed the copper wire as a solid: stiffness matrices from Galerkin assembly, convergence rates in the energy norm, and the two-door bridge at the end of Chapter 5 — either continue here to fluids or jump ahead to Part VI for stress and strain. If you chose Door A, you arrive with a mesh in hand and a question Part IV did not fully answer: *what happens outside the wire?*

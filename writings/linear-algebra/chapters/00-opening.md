@@ -23,6 +23,19 @@ When symbols change faster than the specimen, read the sentence above aloud — 
 
 Read in order. Each chapter ends with a **Bridge** that states why the next chapter must exist; skipping ahead to eigenvalues without assembly is like listening to the wire's vibration modes before naming the springs that carry tension.
 
+## Intra-part Bridge reunion (ascent) {#bridge-reunion-intra-part-i}
+
+[Row 23](../appendix/sources.md#bridge-reunion-index-row-23) names part-boundary Bridge hinges; this table is the **intra-part ascent audit** for Part I — read the prior chapter's Bridge opening sentence aloud when grammar chapters feel like separate homework sets on the same spring chain.
+
+| Transition | Bridge anchor | One-line hinge on the wire (read aloud) |
+|------------|---------------|----------------------------------------|
+| [I.0 → I.1](01-vectors-matrices.md) | [Opening Bridge](#bridge) | Same \(\mathbf{K}\mathbf{u}=\mathbf{f}\) grammar before fields — refresh inner products and matrix structure first. |
+| [I.1 → I.2](02-linear-maps.md) | [I.1 Bridge](01-vectors-matrices.md#bridge) | Bar stiffness in local coordinates must rotate into global assembly — linear maps are the change of basis. |
+| [I.2 → I.3](03-eigenvalues.md) | [I.2 Bridge](02-linear-maps.md#bridge) | Vibration modes and principal directions come from a basis that **diagonalizes** the map — eigenvalues next. |
+| [I.3 → I.4](04-toward-infinity.md) | [I.3 Bridge](03-eigenvalues.md#bridge) | Fixed \(N\) modes are not enough — refinement sends eigenvalues toward a **spectrum** and fields replace nodal values. |
+
+**Baby picture:** Part I is one afternoon on the mounting bench — vectors, assembly, modes, then the \(N\to\infty\) gate at [I.4](04-toward-infinity.md#bridge-to-part-ii). When a chapter body reads correctly but the turn feels mechanical, open only the **Bridge** row above for the transition you are crossing.
+
 ## Scene
 
 The prologue placed a cold-drawn copper wire under tension — heated by current, cooled by air, strengthened by a dislocation forest invisible at the engineering scale. Before we climb that ladder rung by rung, we need the **syntax** every rung shares: states collected into vectors, equilibrium written as linear systems, complexity decoupled by eigenmodes.

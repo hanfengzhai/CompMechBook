@@ -255,7 +255,17 @@ Each row below is a **part-boundary Bridge anchor** (the hinge where one scale o
 | [IX.3 → Epilogue](../part09-dft/03-dft-workflows.md#bridge-to-the-epilogue) | Coupling gate | SCF exports compose into Handshakes 1–4b on the pedigree diagram. | [Epilogue opening hinge](../epilogue/multiscale.md#opening-hinge-ix3-to-epilogue) |
 | [Epilogue → restart](../epilogue/multiscale.md#row-12-closing-loop) | Book loop | Four questions restart on the next specimen — copper was the tutorial. | [Prologue reopening anchor](../prologue/00-many-scales.md#prologue-reopening-anchor) |
 
-**Spot audit (any chapter boundary).** When a transition feels abrupt mid-part, read only the **opening sentence** of the prior chapter's **Bridge** section aloud — it states why the next chapter must exist. Every numbered chapter ends with a Bridge; the [chapter roadmap](#chapter-roadmap-one-continuous-arc) names each chapter's role if the Bridge table feels too coarse.
+**Intra-part chapter bridges (ascent, Parts I–V).** When grammar or discretization chapters feel like separate courses mid-part, use the part-opening audit tables — each lists chapter-level Bridge hinges on the same copper wire:
+
+| Part | Intra-part Bridge reunion anchor | Covers |
+|------|----------------------------------|--------|
+| [I](../part01-linear-algebra/00-opening.md#bridge-reunion-intra-part-i) | Spring chain grammar | I.0 → I.4 before the [I.4 → II ascent gate](../part01-linear-algebra/04-toward-infinity.md#bridge-to-part-ii) |
+| [II](../part02-functional-analysis/00-opening.md#bridge-reunion-intra-part-ii) | ME 412 function spaces | II.0 → II.5 before the [II.5 → III gate](../part02-functional-analysis/05-spectral-theorem.md#bridge-to-part-iii) |
+| [III](../part03-pdes/00-opening.md#bridge-reunion-intra-part-iii) | Weak PDE stack on \(\Omega\) | III.0 → III.4 before [III.4 → IV](../part03-pdes/04-energy-methods.md#bridge-to-part-iv) |
+| [IV](../part04-fem/00-opening.md#bridge-reunion-intra-part-iv) | Galerkin assembly on one mesh | IV.0 → IV.5 before [IV.5 two doors](../part04-fem/05-convergence.md#bridge-two-doors-from-here) |
+| [V](../part05-fvm/00-opening.md#bridge-reunion-intra-part-v) | Conservation outside the wire | V.0 → V.4 before [V.4 → VI](../part05-fvm/04-navier-stokes-cfd.md#bridge-to-part-vi) |
+
+**Spot audit (any chapter boundary).** When a transition feels abrupt mid-part, read only the **opening sentence** of the prior chapter's **Bridge** section aloud — it states why the next chapter must exist. Every numbered chapter ends with a Bridge; the [chapter roadmap](#chapter-roadmap-one-continuous-arc) names each chapter's role if the Bridge table feels too coarse; the ascent tables above index every intra-part hinge in Parts I–V.
 
 **Baby picture:** row 17 is **how** to read (Scene → Bridge); rows 18–20 are **what the plot should sound like**; row 21 is **what the operator's hands should do**; row 22 is **what the operator's eyes should see**; row 23 is **why the next chapter must exist** on the same afternoon. When transitions feel mechanical, read the Bridge one-line hinge aloud, then turn the page. The [preface row 23 skill checkpoint](../preface.md#skill-navigation-row-23) closes the competence loop; the [memory sheet row 23 baby picture](memory-sheet.md#row-23-baby-picture-bridge-reunion) compresses the twelve part-boundary hinges for index-card review.
 

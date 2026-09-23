@@ -24,6 +24,20 @@ When Sobolev norms feel abstract, read the sentence above aloud — it is the [c
 
 Read in order. Each chapter ends with a **Bridge** that states why the next chapter must exist; jumping to Sobolev spaces without understanding completeness is like writing a weak form without naming the function space it lives in.
 
+## Intra-part Bridge reunion (ascent) {#bridge-reunion-intra-part-ii}
+
+[Row 23](../appendix/sources.md#bridge-reunion-index-row-23) names part-boundary Bridge hinges; this table is the **intra-part ascent audit** for Part II — read the prior chapter's Bridge opening sentence aloud when analysis chapters feel stitched at the seams.
+
+| Transition | Bridge anchor | One-line hinge on the wire (read aloud) |
+|------------|---------------|----------------------------------------|
+| [II.0 → II.1](01-motivation.md) | [Opening Bridge](#bridge) | [I.4](../part01-linear-algebra/04-toward-infinity.md#bridge-to-part-ii) promised weak forms — motivation makes that promise precise on the bar. |
+| [II.1 → II.2](02-normed-spaces.md) | [II.1 Bridge](01-motivation.md#bridge) | Convergence needs a ruler first — normed spaces measure energy and mean-square error before geometry. |
+| [II.2 → II.3](03-hilbert-spaces.md) | [II.2 Bridge](02-normed-spaces.md#bridge) | When the norm comes from an inner product, angles and best approximation enter — Hilbert spaces next. |
+| [II.3 → II.4](04-operators-duality.md) | [II.3 Bridge](03-hilbert-spaces.md#bridge) | Loads and stiffness generalize to operators and dual functionals — the matrix becomes a map between function spaces. |
+| [II.4 → II.5](05-spectral-theorem.md) | [II.4 Bridge](04-operators-duality.md#bridge) | Self-adjoint compact operators diagonalize — spectral theory decouples vibration before weak PDEs in Part III. |
+
+**Baby picture:** Part II is the ME 412 room where nodal values become fields — norms, completeness, operators, then spectra. When proofs feel correct but the page turn feels like a new course, read one row aloud before continuing.
+
 ## Scene
 
 Part I ended with a limit: as the spring network refines, the copper wire's displacement and temperature are no longer vectors in \(\mathbb{R}^N\) for any fixed \(N\). They become **fields** — functions of position along the bar — and the stiffness matrix is a finite-dimensional shadow of an operator we have not yet named.

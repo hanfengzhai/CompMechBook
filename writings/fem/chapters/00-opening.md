@@ -24,6 +24,20 @@ When assembly feels like bookkeeping, read the sentence above aloud — it is th
 
 Read in order. Each chapter ends with a **Bridge** that states why the next chapter must exist; assembling elements without understanding weighted residuals turns FEM into a black box that fails at reentrant corners.
 
+## Intra-part Bridge reunion (ascent) {#bridge-reunion-intra-part-iv}
+
+[Row 23](../appendix/sources.md#bridge-reunion-index-row-23) names part-boundary Bridge hinges; this table is the **intra-part ascent audit** for Part IV — read the prior chapter's Bridge opening sentence aloud when FEM chapters feel like separate homework sets on the same mesh.
+
+| Transition | Bridge anchor | One-line hinge on the wire (read aloud) |
+|------------|---------------|----------------------------------------|
+| [IV.0 → IV.1](01-weighted-residuals.md) | [Opening Bridge](#bridge) | Part III's energy minimum becomes **weighted residuals** — the unifying idea behind Galerkin on the wire mesh. |
+| [IV.1 → IV.2](02-galerkin-assembly.md) | [IV.1 Bridge](01-weighted-residuals.md#bridge) | Galerkin on \(V_h\) becomes a sparse matrix through **global assembly** — element loops scatter local stiffness. |
+| [IV.2 → IV.3](03-elements-quadrature.md) | [IV.2 Bridge](02-galerkin-assembly.md#bridge) | Assembly integrands need shape functions, maps, and quadrature — accuracy and locking live in element technology. |
+| [IV.3 → IV.4](04-poisson-to-elasticity.md) | [IV.3 Bridge](03-elements-quadrature.md#bridge) | Scalar Poisson trained the loop — vector elasticity adds \(\mathbf{B}^T\mathbb{C}\mathbf{B}\) and thermoelastic blocks on the same connectivity. |
+| [IV.4 → IV.5](05-convergence.md) | [IV.4 Bridge](04-poisson-to-elasticity.md#bridge) | A smooth mesh is not enough — convergence theory ties \(h\) and \(p\) to error bounds in the norms Part II named. |
+
+**Baby picture:** Part IV is Acts II–III on one mesh — residuals, assembly, elements, elasticity, then Céa certificates. When heat and mechanics solvers feel like different courses, read the [thermoelastic thread](#acts-ii-and-iii-together-thermoelastic-assembly-thread) row before the Bridge table above.
+
 ## Scene
 
 Part III wrote the weak forms — virtual work for elasticity, the heat equation in \(H^1\), energy functionals with unique minimizers — and identified the Sobolev regularity FEM solutions possess. The copper wire is now ready for a **mesh**: tetrahedra or hexahedra along its length, shape functions on each element, quadrature rules that assemble local stiffness into a global \(\mathbf{K}\).
@@ -53,7 +67,7 @@ flowchart LR
 
 **Baby picture:** choose trial and test spaces, enforce the weak form by making residuals orthogonal to the test space, assemble element by element, then prove the discrete solution tracks the continuous one as \(h \to 0\). The copper wire in tension is a bar whose stiffness matrix is not magic — it is a Galerkin projection. When Act II and Act III share the afternoon, the same baby picture runs twice on one mesh: scalar heat assembly, then vector elasticity with thermal eigenstrain loading the mechanical block.
 
-### Acts II and III together: thermoelastic assembly thread
+### Acts II and III together: thermoelastic assembly thread {#acts-ii-and-iii-together-thermoelastic-assembly-thread}
 
 The prologue's lab session does not treat heating and pulling as separate homework sets. **Act II — Warming** assembles a thermal stiffness \(\mathbf{K}_{TT}\) from Joule heating; **Act III — Pulling** assembles a mechanical stiffness \(\mathbf{K}_{uu}\) from grip displacement — on the **same copper wire**, often within minutes. Part IV tracks that coupling through five chapters:
 

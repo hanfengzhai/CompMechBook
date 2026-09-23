@@ -23,6 +23,19 @@ When strong forms look correct but meshes refuse to converge, read the sentence 
 
 Read in order. Each chapter ends with a **Bridge** that states why the next chapter must exist; discretizing a strong form before writing the weak form is the most common source of non-converging meshes.
 
+## Intra-part Bridge reunion (ascent) {#bridge-reunion-intra-part-iii}
+
+[Row 23](../appendix/sources.md#bridge-reunion-index-row-23) names part-boundary Bridge hinges; this table is the **intra-part ascent audit** for Part III — read the prior chapter's Bridge opening sentence aloud when PDE chapters feel like separate homework sets on the same domain \(\Omega\).
+
+| Transition | Bridge anchor | One-line hinge on the wire (read aloud) |
+|------------|---------------|----------------------------------------|
+| [III.0 → III.1](01-strong-form.md) | [Opening Bridge](#bridge) | Part II named \(H^1\); Part III writes the strong forms heat and elasticity demand on the bar. |
+| [III.1 → III.2](02-weak-form.md) | [III.1 Bridge](01-strong-form.md#bridge) | Physicists write strong forms; variational codes implement **weak** forms — multiply by a test function and integrate by parts. |
+| [III.2 → III.3](03-sobolev-spaces.md) | [III.2 Bridge](02-weak-form.md#bridge) | Weak derivatives need a regularity class — Sobolev spaces define what \(\nabla u\) means on the meshed wire. |
+| [III.3 → III.4](04-energy-methods.md) | [III.3 Bridge](03-sobolev-spaces.md#bridge) | Energy methods package weak forms as minimization — existence and uniqueness before Galerkin in Part IV. |
+
+**Baby picture:** Part III is the variational ladder on one copper domain — strong, weak, Sobolev, energy. When Act II heating and Act III pulling feel disconnected, read the Bridge row for the chapter that names their **coupled** weak form before opening Part IV.
+
 ## Scene
 
 Part II named the function spaces — \(L^2\) for field energy, \(H^1\) for weak derivatives — and promised that Galerkin convergence is projection, not guesswork. The copper wire now enters as a **domain** with boundary conditions: fixed grips at the ends, a heat flux from Joule heating, perhaps convection at the surface once we couple to fluid in Part V.
