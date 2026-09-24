@@ -344,6 +344,14 @@ Weak form (Part III)  →  Galerkin on V_h (Part IV)  →  K U = F  →  error b
 
 The copper wire's tensile equilibrium, steady heating, and elastic step all occupy rows in the summary tables above. Convergence as \(h \to 0\) is the promise Part II made in function spaces, made numerical in this chapter.
 
+## Writings canonical hinge (Part IV → Part V) {#writings-canonical-hinge-iv5-to-v0}
+
+This chapter is the last file in the **FEM Notes** subtree ([`writings/fem/`](../../writings/fem/)); the next page of the continuous book for **Door A** is the **FVM Notes** subtree ([`writings/fvm/`](../../writings/fvm/)), beginning at [Part V opening](../part05-fvm/00-opening.md). Part IV ends at `05-convergence.md`; Part V opens at `00-opening.md` with [**Writings canonical landing**](../part05-fvm/00-opening.md#writings-canonical-landing-iv5-to-v0) and [**Closing the arc from Part IV**](../part05-fvm/00-opening.md#closing-the-arc-from-part-iv) — the same copper wire, same converged \(T_w\) export from the thermoelastic \(h\)-study, but the air outside the wire is now a **fluid domain** discretized by cell fluxes, not a Robin coefficient on the solid mesh.
+
+**One continuous sentence (read aloud before Part V):** Céa's lemma and the three-row thermoelastic table above were never a separate FEA certificate — they are the **solid-side gate** before Part V's Picard loop replaces handbook \(h\) with resolved convection on the same afternoon Act II already named.
+
+The unified mdBook [`src/SUMMARY.md`](../SUMMARY.md) syncs these canonical files — edit under `writings/<part>/chapters/`, run `./scripts/sync-writings.sh`, then `mdbook build`. If Part V ever feels like a separate CFD course after this chapter, run `./scripts/sync-writings.sh --check` and read the [IV.5 → V.0 FEM–FVM reunion (row 49)](../appendix/sources.md#rows17-48-iv5-v0-fem-fvm-reunion-index-row-49) — the break is usually skipping this hinge and the [Writings canonical landing](../part05-fvm/00-opening.md#writings-canonical-landing-iv5-to-v0), not missing Navier–Stokes prerequisites.
+
 ## Bridge: two doors from here {#bridge-two-doors-from-here}
 
 Part IV answered *how* to discretize elliptic problems on meshes — and this chapter proved *when* to trust the answers. Two natural continuations follow; both converge on the same continuum vocabulary of Part VI.
@@ -374,4 +382,4 @@ Either path is valid. Part V ends with its own bridge into Part VI; the epilogue
 
 Return to the [prologue](../prologue/00-many-scales.md): **Act III — Pulling** is trustworthy only when the three-row Lab act table above plateaus — the same instinct Part IX later applies to SCF cutoff. [IV.4](04-poisson-to-elasticity.md) extended scalar assembly to vector elasticity; this chapter closes the **existence–convergence** arc Part II opened in \(H^1\). Whether you walk through Door A (air cooling in **Act II**) or Door B (solid mechanics first), the load cell curve inherits from a mesh whose error decreases at a predictable rate — not from a contour plot that merely looks smooth.
 
-Turn the page when patch tests pass and Céa's rates hold on a bar but the grip displacement still moves when you halve \(h\) at the corner — that is the signal Door A or Door B must name the physics the converged mesh is approximating.
+Turn the page when patch tests pass and Céa's rates hold on a bar but the grip displacement still moves when you halve \(h\) at the corner — that is the signal Door A or Door B must name the physics the converged mesh is approximating. In the canonical tree, **Door A** continues at [`writings/fvm/chapters/00-opening.md`](../../writings/fvm/chapters/00-opening.md) — read it as the next paragraph of Part IV, not a course change. The [Writings canonical hinge](#writings-canonical-hinge-iv5-to-v0) above names the file boundary: FEM Notes end here for the fluid fork; [FVM Notes](https://hanfengzhai.github.io/note/FVM.pdf) begin on the **same wire** with the conservation ladder twin to Schematic 14's Galerkin half.

@@ -1459,7 +1459,24 @@ The [Rows 17–47 → III.4 → IV.0 PDE–FEM reunion index](../appendix/source
 
 ### Row 48 closing loop (Rows 17–47 → III.4 → IV.0 PDE–FEM reunion) {#row-48-closing-loop}
 
-This subsection is the **downstream half** of [memory sheet row 48](../appendix/memory-sheet.md#row-48-baby-picture-rows17-47-iii4-iv0-pde-fem-reunion), the [preface row 48 skill checkpoint](../preface.md#skill-navigation-row-48), and the [III.4 → IV.0 reunion index](../appendix/sources.md#rows17-47-iii4-iv0-pde-fem-reunion-index-row-48). Read the [III.4 Writings canonical hinge](../part03-pdes/04-energy-methods.md#writings-canonical-hinge-iii4-to-iv0), land at [IV.0 Writings canonical landing](../part04-fem/00-opening.md#writings-canonical-landing-iii4-to-iv0), read [Closing the arc from Part III](../part04-fem/00-opening.md#closing-the-arc-from-part-iii), then continue Part IV as the **next paragraph** of Part III — same two-element thermal Lab act, same thermoelastic mesh thread, now with element scatter and quadrature.
+This subsection is the **downstream half** of [memory sheet row 48](../appendix/memory-sheet.md#row-48-baby-picture-rows17-47-iii4-iv0-pde-fem-reunion), the [preface row 48 skill checkpoint](../preface.md#skill-navigation-row-48), and the [III.4 → IV.0 reunion index](../appendix/sources.md#rows17-47-iii4-iv0-pde-fem-reunion-index-row-48). Read the [III.4 Writings canonical hinge](../part03-pdes/04-energy-methods.md#writings-canonical-hinge-iii4-to-iv0), land at [IV.0 Writings canonical landing](../part04-fem/00-opening.md#writings-canonical-landing-iii4-to-iv0), read [Closing the arc from Part III](../part04-fem/00-opening.md#closing-the-arc-from-part-iii), then continue Part IV as the **next paragraph** of Part III — same two-element thermal Lab act, same thermoelastic mesh thread, now with element scatter and quadrature. Proceed to [row 49](#row-49-closing-loop) when IV.5 → V.0 still stutters after the PDE–FEM gate is smooth.
+
+## Closing rows 17–48 at IV.5 → V.0 FEM–FVM gate {#opening-hinge-rows17-48-iv5-v0}
+
+When III.4 → IV.0 reads as one manuscript but **Part V feels like a separate CFD syllabus after Part IV (Door A)**, the break is often the fourth Writings subtree boundary — FEM Notes ending without landing in FVM Notes on the same conjugate heat transfer afternoon.
+
+| Source artifact | Unified book consumer | Audit |
+|-----------------|----------------------|-------|
+| [`writings/fem/chapters/05-convergence.md`](../../writings/fem/chapters/05-convergence.md#writings-canonical-hinge-iv5-to-v0) | [IV.5 in `src/`](../part04-fem/05-convergence.md#writings-canonical-hinge-iv5-to-v0) | FEM–FVM hinge prose present |
+| [`writings/fvm/chapters/00-opening.md`](../../writings/fvm/chapters/00-opening.md#writings-canonical-landing-iv5-to-v0) | [V.0 in `src/`](../part05-fvm/00-opening.md#writings-canonical-landing-iv5-to-v0) | Canonical landing read after IV.5 Door A |
+| [V.0 Closing the arc from Part IV](../part05-fvm/00-opening.md#closing-the-arc-from-part-iv) | Symbol map solid → fluid | \(\mathbf{K}_{TT}\) → face fluxes; Robin → boundary layer |
+| [V.0 conservation ladder Schematic 14 twin](../part05-fvm/00-opening.md#the-conservation-ladder-fvm-parallel-to-schematic-14) | Transport half after Galerkin half | Integral balance named beside Céa certificate |
+
+The [Rows 17–48 → IV.5 → V.0 FEM–FVM reunion index](../appendix/sources.md#rows17-48-iv5-v0-fem-fvm-reunion-index-row-49) reunites this hinge with [row 48](../preface.md#skill-navigation-row-48) when canonical sync works at III.4 → IV.0 but the air around the wire still feels like a separate CFD course.
+
+### Row 49 closing loop (Rows 17–48 → IV.5 → V.0 FEM–FVM reunion) {#row-49-closing-loop}
+
+This subsection is the **downstream half** of [memory sheet row 49](../appendix/memory-sheet.md#row-49-baby-picture-rows17-48-iv5-v0-fem-fvm-reunion), the [preface row 49 skill checkpoint](../preface.md#skill-navigation-row-49), and the [IV.5 → V.0 reunion index](../appendix/sources.md#rows17-48-iv5-v0-fem-fvm-reunion-index-row-49). Read the [IV.5 Writings canonical hinge](../part04-fem/05-convergence.md#writings-canonical-hinge-iv5-to-v0), land at [V.0 Writings canonical landing](../part05-fvm/00-opening.md#writings-canonical-landing-iv5-to-v0), read [Closing the arc from Part IV](../part05-fvm/00-opening.md#closing-the-arc-from-part-iv), then continue Part V as the **next paragraph** of Part IV Door A — same exported \(T_w\), same Act II thermocouple, now with conservation on cells for the wind outside the wire.
 
 ### Row 12 closing loop (epilogue → prologue) {#row-12-closing-loop}
 

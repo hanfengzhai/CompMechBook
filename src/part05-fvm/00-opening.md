@@ -87,6 +87,14 @@ Part IV answered *how* to discretize elliptic problems on complex geometry. Part
 
 The copper wire you meshed in Part IV still carries current and heat. The air around it was implicit in boundary conditions — a convection coefficient, perhaps a Robin flux. Part V makes that air **explicit**: a fluid domain with cell-averaged velocity and temperature, coupled back to the solid at the interface. Same wire, second discretization dialect; Part VI will name the stress and flux tensors both dialects approximate.
 
+## Writings canonical landing (Part IV → Part V) {#writings-canonical-landing-iv5-to-v0}
+
+You are reading the first file in the **FVM Notes** subtree ([`writings/fvm/`](../../writings/fvm/)). It is the narrative landing after [IV.5 Writings canonical hinge](../part04-fem/05-convergence.md#writings-canonical-hinge-iv5-to-v0) in [`writings/fem/`](../../writings/fem/) — same copper wire, same thermocouple in **Act II**, but the state variables in the air domain now live on **control volumes** with face fluxes, not only as Robin data on the solid mesh.
+
+**One continuous sentence (read aloud after IV.5 Door A):** the thermoelastic \(h\)-certificate and exported \(T_w\) from Part IV were never optional CFD homework — they are the **solid-side boundary** the Picard loop in this part must respect before integral conservation replaces the handbook convection coefficient.
+
+If Part V feels like a new CFD manual after Part IV, read [**Closing the arc from Part IV**](#closing-the-arc-from-part-iv) and [IV.5 Bridge two doors](../part04-fem/05-convergence.md#bridge-two-doors-from-here) as **one continuous handoff** (see [row 49](../appendix/sources.md#rows17-48-iv5-v0-fem-fvm-reunion-index-row-49) in the sources appendix). Edit canonical prose under `writings/fvm/chapters/` before syncing to `src/` — the break is usually reading only the unified mdBook export without this landing section.
+
 ## Closing the arc from Part IV {#closing-the-arc-from-part-iv}
 
 If you arrived through [IV.5 Door A](../part04-fem/05-convergence.md#bridge-two-doors-from-here), Part IV's closing checkpoint just proved Céa lemma and named two exit doors. Part V is **Door A** — the complementary discretization for the air Part IV left as a Robin boundary condition:
