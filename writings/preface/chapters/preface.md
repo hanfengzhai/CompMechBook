@@ -1070,7 +1070,55 @@ This checkpoint closes the **Rows 17–43 → Row 12 book loop closure** chain �
 | 4 | Name material change ≠ method change | Step 4 — material vs method | Ladder reusable; specimen and active rungs differ |
 | 5 | [Rows 17–43 → Row 12 reunion index](appendix/sources.md#rows17-43-row12-book-loop-closure-index-row-44) recitation | Step 5 — cross-links audit | Epilogue → prologue reopening anchor → row 0 |
 
-**When to pause.** Read the [prologue row 44 closing stitch](prologue/00-many-scales.md#row-44-closing-stitch) first when rows 17–43 all read correctly but the epilogue workflow exam closes without landing at the [prologue reopening anchor](prologue/00-many-scales.md#prologue-reopening-anchor) — it names the full-book → next-project handoff before you copy input decks. Then read the [prologue row 44 preview](prologue/00-many-scales.md#prologue-preview-row-44) when `multiscale_export.yaml` exists but the next specimen still feels like a scale menu. Return to the [Rows 17–43 → Row 12 reunion index](appendix/sources.md#rows17-43-row12-book-loop-closure-index-row-44) when rows 17–43 restored every layer but **copper-wire decks are copied to a new material without rung audit or four-question table** — the break is usually skipping the [epilogue opening hinge from rows 17–43 → row 12](epilogue/multiscale.md#opening-hinge-rows17-43-row12), not missing project-restart theory. Read the [memory sheet row 44 baby picture](appendix/memory-sheet.md#row-44-baby-picture-rows17-43-row12-book-loop-closure) when row 12 feels disconnected from the full meta-stitch arc; read the [epilogue row 44 closing loop](epilogue/multiscale.md#row-44-closing-loop) when the competence loop closes. When row 44 is complete, proceed to [row 12](#skill-navigation-row-12) on the new project, to [row 0](#skill-navigation-row-0) when grammar needs refresh before descent, or revisit [row 43](#skill-navigation-row-43) when orchestration has not yet verified.
+**When to pause.** Read the [prologue row 44 closing stitch](prologue/00-many-scales.md#row-44-closing-stitch) first when rows 17–43 all read correctly but the epilogue workflow exam closes without landing at the [prologue reopening anchor](prologue/00-many-scales.md#prologue-reopening-anchor) — it names the full-book → next-project handoff before you copy input decks. Then read the [prologue row 44 preview](prologue/00-many-scales.md#prologue-preview-row-44) when `multiscale_export.yaml` exists but the next specimen still feels like a scale menu. Return to the [Rows 17–43 → Row 12 reunion index](appendix/sources.md#rows17-43-row12-book-loop-closure-index-row-44) when rows 17–43 restored every layer but **copper-wire decks are copied to a new material without rung audit or four-question table** — the break is usually skipping the [epilogue opening hinge from rows 17–43 → row 12](epilogue/multiscale.md#opening-hinge-rows17-43-row12), not missing project-restart theory. Read the [memory sheet row 44 baby picture](appendix/memory-sheet.md#row-44-baby-picture-rows17-43-row12-book-loop-closure) when the book loop feels closed in theory but the next terminal still copies copper decks blindly.
+
+### Row 45 skill checkpoint — Rows 17–44 → Row 17 second-pass reunion audit {#skill-navigation-row-45}
+
+This checkpoint closes the **Rows 17–44 → Row 17 second-pass reunion** chain — when every meta-stitch through book-loop closure reads correctly but **a second straight-through read still opens skill checkpoints at every chapter** instead of trusting Scene → Bridge rhythm. Row 45 returns you to [row 17](preface.md#skill-navigation-row-17) without erasing rows 18–44: the reunion map is internalized; the novel path is primary again.
+
+| Step | Skill on the copper wire | Minimal artifact |
+|------|--------------------------|------------------|
+| 1 — Book-loop gate | Confirm row 44 closed (or copper re-read chosen deliberately) | Orchestration verified **or** explicit decision to re-read same specimen |
+| 2 — Row 17 reset | Open [continuous read-through guide](appendix/sources.md#continuous-read-through-guide) | Five-act table visible; three gates named (I.4, VI.4, IX.3) |
+| 3 — Detour budget | State one rule: detour only when a gate stalls | No row 19–44 unless plot stutters at a gate |
+| 4 — Bridge discipline | At part boundaries, read prior Bridge aloud only | [Bridge reunion (row 23)](appendix/sources.md#bridge-reunion-index-row-23) not re-opened every chapter |
+| 5 — Cross-links audit | Read [Rows 17–44 → Row 17 second-pass reunion index](appendix/sources.md#rows17-44-row17-second-pass-reunion-index-row-45) aloud | Each row names same straight-through contract at a different scale |
+
+**Row 45 three-way audit (prologue preview ↔ this checkpoint ↔ workflow exam).**
+
+| Step | Prologue preview ([row 45](prologue/00-many-scales.md#prologue-preview-row-45)) | This checkpoint (above) | Workflow exam ([row 17 row](appendix/sources.md#continuous-read-through-guide)) |
+|------|--------------------------------------------------------------------------------|-------------------------|--------------------------------------------------------------------------------|
+| 1 | Name row 44 closed or re-read intentional | Step 1 — book-loop gate | Same specimen or new project with row 12 audit done |
+| 2 | Name row 17 as second-pass anchor | Step 2 — row 17 reset | Continuous read-through guide opened |
+| 3 | Name detour budget aloud | Step 3 — detour budget | Gates only at I.4, VI.4, IX.3 |
+| 4 | Name Bridge-only part transitions | Step 4 — Bridge discipline | Prior Bridge read aloud before next part |
+| 5 | [Rows 17–44 → Row 17 reunion index](appendix/sources.md#rows17-44-row17-second-pass-reunion-index-row-45) recitation | Step 5 — cross-links audit | Scene → Bridge novel path restored |
+
+**When to pause.** Read the [prologue row 45 closing stitch](prologue/00-many-scales.md#row-45-closing-stitch) when rows 17–44 all read correctly but the second pass still feels like a reunion index homework set. Return to the [Rows 17–44 → Row 17 reunion index](appendix/sources.md#rows17-44-row17-second-pass-reunion-index-row-45) when **every skill row 18–44 was opened sequentially on re-read** — the break is usually skipping the [epilogue opening hinge from rows 17–44 → row 17](epilogue/multiscale.md#opening-hinge-rows17-44-row17). Read the [memory sheet row 45 baby picture](appendix/memory-sheet.md#row-45-baby-picture-rows17-44-row17-second-pass-reunion) for index-card compression.
+
+### Row 46 skill checkpoint — Rows 17–45 → Writings canonical reunion audit {#skill-navigation-row-46}
+
+This checkpoint closes the **Rows 17–45 → Writings canonical reunion** chain — when second-pass reading is smooth but **Part II still feels like a new course after Part I**, or **`src/` chapter prose diverges from `writings/` canonical subtrees**. Row 46 reunites the unified mdBook with the Functional Analysis Notes layout under [`writings/`](../writings/README.md).
+
+| Step | Skill on the copper wire | Minimal artifact |
+|------|--------------------------|------------------|
+| 1 — Second-pass gate | Confirm row 45 closed or I.4 gate identified as stall point | Straight-through read reaches I.4 → II.0 without row spam |
+| 2 — Canonical hinge | Read [I.4 Writings canonical hinge](part01-linear-algebra/04-toward-infinity.md#writings-canonical-hinge-i4-to-ii0) → [II.0 Closing the arc](part02-functional-analysis/00-opening.md#closing-the-arc-from-part-i) | One aloud sentence: same wire, fields not vectors |
+| 3 — Sync audit | Run `./scripts/sync-writings.sh --check` from repo root | Exit 0 — no drift between `writings/` and `src/` |
+| 4 — Subtree parity | Open [Writings multiscale arc](../writings/SUMMARY.md#multiscale-story-arc-one-table) and [FA layout parity](../writings/SUMMARY.md#functional-analysis-notes-layout-writingsgit-parity) | Part I–II rows match book parts in table |
+| 5 — Cross-links audit | Read [Rows 17–45 → Writings canonical reunion index](appendix/sources.md#rows17-45-writings-canonical-reunion-index-row-46) aloud | Edit canonical path: `writings/` → sync → build |
+
+**Row 46 three-way audit (prologue preview ↔ this checkpoint ↔ workflow exam).**
+
+| Step | Prologue preview ([row 46](prologue/00-many-scales.md#prologue-preview-row-46)) | This checkpoint (above) | Workflow exam ([I.4 Bridge](part01-linear-algebra/04-toward-infinity.md#bridge-to-part-ii)) |
+|------|--------------------------------------------------------------------------------|-------------------------|----------------------------------------------------------------------------------------------|
+| 1 | Name I.4 → II.0 as grammar gate stall | Step 1 — second-pass gate | Gate plot spine recited |
+| 2 | Name canonical file pair aloud | Step 2 — canonical hinge | Linear Algebra Notes → Functional Analysis Notes |
+| 3 | Name sync check before edit | Step 3 — sync audit | `--check` passes |
+| 4 | Name Writings SUMMARY tables | Step 4 — subtree parity | Multiscale arc + FA layout rows |
+| 5 | [Rows 17–45 → Writings reunion index](appendix/sources.md#rows17-45-writings-canonical-reunion-index-row-46) recitation | Step 5 — cross-links audit | Canonical edit workflow stated |
+
+**When to pause.** Read the [prologue row 46 closing stitch](prologue/00-many-scales.md#row-46-closing-stitch) when row 45 restored novel reading but **Banach spaces arrive without the thermocouple Scene**. Return to the [Writings canonical reunion index](appendix/sources.md#rows17-45-writings-canonical-reunion-index-row-46) when **`sync-writings.sh --check` fails** — edit `writings/`, sync, rebuild; do not fork prose only in `src/`. Read the [memory sheet row 46 baby picture](appendix/memory-sheet.md#row-46-baby-picture-rows17-45-writings-canonical-reunion) and the [epilogue row 46 closing loop](epilogue/multiscale.md#row-46-closing-loop) when the competence loop closes.
 
 ## The copper wire through the book
 

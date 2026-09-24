@@ -1389,7 +1389,43 @@ This subsection is the **downstream half** of [memory sheet row 44](../appendix/
 | 4 | Name material change ≠ method change | Step 4 — material vs method | Ladder reusable; active rungs differ |
 | 5 | [Rows 17–43 → Row 12 reunion index](../appendix/sources.md#rows17-43-row12-book-loop-closure-index-row-44) recitation | Step 5 — cross-links audit | Epilogue → prologue reopening anchor → row 0 |
 
-When orchestration is verified but the next project still feels like copying copper decks, start at the [opening hinge from rows 17–43 → row 12](#opening-hinge-rows17-43-row12) — recite the ME 412 one-line summary, complete the [row 12 four-step audit](../prologue/00-many-scales.md#prologue-reopening-anchor) on the new specimen, then restart grammar at [row 0](../preface.md#skill-navigation-row-0) before mid-book handshakes. Walk the [book loop cross-links audit](#opening-hinge-rows17-43-row12) table aloud — each row should name the same restart contract at a different scale. The [memory sheet row 44 baby picture](../appendix/memory-sheet.md#row-44-baby-picture-rows17-43-row12-book-loop-closure) compresses the full-book → next-project closing arc for index-card review. Do not conflate row 44 (meta-stitch → book loop closure) with row 12 (next-project restart competence checkpoint) — row 44 names **when every narrative layer reads correctly but the epilogue → prologue transition still feels disconnected**; row 12 names **how to restart on a new specimen**; [row 0](../preface.md#skill-navigation-row-0) names grammar restart on the new project. Proceed to [row 12](#row-12-closing-loop) when the four-step audit is complete on the new specimen, to [row 0](../preface.md#skill-navigation-row-0) when grammar needs refresh before descent, or revisit [row 43](#row-43-closing-loop) when orchestration has not yet verified.
+When orchestration is verified but the next project still feels like copying copper decks, start at the [opening hinge from rows 17–43 → row 12](#opening-hinge-rows17-43-row12) — recite the ME 412 one-line summary, complete the [row 12 four-step audit](../prologue/00-many-scales.md#prologue-reopening-anchor) on the new specimen, then restart grammar at [row 0](../preface.md#skill-navigation-row-0) before mid-book handshakes. Walk the [book loop cross-links audit](#opening-hinge-rows17-43-row12) table aloud — each row should name the same restart contract at a different scale. The [memory sheet row 44 baby picture](../appendix/memory-sheet.md#row-44-baby-picture-rows17-43-row12-book-loop-closure) compresses the full-book → next-project closing arc for index-card review. Do not conflate row 44 (meta-stitch → book loop closure) with row 12 (next-project restart competence checkpoint) — row 44 names **when every narrative layer reads correctly but the epilogue → prologue transition still feels disconnected**; row 12 names **how to restart on a new specimen**; [row 0](../preface.md#skill-navigation-row-0) names grammar restart on the new project. Proceed to [row 45](#row-45-closing-loop) when the book loop closes but a second straight-through read still opens every skill row; to [row 12](#row-12-closing-loop) when the four-step audit is complete on the new specimen; to [row 0](../preface.md#skill-navigation-row-0) when grammar needs refresh before descent; or revisit [row 43](#row-43-closing-loop) when orchestration has not yet verified.
+
+## Closing rows 17–44 from Row 17 second pass {#opening-hinge-rows17-44-row17}
+
+If you have read linearly since the prologue and row 44 closed the book loop (or you deliberately re-read the copper arc), rows 17–44 restored every meta-stitch — but **a second pass still feels like reunion-index homework**. Row 17's [continuous read-through guide](../appendix/sources.md#continuous-read-through-guide) is the **downstream half** of that audit:
+
+| Meta-stitch layer (rows 17–44) | Row 17 second-pass consumer | Reading discipline |
+|--------------------------------|----------------------------|--------------------|
+| Rows 17–20 | Straight-through rhythm | Scene → Bridge; gates at I.4, VI.4, IX.3 only |
+| Rows 21–27 | Optional detours | Open only when the matching layer stalls |
+| Rows 28–44 | Workflow closure | Verified once; do not re-walk every row on re-read |
+| **Row 17 second pass** | **Novel path restored** | **Five acts; Bridge at part boundaries; skill rows spare** |
+
+The [Rows 17–44 → Row 17 second-pass reunion index](../appendix/sources.md#rows17-44-row17-second-pass-reunion-index-row-45) reunites this hinge with [row 44](../preface.md#skill-navigation-row-44) when the meta-stitch map is internalized but Scene → Bridge rhythm is lost on the second pass.
+
+### Row 45 closing loop (Rows 17–44 → Row 17 second-pass reunion) {#row-45-closing-loop}
+
+This subsection is the **downstream half** of [memory sheet row 45](../appendix/memory-sheet.md#row-45-baby-picture-rows17-44-row17-second-pass-reunion), the [preface row 45 skill checkpoint](../preface.md#skill-navigation-row-45), and the [Rows 17–44 → Row 17 second-pass reunion index](../appendix/sources.md#rows17-44-row17-second-pass-reunion-index-row-45). Recite the [ME 412 one-line summary](#row-12-closing-loop), open the [continuous read-through guide](../appendix/sources.md#continuous-read-through-guide), and read Preface → Epilogue once more with **detour budget**: skill rows 18–44 are spare tires, not the primary road. Proceed to [row 46](#row-46-closing-loop) when I.4 → II.0 still stutters on the second pass.
+
+## Closing rows 17–45 from Writings canonical source {#opening-hinge-rows17-45-writings}
+
+When narrative smoothness returns but **Part II feels like a new course after Part I**, the break is often canonical, not mathematical: the unified book in `src/` drifted from the **Writings** subtrees that mirror the Functional Analysis Notes layout.
+
+| Source artifact | Unified book consumer | Audit |
+|-----------------|----------------------|-------|
+| [`writings/linear-algebra/chapters/04-toward-infinity.md`](../../writings/linear-algebra/chapters/04-toward-infinity.md#writings-canonical-hinge-i4-to-ii0) | [I.4 in `src/`](../part01-linear-algebra/04-toward-infinity.md#writings-canonical-hinge-i4-to-ii0) | Grammar gate prose present |
+| [`writings/functional-analysis/chapters/00-opening.md`](../../writings/functional-analysis/chapters/00-opening.md#closing-the-arc-from-part-i) | [II.0 in `src/`](../part02-functional-analysis/00-opening.md#closing-the-arc-from-part-i) | Closing the arc read after I.4 Bridge |
+| [`writings/SUMMARY.md`](../../writings/SUMMARY.md#multiscale-story-arc-one-table) | [src/SUMMARY.md](../SUMMARY.md) | Same part order I→IX |
+| [`sync-writings.sh`](../../scripts/sync-writings.sh) | `mdbook build` | `./scripts/sync-writings.sh --check` exits 0 |
+
+**Edit workflow (read aloud).** Change prose under `writings/<part>/chapters/` → `./scripts/sync-writings.sh` → `./scripts/test-fixtures.sh` → `mdbook build`. Never fork chapter bodies only in `src/` — row 46 exists because the continuous book and Writings.git vendored tree must stay one manuscript.
+
+The [Rows 17–45 → Writings canonical reunion index](../appendix/sources.md#rows17-45-writings-canonical-reunion-index-row-46) reunites this hinge with [row 45](../preface.md#skill-navigation-row-45) when second-pass reading works but the I.4 → II.0 file pair feels like two textbooks.
+
+### Row 46 closing loop (Rows 17–45 → Writings canonical reunion) {#row-46-closing-loop}
+
+This subsection is the **downstream half** of [memory sheet row 46](../appendix/memory-sheet.md#row-46-baby-picture-rows17-45-writings-canonical-reunion), the [preface row 46 skill checkpoint](../preface.md#skill-navigation-row-46), and the [Writings canonical reunion index](../appendix/sources.md#rows17-45-writings-canonical-reunion-index-row-46). Read the [I.4 Writings canonical hinge](../part01-linear-algebra/04-toward-infinity.md#writings-canonical-hinge-i4-to-ii0), land at [II.0 Closing the arc from Part I](../part02-functional-analysis/00-opening.md#closing-the-arc-from-part-i), verify sync, then continue Part II as the **next paragraph** of Part I — same thermocouple Scene, fields instead of vectors.
 
 ### Row 12 closing loop (epilogue → prologue) {#row-12-closing-loop}
 
