@@ -4,7 +4,7 @@ A continuous narrative book — from linear algebra through functional analysis,
 
 **~289k words** · **35 numbered chapters** · **9 parts** · **mdBook** · canonical sources in [`writings/`](writings/)
 
-Last verified: Sep 23 2026 23:03 UTC (cron) — sync OK, fixtures PASS, mdbook build OK, links OK, ~289k words; intra-part Bridge reunion descent (Parts VI–IX) in `sources.md` + reading maps on continuum/defects/md/dft READMEs.
+Last verified: Sep 24 2026 00:00 UTC (cron) — sync OK, fixtures PASS, mdbook build OK, links OK, ~289k words; appendix README reading map (rows 26–27 Story so far / Closing the arc) + preface reading-rhythm stitch.
 
 ## Read the book
 
