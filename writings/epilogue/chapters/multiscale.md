@@ -90,7 +90,7 @@ The [IX.3 → Handshake 3 reunion index](../appendix/sources.md#ix3-handshake3-r
 | [Preface row 13](../preface.md#skill-navigation-row-13) | Competence-time | Handshake 2 sets \(\Delta T\); Handshake 3 sets \(\alpha\Delta T\) — do not conflate |
 | [Memory sheet rows 8–9](../appendix/memory-sheet.md#rows-8-9-baby-picture-tw-temperature-pedigree) | Index-card | \(T_w\) from CHT propagates through MD mobility, DFT phonons, and fixed-grip stress |
 
-The [preface row 40 skill checkpoint](../preface.md#skill-navigation-row-40) closes the competence loop; the [prologue row 40 closing stitch](../prologue/00-many-scales.md#row-40-closing-stitch) is the upstream half when the foundation folder exists but the load cell still cites handbook \(\alpha\) beside an orphan `pw.x` log.
+The [preface row 40 skill checkpoint](../preface.md#skill-navigation-row-40) closes the competence loop; the [preface IX.3 → Handshake 3 thread](../preface.md#reading-rhythm) is the reading-time mirror when rows 17–39 all read correctly but this opening still feels like a new course after IX.3; the [prologue row 40 closing stitch](../prologue/00-many-scales.md#row-40-closing-stitch) is the upstream half when the foundation folder exists but the load cell still cites handbook \(\alpha\) beside an orphan `pw.x` log.
 
 ## Closing Handshake 4a from Part VII.3 {#opening-hinge-vii3-handshake4a}
 
