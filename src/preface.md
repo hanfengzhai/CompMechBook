@@ -1072,6 +1072,30 @@ This checkpoint closes the **Rows 17–43 → Row 12 book loop closure** chain �
 
 **When to pause.** Read the [prologue row 44 closing stitch](prologue/00-many-scales.md#row-44-closing-stitch) first when rows 17–43 all read correctly but the epilogue workflow exam closes without landing at the [prologue reopening anchor](prologue/00-many-scales.md#prologue-reopening-anchor) — it names the full-book → next-project handoff before you copy input decks. Then read the [prologue row 44 preview](prologue/00-many-scales.md#prologue-preview-row-44) when `multiscale_export.yaml` exists but the next specimen still feels like a scale menu. Return to the [Rows 17–43 → Row 12 reunion index](appendix/sources.md#rows17-43-row12-book-loop-closure-index-row-44) when rows 17–43 restored every layer but **copper-wire decks are copied to a new material without rung audit or four-question table** — the break is usually skipping the [epilogue opening hinge from rows 17–43 → row 12](epilogue/multiscale.md#opening-hinge-rows17-43-row12), not missing project-restart theory. Read the [memory sheet row 44 baby picture](appendix/memory-sheet.md#row-44-baby-picture-rows17-43-row12-book-loop-closure) when row 12 feels disconnected from the full meta-stitch arc; read the [epilogue row 44 closing loop](epilogue/multiscale.md#row-44-closing-loop) when the competence loop closes. When row 44 is complete, proceed to [row 12](#skill-navigation-row-12) on the new project, to [row 0](#skill-navigation-row-0) when grammar needs refresh before descent, or revisit [row 43](#skill-navigation-row-43) when orchestration has not yet verified.
 
+### Row 45 skill checkpoint — VI.4 → VII.0 Writings canonical part-boundary audit {#skill-navigation-row-45}
+
+This checkpoint closes the **midpoint Writings handoff** when rows 17–32 all read correctly but **Part VII.0 feels like a new mdBook after Part VI** — return-mapping and intermission landed, yet the Defects Notes upstream link and new concept map feel like a syllabus reset rather than descent on the same copper wire.
+
+| Step | Skill on the wire | Minimal artifact |
+|------|-------------------|------------------|
+| 1 — Midpoint gate | Recite [VI.4 plot spine](part06-continuum/04-nonlinear-plasticity-preview.md#plot-spine-one-line) aloud | One sentence: ascent ends at the knee |
+| 2 — Intermission | Read [VI.4 intermission](part06-continuum/04-nonlinear-plasticity-preview.md#intermission-ascent-ends-descent-begins) before VII.0 | Phenomenology complete; pedigree begins |
+| 3 — Writings hinge | Read [VI.4 Bridge](part06-continuum/04-nonlinear-plasticity-preview.md#bridge-to-part-vii) + [Writings canonical hinge](part06-continuum/04-nonlinear-plasticity-preview.md#writings-canonical-hinge-vi4-to-vii0) | Same layout contract; different upstream PDF |
+| 4 — Landing | Open [VII.0 Writings canonical landing](part07-defects/00-opening.md#writings-canonical-landing-vi4-to-vii0) only | Recite [VII.0 plot spine](part07-defects/00-opening.md#plot-spine-one-line) second |
+| 5 — Cross-links | Read [VI.4 → VII.0 reunion index](appendix/sources.md#vi4-vii0-writings-canonical-reunion-index-row-45) aloud | Forest replaces \(H\); same \(T_w\) from `cht_export.yaml` |
+
+**Row 45 three-way audit (prologue preview ↔ this checkpoint ↔ workflow exam).**
+
+| Step | Prologue preview ([row 45](prologue/00-many-scales.md#prologue-preview-row-45)) | This checkpoint (above) | Workflow exam ([midpoint row](epilogue/multiscale.md#what-you-should-be-able-to-do-after-the-book)) |
+|------|--------------------------------------------------------------------------------|-------------------------|-----------------------------------------------------------------------------------------------------|
+| 1 | Name midpoint gate before defects | Step 1 — VI.4 plot spine | Mandatory pause VI.4 → VII |
+| 2 | Name intermission as narrative gate | Step 2 — intermission | \(J_2\) placeholder; forest next |
+| 3 | Name Writings layout continuity | Step 3 — canonical hinge | Functional Analysis Notes template |
+| 4 | Name VII.0 landing, not VII.1 cold | Step 4 — landing | Peach–Köhler inherits FEM stress |
+| 5 | [VI.4 → VII.0 reunion index](appendix/sources.md#vi4-vii0-writings-canonical-reunion-index-row-45) recitation | Step 5 — cross-links | Descent Act III rung 1 |
+
+**When to pause.** Read the [prologue row 45 closing stitch](prologue/00-many-scales.md#row-45-closing-stitch) when row 32 closed return-mapping but Part VII still feels like a new course. Return to the [VI.4 → VII.0 reunion index](appendix/sources.md#vi4-vii0-writings-canonical-reunion-index-row-45) when **VII.1 opens before VII.0 landing** — the break is usually skipping [VI.4's Writings canonical hinge](part06-continuum/04-nonlinear-plasticity-preview.md#writings-canonical-hinge-vi4-to-vii0), not missing Burgers vector algebra. Read the [memory sheet row 45 baby picture](appendix/memory-sheet.md#row-45-baby-picture-vi4-vii0-writings-canonical-reunion) for index-card review; read the [epilogue row 45 closing loop](epilogue/multiscale.md#row-45-closing-loop) when the competence loop closes. When row 45 is complete, proceed to [VII.1](part07-defects/01-defect-taxonomy.md), to [row 33](#skill-navigation-row-33) when DDD and MD feel disconnected, or revisit [row 32](#skill-navigation-row-32) when return-mapping still feels ad hoc.
+
 ## The copper wire through the book
 
 The same specimen — a cold-drawn copper wire under tension, heated by current, cooled by air — reappears in every part. The table below is a reading map: what changes is the **state variable**, not the material.
