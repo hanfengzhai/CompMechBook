@@ -1144,6 +1144,30 @@ This checkpoint closes the **Rows 17–46 → II.5 → III.0 analysis–PDE reun
 
 **When to pause.** Read the [prologue row 47 closing stitch](prologue/00-many-scales.md#row-47-closing-stitch) when row 46 restored I.4 → II.0 but **Laplacians arrive without the tap-test eigenvalue Scene**. Return to the [II.5 → III.0 reunion index](appendix/sources.md#rows17-46-ii5-iii0-analysis-pde-reunion-index-row-47) when **Part III strong forms feel like ME 300B homework separate from \(H^1\)**. Read the [memory sheet row 47 baby picture](appendix/memory-sheet.md#row-47-baby-picture-rows17-46-ii5-iii0-analysis-pde-reunion) and the [epilogue row 47 closing loop](epilogue/multiscale.md#row-47-closing-loop) when the competence loop closes.
 
+### Row 48 skill checkpoint — Rows 17–47 → III.4 → IV.0 PDE–FEM reunion audit {#skill-navigation-row-48}
+
+This checkpoint closes the **Rows 17–47 → III.4 → IV.0 PDE–FEM reunion** chain — when row 47 restored II.5 → III.0 canonical parity but **Part IV still feels like a separate FEA software course after Part III**, or **FEM chapter prose diverges from `writings/fem/`**. Row 48 reunites PDE Notes with FEM Notes at the third ascent hinge on the same copper wire.
+
+| Step | Skill on the copper wire | Minimal artifact |
+|------|--------------------------|------------------|
+| 1 — Grammar gate | Confirm row 47 closed or III.4 → IV.0 identified as stall point | II.5 → III.0 reads as one paragraph; stall is at energy → assembly turn |
+| 2 — Canonical hinge pair | Read [III.4 Writings canonical hinge](part03-pdes/04-energy-methods.md#writings-canonical-hinge-iii4-to-iv0) → [IV.0 Writings canonical landing](part04-fem/00-opening.md#writings-canonical-landing-iii4-to-iv0) | One aloud sentence: same mesh, Rayleigh–Ritz becomes Galerkin scatter |
+| 3 — Closing the arc | Read [IV.0 Closing the arc from Part III](part04-fem/00-opening.md#closing-the-arc-from-part-iii) after the hinge pair | Symbol map: \(\Pi[u,T]\) → \(\mathbf{K}_{uu}, \mathbf{K}_{TT}\) on one connectivity |
+| 4 — Schematic 14 | Open [IV.0 Galerkin ladder](part04-fem/00-opening.md#the-galerkin-ladder-me-412-schematic-14-continued) | Convergence half named after III.4 existence half |
+| 5 — Cross-links audit | Read [Rows 17–47 → III.4 → IV.0 reunion index](appendix/sources.md#rows17-47-iii4-iv0-pde-fem-reunion-index-row-48) aloud | Edit `writings/fem/chapters/` → sync → build |
+
+**Row 48 three-way audit (prologue preview ↔ this checkpoint ↔ workflow exam).**
+
+| Step | Prologue preview ([row 48](prologue/00-many-scales.md#prologue-preview-row-48)) | This checkpoint (above) | Workflow exam ([III.4 Bridge](part03-pdes/04-energy-methods.md#bridge-to-part-iv)) |
+|------|--------------------------------------------------------------------------------|-------------------------|----------------------------------------------------------------------------------------|
+| 1 | Name III.4 → IV.0 as PDE–FEM stall | Step 1 — grammar gate | Row 47 closed or III.4 gate named |
+| 2 | Name canonical file pair aloud | Step 2 — canonical hinge pair | PDE Notes → FEM Notes |
+| 3 | Name Closing the arc after landing | Step 3 — Closing the arc | Energy → block assembly |
+| 4 | Name Schematic 14 convergence half | Step 4 — Schematic 14 | Galerkin ladder after variational ladder |
+| 5 | [Rows 17–47 → III.4 → IV.0 reunion index](appendix/sources.md#rows17-47-iii4-iv0-pde-fem-reunion-index-row-48) recitation | Step 5 — cross-links audit | FEM canonical edit workflow stated |
+
+**When to pause.** Read the [prologue row 48 closing stitch](prologue/00-many-scales.md#row-48-closing-stitch) when row 47 restored II.5 → III.0 but **assembly chapters arrive without the two-element thermal Lab act**. Return to the [III.4 → IV.0 reunion index](appendix/sources.md#rows17-47-iii4-iv0-pde-fem-reunion-index-row-48) when **Part IV weighted residuals feel like FEA homework separate from Lax–Milgram**. Read the [memory sheet row 48 baby picture](appendix/memory-sheet.md#row-48-baby-picture-rows17-47-iii4-iv0-pde-fem-reunion) and the [epilogue row 48 closing loop](epilogue/multiscale.md#row-48-closing-loop) when the competence loop closes.
+
 ## The copper wire through the book
 
 The same specimen — a cold-drawn copper wire under tension, heated by current, cooled by air — reappears in every part. The table below is a reading map: what changes is the **state variable**, not the material.

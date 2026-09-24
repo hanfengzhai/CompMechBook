@@ -108,6 +108,14 @@ If you have read linearly since the prologue, the same specimen has changed lang
 
 Part III ended with a promise: the weak form of equilibrium is a **minimum principle** (or saddle point for mixed problems), and the minimizer lives in \(H^1\). Part IV is where that promise becomes code — shape functions on elements, quadrature at Gauss points, scatter into global stiffness matrices \(\mathbf{K}_{uu}\) and \(\mathbf{K}_{TT}\), thermal eigenstrain into the mechanical load vector. The copper wire that was a spring network in Part I and a field in Part II is now a **meshed solid** whose node values are the discrete shadow of the continuous solution. Convergence as \(h\to 0\) is the story Part II told in function spaces, made numerical in Chapter 5.
 
+## Writings canonical landing (Part III → Part IV) {#writings-canonical-landing-iii4-to-iv0}
+
+You are reading the first file in the **FEM Notes** subtree ([`writings/fem/`](../../writings/fem/)). It is the narrative landing after [III.4 Writings canonical hinge](../part03-pdes/04-energy-methods.md#writings-canonical-hinge-iii4-to-iv0) in [`writings/pde/`](../../writings/pde/) — same copper wire, same thermocouple and load cell Scene, but the state variables now live on a **mesh** with shape functions, element loops, and global \(\mathbf{K}\), not only as minimizers in \(H^1\).
+
+**One continuous sentence (read aloud after III.4 Bridge):** Lax–Milgram and the Dirichlet functional \(\Pi[T]\) from Act II were never abstract analysis — they were the existence language for the **same** \(K_{22} T_2 = F_2\) row Part IV will scatter from two bar elements before Act III's grip displacement enters \(\mathbf{K}_{uu}\).
+
+If Part IV feels like a new FEA manual after Part III, read [**Closing the arc from Part III**](#closing-the-arc-from-part-iii) and [III.4 Bridge to Part IV](../part03-pdes/04-energy-methods.md#bridge-to-part-iv) as **one continuous handoff** (see [row 48](../appendix/sources.md#rows17-47-iii4-iv0-pde-fem-reunion-index-row-48) in the sources appendix). Edit canonical prose under `writings/fem/chapters/` before syncing to `src/` — the break is usually reading only the unified mdBook export without this landing section.
+
 ## Closing the arc from Part III {#closing-the-arc-from-part-iii}
 
 If you have read linearly since the prologue, Part III's closing checkpoint completed the analytical pipeline — strong form, weak form, Sobolev regularity, energy minimum. Part IV is the **first code chapter**:

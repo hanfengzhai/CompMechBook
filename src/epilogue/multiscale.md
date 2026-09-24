@@ -1442,7 +1442,24 @@ The [Rows 17–46 → II.5 → III.0 analysis–PDE reunion index](../appendix/s
 
 ### Row 47 closing loop (Rows 17–46 → II.5 → III.0 analysis–PDE reunion) {#row-47-closing-loop}
 
-This subsection is the **downstream half** of [memory sheet row 47](../appendix/memory-sheet.md#row-47-baby-picture-rows17-46-ii5-iii0-analysis-pde-reunion), the [preface row 47 skill checkpoint](../preface.md#skill-navigation-row-47), and the [II.5 → III.0 reunion index](../appendix/sources.md#rows17-46-ii5-iii0-analysis-pde-reunion-index-row-47). Read the [II.5 Writings canonical hinge](../part02-functional-analysis/05-spectral-theorem.md#writings-canonical-hinge-ii5-to-iii0), land at [III.0 Writings canonical landing](../part03-pdes/00-opening.md#writings-canonical-landing-ii5-to-iii0), read [Closing the arc from Part II](../part03-pdes/00-opening.md#closing-the-arc-from-part-ii), then continue Part III as the **next paragraph** of Part II — same tap-test eigenvalues, same \(a(u,v)\), now written as PDEs on the bar domain.
+This subsection is the **downstream half** of [memory sheet row 47](../appendix/memory-sheet.md#row-47-baby-picture-rows17-46-ii5-iii0-analysis-pde-reunion), the [preface row 47 skill checkpoint](../preface.md#skill-navigation-row-47), and the [II.5 → III.0 reunion index](../appendix/sources.md#rows17-46-ii5-iii0-analysis-pde-reunion-index-row-47). Read the [II.5 Writings canonical hinge](../part02-functional-analysis/05-spectral-theorem.md#writings-canonical-hinge-ii5-to-iii0), land at [III.0 Writings canonical landing](../part03-pdes/00-opening.md#writings-canonical-landing-ii5-to-iii0), read [Closing the arc from Part II](../part03-pdes/00-opening.md#closing-the-arc-from-part-ii), then continue Part III as the **next paragraph** of Part II — same tap-test eigenvalues, same \(a(u,v)\), now written as PDEs on the bar domain. Proceed to [row 48](#row-48-closing-loop) when III.4 → IV.0 still stutters after the analysis–PDE gate is smooth.
+
+## Closing rows 17–47 at III.4 → IV.0 PDE–FEM gate {#opening-hinge-rows17-47-iii4-iv0}
+
+When II.5 → III.0 reads as one manuscript but **Part IV feels like a separate FEA software course after Part III**, the break is often the third Writings subtree boundary — PDE Notes ending without landing in FEM Notes on the same mesh connectivity.
+
+| Source artifact | Unified book consumer | Audit |
+|-----------------|----------------------|-------|
+| [`writings/pde/chapters/04-energy-methods.md`](../../writings/pde/chapters/04-energy-methods.md#writings-canonical-hinge-iii4-to-iv0) | [III.4 in `src/`](../part03-pdes/04-energy-methods.md#writings-canonical-hinge-iii4-to-iv0) | PDE–FEM hinge prose present |
+| [`writings/fem/chapters/00-opening.md`](../../writings/fem/chapters/00-opening.md#writings-canonical-landing-iii4-to-iv0) | [IV.0 in `src/`](../part04-fem/00-opening.md#writings-canonical-landing-iii4-to-iv0) | Canonical landing read after III.4 Bridge |
+| [IV.0 Closing the arc from Part III](../part04-fem/00-opening.md#closing-the-arc-from-part-iii) | Symbol map energy → assembly | \(\Pi[u,T]\) → \(\mathbf{K}_{uu}, \mathbf{K}_{TT}\) on one mesh |
+| [IV.0 Galerkin ladder Schematic 14](../part04-fem/00-opening.md#the-galerkin-ladder-me-412-schematic-14-continued) | Convergence half after III.4 | Rayleigh–Ritz → Galerkin scatter → Céa |
+
+The [Rows 17–47 → III.4 → IV.0 PDE–FEM reunion index](../appendix/sources.md#rows17-47-iii4-iv0-pde-fem-reunion-index-row-48) reunites this hinge with [row 47](../preface.md#skill-navigation-row-47) when canonical sync works at II.5 → III.0 but Lax–Milgram still feels divorced from weighted residuals on the wire.
+
+### Row 48 closing loop (Rows 17–47 → III.4 → IV.0 PDE–FEM reunion) {#row-48-closing-loop}
+
+This subsection is the **downstream half** of [memory sheet row 48](../appendix/memory-sheet.md#row-48-baby-picture-rows17-47-iii4-iv0-pde-fem-reunion), the [preface row 48 skill checkpoint](../preface.md#skill-navigation-row-48), and the [III.4 → IV.0 reunion index](../appendix/sources.md#rows17-47-iii4-iv0-pde-fem-reunion-index-row-48). Read the [III.4 Writings canonical hinge](../part03-pdes/04-energy-methods.md#writings-canonical-hinge-iii4-to-iv0), land at [IV.0 Writings canonical landing](../part04-fem/00-opening.md#writings-canonical-landing-iii4-to-iv0), read [Closing the arc from Part III](../part04-fem/00-opening.md#closing-the-arc-from-part-iii), then continue Part IV as the **next paragraph** of Part III — same two-element thermal Lab act, same thermoelastic mesh thread, now with element scatter and quadrature.
 
 ### Row 12 closing loop (epilogue → prologue) {#row-12-closing-loop}
 
