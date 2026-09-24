@@ -1,0 +1,81 @@
+# Writings source integration
+
+This directory holds canonical markdown for **Computational Mechanics** (CompMechBook). It is structured for eventual linking as a [`Writings`](https://github.com/hanfengzhai/Writings) git submodule; until that remote is available, the full source tree is vendored here.
+
+## Layout (Functional Analysis Notes style)
+
+Each part is a standalone mdBook:
+
+```
+writings/
+├── preface/                 # Preface
+├── prologue/                # Prologue — one wire, many scales
+├── linear-algebra/          # Part I  — opening + chapters 01–04
+├── functional-analysis/     # Part II — opening + chapters 01–05
+├── pde/                     # Part III — opening + chapters 01–04
+├── fem/                     # Part IV — opening + chapters 01–05
+├── fvm/                     # Part V  — opening + chapters 01–04
+├── continuum/               # Part VI — opening + chapters 01–04
+├── defects/                 # Part VII — opening + chapters 01–03
+├── md/                      # Part VIII — opening + chapters 01–03
+├── dft/                     # Part IX — opening + chapters 01–03
+├── epilogue/                # Epilogue — multiscale coupling
+└── appendix/                # Glossary, sources, memory sheet (synced to src/appendix/)
+```
+
+Every subtree contains:
+
+- `book.toml` — standalone mdBook configuration with MathJax
+- `chapters/SUMMARY.md` — table of contents
+- `chapters/00-opening.md` — part framing (synced to `src/partNN-*/00-opening.md`)
+- `chapters/NN-*.md` — numbered chapters with **Bridge** sections linking to the next part
+
+## Integration workflow
+
+1. Edit canonical chapters under `writings/<topic>/chapters/`.
+2. Sync into the main book:
+
+   ```bash
+   chmod +x scripts/sync-writings.sh
+   ./scripts/sync-writings.sh
+   mdbook build
+   ```
+
+3. Chapter mapping (numbering preserved):
+
+   | Writings path | Book destination |
+   |---------------|------------------|
+   | `linear-algebra/chapters/00, 01–04` | `src/part01-linear-algebra/` |
+   | `functional-analysis/chapters/00, 01–05` | `src/part02-functional-analysis/` |
+   | `pde/chapters/00, 01–04` | `src/part03-pdes/` |
+   | `fem/chapters/00, 01–05` | `src/part04-fem/` |
+   | `fvm/chapters/00, 01–04` | `src/part05-fvm/` |
+   | `continuum/chapters/00, 01–04` | `src/part06-continuum/` |
+   | `defects/chapters/00, 01–03` | `src/part07-defects/` |
+   | `md/chapters/00, 01–03` | `src/part08-md/` |
+   | `dft/chapters/00, 01–03` | `src/part09-dft/` |
+
+4. Front matter (preface, prologue, epilogue) is canonical under `writings/` and synced into `src/`; the appendix (`src/appendix/`) and unified `src/SUMMARY.md` live only in the main book.
+
+## Build standalone notes
+
+```bash
+cd writings/functional-analysis && mdbook build
+cd writings/linear-algebra && mdbook build
+# … any other subtree, or:
+./scripts/build-all-writings.sh
+```
+
+## Submodule (future)
+
+When the remote repository is available:
+
+```bash
+git submodule add <Writings-repo-url> writings
+git submodule update --init --recursive
+./scripts/sync-writings.sh
+```
+
+See [SUMMARY.md](./SUMMARY.md) for the full index of subtrees, the [multiscale story arc](./SUMMARY.md#multiscale-story-arc-one-table) reading map, and the [Functional Analysis Notes layout parity](./SUMMARY.md#functional-analysis-notes-layout-writingsgit-parity) table (upstream PDF ↔ `writings/` subtree ↔ `src/partNN-*`).
+
+When the continuous book stutters mid-read (part boundaries, export pedigree, [thermoelastic assembly (row 29)](./appendix/chapters/sources.md#thermoelastic-assembly-reunion-index-row-29), [CHT outer-loop reunion (row 30)](./appendix/chapters/sources.md#cht-outer-loop-reunion-index-row-30), [twin-ladder → virtual work reunion (row 31)](./appendix/chapters/sources.md#twin-ladder-virtual-work-reunion-index-row-31), [virtual work → plasticity preview reunion (row 32)](./appendix/chapters/sources.md#virtual-work-plasticity-preview-reunion-index-row-32), [Part VII → VIII descent hinge reunion (row 33)](./appendix/chapters/sources.md#part-vii-viii-descent-hinge-reunion-index-row-33), [potentials → ensembles reunion (row 34)](./appendix/chapters/sources.md#potentials-ensembles-reunion-index-row-34), [ensembles → coarse-graining reunion (row 35)](./appendix/chapters/sources.md#ensembles-coarse-graining-reunion-index-row-35), [coarse-graining → electronic audit reunion (row 36)](./appendix/chapters/sources.md#coarse-graining-electronic-audit-reunion-index-row-36), [electronic audit → Born–Oppenheimer reunion (row 37)](./appendix/chapters/sources.md#electronic-audit-born-oppenheimer-reunion-index-row-37), descent handshakes), use the [appendix reading map](./appendix/README.md#reading-map-continuous-book) — the same navigation table mirrored at the end of [SUMMARY.md](./SUMMARY.md#continuous-reading-order).
