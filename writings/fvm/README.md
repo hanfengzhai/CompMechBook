@@ -39,5 +39,7 @@ When the external `Writings` git submodule is linked, prefer upstream content he
 |------------------------|------|
 | Part V feels like 1D FVM homework separate from CFD | [Bridge reunion — Part V (intra-part)](../appendix/chapters/sources.md#bridge-reunion-intra-part-v) |
 | Solid FEM vs fluid FVM | [CHT outer-loop reunion (row 30)](../appendix/chapters/sources.md#cht-outer-loop-reunion-index-row-30) |
+| Part V feels like a separate CFD course after Part IV | [IV.5 → V.0 FEM–FVM reunion (row 49)](../appendix/chapters/sources.md#rows17-48-iv5-v0-fem-fvm-reunion-index-row-49) |
+| Part VI feels like elasticity after Navier–Stokes | [V.4 → VI.0 FVM–continuum reunion (row 50)](../appendix/chapters/sources.md#rows17-49-v4-vi0-fvm-continuum-reunion-index-row-50) · [V.4 Writings canonical hinge](chapters/04-navier-stokes-cfd.md#writings-canonical-hinge-v4-to-vi0) |
 
 Upstream: [FVM.pdf](https://hanfengzhai.github.io/note/FVM.pdf) · [CFD_note.pdf](https://hanfengzhai.github.io/file/CFD_note.pdf). Book part: [Part V in `src/part05-fvm/`](../../src/part05-fvm/).

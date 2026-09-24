@@ -1476,7 +1476,24 @@ The [Rows 17–48 → IV.5 → V.0 FEM–FVM reunion index](../appendix/sources.
 
 ### Row 49 closing loop (Rows 17–48 → IV.5 → V.0 FEM–FVM reunion) {#row-49-closing-loop}
 
-This subsection is the **downstream half** of [memory sheet row 49](../appendix/memory-sheet.md#row-49-baby-picture-rows17-48-iv5-v0-fem-fvm-reunion), the [preface row 49 skill checkpoint](../preface.md#skill-navigation-row-49), and the [IV.5 → V.0 reunion index](../appendix/sources.md#rows17-48-iv5-v0-fem-fvm-reunion-index-row-49). Read the [IV.5 Writings canonical hinge](../part04-fem/05-convergence.md#writings-canonical-hinge-iv5-to-v0), land at [V.0 Writings canonical landing](../part05-fvm/00-opening.md#writings-canonical-landing-iv5-to-v0), read [Closing the arc from Part IV](../part05-fvm/00-opening.md#closing-the-arc-from-part-iv), then continue Part V as the **next paragraph** of Part IV Door A — same exported \(T_w\), same Act II thermocouple, now with conservation on cells for the wind outside the wire.
+This subsection is the **downstream half** of [memory sheet row 49](../appendix/memory-sheet.md#row-49-baby-picture-rows17-48-iv5-v0-fem-fvm-reunion), the [preface row 49 skill checkpoint](../preface.md#skill-navigation-row-49), and the [IV.5 → V.0 reunion index](../appendix/sources.md#rows17-48-iv5-v0-fem-fvm-reunion-index-row-49). Read the [IV.5 Writings canonical hinge](../part04-fem/05-convergence.md#writings-canonical-hinge-iv5-to-v0), land at [V.0 Writings canonical landing](../part05-fvm/00-opening.md#writings-canonical-landing-iv5-to-v0), read [Closing the arc from Part IV](../part05-fvm/00-opening.md#closing-the-arc-from-part-iv), then continue Part V as the **next paragraph** of Part IV Door A — same exported \(T_w\), same Act II thermocouple, now with conservation on cells for the wind outside the wire. Proceed to [row 50](#row-50-closing-loop) when V.4 → VI.0 still stutters after the FEM–FVM gate is smooth.
+
+## Closing rows 17–49 at V.4 → VI.0 FVM–continuum gate {#opening-hinge-rows17-49-v4-vi0}
+
+When IV.5 → V.0 reads as one manuscript but **Part VI feels like a separate elasticity syllabus after Part V (Door A) or after Part IV (Door B)**, the break is often the fifth Writings subtree boundary — FVM Notes ending without landing in Continuum Mechanics Notes on the same \(T_w\) and load-cell afternoon.
+
+| Source artifact | Unified book consumer | Audit |
+|-----------------|----------------------|-------|
+| [`writings/fvm/chapters/04-navier-stokes-cfd.md`](../../writings/fvm/chapters/04-navier-stokes-cfd.md#writings-canonical-hinge-v4-to-vi0) | [V.4 in `src/`](../part05-fvm/04-navier-stokes-cfd.md#writings-canonical-hinge-v4-to-vi0) | FVM–continuum hinge prose present |
+| [`writings/continuum/chapters/00-opening.md`](../../writings/continuum/chapters/00-opening.md#writings-canonical-landing-v4-to-vi0) | [VI.0 in `src/`](../part06-continuum/00-opening.md#writings-canonical-landing-v4-to-vi0) | Canonical landing read after V.4 CHT |
+| [VI.0 Closing the arc from Parts IV and V](../part06-continuum/00-opening.md#closing-the-arc-from-parts-iv-and-v) | Symbol map discretization → tensors | \(\mathbf{K}\mathbf{U}=\mathbf{F}\) → \(\boldsymbol{\sigma}\); fluxes → virtual work |
+| [VI.0 twin ladders reunite](../part06-continuum/00-opening.md#the-twin-ladders-reunite-galerkin-and-conservation) | Schematic 14 midpoint | Galerkin and conservation twins named in Cauchy stress |
+
+The [Rows 17–49 → V.4 → VI.0 FVM–continuum reunion index](../appendix/sources.md#rows17-49-v4-vi0-fvm-continuum-reunion-index-row-50) reunites this hinge with [row 49](../preface.md#skill-navigation-row-49) when canonical sync works at IV.5 → V.0 but the load cell still lacks Cauchy stress behind it.
+
+### Row 50 closing loop (Rows 17–49 → V.4 → VI.0 FVM–continuum reunion) {#row-50-closing-loop}
+
+This subsection is the **downstream half** of [memory sheet row 50](../appendix/memory-sheet.md#row-50-baby-picture-rows17-49-v4-vi0-fvm-continuum-reunion), the [preface row 50 skill checkpoint](../preface.md#skill-navigation-row-50), and the [V.4 → VI.0 reunion index](../appendix/sources.md#rows17-49-v4-vi0-fvm-continuum-reunion-index-row-50). Read the [V.4 Writings canonical hinge](../part05-fvm/04-navier-stokes-cfd.md#writings-canonical-hinge-v4-to-vi0), land at [VI.0 Writings canonical landing](../part06-continuum/00-opening.md#writings-canonical-landing-v4-to-vi0), read [Closing the arc from Parts IV and V](../part06-continuum/00-opening.md#closing-the-arc-from-parts-iv-and-v), then continue Part VI as the **midpoint reunion** — same archived \(T_w\), same twin Schematic 14 ladders, now with Cauchy stress and virtual work before descent to Part VII.
 
 ### Row 12 closing loop (epilogue → prologue) {#row-12-closing-loop}
 

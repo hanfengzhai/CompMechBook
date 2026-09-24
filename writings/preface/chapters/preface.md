@@ -1192,6 +1192,30 @@ This checkpoint closes the **Rows 17–48 → IV.5 → V.0 FEM–FVM reunion** c
 
 **When to pause.** Read the [prologue row 49 closing stitch](prologue/00-many-scales.md#row-49-closing-stitch) when row 48 restored III.4 → IV.0 but **Riemann solvers arrive without the thermoelastic \(h\)-certificate**. Return to the [IV.5 → V.0 reunion index](appendix/sources.md#rows17-48-iv5-v0-fem-fvm-reunion-index-row-49) when **Part V integral conservation feels like CFD homework separate from Céa's lemma**. Read the [memory sheet row 49 baby picture](appendix/memory-sheet.md#row-49-baby-picture-rows17-48-iv5-v0-fem-fvm-reunion) and the [epilogue row 49 closing loop](epilogue/multiscale.md#row-49-closing-loop) when the competence loop closes.
 
+### Row 50 skill checkpoint — Rows 17–49 → V.4 → VI.0 FVM–continuum reunion audit {#skill-navigation-row-50}
+
+This checkpoint closes the **Rows 17–49 → V.4 → VI.0 FVM–continuum reunion** chain — when row 49 restored IV.5 → V.0 canonical parity but **Part VI still feels like a separate elasticity course after Part V (Door A) or after Part IV (Door B)**, or **continuum chapter prose diverges from `writings/continuum/`**. Row 50 reunites FVM Notes with Continuum Mechanics Notes at the ascent midpoint hinge on the same copper wire.
+
+| Step | Skill on the copper wire | Minimal artifact |
+|------|--------------------------|------------------|
+| 1 — Midpoint gate | Confirm row 49 closed or V.4 → VI.0 identified as stall point | IV.5 → V.0 reads as one paragraph; stall is at flux balance → Cauchy stress turn |
+| 2 — Canonical hinge pair | Read [V.4 Writings canonical hinge](part05-fvm/04-navier-stokes-cfd.md#writings-canonical-hinge-v4-to-vi0) → [VI.0 Writings canonical landing](part06-continuum/00-opening.md#writings-canonical-landing-v4-to-vi0) | One aloud sentence: archived \(T_w\) before tensor vocabulary; twin ladders reunite |
+| 3 — Closing the arc | Read [VI.0 Closing the arc from Parts IV and V](part06-continuum/00-opening.md#closing-the-arc-from-parts-iv-and-v) after the hinge pair | Symbol map: \(\mathbf{K}\mathbf{U}=\mathbf{F}\) and face fluxes → \(\boldsymbol{\sigma}\), virtual work |
+| 4 — Twin ladders | Open [VI.0 twin ladders reunite](part06-continuum/00-opening.md#the-twin-ladders-reunite-galerkin-and-conservation) beside [V.0 conservation ladder](part05-fvm/00-opening.md#the-conservation-ladder-fvm-parallel-to-schematic-14) and [IV.0 Galerkin ladder](part04-fem/00-opening.md#the-galerkin-ladder-me-412-schematic-14-continued) | Schematic 14 midpoint named before descent |
+| 5 — Cross-links audit | Read [Rows 17–49 → V.4 → VI.0 reunion index](appendix/sources.md#rows17-49-v4-vi0-fvm-continuum-reunion-index-row-50) aloud | Edit `writings/continuum/chapters/` → sync → build |
+
+**Row 50 three-way audit (prologue preview ↔ this checkpoint ↔ workflow exam).**
+
+| Step | Prologue preview ([row 50](prologue/00-many-scales.md#prologue-preview-row-50)) | This checkpoint (above) | Workflow exam ([V.4 Bridge](part05-fvm/04-navier-stokes-cfd.md#bridge-to-part-vi)) |
+|------|--------------------------------------------------------------------------------|-------------------------|--------------------------------------------------------------------------------------|
+| 1 | Name V.4 → VI.0 as FVM–continuum stall | Step 1 — midpoint gate | Row 49 closed or V.4 gate named |
+| 2 | Name canonical file pair aloud | Step 2 — canonical hinge pair | FVM Notes → Continuum Notes |
+| 3 | Name Closing the arc after landing | Step 3 — Closing the arc | Discretization → Cauchy stress |
+| 4 | Name twin Schematic 14 reunion | Step 4 — twin ladders | Midpoint before VI.4 intermission |
+| 5 | [Rows 17–49 → V.4 → VI.0 reunion index](appendix/sources.md#rows17-49-v4-vi0-fvm-continuum-reunion-index-row-50) recitation | Step 5 — cross-links audit | Continuum canonical edit workflow stated |
+
+**When to pause.** Read the [prologue row 50 closing stitch](prologue/00-many-scales.md#row-50-closing-stitch) when row 49 restored IV.5 → V.0 but **Cauchy stress arrives without `cht_export.yaml` pedigree**. Return to the [V.4 → VI.0 reunion index](appendix/sources.md#rows17-49-v4-vi0-fvm-continuum-reunion-index-row-50) when **Part VI tensor notation feels like elasticity homework separate from FEM assembly**. Read the [memory sheet row 50 baby picture](appendix/memory-sheet.md#row-50-baby-picture-rows17-49-v4-vi0-fvm-continuum-reunion) and the [epilogue row 50 closing loop](epilogue/multiscale.md#row-50-closing-loop) when the competence loop closes.
+
 ## The copper wire through the book
 
 The same specimen — a cold-drawn copper wire under tension, heated by current, cooled by air — reappears in every part. The table below is a reading map: what changes is the **state variable**, not the material.

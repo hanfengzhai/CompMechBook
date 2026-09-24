@@ -38,5 +38,6 @@ When the external `Writings` git submodule is linked, prefer upstream content he
 | When the plot stutters | Open |
 |------------------------|------|
 | Part VI feels like kinematics homework separate from virtual work | [Bridge reunion — Part VI (intra-part)](../appendix/chapters/sources.md#bridge-reunion-intra-part-vi) |
+| Part VI feels like a separate elasticity course after Part V | [V.4 → VI.0 FVM–continuum reunion (row 50)](../appendix/chapters/sources.md#rows17-49-v4-vi0-fvm-continuum-reunion-index-row-50) · [VI.0 Writings canonical landing](chapters/00-opening.md#writings-canonical-landing-v4-to-vi0) |
 | Twin ladders and \(\mathbf{K}\) still feel disconnected | [Twin-ladder → virtual work reunion](../appendix/chapters/sources.md#twin-ladder-virtual-work-reunion-index-row-31) |
 | Row 23 — transitions feel mechanical | [Bridge reunion index](../appendix/chapters/sources.md#bridge-reunion-index-row-23) · [intra-part descent VI–IX](../appendix/chapters/sources.md#bridge-reunion-intra-part-descent-vi-ix) |

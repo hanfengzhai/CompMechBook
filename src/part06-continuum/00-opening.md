@@ -77,6 +77,14 @@ Whether you read Part V or skipped from Part IV to here, the **computational spi
 
 Parts IV and V solved **equations on meshes** without fully naming the mechanical objects those meshes carry. Part IV's nodal displacements sample a continuous \(\mathbf{u}(\mathbf{X})\); Part V's cell-averaged velocities sample \(\mathbf{v}(\mathbf{x})\) in the fluid domain. Part VI supplies the **continuum vocabulary** — deformation gradient \(\mathbf{F}\), Cauchy stress \(\boldsymbol{\sigma}\), virtual work — that makes \(\mathbf{K}\mathbf{U}=\mathbf{F}\) a force-balance statement rather than a sparse linear algebra exercise. It also admits what neither FEM nor FVM can resolve alone: cold-drawn strength, notch singularities, and yield surfaces that demand mesoscale physics in Part VII.
 
+## Writings canonical landing (Part V → Part VI) {#writings-canonical-landing-v4-to-vi0}
+
+You are reading the first file in the **Continuum Mechanics Notes** subtree ([`writings/continuum/`](../../writings/continuum/)). It is the narrative landing after [V.4 Writings canonical hinge](../part05-fvm/04-navier-stokes-cfd.md#writings-canonical-hinge-v4-to-vi0) in [`writings/fvm/`](../../writings/fvm/) — same copper wire, same \(T_w\) pedigree from conjugate heat transfer, but the state variables are now **mechanical tensors** (\(\mathbf{F}\), \(\boldsymbol{\sigma}\), virtual work) that both Galerkin stiffness and conservation fluxes approximate.
+
+**One continuous sentence (read aloud after V.4 or IV.5 Door B):** \(\mathbf{K}\mathbf{U}=\mathbf{F}\) and face-flux balances were never competing solvers — they are discrete shadows of Cauchy stress and rate of deformation that Part VI names before the ascent ends at [VI.4's intermission](04-nonlinear-plasticity-preview.md#intermission-ascent-ends-descent-begins).
+
+If Part VI feels like a separate elasticity manual after Part V, read [**Closing the arc from Parts IV and V**](#closing-the-arc-from-parts-iv-and-v) and [The twin ladders reunite](#the-twin-ladders-reunite-galerkin-and-conservation) as **one continuous handoff** (see [row 50](../appendix/sources.md#rows17-49-v4-vi0-fvm-continuum-reunion-index-row-50) in the sources appendix). Edit canonical prose under `writings/continuum/chapters/` before syncing to `src/` — the break is usually reading only the unified mdBook export without this landing section.
+
 ## Closing the arc from Parts IV and V {#closing-the-arc-from-parts-iv-and-v}
 
 If you have read linearly since the prologue, Parts IV and V completed the **discretization arc** — Galerkin assembly for elliptic solids, flux balances for transport fluids. Part VI is where those algorithms receive **physical names**:
