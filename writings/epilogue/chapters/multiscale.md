@@ -1439,7 +1439,56 @@ This subsection is the **downstream half** of [memory sheet row 45](../appendix/
 | 4 | Name meta rows as rear-view mirrors | Step 4 — gate stall audit | One meta row tied to repeated stall |
 | 5 | [Rows 17–44 → Row 17 reunion index](../appendix/sources.md#rows17-44-row17-second-pass-reunion-index-row-45) recitation | Step 5 — cross-links audit | Epilogue continuous with prologue |
 
-When workflow closure is verified but the plot still feels episodic, start at the [opening hinge from rows 17–44 → row 17](#opening-hinge-rows17-44-row17) — read Preface → Epilogue once with Scene → Bridge only. Walk the [second-pass cross-links audit](#opening-hinge-rows17-44-row17) table aloud — each row should name the same novel-rhythm contract at a different scale. The [memory sheet row 45 baby picture](../appendix/memory-sheet.md#row-45-baby-picture-rows17-44-row17-second-pass-reunion) compresses the full-book → continuous-novel closing arc for index-card review. Do not conflate row 45 (meta-stitch → second-pass reunion) with row 17 (first-pass continuous read-through) — row 45 names **when every meta-stitch verifies but narrative smoothness still lags**; row 17 names **how to read the first pass**. Proceed to [row 12](#row-12-closing-loop) on a new specimen with novel rhythm internalized, to [row 17](../preface.md#skill-navigation-row-17) when teaching the straight-read habit, or revisit [row 44](#row-44-closing-loop) when the book loop has not yet closed.
+When workflow closure is verified but the plot still feels episodic, start at the [opening hinge from rows 17–44 → row 17](#opening-hinge-rows17-44-row17) — read Preface → Epilogue once with Scene → Bridge only. Walk the [second-pass cross-links audit](#opening-hinge-rows17-44-row17) table aloud — each row should name the same novel-rhythm contract at a different scale. The [memory sheet row 45 baby picture](../appendix/memory-sheet.md#row-45-baby-picture-rows17-44-row17-second-pass-reunion) compresses the full-book → continuous-novel closing arc for index-card review. Do not conflate row 45 (meta-stitch → second-pass reunion) with row 17 (first-pass continuous read-through) — row 45 names **when every meta-stitch verifies but narrative smoothness still lags**; row 17 names **how to read the first pass**. Proceed to [row 46](#row-46-closing-loop) when the second pass succeeds but canonical sources drift from `writings/`, to [row 12](#row-12-closing-loop) on a new specimen with novel rhythm internalized, to [row 17](../preface.md#skill-navigation-row-17) when teaching the straight-read habit, or revisit [row 44](#row-44-closing-loop) when the book loop has not yet closed.
+
+## Closing rows 17–45 from Writings canonical sources {#opening-hinge-rows17-45-writings}
+
+If you maintain or extend the manuscript, rows 17–45 closed **reading and workflow time** — Scene → Bridge novel rhythm, orchestrated exports, book loop, second pass. Row 46 is the **source-time** mirror: canonical prose lives in [`writings/`](../writings/SUMMARY.md) (vendored from the author's **Writings** repository), each part in the [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) layout (`book.toml`, numbered chapters, **Bridge** sections). The built mdBook reads from `src/` after [`scripts/sync-writings.sh`](../scripts/sync-writings.sh).
+
+| Maintainer move | Consumer | Failure mode |
+|-----------------|----------|--------------|
+| Edit `writings/<part>/chapters/*.md` | `./scripts/sync-writings.sh` copies into `src/` | Direct `src/` edits overwritten on sync |
+| `./scripts/sync-writings.sh --check` before commit | CI and co-authors see one truth | HTML correct while git diff shows writings ≠ src |
+| `mdbook build` after sync | Published `book/` matches canonical prose | Stale Bridges in browser after writings-only fix |
+| Upstream **Writings** git merge (when submodule linked) | Re-run sync + build | Duplicate subtrees diverge from teaching notes |
+
+**Canonical-source pedigree.** Row 46 must run only after row 45 closes — you cannot stabilize sources while narrative rhythm is still unsettled:
+
+```bash
+# After row 45 (second Scene → Bridge pass complete):
+./scripts/sync-writings.sh --check   # writings/ ↔ src/ must match
+./scripts/sync-writings.sh           # refresh src/ from writings/
+./scripts/test-fixtures.sh           # workflow fixtures unchanged
+mdbook build
+```
+
+The [Rows 17–45 → Writings reunion index](../appendix/sources.md#rows17-45-writings-canonical-reunion-index-row-46) reunites this opening with [row 45](../preface.md#skill-navigation-row-45) when every meta-stitch reads correctly but **maintainer edits fork the manuscript** — same copper wire, same Bridges, one canonical tree under `writings/`.
+
+**Cross-links audit (source-time ↔ narrative-time).**
+
+| Location | Anchor | Contract (read aloud) |
+|----------|--------|----------------------|
+| [Writings source index](../writings/SUMMARY.md) | Eleven subtrees | Functional Analysis Notes layout per part |
+| [Preface Source material](../preface.md#source-material) | Course note URLs | ME 412 template for Parts II–III and concept maps |
+| [Preface row 46](../preface.md#skill-navigation-row-46) | Maintainer competence | Edit writings/ only; sync before build |
+| [Prologue row 46 closing stitch](../prologue/00-many-scales.md#row-46-closing-stitch) | Upstream narrative | Do not open src/part* for prose edits |
+| [Memory sheet row 46 baby picture](../appendix/memory-sheet.md#row-46-baby-picture-rows17-45-writings-canonical-reunion) | Index-card | writings → sync → src → book |
+
+The [preface row 46 skill checkpoint](../preface.md#skill-navigation-row-46) closes the competence loop; the [prologue row 46 closing stitch](../prologue/00-many-scales.md#row-46-closing-stitch) is the upstream half when row 45 closed but the next commit touches only `src/`.
+
+### Row 46 closing loop (Rows 17–45 → Writings canonical reunion) {#row-46-closing-loop}
+
+This subsection is the **downstream half** of [memory sheet row 46](../appendix/memory-sheet.md#continuity-hinges-master-map), the [preface row 46 skill checkpoint](../preface.md#skill-navigation-row-46), and the [Rows 17–45 → Writings reunion index](../appendix/sources.md#rows17-45-writings-canonical-reunion-index-row-46). The [prologue row 46 preview](../prologue/00-many-scales.md#prologue-preview-row-46) and [prologue row 46 closing stitch](../prologue/00-many-scales.md#row-46-closing-stitch) are the **upstream halves** — return there when rows 17–45 all read correctly but **`src/` and `writings/` diverge after a prose edit**. Row 46 closes the full meta-stitch chain in **source time**: narrative and workflow reunions must reunite with a single canonical markdown tree before the manuscript is extended or translated.
+
+| Step | Prologue preview ([row 46](../prologue/00-many-scales.md#prologue-preview-row-46)) | [Preface row 46](../preface.md#skill-navigation-row-46) | Workflow exam ([Source material](../preface.md#source-material) above) |
+|------|--------------------------------------------------------------------------------|-------------------------|--------------------------------------------------------------------------|
+| 1 | Name row 45 closed before editing sources | Step 1 — narrative gate | Second pass complete |
+| 2 | Name writings/ as sole chapter edit path | Step 2 — edit discipline | No orphan src/part* prose diffs |
+| 3 | Name ME 412 subtree layout | Step 3 — layout audit | SUMMARY + Bridge per part |
+| 4 | Name sync-before-build | Step 4 — sync contract | `--check` clean; build green |
+| 5 | [Rows 17–45 → Writings reunion index](../appendix/sources.md#rows17-45-writings-canonical-reunion-index-row-46) recitation | Step 5 — cross-links audit | Canonical tree reunites with HTML |
+
+When the second pass succeeds but co-authors see conflicting chapter files, start at the [opening hinge from rows 17–45 → writings](#opening-hinge-rows17-45-writings) — move prose edits into `writings/`, run sync, rebuild. The [memory sheet row 46 baby picture](../appendix/memory-sheet.md#row-46-baby-picture-rows17-45-writings-canonical-reunion) compresses the writings → sync → src chain for index-card review. Do not conflate row 46 (meta-stitch → canonical source reunion) with row 45 (meta-stitch → second-pass reunion) — row 46 names **when narrative and workflow both close but source discipline lags**; row 45 names **when competence is complete but the arc still reads like a syllabus**. Proceed to [row 12](#row-12-closing-loop) on a new specimen, link the external **Writings** submodule per [`.gitmodules`](../.gitmodules), or extend substantive chapter prose only under `writings/` then sync.
 
 ### Row 12 closing loop (epilogue → prologue) {#row-12-closing-loop}
 
