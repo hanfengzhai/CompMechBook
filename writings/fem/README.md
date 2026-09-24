@@ -42,5 +42,6 @@ When the external `Writings` git submodule is linked, prefer upstream content he
 | Act II + III on one mesh | [Thermoelastic assembly reunion (row 29)](../appendix/chapters/sources.md#thermoelastic-assembly-reunion-index-row-29) |
 | Door A vs Door B after IV.5 | [IV.5 two doors](../chapters/05-convergence.md#bridge-two-doors-from-here) |
 | Solid \(T_w\) not archived before fluid Picard | [Scale-boundary reunion (row 28)](../appendix/chapters/sources.md#scale-boundary-reunion-index-row-28) · [IV.5 thermoelastic convergence](../chapters/05-convergence.md#lab-act-extension-thermoelastic-h-refinement-on-one-mesh-acts-iiiii) |
+| Solid FEM vs fluid FVM after Door A | [CHT outer-loop reunion (row 30)](../appendix/chapters/sources.md#cht-outer-loop-reunion-index-row-30) · [V.4 Picard + parser](../fvm/chapters/04-navier-stokes-cfd.md#parser-checkpoint-archive-cht-export-yaml) |
 
 Upstream: [FEA_notes.pdf](https://hanfengzhai.github.io/file/FEA_notes.pdf). Book part: [Part IV in `src/part04-fem/`](../../src/part04-fem/).

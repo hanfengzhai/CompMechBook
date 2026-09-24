@@ -40,6 +40,7 @@ When the external `Writings` git submodule is linked, prefer upstream content he
 | Transitions feel mechanical | [Bridge reunion index](chapters/sources.md#bridge-reunion-index-row-23) · [intra-part ascent I–V](chapters/sources.md#bridge-reunion-intra-part-ascent-i-v) · [intra-part descent VI–IX](chapters/sources.md#bridge-reunion-intra-part-descent-vi-ix) |
 | Parameters crossing scales feel arbitrary | [Scale-boundary reunion (row 28)](chapters/sources.md#scale-boundary-reunion-index-row-28) · [parameter pedigree path](chapters/sources.md#parameter-pedigree-path-act-vi-reading-order) |
 | Act II heating and Act III pulling feel like separate FEM homework | [Thermoelastic assembly reunion (row 29)](chapters/sources.md#thermoelastic-assembly-reunion-index-row-29) · [Part IV thermoelastic thread](../../src/part04-fem/00-opening.md#acts-ii-and-iii-together-thermoelastic-assembly-thread) |
+| Solid FEM and fluid FVM feel like separate solvers | [CHT outer-loop reunion (row 30)](chapters/sources.md#cht-outer-loop-reunion-index-row-30) · [V.4 Picard + parser](../../src/part05-fvm/04-navier-stokes-cfd.md#parser-checkpoint-archive-cht-export-yaml) |
 | Need upstream PDFs and ME 412 maps | [Writings source index](../SUMMARY.md) · [Functional Analysis template](../functional-analysis/README.md) |
 
 Book appendices in the unified mdBook: [`src/appendix/`](../../src/appendix/).
