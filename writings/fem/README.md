@@ -41,5 +41,6 @@ When the external `Writings` git submodule is linked, prefer upstream content he
 | Part IV feels like five unrelated FEA assignments | [Bridge reunion — Part IV (intra-part)](../appendix/chapters/sources.md#bridge-reunion-intra-part-iv) |
 | Act II + III on one mesh | [Thermoelastic assembly reunion (row 29)](../appendix/chapters/sources.md#thermoelastic-assembly-reunion-index-row-29) |
 | Door A vs Door B after IV.5 | [IV.5 two doors](../chapters/05-convergence.md#bridge-two-doors-from-here) |
+| Solid \(T_w\) not archived before fluid Picard | [Scale-boundary reunion (row 28)](../appendix/chapters/sources.md#scale-boundary-reunion-index-row-28) · [IV.5 thermoelastic convergence](../chapters/05-convergence.md#lab-act-extension-thermoelastic-h-refinement-on-one-mesh-acts-iiiii) |
 
 Upstream: [FEA_notes.pdf](https://hanfengzhai.github.io/file/FEA_notes.pdf). Book part: [Part IV in `src/part04-fem/`](../../src/part04-fem/).

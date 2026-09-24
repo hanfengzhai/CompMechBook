@@ -39,3 +39,4 @@ When the external `Writings` git submodule is linked, prefer upstream content he
 | Part IX feels like three disconnected QM lectures | [Bridge reunion — Part IX (intra-part)](../appendix/chapters/sources.md#bridge-reunion-intra-part-ix) |
 | SCF theory exists without `cu.foundation/` archive | [Kohn–Sham → DFT workflows reunion](../appendix/chapters/sources.md#kohn-sham-dft-workflows-reunion-index-row-39) |
 | Row 23 — transitions feel mechanical | [Bridge reunion index](../appendix/chapters/sources.md#bridge-reunion-index-row-23) · [intra-part descent VI–IX](../appendix/chapters/sources.md#bridge-reunion-intra-part-descent-vi-ix) |
+| `foundation_export.yaml` without SCF or \(\alpha(T_w)\) pedigree | [Scale-boundary reunion (row 28)](../appendix/chapters/sources.md#scale-boundary-reunion-index-row-28) · [IX.3 foundation checklist](chapters/03-dft-workflows.md#ix3-foundation-checklist) |

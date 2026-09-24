@@ -39,3 +39,4 @@ When the external `Writings` git submodule is linked, prefer upstream content he
 | Part VII feels like taxonomy slides separate from OpenDiS | [Bridge reunion — Part VII (intra-part)](../appendix/chapters/sources.md#bridge-reunion-intra-part-vii) |
 | DDD and polycrystal FEM handoff feel disconnected | [VII.3 → Handshake 4a reunion](../appendix/chapters/sources.md#vii3-handshake4a-reunion-index-row-41) |
 | Row 23 — transitions feel mechanical | [Bridge reunion index](../appendix/chapters/sources.md#bridge-reunion-index-row-23) · [intra-part descent VI–IX](../appendix/chapters/sources.md#bridge-reunion-intra-part-descent-vi-ix) |
+| DDD \(\tau(\gamma)\) imported at lab rate without extrapolation | [Scale-boundary reunion (row 28)](../appendix/chapters/sources.md#scale-boundary-reunion-index-row-28) · [VII.3 rate handshake](chapters/03-polycrystal-and-fem-handoff.md#scale-boundary-handshake-ddd-strain-rate-to-quasi-static-fem) |

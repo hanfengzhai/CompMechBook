@@ -211,11 +211,14 @@ Each chapter uses a deliberate rhythm so the book reads as one continuous story 
 | **Bridge** | States why the next chapter exists — the narrative hinge | End of every numbered chapter, part opening, preface, prologue, epilogue, appendix glossary and sources |
 | **Story so far** | One-table recap of where the copper wire is in laboratory time | Every part opening (I–IX); epilogue |
 | **Closing the arc** | Symbol bridge from the prior part's vocabulary to this part's | Every part opening (I–IX); epilogue |
+| **Scale-boundary handshake** | Export → consumer → failure mode for parameters crossing scales | Chapter Bridges in Parts III–IX; epilogue Handshakes 1–4b |
 | **Skill checkpoint** | Minimal artifact you can produce on the copper wire before turning the page | Prologue; every part opening (I–IX); epilogue |
 
 When abstraction rises, read in this order: **Lab act** (which experiment am I in?) → **Scene** (what is the operator watching?) → **Concept map** (what structure makes the theorem possible?) → **Representative schematics** (which baby picture matches this chapter?) → **Skill checkpoint** (what can I do on paper or in a terminal?) → **Bridge** (why turn the page?).
 
 At a **part opening**, read **Story so far** (where is the wire in the arc?) → **Closing the arc** (how do last part's symbols become this part's?) before diving into the concept map — see [appendix rows 26–27](appendix/sources.md#story-so-far-reunion-index-row-26) when the boundary still feels like a syllabus change.
+
+At a **chapter Bridge**, when symbols already translate but a handbook modulus, room-temperature default, or DDD rate without extrapolation still sits in an input deck, read the **Scale-boundary handshake** table before turning the page — see [appendix row 28](appendix/sources.md#scale-boundary-reunion-index-row-28) and the [continuous read-through guide](appendix/sources.md#continuous-read-through-guide) when export pedigree feels like folklore.
 
 ## Skill navigation
 
