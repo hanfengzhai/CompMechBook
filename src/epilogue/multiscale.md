@@ -1387,7 +1387,59 @@ This subsection is the **downstream half** of [memory sheet row 44](../appendix/
 | 4 | Name material change ≠ method change | Step 4 — material vs method | Ladder reusable; active rungs differ |
 | 5 | [Rows 17–43 → Row 12 reunion index](../appendix/sources.md#rows17-43-row12-book-loop-closure-index-row-44) recitation | Step 5 — cross-links audit | Epilogue → prologue reopening anchor → row 0 |
 
-When orchestration is verified but the next project still feels like copying copper decks, start at the [opening hinge from rows 17–43 → row 12](#opening-hinge-rows17-43-row12) — recite the ME 412 one-line summary, complete the [row 12 four-step audit](../prologue/00-many-scales.md#prologue-reopening-anchor) on the new specimen, then restart grammar at [row 0](../preface.md#skill-navigation-row-0) before mid-book handshakes. Walk the [book loop cross-links audit](#opening-hinge-rows17-43-row12) table aloud — each row should name the same restart contract at a different scale. The [memory sheet row 44 baby picture](../appendix/memory-sheet.md#row-44-baby-picture-rows17-43-row12-book-loop-closure) compresses the full-book → next-project closing arc for index-card review. Do not conflate row 44 (meta-stitch → book loop closure) with row 12 (next-project restart competence checkpoint) — row 44 names **when every narrative layer reads correctly but the epilogue → prologue transition still feels disconnected**; row 12 names **how to restart on a new specimen**; [row 0](../preface.md#skill-navigation-row-0) names grammar restart on the new project. Proceed to [row 12](#row-12-closing-loop) when the four-step audit is complete on the new specimen, to [row 0](../preface.md#skill-navigation-row-0) when grammar needs refresh before descent, or revisit [row 43](#row-43-closing-loop) when orchestration has not yet verified.
+When orchestration is verified but the next project still feels like copying copper decks, start at the [opening hinge from rows 17–43 → row 12](#opening-hinge-rows17-43-row12) — recite the ME 412 one-line summary, complete the [row 12 four-step audit](../prologue/00-many-scales.md#prologue-reopening-anchor) on the new specimen, then restart grammar at [row 0](../preface.md#skill-navigation-row-0) before mid-book handshakes. Walk the [book loop cross-links audit](#opening-hinge-rows17-43-row12) table aloud — each row should name the same restart contract at a different scale. The [memory sheet row 44 baby picture](../appendix/memory-sheet.md#row-44-baby-picture-rows17-43-row12-book-loop-closure) compresses the full-book → next-project closing arc for index-card review. Do not conflate row 44 (meta-stitch → book loop closure) with row 12 (next-project restart competence checkpoint) — row 44 names **when every narrative layer reads correctly but the epilogue → prologue transition still feels disconnected**; row 12 names **how to restart on a new specimen**; [row 0](../preface.md#skill-navigation-row-0) names grammar restart on the new project. Proceed to [row 45](#row-45-closing-loop) when the book loop closes but Preface → Epilogue still feels like a syllabus, to [row 12](#row-12-closing-loop) when the four-step audit is complete on the new specimen, to [row 0](../preface.md#skill-navigation-row-0) when grammar needs refresh before descent, or revisit [row 43](#row-43-closing-loop) when orchestration has not yet verified.
+
+## Closing rows 17–44 from Row 17 second pass {#opening-hinge-rows17-44-row17}
+
+If you have read linearly since the prologue, rows 17–44 restored every competence and workflow layer — from Scene → Bridge rhythm through book loop closure at the [prologue reopening anchor](../prologue/00-many-scales.md#prologue-reopening-anchor). Row 17's [continuous read-through guide](../appendix/sources.md#continuous-read-through-guide) is the **downstream half** of that full-book audit — not a new subject, but the **second straight pass** where rows 18–44 confirm rather than interrupt:
+
+| Meta-stitch layer (rows 17–44) | Row 17 second-pass consumer | Reading contract |
+|--------------------------------|----------------------------|------------------|
+| Row 17 Scene → Bridge rhythm | Front-page habit on second pass | Read every Bridge aloud; no skill checkpoint mid-climb |
+| Rows 18–20 plot spines + gates | Rear-view when a gate stalls twice | Part/chapter/gate one-liners — not the whole index |
+| Rows 21–32 reunion layers | Rear-view when operator/export pedigree blurs | Lab acts, exports, thermoelastic chain |
+| Rows 33–42 descent + handshake hinges | Rear-view when a handshake export fails twice | Individual yamls verified before orchestration |
+| Rows 43–44 orchestration + book loop | Gate before second pass begins | `./scripts/test-fixtures.sh`; reopening anchor if restarting |
+| **Row 17 second pass** | **Novel continuous read** | **Preface → Epilogue; pause only at I.4, VI.4, IX.3** |
+
+**Second-pass pedigree (narrative smoothness).** Row 45 must run only after row 44 closes — the second pass inherits verified workflow closure, it does not skip the meta-stitch chain:
+
+```bash
+# After row 44 (or row 12 on a new specimen):
+# 1. Recite Scene → Bridge contract from continuous read-through guide
+# 2. Read Preface → Epilogue once without opening rows 18–44 mid-climb
+# 3. Pause only at I.4, VI.4, IX.3; open one meta row only if the same gate stalls twice
+```
+
+The [Rows 17–44 → Row 17 second-pass reunion index](../appendix/sources.md#rows17-44-row17-second-pass-reunion-index-row-45) reunites this opening with [row 44](../preface.md#skill-navigation-row-44) when every meta-stitch reads correctly but **the hinge index still feels like mandatory front matter** — same copper wire, same Bridges, but novel rhythm instead of syllabus checkpoints.
+
+**Second-pass cross-links audit (reading-time ↔ workflow-time).** When row 17 feels disconnected from rows 18–44 despite verified closure, walk this chain — each row is a mirror of the same novel-rhythm contract at a different scale:
+
+| Location | Anchor | Contract (read aloud) |
+|----------|--------|----------------------|
+| [Continuous read-through guide](../appendix/sources.md#continuous-read-through-guide) | Straight-through map | Scene → Bridge; three gates only |
+| [Preface row 17](../preface.md#skill-navigation-row-17) | First-pass competence | Skill checkpoints after stalls, not every chapter |
+| [Epilogue row 17 closing loop](#row-17-closing-loop) | Workflow-time reunion | Narrative, competence, workflow clocks align |
+| [Memory sheet row 17 baby picture](../appendix/memory-sheet.md#row-17-baby-picture-continuous-read-through) | Index-card | Read like a novel on the first pass |
+| [Preface row 45](../preface.md#skill-navigation-row-45) | Meta-stitch closure | Rows 17–44 reunite with row 17 second pass |
+| [Prologue row 45 closing stitch](../prologue/00-many-scales.md#row-45-closing-stitch) | Upstream narrative | Hinge index as rear-view, not front page |
+| [Memory sheet master map](../appendix/memory-sheet.md#continuity-hinges-master-map) | Navigation | Row 17 opens smooth read; row 45 closes meta chain |
+
+The [preface row 45 skill checkpoint](../preface.md#skill-navigation-row-45) closes the competence loop; the [prologue row 45 closing stitch](../prologue/00-many-scales.md#row-45-closing-stitch) is the upstream half when rows 17–44 all read correctly but every chapter turn still opens a skill checkpoint.
+
+### Row 45 closing loop (Rows 17–44 → Row 17 second-pass reunion) {#row-45-closing-loop}
+
+This subsection is the **downstream half** of [memory sheet row 45](../appendix/memory-sheet.md#continuity-hinges-master-map), the [preface row 45 skill checkpoint](../preface.md#skill-navigation-row-45), and the [Rows 17–44 → Row 17 second-pass reunion index](../appendix/sources.md#rows17-44-row17-second-pass-reunion-index-row-45). The [prologue row 45 preview](../prologue/00-many-scales.md#prologue-preview-row-45) and [prologue row 45 closing stitch](../prologue/00-many-scales.md#row-45-closing-stitch) are the **upstream halves** — return there when rows 17–44 all read correctly but **Preface → Epilogue still feels like a syllabus of checkpoints rather than one continuous story**. Row 45 closes the full meta-stitch chain in **narrative time**: every competence layer must reunite with Scene → Bridge on a second straight pass before the copper arc is narratively complete.
+
+| Step | Prologue preview ([row 45](../prologue/00-many-scales.md#prologue-preview-row-45)) | [Preface row 45](../preface.md#skill-navigation-row-45) | Workflow exam ([row 17 row](#row-17-closing-loop) above) |
+|------|--------------------------------------------------------------------------------|-------------------------|----------------------------------------------------------|
+| 1 | Name row 44 closed before second pass | Step 1 — book-loop gate | `./scripts/test-fixtures.sh` or row 12 audit complete |
+| 2 | Name Scene → Bridge as only front-page rhythm | Step 2 — straight-read contract | Continuous read-through guide recited |
+| 3 | Name second pass without meta detours | Step 3 — second pass | Three gates; Bridges at every boundary |
+| 4 | Name meta rows as rear-view mirrors | Step 4 — gate stall audit | One meta row tied to repeated stall |
+| 5 | [Rows 17–44 → Row 17 reunion index](../appendix/sources.md#rows17-44-row17-second-pass-reunion-index-row-45) recitation | Step 5 — cross-links audit | Epilogue continuous with prologue |
+
+When workflow closure is verified but the plot still feels episodic, start at the [opening hinge from rows 17–44 → row 17](#opening-hinge-rows17-44-row17) — read Preface → Epilogue once with Scene → Bridge only. Walk the [second-pass cross-links audit](#opening-hinge-rows17-44-row17) table aloud — each row should name the same novel-rhythm contract at a different scale. The [memory sheet row 45 baby picture](../appendix/memory-sheet.md#row-45-baby-picture-rows17-44-row17-second-pass-reunion) compresses the full-book → continuous-novel closing arc for index-card review. Do not conflate row 45 (meta-stitch → second-pass reunion) with row 17 (first-pass continuous read-through) — row 45 names **when every meta-stitch verifies but narrative smoothness still lags**; row 17 names **how to read the first pass**. Proceed to [row 12](#row-12-closing-loop) on a new specimen with novel rhythm internalized, to [row 17](../preface.md#skill-navigation-row-17) when teaching the straight-read habit, or revisit [row 44](#row-44-closing-loop) when the book loop has not yet closed.
 
 ### Row 12 closing loop (epilogue → prologue) {#row-12-closing-loop}
 
