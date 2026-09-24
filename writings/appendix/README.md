@@ -41,6 +41,7 @@ When the external `Writings` git submodule is linked, prefer upstream content he
 | Parameters crossing scales feel arbitrary | [Scale-boundary reunion (row 28)](chapters/sources.md#scale-boundary-reunion-index-row-28) · [parameter pedigree path](chapters/sources.md#parameter-pedigree-path-act-vi-reading-order) |
 | Act II heating and Act III pulling feel like separate FEM homework | [Thermoelastic assembly reunion (row 29)](chapters/sources.md#thermoelastic-assembly-reunion-index-row-29) · [Part IV thermoelastic thread](../../src/part04-fem/00-opening.md#acts-ii-and-iii-together-thermoelastic-assembly-thread) |
 | Solid FEM and fluid FVM feel like separate solvers | [CHT outer-loop reunion (row 30)](chapters/sources.md#cht-outer-loop-reunion-index-row-30) · [V.4 Picard + parser](../../src/part05-fvm/04-navier-stokes-cfd.md#parser-checkpoint-archive-cht-export-yaml) |
+| Galerkin \(\mathbf{K}\mathbf{U}=\mathbf{F}\) and continuum virtual work feel disconnected | [Twin-ladder → virtual work reunion (row 31)](chapters/sources.md#twin-ladder-virtual-work-reunion-index-row-31) · [VI.3 virtual work Lab act](../../src/part06-continuum/03-variational-elasticity.md#lab-act-virtual-work-equals-load-cell-reading-act-iii--pulling) |
 | Need upstream PDFs and ME 412 maps | [Writings source index](../SUMMARY.md) · [Functional Analysis template](../functional-analysis/README.md) |
 
 Book appendices in the unified mdBook: [`src/appendix/`](../../src/appendix/).

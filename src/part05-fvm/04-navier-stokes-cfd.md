@@ -425,6 +425,8 @@ The [prologue](../prologue/00-many-scales.md) promised one specimen in two discr
 
 When **Part IV's solid mesh and this chapter's Picard table still feel like separate homework** — converged Ra/Nu in the Lab act but no `cht_export.yaml` beside the decks — read the [CHT outer-loop reunion index](../appendix/sources.md#cht-outer-loop-reunion-index-row-30) (row 30) before turning to Part VI. Row 30 reunites **IV.5 → V.4 → parser export**; row 29 remains the audit when thermoelastic assembly on one solid mesh was skipped upstream.
 
+When **`cht_export.yaml` is archived but Part VI still feels like tensor homework separate from Part IV's \(\mathbf{K}\)** — one \(T_w\) at the wall but no \(\varepsilon_{\text{th}}\) in \(\Pi[\mathbf{u}]\) — read the [twin-ladder → virtual work reunion index](../appendix/sources.md#twin-ladder-virtual-work-reunion-index-row-31) (row 31) at [VI.3's virtual work Lab act](../part06-continuum/03-variational-elasticity.md#lab-act-virtual-work-equals-load-cell-reading-act-iii--pulling) before opening Part VII. Row 31 reunites **assembly with variational physics**; row 30 remains the audit when the wall never exported one temperature.
+
 **Scale-boundary handshake (V.4 → Part VI → Part VII).**
 
 | FVM export (this chapter) | Continuum vocabulary (Part VI) | Downstream scale | Failure mode |
