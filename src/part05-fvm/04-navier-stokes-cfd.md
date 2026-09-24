@@ -427,6 +427,8 @@ When **Part IV's solid mesh and this chapter's Picard table still feel like sepa
 
 When **`cht_export.yaml` is archived but Part VI still feels like tensor homework separate from Part IV's \(\mathbf{K}\)** — one \(T_w\) at the wall but no \(\varepsilon_{\text{th}}\) in \(\Pi[\mathbf{u}]\) — read the [twin-ladder → virtual work reunion index](../appendix/sources.md#twin-ladder-virtual-work-reunion-index-row-31) (row 31) at [VI.3's virtual work Lab act](../part06-continuum/03-variational-elasticity.md#lab-act-virtual-work-equals-load-cell-reading-act-iii--pulling) before opening Part VII. Row 31 reunites **assembly with variational physics**; row 30 remains the audit when the wall never exported one temperature.
 
+When **virtual work closed the elastic load cell story but VI.4 return-mapping still feels disconnected from \(\delta\Pi = 0\)** — the knee fits with \(H\) but [VI.4's intermission](../part06-continuum/04-nonlinear-plasticity-preview.md#intermission-ascent-ends-descent-begins) was skipped — read the [virtual work → plasticity preview reunion index](../appendix/sources.md#virtual-work-plasticity-preview-reunion-index-row-32) (row 32) at [VI.3's opening hinge → VI.4](../part06-continuum/03-variational-elasticity.md#opening-hinge-vi3-to-vi4). Row 32 reunites **energy minimization with plastic history**; row 31 remains the audit when \(\mathbf{K}\mathbf{U}=\mathbf{F}\) never closed virtual work.
+
 **Scale-boundary handshake (V.4 → Part VI → Part VII).**
 
 | FVM export (this chapter) | Continuum vocabulary (Part VI) | Downstream scale | Failure mode |
