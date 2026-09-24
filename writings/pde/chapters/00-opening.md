@@ -119,6 +119,14 @@ If you have read linearly since the prologue, Part II's closing checkpoint named
 
 Part II built the room; Part III gives the recurring character — the weak form — its first lines on stage. The prologue promised that character would return in Part IV (Galerkin assembly), Part VI (virtual work), and Part IX (variational density). Here it speaks in the language Part II prepared: multiply by a test function, integrate by parts, and ask whether balance holds for every admissible virtual displacement. The copper wire at the grip corner is where classical \(C^2\) smoothness fails but virtual work in \(H^1\) still makes sense.
 
+## Writings canonical landing (Part II → Part III) {#writings-canonical-landing-ii5-to-iii0}
+
+You are reading the first file in the **PDE Notes** subtree ([`writings/pde/`](../../writings/pde/)). It is the narrative landing after [II.5 Writings canonical hinge](../part02-functional-analysis/05-spectral-theorem.md#writings-canonical-hinge-ii5-to-iii0) in [`writings/functional-analysis/`](../../writings/functional-analysis/) — same copper wire, same thermocouple Scene, but the state variables now satisfy **PDEs on a domain** \(\Omega\) with boundary \(\partial\Omega\), not only membership in \(H^1(\Omega)\).
+
+**One continuous sentence (read aloud after II.5 Bridge):** Lax–Milgram and the spectral theorem were never abstract homework — they were the existence and modal language for \(-\nabla\cdot(k\nabla T)=q_{\text{Joule}}\) and \(-(EA u')'=f\) on the bar you already meshed in Part I.
+
+If Part III feels like a new subject after Part II, read [**Closing the arc from Part II**](#closing-the-arc-from-part-ii) and [II.5 Bridge to Part III](../part02-functional-analysis/05-spectral-theorem.md#bridge-to-part-iii) as **one continuous handoff** (see [row 47](../appendix/sources.md#rows17-46-ii5-iii0-analysis-pde-reunion-index-row-47) in the sources appendix). Edit canonical prose under `writings/pde/chapters/` before syncing to `src/` — the break is usually reading only the unified mdBook export without this landing section.
+
 ## Closing the arc from Part I
 
 If you have read linearly since the prologue, notice how the **same four questions** from the opening table reappear here with PDE vocabulary — and how the **same mathematical moves** from Part I return in the continuum limit:

@@ -1425,7 +1425,24 @@ The [Rows 17–45 → Writings canonical reunion index](../appendix/sources.md#r
 
 ### Row 46 closing loop (Rows 17–45 → Writings canonical reunion) {#row-46-closing-loop}
 
-This subsection is the **downstream half** of [memory sheet row 46](../appendix/memory-sheet.md#row-46-baby-picture-rows17-45-writings-canonical-reunion), the [preface row 46 skill checkpoint](../preface.md#skill-navigation-row-46), and the [Writings canonical reunion index](../appendix/sources.md#rows17-45-writings-canonical-reunion-index-row-46). Read the [I.4 Writings canonical hinge](../part01-linear-algebra/04-toward-infinity.md#writings-canonical-hinge-i4-to-ii0), land at [II.0 Closing the arc from Part I](../part02-functional-analysis/00-opening.md#closing-the-arc-from-part-i), verify sync, then continue Part II as the **next paragraph** of Part I — same thermocouple Scene, fields instead of vectors.
+This subsection is the **downstream half** of [memory sheet row 46](../appendix/memory-sheet.md#row-46-baby-picture-rows17-45-writings-canonical-reunion), the [preface row 46 skill checkpoint](../preface.md#skill-navigation-row-46), and the [Writings canonical reunion index](../appendix/sources.md#rows17-45-writings-canonical-reunion-index-row-46). Read the [I.4 Writings canonical hinge](../part01-linear-algebra/04-toward-infinity.md#writings-canonical-hinge-i4-to-ii0), land at [II.0 Closing the arc from Part I](../part02-functional-analysis/00-opening.md#closing-the-arc-from-part-i), verify sync, then continue Part II as the **next paragraph** of Part I — same thermocouple Scene, fields instead of vectors. Proceed to [row 47](#row-47-closing-loop) when II.5 → III.0 still stutters after the grammar gate is smooth.
+
+## Closing rows 17–46 at II.5 → III.0 analysis–PDE gate {#opening-hinge-rows17-46-ii5-iii0}
+
+When I.4 → II.0 reads as one manuscript but **Part III feels like a separate PDE course after Part II**, the break is often the second Writings subtree boundary — Functional Analysis Notes ending without landing in PDE Notes on the same domain \(\Omega\).
+
+| Source artifact | Unified book consumer | Audit |
+|-----------------|----------------------|-------|
+| [`writings/functional-analysis/chapters/05-spectral-theorem.md`](../../writings/functional-analysis/chapters/05-spectral-theorem.md#writings-canonical-hinge-ii5-to-iii0) | [II.5 in `src/`](../part02-functional-analysis/05-spectral-theorem.md#writings-canonical-hinge-ii5-to-iii0) | Analysis–PDE hinge prose present |
+| [`writings/pde/chapters/00-opening.md`](../../writings/pde/chapters/00-opening.md#writings-canonical-landing-ii5-to-iii0) | [III.0 in `src/`](../part03-pdes/00-opening.md#writings-canonical-landing-ii5-to-iii0) | Canonical landing read after II.5 Bridge |
+| [III.0 Closing the arc from Part II](../part03-pdes/00-opening.md#closing-the-arc-from-part-ii) | Symbol map \(a(u,v)\) → weak PDEs | Weak-form character has equations on \(\Omega\) |
+| [III.0 Schematic 14](../part03-pdes/00-opening.md#the-variational-ladder-me-412-schematic-14) | Variational ladder before Part IV | Strong → weak → Lax–Milgram rung named |
+
+The [Rows 17–46 → II.5 → III.0 analysis–PDE reunion index](../appendix/sources.md#rows17-46-ii5-iii0-analysis-pde-reunion-index-row-47) reunites this hinge with [row 46](../preface.md#skill-navigation-row-46) when canonical sync works at I.4 → II.0 but the weak-form recurring character still feels divorced from Laplacians on the wire.
+
+### Row 47 closing loop (Rows 17–46 → II.5 → III.0 analysis–PDE reunion) {#row-47-closing-loop}
+
+This subsection is the **downstream half** of [memory sheet row 47](../appendix/memory-sheet.md#row-47-baby-picture-rows17-46-ii5-iii0-analysis-pde-reunion), the [preface row 47 skill checkpoint](../preface.md#skill-navigation-row-47), and the [II.5 → III.0 reunion index](../appendix/sources.md#rows17-46-ii5-iii0-analysis-pde-reunion-index-row-47). Read the [II.5 Writings canonical hinge](../part02-functional-analysis/05-spectral-theorem.md#writings-canonical-hinge-ii5-to-iii0), land at [III.0 Writings canonical landing](../part03-pdes/00-opening.md#writings-canonical-landing-ii5-to-iii0), read [Closing the arc from Part II](../part03-pdes/00-opening.md#closing-the-arc-from-part-ii), then continue Part III as the **next paragraph** of Part II — same tap-test eigenvalues, same \(a(u,v)\), now written as PDEs on the bar domain.
 
 ### Row 12 closing loop (epilogue → prologue) {#row-12-closing-loop}
 
