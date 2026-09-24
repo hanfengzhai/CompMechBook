@@ -212,6 +212,7 @@ Each chapter uses a deliberate rhythm so the book reads as one continuous story 
 | **Story so far** | One-table recap of where the copper wire is in laboratory time | Every part opening (I–IX); epilogue |
 | **Closing the arc** | Symbol bridge from the prior part's vocabulary to this part's | Every part opening (I–IX); epilogue |
 | **Scale-boundary handshake** | Export → consumer → failure mode for parameters crossing scales | Chapter Bridges in Parts III–IX; epilogue Handshakes 1–4b |
+| **Thermoelastic assembly thread** | Heat pass → \(\mathbf{F}_{\text{th}}\) → mechanics pass on the same mesh connectivity | [IV.0 opening](part04-fem/00-opening.md#acts-ii-and-iii-together-thermoelastic-assembly-thread); Part IV Lab acts IV.1–IV.5 |
 | **Skill checkpoint** | Minimal artifact you can produce on the copper wire before turning the page | Prologue; every part opening (I–IX); epilogue |
 
 When abstraction rises, read in this order: **Lab act** (which experiment am I in?) → **Scene** (what is the operator watching?) → **Concept map** (what structure makes the theorem possible?) → **Representative schematics** (which baby picture matches this chapter?) → **Skill checkpoint** (what can I do on paper or in a terminal?) → **Bridge** (why turn the page?).
@@ -219,6 +220,8 @@ When abstraction rises, read in this order: **Lab act** (which experiment am I i
 At a **part opening**, read **Story so far** (where is the wire in the arc?) → **Closing the arc** (how do last part's symbols become this part's?) before diving into the concept map — see [appendix rows 26–27](appendix/sources.md#story-so-far-reunion-index-row-26) when the boundary still feels like a syllabus change.
 
 At a **chapter Bridge**, when symbols already translate but a handbook modulus, room-temperature default, or DDD rate without extrapolation still sits in an input deck, read the **Scale-boundary handshake** table before turning the page — see [appendix row 28](appendix/sources.md#scale-boundary-reunion-index-row-28) and the [continuous read-through guide](appendix/sources.md#continuous-read-through-guide) when export pedigree feels like folklore.
+
+While reading **Part IV**, when export pedigree is clear but **Act II (thermocouple) and Act III (load cell) feel like separate FEM homework** — different meshes, or a grip ramp before Joule heating finishes — read the **thermoelastic assembly thread** at [IV.0](part04-fem/00-opening.md#acts-ii-and-iii-together-thermoelastic-assembly-thread) and name the staggered pass chain aloud: \(\mathbf{K}_{TT}\mathbf{T}=\mathbf{F}_T\) → \(\varepsilon_{\text{th}}=\alpha\Delta T\) → \(\mathbf{K}_{uu}\mathbf{U}=\mathbf{F}_u+\mathbf{F}_{\text{th}}\) on the **same** connectivity. See [appendix row 29](appendix/sources.md#thermoelastic-assembly-reunion-index-row-29) and Act B in the [continuous read-through guide](appendix/sources.md#continuous-read-through-guide) when laboratory time and IV.1–IV.5 chapter order diverge.
 
 ## Skill navigation
 

@@ -39,6 +39,6 @@ When the external `Writings` git submodule is linked, prefer upstream content he
 |------------------------|------|
 | Part III feels like strong/weak/Sobolev in isolation | [Bridge reunion — Part III (intra-part)](../appendix/chapters/sources.md#bridge-reunion-intra-part-iii) |
 | Variational ladder lost | [III.0 variational ladder](../chapters/00-opening.md#the-variational-ladder-me-412-schematic-14) |
-| Coupled \(\Pi[u,T]\) → thermoelastic blocks feels disconnected | [Scale-boundary reunion (row 28)](../appendix/chapters/sources.md#scale-boundary-reunion-index-row-28) · [III.4 Bridge](../chapters/04-energy-methods.md#bridge-to-part-iv) |
+| Coupled \(\Pi[u,T]\) → thermoelastic blocks feels disconnected | [Thermoelastic assembly reunion (row 29)](../appendix/chapters/sources.md#thermoelastic-assembly-reunion-index-row-29) · [III.4 monolithic vs staggered](../chapters/04-energy-methods.md#monolithic-vs-staggered-thermoelastic-energy) · [III.4 Bridge](../chapters/04-energy-methods.md#bridge-to-part-iv) |
 
 Upstream: [ME300B_PDE.pdf](https://hanfengzhai.github.io/file/ME300B_PDE.pdf). Book part: [Part III in `src/part03-pdes/`](../../src/part03-pdes/).

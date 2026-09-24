@@ -39,6 +39,7 @@ When the external `Writings` git submodule is linked, prefer upstream content he
 |------------------------|------|
 | Part V feels like 1D FVM homework separate from CFD | [Bridge reunion — Part V (intra-part)](../appendix/chapters/sources.md#bridge-reunion-intra-part-v) |
 | Solid FEM vs fluid FVM | [CHT outer-loop reunion (row 30)](../appendix/chapters/sources.md#cht-outer-loop-reunion-index-row-30) |
+| Part IV heat/mechanics never shared one mesh before Picard | [Thermoelastic assembly reunion (row 29)](../appendix/chapters/sources.md#thermoelastic-assembly-reunion-index-row-29) · [IV.5 thermoelastic \(h\)-study](../../src/part04-fem/05-convergence.md#lab-act-extension-thermoelastic-h-refinement-on-one-mesh-acts-iiiii) |
 | Picard converged but descent still uses 300 K default | [Scale-boundary reunion (row 28)](../appendix/chapters/sources.md#scale-boundary-reunion-index-row-28) · [V.4 CHT Bridge](../chapters/04-navier-stokes-cfd.md#bridge-to-part-vi) |
 
 Upstream: [FVM.pdf](https://hanfengzhai.github.io/note/FVM.pdf) · [CFD_note.pdf](https://hanfengzhai.github.io/file/CFD_note.pdf). Book part: [Part V in `src/part05-fvm/`](../../src/part05-fvm/).

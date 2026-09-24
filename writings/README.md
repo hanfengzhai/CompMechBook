@@ -78,4 +78,4 @@ git submodule update --init --recursive
 
 See [SUMMARY.md](./SUMMARY.md) for the full index of subtrees, the [multiscale story arc](./SUMMARY.md#multiscale-story-arc-one-table) reading map, and the [Functional Analysis Notes layout parity](./SUMMARY.md#functional-analysis-notes-layout-writingsgit-parity) table (upstream PDF ↔ `writings/` subtree ↔ `src/partNN-*`).
 
-When the continuous book stutters mid-read (part boundaries, export pedigree, thermoelastic assembly, CHT loops, descent handshakes), use the [appendix reading map](./appendix/README.md#reading-map-continuous-book) — the same navigation table mirrored at the end of [SUMMARY.md](./SUMMARY.md#continuous-reading-order).
+When the continuous book stutters mid-read (part boundaries, export pedigree, [thermoelastic assembly (row 29)](./appendix/chapters/sources.md#thermoelastic-assembly-reunion-index-row-29), CHT loops, descent handshakes), use the [appendix reading map](./appendix/README.md#reading-map-continuous-book) — the same navigation table mirrored at the end of [SUMMARY.md](./SUMMARY.md#continuous-reading-order).
