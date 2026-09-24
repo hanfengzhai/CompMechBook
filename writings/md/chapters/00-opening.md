@@ -183,6 +183,8 @@ None of these require a full ab initio MD production run — but each one is the
 
 When Act II warmed the wire but mobility folders still cite 300 K, pause at the [preface row 8 skill checkpoint](../preface.md#skill-navigation-row-8) before trusting any NVT shear or WHAM export — [`parse_cht.sh`](../../scripts/parse_cht.sh) must emit `cht_export.yaml` with converged \(T_w\) first; the [descent hinge](#descent-hinge-cores-mobility-and-tw-pedigree) above and [memory sheet rows 8–9 baby picture](../appendix/memory-sheet.md#rows-8-9-baby-picture-tw-temperature-pedigree) draw the same chain from CHT through MD mobility to DFT phonon audits in Part IX.
 
+When **VIII.1 EAM minimization is clear but VIII.2 integrators still feel like a separate course** — `cu_eam_a0.txt` without `MD_NVT_shear_PartVIII` at \(T_w\), or NPT homework before reading [VIII.1's Bridge](01-potentials-phase-space.md#bridge) — read the [potentials → ensembles reunion index](../appendix/sources.md#potentials-ensembles-reunion-index-row-34) (row 34) and the [preface potentials → ensembles thread](../preface.md#reading-rhythm). Row 34 reunites **energy minimum with canonical sampling**; row 33 remains the audit when [Part VII](../part07-defects/00-opening.md) and this opening still feel disconnected.
+
 ## Bridge {#bridge-epilogue-hinge}
 
 Part VII ended with dislocation forests, Taylor hardening, and the admission that **cores and crack tips need atoms**. [VII.3](../part07-defects/03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) named the quantities MD must supply — stacking-fault energy, core width, mobility tables — and deferred their microscopic origin to this part. Part VIII puts the atoms back on stage.
