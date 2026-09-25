@@ -13,7 +13,7 @@ When this chapter feels abstract, read the sentence above aloud — it is this c
 
 ## Writings canonical landing (II.2 → II.3) {#writings-canonical-landing-ii2-to-ii3}
 
-You should arrive here from [II.2](02-normed-spaces.md) after [row 63](../preface.md#skill-navigation-row-63) closed II.1 → II.2 on a new specimen, or from the unified book on a first read after [II.2 Bridge](02-normed-spaces.md#bridge) and [II.2 → II.3 Writings hinge](02-normed-spaces.md#writings-canonical-hinge-ii2-to-ii3) — not at inner-product axioms cold. The [`writings/functional-analysis`](../../writings/functional-analysis/chapters/SUMMARY.md) third numbered chapter repeats the ME 412 template: **Scene** asks why vibration modes decouple on the clamped wire, the body develops \(L^2\) and energy inner products, Riesz representation, and Céa's lemma preview, **Lab act** projects a grip load onto two bar modes, **Bridge** hands off to operators and duality in II.4. When row 63 verified the hat-function spike but II.2 Banach prose and this chapter's definition block still feel like separate homework, read [row 64](../appendix/sources.md#row63-ii2-ii3-hilbert-reunion-index-row-64) and recite [II.2 plot spine](02-normed-spaces.md#plot-spine-one-line) aloud before [Scene: modes that ignore each other](#scene-modes-that-ignore-each-other).
+You should arrive here from [II.2](02-normed-spaces.md) after [row 63](../preface.md#skill-navigation-row-63) closed II.1 → II.2 on a new specimen, or from the unified book on a first read after [II.2 Bridge](02-normed-spaces.md#bridge) and [II.2 → II.3 Writings hinge](02-normed-spaces.md#writings-canonical-hinge-ii2-to-ii3) — not at inner-product axioms cold. The [`writings/functional-analysis`](../../writings/functional-analysis/chapters/SUMMARY.md) third numbered chapter repeats the ME 412 template: **Scene** asks why vibration modes decouple on the clamped wire, the body develops \(L^2\) and energy inner products, Riesz representation, and Céa's lemma preview, **Lab act** projects a grip load onto two bar modes, **Bridge** hands off to operators and duality in II.4. When row 63 verified the hat-function spike but II.2 Banach prose and this chapter's definition block still feel like separate homework, read [row 64](../appendix/sources.md#row63-ii2-ii3-hilbert-reunion-index-row-64) and recite [II.2 plot spine](02-normed-spaces.md#plot-spine-one-line) aloud before [Scene: modes that ignore each other](#scene-modes-that-ignore-each-other). When row 64 closed projection but II.4 operator norms feel cold, read [row 65](../appendix/sources.md#row64-ii3-ii4-operators-reunion-index-row-65) before leaving this chapter's [Bridge](#bridge).
 
 ## Scene: modes that ignore each other {#scene-modes-that-ignore-each-other}
 
@@ -243,6 +243,18 @@ Hilbert geometry turns loads into projections. Before operators generalize matri
 
 Galerkin orthogonality \(a(u-u_h, v_h)=0\) is not a coding trick — it is the statement that the discrete solution is the energy-best approximation in \(V_h\). Act III's load cell reading is a single functional on this geometry.
 
+## Writings canonical hinge (II.3 → II.4) {#writings-canonical-hinge-ii3-to-ii4}
+
+The [`writings/functional-analysis`](../../writings/functional-analysis/chapters/SUMMARY.md) third and fourth numbered chapters are one ME 412 novel — not Hilbert projection beside a standalone operator theory course. When [row 64](../appendix/sources.md#row63-ii2-ii3-hilbert-reunion-index-row-64) closed [II.2 → II.3 landing](#writings-canonical-landing-ii2-to-ii3) but **`03-hilbert-spaces.md` and `04-operators-duality.md` each build as separate mdBooks**, read [row 65](../appendix/sources.md#row64-ii3-ii4-operators-reunion-index-row-65) and walk this hinge before opening II.4:
+
+| Upstream (II.3) | Downstream (II.4) | Same wire |
+|-----------------|-------------------|-----------|
+| [Grip-load Lab act](#lab-act-project-the-grip-load-onto-two-bar-modes-act-iii-prelude) — Riesz turns load cell into projection | [Nodal force vs distributed weight Lab act](04-operators-duality.md#lab-act-nodal-force-versus-distributed-weight-act-iii-load-handling) — weak\* convergence of nodal weights | Act III prelude continues on the bar |
+| [Concept map checkpoint (Hilbert spaces)](#concept-map-checkpoint-hilbert-spaces) | [Concept map checkpoint (operators and duality)](04-operators-duality.md#concept-map-checkpoint-operators-and-duality) | Four questions unchanged |
+| [Bridge](#bridge) + [handshake](#scale-boundary-handshake-ii3-ii4-acts-iiiii) — projection before operators | [Writings canonical landing](04-operators-duality.md#writings-canonical-landing-ii3-to-ii4) | Dual loads before spectral theorem in II.5 |
+
+Turn to II.4 only after the [Bridge](#bridge) closing sentence — *loads in the dual, stiffness as an operator* — not after skimming Céa's lemma alone.
+
 ## Bridge
 
 Hilbert spaces give us angles, projections, and representations of loads. The next step is **operators**: linear maps between such spaces that generalize matrices. Dual spaces generalize row vectors and Lagrange multipliers; weak and weak* convergence describe limits when norms alone fail to detect oscillations — the behavior we see near shocks, fine-scale microstructure, and unresolved boundary layers. Operators, duality, and compactness complete the analytic toolkit before spectral theory decouples time-dependent and vibration problems into modes.
@@ -254,7 +266,7 @@ Hilbert spaces give us angles, projections, and representations of loads. The ne
 | Riesz representation of loads \(\ell(v)=(f,v)\) | Dual spaces \(H^*\); point forces as functionals, not \(L^2\) functions |
 | Céa's lemma: best approximation in energy | Compact embeddings \(H^1 \hookrightarrow L^2\); Aubin–Nitsche preview |
 
-**Scale-boundary handshake (II.3 → II.4 → Acts II/III).**
+**Scale-boundary handshake (II.3 → II.4 → Acts II/III).** {#scale-boundary-handshake-ii3-ii4-acts-iiiii}
 
 | Hilbert export (this chapter) | Operator consumer ([II.4](04-operators-duality.md)) | Wire location | Failure mode |
 |-------------------------------|-----------------------------------------------------|---------------|--------------|

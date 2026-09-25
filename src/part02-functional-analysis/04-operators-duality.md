@@ -9,7 +9,11 @@ Matrices act on column vectors. Differential operators act on functions. Dual sp
 
 When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
 
-## Scene: the load is not a vector of numbers
+## Writings canonical landing (II.3 → II.4) {#writings-canonical-landing-ii3-to-ii4}
+
+You should arrive here from [II.3](03-hilbert-spaces.md) after [row 64](../preface.md#skill-navigation-row-64) closed II.2 → II.3 on a new specimen, or from the unified book on a first read after [II.3 Bridge](03-hilbert-spaces.md#bridge) and [II.3 → II.4 Writings hinge](03-hilbert-spaces.md#writings-canonical-hinge-ii3-to-ii4) — not at bounded-operator definitions cold. The [`writings/functional-analysis`](../../writings/functional-analysis/chapters/SUMMARY.md) fourth numbered chapter repeats the ME 412 template: **Scene** asks why the grip load is a functional, not a column vector, the body develops bounded operators, dual spaces, weak and weak\* convergence, compact embeddings, and the Galerkin projector, **Lab act** compares distributed body force to equivalent nodal loads as \(N\) grows, **Bridge** hands off to the spectral theorem in II.5. When row 64 verified grip-load projection but II.3 Riesz prose and this chapter's operator norm still feel like separate homework, read [row 65](../appendix/sources.md#row64-ii3-ii4-operators-reunion-index-row-65) and recite [II.3 plot spine](03-hilbert-spaces.md#plot-spine-one-line) aloud before [Scene: the load is not a vector of numbers](#scene-the-load-is-not-a-vector-of-numbers).
+
+## Scene: the load is not a vector of numbers {#scene-the-load-is-not-a-vector-of-numbers}
 
 The grip applies a fixed displacement; gravity pulls downward with a force per unit volume; a contact constraint pushes only where the wire touches the wedge. In the weak form, each load becomes a linear functional on the displacement space — not an entry in a column vector until we choose a basis. Dual spaces are where virtual work lives: they translate physical loads into data the weak form can consume, and they explain why refining the mesh changes the discrete vector but not the underlying load object.
 
