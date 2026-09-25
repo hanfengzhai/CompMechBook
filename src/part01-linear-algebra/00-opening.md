@@ -12,6 +12,10 @@ Four chapters follow the **Linear Algebra Notes** in [`writings/linear-algebra/`
 
 When symbols change faster than the specimen, read the sentence above aloud — it is the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc) role for Part I in one breath. See the [part-opening plot spine index](../appendix/sources.md#part-opening-plot-spine-index-row-18) for all nine rungs; [row 18](../preface.md#skill-navigation-row-18) closes the audit when part openings feel like a syllabus.
 
+## Writings canonical landing (Prologue → Part I) {#writings-canonical-landing-prologue-to-part-i}
+
+You may have arrived from [`writings/prologue`](../../writings/prologue/chapters/SUMMARY.md) after [row 55](../preface.md#skill-navigation-row-55) closed the copper arc on a new specimen, from the unified book ([`SUMMARY.md`](../SUMMARY.md)) on a first read, or from the [preface opening continuity hinge](../preface.md#opening-continuity-hinge) — every path should land here **after** [prologue Bridge](../prologue/00-many-scales.md#bridge-to-part-i) and [Writings canonical hinge](../prologue/00-many-scales.md#writings-canonical-hinge-prologue-to-part-i), not at I.1 vectors cold. The [`writings/linear-algebra`](../../writings/linear-algebra/chapters/SUMMARY.md) subtree repeats the ME 300A template the [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) later lift into \(H^1\): numbered chapters, **Bridge** sections, Scene and Lab act beats — only the upstream note PDF and the state variable change (panorama → \(\mathbf{K}\mathbf{u}=\mathbf{f}\)). When row 55 verified book-loop closure but Part I still opens like copied copper decks on silicon or steel, read [row 56](../appendix/sources.md#row55-opening-continuity-reunion-index-row-56) and recite [I.0 plot spine](#plot-spine-one-line) aloud before [I.1 mounting](../part01-linear-algebra/01-vectors-matrices.md#lab-act-three-nodes-one-load-cell-reading-act-i--mounting).
+
 ## Chapter guide
 
 | Chapter | Wire story beat | Core object | Handoff |
