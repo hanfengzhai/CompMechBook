@@ -1236,6 +1236,30 @@ This checkpoint closes the **IX.3 → Epilogue Writings canonical part-boundary 
 
 **When to pause.** Read the [prologue row 51 closing stitch](prologue/00-many-scales.md#row-51-closing-stitch) first when row 50 closed but the epilogue still opens like a new syllabus after IX.3 — it names the Writings landing before Handshake 4a rate extrapolation. Then read the [prologue row 51 preview](prologue/00-many-scales.md#prologue-preview-row-51) when `writings/dft` and `writings/epilogue` each build as standalone mdBooks and the unified arc feels lost at the electronic → coupling turn. Return to the [IX.3 → Epilogue reunion index](appendix/sources.md#ix3-epilogue-writings-canonical-reunion-index-row-51) when foundation archives and sync both verify but **`cu.foundation/` is complete yet Handshakes 4a and 4b feel like one undifferentiated export** — the break is usually skipping [Epilogue Writings canonical landing](epilogue/multiscale.md#writings-canonical-landing-ix3-to-epilogue), not missing multiscale vocabulary. Read the [memory sheet row 51 baby picture](appendix/memory-sheet.md#row-51-baby-picture-ix3-epilogue-writings-canonical-reunion) when Handshake 3 opens before epilogue landing; read the [epilogue row 51 closing loop](epilogue/multiscale.md#row-51-closing-loop) when the competence loop closes.
 
+### Row 52 skill checkpoint — Epilogue → Prologue Writings canonical book-loop reunion audit {#skill-navigation-row-52}
+
+This checkpoint closes the **Epilogue → Prologue Writings canonical part-boundary reunion** chain — the reader meta-stitch when row 51 closed coupling descent, row 12 restored next-project narrative, and the [epilogue row 12 closing loop](epilogue/multiscale.md#row-12-closing-loop) is mathematically correct, but **`writings/epilogue` closing into `writings/prologue` still feels like ME 412 homework followed by a fresh scale-menu prologue** on the same afternoon. The continuous book is one ladder; the prologue reopens portable discipline on a new specimen, not a second copper tutorial.
+
+| Step | Skill on the Epilogue → Prologue boundary | Minimal artifact |
+|------|-------------------------------------------|------------------|
+| 1 — Source gate | Confirm row 46–51 closed (`./scripts/sync-writings.sh --check` passes) | No orphan `src/` prose without `writings/` mirror |
+| 2 — Handoff gate | Confirm [row 12 workflow exam](epilogue/multiscale.md#what-you-should-be-able-to-do-after-the-book) complete | `multiscale_export.yaml` + `./scripts/test-fixtures.sh` green |
+| 3 — Bridge recitation | Read [Epilogue Writings canonical hinge](epilogue/multiscale.md#writings-canonical-hinge-epilogue-to-prologue) through ME 412 one-line summary | Coupling → portable ladder named |
+| 4 — Landing audit | Open [Prologue Writings canonical landing](prologue/00-many-scales.md#writings-canonical-landing-epilogue-to-prologue) before Part I | [Prologue reopening anchor](prologue/00-many-scales.md#prologue-reopening-anchor) four-step table recited |
+| 5 — Cross-links audit | Read [Epilogue → Prologue Writings reunion index](appendix/sources.md#epilogue-prologue-writings-canonical-reunion-index-row-52) aloud | Same Scene → Bridge contract; material change ≠ method change |
+
+**Row 52 three-way audit (prologue preview ↔ this checkpoint ↔ workflow exam).**
+
+| Step | Prologue preview ([row 52](prologue/00-many-scales.md#prologue-preview-row-52)) | This checkpoint (above) | Workflow exam ([row 12 row](epilogue/multiscale.md#what-you-should-be-able-to-do-after-the-book)) |
+|------|--------------------------------------------------------------------------------|-------------------------|-------------------------------------------------------------------------------------|
+| 1 | Name row 51 closed before prologue restart | Step 1 — source gate | Sync check green |
+| 2 | Name row 12 workflow exam complete | Step 2 — handoff gate | Fixtures + orchestration archived |
+| 3 | Name epilogue ME 412 summary as subtree exit | Step 3 — Bridge recitation | Workflow → ladder named |
+| 4 | Name prologue landing before Part I | Step 4 — landing audit | Rung audit on new specimen |
+| 5 | [Epilogue → Prologue reunion index](appendix/sources.md#epilogue-prologue-writings-canonical-reunion-index-row-52) recitation | Step 5 — cross-links audit | Book loop reads as one novel act |
+
+**When to pause.** Read the [prologue row 52 closing stitch](prologue/00-many-scales.md#row-52-closing-stitch) first when row 51 closed but the prologue still opens like a new syllabus after the epilogue — it names the Writings landing before copying copper input decks. Then read the [prologue row 52 preview](prologue/00-many-scales.md#prologue-preview-row-52) when `writings/epilogue` and `writings/prologue` each build as standalone mdBooks and the unified arc feels lost at the coupling → restart turn. Return to the [Epilogue → Prologue reunion index](appendix/sources.md#epilogue-prologue-writings-canonical-reunion-index-row-52) when orchestration and sync both verify but **the next terminal opens with copper decks copied blindly to a new material** — the break is usually skipping [Prologue Writings canonical landing](prologue/00-many-scales.md#writings-canonical-landing-epilogue-to-prologue), not missing linear algebra. Read the [memory sheet row 52 baby picture](appendix/memory-sheet.md#row-52-baby-picture-epilogue-prologue-writings-canonical-reunion) when Part I opens before the reopening anchor; read the [epilogue row 52 closing loop](epilogue/multiscale.md#row-52-closing-loop) when the competence loop closes.
+
 ## The copper wire through the book
 
 The same specimen — a cold-drawn copper wire under tension, heated by current, cooled by air — reappears in every part. The table below is a reading map: what changes is the **state variable**, not the material.
