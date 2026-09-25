@@ -6,6 +6,12 @@ The copper wire that opened the prologue — drawn, annealed, carrying current, 
 
 Before descending to electrons, we already practiced coupling at the engineering scale: Part IV's FEM conduction and Part V's FVM convection exchange wall temperature and heat flux until the wire and the cooling air agree — conjugate heat transfer as a fixed-point loop between discretizations. The epilogue generalizes that handshake from two meshes on one specimen to DFT, MD, DDD, and continuum FEM on the same material history.
 
+## Plot spine (one line) {#plot-spine-one-line}
+
+> **Act IV — Coupling:** Foundation exports compose in one multiscale afternoon — Handshakes 1–4b on the same copper wire close the novel.
+
+When Part IX ended with Quantum ESPRESSO folders but the epilogue feels like a new course, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [coupling gate](../appendix/sources.md#continuous-read-through-guide) in the continuous read-through guide; row [51](../appendix/sources.md#ix3-epilogue-writings-canonical-reunion-index-row-51) reunites the **Writings subtree boundary** when row 50 closed electronic descent but `writings/dft` → `writings/epilogue` still reads like two mdBooks.
+
 ## Scene: a multiscale afternoon
 
 It is late afternoon in a shared compute lab. On one screen, a Quantum ESPRESSO log reports `convergence has been achieved` for a relaxed copper unit cell — cohesive energy, lattice constant, and Voigt-averaged elastic constants copied into a spreadsheet with the functional, pseudopotential, and k-mesh recorded in the header. On the next screen, a LAMMPS job fits an EAM potential to those numbers and runs a short NVT shear test on a dislocation core; the mobility table that emerges is not yet physics, but it is **traceable** to the SCF cycle that finished an hour ago.
@@ -31,6 +37,18 @@ If you have read linearly since the prologue, the copper wire has changed langua
 | IX | Electrons | \(\rho(\mathbf{r})\) | \(E_{\text{coh}}\), \(C_{ij}\), \(\gamma_{\text{sf}}\) |
 
 The epilogue asks what none of these parts alone can answer: **how do we compose them** when the wire's lifetime spans every row of the table?
+
+## Writings canonical landing (IX.3 → Epilogue) {#writings-canonical-landing-ix3-to-epilogue}
+
+You crossed from **DFT Notes** to **ME 412 multiscale coupling** — two subtrees under [`writings/`](../writings/SUMMARY.md), one continuous story. If the epilogue feels like a new syllabus after [IX.3's Bridge](../part09-dft/03-dft-workflows.md#bridge-to-the-epilogue), read that Bridge and [Writings canonical hinge](../part09-dft/03-dft-workflows.md#writings-canonical-hinge-ix3-to-epilogue) aloud first: the state variable changes from \(\rho(\mathbf{r})\) in a foundation folder to **orchestrated handshakes** on the bench wire, but `cu.foundation/`, `cht_export.yaml`, and the [IX.3 epilogue pedigree table](../part09-dft/03-dft-workflows.md#ix3-epilogue-pedigree-table) do not.
+
+| Signal you are at the right landing | What to open next |
+|---------------------------------------|-------------------|
+| `cu.foundation/` complete but Handshakes feel like separate homework | [Opening hinge from Part IX](#opening-hinge-ix3-to-epilogue) — export table on the wire |
+| Row 50 closed electronic descent but epilogue opens like ME 412 only | [Coupling hinge](#opening-hinge-ix3-to-epilogue) — 4a vs 4b on `hardening.yaml` |
+| Canonical edits must stay in `writings/epilogue/` | [`scripts/sync-writings.sh`](../../scripts/sync-writings.sh) then `mdbook build` |
+
+The [reunion index row 51](../appendix/sources.md#ix3-epilogue-writings-canonical-reunion-index-row-51) reunites this landing with [IX.3's Bridge](../part09-dft/03-dft-workflows.md#bridge-to-the-epilogue) when SCF archives make sense but [`parse_multiscale_workflow.sh`](../../scripts/parse_multiscale_workflow.sh) was never run. Row [10](../appendix/sources.md#continuity-hinges-index-when-the-plot-stutters) names the **narrative** IX.3 → epilogue coupling hinge; row 51 names the **Writings subtree boundary** when `writings/dft` and `writings/epilogue` each build as standalone mdBooks.
 
 ## Closing the arc from Part IX {#opening-hinge-ix3-to-epilogue}
 
@@ -1544,7 +1562,21 @@ This subsection is the **downstream half** of [memory sheet row 50](../appendix/
 | 4 | Name IX.0 landing before Born–Oppenheimer | Step 4 — landing audit | [IX.0 plot spine](../part09-dft/00-opening.md#plot-spine-one-line) recited |
 | 5 | [VIII.3 → IX.0 reunion index](../appendix/sources.md#viii3-ix0-writings-canonical-reunion-index-row-50) recitation | Step 5 — cross-links audit | Electronic floor reads continuous |
 
-When Part IX feels like a course catalog break after coarse-graining, start at [VIII.3's Writings canonical hinge](../part08-md/03-ab-initio-and-coarse-graining.md#writings-canonical-hinge-viii3-to-ix0) and land at [IX.0's canonical landing](../part09-dft/00-opening.md#writings-canonical-landing-viii3-to-ix0) before [IX.1's opening hinge from IX.0](../part09-dft/01-born-oppenheimer.md#opening-hinge-ix0-to-ix1). The [memory sheet row 50 baby picture](../appendix/memory-sheet.md#row-50-baby-picture-viii3-ix0-writings-canonical-reunion) compresses the md → dft subtree handoff for index-card review. Do not conflate row 50 (Writings part boundary) with row 36 (handoff ↔ SCF audit in reading time) — row 36 names **why EAM on trust needs QE logs**; row 50 names **why the next subtree is still one novel**. Proceed to [IX.3 → epilogue](../part09-dft/03-dft-workflows.md#bridge-to-the-epilogue) when the coupling gate opens, or to [row 37](../appendix/sources.md#electronic-audit-born-oppenheimer-reunion-index-row-37) when SCF logs exist but Born–Oppenheimer still feels disconnected.
+When Part IX feels like a course catalog break after coarse-graining, start at [VIII.3's Writings canonical hinge](../part08-md/03-ab-initio-and-coarse-graining.md#writings-canonical-hinge-viii3-to-ix0) and land at [IX.0's canonical landing](../part09-dft/00-opening.md#writings-canonical-landing-viii3-to-ix0) before [IX.1's opening hinge from IX.0](../part09-dft/01-born-oppenheimer.md#opening-hinge-ix0-to-ix1). The [memory sheet row 50 baby picture](../appendix/memory-sheet.md#row-50-baby-picture-viii3-ix0-writings-canonical-reunion) compresses the md → dft subtree handoff for index-card review. Do not conflate row 50 (Writings part boundary) with row 36 (handoff ↔ SCF audit in reading time) — row 36 names **why EAM on trust needs QE logs**; row 50 names **why the next subtree is still one novel**. Proceed to [row 51](#row-51-closing-loop) when `writings/dft` → `writings/epilogue` still feels like two courses, to [IX.3 → epilogue](../part09-dft/03-dft-workflows.md#bridge-to-the-epilogue) when the coupling gate opens, or to [row 37](../appendix/sources.md#electronic-audit-born-oppenheimer-reunion-index-row-37) when SCF logs exist but Born–Oppenheimer still feels disconnected.
+
+### Row 51 closing loop (IX.3 → Epilogue Writings canonical reunion) {#row-51-closing-loop}
+
+This subsection is the **downstream half** of [memory sheet row 51](../appendix/memory-sheet.md#row-51-baby-picture-ix3-epilogue-writings-canonical-reunion), the [preface row 51 skill checkpoint](../preface.md#skill-navigation-row-51), and the [IX.3 → Epilogue Writings reunion index](../appendix/sources.md#ix3-epilogue-writings-canonical-reunion-index-row-51). The [prologue row 51 preview](../prologue/00-many-scales.md#prologue-preview-row-51) and [prologue row 51 closing stitch](../prologue/00-many-scales.md#row-51-closing-stitch) are the **upstream halves** — return there when row 50 closed electronic descent but **the epilogue still feels like ME 412 homework after IX.3's foundation archive**. Row 51 closes the **electronic → coupling part boundary** in reading time: `foundation_export.yaml` and the pedigree table must compose into Handshakes 1–4b before the six-act reunion story in workflow time.
+
+| Step | Prologue preview ([row 51](../prologue/00-many-scales.md#prologue-preview-row-51)) | [Preface row 51](../preface.md#skill-navigation-row-51) | Workflow exam ([coupling gate](../appendix/sources.md#continuous-read-through-guide)) |
+|------|--------------------------------------------------------------------------------|-------------------------|----------------------------------------------------------------------------------------|
+| 1 | Name row 50 closed before epilogue | Step 1 — source gate | `sync-writings.sh --check` green |
+| 2 | Name `cu.foundation/` beside orchestrator script | Step 2 — handoff gate | Pedigree table + `parse_multiscale_workflow.sh` path |
+| 3 | Name IX.3 Bridge as dft subtree exit | Step 3 — Bridge recitation | Foundation → handshake composition named |
+| 4 | Name epilogue landing before Handshake 3 | Step 4 — landing audit | [Epilogue plot spine](#plot-spine-one-line) recited |
+| 5 | [IX.3 → Epilogue reunion index](../appendix/sources.md#ix3-epilogue-writings-canonical-reunion-index-row-51) recitation | Step 5 — cross-links audit | Act IV coupling reads continuous |
+
+When the epilogue feels like a course catalog break after DFT workflows, start at [IX.3's Writings canonical hinge](../part09-dft/03-dft-workflows.md#writings-canonical-hinge-ix3-to-epilogue) and land at [Writings canonical landing](#writings-canonical-landing-ix3-to-epilogue) before [Handshake 3](#opening-hinge-ix3-handshake3). The [memory sheet row 51 baby picture](../appendix/memory-sheet.md#row-51-baby-picture-ix3-epilogue-writings-canonical-reunion) compresses the dft → epilogue subtree handoff for index-card review. Do not conflate row 51 (Writings part boundary) with row 10 (coupling hinge in reading time) — row 10 names **why foundation folders need handshake composition**; row 51 names **why the closing subtree is still one novel**. Proceed to [row 12](#row-12-closing-loop) when the book loop should close on a new specimen, to [row 43](../appendix/sources.md#rows17-42-row16-orchestration-reunion-index-row-43) when Handshakes exist but lack `multiscale_export.yaml`, or to [lab act reunion](#lab-act-reunion-six-acts-one-afternoon) when landing and opening hinge both read correctly.
 
 ### Row 12 closing loop (epilogue → prologue) {#row-12-closing-loop}
 
