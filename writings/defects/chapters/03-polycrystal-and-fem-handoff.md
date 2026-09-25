@@ -385,3 +385,16 @@ Return to the [prologue](../prologue/00-many-scales.md): **Act IV** hardening an
 The wire's strength is a story written in dislocation lines; the lines borrow their mobility from phonons and cores the mesoscale cannot resolve. [VIII.1](../part08-md/01-potentials-phase-space.md#opening-hinge-vii3-to-viii1) begins with interatomic potentials and phase space — the next rung down on the ladder, same specimen, stricter export contract. The [Part VIII opening descent hinge](../part08-md/00-opening.md#descent-hinge-cores-mobility-and-tw-pedigree) names the \(T_w\) pedigree every NVT shear in that chapter must honor; the [VIII.1 opening hinge](../part08-md/01-potentials-phase-space.md#opening-hinge-vii3-to-viii1) is where mobility yaml rows become atomic coordinates and EAM forces.
 
 Turn the page when Peierls stress or mobility tables feel like magic numbers — molecular dynamics is where those numbers acquire a temperature, a crystal structure, and a lattice parameter \(a_0\) that sets Burgers vector magnitude in the OpenDiS deck you just archived.
+
+## Writings canonical hinge (VII.3 → VIII.0) {#writings-canonical-hinge-vii3-to-viii0}
+
+The unified book ([`SUMMARY.md`](../../SUMMARY.md)) and the vendored [`writings/defects`](../../writings/defects/chapters/SUMMARY.md) subtree close on this Bridge; [`writings/md`](../../writings/md/chapters/SUMMARY.md) opens at [VIII.0](../part08-md/00-opening.md#writings-canonical-landing-vii3-to-viii0) with the same Functional Analysis Notes layout (`00-opening.md`, numbered chapters, **Bridge** sections) but upstream [Atomistic Modeling Notes](https://hanfengzhai.github.io/file/AtomModel_note.pdf) instead of Defects PDFs. When the layout feels continuous but **LAMMPS input decks feel disconnected from OpenDiS mobility tables**, read [row 49](../appendix/sources.md#vii3-viii0-writings-canonical-reunion-index-row-49) — the handoff is mesoscale export discipline → atomic representative volumes on one specimen, not a new syllabus.
+
+| VII.3 closing beat | VIII.0 opening beat |
+|--------------------|---------------------|
+| `mobility.yaml`, Peierls rows, OpenDiS → DAMASK archive | NVT shear folders at \(T_w\) beside `cht_export.yaml` |
+| Line cores regularized by cutoff radius | Screw-core RVE with \(\mathbf{F}_i = -\nabla V\) |
+| [Bridge to Part VIII](#bridge-to-part-viii) scale handshake | [VIII.0 Writings canonical landing](../part08-md/00-opening.md#writings-canonical-landing-vii3-to-viii0) |
+| [VIII.1 opening hinge](../part08-md/01-potentials-phase-space.md#opening-hinge-vii3-to-viii1) named here | Phase-space grammar before integrators in VIII.2 |
+
+Edit canonical prose under `writings/defects/` and `writings/md/` only; run [`scripts/sync-writings.sh`](../../scripts/sync-writings.sh) before `mdbook build`. Row 49 does not replace [row 33](../appendix/sources.md#part-vii-viii-descent-hinge-reunion-index-row-33) (descent hinge in reading time) — it reunites **subtree boundaries** when Defects Notes and MD Notes each build as standalone mdBooks.

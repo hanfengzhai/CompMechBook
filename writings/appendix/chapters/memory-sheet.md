@@ -906,6 +906,21 @@ flowchart LR
 
 When row 48 feels disconnected from row 47, read them as **ascent vs midpoint capstones**: row 47 when **Galerkin and conservation reunite on \(\boldsymbol{\sigma}\)**; row 48 when **placeholder hardening yields to line motion** — same Functional Analysis Notes layout, state variable shrinks from tensor fields to forest density.
 
+### Row 49 baby picture (VII.3 → VIII.0 Writings canonical reunion) {#row-49-baby-picture-vii3-viii0-writings-canonical-reunion}
+
+**Row 49 baby picture:** when row 48 closed the midpoint and [row 33](#row-33-baby-picture-part-vii-viii-descent-hinge-reunion) restored mesoscale → atomistic descent, but **Part VIII.0 still opens like a new course after VII.3's polycrystal handoff**, open the [VII.3 → VIII.0 Writings reunion index](sources.md#vii3-viii0-writings-canonical-reunion-index-row-49) — read [VII.3 plot spine](../part07-defects/03-polycrystal-and-fem-handoff.md#plot-spine-one-line) → [Bridge](../part07-defects/03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) → [Writings canonical hinge](../part07-defects/03-polycrystal-and-fem-handoff.md#writings-canonical-hinge-vii3-to-viii0) → [VIII.0 landing](../part08-md/00-opening.md#writings-canonical-landing-vii3-to-viii0) → [VIII.1 opening hinge](../part08-md/01-potentials-phase-space.md#opening-hinge-vii3-to-viii1) aloud before integrators.
+
+```mermaid
+flowchart LR
+  DEF[writings/defects VII.3 Bridge]
+  MOB[mobility.yaml at Tw]
+  MD[writings/md VIII.0]
+  RVE[screw-core RVE]
+  DEF --> MOB --> MD --> RVE
+```
+
+When row 49 feels disconnected from row 48, read them as **midpoint vs atomistic capstones**: row 48 when **forest density replaces fitted \(H\)**; row 49 when **atomic coordinates replace line cutoffs** — same Functional Analysis Notes layout, state variable shrinks from segments to \(\{\mathbf{r}_i\}\).
+
 ### Act VI baby picture (ME 412 coupling ladder) {#act-vi-baby-picture-me-412-coupling-ladder}
 
 The [Part IX opening](../part09-dft/00-opening.md#the-coupling-ladder-me-412-reunion) draws the full coupling ladder; this diagram is the **Act VI slice** — foundation pedigree in workflow order, then handshake orchestration:

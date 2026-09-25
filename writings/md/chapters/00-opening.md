@@ -12,6 +12,18 @@ Three chapters cover potentials and phase space, ensembles and integrators, then
 
 When mobility tables cite Part VIII without an atomic box, read the sentence above aloud — it is the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc) role for Part VIII in one breath. See the [part-opening plot spine index](../appendix/sources.md#part-opening-plot-spine-index-row-18) for all nine rungs; the [atomistic descent in one paragraph](#the-atomistic-descent-in-one-paragraph) below unpacks the same beat.
 
+## Writings canonical landing (VII.3 → VIII.0) {#writings-canonical-landing-vii3-to-viii0}
+
+You crossed from **Defects Notes** to **Atomistic Modeling Notes** — two subtrees under [`writings/`](../writings/SUMMARY.md), one continuous story. If Part VIII.0 feels like a new syllabus after the OpenDiS → DAMASK handoff, read [VII.3 Bridge](../part07-defects/03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) and [Writings canonical hinge](../part07-defects/03-polycrystal-and-fem-handoff.md#writings-canonical-hinge-vii3-to-viii0) aloud first: the state variable changes from dislocation segments to \(\{\mathbf{r}_i\}\), but the copper wire, `mobility.yaml`, and `units.txt` discipline do not.
+
+| Signal you are at the right landing | What to open next |
+|---------------------------------------|-------------------|
+| `mobility.yaml` cites Part VIII without NVT shear evidence | [VIII.1 opening hinge](01-potentials-phase-space.md#opening-hinge-vii3-to-viii1) — EAM forces on a core RVE |
+| Row 48 closed midpoint but MD feels like standalone stat mech | [Descent hinge](#descent-hinge-cores-mobility-and-tw-pedigree) — \(T_w\) from `cht_export.yaml`, not 300 K |
+| Canonical edits must stay in `writings/md/` | [`scripts/sync-writings.sh`](../../scripts/sync-writings.sh) then `mdbook build` |
+
+The [reunion index row 49](../appendix/sources.md#vii3-viii0-writings-canonical-reunion-index-row-49) reunites this landing with [VII.3's Bridge](../part07-defects/03-polycrystal-and-fem-handoff.md#bridge-to-part-viii) when Peach–Köhler forces make sense but LAMMPS decks feel bolted on.
+
 ## Chapter guide
 
 | Chapter | Wire story beat | Core object | Handoff |
