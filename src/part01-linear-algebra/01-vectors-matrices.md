@@ -9,6 +9,10 @@ Every computational mechanics code, before it knows anything about stress tensor
 
 When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
 
+## Writings canonical landing (I.0 → I.1) {#writings-canonical-landing-i0-to-i1}
+
+You should arrive here from [I.0](../part01-linear-algebra/00-opening.md) after [row 56](../preface.md#skill-navigation-row-56) closed prologue → Part I on a new specimen, or from the unified book on a first read after [I.0 Bridge](../part01-linear-algebra/00-opening.md#bridge) and [I.0 → I.1 Writings hinge](../part01-linear-algebra/00-opening.md#writings-canonical-hinge-i0-to-i1) — not at inner products cold. The [`writings/linear-algebra`](../../writings/linear-algebra/chapters/SUMMARY.md) first numbered chapter repeats the ME 300A template: **Scene** returns to the grips, the body develops vector and matrix grammar, **Lab act** grounds the three-node bar, **Bridge** hands off to assembly in I.2. When row 56 verified landing but I.0 concept map and this chapter still feel like separate homework, read [row 57](../appendix/sources.md#row56-i0-i1-mounting-reunion-index-row-57) and recite [I.0 plot spine](../part01-linear-algebra/00-opening.md#plot-spine-one-line) aloud before [Scene: the grips tighten](#scene-the-grips-tighten).
+
 ## Scene: the grips tighten
 
 Picture the copper wire in the **tensile frame** of the prologue. The operator zeros the load cell, tightens the wedge grips, and clicks **Start**. For the next hour the full multiscale story is invisible: no mesh of tetrahedra, no Kohn–Sham cycle, no dislocation network — only a curve on a screen, **force versus displacement**, climbing almost linearly, then bending upward as the forest of line defects locked in by cold drawing resists further slip.
@@ -318,7 +322,7 @@ Computational mechanics does not replace linear algebra with something exotic. I
 
 Finite volume methods (Part V) assemble conservation balances that also reduce to sparse linear systems — different discretization philosophy, same \(\mathbf{A}\mathbf{x}=\mathbf{b}\) at the end of the day. Molecular dynamics integrators advance a state vector by matrix–vector products with the Hessian of an interatomic potential. The copper wire at every scale eventually asks: what is the state vector, and what matrix maps it forward or toward equilibrium? Part I answers that question in finite dimensions; Part II and Part III lift it to fields.
 
-## Lab act: three nodes, one load cell reading (Act I — Mounting)
+## Lab act: three nodes, one load cell reading (Act I — Mounting) {#lab-act-three-nodes-one-load-cell-reading-act-i--mounting}
 
 **Act I** in the lab is mounting: the wire sits in wedge grips, the load cell reads zero, and the first honest model is a chain of bar elements. Before any current flows or any grip displacement ramps, write the numbers that a code would assemble on the first timestep.
 

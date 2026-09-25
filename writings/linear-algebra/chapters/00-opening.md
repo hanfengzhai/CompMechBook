@@ -14,7 +14,7 @@ When symbols change faster than the specimen, read the sentence above aloud — 
 
 ## Writings canonical landing (Prologue → Part I) {#writings-canonical-landing-prologue-to-part-i}
 
-You may have arrived from [`writings/prologue`](../../writings/prologue/chapters/SUMMARY.md) after [row 55](../preface.md#skill-navigation-row-55) closed the copper arc on a new specimen, from the unified book ([`SUMMARY.md`](../SUMMARY.md)) on a first read, or from the [preface opening continuity hinge](../preface.md#opening-continuity-hinge) — every path should land here **after** [prologue Bridge](../prologue/00-many-scales.md#bridge-to-part-i) and [Writings canonical hinge](../prologue/00-many-scales.md#writings-canonical-hinge-prologue-to-part-i), not at I.1 vectors cold. The [`writings/linear-algebra`](../../writings/linear-algebra/chapters/SUMMARY.md) subtree repeats the ME 300A template the [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) later lift into \(H^1\): numbered chapters, **Bridge** sections, Scene and Lab act beats — only the upstream note PDF and the state variable change (panorama → \(\mathbf{K}\mathbf{u}=\mathbf{f}\)). When row 55 verified book-loop closure but Part I still opens like copied copper decks on silicon or steel, read [row 56](../appendix/sources.md#row55-opening-continuity-reunion-index-row-56) and recite [I.0 plot spine](#plot-spine-one-line) aloud before [I.1 mounting](../part01-linear-algebra/01-vectors-matrices.md#lab-act-three-nodes-one-load-cell-reading-act-i--mounting).
+You may have arrived from [`writings/prologue`](../../writings/prologue/chapters/SUMMARY.md) after [row 55](../preface.md#skill-navigation-row-55) closed the copper arc on a new specimen, from the unified book ([`SUMMARY.md`](../SUMMARY.md)) on a first read, or from the [preface opening continuity hinge](../preface.md#opening-continuity-hinge) — every path should land here **after** [prologue Bridge](../prologue/00-many-scales.md#bridge-to-part-i) and [Writings canonical hinge](../prologue/00-many-scales.md#writings-canonical-hinge-prologue-to-part-i), not at I.1 vectors cold. The [`writings/linear-algebra`](../../writings/linear-algebra/chapters/SUMMARY.md) subtree repeats the ME 300A template the [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) later lift into \(H^1\): numbered chapters, **Bridge** sections, Scene and Lab act beats — only the upstream note PDF and the state variable change (panorama → \(\mathbf{K}\mathbf{u}=\mathbf{f}\)). When row 55 verified book-loop closure but Part I still opens like copied copper decks on silicon or steel, read [row 56](../appendix/sources.md#row55-opening-continuity-reunion-index-row-56) and recite [I.0 plot spine](#plot-spine-one-line) aloud before [I.1 mounting](../part01-linear-algebra/01-vectors-matrices.md#lab-act-three-nodes-one-load-cell-reading-act-i--mounting). When row 56 verified prologue → I.0 but I.1 still opens like a standalone inner-product chapter, read [row 57](../appendix/sources.md#row56-i0-i1-mounting-reunion-index-row-57) and walk [Writings canonical hinge I.0 → I.1](#writings-canonical-hinge-i0-to-i1) before the three-node Lab act.
 
 ## Chapter guide
 
@@ -146,6 +146,18 @@ Each chapter adds one move to a minimal workflow you can run on paper or in NumP
 | I.4 | Refine mesh; watch nodal values become a field | \(N = 5, 20, 100\) → plot \(u(x)\) approaching smooth curve |
 
 None of these require functional analysis — but each one is the finite-dimensional shadow of something Part II names rigorously. If you can assemble a three-node bar, solve for displacement, and extract a fundamental frequency, you have already done 80% of what a linear static/dynamic FEM code does on the first timestep. Parts II–IV replace vectors with functions and loops with weak forms; the **moves** stay the same.
+
+## Writings canonical hinge (I.0 → I.1) {#writings-canonical-hinge-i0-to-i1}
+
+The [`writings/linear-algebra`](../../writings/linear-algebra/chapters/SUMMARY.md) subtree is one ME 300A novel — not a part-opening syllabus file beside a first-chapter proof stack. When row 56 closed [prologue → Part I landing](#writings-canonical-landing-prologue-to-part-i) but **`00-opening.md` and `01-vectors-matrices.md` each build as separate mdBooks**, read [row 57](../appendix/sources.md#row56-i0-i1-mounting-reunion-index-row-57) and walk this hinge before opening I.1:
+
+| Upstream (I.0) | Downstream (I.1) | Same wire |
+|----------------|------------------|-----------|
+| [Scene](#scene) — spring chain syntax | [Scene: the grips tighten](../part01-linear-algebra/01-vectors-matrices.md#scene-the-grips-tighten) — operator tightens grips | Act I mounting continues |
+| [Concept map](#the-concept-map) — object / structure / theorem / breaks | [Concept map checkpoint](../part01-linear-algebra/01-vectors-matrices.md#concept-map-checkpoint-vectors-and-matrices) at chapter end | Four questions unchanged |
+| [Bridge](#bridge) table — I.1 opens the matrix | [Writings canonical landing](../part01-linear-algebra/01-vectors-matrices.md#writings-canonical-landing-i0-to-i1) | State = \(\mathbf{u}\), \(\mathbf{K}\), \(\mathbf{f}\) |
+
+Turn to I.1 only after the [Bridge](#bridge) opening sentence — *Part I is where every later scale reveals the same grammar* — not after skimming the chapter guide alone.
 
 ## Bridge
 
