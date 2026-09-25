@@ -11,7 +11,11 @@ Pull the copper wire again and consider two displacement fields \(u\) and \(v\) 
 
 When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
 
-## Scene: modes that ignore each other
+## Writings canonical landing (II.2 → II.3) {#writings-canonical-landing-ii2-to-ii3}
+
+You should arrive here from [II.2](02-normed-spaces.md) after [row 63](../preface.md#skill-navigation-row-63) closed II.1 → II.2 on a new specimen, or from the unified book on a first read after [II.2 Bridge](02-normed-spaces.md#bridge) and [II.2 → II.3 Writings hinge](02-normed-spaces.md#writings-canonical-hinge-ii2-to-ii3) — not at inner-product axioms cold. The [`writings/functional-analysis`](../../writings/functional-analysis/chapters/SUMMARY.md) third numbered chapter repeats the ME 412 template: **Scene** asks why vibration modes decouple on the clamped wire, the body develops \(L^2\) and energy inner products, Riesz representation, and Céa's lemma preview, **Lab act** projects a grip load onto two bar modes, **Bridge** hands off to operators and duality in II.4. When row 63 verified the hat-function spike but II.2 Banach prose and this chapter's definition block still feel like separate homework, read [row 64](../appendix/sources.md#row63-ii2-ii3-hilbert-reunion-index-row-64) and recite [II.2 plot spine](02-normed-spaces.md#plot-spine-one-line) aloud before [Scene: modes that ignore each other](#scene-modes-that-ignore-each-other).
+
+## Scene: modes that ignore each other {#scene-modes-that-ignore-each-other}
 
 Clamp the wire and strike it softly: the fundamental bend and the second bend do not exchange energy arbitrarily — their displacements integrate to orthogonal patterns over the length. That decoupling is Hilbert geometry: an inner product turns mode orthogonality into a theorem, and Galerkin projection into best approximation in energy. The wire's vibration spectrum is a Hilbert-space story told before any tetrahedral mesh exists.
 

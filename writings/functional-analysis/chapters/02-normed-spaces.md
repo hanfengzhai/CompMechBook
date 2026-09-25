@@ -239,6 +239,18 @@ Norms are the rulers that make convergence honest. Before Hilbert geometry adds 
 
 The hat-function Lab act is the numerical face of "corners break classical smoothness": \(\|u_h'\|_{L^2}\) spikes at a kink even when nodal values look reasonable.
 
+## Writings canonical hinge (II.2 → II.3) {#writings-canonical-hinge-ii2-to-ii3}
+
+The [`writings/functional-analysis`](../../writings/functional-analysis/chapters/SUMMARY.md) second and third numbered chapters are one ME 412 novel — not Banach completeness beside a standalone inner-product course. When [row 63](../appendix/sources.md#row62-ii1-ii2-normed-spaces-reunion-index-row-63) closed [II.1 → II.2 landing](#writings-canonical-landing-ii1-to-ii2) but **`02-normed-spaces.md` and `03-hilbert-spaces.md` each build as separate mdBooks**, read [row 64](../appendix/sources.md#row63-ii2-ii3-hilbert-reunion-index-row-64) and walk this hinge before opening II.3:
+
+| Upstream (II.2) | Downstream (II.3) | Same wire |
+|-----------------|-------------------|-----------|
+| [Hat-function Lab act](#lab-act-compare-energy-norms-on-a-hat-function-act-iii-prelude) — \(\|u_h'\|_{L^2}\) spikes at kinks | [Grip-load projection Lab act](03-hilbert-spaces.md#lab-act-project-the-grip-load-onto-two-bar-modes-act-iii-prelude) — Riesz turns load into projection | Act III prelude continues on the bar |
+| [Concept map checkpoint (normed spaces)](#concept-map-checkpoint-normed-spaces) | [Concept map checkpoint (Hilbert spaces)](03-hilbert-spaces.md#concept-map-checkpoint-hilbert-spaces) | Four questions unchanged |
+| [Bridge](#bridge) + [handshake](#scale-boundary-handshake-ii1-ii2-ii3) — norms before angles | [Writings canonical landing](03-hilbert-spaces.md#writings-canonical-landing-ii2-to-ii3) | Galerkin as projection before operators in II.4 |
+
+Turn to II.3 only after the [Bridge](#bridge) closing sentence — *orthogonality is now \((u_i, u_j) = 0\) in \(H^1\)* — not after skimming Banach fixed-point alone.
+
 ## Bridge
 
 Norms measure size; inner products measure angle and projection. When the norm comes from an inner product via \(\|u\| = \sqrt{(u,u)}\), geometry enters: orthogonality, best approximation, Riesz representation. **Hilbert spaces** — complete inner-product spaces — are where Galerkin orthogonality and energy minimization become rigorous.
