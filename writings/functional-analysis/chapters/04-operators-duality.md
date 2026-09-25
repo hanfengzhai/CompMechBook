@@ -231,6 +231,18 @@ Operators are infinite matrices; duals are where loads live. Before the spectral
 
 Part I's nodal force vector was always a shadow of \(\ell(v)=\int f v\). Part IV scatters loads into \(\mathbf{f}\) only because this chapter justifies the limit.
 
+## Writings canonical hinge (II.4 → II.5) {#writings-canonical-hinge-ii4-to-ii5}
+
+The [`writings/functional-analysis`](../../writings/functional-analysis/chapters/SUMMARY.md) fourth and fifth numbered chapters are one ME 412 novel — not operator norms beside a standalone spectral-theory course. When [row 65](../appendix/sources.md#row64-ii3-ii4-operators-reunion-index-row-65) closed [II.3 → II.4 landing](#writings-canonical-landing-ii3-to-ii4) but **`04-operators-duality.md` and `05-spectral-theorem.md` each build as separate mdBooks**, read [row 66](../appendix/sources.md#row65-ii4-ii5-spectral-reunion-index-row-66) and walk this hinge before opening II.5:
+
+| Upstream (II.4) | Downstream (II.5) | Same wire |
+|-----------------|-------------------|-----------|
+| [Distributed-load Lab act](#lab-act-nodal-force-versus-distributed-weight-act-iii-load-handling) — weak\* convergence of nodal weights | [Tap-test eigenvalue Lab act](05-spectral-theorem.md#lab-act-discrete-bar-eigenvalues-versus-the-analytical-spectrum-act-iii-vibration-check) — Rayleigh–Ritz convergence of \(\omega_{1,h}\) | Act III prelude continues on the bar |
+| [Concept map checkpoint (operators and duality)](#concept-map-checkpoint-operators-and-duality) | [Concept map checkpoint (Part II)](05-spectral-theorem.md#concept-map-checkpoint-part-ii) | Four questions unchanged |
+| [Bridge](#bridge) + [handshake](#scale-boundary-handshake-ii4-ii5-part-iii) — dual loads before spectra | [Writings canonical landing](05-spectral-theorem.md#writings-canonical-landing-ii4-to-ii5) | Compact self-adjoint operators before Part III weak forms |
+
+Turn to II.5 only after the [Bridge](#bridge) closing sentence — *spectra decouple modes the way \(\mathbf{K}\) did in Part I* — not after skimming Fredholm alone.
+
 ## Bridge
 
 Operators on Hilbert spaces become transparent when they are **self-adjoint** and **compact**: spectra decompose into real eigenvalues and orthonormal eigenvectors. The spectral theorem is the infinite-dimensional generalization of diagonalizing a symmetric matrix.
