@@ -120,6 +120,18 @@ When two parts feel adjacent but unrelated — say FEM (IV) and DDD (VII) — tr
 | CHT | Conjugate heat transfer | Part V.4, Epilogue |
 | WHAM | Weighted histogram analysis method — reweights parallel-tempering replica samples to a target temperature (e.g. Joule-heated \(T_w\)) before exporting cross-slip or mobility statistics | [VIII.3](../part08-md/03-ab-initio-and-coarse-graining.md#wham-part-vii-mobility-hinge-act-ii-temperature-pedigree) |
 
+## Book-loop reunion rows (52–53) {#book-loop-reunion-rows-52-53}
+
+Late in the arc, three **meta rows** sound similar — they all mention the epilogue, the prologue, and restarting on a new specimen. They differ by **which stitch broke**:
+
+| Row | What broke | Read first | Closes with |
+|-----|------------|------------|-------------|
+| [12](../preface.md#skill-navigation-row-12) | Copper tutorial finished; next material feels like a scale menu | [Prologue reopening anchor](../prologue/00-many-scales.md#prologue-reopening-anchor) four-step table | New specimen rung sketch + [row 0](../preface.md#opening-continuity-hinge) grammar restart |
+| [52](../preface.md#skill-navigation-row-52) | `writings/epilogue` and `writings/prologue` each build as standalone mdBooks | [Writings canonical hinge](../epilogue/multiscale.md#writings-canonical-hinge-epilogue-to-prologue) → [prologue landing](../prologue/00-many-scales.md#writings-canonical-landing-epilogue-to-prologue) | ME 412 summary → portable ladder on new material |
+| [53](../preface.md#skill-navigation-row-53) | Handshakes 3–4b inside the epilogue read as separate ME sections | [Intra-epilogue handshake bridge chain](../epilogue/multiscale.md#intra-epilogue-handshake-bridge-chain) | [Row 12 closing loop](../epilogue/multiscale.md#row-12-closing-loop) ME 412 summary, then row 52 landing |
+
+**Workflow exam cross-links:** the [row 12 workflow row](../epilogue/multiscale.md#what-you-should-be-able-to-do-after-the-book) defers to row 53 when the four-step audit feels disconnected from Handshakes 3–4b; the [row 53 workflow row](../epilogue/multiscale.md#what-you-should-be-able-to-do-after-the-book) ends at row 12 before prologue restart. Index cards: [memory sheet row 52](../appendix/memory-sheet.md#row-52-baby-picture-epilogue-prologue-writings-canonical-reunion) and [row 53](../appendix/memory-sheet.md#row-53-baby-picture-row52-row12-intra-epilogue-bridge-reunion) baby pictures; full reunion maps in [sources row 52](sources.md#epilogue-prologue-writings-canonical-reunion-index-row-52) and [sources row 53](sources.md#row52-row12-intra-epilogue-handshake-bridge-reunion-index-row-53).
+
 ## Canonical sources
 
 Chapter markdown is authored under [`writings/`](../../writings/) (Functional Analysis Notes layout) and synced into `src/` via [`scripts/sync-writings.sh`](../../scripts/sync-writings.sh). For PDF links, repositories, and the full chapter roadmap, see [Sources and Further Reading](sources.md).
