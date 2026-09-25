@@ -13,6 +13,23 @@ Part II's closing checkpoint promised that reentrant corners and concentrated lo
 
 When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
 
+## Writings canonical landing (III.0 → III.1) {#writings-canonical-landing-iii0-to-iii1}
+
+You should arrive here from [III.0](../part03-pdes/00-opening.md) after [row 67](../preface.md#skill-navigation-row-67) closed II.5 → III.0 on a new specimen, or from the unified book on a first read after [Part III Bridge](../part03-pdes/00-opening.md#bridge) and [III.0 → III.1 Writings hinge](../part03-pdes/00-opening.md#writings-canonical-hinge-iii0-to-iii1) — not at Poisson's equation cold. The [`writings/pde`](../../writings/pde/chapters/SUMMARY.md) first numbered chapter repeats the ME 300B template Part II previewed in [Schematic 14](../part02-functional-analysis/00-opening.md#representative-schematics-me-412): **Scene** returns to Joule heating on the wire, the body develops strong-form PDEs and their failure modes, **Lab act** audits three points on the heated bar, **Bridge** hands off to integration by parts in III.2. When row 67 verified Closing the arc and Schematic 14 but III.0 thermoelastic Scene and this chapter still feel like separate homework, read [row 68](../appendix/sources.md#row67-iii0-iii1-strong-form-reunion-index-row-68) and recite [III.0 plot spine](../part03-pdes/00-opening.md#plot-spine-one-line) aloud before [Closing the arc from Part III.0](#opening-hinge-iii0-to-iii1).
+
+## Closing the arc from Part III.0 {#opening-hinge-iii0-to-iii1}
+
+If you have read linearly since the prologue, [III.0](../part03-pdes/00-opening.md) closed with Schematic 14, the thermoelastic thread, and a **Bridge** that promised strong forms at every interior point — and named where \(C^2\) smoothness fails before the weak form speaks. Part III.1 does not reopen the ME 300B syllabus; it **grounds** the PDE catalog on the copper wire under current:
+
+| Part III.0 export (foundation archive) | Part III.1 vocabulary |
+|----------------------------------------|-------------------------|
+| Domain \(\Omega\) with grip and coolant BCs | Strong-form Laplacian \(-k\Delta T = q\) at interior points in **Act II** |
+| Thermoelastic stack \((T, \mathbf{u}, \boldsymbol{\sigma}(T))\) on one bar | Coupled strong forms before block weak form in [III.2](02-weak-form.md) |
+| Schematic 14 rung 1 — strong PDE + BCs | Pointwise physics that breaks at weld and interface — plot hinge for III.2 |
+| Part II export: \(a(u,v)\), \(\ell\), \(H^1\) target | PDEs whose classical solutions would live in \(C^2\); corners force weak form |
+
+The wire under Joule heating is not a generic Poisson homework set — it is **Act II — Warming** from the prologue, with the same specimen that will enter **Act III — Pulling** once \(\boldsymbol{\sigma} = \mathbb{C}:(\boldsymbol{\varepsilon} - \alpha\Delta T\,\mathbf{I})\) is written in strong form here. When strong forms read like a PDE encyclopedia before the thermal camera scene, pause at this hinge — not at Sobolev spaces in [III.3](03-sobolev-spaces.md) — because every weak form in Parts IV–V inherits the failure modes this chapter names at the thermocouple weld and grip corner.
+
 ## Scene: heat at every point
 
 The tensile frame from Part I is still running, but the operator has raised the current. A thermal camera shows the copper wire no longer uniform: the center runs hotter than the grips, and the hottest strip follows the narrowest cross-section where Joule heating concentrates. An engineer writes on a whiteboard:
@@ -204,7 +221,7 @@ For \(-\Delta u = f\) with \(f \ge 0\) and \(u = 0\) on \(\partial\Omega\), the 
 | Point load at a point? | Requires delta source | Functional on test space |
 | FEM assembly entry point? | Differentiate twice | One integration by parts |
 
-## Lab act: write the strong form at three points on the heated wire (Act II)
+## Lab act: write the strong form at three points on the heated wire (Act II) {#lab-act-write-the-strong-form-at-three-points-on-the-heated-wire-act-ii}
 
 **Act II — Warming** switches on current. The thermal camera shows a hot center and cooler ends — but the **strong-form Laplacian** \(-k\Delta T = q\) is only meaningful where \(T \in C^2\). At three locations on the copper wire, decide whether the strong form applies pointwise:
 
