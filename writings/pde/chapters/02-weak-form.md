@@ -299,6 +299,19 @@ This chapter is the hinge where Part II's function spaces meet the copper wire's
 
 The prologue named the weak form a **recurring character**. Here it first speaks in full sentences: \(a(u,v)=\ell(v)\) for all admissible \(v\). Part IV will assemble \(\mathbf{K}\) from this identity; Part VI will call it virtual work; Part IX will recast electron density as a variational functional. The character does not change — only the space and the bilinear form do.
 
+## Writings canonical hinge (III.2 → III.3) {#writings-canonical-hinge-iii2-to-iii3}
+
+The [`writings/pde`](../../writings/pde/chapters/SUMMARY.md) second and third numbered chapters are one ME 300B novel — not a weak-form derivation beside a standalone Sobolev encyclopedia. When [row 69](../appendix/sources.md#row68-iii1-iii2-weak-form-reunion-index-row-69) closed the heated-wire Lab act but **`02-weak-form.md` and `03-sobolev-spaces.md` each build as separate mdBooks**, read [row 70](../appendix/sources.md#row69-iii2-iii3-sobolev-reunion-index-row-70) and walk this hinge before opening III.3:
+
+| Upstream (III.2) | Downstream (III.3) | Same wire |
+|------------------|---------------------|-----------|
+| [Heated-wire Lab act](#lab-act-integrate-by-parts-on-the-heated-wire-act-ii--warming) — \(T \in H^1_0\) used implicitly | [Scene: kinks at the nodes](03-sobolev-spaces.md#scene-kinks-at-the-nodes) — hat functions are conforming \(H^1\) | Act II temperature field the thermocouple reports |
+| [Bridge](#bridge) table — "test function still feels informal" | [Weak derivatives](03-sobolev-spaces.md#weak-derivatives) + \(H^1(\Omega)\) definition | \(\nabla T \in L^2\) even when \(T\) is only piecewise linear |
+| [Concept map checkpoint (weak form)](#concept-map-checkpoint-weak-form) | [Concept map checkpoint (Sobolev spaces)](03-sobolev-spaces.md#concept-map-checkpoint-sobolev-spaces) | Four ME 412 questions unchanged |
+| Lax–Milgram preview on \(V = H^1_0\) | [Poincaré inequality](03-sobolev-spaces.md#poincare-inequality) + [conforming FEM](03-sobolev-spaces.md#conforming-finite-elements) | Coercivity budget for \(\mathbf{K}_{TT}\) and \(\mathbf{K}_{uu}\) |
+
+Turn to III.3 only after the [Bridge](#bridge) table below — *Sobolev spaces formalize what "admissible test function" means* — and after reciting [III.2 plot spine](#plot-spine-one-line) aloud, not after skimming weak derivatives in isolation.
+
 ## Bridge
 
 Weak derivatives make sense in **Sobolev spaces**. The next chapter defines \(H^1\) rigorously enough to code with confidence — and explains why conforming finite elements must be continuous across element boundaries (for standard Lagrange elements). Without \(H^1\), we cannot state what "\(\nabla u\)" means when \(u\) is only piecewise smooth; with \(H^1\), the weak form of the copper wire's conduction and elasticity problems is not a hack but the correct continuum statement.
@@ -312,4 +325,18 @@ Weak derivatives make sense in **Sobolev spaces**. The next chapter defines \(H^
 
 The [prologue](../prologue/00-many-scales.md) named this formulation a **recurring character** — born here as integration by parts, returning as Galerkin orthogonality in Part IV, virtual work in Part VI, and a variational statement on electron density in Part IX. Part II built the room (\(H^1\), dual loads, completeness); this chapter gave the character its first lines on stage. When the grip corner breaks classical \(C^2\) smoothness, the weak form still balances virtual work — that is the plot hinge the rest of the book assumes you will trust.
 
+**Scale-boundary handshake (III.2 → III.3 → Acts II/III).** {#scale-boundary-handshake-iii2-iii3-acts-iiiii}
+
+| Weak-form output (this chapter) | Sobolev consumer ([III.3](03-sobolev-spaces.md)) | Wire location | Failure mode |
+|-----------------------------------|---------------------------------------------------|---------------|--------------|
+| \(\int k T' v'\) with \(v \in H^1_0\) | \(T \in H^1\): \(\|T'\|_{L^2} < \infty\) | Joule-heated bar (Act II) | Assuming \(T \in C^2\) because the strong form had \(\Delta T\) |
+| Bilinear form \(a(u,v)\) — only first derivatives | Weak derivative definition; jump in slope OK | Grip corner displacement (Act III) | Rejecting FEM stress because \(u''\) blows up at the corner |
+| Galerkin preview \(V_h \subset V\) | \(V_h \subset H^1\) conformity — \(C^0\) across elements | Ten-element wire mesh | Discontinuous \(T_h\) across an interface → \(T_h \notin H^1\) |
+| Point load as \(\ell \in H^{-1}\) | Dual loads and trace functionals | Mid-span point load on bar model | Lumping force without checking \(H^{-1}\) membership |
+| Lax–Milgram coercivity on \(H^1_0\) | Poincaré + discrete Poincaré on \(V_h\) | Both thermal and mechanical blocks | Ill-conditioned \(\mathbf{K}\) from wrong trial space |
+
+The heated-wire Lab act assumed \(H^1_0(0,L)\) without naming it; the patch-test Lab act in [III.3](03-sobolev-spaces.md) **audits** that assumption on three nodes. Part II built completeness and inner products; this chapter wrote \(a(u,v)=\ell(v)\); the next chapter names the **regularity room** Part IV's shape functions must stay inside.
+
 Energy methods ([III.4](04-energy-methods.md)) then recast \(a(u,v)=\ell(v)\) as minimization or saddle-point principles — the variational backbone of FEM and, in nonlinear settings, of hyperelastic and phase-field solvers. Turn the page when "test function" still feels informal — Sobolev spaces are the contract that makes FEM assembly honest.
+
+When row 69 closed the spring-to-FEM loop but III.3 opens on \(H^k\) embeddings before [Scene: kinks at the nodes](03-sobolev-spaces.md#scene-kinks-at-the-nodes), walk [Writings canonical hinge (III.2 → III.3)](#writings-canonical-hinge-iii2-to-iii3) and read [row 70](../appendix/sources.md#row69-iii2-iii3-sobolev-reunion-index-row-70) before weak derivatives.

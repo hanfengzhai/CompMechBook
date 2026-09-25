@@ -11,7 +11,25 @@ When we approximate the temperature on the copper wire with piecewise-linear hat
 
 When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
 
-## Scene: kinks at the nodes
+## Writings canonical landing (III.2 → III.3) {#writings-canonical-landing-iii2-to-iii3}
+
+You should arrive here from [III.2](02-weak-form.md) after [row 69](../preface.md#skill-navigation-row-69) closed the spring-to-FEM loop and heated-wire Lab act, or from the unified book on a first read after [III.2 Bridge](02-weak-form.md#bridge) and [III.2 → III.3 Writings hinge](02-weak-form.md#writings-canonical-hinge-iii2-to-iii3) — not at Sobolev embeddings cold. The [`writings/pde`](../../writings/pde/chapters/SUMMARY.md) third numbered chapter repeats the ME 300B template: **Scene** returns to the meshed wire where hat functions kink at nodes, the body defines \(H^1\) and weak derivatives, **Lab act** patch-tests \(T_h \in H^1\) on Act II's three-node mesh, **Bridge** hands off to energy methods in III.4. When row 69 verified virtual work but III.2's Lab act and this chapter still feel like separate homework, read [row 70](../appendix/sources.md#row69-iii2-iii3-sobolev-reunion-index-row-70) and recite [III.2 plot spine](02-weak-form.md#plot-spine-one-line) aloud before [Closing the arc from Part III.2](#opening-hinge-iii2-to-iii3).
+
+## Closing the arc from Part III.2 {#opening-hinge-iii2-to-iii3}
+
+If you have read linearly since the prologue, [III.2](02-weak-form.md) closed with a **Bridge** that promised Sobolev spaces — and named the **Scale-boundary handshake** rows where "admissible test function" must become a precise membership statement. Part III.3 does not reopen integration by parts; it **grounds** regularity on the same copper wire mesh:
+
+| Part III.2 export (weak form) | Part III.3 vocabulary |
+|-------------------------------|------------------------|
+| Heated-wire Lab act — \(T \in H^1_0(0,L)\) used without definition | [Scene: kinks at the nodes](#scene-kinks-at-the-nodes) — piecewise-linear \(T_h\) is conforming \(H^1\) |
+| \(a(u,v)=\ell(v)\) for all admissible \(v\) | [Weak derivatives](#weak-derivatives) — integration by parts becomes a definition |
+| Lax–Milgram on \(V = H^1_0\) | [Poincaré inequality](#poincare-inequality) — coercivity constant on the wire domain |
+| Galerkin \(V_h \subset V\) preview | [Conforming finite elements](#conforming-finite-elements) — \(C^0\) continuity is the FEM contract |
+| Part II export: completeness in \(H^1\) | [\(H^1(\Omega)\)](#the-sobolev-space-h1omega) Hilbert space — Cauchy sequences of mesh refinements converge |
+
+The three-node mesh from the weak-form Lab act and the ten-element mesh in the Scene below are not separate homework sets — they are the **same Act II temperature field** at different refinement levels. When Sobolev spaces read like a functional analysis digression before the kinks-at-nodes Scene, pause at this hinge — not at energy methods in [III.4](04-energy-methods.md) — because every conforming assembly in Part IV inherits the \(H^1\) contract this chapter writes.
+
+## Scene: kinks at the nodes {#scene-kinks-at-the-nodes}
 
 Mesh the copper wire for steady Joule heating with ten linear bar elements. Plot the temperature: a continuous broken line, slope changing abruptly at each node, nowhere twice differentiable in the classical sense. A mathematician trained on \(C^2\) solutions might reject the picture; a finite element practitioner recognizes it as a **conforming \(H^1\)** approximation — continuous across elements, square-integrable gradient piecewise constant.
 
@@ -206,7 +224,7 @@ Piecewise-linear finite element fields on the copper wire are globally in \(H^1\
 | \(H^{-1}\) load | Point forces, concentrated fluxes |
 | \(H^2\) regularity | Enables \(O(h^2)\) convergence for P1 on Poisson |
 
-## Lab act: patch-test \(H^1\) membership on the heated wire (Act II — Warming)
+## Lab act: patch-test \(H^1\) membership on the heated wire (Act II — Warming) {#lab-act-patch-test-h1-membership-on-the-heated-wire-act-ii--warming}
 
 **Act II** reports a thermocouple climb while the grips stay fixed. The FEM temperature you will assemble in Part IV is not a smooth \(C^2\) curve — it is a broken line of hat functions, kinked at every node. Sobolev spaces are the contract that makes those kinks legal.
 
