@@ -257,6 +257,19 @@ Part II built the function spaces; this chapter names the PDEs those spaces will
 
 The Lab act's three-point table is the operational version of the scalar checkpoint: midspan obeys the strong form; weld and interface do not. The thermoelastic row is the **coupled** version: when Act III grip reaction exceeds elastic prediction, check whether Act II's \(T(\mathbf{x})\) entered \(\boldsymbol{\sigma}(T)\) on the **same** domain with consistent \(\alpha\) and BCs — not whether the plasticity model is wrong. Part III.2's weak form is not a numerical compromise — it is the correct continuum statement when rows two and three apply (and when thermal strain must load the mechanical block). Every numbered chapter in Parts I–IX ends with this four-question summary before its Bridge; use it to audit whether you are discretizing the right formulation.
 
+## Writings canonical hinge (III.1 → III.2) {#writings-canonical-hinge-iii1-to-iii2}
+
+The [`writings/pde`](../../writings/pde/chapters/SUMMARY.md) first and second numbered chapters are one ME 300B novel — not a strong-form catalog beside a standalone integration-by-parts course. When [row 68](../appendix/sources.md#row67-iii0-iii1-strong-form-reunion-index-row-68) closed [III.0 → III.1 landing](#writings-canonical-landing-iii0-to-iii1) but **`01-strong-form.md` and `02-weak-form.md` each build as separate mdBooks**, read [row 69](../appendix/sources.md#row68-iii1-iii2-weak-form-reunion-index-row-69) and walk this hinge before opening III.2:
+
+| Upstream (III.1) | Downstream (III.2) | Same wire |
+|------------------|---------------------|-----------|
+| [Three-point Lab act](#lab-act-write-the-strong-form-at-three-points-on-the-heated-wire-act-ii) — midspan vs weld vs interface | [Scene: the grip corner](02-weak-form.md#scene-the-grip-corner) — virtual work where \(\Delta u\) fails | Act II–III failure modes named before generic Poisson weak form |
+| [Scale-boundary handshake](#scale-boundary-handshake-iii1-iii2-acts-iiiii) table | [From springs to weak form](02-weak-form.md#from-springs-to-weak-form-the-same-question-twice) mermaid loop | Part I \(\mathbf{K}\mathbf{u}=\mathbf{f}\) closes on Part IV |
+| [Concept map checkpoint (strong form)](#concept-map-checkpoint-strong-form) | [Concept map checkpoint (weak form)](02-weak-form.md#concept-map-checkpoint-weak-form) | Four questions unchanged |
+| [Bridge](#bridge) — integration by parts next | [Writings canonical landing](02-weak-form.md#writings-canonical-landing-iii1-to-iii2) + [opening hinge from III.1](02-weak-form.md#opening-hinge-iii1-to-iii2) | \(a(u,v)=\ell(v)\) inherits Part II's \(H^1\) room |
+
+Turn to III.2 only after the [Bridge](#bridge) **Scale-boundary handshake** table — *rows two and three require the weak form* — and after reciting [III.1 plot spine](#plot-spine-one-line) aloud, not after skimming the Poisson prototype alone.
+
 ## Bridge
 
 The strong form is what physicists write. The weak form is what variational algorithms implement. Multiplying by a test function, integrating over \(\Omega\), and integrating by parts moves derivatives from the unknown onto smooth test functions — trading pointwise \(C^2\) requirements for integral balance in \(H^1\).
@@ -268,7 +281,7 @@ The strong form is what physicists write. The weak form is what variational algo
 | Natural BC as limits of flux | Emergent BC from integration by parts |
 | FEM entry via second derivatives | FEM entry via one integration by parts → stiffness integrals |
 
-**Scale-boundary handshake (III.1 → III.2 → Acts II/III).**
+**Scale-boundary handshake (III.1 → III.2 → Acts II/III).** {#scale-boundary-handshake-iii1-iii2-acts-iiiii}
 
 | Strong-form output (this chapter) | Weak-form consumer ([III.2](02-weak-form.md)) | Wire location | Failure mode |
 |-----------------------------------|----------------------------------------------|---------------|--------------|
@@ -285,3 +298,5 @@ The copper wire's tensile equilibrium and steady heating look elliptic and innoc
 Return to this chapter's opening **Scene**: the thermal camera in prologue **Act II — Warming** demands a strong-form equation at every interior point — and previews why the weak form in [III.2](02-weak-form.md) is the honest continuum statement at the thermocouple weld and insulator corner. Part I's nodal balance laws were the finite-dimensional prelude; Part II's Sobolev spaces are the limit room; this chapter is the blackboard physics both must approximate.
 
 The [prologue](../prologue/00-many-scales.md) introduced the weak form as a **recurring character**. It first speaks in full sentences in [III.2](02-weak-form.md); Sobolev spaces in [III.3](03-sobolev-spaces.md) make "test function" precise; energy methods in [III.4](04-energy-methods.md) recast the same balance as minimization. Turn the page when the strong form feels correct but the mesh refuses to converge — that is the signal that pointwise derivatives were the wrong contract.
+
+When row 68 closed the three-point Lab act but III.2 opens on generic Poisson before [Scene: the grip corner](02-weak-form.md#scene-the-grip-corner), walk [Writings canonical hinge (III.1 → III.2)](#writings-canonical-hinge-iii1-to-iii2) and read [row 69](../appendix/sources.md#row68-iii1-iii2-weak-form-reunion-index-row-69) before integration by parts.

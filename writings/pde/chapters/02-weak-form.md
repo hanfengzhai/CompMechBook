@@ -6,14 +6,30 @@ The weak form is the computational mechanic's version of integration by parts: m
 
 If the copper wire is fixed at both ends and loaded in the middle, the displacement field may be continuous but not twice differentiable at the load point — the strong form \(-EA u'' = f\) fails classically at a point force. The weak form still asks: for all admissible virtual displacements, is internal virtual work equal to external virtual work? That question has an answer in \(H^1\), and Galerkin discretization turns it into \(\mathbf{K}\mathbf{U}=\mathbf{F}\).
 
-
 ## Plot spine (one line) {#plot-spine-one-line}
 
 > **III.2 — Act I — Grammar:** Test functions and integration by parts rewrite physics as pairings, not pointwise derivatives.
 
 When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
 
-## Scene: the grip corner
+## Writings canonical landing (III.1 → III.2) {#writings-canonical-landing-iii1-to-iii2}
+
+You should arrive here from [III.1](01-strong-form.md) after [row 68](../preface.md#skill-navigation-row-68) closed III.0 → III.1 on a new specimen, or from the unified book on a first read after [III.1 Bridge](01-strong-form.md#bridge) and [III.1 → III.2 Writings hinge](01-strong-form.md#writings-canonical-hinge-iii1-to-iii2) — not at Poisson's weak form cold. The [`writings/pde`](../../writings/pde/chapters/SUMMARY.md) second numbered chapter repeats the ME 300B template: **Scene** returns to the grip corner where classical stress balance fails, the body develops \(a(u,v)=\ell(v)\) and the spring-to-FEM loop, **Lab act** integrates by parts on the Joule-heated wire in **Act II — Warming**, **Bridge** hands off to Sobolev spaces in III.3. When row 68 verified the three-point strong-form table but III.1's Poisson catalog and this chapter still feel like separate homework, read [row 69](../appendix/sources.md#row68-iii1-iii2-weak-form-reunion-index-row-69) and recite [III.1 plot spine](01-strong-form.md#plot-spine-one-line) aloud before [Closing the arc from Part III.1](#opening-hinge-iii1-to-iii2).
+
+## Closing the arc from Part III.1 {#opening-hinge-iii1-to-iii2}
+
+If you have read linearly since the prologue, [III.1](01-strong-form.md) closed with a **Bridge** that promised integration by parts — and named the **Scale-boundary handshake** rows where midspan stays strong but weld and grip corner require weak forms. Part III.2 does not reopen the PDE encyclopedia; it **grounds** virtual work on the same copper wire:
+
+| Part III.1 export (strong form) | Part III.2 vocabulary |
+|---------------------------------|-------------------------|
+| Three-point Lab act — weld and interface fail \(C^2\) | [Scene: the grip corner](#scene-the-grip-corner) — integral balance replaces pointwise Laplacian |
+| Handshake table \(-k\Delta T = q\) → \(\int k\nabla T\cdot\nabla v\) | [Lab act: integrate by parts on the heated wire](#lab-act-integrate-by-parts-on-the-heated-wire-act-ii--warming) |
+| Part II export: \(H^1\), Lax–Milgram preview | Bilinear form \(a(u,v)\); only first derivatives of \(u\) |
+| Prologue weak form as **recurring character** | First full sentences: \(a(u,v)=\ell(v)\) for all admissible \(v\) |
+
+The grip corner in **Act III — Pulling** and the thermocouple weld in **Act II — Warming** are not separate homework sets — they are the **same failure modes** the three-point table flagged. When weak forms read like a variational methods course before the grip-corner Scene, pause at this hinge — not at energy methods in [III.4](04-energy-methods.md) — because every FEM assembly in Part IV inherits the contract this chapter writes.
+
+## Scene: the grip corner {#scene-the-grip-corner}
 
 Mount the copper wire in a rigid bracket with a reentrant corner — an L-shaped steel jaw gripping a cylindrical specimen. Under tension, the displacement field is visually smooth: the wire elongates, the bracket barely flexes. But zoom into the corner where copper meets steel: finite element post-processing shows stress components spiking, and a curious analyst asks whether \(-\nabla\cdot\boldsymbol{\sigma} = \mathbf{0}\) holds **pointwise** in classical sense.
 
