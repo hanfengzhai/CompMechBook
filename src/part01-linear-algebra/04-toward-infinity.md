@@ -11,6 +11,10 @@ Heat the copper wire at one end and wait: the temperature is not a vector of thr
 
 When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter. **Ascent gate (row 20):** this chapter is the first mandatory pause in row 17's straight read — recite the sentence above aloud, then read the [Bridge to Part II](#bridge-to-part-ii) before opening functional analysis.
 
+## Writings canonical landing (I.3 → I.4) {#writings-canonical-landing-i3-to-i4}
+
+You should arrive here from [I.3](../part01-linear-algebra/03-eigenvalues.md) after [row 59](../preface.md#skill-navigation-row-59) closed I.2 → I.3 on a new specimen, or from the unified book on a first read after [I.3 Bridge](../part01-linear-algebra/03-eigenvalues.md#bridge) and [I.3 → I.4 Writings hinge](../part01-linear-algebra/03-eigenvalues.md#writings-canonical-hinge-i3-to-i4) — not at \(L^2\) inner products cold. The [`writings/linear-algebra`](../../writings/linear-algebra/chapters/SUMMARY.md) fourth numbered chapter repeats the ME 300A template: **Scene** multiplies thermocouples along the wire, the body develops \(N\to\infty\) and operator limits, **Lab act** refines bar meshes until profiles stabilize, **Bridge** hands off to Part II. When row 59 verified tap-the-wire spectra but I.3 Bridge and this chapter still feel like separate homework, read [row 60](../appendix/sources.md#row59-i3-i4-mesh-limit-reunion-index-row-60) and recite [I.3 plot spine](../part01-linear-algebra/03-eigenvalues.md#plot-spine-one-line) aloud before [Scene: the sensors multiply](#scene-the-sensors-multiply).
+
 ## Scene: the sensors multiply
 
 Return to the spring network from Chapters 1–3, now with a twist in the experiment. An engineer places thermocouples along the copper wire — first three, then ten, then forty, then a hundred — each reading \(T(x_i)\) at a node of a finer mesh. Every refinement produces a longer column vector \(\mathbf{T}_N\), yet the plotted profile along the axis stops changing shape once the spacing is fine enough. The family of vectors is not converging to a **longer** vector; it is converging to a **function** \(T(x)\) defined at every \(x\), the limit object Part II will name.
@@ -195,7 +199,7 @@ Point loads on the copper wire (a force at a node) are not functions in \(L^2\);
 
 Given basis functions \(\{\phi_j\}\) on a mesh, the **Gram matrix** \(G_{ij} = (\phi_i, \phi_j)_{L^2}\) is the mass matrix before assembly into physical units. Orthonormalizing the basis (via Gram–Schmidt or QR on sampled values) produces a condition-number-friendly coordinate system — the same idea as orthonormal eigenvectors, now on function spaces. Isoparametric maps (Part IV) generalize this: the Jacobian determinant weights integrals so that reference-element orthogonality becomes physical-space coupling.
 
-## Lab act: thermocouples converge to a temperature field
+## Lab act: thermocouples converge to a temperature field {#lab-act-thermocouples-converge-to-a-temperature-field}
 
 Return to the heated copper wire from the opening scene. Steady one-dimensional conduction along the axis (no Joule heating yet — that is Act II in Part VI) satisfies \(-k T''(x) = 0\) with \(T(0) = T_L\) and \(T(L) = T_R\). The exact solution is the linear profile \(T(x) = T_L + (T_R - T_L)\, x/L\).
 
@@ -213,7 +217,7 @@ Return to the heated copper wire from the opening scene. Steady one-dimensional 
 
 **Step 4 — connect to the lab session.** Act II (Part VI) adds Joule heating \(\dot{q}(x)\) and makes \(T(x)\) nonlinear; Act I's mounting (Part I) already placed the first thermocouple at the grip. This exercise shows why Part II must exist: without a named space for \(T(x)\), mesh refinement is "more numbers" with no convergence target. When the profile stops changing as \(N\) grows, you have found the continuum state variable the prologue promised.
 
-## Scale-boundary handshake: displacement convergence toward \(H^1\)
+## Scale-boundary handshake: displacement convergence toward \(H^1\) {#scale-boundary-handshake-displacement-convergence-toward-h1}
 
 The thermocouple Lab act above treated **temperature** — a scalar field whose continuum limit is clear once nodal values stabilize. **Displacement** under end load tells the same story with a richer norm: the copper wire in Act III stretches along its axis, and mesh refinement must converge not only in pointwise elongation but in **strain energy**, the quantity Part II will name \(\|u\|_{H^1}\).
 

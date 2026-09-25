@@ -269,6 +269,18 @@ Decoupling is the first time the book's recurring theme appears in computation. 
 
 Tapping the mounted wire before Act III's ramp is a physical eigenvalue experiment: the audible pitch is mode 1 of the same operator Part IV assembles for static tension.
 
+## Writings canonical hinge (I.3 → I.4) {#writings-canonical-hinge-i3-to-i4}
+
+The [`writings/linear-algebra`](../../writings/linear-algebra/chapters/SUMMARY.md) third and fourth numbered chapters are one ME 300A novel — not modal algebra beside a standalone limits-of-sequences course. When row 59 closed [I.2 → I.3 landing](#writings-canonical-landing-i2-to-i3) but **`03-eigenvalues.md` and `04-toward-infinity.md` each build as separate mdBooks**, read [row 60](../appendix/sources.md#row59-i3-i4-mesh-limit-reunion-index-row-60) and walk this hinge before opening I.4:
+
+| Upstream (I.3) | Downstream (I.4) | Same wire |
+|----------------|------------------|-----------|
+| [Eigenvalue mesh convergence](#lab-act-tap-the-wire-read-spectrum) — \(f_j(N)\) stabilizes as \(h\) shrinks | [Thermocouple + bar refinement Lab acts](../part01-linear-algebra/04-toward-infinity.md#lab-act-thermocouples-converge-to-a-temperature-field) — profiles stabilize as \(h\) shrinks | Act I mounting continues |
+| [Concept map checkpoint (eigenvalues)](#concept-map-checkpoint-eigenvalues) | [Concept map checkpoint (Part I)](../part01-linear-algebra/04-toward-infinity.md#concept-map-checkpoint-part-i) | Four questions unchanged |
+| [Bridge](#bridge) + [handshake](#scale-boundary-handshake-i2-i3-i4) — spectrum at fixed \(N\) | [Writings canonical landing](../part01-linear-algebra/04-toward-infinity.md#writings-canonical-landing-i3-to-i4) | \(N\to\infty\); fields \(u(x)\), \(T(x)\) |
+
+Turn to I.4 only after the [Bridge](#bridge) closing sentence — *the wire's modes outgrow any fixed mesh count* — not after skimming Lanczos alone.
+
 ## Bridge
 
 We have stayed in finite dimensions: \(\mathbf{A}\mathbf{v} = \lambda \mathbf{v}\), finitely many modes, matrices we can factor. The copper wire's ringing pitches — normal modes of the spring network — live entirely in that world for fixed \(N\). Yet mechanics specifies fields at every point: temperature along the wire, displacement in every direction, pressure in every fluid cell. Refining the mesh adds eigenvalues without bound; their limit is a **spectrum** of a differential operator, not a longer list in \(\mathbb{R}^N\).
@@ -279,6 +291,17 @@ We have stayed in finite dimensions: \(\mathbf{A}\mathbf{v} = \lambda \mathbf{v}
 | \(\mathbf{K}\mathbf{v}=\omega^2\mathbf{M}\mathbf{v}\), finitely many \(\omega_j\) | Laplacian eigenvalues accumulate; mesh \(\omega_{h,j}\to\omega_j\) as \(h\to 0\) |
 | Lanczos on sparse \(\mathbf{K}\) for lowest modes | Spectral theory for elliptic operators (Part II.5 → Part IV.5) |
 | Resonance diagnosis on the wire fixture | Same decoupling picture at atomistic scales (Part VIII) |
+
+**Scale-boundary handshake (I.2 → I.3 → I.4).** {#scale-boundary-handshake-i2-i3-i4}
+
+| Assembly export ([I.2](../part01-linear-algebra/02-linear-maps.md)) | Modal output (this chapter) | Mesh-limit consumer ([I.4](04-toward-infinity.md)) | Failure mode |
+|---------------------------------------------------------------------|-----------------------------|-----------------------------------------------------|--------------|
+| Global \(\mathbf{K}\) from scatter/gather | \(\mathbf{K}\mathbf{v}=\omega^2\mathbf{M}\mathbf{v}\); finitely many \(\omega_j\) | \(\omega_{h,j}\to\omega_j\); operator spectrum as \(N\to\infty\) | Coarse mesh misses higher modes used in stability |
+| Mass matrix \(\mathbf{M}\) (lumped vs consistent) | Orthogonality in mass inner product | \(\mathbf{M}\) approximates \(L^2\) inner product | Wrong CFL from inconsistent \(\mathbf{M}\) |
+| Tap-the-wire \(f_1(N)\) table | Static vs dynamic convergence same refinement story | \(\mathbf{u}_N\to u(x)\), \(\mathbf{T}_N\to T(x)\) in energy | Watching only \(f_1\) while static energy still 5% high |
+| Decoupled modal coordinates | Superposition \(\sum_j c_j \mathbf{v}_j\) | Fourier modes as continuum eigenfunctions | Treating \(N\to\infty\) as "longer vector" not a function |
+
+The eigenvalue mesh table in the [Lab act](#lab-act-tap-the-wire-read-spectrum) and the displacement energy table in [I.4](04-toward-infinity.md) are the **same refinement experiment** with different scalars to watch — frequencies for dynamics, strain energy for static Act III. When row 59 verified `eigh` but I.4 opens on abstract function spaces before the thermocouple profile stabilizes, read [row 60](../appendix/sources.md#row59-i3-i4-mesh-limit-reunion-index-row-60).
 
 The [prologue](../prologue/00-many-scales.md) introduced the specimen as one ladder with many rungs; eigenmodes are the **first time decoupling appears** in the book — a preview of orthogonality in Hilbert space and of dominant modes in molecular dynamics. [I.2](02-linear-maps.md) showed change of coordinates; eigenvectors are the coordinates in which the stiffness map acts by pure scaling.
 
