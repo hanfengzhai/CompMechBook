@@ -6,6 +6,10 @@ This part builds the language of those spaces: norms that measure energy and mea
 
 The layout follows the **Functional Analysis Notes** in [`writings/functional-analysis/`](../../writings/functional-analysis/): numbered chapters, worked examples tied to mechanics, and a **Bridge** at the end of each chapter pointing to the next idea. Read the five chapters in order; they hand off directly to Part III, where weak forms of boundary value problems are written in the spaces defined here.
 
+## Writings canonical landing (I.4 → II.0) {#writings-canonical-landing-i4-to-ii0}
+
+You should arrive here from [I.4](../part01-linear-algebra/04-toward-infinity.md) after [row 60](../preface.md#skill-navigation-row-60) closed I.3 → I.4 on a new specimen, or from the unified book on a first read after [I.4 Bridge](../part01-linear-algebra/04-toward-infinity.md#bridge-to-part-ii) and [I.4 → II.0 Writings hinge](../part01-linear-algebra/04-toward-infinity.md#writings-canonical-hinge-i4-to-ii0) — not at Banach-space axioms cold. The [`writings/functional-analysis`](../../writings/functional-analysis/chapters/SUMMARY.md) subtree repeats the ME 412 template Part I previewed at [I.0](../part01-linear-algebra/00-opening.md#me-300a--me-412-master-roadmap-preview): **Scene** returns to the refining bar, the body develops norms and completeness, **Lab act** ties hat functions to energy, **Bridge** hands off to Part III. When row 60 verified thermocouple profiles but [I.4 Bridge](../part01-linear-algebra/04-toward-infinity.md#bridge-to-part-ii) and this opening still feel like separate courses, read [row 61](../appendix/sources.md#i4-ii0-writings-canonical-reunion-index-row-61) and recite [II.0 plot spine](#plot-spine-one-line) aloud before [Closing the arc from Part I](#closing-the-arc-from-part-i).
+
 ## Plot spine (one line) {#plot-spine-one-line}
 
 > **Act I — Grammar, rung 2:** Nodal values become fields in \(H^1\) and \(L^2\); Part II builds the room where weak forms and Galerkin convergence are honest — [Schematic 14](#representative-schematics-me-412)'s middle rungs live here.

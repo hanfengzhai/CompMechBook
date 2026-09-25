@@ -307,6 +307,17 @@ The wire began as a chain of springs — \(\mathbf{K}\mathbf{u}=\mathbf{f}\) at 
 
 ## Bridge to Part II {#bridge-to-part-ii}
 
+### Writings canonical hinge (I.4 → II.0) {#writings-canonical-hinge-i4-to-ii0}
+
+The unified book ([`SUMMARY.md`](../SUMMARY.md)) and the vendored [`writings/linear-algebra`](../../writings/linear-algebra/chapters/SUMMARY.md) subtree both end on this Bridge; [`writings/functional-analysis`](../../writings/functional-analysis/chapters/SUMMARY.md) opens at [II.0](../part02-functional-analysis/00-opening.md#writings-canonical-landing-i4-to-ii0) with the same Functional Analysis Notes layout (`00-opening.md`, numbered chapters, **Bridge** sections) but upstream [ME 412 Course Summary](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) instead of [ME 300A Linear Algebra](https://hanfengzhai.github.io/file/ME300A_LinAlg.pdf). When row 60 closed mesh limits inside Part I but **Part II still opens like a new analysis course after linear algebra homework**, read [row 61](../appendix/sources.md#i4-ii0-writings-canonical-reunion-index-row-61) — the handoff is the same copper wire acquiring a function-space norm, not a syllabus reset.
+
+| What Part I finished | What Part II must name |
+|----------------------|------------------------|
+| \(\mathbf{u}_N \to u(x)\), energy error vs \(h\) | \(H^1\), \(L^2\); completeness of the limit |
+| \(\mathbf{K}_N\) as assembled stiffness | Operator and bilinear form \(a(u,v)\) |
+| Thermocouple / bar-refinement Lab acts | Norms that make mesh refinement honest |
+| [Concept map checkpoint](#concept-map-checkpoint-part-i) four questions | ME 412 concept map replay in infinite dimensions |
+
 Linear algebra taught us to solve \(\mathbf{K}\mathbf{u}=\mathbf{f}\). Mechanics asks us to solve PDEs. The bridge is:
 
 1. Write the PDE in **weak form** (multiply by a test function, integrate by parts).
