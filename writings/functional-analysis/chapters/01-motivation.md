@@ -220,6 +220,18 @@ This chapter names the limit object behind every mesh. Before norms measure dist
 
 The Lab act's bar refinement experiment is the numerical proof sketch: piecewise linears approach a straight line because the energy space is \(H^1\), not because "more nodes look smoother."
 
+## Writings canonical hinge (II.1 → II.2) {#writings-canonical-hinge-ii1-to-ii2}
+
+The [`writings/functional-analysis`](../../writings/functional-analysis/chapters/SUMMARY.md) first and second numbered chapters are one ME 412 novel — not limit-object motivation beside a standalone metric-space course. When [row 62](../appendix/sources.md#row61-ii0-ii1-motivation-reunion-index-row-62) closed [II.0 → II.1 landing](#writings-canonical-landing-ii0-to-ii1) but **`01-motivation.md` and `02-normed-spaces.md` each build as separate mdBooks**, read [row 63](../appendix/sources.md#row62-ii1-ii2-normed-spaces-reunion-index-row-63) and walk this hinge before opening II.2:
+
+| Upstream (II.1) | Downstream (II.2) | Same wire |
+|-----------------|-------------------|-----------|
+| [Bar-refinement Lab act](#lab-act-refine-the-bar-mesh-and-watch-a-field-appear-act-iii-prelude) — visual \(u_h \to u(x)\) | [Hat-function Lab act](02-normed-spaces.md#lab-act-compare-energy-norms-on-a-hat-function-act-iii-prelude) — \(\|u_h'\|_{L^2}\) spikes at kinks | Act III prelude continues on the bar |
+| [Concept map checkpoint (motivation)](#concept-map-checkpoint-motivation) | [Concept map checkpoint (normed spaces)](02-normed-spaces.md#concept-map-checkpoint-normed-spaces) | Four questions unchanged |
+| [Bridge](#bridge) + [handshake](#scale-boundary-handshake-i4-ii1-ii2) — limit field before rulers | [Writings canonical landing](02-normed-spaces.md#writings-canonical-landing-ii1-to-ii2) | Energy norm \(\|u\|_{H^1}\) before Hilbert geometry |
+
+Turn to II.2 only after the [Bridge](#bridge) closing sentence — *norms and completeness are what make that visual judgment honest* — not after skimming the Lax–Milgram preview alone.
+
 ## Bridge
 
 With motivation in place, we begin where all analysis begins: measuring distance and size. Metric spaces formalize convergence before norms specialize the notion of length. Normed spaces carry the energy and mean-square measures that mechanics demands; completeness — the property that Cauchy sequences converge inside the space — distinguishes the function spaces where finite element limits live from spaces where discrete solutions could converge to something outside the admissible class.
@@ -231,7 +243,7 @@ With motivation in place, we begin where all analysis begins: measuring distance
 | Four questions: existence, uniqueness, stability, convergence | Banach completeness: Cauchy sequences stay inside the admissible class |
 | \(\mathbf{K}\) as shadow of bilinear form \(a(\cdot,\cdot)\) | Equivalent norms and why FEM error measures do not depend on one choice |
 
-**Scale-boundary handshake (I.4 → II.1 → II.2).**
+**Scale-boundary handshake (I.4 → II.1 → II.2).** {#scale-boundary-handshake-i4-ii1-ii2}
 
 | Part I export ([I.4](../part01-linear-algebra/04-toward-infinity.md)) | Motivation output (this chapter) | Normed-space consumer ([II.2](02-normed-spaces.md)) | Failure mode |
 |-----------------------------------------------------------------------|----------------------------------|------------------------------------------------------|--------------|
