@@ -288,6 +288,10 @@ When the load cell ramp rate changes but the FEM deck uses rate-independent \(J_
 
 ## Bridge to Part VII {#bridge-to-part-vii}
 
+### Writings canonical hinge (VI.4 → VII.0) {#writings-canonical-hinge-vi4-to-vii0}
+
+The unified book ([`SUMMARY.md`](../SUMMARY.md)) and the vendored [`writings/continuum`](../../writings/continuum/chapters/SUMMARY.md) subtree both end on this Bridge; [`writings/defects`](../../writings/defects/chapters/SUMMARY.md) opens at [VII.0](../part07-defects/00-opening.md#writings-canonical-landing-vi4-to-vii0) with the same Functional Analysis Notes layout (`00-opening.md`, numbered chapters, **Bridge** sections) but upstream [Defects Notes](https://hanfengzhai.github.io/file/defects_notes.pdf) instead of elasticity PDFs. When the layout feels continuous but the **topic** feels discontinuous, read [row 48](../appendix/sources.md#vi4-vii0-writings-canonical-reunion-index-row-48) — the handoff is a scale change on one specimen, not a new syllabus.
+
 Linear and nonlinear elasticity — geometric and material — exhaust what a **continuum field** can say before its assumptions fail at defects. The copper wire's cold-worked strength is not in \(\mathbb{C}\); it is in the dislocation forest frozen by manufacturing. Part VII names those defects, simulates their motion, and exports the hardening laws that make nonlinear FEM honest.
 
 Return to the prologue's **Act IV — Hardening**: the load cell curve bent upward after yield, and Part VI's J₂ preview fitted that bend with phenomenological \(H\) and \(\sigma_{y0}\). Those parameters worked in a return-mapping loop — but they were **placeholders**. When the mesh is refined and the hardening law is still wrong, the fault is not discretization; it is **constitutive physics** that lives at the mesoscale. That is the signal to descend.

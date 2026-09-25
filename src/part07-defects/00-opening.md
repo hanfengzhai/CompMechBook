@@ -12,6 +12,10 @@ Three chapters cover defect taxonomy, dislocation dynamics, and the handoff to c
 
 When yield surfaces feel like curve-fitting, read the sentence above aloud — it is the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc) role for Part VII in one breath. See the [part-opening plot spine index](../appendix/sources.md#part-opening-plot-spine-index-row-18) for all nine rungs; the [descent in one paragraph](#the-descent-in-one-paragraph) below unpacks the same beat.
 
+## Writings canonical landing (VI.4 → VII.0) {#writings-canonical-landing-vi4-to-vii0}
+
+You may have arrived from [`writings/continuum`](../../writings/continuum/chapters/SUMMARY.md) (Part VI) or from the unified book ([`SUMMARY.md`](../SUMMARY.md)) — either path should land here **after** [VI.4's intermission](../part06-continuum/04-nonlinear-plasticity-preview.md#intermission-ascent-ends-descent-begins) and [Bridge](../part06-continuum/04-nonlinear-plasticity-preview.md#bridge-to-part-vii), not at VII.1 taxonomy cold. The [`writings/defects`](../../writings/defects/chapters/SUMMARY.md) subtree repeats the same reading contract as Part II's [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) template; only the upstream note PDF and the state variable change. When a new `book.toml` feels like a course break, read [row 48](../appendix/sources.md#vi4-vii0-writings-canonical-reunion-index-row-48) and recite both plot spines: [VI.4](../part06-continuum/04-nonlinear-plasticity-preview.md#plot-spine-one-line) ("ascent ends at the knee") then [VII.0](#plot-spine-one-line) ("hardening becomes line motion").
+
 ## Chapter guide
 
 | Chapter | Wire story beat | Core object | Handoff |
