@@ -11,7 +11,11 @@ When we mesh the copper wire for a tensile test, each bar element has a **local*
 
 When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
 
-## Scene: two languages for the same grip load
+## Writings canonical landing (I.1 → I.2) {#writings-canonical-landing-i1-to-i2}
+
+You should arrive here from [I.1](../part01-linear-algebra/01-vectors-matrices.md) after [row 57](../preface.md#skill-navigation-row-57) closed I.0 → I.1 on a new specimen, or from the unified book on a first read after [I.1 Bridge](../part01-linear-algebra/01-vectors-matrices.md#bridge) and [I.1 → I.2 Writings hinge](../part01-linear-algebra/01-vectors-matrices.md#writings-canonical-hinge-i1-to-i2) — not at change-of-basis axioms cold. The [`writings/linear-algebra`](../../writings/linear-algebra/chapters/SUMMARY.md) second numbered chapter repeats the ME 300A template: **Scene** names three coordinate systems on the grips, the body develops scatter/gather assembly, **Lab act** rotates a bar and checks strain-energy invariance, **Bridge** hands off to eigenmodes in I.3. When row 57 verified the three-node \(\mathbf{K}\) but I.1 Bridge and this chapter still feel like separate homework, read [row 58](../appendix/sources.md#row57-i1-i2-assembly-reunion-index-row-58) and recite [I.1 plot spine](../part01-linear-algebra/01-vectors-matrices.md#plot-spine-one-line) aloud before [Scene: two languages for the same grip load](#scene-two-languages-for-the-same-grip-load).
+
+## Scene: two languages for the same grip load {#scene-two-languages-for-the-same-grip-load}
 
 The tensile frame displays grip displacement in millimeters; the finite element deck stores it as degree of freedom 1. The bar element on the wire axis has its own local axis; the global stiffness matrix sees a completely different numbering. Same physics, three coordinate systems. Assembly is the map that declares them equivalent — and if that map is wrong, the wire appears to stretch when only one end moves.
 
@@ -69,7 +73,7 @@ For a 2D truss member at angle \(\theta\) to the horizontal, the local axial sti
 
 The copper wire pulled along its axis uses only axial bars (\(\theta = 0\)); a bent specimen or a cable net requires this rotation at every element — same physics, different matrix in the global basis.
 
-## Worked example: two-element assembly
+## Worked example: two-element assembly {#lab-act-two-element-scatter-gather}
 
 Two bar elements connect nodes 1–2 and 2–3 with the same \(k = EA/L\). The local element stiffness is
 
@@ -101,7 +105,7 @@ The middle row reflects that node 2 feels stiffness from both elements — super
 
 The transpose pattern is not accidental: gathering local DOFs uses \(\mathbf{L}_e^T\); scattering element forces uses \(\mathbf{L}_e\). Virtual work \(\mathbf{u}^T \mathbf{f}\) is invariant under this change of coordinates — the discrete shadow of the adjoint relationship developed in Part II. This \(3 \times 3\) pattern is the one-dimensional prototype of the sparse assembly loops in Part IV.
 
-## Lab act: rotation when the wire is not aligned with the global axis
+## Lab act: rotation when the wire is not aligned with the global axis {#lab-act-rotation-when-the-wire-is-not-aligned-with-the-global-axis}
 
 Real fixtures rarely align every element with the global \(x\)-axis. Suppose a short copper segment is modeled as a 2D truss bar of length \(L = 0.5\,\text{m}\), cross-section \(A = 1\,\text{mm}^2\), \(E = 120\,\text{GPa}\), oriented at \(\theta = 30^\circ\) to the horizontal. The **local** axial stiffness (DOFs along the bar) is
 
@@ -310,7 +314,7 @@ Not every linear map is best viewed in the standard basis. The modes of vibratio
 | Rotations, local/global frames, SVD principal directions | Natural frequencies on the spring-chain wire; Lanczos for lowest modes |
 | SPD and symmetry as coercivity shadows | Spectral theorem preview before Part II operators |
 
-**Scale-boundary handshake (I.1 → I.2 → I.3).**
+**Scale-boundary handshake (I.1 → I.2 → I.3).** {#scale-boundary-handshake-i1-i2-i3}
 
 | Vectors/matrices export ([I.1](01-vectors-matrices.md)) | Linear maps output (this chapter) | Eigenvalue consumer ([I.3](03-eigenvalues.md)) | Failure mode |
 |---------------------------------------------------------|-----------------------------------|-----------------------------------------------|--------------|

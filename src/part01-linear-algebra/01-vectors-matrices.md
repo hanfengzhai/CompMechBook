@@ -352,6 +352,18 @@ This chapter is where the copper wire first becomes a computer object. Before li
 
 The prologue's Act I mounting is already a solve: three nodes, one prescribed displacement, one reaction force on the load cell. Every later method — FEM, FVM, MD — returns to state plus update rule; Part I names that pattern in \(\mathbb{R}^N\).
 
+## Writings canonical hinge (I.1 → I.2) {#writings-canonical-hinge-i1-to-i2}
+
+The [`writings/linear-algebra`](../../writings/linear-algebra/chapters/SUMMARY.md) first and second numbered chapters are one ME 300A novel — not a matrix table beside an abstract linear-map course. When row 57 closed [I.0 → I.1 landing](#writings-canonical-landing-i0-to-i1) but **`01-vectors-matrices.md` and `02-linear-maps.md` each build as separate mdBooks**, read [row 58](../appendix/sources.md#row57-i1-i2-assembly-reunion-index-row-58) and walk this hinge before opening I.2:
+
+| Upstream (I.1) | Downstream (I.2) | Same wire |
+|----------------|------------------|-----------|
+| [Three-node Lab act](#lab-act-three-nodes-one-load-cell-reading-act-i--mounting) — explicit \(\mathbf{K}\) | [Two-element scatter/gather](../part01-linear-algebra/02-linear-maps.md#lab-act-two-element-scatter-gather) — same pattern as \(\sum_e \mathbf{L}_e^T \mathbf{k}_e \mathbf{L}_e\) | Act I mounting continues |
+| [Concept map checkpoint](#concept-map-checkpoint-vectors-and-matrices) — object / structure / theorem / breaks | [Concept map checkpoint (linear maps)](../part01-linear-algebra/02-linear-maps.md#concept-map-checkpoint-linear-maps) at chapter end | Four questions unchanged |
+| [Bridge](#bridge) table — assembly is the next chapter | [Writings canonical landing](../part01-linear-algebra/02-linear-maps.md#writings-canonical-landing-i1-to-i2) | State still \(\mathbf{u}\), \(\mathbf{K}\), \(\mathbf{f}\); map is geometry |
+
+Turn to I.2 only after the [Bridge](#bridge) closing sentence — *linear maps are where that table acquires geometry* — not after skimming the CG section alone.
+
 ## Bridge
 
 With vectors and matrices in hand, we next examine **linear maps** abstractly: change of basis, coordinate transformations, and the assembly operators that translate element-level physics into global systems. The bar element stiffness in the worked example above was written in local node coordinates; connecting two elements requires a change of coordinates — the subject of the next chapter.
