@@ -12,6 +12,18 @@ Three chapters cover Born–Oppenheimer and the Hohenberg–Kohn framework, Kohn
 
 When EAM potentials match bulk moduli but no DFT deck is cited, read the sentence above aloud — it is the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc) role for Part IX in one breath. See the [part-opening plot spine index](../appendix/sources.md#part-opening-plot-spine-index-row-18) for all nine rungs; the [coupling ladder](#the-coupling-ladder-me-412-reunion) below reunites ascent and descent in workflow time.
 
+## Writings canonical landing (VIII.3 → IX.0) {#writings-canonical-landing-viii3-to-ix0}
+
+You crossed from **Atomistic Modeling Notes** to **DFT Notes** — two subtrees under [`writings/`](../writings/SUMMARY.md), one continuous story. If Part IX.0 feels like a new syllabus after the [pedigree checklist](../part08-md/03-ab-initio-and-coarse-graining.md#pedigree-checklist-before-the-epilogue), read [VIII.3 Bridge](../part08-md/03-ab-initio-and-coarse-graining.md#bridge-to-part-ix) and [Writings canonical hinge](../part08-md/03-ab-initio-and-coarse-graining.md#writings-canonical-hinge-viii3-to-ix0) aloud first: the state variable changes from \(\{\mathbf{r}_i\}\) to \(\rho(\mathbf{r})\), but the copper wire, `cu.foundation/` folder, and \(T_w\) column from [`fixtures/cht_export.yaml`](../../fixtures/cht_export.yaml) do not.
+
+| Signal you are at the right landing | What to open next |
+|---------------------------------------|-------------------|
+| Pedigree checklist rows without `cu.relax.out` | [Opening hinge from VIII.3](#opening-hinge-viii3-to-ix) — map rows to QE logs |
+| Row 49 closed atomistic descent but DFT feels like standalone chemistry | [Electronic audit hinge](#electronic-audit-hinge-descent-pedigree-and-tw-phonon) — phonon audit at \(T_w\) |
+| Canonical edits must stay in `writings/dft/` | [`scripts/sync-writings.sh`](../../scripts/sync-writings.sh) then `mdbook build` |
+
+The [reunion index row 50](../appendix/sources.md#viii3-ix0-writings-canonical-reunion-index-row-50) reunites this landing with [VIII.3's Bridge](../part08-md/03-ab-initio-and-coarse-graining.md#bridge-to-part-ix) when EAM fits make sense but `pw.x` logs feel bolted on. Row [36](../appendix/sources.md#coarse-graining-electronic-audit-reunion-index-row-36) names the **narrative** handoff tables ↔ SCF audit; row 50 names the **Writings subtree boundary** when `writings/md` and `writings/dft` each build as standalone mdBooks.
+
 ## Chapter guide
 
 | Chapter | Wire story beat | Core object | Handoff |
@@ -158,7 +170,7 @@ If you have read linearly since the prologue, [VIII.3](../part08-md/03-ab-initio
 | Phonon peaks from MD VACF | DFPT cross-check; [thermal phonon audit at \(T_w\)](#thermal-phonon-audit-at-tw) |
 | Mobility \(M(\tau, T_w)\) on trust | NEB barrier validation; Handshake 4a phonon lifetime at \(T_w\) |
 
-[VIII.3's Bridge](../part08-md/03-ab-initio-and-coarse-graining.md#bridge-to-part-ix) named the signal to turn the page: **EAM matches bulk moduli but no one can cite the DFT input deck**. The [electronic audit hinge](#electronic-audit-hinge-descent-pedigree-and-tw-phonon) below and the [coarse-graining → electronic audit reunion index](../appendix/sources.md#coarse-graining-electronic-audit-reunion-index-row-36) reunite this opening with [row 35](../preface.md#skill-navigation-row-35) when yaml handoff tables exist but SCF logs do not — same copper cell, finer state variable \(\rho(\mathbf{r})\), same \(T_w\) column from [`fixtures/cht_export.yaml`](../../fixtures/cht_export.yaml).
+[VIII.3's Bridge](../part08-md/03-ab-initio-and-coarse-graining.md#bridge-to-part-ix) named the signal to turn the page: **EAM matches bulk moduli but no one can cite the DFT input deck**. The [electronic audit hinge](#electronic-audit-hinge-descent-pedigree-and-tw-phonon) below and the [coarse-graining → electronic audit reunion index](../appendix/sources.md#coarse-graining-electronic-audit-reunion-index-row-36) reunite this opening with [row 35](../preface.md#skill-navigation-row-35) when yaml handoff tables exist but SCF logs do not — same copper cell, finer state variable \(\rho(\mathbf{r})\), same \(T_w\) column from [`fixtures/cht_export.yaml`](../../fixtures/cht_export.yaml). When row 36 closed narrative pedigree but Part IX.0 still feels like quantum-chemistry homework after VIII.3, read [Writings canonical landing](#writings-canonical-landing-viii3-to-ix0) and [row 50](../appendix/sources.md#viii3-ix0-writings-canonical-reunion-index-row-50) before IX.1.
 
 ## Closing the arc from Part VIII
 

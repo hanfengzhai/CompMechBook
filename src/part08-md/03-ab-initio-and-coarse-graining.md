@@ -582,3 +582,13 @@ Linear readers should carry this checklist into Part IX — each row is a **cont
 If a row in your project folder has only "EAM fit to experiment" with no QE `pw.x` log, Part IX is the audit chapter that closes the loop. Part II taught that honest FEM requires a convergence target in \(H^1\); Part IX teaches that honest multiscale mechanics requires a **convergence target in SCF energy** — same instinct, finer rung.
 
 Turn the page when the EAM potential matches bulk moduli but no one can cite the DFT input deck that produced it — that is the signal the foundation run is missing, and Part IX is where the audit starts.
+
+### Writings canonical hinge (VIII.3 → IX.0) {#writings-canonical-hinge-viii3-to-ix0}
+
+The unified book ([`SUMMARY.md`](../../SUMMARY.md)) and the vendored [`writings/md`](../../writings/md/chapters/SUMMARY.md) subtree both end on this Bridge; [`writings/dft`](../../writings/dft/chapters/SUMMARY.md) opens at [IX.0](../part09-dft/00-opening.md#writings-canonical-landing-viii3-to-ix0) with the same Functional Analysis Notes layout (`00-opening.md`, numbered chapters, **Bridge** sections) but upstream [DFT coursework](https://github.com/hanfengzhai/MSE5720-HW) (MSE 5720) instead of [Atomistic Modeling Notes](https://hanfengzhai.github.io/file/AtomModel_note.pdf). When the layout feels continuous but **QE input decks feel disconnected from the EAM-fit pedigree checklist**, read [row 50](../appendix/sources.md#viii3-ix0-writings-canonical-reunion-index-row-50) — the handoff is atomic export discipline → electronic audit on one foundation folder, not a new syllabus.
+
+| [Bridge to Part IX](#bridge-to-part-ix) pedigree checklist | [IX.0 Writings canonical landing](../part09-dft/00-opening.md#writings-canonical-landing-viii3-to-ix0) |
+|--------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| Five export rows name MD/DDD/FEM consumers | Each row maps to `cu.relax.out` or phonon audit at \(T_w\) |
+| EAM on trust until SCF converges | State variable becomes \(\rho(\mathbf{r})\), not \(\{\mathbf{r}_i\}\) |
+| [`writings/md`](../../writings/md/chapters/SUMMARY.md) closes here | [`writings/dft`](../../writings/dft/chapters/SUMMARY.md) opens at IX.0 — same Scene → Bridge contract |
