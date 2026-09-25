@@ -304,6 +304,18 @@ Assembly is geometry, not bookkeeping. Before eigenvalues diagonalize the map, s
 
 Part IV's pipeline — reference element → physical element → B-matrix → assembly — is the same map story at million-node scale. When the grip applies a global displacement, local element axes must agree on what "stretch" means.
 
+## Writings canonical hinge (I.2 → I.3) {#writings-canonical-hinge-i2-to-i3}
+
+The [`writings/linear-algebra`](../../writings/linear-algebra/chapters/SUMMARY.md) second and third numbered chapters are one ME 300A novel — not assembly geometry beside a standalone eigenvalue course. When row 58 closed [I.1 → I.2 landing](#writings-canonical-landing-i1-to-i2) but **`02-linear-maps.md` and `03-eigenvalues.md` each build as separate mdBooks**, read [row 59](../appendix/sources.md#row58-i2-i3-eigenvalue-reunion-index-row-59) and walk this hinge before opening I.3:
+
+| Upstream (I.2) | Downstream (I.3) | Same wire |
+|----------------|------------------|-----------|
+| [Two-element scatter/gather](#lab-act-two-element-scatter-gather) — global \(\mathbf{K}\) from \(\mathbf{L}_e\) | [Tap the wire Lab act](../part01-linear-algebra/03-eigenvalues.md#lab-act-tap-the-wire-read-spectrum) — same \(\mathbf{K}\), add \(\mathbf{M}\) | Act I mounting continues |
+| [Concept map checkpoint (linear maps)](#concept-map-checkpoint-linear-maps) | [Concept map checkpoint (eigenvalues)](../part01-linear-algebra/03-eigenvalues.md#concept-map-checkpoint-eigenvalues) | Four questions unchanged |
+| [Bridge](#bridge) + [handshake](#scale-boundary-handshake-i1-i2-i3) — diagonalizing basis | [Writings canonical landing](../part01-linear-algebra/03-eigenvalues.md#writings-canonical-landing-i2-to-i3) | \(\mathbf{K}\mathbf{v}=\omega^2\mathbf{M}\mathbf{v}\) on assembled wire |
+
+Turn to I.3 only after the [Bridge](#bridge) closing sentence — *eigenvalues are the coordinate system in which the map tells its simplest story* — not after skimming SVD alone.
+
 ## Bridge
 
 Not every linear map is best viewed in the standard basis. The modes of vibration of a fixed–fixed copper wire, the principal stretches of a deformation gradient, and the normal modes of a coupled oscillator all arise from choosing a basis that **diagonalizes** the map. That is the story of eigenvalues — and the discrete preview of the spectral theorem we will meet in Part II.

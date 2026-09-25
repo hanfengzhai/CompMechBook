@@ -11,7 +11,11 @@ Clamp one end of the copper wire and pull the other rhythmically: the wire does 
 
 When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
 
-## Scene: the wire hums at one pitch
+## Writings canonical landing (I.2 → I.3) {#writings-canonical-landing-i2-to-i3}
+
+You should arrive here from [I.2](../part01-linear-algebra/02-linear-maps.md) after [row 58](../preface.md#skill-navigation-row-58) closed I.1 → I.2 on a new specimen, or from the unified book on a first read after [I.2 Bridge](../part01-linear-algebra/02-linear-maps.md#bridge) and [I.2 → I.3 Writings hinge](../part01-linear-algebra/02-linear-maps.md#writings-canonical-hinge-i2-to-i3) — not at \(\det(\mathbf{A}-\lambda\mathbf{I})=0\) cold. The [`writings/linear-algebra`](../../writings/linear-algebra/chapters/SUMMARY.md) third numbered chapter repeats the ME 300A template: **Scene** taps the mounted wire, the body develops modal decoupling, **Lab act** runs `eigh(K, M)` on the same bar chain from I.2, **Bridge** hands off to \(N\to\infty\) in I.4. When row 58 verified scatter/gather but I.2 Bridge and this chapter still feel like separate homework, read [row 59](../appendix/sources.md#row58-i2-i3-eigenvalue-reunion-index-row-59) and recite [I.2 plot spine](../part01-linear-algebra/02-linear-maps.md#plot-spine-one-line) aloud before [Scene: the wire hums at one pitch](#scene-the-wire-hums-at-one-pitch).
+
+## Scene: the wire hums at one pitch {#scene-the-wire-hums-at-one-pitch}
 
 Tap the clamped copper wire and listen: it rings at a handful of distinct frequencies, not a continuous blur. Each pitch is an eigenmode — a pattern of motion along the length that repeats in phase at its own rate. Modal analysis is how we predict which frequencies will fatigue the wire at a fastener and which a damping pad can suppress. The spring-network matrices from Part I carry those pitches in their spectra long before any continuum model is written down.
 
@@ -204,7 +208,7 @@ For uniform \(\Delta T\) on a symmetric fixed–fixed bar, only the **symmetric*
 
 **What breaks without the handshake.** Using handbook \(\alpha\) in the FEM deck while DFT phonons in `cu.phonon/` predict a different value shifts \(\mathbf{f}_{\text{th}}\) by a few percent — small for elasticity, large for fatigue life when thermal cycles accumulate. Using the wrong boundary condition (one free end) removes the modal projection onto symmetric modes and underestimates grip reaction by a factor of two. The handshake is: **compute modes once, project thermal load once, compare to Part VI's closed-form \(\sigma = E\alpha\Delta T\)** before trusting coupled thermomechanical runs in Act II.
 
-## Lab act: tap the wire and read the spectrum
+## Lab act: tap the wire and read the spectrum {#lab-act-tap-the-wire-read-spectrum}
 
 Clamp the copper wire at one grip (Act I mounting) and assign a lumped mass \(m\) at each of \(N = 5\) equally spaced nodes along a \(L = 1\,\text{m}\) segment. Use the bar stiffness from [I.2](02-linear-maps.md): element stiffness \(k^e = EA/h\) with \(E = 120\,\text{GPa}\), \(A = 1\,\text{mm}^2\), \(h = L/(N-1)\). The global mass matrix is diagonal, \(M_{ii} = m\).
 

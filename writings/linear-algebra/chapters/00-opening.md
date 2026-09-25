@@ -134,7 +134,7 @@ Reading Part I is therefore not a detour before "real" mechanics — it is the *
 
 In [laboratory time](../prologue/00-many-scales.md#the-experiment-as-plot), the operator has not yet switched on current or ramped grip displacement. The wire sits in wedge jaws; the load cell reads zero; the first honest model is a chain of bar elements with boundary conditions at the grips. **Act I** is where every later scale hides its linear algebra: \(\mathbf{K}\mathbf{u}=\mathbf{f}\) before fields, weak forms, or electrons enter the story. When a chapter in Part I feels abstract, return to the mounting scene — a cylinder gripped, a sparse matrix waiting to be assembled.
 
-### What you should be able to do after Part I
+### What you should be able to do after Part I {#what-you-should-be-able-to-do-after-part-i}
 
 Each chapter adds one move to a minimal workflow you can run on paper or in NumPy before opening Part II:
 
