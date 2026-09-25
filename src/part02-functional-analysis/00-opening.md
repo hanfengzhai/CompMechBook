@@ -150,8 +150,23 @@ Each chapter adds one move to a workflow that turns "the mesh looks smooth" into
 
 None of these require running a commercial FEM code — but each one is the infinite-dimensional justification for what Part IV assembles. If you can state the weak form of \(-u''=f\) on \((0,1)\), name the space \(u \in H^1_0\), and explain why Galerkin is projection rather than guesswork, you have the core of ME 412 on the copper wire. Parts III–IV replace definitions with PDEs and loops; the **moves** stay the same.
 
+## Writings canonical hinge (II.0 → II.1) {#writings-canonical-hinge-ii0-to-ii1}
+
+The [`writings/functional-analysis`](../../writings/functional-analysis/chapters/SUMMARY.md) subtree is one ME 412 novel — not a part-opening syllabus file beside a first-chapter proof stack. When [row 61](../preface.md#skill-navigation-row-61) closed [I.4 → II.0 landing](#writings-canonical-landing-i4-to-ii0) but **`00-opening.md` and `01-motivation.md` each build as separate mdBooks**, read [row 62](../appendix/sources.md#row61-ii0-ii1-motivation-reunion-index-row-62) and walk this hinge before opening II.1:
+
+| Upstream (II.0) | Downstream (II.1) | Same wire |
+|-----------------|-------------------|-----------|
+| [Scene](#scene) — fields replace nodal vectors | [Scene: the mesh refines forever](../part02-functional-analysis/01-motivation.md#scene-the-mesh-refines-forever) — where refinement settles | Act I grammar continues on the bar |
+| [Concept map (ME 412)](#the-concept-map-me-412) — object / structure / theorem / breaks | [Concept map checkpoint](../part02-functional-analysis/01-motivation.md#concept-map-checkpoint-motivation) at chapter end | Four questions unchanged |
+| [Closing the arc from Part I](#closing-the-arc-from-part-i) — \(\mathbf{K}\) → \(a(u,v)\) | [Writings canonical landing](../part02-functional-analysis/01-motivation.md#writings-canonical-landing-ii0-to-ii1) | Limit object before Lax–Milgram preview |
+| [Bridge](#bridge) table — II.1 names weak forms | Modeling pipeline: physics → weak form → algebra | Four well-posedness questions named |
+
+Turn to II.1 only after the [Bridge](#bridge) opening sentence — *Part II is where that field acquires a norm* — not after skimming the Schematic 14 table alone.
+
 ## Bridge
 
 Part I ended with a promise: as the mesh refines, the copper wire's displacement and temperature fields live in infinite-dimensional spaces, not in \(\mathbb{R}^N\) for any fixed \(N\). [I.4](../part01-linear-algebra/04-toward-infinity.md#bridge-to-part-ii) named the three-step bridge — weak form, subspace \(V_h \subset H^1\), matrix system — and deferred steps 1–2 to this part. The first chapter below makes that promise precise: why weak forms appear, why classical smoothness fails at corners, and why the stiffness matrix is a Galerkin projection rather than an arbitrary sparse array.
 
 The [prologue](../prologue/00-many-scales.md) introduced the weak form as a **recurring character** that will outlive every mesh. Part I gave it a finite-dimensional prelude — \(\mathbf{K}\mathbf{u}=\mathbf{f}\) as nodal equilibrium — and Chapter 4 showed that prelude converges toward a field \(u(x)\) as \(h \to 0\). Part II is where that field acquires a norm, an inner product, and a completeness theorem worth trusting. When Act III in the lab session ramps grip displacement, the load cell curve is honest only because the limit object defined here makes mesh refinement meaningful.
+
+Turn the page through [Writings canonical hinge (II.0 → II.1)](#writings-canonical-hinge-ii0-to-ii1) when the chapter guide and motivation proofs feel like separate courses — [II.1](01-motivation.md) opens the modeling pipeline and the bar-refinement Lab act, not Banach-space axioms cold.
