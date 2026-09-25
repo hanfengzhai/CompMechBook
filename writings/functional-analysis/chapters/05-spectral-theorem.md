@@ -246,4 +246,18 @@ The [preface ascent continuity hinges](../preface.md#ascent-continuity-hinges) n
 
 The [prologue](../prologue/00-many-scales.md) named the weak form a **recurring character** — born here as integration by parts, destined to become Galerkin assembly in Part IV, virtual work in Part VI, and a variational statement on electron density in Part IX. Part II built the room that character speaks in: \(H^1\) for admissible fields, dual spaces for concentrated loads, compact embeddings so Galerkin projections have targets. Part III is the act where the character first has lines on stage: multiply by a test function, integrate by parts, and ask whether internal and external virtual work balance for every admissible virtual displacement. The copper wire at the grip corner — where Part III opens — is where that character stops pretending every field is \(C^2\).
 
+### Writings canonical hinge (II.5 → III.0) {#writings-canonical-hinge-ii5-to-iii0}
+
+The unified book ([`SUMMARY.md`](../SUMMARY.md)) and the vendored [`writings/functional-analysis`](../../writings/functional-analysis/chapters/SUMMARY.md) subtree both end on this Bridge; [`writings/pde`](../../writings/pde/chapters/SUMMARY.md) opens at [III.0](../part03-pdes/00-opening.md#writings-canonical-landing-ii5-to-iii0) with the same ME 412 → ME 300B habit — concept map, Scene, Lab act, **Bridge** — but upstream [Partial Differential Equations Notes](https://hanfengzhai.github.io/file/ME300B_PDE.pdf) (ME 300B) instead of [ME 412 Course Summary](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf). When [row 66](../appendix/sources.md#row65-ii4-ii5-spectral-reunion-index-row-66) closed spectral theory inside Part II but **Part III still opens like standalone PDE homework after analysis**, read [row 67](../appendix/sources.md#ii5-iii0-writings-canonical-reunion-index-row-67) — the handoff is the same copper wire acquiring **equations** on \(\Omega\), not a syllabus reset.
+
+| What Part II finished | What Part III must name |
+|-----------------------|-------------------------|
+| \(H^1\), \(L^2\); Lax–Milgram; Galerkin targets | Weak forms \(a(u,v)=\ell(v)\) for Poisson, heat, elasticity |
+| Bilinear form \(a\); dual load \(\ell\); spectral convergence | Strong form → integration by parts → natural BCs |
+| Tap-test \(\omega_{1,h}\) and modal heat preview | Domain \(\Omega\) with grip, flux, and thermoelastic stack |
+| [Concept map checkpoint](#concept-map-checkpoint-part-ii) four questions | ME 300B concept map replay on the bar |
+| [Bridge to Part III](#bridge-to-part-iii) weak-form character | [Schematic 14](../part03-pdes/00-opening.md#the-variational-ladder-me-412-schematic-14) as plot spine |
+
+Turn the page through [III.0 Writings canonical landing](../part03-pdes/00-opening.md#writings-canonical-landing-ii5-to-iii0) when ME 412 function spaces and ME 300B PDE lists feel like separate courses — [III.1](01-strong-form.md) opens strong forms on the grip corner, not a catalog of PDE types cold.
+
 Turn the page. Strong forms first: what the blackboard demands at every point, and where that demand breaks.
