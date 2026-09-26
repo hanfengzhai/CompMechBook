@@ -9,7 +9,7 @@ For copper, a typical calculation fits in a few hundred atoms' worth of plane-wa
 
 > **IX.2 — Act III — Descent:** Kohn–Sham SCF is the self-consistent loop that makes DFT computationally tractable.
 
-When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter. When row 56 closed the [Murnaghan Lab act](01-born-oppenheimer.md#lab-act-murnaghan-fit-on-fcc-cu-act-vi--foundation) but Kohn–Sham SCF still feels like standalone quantum chemistry, read the [preface row 57 skill checkpoint](../preface.md#skill-navigation-row-57) — the chapter-order mirror of [row 38](../preface.md#skill-navigation-row-38) and the [opening hinge from IX.1](#opening-hinge-ix1-to-ix2) below.
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter. When row 56 closed the [Murnaghan Lab act](01-born-oppenheimer.md#lab-act-murnaghan-fit-on-fcc-cu-act-vi--foundation) but Kohn–Sham SCF still feels like standalone quantum chemistry, read the [preface row 57 skill checkpoint](../preface.md#skill-navigation-row-57) — the chapter-order mirror of [row 38](../preface.md#skill-navigation-row-38) and the [opening hinge from IX.1](#opening-hinge-ix1-to-ix2) below. When row 57 closed the cutoff certificate but [IX.3](03-dft-workflows.md) still feels like standalone coursework, read the [preface row 58 skill checkpoint](../preface.md#skill-navigation-row-58) — the chapter-order mirror of [row 39](../preface.md#skill-navigation-row-39).
 
 ## Closing the arc from Part IX.1 {#opening-hinge-ix1-to-ix2}
 
@@ -276,13 +276,21 @@ Part IV's assembly loop and Part IX's SCF loop share the same engineering instin
 
 **Act VI** runs in parallel with the visible lab session — someone must choose moduli and potentials before the wire-scale job starts. This Lab act is the minimum DFT audit for fcc Cu: converge plane-wave cutoff on total energy per atom.
 
-**Step 1 — fixed geometry, sweep \(E_{\text{cut}}\).** Use experimental lattice constant \(a = 3.615\,\text{Å}\), PBE functional with matching pseudopotential, and a dense k-mesh (e.g. \(12\times12\times12\) Monkhorst–Pack). Run `scf` calculations at \(E_{\text{cut}} = 30, 40, 50, 60, 80\) Ry. Plot total energy per atom versus \(1/E_{\text{cut}}\) — the curve should flatten.
+### Prerequisites (row 57 gate)
 
-**Step 2 — choose cutoff.** Pick the **smallest** \(E_{\text{cut}}\) where consecutive energy changes are below 1 meV/atom (tighter for forces and elastic constants). Document the choice in the project README — the same discipline Part IV demands for mesh size \(h\).
+Before the cutoff sweep, confirm [row 57](../preface.md#skill-navigation-row-57) closed: [`murnaghan_eos.yaml`](../../fixtures/cu.foundation/murnaghan_eos.yaml) (or your volume-scan archive) lists \(a_0\) and \(B_0\), each linked `scf_*.out` contains `convergence has been achieved`, and you can name \(\rho^\star = \mathcal{G}(\rho^\star)\) as the inner loop of each Murnaghan volume point — recite the [IX.1 → IX.2 opening hinge](#opening-hinge-ix1-to-ix2) if SCF still feels disconnected from BO/HK theorems. This Lab act fills **convergence-certificate evidence**; it does **not** replace the foundation folder archive in [IX.3](03-dft-workflows.md#opening-hinge-ix2-to-ix3) — that is the workflow floor after the [cutoff export manifest](#cutoff-export-manifest-handoff-to-ix3) below is complete.
 
-**Step 3 — cross-check k-mesh.** At the chosen cutoff, repeat with k-meshes \(8^3\), \(10^3\), \(12^3\), \(14^3\). Metals require dense k-sampling because Fermi-surface integrals converge slowly; under-sampled k-meshes are the DFT analogue of too-coarse FEM on a reentrant corner.
+**Step 0 — Kohn–Sham gate (read aloud).** State in one sentence why cutoff convergence must precede any exported cohesive energy: "This is the electronic \(h\)-refinement certificate; without it, `cu.scf.in` is folklore even when the SCF loop converges." Do not archive `cutoff_convergence.yaml` until Steps 1–3 pass.
 
-**Step 4 — export one number upward.** Report cohesive energy \(E_{\text{coh}} = (E_{\text{tot}}/N_{\text{atoms}}) - E_{\text{atom}}\) with documented cutoff, k-mesh, and functional. Part VIII's EAM fit and Part VI's sanity checks inherit this number — if no QE log exists, the multiscale chain has no floor.
+**Step 1 — fixed geometry, sweep \(E_{\text{cut}}\).** Use experimental lattice constant \(a = 3.615\,\text{Å}\) (or Murnaghan \(a_0\) from [IX.1](01-born-oppenheimer.md#murnaghan-export-manifest-handoff-to-ix2)), PBE functional with matching pseudopotential, and a dense k-mesh (e.g. \(12\times12\times12\) Monkhorst–Pack). Run `scf` calculations at \(E_{\text{cut}} = 30, 40, 50, 60, 80\) Ry. Plot total energy per atom versus \(1/E_{\text{cut}}\) — the curve should flatten.
+
+**Step 2 — SCF convergence gate per cutoff.** Pass criterion for each sweep point: log contains `convergence has been achieved` and mixing residuals fall below `conv_thr`. Under-converged SCF at a high cutoff is the same failure mode row 58 names when IX.3 opens without a certificate.
+
+**Step 3 — choose cutoff.** Pick the **smallest** \(E_{\text{cut}}\) where consecutive energy changes are below 1 meV/atom (tighter for forces and elastic constants). Document the choice in `README_DFT.md` — the same discipline Part IV demands for mesh size \(h\).
+
+**Step 4 — cross-check k-mesh.** At the chosen cutoff, repeat with k-meshes \(8^3\), \(10^3\), \(12^3\), \(14^3\). Metals require dense k-sampling because Fermi-surface integrals converge slowly; under-sampled k-meshes are the DFT analogue of too-coarse FEM on a reentrant corner.
+
+**Step 5 — Bridge recitation gate.** Read [this chapter's Bridge](#bridge) opening sentence aloud: "the SCF loop converges in principle but no input file exists yet." Do not open [IX.3](03-dft-workflows.md) until Step 6 archives the manifest — workflow archives without cutoff pedigree repeat the error IX.1 Bridge named.
 
 Example convergence table (illustrative — always run your own sweep):
 
@@ -292,6 +300,33 @@ Example convergence table (illustrative — always run your own sweep):
 | 50 | −3.726 | 2 |
 | 60 | −3.726 | 0.3 |
 | 80 | −3.726 | 0.1 |
+
+| Check | Pass criterion | Failure mode |
+|-------|----------------|--------------|
+| Row 57 closed | \(\mathbf{H}[\rho]\mathbf{c}=\epsilon\mathbf{S}\mathbf{c}\) named beside Murnaghan scan | Cutoff sweep before BO → SCF hinge |
+| Every cutoff point | `convergence has been achieved` in each `scf_ecut*.out` | Certificate on drifting SCF |
+| Bridge read | IX.2 Bridge recited before IX.3 | MSE5720 homework without archive handoff |
+
+### Cutoff export manifest (handoff to IX.3) {#cutoff-export-manifest-handoff-to-ix3}
+
+After Steps 0–5, extend `cu.foundation/` beside the [Murnaghan export manifest](01-born-oppenheimer.md#murnaghan-export-manifest-handoff-to-ix2):
+
+| File / folder | Content | Consumer |
+|---------------|---------|----------|
+| `scf_ecut*.out` | Converged SCF at each cutoff in the sweep | [IX.3 opening hinge](03-dft-workflows.md#opening-hinge-ix2-to-ix3); cutoff audit |
+| `cutoff_convergence.yaml` | Chosen `ecutwfc`, k-mesh, \(\Delta E\) table, plot path | [IX.3 foundation Lab act](03-dft-workflows.md#lab-act-archive-the-foundation-run-before-the-wire-scale-solve-act-vi--foundation) |
+| `README_DFT.md` | Functional, pseudo hash, smearing, mixing | Handshake 1; Part VIII EAM fit |
+| `energy_vs_ecut.dat` | Tabulated sweep for CI / plots | [`parse_dft_workflow.sh`](../../scripts/parse_dft_workflow.sh) |
+
+| Step | Action | Expected outcome |
+|------|--------|------------------|
+| 6 | Copy manifest rows into `foundation_README.md` | Cutoff certificate listed beside Murnaghan EOS |
+| 7 | Verify IX.3 is **not** faked in yaml | `cu.scf.in` deferred to IX.3; converged sweep only here |
+| 8 | Name calculation ladder as **pending vocabulary** | One-line note: "Certificate exists — stage pseudo → relax → property in IX.3" |
+
+When row 57 closed but [IX.3](03-dft-workflows.md) still feels like standalone coursework after this Lab act, read the [preface row 58 skill checkpoint](../preface.md#skill-navigation-row-58) — the chapter-order mirror of [row 39](../preface.md#skill-navigation-row-39).
+
+When `cutoff_convergence.yaml` and `README_DFT.md` accompany the wire project's git commit, the SCF implementation is **citable** — the same audit Part VIII's EAM-fit Lab act demands. [IX.3](03-dft-workflows.md) archives the full calculation ladder; the epilogue wires those exports into multiscale pipelines no single code runs alone.
 
 When \(\Delta E < 1\) meV/atom, proceed to `vc-relax` and elastic-constant calculations in [IX.3](03-dft-workflows.md). Unconverged cutoff is structured noise — the DFT version of an unrefined mesh.
 
@@ -358,4 +393,4 @@ Return to the prologue's **Act VI — Foundation**: before the operator mounted 
 
 [IX.3](03-dft-workflows.md) walks through reproducible workflows — cutoff and k-mesh convergence, relaxation, equations of state, bands and phonons, defect supercells — using the MSE 5720 homework archive as a template. Those workflows produce the numbers Parts VI–VIII import before the [epilogue](../epilogue/multiscale.md) wires DFT → MD → DDD → FEM into one multiscale afternoon.
 
-Turn the page when the SCF loop converges in principle but no input file exists yet — that is the signal that reproducibility, not theory, is what separates research from folklore. The [IX.1 opening hinge from IX.0](01-born-oppenheimer.md#opening-hinge-ix0-to-ix1) and [preface row 37 skill checkpoint](../preface.md#skill-navigation-row-37) reunite the theorem chapter with the audit when SCF logs exist but BO separation is unnamed; the [opening hinge from IX.1](#opening-hinge-ix1-to-ix2) and [preface row 38 skill checkpoint](../preface.md#skill-navigation-row-38) reunite this Bridge with the SCF implementation when theorems are understood but the fixed-point loop still feels like a new course; the [IX.3 opening hinge from IX.2](03-dft-workflows.md#opening-hinge-ix2-to-ix3) and [preface row 39 skill checkpoint](../preface.md#skill-navigation-row-39) reunite this Bridge with the workflow archive when SCF is understood but `cu.foundation/` still feels like standalone coursework.
+Turn the page when the SCF loop converges in principle but no input file exists yet — that is the signal that reproducibility, not theory, is what separates research from folklore. The [IX.1 opening hinge from IX.0](01-born-oppenheimer.md#opening-hinge-ix0-to-ix1) and [preface row 37 skill checkpoint](../preface.md#skill-navigation-row-37) reunite the theorem chapter with the audit when SCF logs exist but BO separation is unnamed; the [opening hinge from IX.1](#opening-hinge-ix1-to-ix2) and [preface row 57 skill checkpoint](../preface.md#skill-navigation-row-57) reunite the SCF chapter with BO/HK when the [Murnaghan export manifest](01-born-oppenheimer.md#murnaghan-export-manifest-handoff-to-ix2) exists but the fixed-point loop still feels like a new course; the [IX.3 opening hinge from IX.2](03-dft-workflows.md#opening-hinge-ix2-to-ix3) and [preface row 58 skill checkpoint](../preface.md#skill-navigation-row-58) reunite this Bridge with the workflow archive when the [cutoff export manifest](#cutoff-export-manifest-handoff-to-ix3) exists but `cu.foundation/` still feels like standalone coursework; [preface row 39](../preface.md#skill-navigation-row-39) closes the same stitch at meta depth across all prior reunions.
