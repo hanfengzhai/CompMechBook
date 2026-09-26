@@ -9,7 +9,23 @@ Continuum elasticity in Part VI describes smooth displacement fields. Defects ar
 
 > **VII.1 — Act III — Descent:** Point, line, and surface defects are the singularities continuum models smooth away.
 
-When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter. When row 48 restored the Writings landing but defect taxonomy still feels like a new course after the forest Scene, read the [preface row 49 skill checkpoint](../preface.md#skill-navigation-row-49) — the competence-time mirror of the [opening hinge from VII.0](#opening-hinge-vii0-to-vii1) below.
+
+## Closing the arc from Part VII.0 {#opening-hinge-vii0-to-vii1}
+
+If you have read linearly since [VI.4's Bridge](../part06-continuum/04-nonlinear-plasticity-preview.md#bridge-to-part-vii), [Part VII.0](00-opening.md) closed with the [Writings canonical landing](00-opening.md#writings-canonical-landing-vi4-to-vii0), the [descent hinge from VI.4](00-opening.md#descent-hinge-from-vi4-energy-break-forest-begins), the [Scene](00-opening.md#scene) at the load cell knee, and a [Bridge](00-opening.md#bridge) that named **defect taxonomy** as the geometry behind fitted hardening — without yet classifying point, line, and surface structures. Part VII.1 does not re-derive return-mapping or re-open the Writings subtree; it **names** the singularities the continuum smoothed away:
+
+| Part VII.0 export | Part VII.1 vocabulary |
+|-------------------|----------------------|
+| Plot spine: hardening becomes line motion | Taxonomy table: 0D–3D defect catalog on the polycrystal |
+| Phenomenological \(H\), \(\sigma_{y0}\) from VI.4 | Dislocation density \(\rho\) stored by cold drawing |
+| Peach–Köhler forces preview in chapter guide | Burgers vector \(\mathbf{b} = \oint d\mathbf{u}\) on {111} slip |
+| FEM Cauchy stress at Gauss points | Elastic \(1/r\) fields around lines — invisible on the mesh |
+| [`hardening.yaml`](../part06-continuum/04-nonlinear-plasticity-preview.md#lab-act-return-mapping-on-the-load-cell-knee-act-iv-hardening) placeholders archived | Forest geometry that placeholders homogenized |
+
+[VII.0's Bridge](00-opening.md#bridge) named the signal to turn the page: **phenomenological hardening feels like curve-fitting — strength acquires a geometry**. The [VII.0 → VII.1 reunion index](../appendix/sources.md#vii0-vii1-opening-hinge-reunion-index-row-49) reunites this opening with [row 48](../preface.md#skill-navigation-row-48) when row 48 closed the midpoint part boundary but **VII.1 opened before the Bridge one-liner or concept map** — same copper wire, same load cell, now with Burgers circuits instead of fitted \(H\).
+
+Part VII.0 named the forest; Part VII.1 draws the first line through it. When Peach–Köhler simulation feels premature, finish the taxonomy — [VII.2](02-dislocation-dynamics.md) requires Burgers geometry, not the reverse.
 
 ## Scene: the wire yields
 

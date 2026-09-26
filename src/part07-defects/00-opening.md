@@ -212,6 +212,20 @@ Each chapter adds one move to the mesoscale pipeline that turns phenomenological
 
 None of these require a production polycrystal run — but each one is the mechanism behind Part VI's fitted \(H\). If you can name the forest that cold drawing stored, explain why \(\tau \propto \sqrt{\rho}\), and sketch the handoff from DDD statistics to FEM internal variables, you have the mesoscale narrator for Act IV's upward bend.
 
+## Opening hinge (VII.0 → VII.1) {#opening-hinge-vii0-to-vii1}
+
+[Row 48](../appendix/sources.md#vi4-vii0-writings-canonical-reunion-index-row-48) closed the **part boundary** — VI.4 intermission, Writings landing, and [plot spine](#plot-spine-one-line) recited. [VII.1](01-defect-taxonomy.md) must not open like a standalone **Defects Notes** chapter on Burgers circuits while the load cell from **Act IV — Hardening** is still mounted. This hinge is the **downstream half** of the [Bridge](#bridge) below; read it aloud when row 48 verified sync and landing but the taxonomy table still feels like homework disconnected from the forest Scene.
+
+| Part VII.0 export (opening) | Part VII.1 consumer (taxonomy) | Pedigree anchor |
+|-----------------------------|--------------------------------|-----------------|
+| [Descent hinge from VI.4](#descent-hinge-from-vi4-energy-break-forest-begins): fitted \(H\) → \(\rho\) | Dimension table: point, line, surface defects on the wire | Same cold-drawn history before the test |
+| [Scene](#scene): load cell knee, slip lines, forest under the mesh | [Scene: the wire yields](01-defect-taxonomy.md#scene-the-wire-yields): Burgers circuits fail to close | Same yield knee return-mapping fit in VI.4 |
+| [Concept map](#the-concept-map): object = \(\mathbf{b}\), \(\rho\) | Taxonomy by dimension + Burgers vector definition | ME 412 four questions unchanged |
+| \(T_w\) from [`fixtures/cht_export.yaml`](../../fixtures/cht_export.yaml) | Mobility calibration at \(T_w\) named before VII.2 | [Row 30](../appendix/sources.md#cht-outer-loop-reunion-index-row-30) CHT export |
+| [Bridge](#bridge): "strength acquires a geometry" | VII.1 plot spine: singularities continuum smooths away | [Row 19](../preface.md#skill-navigation-row-19) chapter audit |
+
+The [VII.0 → VII.1 reunion index](../appendix/sources.md#vii0-vii1-opening-hinge-reunion-index-row-49) reunites this hinge with [row 48](../preface.md#skill-navigation-row-48) when the Writings landing read correctly but **VII.1 opened before the Bridge one-liner** — turn to [VII.1's opening hinge from VII.0](01-defect-taxonomy.md#opening-hinge-vii0-to-vii1), not to row 33 (Part VII → VIII), until Burgers geometry names what fitted \(H\) homogenized.
+
 ## Bridge
 
 Part VI closed with variational elasticity: energy minimization and virtual work for **smooth** fields. The drawn copper wire violates that smoothness at the mesoscale — dislocation lines, grain boundaries, and vacancy clusters are the mechanisms behind **Act IV** hardening on the load cell. Part VII is the first **descent** on the prologue ladder: the same specimen, a smaller state variable, export discipline unchanged.
