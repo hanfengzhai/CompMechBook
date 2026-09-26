@@ -9,7 +9,7 @@ The narrative thread remains the copper wire. We will not simulate the whole wir
 
 > **IX.3 — Act III — Descent:** Quantum ESPRESSO workflows export pedigree numbers upward — the epilogue's Handshake 1 anchor.
 
-When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter. **Coupling gate (row 20):** this chapter is the third mandatory pause in row 17's straight read — recite the sentence above aloud, then read the [Bridge to the epilogue](#bridge-to-the-epilogue) before opening multiscale handshakes. When row 38 restored BO/HK theorems and the SCF fixed-point loop but Quantum ESPRESSO workflows still feel like standalone coursework, read the [preface row 39 skill checkpoint](../preface.md#skill-navigation-row-39) — the competence-time mirror of the [opening hinge from IX.2](#opening-hinge-ix2-to-ix3) below. When row 57 closed the [cutoff-sweep Lab act](02-kohn-sham.md#lab-act-cutoff-sweep-on-fcc-cu-act-vi--convergence-certificate) but this chapter still opens like MSE5720 homework, read the [preface row 58 skill checkpoint](../preface.md#skill-navigation-row-58) — the chapter-order mirror of row 39. When row 39 restored the foundation folder but the epilogue Handshake 3 section still cites handbook \(\alpha\), read the [preface row 40 skill checkpoint](../preface.md#skill-navigation-row-40) — the competence-time mirror of the [opening hinge to Handshake 3](#opening-hinge-ix3-to-handshake3) below.
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter. **Coupling gate (row 20):** this chapter is the third mandatory pause in row 17's straight read — recite the sentence above aloud, then read the [Bridge to the epilogue](#bridge-to-the-epilogue) before opening multiscale handshakes. When row 38 restored BO/HK theorems and the SCF fixed-point loop but Quantum ESPRESSO workflows still feel like standalone coursework, read the [preface row 39 skill checkpoint](../preface.md#skill-navigation-row-39) — the competence-time mirror of the [opening hinge from IX.2](#opening-hinge-ix2-to-ix3) below. When row 57 closed the [cutoff-sweep Lab act](02-kohn-sham.md#lab-act-cutoff-sweep-on-fcc-cu-act-vi--convergence-certificate) but this chapter still opens like MSE5720 homework, read the [preface row 58 skill checkpoint](../preface.md#skill-navigation-row-58) — the chapter-order mirror of row 39. When row 58 closed the calculation ladder but the epilogue Handshake 3 section still cites handbook \(\alpha(300\,\text{K})\) beside a complete `cu.foundation/`, read the [preface row 59 skill checkpoint](../preface.md#skill-navigation-row-59) — the chapter-order mirror of [row 40](../preface.md#skill-navigation-row-40) and the [opening hinge to Handshake 3](#opening-hinge-ix3-to-handshake3) below. When row 39 restored the foundation folder but the epilogue Handshake 3 section still cites handbook \(\alpha\), read the [preface row 40 skill checkpoint](../preface.md#skill-navigation-row-40) — the competence-time mirror of the [opening hinge to Handshake 3](#opening-hinge-ix3-to-handshake3) below.
 
 ## Closing the arc from Part IX.2 {#opening-hinge-ix2-to-ix3}
 
@@ -607,9 +607,21 @@ The export table above is where the **downward derivation** of the ladder begins
 
 ### Prerequisites (row 58 gate)
 
-Before archiving `cu.foundation/`, confirm [row 58](../preface.md#skill-navigation-row-58) closed: the [IX.2 cutoff-sweep Lab act](02-kohn-sham.md#lab-act-cutoff-sweep-on-fcc-cu-act-vi--convergence-certificate) archived the [cutoff export manifest](02-kohn-sham.md#cutoff-export-manifest-handoff-to-ix3), you recited [IX.2 Bridge](02-kohn-sham.md#bridge), and you can name the five calculation-ladder rungs — recite the [IX.2 → IX.3 opening hinge](#opening-hinge-ix2-to-ix3) if workflows still feel disconnected from SCF theory.
+Before archiving `cu.foundation/`, confirm [row 58](../preface.md#skill-navigation-row-58) closed: the [IX.2 cutoff-sweep Lab act](02-kohn-sham.md#lab-act-cutoff-sweep-on-fcc-cu-act-vi--convergence-certificate) archived the [cutoff export manifest](02-kohn-sham.md#cutoff-export-manifest-handoff-to-ix3), you recited [IX.2 Bridge](02-kohn-sham.md#bridge), and you can name the five calculation-ladder rungs — recite the [IX.2 → IX.3 opening hinge](#opening-hinge-ix2-to-ix3) if workflows still feel disconnected from SCF theory. This Lab act fills **foundation-folder evidence**; it does **not** replace the [quasiharmonic \(\alpha\) Lab act](#lab-act-quasiharmonic-alpha-handshake-3-pedigree) or the [opening hinge to Handshake 3](#opening-hinge-ix3-to-handshake3) — those close temperature pedigree after the [foundation export manifest](#foundation-export-manifest-handoff-to-epilogue) below is complete.
 
-Before closing Part IX, create one folder — paper or digital — for bulk fcc Cu with this minimum metadata:
+**Step 0 — Foundation gate (read aloud).** State in one sentence why `cu.foundation/` must precede any wire-scale FEM or LAMMPS job: "Every macro input on the copper wire traces to this folder or it is folklore — Act VI ran in parallel with Acts I–V." Do not run [`parse_dft_workflow.sh`](../../scripts/parse_dft_workflow.sh) until Steps 1–5 pass.
+
+**Step 1 — inherit cutoff certificate.** Copy `cutoff_convergence.yaml` and converged `scf_ecut*.out` from [IX.2](02-kohn-sham.md#cutoff-export-manifest-handoff-to-ix3) into `cu.foundation/`. The chosen `ecutwfc` and k-mesh in every downstream deck must match the certificate — editing cutoff in `cu.scf.in` without updating the yaml repeats the error row 58 names when IX.3 opens without SCF pedigree.
+
+**Step 2 — `vc-relax` then converged `scf`.** Archive `cu.scf.in` and `cu.relax.out` with `convergence has been achieved`, forces \(< 10^{-4}\) Ry/Bohr, and relaxed lattice constant within a few percent of experiment (document GGA bias). Pass criterion: you can quote \(a_0\) and \(E/N\) from the log without opening the GUI — Handshake 1 consumers in Parts IV and VI inherit these numbers.
+
+**Step 3 — elastic strain series.** Populate `cu.elastic/` with ±0.5% strain cells (three independent deformations for cubic Cu). Verify symmetric \(C_{ij}\) before Voigt-averaging \(E\) and \(\nu\). Under-converged strain points are the DFT analogue of a single Gauss point at the notch root — pretty moduli without relaxation audit.
+
+**Step 4 — phonon and optional GSF rows.** When Handshake 3 is in scope, begin `cu.phonon/` (quasiharmonic \(a(T)\) table) beside bulk SCF logs — defer full \(\alpha(T_w)\) parsing until [Step 6](#foundation-export-manifest-handoff-to-epilogue) links `cht_export.yaml`. When Part VII partials need \(\gamma_{\text{sf}}\), archive `cu.gsf/gsf_cu111.dat` with slab README — the same folder feeds Handshakes 1 and 4b.
+
+**Step 5 — Bridge recitation gate.** Read [Bridge to the epilogue](#bridge-to-the-epilogue) opening sentence aloud: "the load cell curve inherits from an SCF log." Do not open the [epilogue Handshake 3](../epilogue/multiscale.md#handshake-3--thermal-strain--mechanical-stiffness-part-vi--iv) until Step 7 emits `foundation_export.yaml` — load-cell readings without foundation pedigree repeat the error row 40 names when handbook \(\alpha\) persists beside `cu.phonon/`.
+
+Minimum metadata table (expand as property calculations complete):
 
 | File / record | Must contain | Feeds |
 |---------------|--------------|-------|
@@ -617,10 +629,40 @@ Before closing Part IX, create one folder — paper or digital — for bulk fcc 
 | `cu.relax.out` | Final forces \(< 10^{-4}\) Ry/Bohr, relaxed \(a\) | Equilibrium lattice for MD box |
 | `cu.elastic/` | ±0.5% strain cells, symmetric \(C_{ij}\) | Part VI moduli; Part IV elastic step |
 | `README.md` | Pseudo version, QE version, date, who ran it | Team audit; epilogue handoff |
+| `cutoff_convergence.yaml` | Inherited from IX.2 certificate | Handshake 1 audit; [`parse_dft_workflow.sh`](../../scripts/parse_dft_workflow.sh) |
+
+| Check | Pass criterion | Failure mode |
+|-------|----------------|--------------|
+| Row 58 closed | Calculation ladder recited; cutoff manifest present | Foundation folder before SCF certificate |
+| Every bulk SCF/relax | `convergence has been achieved` | Moduli quoted on drifting SCF |
+| Bridge read | IX.3 Bridge recited before epilogue | Handshake 3 without foundation export |
+| Parser smoke | `./scripts/test-fixtures.sh` passes on [`fixtures/cu.foundation/`](../../fixtures/cu.foundation/) | CI pedigree broken silently |
 
 The pedigree checklist in [VIII.3](../part08-md/03-ab-initio-and-coarse-graining.md#bridge-to-part-ix) maps each row to a Part VIII use. If your project folder has only "EAM fit to experiment" with no `pw.x` log, **Act VI is missing** — and the wire-scale FEM run carries silent assumptions this chapter makes explicit.
 
 Run one convergence check before archiving: double the plane-wave cutoff and confirm \(E_{\text{tot}}\) changes by less than 1 meV/atom. Part II taught that honest FEM requires a convergence target in \(H^1\); Part IX teaches the same instinct at the electronic scale — SCF energy must settle before any number climbs the ladder.
+
+### Foundation export manifest (handoff to epilogue) {#foundation-export-manifest-handoff-to-epilogue}
+
+After Steps 0–5, extend `cu.foundation/` beside the [cutoff export manifest](02-kohn-sham.md#cutoff-export-manifest-handoff-to-ix3):
+
+| File / folder | Content | Consumer |
+|---------------|---------|----------|
+| `foundation_export.yaml` | Parsed moduli, cohesive energy, optional phonon/GSF slots | [Epilogue pedigree table](#ix3-epilogue-pedigree-table); Handshakes 1–4b |
+| `cu.phonon/a_vs_T.dat` | Quasiharmonic lattice constant vs \(T\) | [Quasiharmonic \(\alpha\) Lab act](#lab-act-quasiharmonic-alpha-handshake-3-pedigree); Handshake 3 |
+| `alpha_export.yaml` | \(\alpha(T_w)\), \(\varepsilon_{\text{th}}\), \(\sigma_{\text{th}}\) with matching `target_temperature_K` | [`parse_alpha.sh`](../../scripts/parse_alpha.sh); [epilogue Handshake 3](../epilogue/multiscale.md#handshake-3--thermal-strain--mechanical-stiffness-part-vi--iv) |
+| `cht_export.yaml` (symlink or copy) | Converged \(T_w\), \(\Delta T\) from Handshake 2 | Temperature pedigree gate for Steps 7–8 |
+| `README.md` + `foundation_README.md` | Human audit + manifest index | [preface row 16](../preface.md#skill-navigation-row-16) orchestration |
+
+| Step | Action | Expected outcome |
+|------|--------|------------------|
+| 6 | Run `./scripts/parse_dft_workflow.sh cu.foundation/` | `foundation_export.yaml` lists elastic, phonon, GSF rows |
+| 7 | Run `./scripts/parse_cht.sh fixtures/cht_wire.conf` then `./scripts/parse_alpha.sh cu.phonon/ --target-t <T_w>` | `alpha_export.yaml` matches `cht_export.yaml` |
+| 8 | Name Handshake 3 as **pending vocabulary** | One-line note: "Foundation complete — evaluate \(\alpha(T_w)\) at load cell in epilogue" |
+
+When row 58 closed but the [epilogue Handshake 3](../epilogue/multiscale.md#handshake-3--thermal-strain--mechanical-stiffness-part-vi--iv) still feels like standalone coursework after this Lab act, read the [preface row 59 skill checkpoint](../preface.md#skill-navigation-row-59) — the chapter-order mirror of [row 40](../preface.md#skill-navigation-row-40).
+
+When `foundation_export.yaml` and `alpha_export.yaml` accompany the wire project's git commit, Act VI is **citable** — the same audit [`parse_multiscale_workflow.sh`](../../scripts/parse_multiscale_workflow.sh) demands before Handshakes 1–4b orchestrate. Proceed to the [opening hinge to Handshake 3](#opening-hinge-ix3-to-handshake3) when bulk moduli are trustworthy in isolation but fixed-grip thermal stress still cites handbook \(\alpha\) alone.
 
 ## Closing Handshake 3 from Part IX.3 {#opening-hinge-ix3-to-handshake3}
 
@@ -633,7 +675,7 @@ If you have read linearly since the prologue, this chapter archived `cu.foundati
 | \(\alpha(T)\) fit at evaluation temperature | \(\alpha(T_w)\) at converged \(T_w\) from [Handshake 2](../epilogue/multiscale.md#handshake-2--joule-heating--conjugate-heat-transfer-part-iv--v) — not handbook \(\alpha(300\,\text{K})\) alone |
 | [IX.3 epilogue pedigree table](#ix3-epilogue-pedigree-table) row 3 | [Sensitivity table](../epilogue/multiscale.md#sensitivity-which-handshake-matters-most) ranks Handshake 3 **first** for fixed-grip stress |
 
-The [IX.3 → Handshake 3 reunion index](../appendix/sources.md#ix3-handshake3-reunion-index-row-40) reunites this opening with [row 39](../preface.md#skill-navigation-row-39) when `cu.foundation/` is complete but `alpha_export.yaml` lists `target_temperature_K: 300` while [`fixtures/cht_export.yaml`](../../fixtures/cht_export.yaml) archives \(T_w = 311.48\,\text{K}\). Read the [epilogue opening hinge from IX.3](../epilogue/multiscale.md#opening-hinge-ix3-handshake3) for the full α(\(T_w\)) cross-links audit across Parts III–VI before opening multiscale handshakes. The [preface row 40 skill checkpoint](../preface.md#skill-navigation-row-40) closes the competence loop when the foundation folder exists but temperature pedigree is broken at the load cell.
+The [IX.3 → Handshake 3 reunion index](../appendix/sources.md#ix3-handshake3-reunion-index-row-40) reunites this opening with [row 39](../preface.md#skill-navigation-row-39) when `cu.foundation/` is complete but `alpha_export.yaml` lists `target_temperature_K: 300` while [`fixtures/cht_export.yaml`](../../fixtures/cht_export.yaml) archives \(T_w = 311.48\,\text{K}\). The [IX.3 → Handshake 3 reunion index (row 59)](../appendix/sources.md#ix3-handshake3-opening-hinge-reunion-index-row-59) reunites the same stitch with [row 58](../preface.md#skill-navigation-row-58) when the [foundation export manifest](#foundation-export-manifest-handoff-to-epilogue) archived `foundation_export.yaml` but **Handshake 3 still opens like standalone epilogue homework** after the foundation archive Lab act — read [IX.3 Bridge](#bridge-to-the-epilogue) → this opening hinge before the load-cell example. Read the [epilogue opening hinge from IX.3](../epilogue/multiscale.md#opening-hinge-ix3-handshake3) for the full α(\(T_w\)) cross-links audit across Parts III–VI before opening multiscale handshakes. The [preface row 40 skill checkpoint](../preface.md#skill-navigation-row-40) closes the competence loop when the foundation folder exists but temperature pedigree is broken at the load cell; [preface row 59](../preface.md#skill-navigation-row-59) closes the chapter-order mirror after the foundation Lab act Steps 0–8.
 
 ## Bridge to the epilogue {#bridge-to-the-epilogue}
 
