@@ -9,7 +9,7 @@ When continuum fields smear atoms into density, MD puts them back. When DFT trac
 
 > **VIII.1 — Act III — Descent:** Interatomic potentials and phase space replace fields with coordinates and forces at dislocation cores.
 
-When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter. When row 51 closed polycrystal handoff but phase space still feels like a new subject, read the [preface row 52 skill checkpoint](../preface.md#skill-navigation-row-52) — the competence-time mirror of [VII.3's opening hinge to VIII.1](../part07-defects/03-polycrystal-and-fem-handoff.md#opening-hinge-vii3-to-viii1).
 
 ## Closing the arc from Part VII {#opening-hinge-vii3-to-viii1}
 

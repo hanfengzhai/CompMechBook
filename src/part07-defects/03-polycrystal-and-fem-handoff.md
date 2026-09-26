@@ -290,9 +290,11 @@ Cost scales with `(# active Gauss points) × (DDD timesteps per macro step)`. Fo
 
 When all gates pass, the drawn copper wire story closes at the mesoscale: dislocation statistics become internal state variables on the same mesh Part IV taught us to assemble.
 
-## Lab act: archive the OpenDiS → DAMASK → FEM handoff (Act IV–V)
+## Lab act: archive the OpenDiS → DAMASK → FEM handoff (Act IV–V) {#lab-act-archive-the-opendis--damask--fem-handoff-act-ivv}
 
 **Act IV** hardening and **Act V** notch concentration both consume parameters that Part VII exports from dislocation statistics. This Lab act is the **folder discipline** — one git commit that lets a colleague reproduce the load cell curve without rerunning every scale.
+
+**Step 0 — inherit VII.2 forest exports.** Confirm [VII.2's forest-density Lab act](02-dislocation-dynamics.md#lab-act-read-the-hardening-bend-from-forest-density-act-iv) archived converged \(\tau(\gamma)\) and \(\rho(\gamma)\) (e.g. `ddd_rho_vs_strain.csv`) before homogenizing — DAMASK yaml pasted without an OpenDiS pedigree is multiscale folklore.
 
 Create a handoff bundle for the drawn copper wire notch specimen:
 
@@ -310,6 +312,7 @@ Create a handoff bundle for the drawn copper wire notch specimen:
 2. Fit Taylor law \(\tau = \alpha \mu b \sqrt{\rho}\) with \(\alpha \approx 0.3\); compare to DAMASK initial hardening rate.
 3. Run polycrystal FEM with exported yaml; compare force–displacement to the **Act IV** load cell trace within 10%.
 4. If FE² is needed at the notch root, mark Gauss points within 50 µm as DDD-active and repeat only there.
+5. **Mobility placeholder audit.** In `mobility.yaml`, set `mobility_table_source: MD_NVT_shear_PartVIII` and `temperature_K` from [`fixtures/cht_export.yaml`](../../fixtures/cht_export.yaml) — the trajectory folder may not exist until [VIII.2](../part08-md/02-ensembles-integrators.md) runs, but the **contract** must be archived beside the handoff so Part VIII inherits the same row OpenDiS borrowed. When row 51 is complete, read [opening hinge (VII.3 → VIII.1)](#opening-hinge-vii3-to-viii1) before opening LAMMPS.
 
 When the archived bundle reproduces the hardening knee without refitting \(H\) by hand, the mesoscale chapter has done its job — statistics became internal state variables on Part IV's mesh. If step 3 fails while step 1 passes, the fault is almost always **texture** (wrong grain orientations) or **elastic mismatch** (\(\mu, \nu\) inconsistent between OpenDiS and FEM), not insufficient mesh refinement.
 
@@ -372,6 +375,20 @@ grep fe2_enrichment_required fe2_export.yaml   # yes when uplift > 10%
 
 The [VII.3 → Handshake 4b reunion index](../appendix/sources.md#vii3-handshake4b-reunion-index-row-42) reunites this opening with [row 41](../preface.md#skill-navigation-row-41) when Handshake 4a's bulk knee matches the load cell but `fe2_notch_comparison.dat` exists without `fe2_export.yaml` or crystal plasticity is trusted at the notch root without a 10–15% audit — same copper wire, same afternoon, but peak von Mises stress at \(K_t \approx 3\) under-predicts pile-up physics. Read the [epilogue opening hinge from VII.3 Step 4](../epilogue/multiscale.md#opening-hinge-vii3-handshake4b) for the full FE² notch-localization cross-links audit across Parts IV–IX before opening [`parse_multiscale_workflow.sh`](../../scripts/parse_multiscale_workflow.sh). The [preface row 42 skill checkpoint](../preface.md#skill-navigation-row-42) closes the competence loop when Step 4 exists in Part VII but the epilogue Act V section feels like standalone homework.
 
+## Opening hinge (VII.3 → VIII.1) {#opening-hinge-vii3-to-viii1}
+
+[Row 51](../appendix/sources.md#vii2-vii3-opening-hinge-reunion-index-row-51) closed **polycrystal homogenization** — OpenDiS → DAMASK → FEM, rate handshake, and the [handoff Lab act](#lab-act-archive-the-opendis--damask--fem-handoff-act-ivv) archived `hardening.yaml` beside Part IV's mesh. [VIII.1](../part08-md/01-potentials-phase-space.md) must not open like standalone **AtomModel** coursework while `mobility.yaml` still cites `MD_NVT_shear_PartVIII` without a screw-core RVE path or \(T_w\) from Act II. This hinge is the **upstream half** of the [Bridge to Part VIII](#bridge-to-part-viii) below; read it aloud when row 51 verified texture but LAMMPS input decks feel disconnected from OpenDiS mobility tables.
+
+| Part VII.3 export (mesoscale handoff) | Part VIII.1 consumer (atomistic) | Pedigree anchor |
+|---------------------------------------|----------------------------------|-----------------|
+| `mobility.yaml` row citing Part VIII | NVT shear folder `MD_NVT_shear_PartVIII/` at \(T_w\) | [`cht_export.yaml`](../../fixtures/cht_export.yaml) + [row 8](../preface.md#skill-navigation-row-8) |
+| Peierls threshold, core cutoff \(r_c\) | Relaxed core width \(w\), \(\gamma_{\text{sf}}\) from slab | [VIII.1 Scene](../part08-md/01-potentials-phase-space.md#scene-the-notch-under-the-microscope) |
+| Burgers \(b\) in OpenDiS deck | EAM-minimized \(a_0\), \(b = a_0/\sqrt{2}\) | Lattice parameter audit before DDD re-run |
+| `rate_handoff.txt` / `hardening.yaml` | Hamiltonian \(H\), forces \(\mathbf{F}_i = -\nabla V\) | Same wire; coordinates replace line singularities |
+| [Bridge to Part VIII](#bridge-to-part-viii): ink is atomic bonding | [VIII.1 opening hinge from VII.3](../part08-md/01-potentials-phase-space.md#opening-hinge-vii3-to-viii1) (downstream half) | [Row 33](../preface.md#skill-navigation-row-33) part-level descent |
+
+The [VII.3 → VIII.1 reunion index](../appendix/sources.md#vii3-viii1-opening-hinge-reunion-index-row-52) reunites this hinge with [row 51](../preface.md#skill-navigation-row-51) when polycrystal export read correctly but **Part VIII opened before the handoff Lab act step 5 mobility contract** — turn to [VIII.1's opening hinge from VII.3](../part08-md/01-potentials-phase-space.md#opening-hinge-vii3-to-viii1) and the [Part VIII descent hinge](../part08-md/00-opening.md#descent-hinge-cores-mobility-and-tw-pedigree), not to [row 34](../preface.md#skill-navigation-row-34) (VIII.1 → VIII.2), until EAM minimization names the potential surface mobility tables approximate.
+
 ## Bridge to Part VIII {#bridge-to-part-viii}
 
 Crystal plasticity and calibrated DDD close the mesoscale chapter: they explain why the drawn copper wire yields and hardens without resolving every atom. The OpenDiS → DAMASK → polycrystal FEM pipeline above is the **export discipline** the prologue promised — statistics become internal state variables on the mesh Part IV taught us to assemble. But mobility laws, Peierls thresholds, and stacking-fault energies in that pipeline are not adjustable forever.
@@ -400,4 +417,4 @@ Return to the [prologue](../prologue/00-many-scales.md): **Act IV** hardening an
 
 The wire's strength is a story written in dislocation lines; the lines borrow their mobility from phonons and cores the mesoscale cannot resolve. [VIII.1](../part08-md/01-potentials-phase-space.md#opening-hinge-vii3-to-viii1) begins with interatomic potentials and phase space — the next rung down on the ladder, same specimen, stricter export contract. The [Part VIII opening descent hinge](../part08-md/00-opening.md#descent-hinge-cores-mobility-and-tw-pedigree) names the \(T_w\) pedigree every NVT shear in that chapter must honor; the [VIII.1 opening hinge](../part08-md/01-potentials-phase-space.md#opening-hinge-vii3-to-viii1) is where mobility yaml rows become atomic coordinates and EAM forces.
 
-Turn the page when Peierls stress or mobility tables feel like magic numbers — molecular dynamics is where those numbers acquire a temperature, a crystal structure, and a lattice parameter \(a_0\) that sets Burgers vector magnitude in the OpenDiS deck you just archived.
+Turn the page when Peierls stress or mobility tables feel like magic numbers — molecular dynamics is where those numbers acquire a temperature, a crystal structure, and a lattice parameter \(a_0\) that sets Burgers vector magnitude in the OpenDiS deck you just archived. When row 51 is complete, read [opening hinge (VII.3 → VIII.1)](#opening-hinge-vii3-to-viii1) before LAMMPS; proceed to [row 52](../preface.md#skill-navigation-row-52) when `mobility.yaml` cites Part VIII without a screw-core RVE at \(T_w\).
