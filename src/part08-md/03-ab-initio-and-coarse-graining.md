@@ -9,7 +9,7 @@ The copper wire at laboratory scale will never be a full DFT supercell. The wire
 
 > **VIII.3 — Act III — Descent:** Coarse-graining compresses trajectories into yaml tables DDD and FEM can consume with pedigree.
 
-When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter. When row 53 closed NPT at \(T_w\) but coarse-graining still feels like a new syllabus after the [VIII.2 dynamics export manifest](02-ensembles-integrators.md#dynamics-export-manifest-handoff-to-viii3), read the [preface row 54 skill checkpoint](../preface.md#skill-navigation-row-54) — the chapter-order mirror of [row 35](../preface.md#skill-navigation-row-35).
 
 ## Closing the arc from Part VIII.2 {#opening-hinge-viii2-to-viii3}
 

@@ -9,7 +9,7 @@ Getting the ensemble wrong is not a small error. It is simulating the wrong expe
 
 > **VIII.2 — Act III — Descent:** Ensembles and integrators make MD reproducible — LAMMPS is the wire at atomic timestep.
 
-When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter. When row 52 closed phase space but integrators still feel like a new syllabus after the [VIII.1 EAM Lab act](01-potentials-phase-space.md#lab-act-eam-lattice-constant-from-energy-minimization-act-v--notch-prelude), read the [preface row 53 skill checkpoint](../preface.md#skill-navigation-row-53) — the chapter-order mirror of [row 34](../preface.md#skill-navigation-row-34).
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter. When row 52 closed phase space but integrators still feel like a new syllabus after the [VIII.1 EAM Lab act](01-potentials-phase-space.md#lab-act-eam-lattice-constant-from-energy-minimization-act-v--notch-prelude), read the [preface row 53 skill checkpoint](../preface.md#skill-navigation-row-53) — the chapter-order mirror of [row 34](../preface.md#skill-navigation-row-34). When row 53 closed NPT equilibration but [VIII.3](03-ab-initio-and-coarse-graining.md) still feels like standalone potential fitting, read the [preface row 54 skill checkpoint](../preface.md#skill-navigation-row-54) after this chapter's Lab act and Bridge.
 
 ## Closing the arc from Part VIII.1 {#opening-hinge-viii1-to-viii2}
 
@@ -466,11 +466,15 @@ Part IX will compute phonon dispersions from density-functional perturbation the
 
 When DFT phonons and MD spectra disagree, fix the potential before exporting \(b = a_0/\sqrt{2}\) to OpenDiS. Part IX's [phonon workflow](../part09-dft/03-dft-workflows.md) supplies the reference; this section supplies the acceptance test on the MD side.
 
-## Lab act: NPT tension on a copper nanowire segment
+## Lab act: NPT tension on a copper nanowire segment {#lab-act-npt-tension-on-a-copper-nanowire-segment}
 
 This Lab act runs the nanowire tension test described in the opening scene — the atomistic counterpart to Part IV's elastic step and Part VII's mobility calibration.
 
-**Step 1 — build and equilibrate.** Create an fcc Cu lattice (\(a_0 \approx 3.615\,\text{Å}\)), carve a cylindrical segment (\(\sim 10\,\text{nm}\) diameter, \(\sim 50\,\text{nm}\) length), assign Mishin EAM (`pair_style eam/alloy`), minimize, then equilibrate in **NPT** at 300 K and 0 GPa for at least 50 ps (\(\Delta t = 1\,\text{fs}\)):
+### Prerequisites (row 53 gate)
+
+Before `velocity create` or `fix npt`, confirm [row 53](../preface.md#skill-navigation-row-53) closed: the [VIII.1 EAM Lab act](01-potentials-phase-space.md#lab-act-eam-lattice-constant-from-energy-minimization-act-v--notch-prelude) archived `cu_eam_a0.txt`, `cu_burgers_fcc.txt`, and the foundation manifest with [`fixtures/cht_export.yaml`](../../fixtures/cht_export.yaml) copied into `cu.foundation/`. Read [VIII.1's Bridge](01-potentials-phase-space.md#bridge) aloud — "ensembles define what experiment you simulate." This Lab act supplies **trajectories at \(T_w\)**; it does **not** replace coarse-grained yaml exports or DFT pedigree gates — those are [VIII.3](03-ab-initio-and-coarse-graining.md#opening-hinge-viii2-to-viii3) after the dynamics export manifest below is complete.
+
+**Step 1 — build and equilibrate.** Create an fcc Cu lattice (\(a_0\) from `cu_eam_a0.txt`, not a handbook guess), carve a cylindrical segment (\(\sim 10\,\text{nm}\) diameter, \(\sim 50\,\text{nm}\) length), assign the same Mishin EAM file as VIII.1, minimize, then equilibrate in **NPT** at **\(T_w\)** from `cht_export.yaml` (311.48 K for the fixture wire) and 0 GPa for at least 50 ps (\(\Delta t = 1\,\text{fs}\)):
 
 ```
 units           metal
@@ -478,18 +482,18 @@ atom_style      atomic
 pair_style      eam/alloy
 pair_coeff      * * Cu_mishin.eam.alloy Cu
 minimize        1e-12 1e-12 1000 10000
-velocity        all create 300.0 12345 dist gaussian
-fix             1 all npt temp 300 300 0.1 iso 0 0 1
+velocity        all create 311.48 12345 dist gaussian
+fix             1 all npt temp 311.48 311.48 0.1 iso 0 0 1
 run             50000
 ```
 
-Verify: potential energy per atom stable; pressure tensor relaxes to \(\sim 0\); lattice parameter within 1% of DFT/experiment.
+Verify: potential energy per atom stable; pressure tensor relaxes to \(\sim 0\); lattice parameter within 1% of DFT/experiment; \(\langle T\rangle = T_w \pm 10\,\text{K}\) logged in `thermo` output.
 
 **Step 2 — uniaxial tension at fixed temperature.** Switch to **NPT with fixed lateral stress** (or `fix deform` with NVT thermostat on lateral faces). Ramp engineering strain at \(\dot\varepsilon \sim 10^8\,\text{s}^{-1}\) (MD time scales — not the lab frame's \(10^{-3}\,\text{s}^{-1}\), but comparable to high-rate impact):
 
 ```
 unfix           1
-fix             2 all npt temp 300 300 0.1 y 0 0 1 z 0 0 1
+fix             2 all npt temp 311.48 311.48 0.1 y 0 0 1 z 0 0 1
 fix             3 all deform 1 z erate 1.0e-4 units box
 compute         s all stress/atom NULL
 run             100000
@@ -499,13 +503,37 @@ run             100000
 
 **Step 4 — export upward.** Archive: (i) \(E\), \(\nu\) from small-strain NPT; (ii) stress at first plastic event; (iii) dislocation density from OVITO DXA if available. These feed Part VII mobility tables and Part IV constitutive sanity checks. Document potential version, cutoff, \(\Delta t\), and random seed — the reproducibility checklist below is not optional.
 
+**Step 5 — mobility shear at \(T_w\) (OpenDiS contract).** Run constrained **NVT** shear on a screw-dislocation cell (or the minimal shear geometry your site uses) at \(T_w\) with the same EAM and \(\Delta t\) audited in Step 1. Export `mobility_cu_screw_{T_w}K.yaml` beside the thermostat log — the file [VII.3 handoff](../part07-defects/03-polycrystal-and-fem-handoff.md#lab-act-archive-the-opendis--damask--fem-handoff-act-ivv) cited as `MD_NVT_shear_PartVIII`. Do not calibrate drag at 300 K when `cht_export.yaml` archives 311.48 K.
+
+**Step 6 — VACF phonon audit (optional but recommended).** After 100 ps NVT on a 256-atom bulk cell at \(T_w\), archive `phonon_dos_md.dat` in `cu.phonon/` via [`parse_vacf.sh`](../../scripts/parse_vacf.sh) — same handshake as the [phonon section above](#phonon-density-of-states-from-velocity-autocorrelation).
+
 | Check | Pass criterion | Failure mode |
 |-------|----------------|--------------|
 | NVE drift test | \(|H(t)-H(0)|/H(0) < 10^{-4}\) over 10 ps | \(\Delta t\) too large or bad neighbor skin |
-| Temperature | \(\langle T \rangle = 300 \pm 10\,\text{K}\) in production | Wrong ensemble (NVE during loading) |
+| Temperature | \(\langle T \rangle = T_w \pm 10\,\text{K}\) in production | Wrong ensemble (NVE during loading); 300 K default |
 | Modulus | Within 10% of DFT/experiment | Bad EAM or unconverged equilibration |
+| Mobility yaml | Converged \(v(\tau)\) at \(T_w\); cites shear input deck | Transient thermostat exported as drag |
 
 When bulk modulus matches but yield stress is half the experimental wire value, suspect **surface nucleation and strain rate**, not the integrator — the same scale-separation warning Part VII repeats for DDD.
+
+### Dynamics export manifest (handoff to VIII.3) {#dynamics-export-manifest-handoff-to-viii3}
+
+After Steps 1–6, extend `cu.foundation/` beside the VIII.1 static files:
+
+| File / folder | Content | Consumer |
+|---------------|---------|----------|
+| `cu.elastic/` | \(E\), \(\nu\), bulk modulus from NPT at \(T_w\) | Part IV elastic step; Part VI \(\mathbb{C}\) |
+| `mobility_cu_screw_{T_w}K.yaml` | \(M(\tau, T_w)\) from Step 5 | OpenDiS; Handshake 4a |
+| `npt_equil.log` | Thermostat parameters, equilibration length | [VIII.3 pedigree checklist](03-ab-initio-and-coarse-graining.md#pedigree-checklist-before-the-epilogue) |
+| `cu.phonon/phonon_dos_md.dat` | VACF peaks (if Step 6 run) | Part IX quasi-harmonic \(\alpha(T_w)\) audit |
+| `dynamics_README.md` | Ensemble, \(\Delta t\), NVE drift certificate, random seed | EAM-fit audit Lab act in VIII.3 |
+
+| Step | Action | Expected outcome |
+|------|--------|------------------|
+| 7 | Copy updated manifest into `foundation_README.md` | Static + dynamic archives listed |
+| 8 | Verify no raw dump is the only export | Yaml tables named before [VIII.3](03-ab-initio-and-coarse-graining.md) |
+
+Turn the page to [VIII.3](03-ab-initio-and-coarse-graining.md) when NVE drift is flat and `cu.elastic/` exists but the [pedigree checklist](03-ab-initio-and-coarse-graining.md#pedigree-checklist-before-the-epilogue) has no DFT evidence column — that is the signal for [row 54](../preface.md#skill-navigation-row-54), the [VIII.2 → VIII.3 reunion index](../appendix/sources.md#viii2-viii3-opening-hinge-reunion-index-row-54), and the [VIII.3 opening hinge](03-ab-initio-and-coarse-graining.md#opening-hinge-viii2-to-viii3). Row 35 names the same trajectory → export stitch at meta depth; row 54 names it at **chapter order** after row 53 closed the VIII.1 → VIII.2 hinge.
 
 ## Reproducibility checklist
 
