@@ -9,7 +9,7 @@ The copper wire at laboratory scale will never be a full DFT supercell. The wire
 
 > **VIII.3 — Act III — Descent:** Coarse-graining compresses trajectories into yaml tables DDD and FEM can consume with pedigree.
 
-When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter. When row 53 closed NPT at \(T_w\) but coarse-graining still feels like a new syllabus after the [VIII.2 dynamics export manifest](02-ensembles-integrators.md#dynamics-export-manifest-handoff-to-viii3), read the [preface row 54 skill checkpoint](../preface.md#skill-navigation-row-54) — the chapter-order mirror of [row 35](../preface.md#skill-navigation-row-35).
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter. When row 53 closed NPT at \(T_w\) but coarse-graining still feels like a new syllabus after the [VIII.2 dynamics export manifest](02-ensembles-integrators.md#dynamics-export-manifest-handoff-to-viii3), read the [preface row 54 skill checkpoint](../preface.md#skill-navigation-row-54) — the chapter-order mirror of [row 35](../preface.md#skill-navigation-row-35). When row 54 closed the pedigree checklist but [Part IX](../part09-dft/00-opening.md) still feels like standalone quantum chemistry after the [EAM-fit audit Lab act](#lab-act-eam-fit-audit-before-the-notch-md-run-act-v--notch), read the [preface row 55 skill checkpoint](../preface.md#skill-navigation-row-55) — the chapter-order mirror of [row 36](../preface.md#skill-navigation-row-36).
 
 ## Closing the arc from Part VIII.2 {#opening-hinge-viii2-to-viii3}
 
@@ -287,7 +287,7 @@ Partial separation d ∝ 1/γ_sf  →  Part VII segment rules
 
 **What breaks without metadynamics discipline.** A single constrained MD snapshot at one \(u\) reports an energy, not a **free energy** — entropic contributions at finite \(T\) shift \(\gamma_{\text{sf}}\) by several mJ/m\(^2\) for some metals. Depositing hills too aggressively fills the well before the system visits the unstable fault; the resulting \(\gamma_{\text{USF}}\) is a numerical artifact, not a barrier Part VII can use for recovery during annealing.
 
-### Lab act: GSF free-energy surface via well-tempered metadynamics (Act VI scout — Foundation)
+### Lab act: GSF free-energy surface via well-tempered metadynamics (Act VI scout — Foundation) {#lab-act-gsf-free-energy-surface-via-well-tempered-metadynamics-act-vi-scout--foundation}
 
 **Act VI** runs in parallel with the wire-scale afternoon — someone must supply \(\gamma_{\text{sf}}\) and \(\gamma_{\text{USF}}\) before OpenDiS imports stacking-fault numbers. DFT (Part IX) is the audit; **metadynamics on an audited EAM** is the fast scout that tells you where to place DFT single points on the \(\gamma(\mathbf{u})\) grid. This Lab act builds the full GSF curve in hours, not days.
 
@@ -509,23 +509,61 @@ Parallel scaling does not change the **physics exports** — only how quickly yo
 
 Document every conversion at the boundary: Ry → eV, Bohr → Å, metal units → SI when feeding DAMASK or Abaqus.
 
-## Lab act: EAM-fit audit before the notch MD run (Act V — Notch)
+## Lab act: EAM-fit audit before the notch MD run (Act V — Notch) {#lab-act-eam-fit-audit-before-the-notch-md-run-act-v--notch}
 
 **Act V** concentrates stress at the notch root where dislocation nucleation begins. Before launching a million-atom LAMMPS run, this Lab act **audits** the EAM potential against the DFT pedigree checklist — the same contract Part IX will enforce from first principles.
 
-For fcc Cu, minimum acceptance tests on a 500-atom NPT cell at 300 K:
+### Prerequisites (row 54 gate)
+
+Before GSF metadynamics or stacking-fault pulls, confirm [row 54](../preface.md#skill-navigation-row-54) closed: the [VIII.2 dynamics export manifest](02-ensembles-integrators.md#dynamics-export-manifest-handoff-to-viii3) archived `cu.elastic/`, `mobility_cu_screw_{T_w}K.yaml`, and `dynamics_README.md` beside [`fixtures/cht_export.yaml`](../../fixtures/cht_export.yaml). Read [VIII.2's Bridge](02-ensembles-integrators.md#bridge) aloud — "trajectories compress into handoff tables with DFT pedigree gates." This Lab act fills the **DFT evidence column** on those handoff rows; it does **not** replace QE SCF runs in [Part IX](../part09-dft/00-opening.md#opening-hinge-viii3-to-ix) — those are the audit floor after the [coarse-graining export manifest](#coarse-graining-export-manifest-handoff-to-ix) below is complete.
+
+**Step 1 — ingest dynamics exports.** Open `cu.elastic/` from VIII.2 and copy \(E\), \(\nu\), bulk modulus at \(T_w\) into `pedigree_checklist.yaml` with a **consumer** column (Part IV, Part VI, OpenDiS). Verify `mobility_cu_screw_{T_w}K.yaml` cites the same EAM file and \(\Delta t\) as `dynamics_README.md` — do not re-fit drag from a 300 K shear cell when `cht_export.yaml` archives 311.48 K.
+
+**Step 2 — bulk acceptance on audited EAM.** For fcc Cu, minimum acceptance tests on a 500-atom **NPT** cell at **\(T_w\)** (not 300 K defaults):
 
 | Test | EAM target | Pass criterion | Failure action |
 |------|------------|----------------|----------------|
-| Lattice constant \(a_0\) | DFT Murnaghan minimum (IX.1) | \(|a_{\text{EAM}} - a_{\text{DFT}}| < 0.01\,\text{Å}\) | Refit embedding/density functions |
+| Lattice constant \(a_0\) | DFT Murnaghan minimum (IX.3) or VIII.1 `cu_eam_a0.txt` | \(|a_{\text{EAM}} - a_{\text{DFT}}| < 0.01\,\text{Å}\) | Refit embedding/density functions |
 | Cohesive energy | DFT \(E_{\text{coh}}\) per atom | Within 5% | Check cutoff radius and fitting set |
-| \(C_{11}\) | DFT elastic constant | Within 10% via small-strain NPT | Add compressed/stretched configs to fit set |
-| Stacking fault \(\gamma_{\text{sf}}\) | DFT generalized SF surface | Same order of magnitude at intrinsic fault | Part VII partial separation wrong if this fails |
+| \(C_{11}\) | DFT elastic constant; compare to `cu.elastic/` | Within 10% via small-strain NPT at \(T_w\) | Add compressed/stretched configs to fit set |
+| Stacking fault \(\gamma_{\text{sf}}\) | DFT generalized SF surface | Within 15% at intrinsic fault | Run [GSF metadynamics Lab act](#lab-act-gsf-free-energy-surface-via-well-tempered-metadynamics-act-vi-scout--foundation) before notch MD |
+| Phonon LA peak | DFT `dispersion.dat` or placeholder | VACF peak within 10% of VIII.2 `phonon_dos_md.dat` | Fix potential before exporting \(M(\tau)\) |
 | Melting point (optional) | Experiment ~1358 K | EAM within ~100 K | Note if high-\(T\) creep studies are planned |
 
-Run a **short** NVT shear cell (\(\dot\gamma \sim 10^8\,\text{s}^{-1}\)) to extract a trial \(M(\tau)\) curve for OpenDiS. Document metal units → SI conversion in `units.txt` beside the handoff bundle from [VII.3](../part07-defects/03-polycrystal-and-fem-handoff.md).
+**Step 3 — cross-check mobility yaml.** Confirm `mobility_cu_screw_{T_w}K.yaml` from VIII.2 Step 5 matches the EAM file audited in Step 2. Archive a one-line cross-reference in `pedigree_checklist.yaml`: `mobility_source: MD_NVT_shear_PartVIII`.
 
-If any row fails, do **not** proceed to notch nucleation MD — fix the potential or train a DeepMD model on DFT snapshots (table in this chapter). The notch root is where EAM cutoff artifacts and wrong \(\gamma_{\text{sf}}\) first appear as spurious dislocation loops; Act V is too expensive to run on an un-audited surface.
+**Step 4 — trial shear sanity (optional).** Run a **short** NVT shear cell (\(\dot\gamma \sim 10^8\,\text{s}^{-1}\)) only if Step 2 failed on \(\gamma_{\text{sf}}\) but bulk moduli passed — extract a trial \(M(\tau)\) curve for comparison, not production OpenDiS export. Document metal units → SI conversion in `units.txt` beside the handoff bundle from [VII.3](../part07-defects/03-polycrystal-and-fem-handoff.md).
+
+**Step 5 — pedigree checklist gate.** Fill every row of the [pedigree checklist before the epilogue](#pedigree-checklist-before-the-epilogue) with **Minimum DFT evidence** placeholders (`pw.x` pending, `cu.relax.out` pending) — Part IX replaces placeholders with converged logs. Do not open [IX.1](../part09-dft/01-born-oppenheimer.md) until Step 6 archives the manifest.
+
+| Check | Pass criterion | Failure mode |
+|-------|----------------|--------------|
+| Dynamics manifest present | `cu.elastic/` + mobility yaml at \(T_w\) | Row 54 skipped; audit at 300 K |
+| Consumer column filled | Each export names Part IV/VII/IX consumer | Raw numbers without yaml |
+| GSF before notch | \(\gamma_{\text{sf}}\) row passes or metadynamics scheduled | Act V MD on bulk-fit EAM only |
+| Temperature pedigree | All tests at \(T_w\) from `cht_export.yaml` | Handbook 300 K smuggled in |
+
+If any Step 2 row fails, do **not** proceed to notch nucleation MD — fix the potential or train a DeepMD model on DFT snapshots (table earlier in this chapter). The notch root is where EAM cutoff artifacts and wrong \(\gamma_{\text{sf}}\) first appear as spurious dislocation loops; Act V is too expensive to run on an un-audited surface.
+
+### Coarse-graining export manifest (handoff to IX) {#coarse-graining-export-manifest-handoff-to-ix}
+
+After Steps 1–5, extend `cu.foundation/` beside the VIII.2 dynamic files:
+
+| File / folder | Content | Consumer |
+|---------------|---------|----------|
+| `pedigree_checklist.yaml` | Five export rows + DFT evidence column (placeholders OK) | [IX.0 opening hinge](../part09-dft/00-opening.md#opening-hinge-viii3-to-ix) |
+| `eam_fit_audit.log` | Step 2 pass/fail table at \(T_w\) | Act V notch MD gate |
+| `units.txt` | metal → SI for DAMASK/Abaqus | [VII.3 handoff](../part07-defects/03-polycrystal-and-fem-handoff.md) |
+| `gsf_scout/` (optional) | Metadynamics \(\gamma(\mathbf{u})\) if Step 2 GSF failed | IX.3 GSF slab cross-check |
+| `coarse_graining_README.md` | Links to `dynamics_README.md`, EAM version, row 54/55 gates | Epilogue foundation folder |
+
+| Step | Action | Expected outcome |
+|------|--------|------------------|
+| 6 | Copy checklist + audit into `foundation_README.md` | Static + dynamic + coarse-graining archives listed |
+| 7 | Verify `cu.relax.out` is **not** faked | Placeholder `pw.x pending` until Part IX Lab act |
+| 8 | Run [`parse_alpha.sh`](../../scripts/parse_alpha.sh) dry-run with `--target-t` from `cht_export.yaml` | Script finds checklist; `alpha_export.yaml` deferred to IX |
+
+Turn the page to [Part IX](../part09-dft/00-opening.md) when the pedigree checklist has consumer rows filled but **`cu.relax.out` is missing** — that is the signal for [row 55](../preface.md#skill-navigation-row-55), the [VIII.3 → IX.0 reunion index](../appendix/sources.md#viii3-ix0-opening-hinge-reunion-index-row-55), and the [IX.0 opening hinge from VIII.3](../part09-dft/00-opening.md#opening-hinge-viii3-to-ix). Row 36 names the same yaml → SCF stitch at meta depth; row 55 names it at **chapter order** after row 54 closed the VIII.2 → VIII.3 hinge.
 
 ## Concept map checkpoint (Part VIII)
 
@@ -581,4 +619,4 @@ Linear readers should carry this checklist into Part IX — each row is a **cont
 
 If a row in your project folder has only "EAM fit to experiment" with no QE `pw.x` log, Part IX is the audit chapter that closes the loop. Part II taught that honest FEM requires a convergence target in \(H^1\); Part IX teaches that honest multiscale mechanics requires a **convergence target in SCF energy** — same instinct, finer rung.
 
-Turn the page when the EAM potential matches bulk moduli but no one can cite the DFT input deck that produced it — that is the signal the foundation run is missing, and Part IX is where the audit starts.
+Turn the page when the EAM potential matches bulk moduli but no one can cite the DFT input deck that produced it — that is the signal the foundation run is missing, and Part IX is where the audit starts. When row 54 closed yaml exports but IX.0 still feels like a new course, read the [preface row 55 skill checkpoint](../preface.md#skill-navigation-row-55) after the [coarse-graining export manifest](#coarse-graining-export-manifest-handoff-to-ix) — the chapter-order mirror of [row 36](../preface.md#skill-navigation-row-36).
