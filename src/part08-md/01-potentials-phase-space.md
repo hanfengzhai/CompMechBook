@@ -9,7 +9,7 @@ When continuum fields smear atoms into density, MD puts them back. When DFT trac
 
 > **VIII.1 — Act III — Descent:** Interatomic potentials and phase space replace fields with coordinates and forces at dislocation cores.
 
-When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter. When row 51 closed polycrystal handoff but phase space still feels like a new subject, read the [preface row 52 skill checkpoint](../preface.md#skill-navigation-row-52) — the competence-time mirror of [VII.3's opening hinge to VIII.1](../part07-defects/03-polycrystal-and-fem-handoff.md#opening-hinge-vii3-to-viii1).
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter. When row 51 closed polycrystal handoff but phase space still feels like a new subject, read the [preface row 52 skill checkpoint](../preface.md#skill-navigation-row-52) — the competence-time mirror of [VII.3's opening hinge to VIII.1](../part07-defects/03-polycrystal-and-fem-handoff.md#opening-hinge-vii3-to-viii1). When row 52 closed EAM and Hamiltonian sections but [VIII.2](02-ensembles-integrators.md) still feels like standalone statistical mechanics, read the [preface row 53 skill checkpoint](../preface.md#skill-navigation-row-53) after this chapter's Lab act — the chapter-order mirror of [row 34](../preface.md#skill-navigation-row-34).
 
 ## Closing the arc from Part VII {#opening-hinge-vii3-to-viii1}
 
@@ -300,7 +300,11 @@ Potentials define forces; integrators and statistical ensembles define how traje
 
 ## Lab act: EAM lattice constant from energy minimization (Act V — Notch prelude) {#lab-act-eam-lattice-constant-from-energy-minimization-act-v--notch-prelude}
 
-**Act V** in the lab is the notch — stress concentration at a geometric defect. MD resolves the atomic distortion that continuum \(\mathbf{F}\) smooths over. Before running dynamics, **calibrate the ink**: the EAM lattice parameter \(a_0\) and cohesive energy must match bulk copper at 300 K.
+**Act V** in the lab is the notch — stress concentration at a geometric defect. MD resolves the atomic distortion that continuum \(\mathbf{F}\) smooths over. Before running dynamics, **calibrate the ink**: the EAM lattice parameter \(a_0\) and cohesive energy must match bulk copper on the Born–Oppenheimer surface this potential defines — then **equilibrate at \(T_w\)**, not at 0 K alone, in [VIII.2](02-ensembles-integrators.md).
+
+### Prerequisites (row 52 gate)
+
+Before `minimize`, confirm [row 52](../preface.md#skill-navigation-row-52) closed: the [VII.3 handoff Lab act](../part07-defects/03-polycrystal-and-fem-handoff.md#lab-act-archive-the-opendis--damask--fem-handoff-act-ivv) archived `mobility.yaml` citing `MD_NVT_shear_PartVIII`, with [`fixtures/cht_export.yaml`](../../fixtures/cht_export.yaml) copied into the mesoscale folder. This Lab act supplies \(a_0\) and \(V(\{\mathbf{r}_i\})\); it does **not** replace NVT shear or NPT equilibration — those are [VIII.2](02-ensembles-integrators.md#opening-hinge-viii1-to-viii2) after the foundation manifest below is complete.
 
 Build a minimal FCC copper supercell (4×4×4 conventional cells, 256 atoms) in LAMMPS with `pair_style eam/alloy` and a published `Cu.eam.alloy` file:
 
@@ -319,6 +323,26 @@ Sanity checks before exporting to Part VII or Part IX:
 - **Units**: eV/Å³ vs GPa conversion documented in the run log (see [IX.3](../part09-dft/03-dft-workflows.md) unit table).
 
 This 256-atom minimization runs in seconds on a laptop — it is the **foundation archive** Part IX's DFT run will supersede when ab initio parameters are available. Part VII's OpenDiS simulation does not need the full supercell, but its Burgers vector magnitude \(b = a_0/\sqrt{2}\) for FCC must match the \(a_0\) trusted here. When the notch MD run in Act V nucleates dislocations, the core structure is this potential's responsibility — not the Peach–Köhler law alone.
+
+### Foundation folder manifest (handoff to VIII.2)
+
+After steps 1–5, archive in `cu.foundation/` (or the Act VI folder your site uses) beside a copy of [`fixtures/cht_export.yaml`](../../fixtures/cht_export.yaml):
+
+| File | Content | Consumer |
+|------|---------|----------|
+| `cu_eam_a0.txt` | Minimized lattice parameter (Å) | NPT equilibration in [VIII.2](02-ensembles-integrators.md); DDD yaml |
+| `cu_eam_ecoh.txt` | Cohesive energy (eV/atom) | Part IX audit |
+| `cu_eam_B.txt` | Bulk modulus from ±0.5% volumetric strain | Part VI \(E,\nu\) handshake |
+| `cu_burgers_fcc.txt` | \(b = a_0/\sqrt{2}\) (Å) | OpenDiS segment geometry |
+| `cht_export.yaml` (copy) | \(T_w = 311.48\,\text{K}\), \(\Delta T\) from CHT | NVT/NPT target — not 300 K default |
+| `foundation_README.md` | Potential filename, LAMMPS build, date | [VIII.3 pedigree checklist](03-ab-initio-and-coarse-graining.md#pedigree-checklist-before-the-epilogue) |
+
+| Step | LAMMPS command / action | Expected outcome |
+|------|-------------------------|------------------|
+| 6 | Read minimized `lx`; write `cu_burgers_fcc.txt` with \(b = a_0/\sqrt{2}\) | Burgers matches OpenDiS yaml to 0.001 Å |
+| 7 | Copy `cht_export.yaml`; log \(T_w\) in `foundation_README.md` | [VIII.2 NPT Lab act](02-ensembles-integrators.md#lab-act-npt-tension-on-a-copper-nanowire-segment) uses \(T_w\) |
+
+Turn the page to [VIII.2](02-ensembles-integrators.md) when the manifest is on disk but **no trajectory** has integrated at \(T_w\) — that is the signal for [row 53](../preface.md#skill-navigation-row-53), the [VIII.1 → VIII.2 reunion index](../appendix/sources.md#viii1-viii2-opening-hinge-reunion-index-row-53), and the [VIII.2 opening hinge](02-ensembles-integrators.md#opening-hinge-viii1-to-viii2). Row 34 names the same static→dynamic stitch at meta depth; row 53 names it at **chapter order** after row 52 closed the VII.3 → VIII.1 hinge.
 
 ## Concept map checkpoint (interatomic potentials)
 

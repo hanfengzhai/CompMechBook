@@ -9,7 +9,7 @@ Getting the ensemble wrong is not a small error. It is simulating the wrong expe
 
 > **VIII.2 — Act III — Descent:** Ensembles and integrators make MD reproducible — LAMMPS is the wire at atomic timestep.
 
-When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter. When row 52 closed phase space but integrators still feel like a new syllabus after the [VIII.1 EAM Lab act](01-potentials-phase-space.md#lab-act-eam-lattice-constant-from-energy-minimization-act-v--notch-prelude), read the [preface row 53 skill checkpoint](../preface.md#skill-navigation-row-53) — the chapter-order mirror of [row 34](../preface.md#skill-navigation-row-34).
 
 ## Closing the arc from Part VIII.1 {#opening-hinge-viii1-to-viii2}
 
