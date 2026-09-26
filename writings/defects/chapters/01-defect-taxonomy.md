@@ -206,6 +206,21 @@ This chapter is where Part VI's fitted hardening parameters receive a geometric 
 
 The Act IV Lab act classified slip traces on cold-drawn copper before the load cell bent — line defects carry the history drawing wrote into the wire. When \(\rho\) is only a label on an input deck, the taxonomy has not yet become geometry; [VII.2](02-dislocation-dynamics.md) is where the forest becomes computable lines.
 
+## Opening hinge (VII.1 → VII.2) {#opening-hinge-vii1-to-vii2}
+
+[Row 49](../appendix/sources.md#vii0-vii1-opening-hinge-reunion-index-row-49) closed **Burgers taxonomy** — dimension tables, \(\mathbf{b} = \oint d\mathbf{u}\), and the [Scene](#scene-the-wire-yields) at the yield knee recited. [VII.2](02-dislocation-dynamics.md) must not open like a standalone **Defects Notes** chapter on Peach–Köhler formulas while the [Lab act](#lab-act-read-the-slip-lines-before-the-load-cell-bends-act-iv-hardening) still has only classified slip traces, not moving segments. This hinge is the **downstream half** of the [Bridge](#bridge) below; read it aloud when row 49 verified \(\mathbf{b}\) on {111} but OpenDiS input decks feel disconnected from the load cell.
+
+| Part VII.1 export (taxonomy) | Part VII.2 consumer (DDD) | Pedigree anchor |
+|------------------------------|---------------------------|-----------------|
+| Burgers vector \(\mathbf{b}\), line direction \(\boldsymbol{\xi}\) | Peach–Köhler force \(\mathbf{f} = (\boldsymbol{\sigma}\cdot\mathbf{b})\times\boldsymbol{\xi}\) | Same slip system {111}\(\langle 110 \rangle\) on the wire |
+| Taylor \(\tau \propto \sqrt{\rho}\) from forest statistics | Segment network evolution; \(\rho\) from line length | Scalar \(\rho\) becomes segment count, not fitted \(H\) |
+| [Scene](#scene-the-wire-yields): slip lines at yield knee | [Scene: the forest grows](02-dislocation-dynamics.md#scene-the-forest-grows): post-yield hardening | Same tensile test, mesoscale timestep |
+| Elastic \(1/r\) fields around lines | Long-range segment stress + short-range core rules | Continuum \(\boldsymbol{\sigma}\) from Part IV/VI feeds external load |
+| \(T_w\) from [`fixtures/cht_export.yaml`](../../fixtures/cht_export.yaml) | Mobility \(M(\tau, T_w)\) in [VII.2 Lab act](02-dislocation-dynamics.md#lab-act-calibrate-screw-mobility-from-md-shear-act-iv--mobility-prelude) | [Row 8](../preface.md#skill-navigation-row-8) temperature pedigree |
+| [Bridge](#bridge): \(\rho\) label → computable forest | VII.2 plot spine: lines move, multiply, harden | [Row 19](../preface.md#skill-navigation-row-19) chapter audit |
+
+The [VII.1 → VII.2 reunion index](../appendix/sources.md#vii1-vii2-opening-hinge-reunion-index-row-50) reunites this hinge with [row 49](../preface.md#skill-navigation-row-49) when Burgers geometry read correctly but **VII.2 opened before the taxonomy Bridge or slip-line Lab act** — turn to [VII.2's opening hinge from VII.1](02-dislocation-dynamics.md#opening-hinge-vii1-to-vii2), not to [row 33](../appendix/sources.md#part-vii-viii-descent-hinge-reunion-index-row-33) (Part VII → VIII), until Peach–Köhler motion names what the dimension table classified.
+
 ## Bridge
 
 Dislocation dynamics simulates line defects directly — too coarse for every atom, too fine for pure FEM. It is the mesoscale chapter of our copper wire story: the place where work hardening becomes geometry and statistics rather than a fitted curve.
@@ -231,4 +246,4 @@ The taxonomy above named what broke the smooth continuum picture: point defects 
 
 Return to the [prologue](../prologue/00-many-scales.md): **Act IV — Hardening** is when the load cell curve bends upward after yield. Part VI fitted that bend with phenomenological plasticity; Part VII explains the **geometry** cold drawing wrote into the wire before the test began. When mobility laws or core energies are still adjustable knobs, the signal to descend further is Part VIII — atomistics at the notch root and dislocation core. The [Part VII → VIII descent hinge reunion](../appendix/sources.md#part-vii-viii-descent-hinge-reunion-index-row-33) (row 33) is the navigation stitch when DDD and MD still feel like separate courses after this taxonomy — read [VII.2's mobility Lab act](02-dislocation-dynamics.md#lab-act-calibrate-screw-mobility-from-md-shear-act-iv--mobility-prelude) and the [Part VIII descent hinge](../part08-md/00-opening.md#descent-hinge-cores-mobility-and-tw-pedigree) before opening LAMMPS.
 
-Turn the page when \(\rho\) is a label on an input deck rather than a count of moving lines — dislocation dynamics is where the forest becomes computable geometry.
+Turn the page when \(\rho\) is a label on an input deck rather than a count of moving lines — dislocation dynamics is where the forest becomes computable geometry. When row 49 is complete, read [opening hinge (VII.1 → VII.2)](#opening-hinge-vii1-to-vii2) before Peach–Köhler proofs; proceed to [row 50](../preface.md#skill-navigation-row-50) when mobility tables feel like literature constants without \(\mathbf{b}\) and \(\boldsymbol{\xi}\) from this chapter.

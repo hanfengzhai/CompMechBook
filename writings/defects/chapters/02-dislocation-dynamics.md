@@ -7,7 +7,23 @@ When metal yields, dislocations multiply and tangle. **Dislocation dynamics (DDD
 
 > **VII.2 — Act III — Descent:** Dislocation lines move, multiply, and harden the wire — Taylor's forest explains the load curve knee.
 
-When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter. When row 49 restored Burgers taxonomy but Peach–Köhler simulation still feels like standalone DDD coursework, read the [preface row 50 skill checkpoint](../preface.md#skill-navigation-row-50) — the competence-time mirror of the [opening hinge from VII.1](#opening-hinge-vii1-to-vii2) below.
+
+## Closing the arc from Part VII.1 {#opening-hinge-vii1-to-vii2}
+
+If you have read linearly since [VII.0's Bridge](00-opening.md#bridge), [VII.1](01-defect-taxonomy.md) closed with the [opening hinge from VII.0](01-defect-taxonomy.md#opening-hinge-vii0-to-vii1), the [Scene: the wire yields](01-defect-taxonomy.md#scene-the-wire-yields), the dimension table and Burgers definition, the [Lab act](01-defect-taxonomy.md#lab-act-read-the-slip-lines-before-the-load-cell-bends-act-iv-hardening) that classified slip traces, and a [Bridge](01-defect-taxonomy.md#bridge) that named **computable forest geometry** — without yet integrating Peach–Köhler timesteps. Part VII.2 does not re-open taxonomy tables or re-derive \(\mathbf{b} = \oint d\mathbf{u}\); it **moves** the lines the taxonomy named:
+
+| Part VII.1 export | Part VII.2 vocabulary |
+|-------------------|----------------------|
+| Plot spine: singularities continuum smooths away | Plot spine: lines move, multiply, harden the wire |
+| Burgers \(\mathbf{b}\), edge/screw/mixed on {111} | Segment network with \(\mathbf{b}\), \(\boldsymbol{\xi}\) per link |
+| Taylor \(\tau \propto \sqrt{\rho}\) as forest statistics | \(\rho(t)\) from evolving line length in OpenDiS |
+| Elastic \(1/r\) stress around static lines | Dynamic \(\boldsymbol{\sigma}\) from segments + external load |
+| Slip lines visible at yield knee | Load cell hardening after yield — forest thickens under load |
+
+[VII.1's Bridge](01-defect-taxonomy.md#bridge) named the signal to turn the page: **\(\rho\) on an input deck must become a count of moving lines**. The [VII.1 → VII.2 reunion index](../appendix/sources.md#vii1-vii2-opening-hinge-reunion-index-row-50) reunites this opening with [row 49](../preface.md#skill-navigation-row-49) when taxonomy read correctly but **VII.2 opened before the Bridge one-liner or slip-line Lab act** — same copper wire, same tensile test, now with Peach–Köhler forces instead of dimension tables.
+
+Part VII.1 classified the forest; Part VII.2 makes it evolve. When mobility calibration at \(T_w\) feels premature, finish the Peach–Köhler section — [VII.3](03-polycrystal-and-fem-handoff.md) requires forest exports, not the reverse.
 
 ## Scene: the forest grows
 
