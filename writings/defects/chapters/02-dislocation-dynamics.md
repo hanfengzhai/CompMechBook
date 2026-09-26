@@ -479,6 +479,21 @@ This chapter's four questions — scoped to **segment-network simulation**, not 
 
 The load cell's post-yield bend is not a fitted Voce slope alone — it is a forest whose density and link statistics DDD can measure. The **full Part VII** checkpoint — taxonomy through crystal plasticity handoff — closes in [VII.3](03-polycrystal-and-fem-handoff.md). Parts VIII–IX supply the mobility and elastic constants this chapter consumes.
 
+## Opening hinge (VII.2 → VII.3) {#opening-hinge-vii2-to-vii3}
+
+[Row 50](../appendix/sources.md#vii1-vii2-opening-hinge-reunion-index-row-50) closed **Peach–Köhler DDD** — segment motion, \(\tau(\gamma)\), and the [forest-density Lab act](#lab-act-read-the-hardening-bend-from-forest-density-act-iv) recited on a single crystal. [VII.3](03-polycrystal-and-fem-handoff.md) must not open like standalone **crystal plasticity coursework** while OpenDiS converges on one orientation but the **cold-drawn spool** still disagrees with experiment — the organizational scale (texture, grain boundaries, drawing dies) is what homogenization adds, not a new subject. This hinge is the **downstream half** of the [Bridge to Part VII.3](#bridge-to-vii3) below; read it aloud when row 50 verified \(\mathbf{f}_{\text{PK}}\) on segments but DAMASK decks feel disconnected from \(\rho(\gamma)\) on the load cell.
+
+| Part VII.2 export (single-crystal DDD) | Part VII.3 consumer (polycrystal handoff) | Pedigree anchor |
+|----------------------------------------|-------------------------------------------|-----------------|
+| \(\tau(\gamma)\), \(\rho(\gamma)\) from OpenDiS RVE | Taylor fit → Voce \(k_1\), `hardening.yaml` | Same forest statistics, many orientations |
+| Link-length histograms on one slip system | Texture average; Schmid factors per grain | Scalar \(\rho\) must not collapse drawing texture |
+| Mobility \(M(\tau, T_w)\) tabulated | Flow rule \(\dot\gamma^{(s)}(\tau, T)\) on FEM mesh | [Row 8](../preface.md#skill-navigation-row-8) temperature pedigree |
+| [Scene: the forest grows](#scene-the-forest-grows): post-yield on one crystal | [Scene: from one crystal to a spool](03-polycrystal-and-fem-handoff.md#scene-from-one-crystal-to-a-spool-of-wire) | Same wire, thousands of grains |
+| [Lab act](#lab-act-read-the-hardening-bend-from-forest-density-act-iv): Taylor on paper + OpenDiS checklist | OpenDiS → DAMASK → polycrystal FEM pipeline | Part VI \(H\) replaced by archived \(\tau(\rho)\) |
+| [Bridge to VII.3](#bridge-to-vii3): single crystal vs spool | VII.3 plot spine: OpenDiS → DAMASK → FEM | [Row 19](../preface.md#skill-navigation-row-19) chapter audit |
+
+The [VII.2 → VII.3 reunion index](../appendix/sources.md#vii2-vii3-opening-hinge-reunion-index-row-51) reunites this hinge with [row 50](../preface.md#skill-navigation-row-50) when Peach–Köhler motion read correctly but **VII.3 opened before the forest Lab act or Bridge one-liner** — turn to [VII.3's opening hinge from VII.2](03-polycrystal-and-fem-handoff.md#opening-hinge-vii2-to-vii3), not to [row 33](../appendix/sources.md#part-vii-viii-descent-hinge-reunion-index-row-33) (Part VII → VIII), until polycrystal homogenization names what the single-crystal RVE simulated.
+
 ## Bridge to Part VII.3 {#bridge-to-vii3}
 
 Single-crystal DDD explains how lines move, multiply, and harden a crystal — but the copper wire is polycrystalline and structural models speak crystal plasticity and FEM, not segment networks alone. [VII.3](03-polycrystal-and-fem-handoff.md) follows how DDD statistics export upward to constitutive laws and where Peierls barriers and grain boundaries still demand finer-scale input from Parts VIII–IX.
@@ -511,4 +526,4 @@ Parts VIII–IX supply the mobility and elastic constants this chapter consumed;
 | \(C_{ij}\) from DFT or handbook | Peierls threshold calibrated | Handshake 2: elastic constants |
 | Single-crystal RVE stress curve | Texture average planned | Handshake 5: polycrystal FEM |
 
-Turn the page when OpenDiS converges on one orientation but the wire's macroscopic hardening still disagrees with experiment — that is the signal that polycrystal texture, not segment timestep, is the missing physics. If the forest-density Lab act above matches the load cell bend on paper but the spool test does not, the cold-drawn wire's grain structure — not another OpenDiS increment — is what [VII.3](03-polycrystal-and-fem-handoff.md) must homogenize.
+Turn the page when OpenDiS converges on one orientation but the wire's macroscopic hardening still disagrees with experiment — that is the signal that polycrystal texture, not segment timestep, is the missing physics. If the forest-density Lab act above matches the load cell bend on paper but the spool test does not, the cold-drawn wire's grain structure — not another OpenDiS increment — is what [VII.3](03-polycrystal-and-fem-handoff.md) must homogenize. When row 50 is complete, read [opening hinge (VII.2 → VII.3)](#opening-hinge-vii2-to-vii3) before DAMASK calibration; proceed to [row 51](../preface.md#skill-navigation-row-51) when OpenDiS exports feel correct on one crystal but crystal plasticity decks still cite literature \(\alpha=0.3\) without \(\rho(\gamma)\) pedigree.

@@ -9,7 +9,23 @@ The cold-drawn copper wire is not a single crystal. It is thousands of grains, e
 
 > **VII.3 — Act III — Descent:** OpenDiS to DAMASK to FEM is the polycrystal handoff when texture and hardening matter.
 
-When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter.
+When this chapter feels abstract, read the sentence above aloud — it is this chapter's role in the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc). See the [numbered-chapter plot spine index](../appendix/sources.md#numbered-chapter-plot-spine-index-row-19) for all 35 rungs; [row 19](../preface.md#skill-navigation-row-19) closes the audit when mid-chapter reading stalls despite a Bridge from the prior chapter. When row 50 restored Peach–Köhler motion but polycrystal handoff still feels like standalone DAMASK coursework, read the [preface row 51 skill checkpoint](../preface.md#skill-navigation-row-51) — the competence-time mirror of the [opening hinge from VII.2](#opening-hinge-vii2-to-vii3) below.
+
+## Closing the arc from Part VII.2 {#opening-hinge-vii2-to-vii3}
+
+If you have read linearly since [VII.1's Bridge](01-defect-taxonomy.md#bridge), [VII.2](02-dislocation-dynamics.md) closed with the [opening hinge from VII.1](02-dislocation-dynamics.md#opening-hinge-vii1-to-vii2), Peach–Köhler timesteps, the [Scene: the forest grows](02-dislocation-dynamics.md#scene-the-forest-grows), the [forest-density Lab act](02-dislocation-dynamics.md#lab-act-read-the-hardening-bend-from-forest-density-act-iv) that linked \(\tau(\gamma)\) to Taylor hardening, and a [Bridge to VII.3](02-dislocation-dynamics.md#bridge-to-vii3) that named **single crystal vs cold-drawn spool** — without yet averaging texture or grain-boundary barriers. Part VII.3 does not re-derive Peach–Köhler forces or re-run OpenDiS on one orientation; it **homogenizes** the statistics VII.2 exported:
+
+| Part VII.2 export | Part VII.3 vocabulary |
+|-------------------|----------------------|
+| Plot spine: lines move, multiply, harden | Plot spine: OpenDiS → DAMASK → polycrystal FEM |
+| \(\tau(\gamma)\), \(\rho(\gamma)\) on one RVE | Internal state variables on every Gauss point |
+| Converged segment network on {111} | Texture, Schmid factors, grain-boundary obstacles |
+| `ddd_rho_vs_strain.csv` beside mobility yaml | `hardening.yaml`, rate handshake, FE² at notch |
+| Single-crystal load curve matches Taylor on paper | Spool test matches only after polycrystal average |
+
+[VII.2's Bridge](02-dislocation-dynamics.md#bridge-to-vii3) named the signal to turn the page: **OpenDiS converges on one orientation but macroscopic hardening still disagrees**. The [VII.2 → VII.3 reunion index](../appendix/sources.md#vii2-vii3-opening-hinge-reunion-index-row-51) reunites this opening with [row 50](../preface.md#skill-navigation-row-50) when DDD read correctly but **VII.3 opened before the forest Lab act or Bridge one-liner** — same copper wire, same Act IV hardening knee, now with drawing dies and grain boundaries instead of a lone slip system.
+
+Part VII.2 simulated the forest; Part VII.3 asks how that forest survives **organization** — the cold-drawn wire on the bench was never a single crystal. When rate extrapolation to the lab grip feels premature, finish the polycrystal calibration section — Handshake 4a in the epilogue requires `hardening.yaml` from this chapter, not the reverse.
 
 ## Scene: from one crystal to a spool of wire
 
