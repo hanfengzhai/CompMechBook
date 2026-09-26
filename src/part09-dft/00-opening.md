@@ -10,7 +10,7 @@ Three chapters cover Born–Oppenheimer and the Hohenberg–Kohn framework, Kohn
 
 > **Act III — Descent, rung 3:** Every EAM parameter hides electron density; Part IX solves Kohn–Sham on fcc Cu and exports moduli with SCF pedigree — the finest rung before [Act IV couples every handshake](../epilogue/multiscale.md).
 
-When EAM potentials match bulk moduli but no DFT deck is cited, read the sentence above aloud — it is the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc) role for Part IX in one breath. See the [part-opening plot spine index](../appendix/sources.md#part-opening-plot-spine-index-row-18) for all nine rungs; the [coupling ladder](#the-coupling-ladder-me-412-reunion) below reunites ascent and descent in workflow time.
+When EAM potentials match bulk moduli but no DFT deck is cited, read the sentence above aloud — it is the [chapter roadmap](../appendix/sources.md#chapter-roadmap-one-continuous-arc) role for Part IX in one breath. See the [part-opening plot spine index](../appendix/sources.md#part-opening-plot-spine-index-row-18) for all nine rungs; the [coupling ladder](#the-coupling-ladder-me-412-reunion) below reunites ascent and descent in workflow time. When row 55 closed the [VIII.3 → IX.0 hinge](../part08-md/03-ab-initio-and-coarse-graining.md#bridge-to-part-ix) but [IX.1](01-born-oppenheimer.md) still feels like standalone quantum chemistry after the [foundation SCF audit Lab act](#lab-act-foundation-scf-audit-before-born-oppenheimer-act-vi--foundation), read the [preface row 56 skill checkpoint](../preface.md#skill-navigation-row-56) — the chapter-order mirror of [row 37](../preface.md#skill-navigation-row-37).
 
 ## Chapter guide
 
@@ -193,9 +193,49 @@ Part II taught that Galerkin convergence is projection onto finite subspaces; Pa
 
 The copper wire that began as a chain of coupled springs ends as a periodic crystal whose valence electrons are solved by a self-consistent **eigenvalue loop** (Part I), in function spaces of orbitals (Part II), arising from a variational principle (Part III), discretized on a basis (Part IV's assembly philosophy), and exported upward as moduli and potentials (Parts VI–VIII). Part IX is not a new subject bolted onto the end. It is the **finest rung** of the ladder the prologue promised — and the epilogue will ask how to climb back up with the numbers computed here.
 
-## Lab act: VI — Foundation (always, in parallel)
+## Lab act: foundation SCF audit before Born–Oppenheimer (Act VI — Foundation) {#lab-act-foundation-scf-audit-before-born-oppenheimer-act-vi--foundation}
 
-Before the operator mounted the wire, someone chose Young's modulus, Poisson's ratio, and a yield stress for the input deck. **Act VI** is that invisible afternoon — DFT on a small fcc cell, MD fitting an EAM potential, DDD calibrating mobility — run in parallel with Acts I–V and supplying every number the coarser codes trust. Part IX is where the foundation becomes explicit: cohesive energy, elastic constants, and stacking-fault energies exported upward with a pedigree traceable to Kohn–Sham orbitals.
+**Act VI** runs in parallel with the visible lab session — someone must choose moduli and potentials before the wire-scale job starts. Before [IX.1](01-born-oppenheimer.md) opens Schrödinger's equation as a new course, this Lab act **audits** the foundation folder against the [VIII.3 pedigree checklist](../part08-md/03-ab-initio-and-coarse-graining.md#pedigree-checklist-before-the-epilogue) — the same contract the epilogue's Handshakes 1–3 enforce in workflow time.
+
+### Prerequisites (row 55 gate)
+
+Before `pw.x` or [`parse_alpha.sh`](../../scripts/parse_alpha.sh), confirm [row 55](../preface.md#skill-navigation-row-55) closed: the [VIII.3 coarse-graining export manifest](../part08-md/03-ab-initio-and-coarse-graining.md#coarse-graining-export-manifest-handoff-to-ix) archived `pedigree_checklist.yaml`, `eam_fit_audit.log`, and [`fixtures/cht_export.yaml`](../../fixtures/cht_export.yaml) copied into `cu.foundation/`. Read [VIII.3's Bridge to Part IX](../part08-md/03-ab-initio-and-coarse-graining.md#bridge-to-part-ix) aloud — "EAM on trust needs Born–Oppenheimer re-derivation." This Lab act fills **SCF evidence** on checklist rows; it does **not** replace Born–Oppenheimer theorems in [IX.1](01-born-oppenheimer.md#opening-hinge-ix0-to-ix1) — those are the vocabulary floor after the [electronic audit export manifest](#electronic-audit-export-manifest-handoff-to-ix1) below is complete.
+
+**Step 1 — ingest pedigree checklist.** Open `pedigree_checklist.yaml` from VIII.3 and verify every export row lists a **consumer** (Part IV, VII, VIII, IX) and a **Minimum DFT evidence** column — replace `pw.x pending` placeholders only with real logs or an explicit `pending until Step 3` note. Cross-check [`fixtures/cu.foundation/README.md`](../../fixtures/cu.foundation/README.md): `T_w_K` must not stay `null` once Handshake 2 converged — copy `T_wall_K` from `cht_export.yaml` (\(T_w = 311.48\,\text{K}\) in the book fixture).
+
+**Step 2 — SCF relaxation gate.** Inspect [`fixtures/cu.foundation/cu.relax.out`](../../fixtures/cu.foundation/cu.relax.out) (or your project's `cu.relax.out`). Pass criterion: the log contains `convergence has been achieved` and records functional, pseudopotential, \(E_{\text{cut}}\), and k-mesh in the header block [`parse_dft_workflow.sh`](../../scripts/parse_dft_workflow.sh) expects. If the log is missing, run a single fcc Cu `vc-relax` or `relax` deck from [IX.3](03-dft-workflows.md) — do not open IX.1 until Step 3 archives the manifest.
+
+**Step 3 — thermal phonon audit at \(T_w\).** Run [`parse_alpha.sh`](../../scripts/parse_alpha.sh) on `cu.phonon/a_vs_T.dat` with `--target-t` read from `cht_export.yaml`. Archive `alpha_export.yaml` beside `cu.elastic/` with an explicit \(T_w\) column — not \(\alpha(300\,\text{K})\) alone. When phonon lifetime feeds Handshake 4a, verify `phonon_lifetime_vs_T.dat` can interpolate to \(T_w\) (see [thermal phonon audit at \(T_w\)](#thermal-phonon-audit-at-tw)).
+
+**Step 4 — checklist ↔ log crosswalk.** For each pedigree row (\(a_0\), \(E_{\text{coh}}\), \(C_{ij}\), \(\gamma_{\text{sf}}\), phonon peak), name the matching file under `cu.foundation/` or mark `pending` with the IX.3 workflow that will produce it. Run `./scripts/parse_dft_workflow.sh fixtures/cu.foundation --check` and fix any red lines before exporting upward.
+
+**Step 5 — Bridge recitation gate.** Read [this part's Bridge](#bridge) opening sentence aloud: "Separate electrons from nuclei; the ground-state density alone determines the energy landscape." Do not open [IX.1](01-born-oppenheimer.md) until Step 6 archives the manifest — theorems without SCF pedigree are multiscale folklore.
+
+| Check | Pass criterion | Failure mode |
+|-------|----------------|--------------|
+| Row 55 closed | `pedigree_checklist.yaml` + `eam_fit_audit.log` at \(T_w\) | Part IX opened before VIII.3 manifest |
+| SCF log | `convergence has been achieved` in `cu.relax.out` | Handbook moduli without QE deck |
+| \(T_w\) column | `T_w_K` populated from `cht_export.yaml` | Handshakes 3 and 4a at 300 K |
+| Parser dry-run | `parse_dft_workflow.sh --check` passes | Orphan folders without consumer rows |
+
+### Electronic audit export manifest (handoff to IX.1) {#electronic-audit-export-manifest-handoff-to-ix1}
+
+After Steps 1–5, extend `cu.foundation/` beside the VIII.3 coarse-graining archive:
+
+| File / folder | Content | Consumer |
+|---------------|---------|----------|
+| `cu.relax.out` | Converged SCF relaxation log | [IX.1 opening hinge](01-born-oppenheimer.md#opening-hinge-ix0-to-ix1) |
+| `alpha_export.yaml` | \(\alpha(T_w)\), \(\varepsilon_{\text{th}} = \alpha(T_w)\Delta T\) | Handshake 3; [IX.3 quasiharmonic Lab act](03-dft-workflows.md#lab-act-quasiharmonic-alpha-handshake-3-pedigree) |
+| `dft_audit_README.md` | Links to `coarse_graining_README.md`, row 55/56 gates, parser commands | Epilogue foundation folder |
+| `pedigree_checklist.yaml` | DFT evidence column filled (logs or dated pending) | [IX.0 opening hinge from VIII.3](#opening-hinge-viii3-to-ix) |
+
+| Step | Action | Expected outcome |
+|------|--------|------------------|
+| 6 | Copy manifest into `foundation_README.md` | Static + dynamic + electronic archives listed |
+| 7 | Verify BO/HK are **not** faked in yaml | Theorems deferred to IX.1; logs only here |
+| 8 | Name \(V_{\text{BO}}\) as **pending vocabulary** | One-line note: "EAM approximates BO surface — derive in IX.1" |
+
+Turn the page to [IX.1](01-born-oppenheimer.md) when `cu.relax.out` exists but **Born–Oppenheimer still feels like a new subject** — that is the signal for [row 56](../preface.md#skill-navigation-row-56), the [IX.0 → IX.1 reunion index](../appendix/sources.md#ix0-ix1-opening-hinge-reunion-index-row-56), and the [IX.1 opening hinge from IX.0](01-born-oppenheimer.md#opening-hinge-ix0-to-ix1). Row 37 names the same SCF → theorem stitch at meta depth; row 56 names it at **chapter order** after row 55 closed the VIII.3 → IX.0 hinge.
 
 ## Reading Part IX after Part VIII
 
@@ -235,4 +275,4 @@ The book's recurring character — weak form, virtual work, variational principl
 
 **Reading order** (VII → VIII → IX) descends to finer physics; **workflow order** (IX → VIII → VII → IV) is how practitioners build input decks — see the [two clocks note](../part08-md/00-opening.md#two-clocks-reading-order-vs-foundation-pedigree). Linear readers should finish Part IX before the epilogue so every upward export in the multiscale afternoon carries a pedigree traceable to SCF convergence logs.
 
-The first chapter below separates electrons from nuclei — Born–Oppenheimer — and explains why the ground-state density alone determines the energy landscape MD, DDD, and continuum elasticity ultimately rest on. Turn the page when you are ready to see where Young's modulus and stacking-fault energy actually live. The [IX.1 opening hinge from IX.0](01-born-oppenheimer.md#opening-hinge-ix0-to-ix1) and [preface row 37 skill checkpoint](../preface.md#skill-navigation-row-37) reunite this Bridge with the theorem chapter when SCF logs exist but Schrödinger's equation still feels like standalone quantum chemistry.
+The first chapter below separates electrons from nuclei — Born–Oppenheimer — and explains why the ground-state density alone determines the energy landscape MD, DDD, and continuum elasticity ultimately rest on. Turn the page when you are ready to see where Young's modulus and stacking-fault energy actually live. The [IX.1 opening hinge from IX.0](01-born-oppenheimer.md#opening-hinge-ix0-to-ix1) and [preface row 56 skill checkpoint](../preface.md#skill-navigation-row-56) reunite this Bridge with the theorem chapter when the [foundation SCF audit Lab act](#lab-act-foundation-scf-audit-before-born-oppenheimer-act-vi--foundation) archived logs but Schrödinger's equation still feels like standalone quantum chemistry — [row 37](../preface.md#skill-navigation-row-37) is the meta-depth mirror across all prior reunions.
