@@ -250,14 +250,21 @@ Born–Oppenheimer and Hohenberg–Kohn justify the **bottom** of the ladder: wh
 
 **Act VI** runs in parallel with the wire-scale afternoon — someone must produce the **foundation deck** before \(E\), \(\nu\), and \(E_{\text{coh}}\) enter Part IV's input file. Born–Oppenheimer justifies treating nuclear coordinates as parameters; this Lab act is the first DFT calculation on the copper ladder.
 
-**Quantum ESPRESSO-style workflow** (4-atom fcc primitive cell, PBE functional, ultrasoft pseudopotential):
+### Prerequisites (row 56 gate)
 
-| Step | Input | Output to archive |
-|------|-------|-------------------|
-| 1. Volume scan | Scale lattice \(a = 3.50\)–\(3.70\,\text{Å}\) (7 points) | `scf_*.out` total energies \(E(a)\) |
-| 2. Murnaghan fit | Fit \(E(V)\) to equation of state | Equilibrium \(a_0\), bulk modulus \(B_0\) |
-| 3. Cohesive energy | \(E_{\text{coh}} = (E_{\text{tot}} - N E_{\text{atom}})/N\) | eV/atom for EAM target |
-| 4. Convergence log | \(E_{\text{cut}}\), k-mesh (\(6\times6\times6\) minimum for fcc Cu) | Document in `README_DFT.md` |
+Before the volume scan, confirm [row 56](../preface.md#skill-navigation-row-56) closed: [`cu.relax.out`](../../fixtures/cu.foundation/cu.relax.out) contains `convergence has been achieved`, the [electronic audit export manifest](../part09-dft/00-opening.md#electronic-audit-export-manifest-handoff-to-ix1) is archived, and you can name \(V_{\text{BO}}(\{\mathbf{R}_I\})\) as the surface Part VIII's EAM approximates — recite the [IX.0 → IX.1 opening hinge](#opening-hinge-ix0-to-ix1) if theorems still feel disconnected from the SCF log. This Lab act fills **BO surface evidence**; it does **not** replace the Kohn–Sham fixed-point loop in [IX.2](02-kohn-sham.md#opening-hinge-ix1-to-ix2) — that is the implementation floor after the [Murnaghan export manifest](#murnaghan-export-manifest-handoff-to-ix2) below is complete.
+
+**Step 0 — Born–Oppenheimer gate (read aloud).** State in one sentence why each volume point in the scan holds nuclear coordinates fixed while electrons equilibrate: "This is one point on \(V_{\text{BO}}(\{\mathbf{R}_I\})\); the inner SCF loop is the same fixed-point cycle [IX.2](02-kohn-sham.md#scf-as-fixed-point-iteration--the-part-i-eigenvalue-loop-with-feedback) implements explicitly." Do not archive `murnaghan_eos.yaml` until every `scf_*.out` in the scan passes Step 2.
+
+**Step 1 — Volume scan.** Quantum ESPRESSO-style workflow (4-atom fcc primitive cell, PBE functional, ultrasoft pseudopotential): scale lattice \(a = 3.50\)–\(3.70\,\text{Å}\) (7 points). Archive `scf_a3.50.out` … `scf_a3.70.out` with total energies \(E(a)\).
+
+**Step 2 — SCF convergence gate per point.** Pass criterion for each volume point: log contains `convergence has been achieved` and final energy drift \(< 10^{-4}\,\text{Ry/atom}\) between iterations. Under-converged points poison the Murnaghan fit — the same failure mode row 57 names when IX.2 opens without a converged inner loop.
+
+**Step 3 — Murnaghan fit.** Fit \(E(V)\) to the Murnaghan equation of state; export equilibrium \(a_0\) and bulk modulus \(B_0\) to `murnaghan_eos.yaml` (see manifest below).
+
+**Step 4 — Cohesive energy and convergence log.** \(E_{\text{coh}} = (E_{\text{tot}} - N E_{\text{atom}})/N\) in eV/atom for the EAM target; document \(E_{\text{cut}}\), k-mesh (\(6\times6\times6\) minimum for fcc Cu), functional, and pseudopotential in `README_DFT.md`.
+
+**Step 5 — Bridge recitation gate.** Read [this chapter's Bridge](#bridge) opening sentence aloud: "DFT gave a number but cutoff, k-sampling, and functional choice were never documented." Do not open [IX.2](02-kohn-sham.md) until Step 6 archives the manifest — SCF implementation without Murnaghan pedigree is multiscale folklore.
 
 Example acceptance gates (typical literature values for PBE Cu):
 
@@ -267,9 +274,32 @@ Example acceptance gates (typical literature values for PBE Cu):
 | \(B_0\) | ~140 GPa | From Murnaghan |
 | \(E_{\text{coh}}\) | ~3.7 eV/atom | Sign and magnitude check |
 
-**Born–Oppenheimer in practice:** each volume point holds nuclei fixed while SCF finds the electronic ground state — that is the BO surface Part VIII's MD trajectories slide on. Do not mix volumes from under-converged SCF (energy drift \(> 10^{-4}\,\text{Ry/atom}\) between iterations).
+| Check | Pass criterion | Failure mode |
+|-------|----------------|--------------|
+| Row 56 closed | \(V_{\text{BO}}\) named beside `cu.relax.out` | Murnaghan before electronic audit |
+| Every volume point | `convergence has been achieved` in each `scf_*.out` | EOS fit on drifting energies |
+| Bridge read | IX.1 Bridge recited before IX.2 | QE homework without theorem handoff |
 
-When `README_DFT.md` accompanies the wire project's git commit, the foundation run is **citable** — the same audit Part VIII's EAM-fit Lab act demands. [IX.2](02-kohn-sham.md) adds the SCF cycle details; [IX.3](03-dft-workflows.md) wires this deck into the full multiscale export.
+### Murnaghan export manifest (handoff to IX.2) {#murnaghan-export-manifest-handoff-to-ix2}
+
+After Steps 0–5, extend `cu.foundation/` beside the [electronic audit manifest](../part09-dft/00-opening.md#electronic-audit-export-manifest-handoff-to-ix1):
+
+| File / folder | Content | Consumer |
+|---------------|---------|----------|
+| `scf_a*.out` | Converged SCF at each lattice parameter | [IX.2 opening hinge](02-kohn-sham.md#opening-hinge-ix1-to-ix2); inner-loop audit |
+| `murnaghan_eos.yaml` | \(a_0\), \(B_0\), volume-scan grid, fit residuals | Handshake 1; Part IV elastic step |
+| `README_DFT.md` | \(E_{\text{cut}}\), k-mesh, functional, pseudo | [IX.2 cutoff-sweep Lab act](02-kohn-sham.md#lab-act-cutoff-sweep-on-fcc-cu-act-vi--convergence-certificate) |
+| `dft_audit_README.md` | Add row 56/57 gates and links to volume-scan folder | Epilogue foundation folder |
+
+| Step | Action | Expected outcome |
+|------|--------|------------------|
+| 6 | Copy manifest rows into `foundation_README.md` | Volume scan + EOS listed beside SCF audit |
+| 7 | Verify IX.2 is **not** faked in yaml | SCF loop deferred to IX.2; converged logs only here |
+| 8 | Name \(\mathbf{H}[\rho]\mathbf{c}=\epsilon\mathbf{S}\mathbf{c}\) as **pending vocabulary** | One-line note: "Each volume point ran inner SCF — derive fixed-point loop in IX.2" |
+
+When row 56 closed but [IX.2](02-kohn-sham.md) still feels like standalone quantum chemistry after this Lab act, read the [preface row 57 skill checkpoint](../preface.md#skill-navigation-row-57) — the chapter-order mirror of [row 38](../preface.md#skill-navigation-row-38).
+
+When `README_DFT.md` and `murnaghan_eos.yaml` accompany the wire project's git commit, the foundation run is **citable** — the same audit Part VIII's EAM-fit Lab act demands. [IX.2](02-kohn-sham.md) adds the SCF cycle details; [IX.3](03-dft-workflows.md) wires this deck into the full multiscale export.
 
 ## Concept map checkpoint (Born–Oppenheimer and Hohenberg–Kohn)
 
@@ -309,4 +339,4 @@ Part II asked what **state variable** carries enough information for well-posed 
 
 Return to the prologue's **Act VI — Foundation**: before any wire-scale FEM run, someone chose \(E\), \(\nu\), and surface energies whose pedigree traces to calculations like those in this part. Part VIII's EAM potential and Part VII's stacking-fault energies consume what IX.1–IX.3 export; the epilogue wires those exports into multiscale pipelines no single code runs alone.
 
-[IX.2](02-kohn-sham.md) is the practitioner's chapter — SCF cycles, pseudopotentials, and the convergence checklist that separates chemistry from numerical artifact. Turn the page when "DFT gave a number" but cutoff, k-sampling, and functional choice were never documented — that is the signal the foundation run is not yet trustworthy enough to climb the ladder. The [IX.1 opening hinge from IX.0](#opening-hinge-ix0-to-ix1) and [preface row 37 skill checkpoint](../preface.md#skill-navigation-row-37) reunite this Bridge with the audit when SCF logs exist but BO separation is unnamed; the [IX.2 opening hinge from IX.1](02-kohn-sham.md#opening-hinge-ix1-to-ix2) and [preface row 38 skill checkpoint](../preface.md#skill-navigation-row-38) reunite the SCF chapter with this Bridge when BO/HK theorems are understood but the fixed-point loop still feels like standalone quantum chemistry.
+[IX.2](02-kohn-sham.md) is the practitioner's chapter — SCF cycles, pseudopotentials, and the convergence checklist that separates chemistry from numerical artifact. Turn the page when "DFT gave a number" but cutoff, k-sampling, and functional choice were never documented — that is the signal the foundation run is not yet trustworthy enough to climb the ladder. The [IX.1 opening hinge from IX.0](#opening-hinge-ix0-to-ix1) and [preface row 37 skill checkpoint](../preface.md#skill-navigation-row-37) reunite this Bridge with the audit when SCF logs exist but BO separation is unnamed; the [IX.2 opening hinge from IX.1](02-kohn-sham.md#opening-hinge-ix1-to-ix2) and [preface row 57 skill checkpoint](../preface.md#skill-navigation-row-57) reunite the SCF chapter with this Bridge when BO/HK theorems and the [Murnaghan export manifest](#murnaghan-export-manifest-handoff-to-ix2) exist but the fixed-point loop still feels like standalone quantum chemistry; [preface row 38](../preface.md#skill-navigation-row-38) closes the same stitch at meta depth across all prior reunions.
