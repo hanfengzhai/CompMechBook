@@ -1711,6 +1711,23 @@ When row 98 feels disconnected from row 97, read them as **Kohn–Sham meta vs D
 
 When row 91 feels disconnected from row 90, read them as **DDD meta vs homogenization meta capstones**: row 90 when **VII.1 → VII.2 must reunite on Peach–Köhler segments before any polycrystal proof**; row 91 when **forest-density Lab act and VII.2 → VII.3 homogenization meta must read on the same wire before row 92 prelude or Part VIII descent open** — same copper wire, same Functional Analysis Notes layout, one continuous segment-network → spool afternoon.
 
+### Row 99 baby picture (Row 68 → Row 79 Row 68 → Row 59 Handshake 3 meta prelude reunion) {#row-99-baby-picture-row68-row79-handshake3-meta-prelude-reunion}
+
+**Row 99 baby picture:** when row 68 closed the midpoint prelude and row 98 or row 58 closed DFT workflows meta but **row 59's IX.3 → Handshake 3 audit or the Bridge → quasiharmonic \(\alpha(T_w)\) chain still feel like separate checklists**, open the [Row 68 → Row 79 Handshake 3 meta prelude reunion index](sources.md#row68-row79-handshake3-meta-prelude-reunion-index-row-99) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 98](../preface.md#skill-navigation-row-98) or [preface row 58](../preface.md#skill-navigation-row-58) DFT workflows meta gate → [IX.3 Bridge to the epilogue](../part09-dft/03-dft-workflows.md#bridge-to-the-epilogue) through [opening hinge to Handshake 3](../part09-dft/03-dft-workflows.md#opening-hinge-ix3-to-handshake3) aloud → [preface row 59](../preface.md#skill-navigation-row-59) five-step audit → confirm [foundation archive Lab act steps 1–5](../part09-dft/03-dft-workflows.md#lab-act-archive-the-foundation-run-before-the-wire-scale-solve-act-vi--foundation) and [foundation export manifest](../part09-dft/03-dft-workflows.md#foundation-export-manifest-handoff-to-epilogue) before quasiharmonic Lab act step 0.
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  DF[DFT workflows meta row 98]
+  BR[IX.3 Bridge to Handshake 3]
+  R59[row 59 meta gate]
+  MP --> DF --> BR --> R59
+```
+
+When row 99 feels disconnected from row 98, read them as **DFT workflows meta vs Handshake 3 meta capstones**: row 98 when **IX.2 → IX.3 must reunite on cutoff certificates at \(T_w\) before any foundation archive**; row 99 when **foundation export manifest and IX.3 → Handshake 3 meta must read on the same wire before row 80 prelude or Handshake 3 cross-links open** — same copper wire, same Functional Analysis Notes layout, one continuous foundation archive → \(\alpha(T_w)\) afternoon.
+
+
+
 ### Act VI baby picture (ME 412 coupling ladder) {#act-vi-baby-picture-me-412-coupling-ladder}
 
 The [Part IX opening](../part09-dft/00-opening.md#the-coupling-ladder-me-412-reunion) draws the full coupling ladder; this diagram is the **Act VI slice** — foundation pedigree in workflow order, then handshake orchestration:
