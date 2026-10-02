@@ -2240,6 +2240,23 @@ flowchart LR
 
 When row 130 feels disconnected from row 129, read them as **taxonomy meta prelude capstone vs DDD meta prelude capstones**: row 129 when **VII.0 Bridge and Row 68 → Row 49 meta must read on the same wire before any VII.1 → VII.2 audit on the capstone path**; row 130 when **VII.1 Bridge and Row 68 → Row 50 meta must read on the same wire before row 131 homogenization meta prelude capstone or row 51 homogenization reunion opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous slip-line → Peach–Köhler afternoon. When row 130 closed but homogenization meta reunion still lags on the capstone path, switch to [row 131](#row-131-baby-picture-row68-row111-homogenization-meta-prelude-capstone-reunion).
 
+### Row 132 baby picture (Row 68 → Row 112 Row 68 → Row 52 atomistic meta prelude capstone reunion) {#row-132-baby-picture-row68-row112-atomistic-meta-prelude-capstone-reunion}
+
+**Row 132 baby picture:** when row 68 closed the midpoint prelude and row 131 or row 112 closed homogenization meta prelude capstone / atomistic meta prelude but **row 52's VII.3 Bridge → phase-space handoff still feels like separate courses on the capstone path**, open the [Row 68 → Row 111 atomistic meta prelude capstone reunion index](sources.md#row68-row112-atomistic-meta-prelude-capstone-reunion-index-row-132) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 131](../preface.md#skill-navigation-row-132) or [preface row 112](../preface.md#skill-navigation-row-112) homogenization meta prelude capstone / atomistic meta prelude gate → [VII.3 Bridge to Part VIII](../part07-defects/02-dislocation-dynamics.md#bridge-to-vii3) through [VII.2 opening hinge to VII.3](../part07-defects/02-dislocation-dynamics.md#opening-hinge-vii2-to-vii3) aloud → [preface row 51](../preface.md#skill-navigation-row-51) five-step audit → confirm forest-density Lab act linked \(\tau(\gamma)\) before row 53 dynamics meta prelude capstone opens.
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  HM[Homogenization meta prelude capstone row 131]
+  BR[VII.3 Bridge]
+  R52[row 52 meta gate]
+  MP --> DM --> BR --> R51
+```
+
+When row 131 feels disconnected from row 130, read them as **DDD meta prelude capstone vs atomistic meta prelude capstones**: row 130 when **VII.1 Bridge and Row 68 → Row 50 meta must read on the same wire before any VII.2 → VII.3 audit on the capstone path**; row 131 when **VII.2 Bridge and Row 68 → Row 51 meta must read on the same wire before row 112 atomistic meta capstone or row 52 atomistic reunion opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous OpenDiS → polycrystal afternoon. When row 131 closed but atomistic meta reunion still lags on the capstone path, switch to [row 131](#row-132-baby-picture-row68-row112-atomistic-meta-prelude-capstone-reunion).
+
+
+
 
 ### Act VI baby picture (ME 412 coupling ladder) {#act-vi-baby-picture-me-412-coupling-ladder}
 
