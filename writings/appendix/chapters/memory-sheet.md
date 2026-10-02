@@ -2276,6 +2276,21 @@ flowchart LR
 
 When row 146 feels disconnected from row 145, read them as **second-pass meta prelude capstone vs Writings meta prelude capstones**: row 145 when **epilogue second-pass cross-links must reunite on verified book-loop meta prelude capstone before any writings sync audit on row 46 on the capstone path**; row 146 when **epilogue writings cross-links and Row 65 → Row 46 meta must read on the same wire before row 127 part-boundary meta prelude capstone opens** — same copper wire, same Functional Analysis Notes layout, one continuous novel-rhythm → single-manuscript-tree afternoon after verified second-pass meta prelude capstone. When row 125 closed but canonical tree discipline still lags, switch to [row 126](#row-146-baby-picture-row68-row126-writings-meta-prelude-capstone-reunion).
 
+### Row 147 baby picture (Row 68 → Row 127 Row 68 → Row 67 part-boundary meta prelude capstone reunion) {#row-147-baby-picture-row68-row127-part-boundary-meta-prelude-capstone-reunion}
+
+**Row 147 baby picture:** when row 68 closed the midpoint prelude and row 126 or row 127 closed Writings canonical meta prelude capstone / part-boundary meta prelude but **row 67's twin-ladder Bridge or V.4 → VI.0 landing still feels like separate checklists on the capstone path**, open the [Row 68 → Row 127 part-boundary meta prelude capstone reunion index](sources.md#row68-row127-part-boundary-meta-prelude-capstone-reunion-index-row-147) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 126](../preface.md#skill-navigation-row-146) or [preface row 127](../preface.md#skill-navigation-row-107) Writings meta prelude capstone / part-boundary meta prelude gate → [V.4 Bridge](../part05-fvm/04-navier-stokes-cfd.md#bridge-to-part-vi) through [VI.0 twin ladders reunite](../part06-continuum/00-opening.md#the-twin-ladders-reunite-galerkin-and-conservation) aloud → [preface row 67](../preface.md#skill-navigation-row-67) five-step audit → confirm `cht_export.yaml` beside both decks before row 48 midpoint meta prelude opens.
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  WM[Writings meta prelude capstone row 126]
+  BR[Twin-ladder Bridge V.4 to VI.0]
+  R67[row 67 meta gate]
+  MP --> WM --> BR --> R67
+```
+
+When row 127 feels disconnected from row 126, read them as **Writings meta prelude capstone vs part-boundary meta prelude capstones**: row 126 when **epilogue writings cross-links must reunite on verified second-pass meta prelude capstone before any fvm → continuum Bridge on the capstone path**; row 127 when **V.4 → VI.0 twin-ladder reunion and Row 66 → Row 47 meta must read on the same wire before row 128 midpoint meta prelude capstone opens** — same copper wire, same Functional Analysis Notes layout, one continuous single-manuscript-tree → Cauchy stress afternoon after verified Writings canonical meta prelude capstone. When row 146 closed but twin-ladder reunion still lags, switch to [row 127](#row-147-baby-picture-row68-row127-part-boundary-meta-prelude-capstone-reunion).
+
 ### Row 127 baby picture (Row 68 → Row 107 Row 68 → Row 67 part-boundary meta prelude capstone reunion) {#row-127-baby-picture-row68-row107-part-boundary-meta-prelude-capstone-reunion}
 
 **Row 127 baby picture:** when row 68 closed the midpoint prelude and row 126 or row 107 closed Writings canonical meta prelude capstone / part-boundary meta prelude but **row 67's twin-ladder Bridge or V.4 → VI.0 landing still feels like separate checklists on the capstone path**, open the [Row 68 → Row 107 part-boundary meta prelude capstone reunion index](sources.md#row68-row107-part-boundary-meta-prelude-capstone-reunion-index-row-127) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 126](../preface.md#skill-navigation-row-126) or [preface row 107](../preface.md#skill-navigation-row-107) Writings meta prelude capstone / part-boundary meta prelude gate → [V.4 Bridge](../part05-fvm/04-navier-stokes-cfd.md#bridge-to-part-vi) through [VI.0 twin ladders reunite](../part06-continuum/00-opening.md#the-twin-ladders-reunite-galerkin-and-conservation) aloud → [preface row 67](../preface.md#skill-navigation-row-67) five-step audit → confirm `cht_export.yaml` beside both decks before row 48 midpoint meta prelude opens.
