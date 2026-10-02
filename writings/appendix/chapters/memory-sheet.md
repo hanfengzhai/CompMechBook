@@ -2270,7 +2270,7 @@ flowchart LR
   MP --> HM --> BR --> R52
 ```
 
-When row 132 feels disconnected from row 131, read them as **homogenization meta prelude capstone vs atomistic meta prelude capstones**: row 131 when **VII.2 Bridge and Row 68 → Row 51 meta must read on the same wire before any VII.3 → VIII.1 audit on the capstone path**; row 132 when **VII.3 Bridge and Row 68 → Row 52 meta must read on the same wire before row 133 dynamics meta prelude capstone or row 53 dynamics reunion opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous spool → screw-core afternoon. When row 131 closed but atomistic meta reunion still lags on the capstone path, switch to [row 132](#row-132-baby-picture-row68-row112-atomistic-meta-prelude-capstone-reunion). When row 132 closed but dynamics meta reunion still lags on the capstone path, switch to [row 133](#row-133-baby-picture-row68-row113-dynamics-meta-prelude-capstone-reunion). When row 133 closed but export meta reunion still lags on the capstone path, switch to [row 134](#row-134-baby-picture-row68-row114-export-meta-prelude-capstone-reunion). When row 134 closed but electronic audit meta reunion still lags on the capstone path, switch to [row 135](#row-135-baby-picture-row68-row115-electronic-audit-meta-prelude-capstone-reunion).
+When row 132 feels disconnected from row 131, read them as **homogenization meta prelude capstone vs atomistic meta prelude capstones**: row 131 when **VII.2 Bridge and Row 68 → Row 51 meta must read on the same wire before any VII.3 → VIII.1 audit on the capstone path**; row 132 when **VII.3 Bridge and Row 68 → Row 52 meta must read on the same wire before row 133 dynamics meta prelude capstone or row 53 dynamics reunion opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous spool → screw-core afternoon. When row 131 closed but atomistic meta reunion still lags on the capstone path, switch to [row 132](#row-132-baby-picture-row68-row112-atomistic-meta-prelude-capstone-reunion). When row 132 closed but dynamics meta reunion still lags on the capstone path, switch to [row 133](#row-133-baby-picture-row68-row113-dynamics-meta-prelude-capstone-reunion). When row 133 closed but export meta reunion still lags on the capstone path, switch to [row 134](#row-134-baby-picture-row68-row114-export-meta-prelude-capstone-reunion). When row 134 closed but electronic audit meta reunion still lags on the capstone path, switch to [row 135](#row-135-baby-picture-row68-row115-electronic-audit-meta-prelude-capstone-reunion). When row 135 closed but Born–Oppenheimer meta reunion still lags on the capstone path, switch to [row 136](#row-136-baby-picture-row68-row116-born-oppenheimer-meta-capstone-reunion).
 
 
 ### Row 133 baby picture (Row 68 → Row 113 Row 68 → Row 53 dynamics meta prelude capstone reunion) {#row-133-baby-picture-row68-row113-dynamics-meta-prelude-capstone-reunion}
@@ -2286,7 +2286,7 @@ flowchart LR
   MP --> AM --> BR --> R53
 ```
 
-When row 133 feels disconnected from row 132, read them as **atomistic meta prelude capstone vs dynamics meta prelude capstones**: row 132 when **VII.3 Bridge and Row 68 → Row 52 meta must read on the same wire before any VIII.1 → VIII.2 audit on the capstone path**; row 133 when **VIII.1 Bridge and Row 68 → Row 53 meta must read on the same wire before row 114 export meta capstone or row 54 export reunion opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous screw-core → NPT afternoon. When row 132 closed but dynamics meta reunion still lags on the capstone path, switch to [row 133](#row-133-baby-picture-row68-row113-dynamics-meta-prelude-capstone-reunion). When row 133 closed but export meta reunion still lags on the capstone path, switch to [row 134](#row-134-baby-picture-row68-row114-export-meta-prelude-capstone-reunion). When row 134 closed but electronic audit meta reunion still lags on the capstone path, switch to [row 135](#row-135-baby-picture-row68-row115-electronic-audit-meta-prelude-capstone-reunion).
+When row 133 feels disconnected from row 132, read them as **atomistic meta prelude capstone vs dynamics meta prelude capstones**: row 132 when **VII.3 Bridge and Row 68 → Row 52 meta must read on the same wire before any VIII.1 → VIII.2 audit on the capstone path**; row 133 when **VIII.1 Bridge and Row 68 → Row 53 meta must read on the same wire before row 114 export meta capstone or row 54 export reunion opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous screw-core → NPT afternoon. When row 132 closed but dynamics meta reunion still lags on the capstone path, switch to [row 133](#row-133-baby-picture-row68-row113-dynamics-meta-prelude-capstone-reunion). When row 133 closed but export meta reunion still lags on the capstone path, switch to [row 134](#row-134-baby-picture-row68-row114-export-meta-prelude-capstone-reunion). When row 134 closed but electronic audit meta reunion still lags on the capstone path, switch to [row 135](#row-135-baby-picture-row68-row115-electronic-audit-meta-prelude-capstone-reunion). When row 135 closed but Born–Oppenheimer meta reunion still lags on the capstone path, switch to [row 136](#row-136-baby-picture-row68-row116-born-oppenheimer-meta-capstone-reunion).
 
 
 
@@ -2305,7 +2305,7 @@ flowchart LR
   MP --> DM --> BR --> R54
 ```
 
-When row 134 feels disconnected from row 133, read them as **dynamics meta prelude capstone vs export meta prelude capstones**: row 133 when **VIII.1 Bridge and Row 68 → Row 53 meta must read on the same wire before any VIII.2 → VIII.3 audit on the capstone path**; row 134 when **VIII.2 Bridge and Row 68 → Row 54 meta must read on the same wire before row 115 electronic audit meta capstone or row 55 electronic audit reunion opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous NPT → pedigree afternoon. When row 133 closed but export meta reunion still lags on the capstone path, switch to [row 134](#row-134-baby-picture-row68-row114-export-meta-prelude-capstone-reunion). When row 134 closed but electronic audit meta reunion still lags on the capstone path, switch to [row 135](#row-135-baby-picture-row68-row115-electronic-audit-meta-prelude-capstone-reunion).
+When row 134 feels disconnected from row 133, read them as **dynamics meta prelude capstone vs export meta prelude capstones**: row 133 when **VIII.1 Bridge and Row 68 → Row 53 meta must read on the same wire before any VIII.2 → VIII.3 audit on the capstone path**; row 134 when **VIII.2 Bridge and Row 68 → Row 54 meta must read on the same wire before row 115 electronic audit meta capstone or row 55 electronic audit reunion opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous NPT → pedigree afternoon. When row 133 closed but export meta reunion still lags on the capstone path, switch to [row 134](#row-134-baby-picture-row68-row114-export-meta-prelude-capstone-reunion). When row 134 closed but electronic audit meta reunion still lags on the capstone path, switch to [row 135](#row-135-baby-picture-row68-row115-electronic-audit-meta-prelude-capstone-reunion). When row 135 closed but Born–Oppenheimer meta reunion still lags on the capstone path, switch to [row 136](#row-136-baby-picture-row68-row116-born-oppenheimer-meta-capstone-reunion).
 
 
 
@@ -2324,6 +2324,26 @@ flowchart LR
 ```
 
 When row 135 feels disconnected from row 134, read them as **export meta prelude capstone vs electronic audit meta prelude capstones**: row 134 when **VIII.2 Bridge and Row 68 → Row 54 meta must read on the same wire before any VIII.3 → IX.0 audit on the capstone path**; row 135 when **VIII.3 Bridge to Part IX and Row 68 → Row 55 meta must read on the same wire before row 116 Born–Oppenheimer meta capstone or row 56 BO reunion opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous pedigree → foundation SCF afternoon.
+
+
+
+
+### Row 136 baby picture (Row 68 → Row 116 Row 68 → Row 56 electronic audit meta prelude capstone reunion) {#row-136-baby-picture-row68-row116-electronic-audit-meta-prelude-capstone-reunion}
+
+**Row 136 baby picture:** when row 68 closed the midpoint prelude and row 135 or row 116 closed electronic audit meta prelude capstone / Born–Oppenheimer meta capstone but **row 56's IX.0 Bridge → SCF handoff still feels like separate courses on the capstone path**, open the [Row 68 → Row 116 electronic audit meta prelude capstone reunion index](sources.md#row68-row116-electronic-audit-meta-prelude-capstone-reunion-index-row-136) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 135](../preface.md#skill-navigation-row-135) or [preface row 116](../preface.md#skill-navigation-row-116) electronic audit meta prelude capstone / Born–Oppenheimer opening gate → [IX.0 Bridge](../part08-md/03-ab-initio-and-coarse-graining.md#bridge-to-part-ix) through [IX.0 opening hinge from VIII.3](../part09-dft/00-opening.md#opening-hinge-viii3-to-ix) aloud → [preface row 56](../preface.md#skill-navigation-row-56) five-step audit → confirm [foundation SCF audit Lab act steps 1–6](../part08-md/03-ab-initio-and-coarse-graining.md#lab-act-eam-fit-audit-before-the-notch-md-run-act-v--notch) archived `pedigree_checklist.yaml` and `eam_fit_audit.log` before row 56 Born–Oppenheimer meta prelude capstone opens.
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  EM[Export meta prelude capstone row 135]
+  BR[IX.0 Bridge]
+  R56[row 56 meta gate]
+  MP --> EM --> BR --> R56
+```
+
+When row 136 feels disconnected from row 135, read them as **electronic audit meta prelude capstone vs Born–Oppenheimer meta capstones**: row 135 when **VIII.2 Bridge and Row 68 → Row 54 meta must read on the same wire before any VIII.3 → IX.0 audit on the capstone path**; row 136 when **IX.0 Bridge and Row 68 → Row 56 meta must read on the same wire before row 117 Kohn–Sham meta capstone or row 57 KS reunion opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous SCF → Born–Oppenheimer afternoon.
+
+
 
 
 
