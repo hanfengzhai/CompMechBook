@@ -2270,7 +2270,7 @@ flowchart LR
   MP --> HM --> BR --> R52
 ```
 
-When row 132 feels disconnected from row 131, read them as **homogenization meta prelude capstone vs atomistic meta prelude capstones**: row 131 when **VII.2 Bridge and Row 68 → Row 51 meta must read on the same wire before any VII.3 → VIII.1 audit on the capstone path**; row 132 when **VII.3 Bridge and Row 68 → Row 52 meta must read on the same wire before row 113 dynamics meta capstone or row 53 dynamics reunion opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous spool → screw-core afternoon. When row 131 closed but atomistic meta reunion still lags on the capstone path, switch to [row 132](#row-132-baby-picture-row68-row112-atomistic-meta-prelude-capstone-reunion).
+When row 132 feels disconnected from row 131, read them as **homogenization meta prelude capstone vs atomistic meta prelude capstones**: row 131 when **VII.2 Bridge and Row 68 → Row 51 meta must read on the same wire before any VII.3 → VIII.1 audit on the capstone path**; row 132 when **VII.3 Bridge and Row 68 → Row 52 meta must read on the same wire before row 133 dynamics meta prelude capstone or row 53 dynamics reunion opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous spool → screw-core afternoon. When row 131 closed but atomistic meta reunion still lags on the capstone path, switch to [row 132](#row-132-baby-picture-row68-row112-atomistic-meta-prelude-capstone-reunion). When row 132 closed but dynamics meta reunion still lags on the capstone path, switch to [row 133](#row-133-baby-picture-row68-row113-dynamics-meta-prelude-capstone-reunion).
 
 
 
