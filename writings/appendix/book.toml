@@ -1,0 +1,13 @@
+[book]
+title = "Appendix Notes"
+authors = ["Hanfeng Zhai"]
+description = "Glossary, sources, and final memory sheet for Computational Mechanics — canonical appendix for CompMechBook."
+language = "en"
+multilingual = false
+src = "chapters"
+
+[build]
+create-missing = false
+
+[output.html]
+mathjax-support = true
