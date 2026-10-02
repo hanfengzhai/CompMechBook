@@ -220,7 +220,7 @@ def main():
     prologue_path = ROOT / "writings/prologue/chapters/00-many-scales.md"
     prologue = prologue_path.read_text()
     prologue = fix_row132_prologue(prologue)
-    if "prologue-preview-row-133" not in prologue:
+    if '<span id="prologue-preview-row-133">' not in prologue:
         needle = "| Row 68 → Row 112 Row 68 → Row 52 atomistic meta prelude capstone reunion (row 132) |"
         if needle not in prologue:
             raise SystemExit("prologue compass row 132 not found")
@@ -232,7 +232,7 @@ def main():
                 "**Row 113 closing stitch",
                 PROLOGUE_STITCH_133_CLOSING + "**Row 113 closing stitch",
             )
-        if "prologue-preview-row-133" not in prologue:
+        if '<span id="prologue-preview-row-133">' not in prologue:
             prologue = prologue.replace(
                 '| <span id="prologue-preview-row-132"></span>Row 132 preview',
                 PROLOGUE_PREVIEW_133 + '| <span id="prologue-preview-row-132"></span>Row 132 preview',
