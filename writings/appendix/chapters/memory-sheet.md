@@ -283,6 +283,7 @@ When a chapter feels disconnected from the last, pause at the hinge for your rea
 | 152 | Meta | Row 68 → Row 132 Row 68 → Row 52 atomistic meta prelude capstone reunion | [Row 68 → Row 132 atomistic meta prelude capstone reunion index](sources.md#row68-row132-atomistic-meta-prelude-capstone-reunion-index-row-152) · [preface row 152 skill checkpoint](../preface.md#skill-navigation-row-152) · [prologue row 152 preview](../prologue/00-many-scales.md#prologue-preview-row-152) · [prologue row 152 closing stitch](../prologue/00-many-scales.md#row-152-closing-stitch) · [epilogue row 152 closing loop](../epilogue/multiscale.md#row-152-closing-loop) | Row 68 closed but row 52 VII.3 → VIII.1 opening hinge feels disconnected from verified homogenization meta prelude capstone on the capstone path — read row 68 + row 151 or row 132 gate + VII.3 Bridge → opening hinge → VIII.1 phase space + row 52; [row 152 baby picture](#row-152-baby-picture-row68-row132-atomistic-meta-prelude-capstone-reunion) |
 | 151 | Meta | Row 68 → Row 131 Row 68 → Row 51 homogenization meta prelude capstone reunion | [Row 68 → Row 131 homogenization meta prelude capstone reunion index](sources.md#row68-row131-homogenization-meta-prelude-capstone-reunion-index-row-151) · [preface row 151 skill checkpoint](../preface.md#skill-navigation-row-151) · [prologue row 151 preview](../prologue/00-many-scales.md#prologue-preview-row-151) · [prologue row 151 closing stitch](../prologue/00-many-scales.md#row-151-closing-stitch) · [epilogue row 151 closing loop](../epilogue/multiscale.md#row-151-closing-loop) | Row 68 closed but row 51 VII.2 → VII.3 opening hinge feels disconnected from verified DDD meta prelude capstone on the capstone path — read row 68 + row 150 or row 131 gate + VII.2 Bridge → opening hinge → VII.3 homogenization + row 51; [row 151 baby picture](#row-151-baby-picture-row68-row131-homogenization-meta-prelude-capstone-reunion) |
 | 150 | Meta | Row 68 → Row 130 Row 68 → Row 50 DDD meta prelude capstone reunion | [Row 68 → Row 130 DDD meta prelude capstone reunion index](sources.md#row68-row130-ddd-meta-prelude-capstone-reunion-index-row-150) · [preface row 150 skill checkpoint](../preface.md#skill-navigation-row-150) · [prologue row 150 preview](../prologue/00-many-scales.md#prologue-preview-row-150) · [prologue row 150 closing stitch](../prologue/00-many-scales.md#row-150-closing-stitch) · [epilogue row 150 closing loop](../epilogue/multiscale.md#row-150-closing-loop) | Row 68 closed but row 50 VII.1 → VII.2 opening hinge feels disconnected from verified taxonomy meta prelude capstone on the capstone path — read row 68 + row 149 or row 130 gate + VII.1 Bridge → opening hinge → VII.2 Peach–Köhler + row 50; [row 150 baby picture](#row-150-baby-picture-row68-row130-ddd-meta-prelude-capstone-reunion) |
+| 172 | Meta | Row 68 → Row 151 Row 68 → Row 52 atomistic meta prelude capstone reunion | [Row 68 → Row 151 atomistic meta prelude capstone reunion index](sources.md#row68-row151-atomistic-meta-prelude-capstone-reunion-index-row-172) · [preface row 172 skill checkpoint](../preface.md#skill-navigation-row-172) · [prologue row 172 preview](../prologue/00-many-scales.md#prologue-preview-row-172) · [prologue row 172 closing stitch](../prologue/00-many-scales.md#row-172-closing-stitch) · [epilogue row 172 closing loop](../epilogue/multiscale.md#row-172-closing-loop) | Row 68 closed but row 52 VII.3 → VIII.1 opening hinge feels disconnected from verified homogenization meta prelude capstone on the capstone path — read row 68 + row 171 or row 152 gate + VII.3 Bridge → opening hinge → VIII.1 phase space + row 52; [row 172 baby picture](#row-172-baby-picture-row68-row151-atomistic-meta-prelude-capstone-reunion) |
 | 171 | Meta | Row 68 → Row 151 Row 68 → Row 51 homogenization meta prelude capstone reunion | [Row 68 → Row 151 homogenization meta prelude capstone reunion index](sources.md#row68-row151-homogenization-meta-prelude-capstone-reunion-index-row-171) · [preface row 171 skill checkpoint](../preface.md#skill-navigation-row-171) · [prologue row 171 preview](../prologue/00-many-scales.md#prologue-preview-row-171) · [prologue row 171 closing stitch](../prologue/00-many-scales.md#row-171-closing-stitch) · [epilogue row 171 closing loop](../epilogue/multiscale.md#row-171-closing-loop) | Row 68 closed but row 51 VII.2 → VII.3 opening hinge feels disconnected from verified DDD meta prelude capstone on the capstone path — read row 68 + row 170 or row 151 gate + VII.2 Bridge → opening hinge → VII.3 homogenization + row 51; [row 171 baby picture](#row-171-baby-picture-row68-row151-homogenization-meta-prelude-capstone-reunion) |
 | 170 | Meta | Row 68 → Row 150 Row 68 → Row 50 DDD meta prelude capstone reunion | [Row 68 → Row 150 DDD meta prelude capstone reunion index](sources.md#row68-row150-ddd-meta-prelude-capstone-reunion-index-row-170) · [preface row 170 skill checkpoint](../preface.md#skill-navigation-row-170) · [prologue row 170 preview](../prologue/00-many-scales.md#prologue-preview-row-170) · [prologue row 170 closing stitch](../prologue/00-many-scales.md#row-170-closing-stitch) · [epilogue row 170 closing loop](../epilogue/multiscale.md#row-170-closing-loop) | Row 68 closed but row 50 VII.1 → VII.2 opening hinge feels disconnected from verified taxonomy meta prelude capstone on the capstone path — read row 68 + row 169 or row 150 gate + VII.1 Bridge → opening hinge → VII.2 Peach–Köhler + row 50; [row 170 baby picture](#row-170-baby-picture-row68-row150-ddd-meta-prelude-capstone-reunion) |
 | 169 | Meta | Row 68 → Row 149 Row 68 → Row 49 taxonomy meta prelude capstone reunion | [Row 68 → Row 149 taxonomy meta prelude capstone reunion index](sources.md#row68-row149-taxonomy-meta-prelude-capstone-reunion-index-row-169) · [preface row 169 skill checkpoint](../preface.md#skill-navigation-row-169) · [prologue row 169 preview](../prologue/00-many-scales.md#prologue-preview-row-169) · [prologue row 169 closing stitch](../prologue/00-many-scales.md#row-169-closing-stitch) · [epilogue row 169 closing loop](../epilogue/multiscale.md#row-169-closing-loop) | Row 68 closed but row 49 VII.0 → VII.1 opening hinge feels disconnected from verified midpoint meta prelude capstone on the capstone path — read row 68 + row 168 or row 149 gate + VII.0 Bridge → opening hinge → VII.1 taxonomy + row 49; [row 169 baby picture](#row-169-baby-picture-row68-row149-taxonomy-meta-prelude-capstone-reunion) |
@@ -2815,6 +2816,83 @@ flowchart LR
 ```
 
 When row 131 feels disconnected from row 130, read them as **DDD meta prelude capstone vs homogenization meta prelude capstones**: row 130 when **VII.1 Bridge and Row 68 → Row 50 meta must read on the same wire before any VII.2 → VII.3 audit on the capstone path**; row 131 when **VII.2 Bridge and Row 68 → Row 51 meta must read on the same wire before row 132 atomistic meta prelude capstone or row 52 atomistic reunion opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous OpenDiS → polycrystal afternoon. When row 130 closed but homogenization meta reunion still lags on the capstone path, switch to [row 131](#row-131-baby-picture-row68-row111-homogenization-meta-prelude-capstone-reunion).
+
+
+### Row 171 baby picture (Row 68 → Row 111 Row 68 → Row 51 homogenization meta prelude capstone reunion) {#row-131-baby-picture-row68-row111-homogenization-meta-prelude-capstone-reunion}
+
+**Row 171 baby picture:** when row 68 closed the midpoint prelude and row 130 or row 111 closed DDD meta prelude capstone / homogenization meta prelude but **row 51's VII.2 Bridge → polycrystal handoff still feels like separate courses on the capstone path**, open the [Row 68 → Row 111 homogenization meta prelude capstone reunion index](sources.md#row68-row151-homogenization-meta-prelude-capstone-reunion-index-row-171) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 130](../preface.md#skill-navigation-row-130) or [preface row 111](../preface.md#skill-navigation-row-111) DDD meta prelude capstone / homogenization meta prelude gate → [VII.2 Bridge to VII.3](../part07-defects/02-dislocation-dynamics.md#bridge-to-vii3) through [VII.2 opening hinge to VII.3](../part07-defects/02-dislocation-dynamics.md#opening-hinge-vii2-to-vii3) aloud → [preface row 51](../preface.md#skill-navigation-row-51) five-step audit → confirm forest-density Lab act linked \(\tau(\gamma)\) before row 52 atomistic meta prelude capstone opens.
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  DM[DDD meta prelude capstone row 130]
+  BR[VII.2 Bridge]
+  R51[row 51 meta gate]
+  MP --> DM --> BR --> R51
+```
+
+When row 171 feels disconnected from row 130, read them as **DDD meta prelude capstone vs homogenization meta prelude capstones**: row 130 when **VII.1 Bridge and Row 68 → Row 50 meta must read on the same wire before any VII.2 → VII.3 audit on the capstone path**; row 171 when **VII.2 Bridge and Row 68 → Row 51 meta must read on the same wire before row 152 atomistic meta prelude capstone or row 52 atomistic reunion opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous OpenDiS → polycrystal afternoon. When row 130 closed but homogenization meta reunion still lags on the capstone path, switch to [row 171](#row-131-baby-picture-row68-row111-homogenization-meta-prelude-capstone-reunion).
+
+
+### Row 171 baby picture (Row 68 → Row 111 Row 68 → Row 51 homogenization meta prelude capstone reunion) {#row-131-baby-picture-row68-row111-homogenization-meta-prelude-capstone-reunion}
+
+**Row 171 baby picture:** when row 68 closed the midpoint prelude and row 130 or row 111 closed DDD meta prelude capstone / homogenization meta prelude but **row 51's VII.2 Bridge → polycrystal handoff still feels like separate courses on the capstone path**, open the [Row 68 → Row 111 homogenization meta prelude capstone reunion index](sources.md#row68-row151-homogenization-meta-prelude-capstone-reunion-index-row-171) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 130](../preface.md#skill-navigation-row-130) or [preface row 111](../preface.md#skill-navigation-row-111) DDD meta prelude capstone / homogenization meta prelude gate → [VII.2 Bridge to VII.3](../part07-defects/02-dislocation-dynamics.md#bridge-to-vii3) through [VII.2 opening hinge to VII.3](../part07-defects/02-dislocation-dynamics.md#opening-hinge-vii2-to-vii3) aloud → [preface row 51](../preface.md#skill-navigation-row-51) five-step audit → confirm forest-density Lab act linked \(\tau(\gamma)\) before row 52 atomistic meta prelude capstone opens.
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  DM[DDD meta prelude capstone row 130]
+  BR[VII.2 Bridge]
+  R51[row 51 meta gate]
+  MP --> DM --> BR --> R51
+```
+
+When row 171 feels disconnected from row 130, read them as **DDD meta prelude capstone vs homogenization meta prelude capstones**: row 130 when **VII.1 Bridge and Row 68 → Row 50 meta must read on the same wire before any VII.2 → VII.3 audit on the capstone path**; row 171 when **VII.2 Bridge and Row 68 → Row 51 meta must read on the same wire before row 152 atomistic meta prelude capstone or row 52 atomistic reunion opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous OpenDiS → polycrystal afternoon. When row 130 closed but homogenization meta reunion still lags on the capstone path, switch to [row 171](#row-131-baby-picture-row68-row111-homogenization-meta-prelude-capstone-reunion).
+
+
+**Row 171 baby picture:** when row 68 closed the midpoint prelude and row 150 or row 131 closed DDD meta prelude capstone / homogenization meta prelude but **row 51's VII.2 Bridge → polycrystal handoff still feels like separate courses on the capstone path**, open the [Row 68 → Row 131 homogenization meta prelude capstone reunion index](sources.md#row68-row151-homogenization-meta-prelude-capstone-reunion-index-row-172) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 150](../preface.md#skill-navigation-row-130) or [preface row 131](../preface.md#skill-navigation-row-111) DDD meta prelude capstone / homogenization meta prelude gate → [VII.2 Bridge to VII.3](../part07-defects/02-dislocation-dynamics.md#bridge-to-vii3) through [VII.2 opening hinge to VII.3](../part07-defects/02-dislocation-dynamics.md#opening-hinge-vii2-to-vii3) aloud → [preface row 51](../preface.md#skill-navigation-row-51) five-step audit → confirm forest-density Lab act linked \(\tau(\gamma)\) before row 52 atomistic meta prelude capstone opens.
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  DM[DDD meta prelude capstone row 150]
+  BR[VII.2 Bridge]
+  R51[row 51 meta gate]
+  MP --> DM --> BR --> R51
+```
+
+When row 131 feels disconnected from row 150, read them as **DDD meta prelude capstone vs homogenization meta prelude capstones**: row 150 when **VII.1 Bridge and Row 68 → Row 50 meta must read on the same wire before any VII.2 → VII.3 audit on the capstone path**; row 131 when **VII.2 Bridge and Row 68 → Row 51 meta must read on the same wire before row 152 atomistic meta prelude capstone or row 52 atomistic reunion opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous OpenDiS → polycrystal afternoon. When row 170 closed but homogenization meta reunion still lags on the capstone path, switch to [row 131](#row-172-baby-picture-row68-row151-homogenization-meta-prelude-capstone-reunion).
+
+### Row 131 baby picture (Row 68 → Row 111 Row 68 → Row 51 homogenization meta prelude capstone reunion) {#row-131-baby-picture-row68-row111-homogenization-meta-prelude-capstone-reunion}
+
+**Row 131 baby picture:** when row 68 closed the midpoint prelude and row 130 or row 111 closed DDD meta prelude capstone / homogenization meta prelude but **row 51's VII.2 Bridge → polycrystal handoff still feels like separate courses on the capstone path**, open the [Row 68 → Row 111 homogenization meta prelude capstone reunion index](sources.md#row68-row111-homogenization-meta-prelude-capstone-reunion-index-row-131) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 130](../preface.md#skill-navigation-row-130) or [preface row 111](../preface.md#skill-navigation-row-111) DDD meta prelude capstone / homogenization meta prelude gate → [VII.2 Bridge to VII.3](../part07-defects/02-dislocation-dynamics.md#bridge-to-vii3) through [VII.2 opening hinge to VII.3](../part07-defects/02-dislocation-dynamics.md#opening-hinge-vii2-to-vii3) aloud → [preface row 51](../preface.md#skill-navigation-row-51) five-step audit → confirm forest-density Lab act linked \(\tau(\gamma)\) before row 52 atomistic meta prelude capstone opens.
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  DM[DDD meta prelude capstone row 130]
+  BR[VII.2 Bridge]
+  R51[row 51 meta gate]
+  MP --> DM --> BR --> R51
+```
+
+When row 131 feels disconnected from row 130, read them as **DDD meta prelude capstone vs homogenization meta prelude capstones**: row 130 when **VII.1 Bridge and Row 68 → Row 50 meta must read on the same wire before any VII.2 → VII.3 audit on the capstone path**; row 131 when **VII.2 Bridge and Row 68 → Row 51 meta must read on the same wire before row 152 atomistic meta prelude capstone or row 52 atomistic reunion opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous OpenDiS → polycrystal afternoon. When row 130 closed but homogenization meta reunion still lags on the capstone path, switch to [row 131](#row-131-baby-picture-row68-row111-homogenization-meta-prelude-capstone-reunion).
+
+
+### Row 172 baby picture (Row 68 → Row 151 Row 68 → Row 52 atomistic meta prelude capstone reunion) {#row-172-baby-picture-row68-row151-atomistic-meta-prelude-capstone-reunion}
+
+**Row 172 baby picture:** when row 68 closed the midpoint prelude and row 131 or row 112 closed homogenization meta prelude capstone / atomistic meta prelude but **row 52's VII.3 Bridge → phase-space handoff still feels like separate courses on the capstone path**, open the [Row 68 → Row 152 atomistic meta prelude capstone reunion index](sources.md#row68-row151-atomistic-meta-prelude-capstone-reunion-index-row-172) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 131](../preface.md#skill-navigation-row-172) or [preface row 112](../preface.md#skill-navigation-row-112) homogenization meta prelude capstone / atomistic meta prelude gate → [VII.3 Bridge to Part VIII](../part07-defects/02-dislocation-dynamics.md#bridge-to-vii3) through [VII.2 opening hinge to VII.3](../part07-defects/02-dislocation-dynamics.md#opening-hinge-vii2-to-vii3) aloud → [preface row 51](../preface.md#skill-navigation-row-51) five-step audit → confirm forest-density Lab act linked \(\tau(\gamma)\) before row 53 dynamics meta prelude capstone opens.
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  HM[Homogenization meta prelude capstone row 131]
+  BR[VII.3 Bridge]
+  R52[row 52 meta gate]
+  MP --> DM --> BR --> R51
+```
+
+When row 131 feels disconnected from row 130, read them as **DDD meta prelude capstone vs atomistic meta prelude capstones**: row 130 when **VII.1 Bridge and Row 68 → Row 50 meta must read on the same wire before any VII.2 → VII.3 audit on the capstone path**; row 131 when **VII.2 Bridge and Row 68 → Row 51 meta must read on the same wire before row 112 atomistic meta capstone or row 52 atomistic reunion opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous OpenDiS → polycrystal afternoon. When row 131 closed but atomistic meta reunion still lags on the capstone path, switch to [row 131](#row-172-baby-picture-row68-row151-atomistic-meta-prelude-capstone-reunion).
 
 
 ### Row 152 baby picture (Row 68 → Row 132 Row 68 → Row 52 atomistic meta prelude capstone reunion) {#row-152-baby-picture-row68-row132-atomistic-meta-prelude-capstone-reunion}
