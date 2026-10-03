@@ -265,6 +265,7 @@ When a chapter feels disconnected from the last, pause at the hinge for your rea
 | 126 | Meta | [Row 68 → Row 106 Writings canonical meta prelude capstone reunion index](sources.md#row68-row106-writings-meta-prelude-capstone-reunion-index-row-126) · [preface row 126 skill checkpoint](../preface.md#skill-navigation-row-126) · [prologue row 126 preview](../prologue/00-many-scales.md#prologue-preview-row-126) · [prologue row 126 closing stitch](../prologue/00-many-scales.md#row-126-closing-stitch) · [epilogue row 126 closing loop](../epilogue/multiscale.md#row-126-closing-loop) | Row 68 closed but row 66 Writings canonical meta reunion feels disconnected from verified second-pass meta prelude capstone on the capstone path — read row 68 + row 125 or row 106 gate + epilogue writings cross-links + row 66; [row 126 baby picture](#row-126-baby-picture-row68-row106-writings-meta-prelude-capstone-reunion) |
 | 127 | Meta | [Row 68 → Row 107 part-boundary meta prelude capstone reunion index](sources.md#row68-row107-part-boundary-meta-prelude-capstone-reunion-index-row-127) · [preface row 127 skill checkpoint](../preface.md#skill-navigation-row-127) · [prologue row 127 preview](../prologue/00-many-scales.md#prologue-preview-row-127) · [prologue row 127 closing stitch](../prologue/00-many-scales.md#row-127-closing-stitch) · [epilogue row 127 closing loop](../epilogue/multiscale.md#row-127-closing-loop) | Row 68 closed but row 67 part-boundary meta reunion feels disconnected from verified Writings canonical meta prelude capstone on the capstone path — read row 68 + row 126 or row 107 gate + V.4 Bridge → VI.0 twin-ladder + row 67; [row 127 baby picture](#row-127-baby-picture-row68-row107-part-boundary-meta-prelude-capstone-reunion) |
 | 154 | Meta | Row 68 → Row 134 Row 68 → Row 54 export meta prelude capstone reunion | [Row 68 → Row 134 export meta prelude capstone reunion index](sources.md#row68-row134-export-meta-prelude-capstone-reunion-index-row-154) · [preface row 154 skill checkpoint](../preface.md#skill-navigation-row-154) · [prologue row 154 preview](../prologue/00-many-scales.md#prologue-preview-row-154) · [prologue row 154 closing stitch](../prologue/00-many-scales.md#row-154-closing-stitch) · [epilogue row 154 closing loop](../epilogue/multiscale.md#row-154-closing-loop) | Row 68 closed but row 54 VIII.2 → VIII.3 opening hinge feels disconnected from verified dynamics meta prelude capstone on the capstone path — read row 68 + row 153 or row 134 gate + VIII.2 Bridge → opening hinge → VIII.3 pedigree + row 54; [row 154 baby picture](#row-154-baby-picture-row68-row134-export-meta-prelude-capstone-reunion) |
+| 156 | Meta | Row 68 → Row 136 Row 68 → Row 56 Born–Oppenheimer meta prelude capstone reunion | [Row 68 → Row 136 Born–Oppenheimer meta prelude capstone reunion index](sources.md#row68-row136-born-oppenheimer-meta-prelude-capstone-reunion-index-row-156) · [preface row 156 skill checkpoint](../preface.md#skill-navigation-row-156) · [prologue row 156 preview](../prologue/00-many-scales.md#prologue-preview-row-156) · [prologue row 156 closing stitch](../prologue/00-many-scales.md#row-156-closing-stitch) · [epilogue row 156 closing loop](../epilogue/multiscale.md#row-156-closing-loop) | Row 68 closed but row 56 IX.0 → IX.1 opening hinge feels disconnected from verified electronic audit meta prelude capstone on the capstone path — read row 68 + row 155 or row 136 gate + IX.0 Bridge → opening hinge → IX.1 BO/HK + row 56; [row 156 baby picture](#row-156-baby-picture-row68-row136-born-oppenheimer-meta-prelude-capstone-reunion) |
 | 155 | Meta | Row 68 → Row 135 Row 68 → Row 55 electronic audit meta prelude capstone reunion | [Row 68 → Row 135 electronic audit meta prelude capstone reunion index](sources.md#row68-row135-electronic-audit-meta-prelude-capstone-reunion-index-row-155) · [preface row 155 skill checkpoint](../preface.md#skill-navigation-row-155) · [prologue row 155 preview](../prologue/00-many-scales.md#prologue-preview-row-155) · [prologue row 155 closing stitch](../prologue/00-many-scales.md#row-155-closing-stitch) · [epilogue row 155 closing loop](../epilogue/multiscale.md#row-155-closing-loop) | Row 68 closed but row 55 VIII.3 → IX.0 opening hinge feels disconnected from verified export meta prelude capstone on the capstone path — read row 68 + row 154 or row 135 gate + VIII.3 Bridge → opening hinge → IX.0 SCF audit + row 55; [row 155 baby picture](#row-155-baby-picture-row68-row135-electronic-audit-meta-prelude-capstone-reunion) |
 | 153 | Meta | Row 68 → Row 133 Row 68 → Row 53 dynamics meta prelude capstone reunion | [Row 68 → Row 133 dynamics meta prelude capstone reunion index](sources.md#row68-row133-dynamics-meta-prelude-capstone-reunion-index-row-153) · [preface row 153 skill checkpoint](../preface.md#skill-navigation-row-153) · [prologue row 153 preview](../prologue/00-many-scales.md#prologue-preview-row-153) · [prologue row 153 closing stitch](../prologue/00-many-scales.md#row-153-closing-stitch) · [epilogue row 153 closing loop](../epilogue/multiscale.md#row-153-closing-loop) | Row 68 closed but row 53 VIII.1 → VIII.2 opening hinge feels disconnected from verified atomistic meta prelude capstone on the capstone path — read row 68 + row 152 or row 133 gate + VIII.1 Bridge → opening hinge → VIII.2 ensembles + row 53; [row 153 baby picture](#row-153-baby-picture-row68-row133-dynamics-meta-prelude-capstone-reunion) |
 | 152 | Meta | Row 68 → Row 132 Row 68 → Row 52 atomistic meta prelude capstone reunion | [Row 68 → Row 132 atomistic meta prelude capstone reunion index](sources.md#row68-row132-atomistic-meta-prelude-capstone-reunion-index-row-152) · [preface row 152 skill checkpoint](../preface.md#skill-navigation-row-152) · [prologue row 152 preview](../prologue/00-many-scales.md#prologue-preview-row-152) · [prologue row 152 closing stitch](../prologue/00-many-scales.md#row-152-closing-stitch) · [epilogue row 152 closing loop](../epilogue/multiscale.md#row-152-closing-loop) | Row 68 closed but row 52 VII.3 → VIII.1 opening hinge feels disconnected from verified homogenization meta prelude capstone on the capstone path — read row 68 + row 151 or row 132 gate + VII.3 Bridge → opening hinge → VIII.1 phase space + row 52; [row 152 baby picture](#row-152-baby-picture-row68-row132-atomistic-meta-prelude-capstone-reunion) |
@@ -2806,6 +2807,459 @@ flowchart LR
 ```
 
 When row 137 feels disconnected from row 136, read them as **Born–Oppenheimer meta capstone vs Kohn–Sham meta capstones**: row 136 when **IX.0 Bridge and Row 68 → Row 56 meta must read on the same wire before any IX.1 → IX.2 audit**; row 137 when **IX.1 Bridge and Row 68 → Row 57 meta must read on the same wire before row 138 DFT workflows meta capstone or row 58 workflow reunion opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous Murnaghan scan → \(\rho^\star = \mathcal{G}(\rho^\star)\) afternoon.
+
+
+### Row 138 baby picture (Row 68 → Row 118 Row 68 → Row 58 DFT workflows meta capstone reunion) {#row-138-baby-picture-row68-row118-dft-workflows-meta-capstone-reunion}
+
+**Row 138 baby picture:** when row 68 closed the midpoint prelude and row 137 or row 118 closed Kohn–Sham meta capstone / DFT workflows opening prelude but **row 58's IX.2 → IX.3 audit or the Bridge → calculation ladder chain still feel like separate checklists**, open the [Row 68 → Row 118 DFT workflows meta capstone reunion index](sources.md#row68-row118-dft-workflows-meta-capstone-reunion-index-row-138) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 137](../preface.md#skill-navigation-row-117) or [preface row 118](../preface.md#skill-navigation-row-98) Kohn–Sham meta capstone / DFT workflows opening gate → [IX.2 Bridge](../part09-dft/02-kohn-sham.md#bridge) through [IX.3 opening hinge from IX.2](../part09-dft/03-dft-workflows.md#opening-hinge-ix2-to-ix3) aloud → [preface row 58](../preface.md#skill-navigation-row-58) five-step audit → confirm [cutoff-sweep Lab act steps 1–5](../part09-dft/02-kohn-sham.md#lab-act-cutoff-sweep-on-fcc-cu-act-vi--convergence-certificate) and [cutoff export manifest](../part09-dft/02-kohn-sham.md#cutoff-export-manifest-handoff-to-ix3) at \(T_w\).
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  KS[Kohn–Sham meta row 137]
+  BR[IX.2 Bridge to IX.3]
+  R58[row 58 meta gate]
+  MP --> KS --> BR --> R58
+```
+
+When row 138 feels disconnected from row 137, read them as **Kohn–Sham meta capstone vs DFT workflows meta capstones**: row 137 when **IX.1 → IX.2 must reunite on Murnaghan volume scans at \(T_w\) before any cutoff certificate**; row 138 when **cutoff export manifest and IX.2 → IX.3 DFT workflows meta must read on the same wire before row 139 Handshake 3 meta capstone or row 59 workflow reunion opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous cutoff certificate → `cu.foundation/` afternoon.
+
+
+### Row 139 baby picture (Row 68 → Row 119 Row 68 → Row 59 Handshake 3 meta capstone reunion) {#row-139-baby-picture-row68-row119-handshake3-meta-capstone-reunion}
+
+**Row 139 baby picture:** when row 68 closed the midpoint prelude and row 138 or row 119 closed DFT workflows meta capstone / Handshake 3 opening prelude but **row 59's IX.3 → Handshake 3 audit or the Bridge → quasiharmonic \(\alpha(T_w)\) chain still feel like separate checklists**, open the [Row 68 → Row 119 Handshake 3 meta capstone reunion index](sources.md#row68-row119-handshake3-meta-capstone-reunion-index-row-139) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 138](../preface.md#skill-navigation-row-138) or [preface row 119](../preface.md#skill-navigation-row-139) DFT workflows meta capstone / Handshake 3 opening gate → [IX.3 Bridge to the epilogue](../part09-dft/03-dft-workflows.md#bridge-to-the-epilogue) through [opening hinge to Handshake 3](../part09-dft/03-dft-workflows.md#opening-hinge-ix3-to-handshake3) aloud → [preface row 59](../preface.md#skill-navigation-row-59) five-step audit → confirm [foundation archive Lab act steps 1–5](../part09-dft/03-dft-workflows.md#lab-act-archive-the-foundation-run-before-the-wire-scale-solve-act-vi--foundation) and [foundation export manifest](../part09-dft/03-dft-workflows.md#foundation-export-manifest-handoff-to-epilogue) at \(T_w\).
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  DF[DFT workflows meta row 138]
+  BR[IX.3 Bridge to Handshake 3]
+  R59[row 59 meta gate]
+  MP --> DF --> BR --> R59
+```
+
+When row 139 feels disconnected from row 138, read them as **DFT workflows meta capstone vs Handshake 3 meta capstones**: row 138 when **IX.2 → IX.3 must reunite on cutoff certificates at \(T_w\) before any foundation archive**; row 139 when **foundation export manifest and IX.3 → Handshake 3 meta must read on the same wire before row 140 Handshake 3 meta prelude capstone opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous foundation archive → \(\alpha(T_w)\) afternoon. When row 138 closed but load-cell sections still lag, switch to [row 139](#row-139-baby-picture-row68-row119-handshake3-meta-capstone-reunion).
+
+
+### Row 140 baby picture (Row 68 → Row 120 Row 68 → Row 60 Handshake 3 meta prelude capstone reunion) {#row-140-baby-picture-row68-row120-handshake3-meta-prelude-capstone-reunion}
+
+**Row 140 baby picture:** when row 68 closed the midpoint prelude and row 139 or row 120 closed Handshake 3 meta capstone / Handshake 3 meta prelude but **row 60's epilogue α cross-links audit or the III.4 → IV.4 → V.4 → VI.2 ascent chain still feel like separate checklists on the capstone path**, open the [Row 68 → Row 120 Handshake 3 meta prelude capstone reunion index](sources.md#row68-row120-handshake3-meta-prelude-capstone-reunion-index-row-140) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 139](../preface.md#skill-navigation-row-139) or [preface row 140](../preface.md#skill-navigation-row-140) Handshake 3 meta capstone / meta prelude gate → [epilogue α cross-links audit](../epilogue/multiscale.md#opening-hinge-ix3-handshake3) aloud → [preface row 60](../preface.md#skill-navigation-row-60) five-step audit → confirm [V.4 Picard CHT Lab act](../part05-fvm/04-navier-stokes-cfd.md#lab-act-extension-two-domain-picard-loop-with-a-1d-fem-solid) and [VI.2 \(\alpha\) handshake](../part06-continuum/02-stress-balance.md#scale-boundary-handshake-thermal-expansion-alpha) at \(T_w\).
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  HS[Handshake 3 meta capstone row 139]
+  XL[Epilogue α cross-links]
+  R60[row 60 meta gate]
+  MP --> HS --> XL --> R60
+```
+
+When row 140 feels disconnected from row 139, read them as **Handshake 3 meta capstone vs Handshake 3 meta prelude capstones**: row 139 when **IX.3 → Handshake 3 must reunite on foundation archive at \(T_w\) before any cross-links table on the capstone path**; row 140 when **epilogue α cross-links and Row 59 → Row 40 Handshake 3 meta must read on the same wire before row 61 Handshake 4a meta prelude opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous \(\alpha(T_w)\) → Act II–III afternoon after verified DFT workflows meta capstone. When row 139 closed but Parts III–VI still lag, switch to [row 140](#row-140-baby-picture-row68-row120-handshake3-meta-prelude-capstone-reunion).
+
+
+### Act VI baby picture (ME 412 coupling ladder) {#act-vi-baby-picture-me-412-coupling-ladder}
+
+The [Part IX opening](../part09-dft/00-opening.md#the-coupling-ladder-me-412-reunion) draws the full coupling ladder; this diagram is the **Act VI slice** — foundation pedigree in workflow order, then handshake orchestration:
+
+```mermaid
+flowchart TB
+  subgraph act6["Act VI foundation (IX to IV workflow order)"]
+    DFT[IX.3: E_coh, C_ij, gamma_sf]
+    MD[VIII: EAM fit on DFT]
+    DDD[VII: mobility from MD]
+    FEM[IV: moduli in input deck]
+  end
+  subgraph orch["Row 16 orchestration (epilogue handshakes)"]
+    H1[1: DFT moduli to FEM]
+    H2[2: CHT delta T]
+    H3[3: alpha delta T]
+    H4a[4a: rate extrapolation]
+    H4b[4b: FE2 notch]
+    OUT[multiscale_export.yaml]
+  end
+  DFT --> MD --> DDD --> FEM --> H1
+  H1 --> H2 --> H3 --> H4a --> H4b --> OUT
+  H2 -.->|delta T| H3
+  H2 -.->|T_w to phonon lifetime| H4a
+```
+
+**Per-node anchors (inline index).** Mermaid nodes are not clickable in mdBook; each label above maps to an anchor below for reverse audit with the [epilogue Act VI minimal artifact column](../epilogue/multiscale.md#act-vi-foundation-minimal-artifacts) and [preface row 16 three-way audit](../preface.md#skill-navigation-row-16):
+
+| Diagram node | Anchor | Row 16 step |
+|--------------|--------|-------------|
+| **DFT** | [#act-vi-node-dft](#act-vi-node-dft) | Step 2 — `foundation_export.yaml` |
+| **MD** | [#act-vi-node-md](#act-vi-node-md) | Step 2 — EAM / VACF archive |
+| **DDD** | [#act-vi-node-ddd](#act-vi-node-ddd) | Step 2 — mobility / GSF archive |
+| **FEM** | [#act-vi-node-fem](#act-vi-node-fem) | Step 2 — `cu.elastic/` in input deck |
+| **H1** | [#act-vi-node-h1](#act-vi-node-h1) | Step 3 — Handshake 1 in orchestrator |
+| **H2** | [#act-vi-node-h2](#act-vi-node-h2) | Step 1 — upstream [row 13](../preface.md#skill-navigation-row-13); Step 3 — `cht_export.yaml` |
+| **H3** | [#act-vi-node-h3](#act-vi-node-h3) | Step 1 — upstream rows 8–9, 13; Step 4 — `delta_T_from_handshake_2` |
+| **H4a** | [#act-vi-node-h4a](#act-vi-node-h4a) | Step 1 — upstream [row 14](../preface.md#skill-navigation-row-14); Step 4 — `target_T_K` |
+| **H4b** | [#act-vi-node-h4b](#act-vi-node-h4b) | Step 1 — upstream [row 15](../preface.md#skill-navigation-row-15) |
+| **OUT** | [#act-vi-node-out](#act-vi-node-out) | Step 3–4 — `multiscale_export.yaml` + `./scripts/test-fixtures.sh` |
+
+<span id="act-vi-node-dft"></span>**DFT** — IX.3 exports: \(E_{\text{coh}}\), \(C_{ij}\), \(\gamma_{\text{sf}}\), phonon tables; [`parse_dft_workflow.sh`](../../scripts/parse_dft_workflow.sh).
+
+<span id="act-vi-node-md"></span>**MD** — EAM fit on DFT; [`parse_vacf.sh`](../../scripts/parse_vacf.sh) cross-check.
+
+<span id="act-vi-node-ddd"></span>**DDD** — mobility from MD; GSF for partial dislocations; [`parse_rate.sh`](../../scripts/parse_rate.sh), [`parse_gsf.sh`](../../scripts/parse_gsf.sh).
+
+<span id="act-vi-node-fem"></span>**FEM** — Voigt \(E\), \(\nu\) in Part IV elastic step; `cu.elastic/`.
+
+<span id="act-vi-node-h1"></span>**H1** — Handshake 1: DFT moduli → continuum; [`parse_elastic.sh`](../../scripts/parse_elastic.sh).
+
+<span id="act-vi-node-h2"></span>**H2** — Handshake 2: Joule → CHT; [`parse_cht.sh`](../../scripts/parse_cht.sh) → `cht_export.yaml`.
+
+<span id="act-vi-node-h3"></span>**H3** — Handshake 3: thermal → mechanical; [`parse_alpha.sh`](../../scripts/parse_alpha.sh) → `alpha_export.yaml`.
+
+<span id="act-vi-node-h4a"></span>**H4a** — Handshake 4a: rate hardening; [`parse_rate.sh`](../../scripts/parse_rate.sh); [`parse_lifetime.sh`](../../scripts/parse_lifetime.sh) at \(T_w\).
+
+<span id="act-vi-node-h4b"></span>**H4b** — Handshake 4b: notch localization; [`parse_fe2.sh`](../../scripts/parse_fe2.sh).
+
+<span id="act-vi-node-out"></span>**OUT** — orchestrated chain; [`parse_multiscale_workflow.sh`](../../scripts/parse_multiscale_workflow.sh) → `multiscale_export.yaml`.
+
+#### Subgraph node audit (bidirectional ↔ IX.3 pedigree table) {#act-vi-subgraph-node-audit}
+
+Each node in the diagram above maps to a row in [IX.3's epilogue pedigree table](../part09-dft/03-dft-workflows.md#ix3-epilogue-pedigree-table). Use this table when the baby picture feels like a diagram without archive artifacts, or when the pedigree table feels like rows without workflow order. The **Node anchor** column links to the inline anchors above; the **Row 16 step** column links to the [epilogue Act VI minimal artifact table](../epilogue/multiscale.md#act-vi-foundation-minimal-artifacts) for reverse audit.
+
+| Subgraph | Node | Node anchor | Row 16 step | IX.3 pedigree row | Parser / export |
+|----------|------|-------------|-------------|-------------------|-----------------|
+| `act6` | **DFT** | [#act-vi-node-dft](#act-vi-node-dft) | Step 2 | Handshake 1 (moduli); Handshake 3 (phonon) | [`parse_dft_workflow.sh`](../../scripts/parse_dft_workflow.sh); [`parse_elastic.sh`](../../scripts/parse_elastic.sh); [`parse_alpha.sh`](../../scripts/parse_alpha.sh) |
+| `act6` | **MD** | [#act-vi-node-md](#act-vi-node-md) | Step 2 | Handshake 4a (VACF cross-check) | [`parse_vacf.sh`](../../scripts/parse_vacf.sh); EAM fit archive |
+| `act6` | **DDD** | [#act-vi-node-ddd](#act-vi-node-ddd) | Step 2 | Handshake 4a (mobility); Handshake 4b (GSF) | [`parse_rate.sh`](../../scripts/parse_rate.sh); [`parse_gsf.sh`](../../scripts/parse_gsf.sh) |
+| `act6` | **FEM** | [#act-vi-node-fem](#act-vi-node-fem) | Step 2 | Handshake 1 (moduli in input deck) | Part IV elastic step; `cu.elastic/` |
+| `orch` | **H1** | [#act-vi-node-h1](#act-vi-node-h1) | Step 3 | Handshake 1 — DFT → continuum | [`parse_elastic.sh`](../../scripts/parse_elastic.sh) |
+| `orch` | **H2** | [#act-vi-node-h2](#act-vi-node-h2) | Step 1, 3 | Handshake 2 — Joule → CHT | [`parse_cht.sh`](../../scripts/parse_cht.sh) → `cht_export.yaml` |
+| `orch` | **H3** | [#act-vi-node-h3](#act-vi-node-h3) | Step 1, 4 | Handshake 3 — thermal → mechanical | [`parse_alpha.sh`](../../scripts/parse_alpha.sh) → `alpha_export.yaml` |
+| `orch` | **H4a** | [#act-vi-node-h4a](#act-vi-node-h4a) | Step 1, 4 | Handshake 4a — rate hardening | [`parse_rate.sh`](../../scripts/parse_rate.sh); [`parse_lifetime.sh`](../../scripts/parse_lifetime.sh) |
+| `orch` | **H4b** | [#act-vi-node-h4b](#act-vi-node-h4b) | Step 1 | Handshake 4b — notch localization | [`parse_fe2.sh`](../../scripts/parse_fe2.sh) |
+| `orch` | **OUT** | [#act-vi-node-out](#act-vi-node-out) | Step 3–4 | All — orchestrated chain | [`parse_multiscale_workflow.sh`](../../scripts/parse_multiscale_workflow.sh) → `multiscale_export.yaml` |
+
+When ascent grammar (Parts I–III) and descent pedigree (Parts VII–IX) feel like separate books, return here — row 16 is where the ME 412 coupling ladder reunites them in one afternoon. {#act-vi-baby-picture-closing} The `act6` subgraph (DFT → MD → DDD → FEM) is the workflow-time mirror of [IX.3's foundation checklist](../part09-dft/03-dft-workflows.md#ix3-foundation-checklist) — the scale-boundary handshake table names the audit gate on each DFT archive before [`parse_dft_workflow.sh`](../../scripts/parse_dft_workflow.sh) emits `foundation_export.yaml`; return to that anchor when this closing paragraph feels abstract without the six-row audit table; the [IX.3 epilogue pedigree table](../part09-dft/03-dft-workflows.md#ix3-epilogue-pedigree-table) maps each handshake row to archive artifacts; the `orch` subgraph (Handshakes 1–4b → `multiscale_export.yaml`) is the downstream half archived by [`parse_multiscale_workflow.sh`](../../scripts/parse_multiscale_workflow.sh). The [epilogue script audit trail](../epilogue/multiscale.md#script-audit-trail-parse-scripts-handshakes) **All — orchestrated chain** row names the parser that runs this subgraph in dependency order; its closing paragraph cites `./scripts/test-fixtures.sh` when auditing `delta_T_from_handshake_2` and `target_T_K`. Return to the [preface epilogue continuity hinges](../preface.md#epilogue-continuity-hinges) (Act VI orchestration row), the [preface row 16 When-to-pause opening sentence](../preface.md#skill-navigation-row-16), the [prologue row 16 closing stitch](../prologue/00-many-scales.md#row-16-closing-stitch), the [prologue row 16 preview](../prologue/00-many-scales.md#what-you-should-be-able-to-do-after-the-prologue), the [epilogue row 16 closing loop](../epilogue/multiscale.md#row-16-closing-loop), and [prologue reading compass row 16](../prologue/00-many-scales.md#reading-compass-two-clocks-on-one-wire) when the competence loop closes — this baby picture closing paragraph is the narrative stitch; the epilogue hinges table, closing loop, and those rows are the competence-time mirrors named in the script audit trail opening sentence. The [epilogue Act VI foundation table row](../epilogue/multiscale.md#lab-act-reunion-six-acts-one-afternoon) and [workflow exam Act VI row](../epilogue/multiscale.md#what-you-should-be-able-to-do-after-the-book) are the workflow-time mirrors — return to this closing paragraph when the workflow exam Act VI row feels like a checklist without the foundation → orchestration diagram; the [one-page copper wire recap](#one-page-copper-wire-recap) Act VI column compresses the same chain for index-card review; the [epilogue sensitivity worksheet closing](../epilogue/multiscale.md#worked-example-sensitivity-ranks) (row 16 orchestration stitch) proves Handshakes 1–4b ran in dependency order after the partial-derivative audit.
+
+## One-line course summaries (ME 412 style)
+
+The [Functional Analysis Notes](https://hanfengzhai.github.io/file/teaching/notes/ME412_CourseSummary.pdf) close with compressed sentences that fit on an index card. This book extends that habit across scales:
+
+| Scope | One-line summary |
+|-------|------------------|
+| **Parts I–III** | Linear algebra → operator equations → well-posedness → weak PDE. |
+| **Parts I–IV** | Choose the right space → prove the weak solution exists → approximate it by Galerkin projection. |
+| **Parts I–VI** | Norm = ruler, Banach = no holes, Hilbert = geometry, Sobolev = PDE-ready; continuum stress names what FEM already meshed. |
+| **Parts I–IX** | Same ladder from \(\mathbb{R}^N\) to \(\rho(\mathbf{r})\); homogenize upward with documented handshakes. |
+| **Whole book** | One copper wire, four questions at every scale: state, equations, discretization, upward export. |
+
+When a chapter feels abstract, pick the row that matches your reading position and read it aloud — it is the plot spine in one breath. At part openings, use [row 18](sources.md#part-opening-plot-spine-index-row-18); mid-chapter, use [row 19](sources.md#numbered-chapter-plot-spine-index-row-19).
+
+## One-page copper wire recap {#one-page-copper-wire-recap}
+
+| Act | Lab beat | Part | State on the wire | Upward export |
+|-----|----------|------|-------------------|---------------|
+| I | Mounting | I | Spring displacements | \(\mathbf{K}\), modes |
+| II | Warming | III–V | \(T(\mathbf{x})\), air flow | Wall flux, CHT loop |
+| III | Pulling | II–IV, VI | \(u(x)\), \(\boldsymbol{\sigma}\) | Weak form → assembly |
+| IV | Hardening | VII | Dislocation density \(\rho\) | \(\tau(\gamma)\) for FEM |
+| V | Notch | VI, VIII | Stress concentrator | MD traction handoff |
+| VI | Foundation | IX → VIII → VII → IV | \(\rho(\mathbf{r})\), then potentials | \(E_{\text{coh}}\), \(C_{ij}\), [`multiscale_export.yaml`](../../scripts/parse_multiscale_workflow.sh) pedigree |
+
+Read the [prologue](../prologue/00-many-scales.md#the-experiment-as-plot) for the six-act table in narrative form; read the [epilogue Act VI foundation table row](../epilogue/multiscale.md#lab-act-reunion-six-acts-one-afternoon) for the foundation → handshake workflow and the [workflow exam Act VI row](../epilogue/multiscale.md#what-you-should-be-able-to-do-after-the-book) for the competence-time checklist — the same minimal-artifact column the [prologue row 16 preview](../prologue/00-many-scales.md#what-you-should-be-able-to-do-after-the-prologue) named before Part I. Act VI's upward export is not a single modulus — it is the orchestrated pedigree file linking Handshakes 1–4b; the [Act VI baby picture](#act-vi-baby-picture-me-412-coupling-ladder) draws that chain; the [IX.3 foundation checklist](../part09-dft/03-dft-workflows.md#ix3-foundation-checklist) (scale-boundary handshake table) and [IX.3 epilogue pedigree table](../part09-dft/03-dft-workflows.md#ix3-epilogue-pedigree-table) map each handshake to DFT archive artifacts; [preface row 16](../preface.md#skill-navigation-row-16) and the [preface epilogue hinges Act VI row](../preface.md#epilogue-continuity-hinges) close the competence loop when individual exports exist but no `multiscale_export.yaml` links them; the [epilogue sensitivity worksheet closing](../epilogue/multiscale.md#worked-example-sensitivity-ranks) (row 16 orchestration stitch) proves Handshakes 1–4b ran in dependency order after the partial-derivative audit — return there when this Act VI column feels abstract without the quantitative audit trail; return here when that closing stitch completes and you need the index-card compression.
+
+## Handshake interface checklist
+
+Multiscale workflows fail at **interfaces**, not inside solvers. Before merging outputs from two codes, verify each row — the epilogue's four-handshake example on the heated wire is the template.
+
+| Interface | Quantity crossing | Unit check | Frame check | Convergence artifact |
+|-----------|-------------------|------------|-------------|----------------------|
+| DFT → MD | \(E_{\text{coh}}\), \(a_0\), \(C_{ij}\), \(\gamma_{\text{sf}}\) | eV → eV/atom; Å → Å; GPa from Voigt average | Same crystal orientation as MD box | SCF log; k-mesh table; cutoff test |
+| MD → DDD | \(M(\tau, T)\), core structure, \(\gamma_{\text{sf}}\) | Pa, m/s; mJ/m² | Slip system labels match OpenDiS input | Autocorrelation \(\tau\); equilibration length |
+| DDD → FEM | \(\tau(\gamma)\), \(\rho(\gamma)\), hardening modulus | Pa; m⁻² | Same strain rate as lab frame | Forest density vs strain curve |
+| FEM solid → FVM fluid | Wall \(T\), heat flux \(q''\), \(h\) | K; W/m²; W/(m²·K) | Outward normal consistent on both meshes | CHT fixed-point iteration log |
+| FEM mechanical → FEM thermal | \(\varepsilon_{\text{th}}(T)\), temperature-dependent \(E\) | K⁻¹; GPa vs temperature table | Same mesh or consistent interpolation | Staggered coupling iteration count |
+
+**Archive rule:** every arrow in a workflow folder gets a README line with (1) source commit or run ID, (2) convergence parameter that was tested, (3) known sensitivity from the epilogue table. Future-you should not inherit a number without inheriting its pedigree.
+
+## Reading rhythm reminder (ME 412 layout)
+
+Each numbered chapter follows the same five-beat rhythm the Functional Analysis Notes use, extended with narrative Scene and Lab act sections:
+
+1. **Scene** — return to the copper wire in the lab
+2. **Concept map checkpoint** (mid- or end-chapter) — object, structure, theorem, failure mode — present in all **35 numbered chapters** (I.1–IX.3), plus **prologue** and **epilogue** bookends
+3. **Lab act** — one computational move you can run
+4. **Bridge** — why the next chapter must exist
+
+When abstraction rises mid-chapter, pause at the next **Scene** or **Lab act** before continuing — the plot resumes there even if the theorem does not.
+
+## Bridge
+
+The memory sheet closes the book the way ME 412 closes the Functional Analysis Notes — habits and traps, not proofs. Return to the [glossary](glossary.md) when a symbol reappears under new vocabulary; return to [sources](sources.md) when you need the PDF behind a part or the [continuity hinges index](sources.md#continuity-hinges-index-when-the-plot-stutters); return to the [prologue](../prologue/00-many-scales.md) when a new project needs scale discipline from day one. The [continuity hinges master map](#continuity-hinges-master-map) above is the one-page navigation aid when the plot stutters mid-read.
+
+The copper wire does not care which chapter you finished last. It responds to physics. Your craft is to make that physics computable, connected, and credible — one continuous story from \(\mathbb{R}^N\) to \(\rho(\mathbf{r})\) and back upward through homogenization.
+
+### Row 156 baby picture (Row 68 → Row 136 Row 68 → Row 56 Born–Oppenheimer meta prelude capstone reunion) {#row-156-baby-picture-row68-row136-born-oppenheimer-meta-prelude-capstone-reunion}
+
+**Row 156 baby picture:** when row 68 closed the midpoint prelude and row 155 or row 136 closed electronic audit meta prelude capstone / Born–Oppenheimer opening prelude but **row 56's IX.0 → IX.1 audit or the Bridge → BO/HK chain still feel like separate checklists**, open the [Row 68 → Row 136 Born–Oppenheimer meta prelude capstone reunion index](sources.md#row68-row136-born-oppenheimer-meta-prelude-capstone-reunion-index-row-156) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 155](../preface.md#skill-navigation-row-115) or [preface row 156](../preface.md#skill-navigation-row-96) electronic audit meta prelude capstone / Born–Oppenheimer opening gate → [IX.0 Bridge](../part09-dft/00-opening.md#bridge) through [IX.1 opening hinge from IX.0](../part09-dft/01-born-oppenheimer.md#opening-hinge-ix0-to-ix1) aloud → [preface row 56](../preface.md#skill-navigation-row-56) five-step audit → confirm [foundation SCF audit Lab act steps 1–6](../part09-dft/00-opening.md#lab-act-foundation-scf-audit-before-born-oppenheimer-act-vi--foundation) and [electronic audit export manifest](../part09-dft/00-opening.md#electronic-audit-export-manifest-handoff-to-ix1) at \(T_w\).
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  EA[Electronic audit meta row 155]
+  BR[IX.0 Bridge to IX.1]
+  R56[row 56 meta gate]
+  MP --> EA --> BR --> R56
+```
+
+When row 156 feels disconnected from row 155, read them as **electronic audit meta prelude capstone vs Born–Oppenheimer meta capstones**: row 155 when **VIII.3 Bridge and Row 68 → Row 55 meta must read on the same wire before any IX.0 → IX.1 audit**; row 156 when **IX.0 Bridge and Row 68 → Row 56 meta must read on the same wire before row 137 Kohn–Sham meta capstone or row 57 KS reunion opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous SCF log → \(V_{\text{BO}}\) afternoon.
+
+
+
+### Row 137 baby picture (Row 68 → Row 117 Row 68 → Row 57 Kohn–Sham meta capstone reunion) {#row-137-baby-picture-row68-row117-kohn-sham-meta-capstone-reunion}
+
+**Row 137 baby picture:** when row 68 closed the midpoint prelude and row 156 or row 117 closed Born–Oppenheimer meta capstone / Kohn–Sham opening prelude but **row 57's IX.1 → IX.2 audit or the Bridge → Kohn–Sham SCF chain still feel like separate checklists**, open the [Row 68 → Row 97 Kohn–Sham meta capstone reunion index](sources.md#row68-row117-kohn-sham-meta-capstone-reunion-index-row-137) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 156](../preface.md#skill-navigation-row-156) or [preface row 117](../preface.md#skill-navigation-row-117) Born–Oppenheimer meta capstone / Kohn–Sham opening gate → [IX.1 Bridge](../part09-dft/01-born-oppenheimer.md#bridge) through [IX.2 opening hinge from IX.1](../part09-dft/02-kohn-sham.md#opening-hinge-ix1-to-ix2) aloud → [preface row 57](../preface.md#skill-navigation-row-57) five-step audit → confirm [Murnaghan Lab act steps 1–5](../part09-dft/01-born-oppenheimer.md#lab-act-murnaghan-fit-on-fcc-cu-act-vi--foundation) and [Murnaghan export manifest](../part09-dft/01-born-oppenheimer.md#murnaghan-export-manifest-handoff-to-ix2) at \(T_w\).
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  BO[Born–Oppenheimer meta row 156]
+  BR[IX.1 Bridge to IX.2]
+  R57[row 57 meta gate]
+  MP --> BO --> BR --> R57
+```
+
+When row 137 feels disconnected from row 156, read them as **Born–Oppenheimer meta capstone vs Kohn–Sham meta capstones**: row 156 when **IX.0 Bridge and Row 68 → Row 56 meta must read on the same wire before any IX.1 → IX.2 audit**; row 137 when **IX.1 Bridge and Row 68 → Row 57 meta must read on the same wire before row 138 DFT workflows meta capstone or row 58 workflow reunion opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous Murnaghan scan → \(\rho^\star = \mathcal{G}(\rho^\star)\) afternoon.
+
+
+### Row 138 baby picture (Row 68 → Row 118 Row 68 → Row 58 DFT workflows meta capstone reunion) {#row-138-baby-picture-row68-row118-dft-workflows-meta-capstone-reunion}
+
+**Row 138 baby picture:** when row 68 closed the midpoint prelude and row 137 or row 118 closed Kohn–Sham meta capstone / DFT workflows opening prelude but **row 58's IX.2 → IX.3 audit or the Bridge → calculation ladder chain still feel like separate checklists**, open the [Row 68 → Row 118 DFT workflows meta capstone reunion index](sources.md#row68-row118-dft-workflows-meta-capstone-reunion-index-row-138) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 137](../preface.md#skill-navigation-row-117) or [preface row 118](../preface.md#skill-navigation-row-98) Kohn–Sham meta capstone / DFT workflows opening gate → [IX.2 Bridge](../part09-dft/02-kohn-sham.md#bridge) through [IX.3 opening hinge from IX.2](../part09-dft/03-dft-workflows.md#opening-hinge-ix2-to-ix3) aloud → [preface row 58](../preface.md#skill-navigation-row-58) five-step audit → confirm [cutoff-sweep Lab act steps 1–5](../part09-dft/02-kohn-sham.md#lab-act-cutoff-sweep-on-fcc-cu-act-vi--convergence-certificate) and [cutoff export manifest](../part09-dft/02-kohn-sham.md#cutoff-export-manifest-handoff-to-ix3) at \(T_w\).
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  KS[Kohn–Sham meta row 137]
+  BR[IX.2 Bridge to IX.3]
+  R58[row 58 meta gate]
+  MP --> KS --> BR --> R58
+```
+
+When row 138 feels disconnected from row 137, read them as **Kohn–Sham meta capstone vs DFT workflows meta capstones**: row 137 when **IX.1 → IX.2 must reunite on Murnaghan volume scans at \(T_w\) before any cutoff certificate**; row 138 when **cutoff export manifest and IX.2 → IX.3 DFT workflows meta must read on the same wire before row 139 Handshake 3 meta capstone or row 59 workflow reunion opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous cutoff certificate → `cu.foundation/` afternoon.
+
+
+### Row 139 baby picture (Row 68 → Row 119 Row 68 → Row 59 Handshake 3 meta capstone reunion) {#row-139-baby-picture-row68-row119-handshake3-meta-capstone-reunion}
+
+**Row 139 baby picture:** when row 68 closed the midpoint prelude and row 138 or row 119 closed DFT workflows meta capstone / Handshake 3 opening prelude but **row 59's IX.3 → Handshake 3 audit or the Bridge → quasiharmonic \(\alpha(T_w)\) chain still feel like separate checklists**, open the [Row 68 → Row 119 Handshake 3 meta capstone reunion index](sources.md#row68-row119-handshake3-meta-capstone-reunion-index-row-139) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 138](../preface.md#skill-navigation-row-138) or [preface row 119](../preface.md#skill-navigation-row-139) DFT workflows meta capstone / Handshake 3 opening gate → [IX.3 Bridge to the epilogue](../part09-dft/03-dft-workflows.md#bridge-to-the-epilogue) through [opening hinge to Handshake 3](../part09-dft/03-dft-workflows.md#opening-hinge-ix3-to-handshake3) aloud → [preface row 59](../preface.md#skill-navigation-row-59) five-step audit → confirm [foundation archive Lab act steps 1–5](../part09-dft/03-dft-workflows.md#lab-act-archive-the-foundation-run-before-the-wire-scale-solve-act-vi--foundation) and [foundation export manifest](../part09-dft/03-dft-workflows.md#foundation-export-manifest-handoff-to-epilogue) at \(T_w\).
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  DF[DFT workflows meta row 138]
+  BR[IX.3 Bridge to Handshake 3]
+  R59[row 59 meta gate]
+  MP --> DF --> BR --> R59
+```
+
+When row 139 feels disconnected from row 138, read them as **DFT workflows meta capstone vs Handshake 3 meta capstones**: row 138 when **IX.2 → IX.3 must reunite on cutoff certificates at \(T_w\) before any foundation archive**; row 139 when **foundation export manifest and IX.3 → Handshake 3 meta must read on the same wire before row 140 Handshake 3 meta prelude capstone opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous foundation archive → \(\alpha(T_w)\) afternoon. When row 138 closed but load-cell sections still lag, switch to [row 139](#row-139-baby-picture-row68-row119-handshake3-meta-capstone-reunion).
+
+
+### Row 140 baby picture (Row 68 → Row 120 Row 68 → Row 60 Handshake 3 meta prelude capstone reunion) {#row-140-baby-picture-row68-row120-handshake3-meta-prelude-capstone-reunion}
+
+**Row 140 baby picture:** when row 68 closed the midpoint prelude and row 139 or row 120 closed Handshake 3 meta capstone / Handshake 3 meta prelude but **row 60's epilogue α cross-links audit or the III.4 → IV.4 → V.4 → VI.2 ascent chain still feel like separate checklists on the capstone path**, open the [Row 68 → Row 120 Handshake 3 meta prelude capstone reunion index](sources.md#row68-row120-handshake3-meta-prelude-capstone-reunion-index-row-140) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 139](../preface.md#skill-navigation-row-139) or [preface row 140](../preface.md#skill-navigation-row-140) Handshake 3 meta capstone / meta prelude gate → [epilogue α cross-links audit](../epilogue/multiscale.md#opening-hinge-ix3-handshake3) aloud → [preface row 60](../preface.md#skill-navigation-row-60) five-step audit → confirm [V.4 Picard CHT Lab act](../part05-fvm/04-navier-stokes-cfd.md#lab-act-extension-two-domain-picard-loop-with-a-1d-fem-solid) and [VI.2 \(\alpha\) handshake](../part06-continuum/02-stress-balance.md#scale-boundary-handshake-thermal-expansion-alpha) at \(T_w\).
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  HS[Handshake 3 meta capstone row 139]
+  XL[Epilogue α cross-links]
+  R60[row 60 meta gate]
+  MP --> HS --> XL --> R60
+```
+
+When row 140 feels disconnected from row 139, read them as **Handshake 3 meta capstone vs Handshake 3 meta prelude capstones**: row 139 when **IX.3 → Handshake 3 must reunite on foundation archive at \(T_w\) before any cross-links table on the capstone path**; row 140 when **epilogue α cross-links and Row 59 → Row 40 Handshake 3 meta must read on the same wire before row 61 Handshake 4a meta prelude opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous \(\alpha(T_w)\) → Act II–III afternoon after verified DFT workflows meta capstone. When row 139 closed but Parts III–VI still lag, switch to [row 140](#row-140-baby-picture-row68-row120-handshake3-meta-prelude-capstone-reunion).
+
+
+### Row 154 baby picture (Row 68 → Row 154 Row 68 → Row 54 export meta prelude capstone reunion) {#row-154-baby-picture-row68-row154-export-meta-prelude-capstone-reunion}
+
+**Row 154 baby picture:** when row 68 closed the midpoint prelude and row 153 or row 154 closed dynamics meta prelude capstone / export meta prelude but **row 54's VIII.2 Bridge → pedigree handoff still feels like separate courses on the capstone path**, open the [Row 68 → Row 154 export meta prelude capstone reunion index](sources.md#row68-row154-export-meta-prelude-capstone-reunion-index-row-154) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 153](../preface.md#skill-navigation-row-133) or [preface row 154](../preface.md#skill-navigation-row-154) dynamics meta prelude capstone / export meta prelude gate → [VIII.2 Bridge](../part08-md/02-ensembles-integrators.md#bridge) through [VIII.3 opening hinge from VIII.2](../part08-md/03-ab-initio-and-coarse-graining.md#opening-hinge-viii2-to-viii3) aloud → [preface row 54](../preface.md#skill-navigation-row-54) five-step audit → confirm [NPT Lab act steps 1–7](../part08-md/02-ensembles-integrators.md#lab-act-npt-tension-on-a-copper-nanowire-segment) archived `cu.elastic/` before row 55 electronic audit meta prelude capstone opens.
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  DM[Dynamics meta prelude capstone row 153]
+  BR[VIII.2 Bridge]
+  R54[row 54 meta gate]
+  MP --> DM --> BR --> R54
+```
+
+When row 154 feels disconnected from row 153, read them as **dynamics meta prelude capstone vs export meta prelude capstones**: row 153 when **VIII.1 Bridge and Row 68 → Row 53 meta must read on the same wire before any VIII.2 → VIII.3 audit on the capstone path**; row 154 when **VIII.2 Bridge and Row 68 → Row 54 meta must read on the same wire before row 155 electronic audit meta capstone or row 55 electronic audit reunion opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous NPT → pedigree afternoon. When row 153 closed but export meta reunion still lags on the capstone path, switch to [row 154](#row-154-baby-picture-row68-row154-export-meta-prelude-capstone-reunion). When row 154 closed but electronic audit meta reunion still lags on the capstone path, switch to [row 155](#row-155-baby-picture-row68-row155-electronic-audit-meta-prelude-capstone-reunion). When row 155 closed but Born–Oppenheimer meta reunion still lags on the capstone path, switch to [row 156](#row-156-baby-picture-row68-row136-born-oppenheimer-meta-prelude-capstone-reunion). When row 156 closed but Kohn–Sham meta reunion still lags on the capstone path, switch to [row 137](#row-137-baby-picture-row68-row117-kohn-sham-meta-capstone-reunion). When row 137 closed but DFT workflows meta reunion still lags on the capstone path, switch to [row 138](#row-138-baby-picture-row68-row118-dft-workflows-meta-capstone-reunion). When row 138 closed but Handshake 3 meta reunion still lags on the capstone path, switch to [row 139](#row-139-baby-picture-row68-row119-handshake3-meta-capstone-reunion). When row 139 closed but Handshake 3 meta prelude reunion still lags on the capstone path, switch to [row 140](#row-140-baby-picture-row68-row120-handshake3-meta-prelude-capstone-reunion). When row 140 closed but Handshake 4a meta prelude reunion still lags on the capstone path, switch to [row 141](#row-141-baby-picture-row68-row121-handshake4a-meta-prelude-capstone-reunion). When row 141 closed but Handshake 4b meta prelude reunion still lags on the capstone path, switch to [row 142](#row-142-baby-picture-row68-row122-handshake4b-meta-prelude-capstone-reunion). When row 142 closed but orchestration meta prelude reunion still lags on the capstone path, switch to [row 143](#row-143-baby-picture-row68-row123-orchestration-meta-prelude-capstone-reunion). When row 143 closed but book-loop meta prelude reunion still lags on the capstone path, switch to [row 144](#row-144-baby-picture-row68-row124-book-loop-meta-prelude-capstone-reunion). When row 144 closed but novel second pass still lags on the capstone path, switch to [row 145](#row-145-baby-picture-row68-row125-second-pass-meta-prelude-capstone-reunion). When row 145 closed but canonical tree discipline still lags on the capstone path, switch to [row 146](#row-146-baby-picture-row68-row126-writings-meta-prelude-capstone-reunion).
+
+
+
+
+### Row 155 baby picture (Row 68 → Row 155 Row 68 → Row 55 electronic audit meta prelude capstone reunion) {#row-155-baby-picture-row68-row155-electronic-audit-meta-prelude-capstone-reunion}
+
+**Row 155 baby picture:** when row 68 closed the midpoint prelude and row 154 or row 155 closed export meta prelude capstone / electronic audit meta prelude but **row 55's VIII.3 Bridge to Part IX → SCF handoff still feels like separate courses on the capstone path**, open the [Row 68 → Row 155 electronic audit meta prelude capstone reunion index](sources.md#row68-row155-electronic-audit-meta-prelude-capstone-reunion-index-row-155) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 154](../preface.md#skill-navigation-row-154) or [preface row 155](../preface.md#skill-navigation-row-155) export meta prelude capstone / electronic audit meta prelude gate → [VIII.3 Bridge to Part IX](../part08-md/03-ab-initio-and-coarse-graining.md#bridge-to-part-ix) through [IX.0 opening hinge from VIII.3](../part09-dft/00-opening.md#opening-hinge-viii3-to-ix) aloud → [preface row 55](../preface.md#skill-navigation-row-55) five-step audit → confirm [EAM-fit audit Lab act steps 1–6](../part08-md/03-ab-initio-and-coarse-graining.md#lab-act-eam-fit-audit-before-the-notch-md-run-act-v--notch) archived `pedigree_checklist.yaml` and `eam_fit_audit.log` before row 56 Born–Oppenheimer meta prelude capstone opens.
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  EM[Export meta prelude capstone row 154]
+  BR[VIII.3 Bridge to Part IX]
+  R55[row 55 meta gate]
+  MP --> EM --> BR --> R55
+```
+
+When row 155 feels disconnected from row 154, read them as **export meta prelude capstone vs electronic audit meta prelude capstones**: row 154 when **VIII.2 Bridge and Row 68 → Row 54 meta must read on the same wire before any VIII.3 → IX.0 audit on the capstone path**; row 155 when **VIII.3 Bridge to Part IX and Row 68 → Row 55 meta must read on the same wire before row 136 Born–Oppenheimer meta capstone or row 56 BO reunion opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous pedigree → foundation SCF afternoon.
+
+
+
+
+### Row 156 baby picture (Row 68 → Row 136 Row 68 → Row 56 Born–Oppenheimer meta prelude capstone reunion) {#row-156-baby-picture-row68-row136-born-oppenheimer-meta-prelude-capstone-reunion}
+
+**Row 156 baby picture:** when row 68 closed the midpoint prelude and row 155 or row 136 closed electronic audit meta prelude capstone / Born–Oppenheimer opening prelude but **row 56's IX.0 → IX.1 audit or the Bridge → BO/HK chain still feel like separate checklists**, open the [Row 68 → Row 136 Born–Oppenheimer meta prelude capstone reunion index](sources.md#row68-row136-born-oppenheimer-meta-prelude-capstone-reunion-index-row-156) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 155](../preface.md#skill-navigation-row-155) or [preface row 156](../preface.md#skill-navigation-row-96) electronic audit meta prelude capstone / Born–Oppenheimer opening gate → [IX.0 Bridge](../part09-dft/00-opening.md#bridge) through [IX.1 opening hinge from IX.0](../part09-dft/01-born-oppenheimer.md#opening-hinge-ix0-to-ix1) aloud → [preface row 56](../preface.md#skill-navigation-row-56) five-step audit → confirm [foundation SCF audit Lab act steps 1–6](../part09-dft/00-opening.md#lab-act-foundation-scf-audit-before-born-oppenheimer-act-vi--foundation) and [electronic audit export manifest](../part09-dft/00-opening.md#electronic-audit-export-manifest-handoff-to-ix1) at \(T_w\).
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  EA[Electronic audit meta row 155]
+  BR[IX.0 Bridge to IX.1]
+  R56[row 56 meta gate]
+  MP --> EA --> BR --> R56
+```
+
+When row 156 feels disconnected from row 155, read them as **electronic audit meta prelude capstone vs Born–Oppenheimer meta capstones**: row 155 when **VIII.3 Bridge and Row 68 → Row 55 meta must read on the same wire before any IX.0 → IX.1 audit**; row 156 when **IX.0 Bridge and Row 68 → Row 56 meta must read on the same wire before row 137 Kohn–Sham meta capstone or row 57 KS reunion opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous SCF log → \(V_{\text{BO}}\) afternoon.
+
+
+
+### Row 137 baby picture (Row 68 → Row 117 Row 68 → Row 57 Kohn–Sham meta capstone reunion) {#row-137-baby-picture-row68-row117-kohn-sham-meta-capstone-reunion}
+
+**Row 137 baby picture:** when row 68 closed the midpoint prelude and row 156 or row 117 closed Born–Oppenheimer meta capstone / Kohn–Sham opening prelude but **row 57's IX.1 → IX.2 audit or the Bridge → Kohn–Sham SCF chain still feel like separate checklists**, open the [Row 68 → Row 97 Kohn–Sham meta capstone reunion index](sources.md#row68-row117-kohn-sham-meta-capstone-reunion-index-row-137) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 156](../preface.md#skill-navigation-row-156) or [preface row 117](../preface.md#skill-navigation-row-117) Born–Oppenheimer meta capstone / Kohn–Sham opening gate → [IX.1 Bridge](../part09-dft/01-born-oppenheimer.md#bridge) through [IX.2 opening hinge from IX.1](../part09-dft/02-kohn-sham.md#opening-hinge-ix1-to-ix2) aloud → [preface row 57](../preface.md#skill-navigation-row-57) five-step audit → confirm [Murnaghan Lab act steps 1–5](../part09-dft/01-born-oppenheimer.md#lab-act-murnaghan-fit-on-fcc-cu-act-vi--foundation) and [Murnaghan export manifest](../part09-dft/01-born-oppenheimer.md#murnaghan-export-manifest-handoff-to-ix2) at \(T_w\).
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  BO[Born–Oppenheimer meta row 156]
+  BR[IX.1 Bridge to IX.2]
+  R57[row 57 meta gate]
+  MP --> BO --> BR --> R57
+```
+
+When row 137 feels disconnected from row 156, read them as **Born–Oppenheimer meta capstone vs Kohn–Sham meta capstones**: row 156 when **IX.0 Bridge and Row 68 → Row 56 meta must read on the same wire before any IX.1 → IX.2 audit**; row 137 when **IX.1 Bridge and Row 68 → Row 57 meta must read on the same wire before row 138 DFT workflows meta capstone or row 58 workflow reunion opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous Murnaghan scan → \(\rho^\star = \mathcal{G}(\rho^\star)\) afternoon.
+
+
+### Row 138 baby picture (Row 68 → Row 118 Row 68 → Row 58 DFT workflows meta capstone reunion) {#row-138-baby-picture-row68-row118-dft-workflows-meta-capstone-reunion}
+
+**Row 138 baby picture:** when row 68 closed the midpoint prelude and row 137 or row 118 closed Kohn–Sham meta capstone / DFT workflows opening prelude but **row 58's IX.2 → IX.3 audit or the Bridge → calculation ladder chain still feel like separate checklists**, open the [Row 68 → Row 118 DFT workflows meta capstone reunion index](sources.md#row68-row118-dft-workflows-meta-capstone-reunion-index-row-138) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 137](../preface.md#skill-navigation-row-117) or [preface row 118](../preface.md#skill-navigation-row-98) Kohn–Sham meta capstone / DFT workflows opening gate → [IX.2 Bridge](../part09-dft/02-kohn-sham.md#bridge) through [IX.3 opening hinge from IX.2](../part09-dft/03-dft-workflows.md#opening-hinge-ix2-to-ix3) aloud → [preface row 58](../preface.md#skill-navigation-row-58) five-step audit → confirm [cutoff-sweep Lab act steps 1–5](../part09-dft/02-kohn-sham.md#lab-act-cutoff-sweep-on-fcc-cu-act-vi--convergence-certificate) and [cutoff export manifest](../part09-dft/02-kohn-sham.md#cutoff-export-manifest-handoff-to-ix3) at \(T_w\).
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  KS[Kohn–Sham meta row 137]
+  BR[IX.2 Bridge to IX.3]
+  R58[row 58 meta gate]
+  MP --> KS --> BR --> R58
+```
+
+When row 138 feels disconnected from row 137, read them as **Kohn–Sham meta capstone vs DFT workflows meta capstones**: row 137 when **IX.1 → IX.2 must reunite on Murnaghan volume scans at \(T_w\) before any cutoff certificate**; row 138 when **cutoff export manifest and IX.2 → IX.3 DFT workflows meta must read on the same wire before row 139 Handshake 3 meta capstone or row 59 workflow reunion opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous cutoff certificate → `cu.foundation/` afternoon.
+
+
+### Row 139 baby picture (Row 68 → Row 119 Row 68 → Row 59 Handshake 3 meta capstone reunion) {#row-139-baby-picture-row68-row119-handshake3-meta-capstone-reunion}
+
+**Row 139 baby picture:** when row 68 closed the midpoint prelude and row 138 or row 119 closed DFT workflows meta capstone / Handshake 3 opening prelude but **row 59's IX.3 → Handshake 3 audit or the Bridge → quasiharmonic \(\alpha(T_w)\) chain still feel like separate checklists**, open the [Row 68 → Row 119 Handshake 3 meta capstone reunion index](sources.md#row68-row119-handshake3-meta-capstone-reunion-index-row-139) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 138](../preface.md#skill-navigation-row-138) or [preface row 119](../preface.md#skill-navigation-row-139) DFT workflows meta capstone / Handshake 3 opening gate → [IX.3 Bridge to the epilogue](../part09-dft/03-dft-workflows.md#bridge-to-the-epilogue) through [opening hinge to Handshake 3](../part09-dft/03-dft-workflows.md#opening-hinge-ix3-to-handshake3) aloud → [preface row 59](../preface.md#skill-navigation-row-59) five-step audit → confirm [foundation archive Lab act steps 1–5](../part09-dft/03-dft-workflows.md#lab-act-archive-the-foundation-run-before-the-wire-scale-solve-act-vi--foundation) and [foundation export manifest](../part09-dft/03-dft-workflows.md#foundation-export-manifest-handoff-to-epilogue) at \(T_w\).
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  DF[DFT workflows meta row 138]
+  BR[IX.3 Bridge to Handshake 3]
+  R59[row 59 meta gate]
+  MP --> DF --> BR --> R59
+```
+
+When row 139 feels disconnected from row 138, read them as **DFT workflows meta capstone vs Handshake 3 meta capstones**: row 138 when **IX.2 → IX.3 must reunite on cutoff certificates at \(T_w\) before any foundation archive**; row 139 when **foundation export manifest and IX.3 → Handshake 3 meta must read on the same wire before row 140 Handshake 3 meta prelude capstone opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous foundation archive → \(\alpha(T_w)\) afternoon. When row 138 closed but load-cell sections still lag, switch to [row 139](#row-139-baby-picture-row68-row119-handshake3-meta-capstone-reunion).
+
+
+### Row 140 baby picture (Row 68 → Row 120 Row 68 → Row 60 Handshake 3 meta prelude capstone reunion) {#row-140-baby-picture-row68-row120-handshake3-meta-prelude-capstone-reunion}
+
+**Row 140 baby picture:** when row 68 closed the midpoint prelude and row 139 or row 120 closed Handshake 3 meta capstone / Handshake 3 meta prelude but **row 60's epilogue α cross-links audit or the III.4 → IV.4 → V.4 → VI.2 ascent chain still feel like separate checklists on the capstone path**, open the [Row 68 → Row 120 Handshake 3 meta prelude capstone reunion index](sources.md#row68-row120-handshake3-meta-prelude-capstone-reunion-index-row-140) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 139](../preface.md#skill-navigation-row-139) or [preface row 140](../preface.md#skill-navigation-row-140) Handshake 3 meta capstone / meta prelude gate → [epilogue α cross-links audit](../epilogue/multiscale.md#opening-hinge-ix3-handshake3) aloud → [preface row 60](../preface.md#skill-navigation-row-60) five-step audit → confirm [V.4 Picard CHT Lab act](../part05-fvm/04-navier-stokes-cfd.md#lab-act-extension-two-domain-picard-loop-with-a-1d-fem-solid) and [VI.2 \(\alpha\) handshake](../part06-continuum/02-stress-balance.md#scale-boundary-handshake-thermal-expansion-alpha) at \(T_w\).
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  HS[Handshake 3 meta capstone row 139]
+  XL[Epilogue α cross-links]
+  R60[row 60 meta gate]
+  MP --> HS --> XL --> R60
+```
+
+When row 140 feels disconnected from row 139, read them as **Handshake 3 meta capstone vs Handshake 3 meta prelude capstones**: row 139 when **IX.3 → Handshake 3 must reunite on foundation archive at \(T_w\) before any cross-links table on the capstone path**; row 140 when **epilogue α cross-links and Row 59 → Row 40 Handshake 3 meta must read on the same wire before row 61 Handshake 4a meta prelude opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous \(\alpha(T_w)\) → Act II–III afternoon after verified DFT workflows meta capstone. When row 139 closed but Parts III–VI still lag, switch to [row 140](#row-140-baby-picture-row68-row120-handshake3-meta-prelude-capstone-reunion).
+
+
+### Row 155 baby picture (Row 68 → Row 154 Row 68 → Row 54 electronic audit meta prelude capstone reunion) {#row-154-baby-picture-row68-row154-export-meta-prelude-capstone-reunion}
+
+**Row 155 baby picture:** when row 68 closed the midpoint prelude and row 153 or row 154 closed dynamics meta prelude capstone / export meta prelude but **row 55's VIII.3 Bridge to Part IX → pedigree handoff still feels like separate courses on the capstone path**, open the [Row 68 → Row 154 export meta prelude capstone reunion index](sources.md#row68-row154-export-meta-prelude-capstone-reunion-index-row-154) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 153](../preface.md#skill-navigation-row-133) or [preface row 154](../preface.md#skill-navigation-row-154) dynamics meta prelude capstone / export meta prelude gate → [VIII.3 Bridge to Part IX](../part08-md/02-ensembles-integrators.md#bridge) through [VIII.3 opening hinge from VIII.2](../part08-md/03-ab-initio-and-coarse-graining.md#opening-hinge-viii2-to-viii3) aloud → [preface row 55](../preface.md#skill-navigation-row-54) five-step audit → confirm [NPT Lab act steps 1–7](../part08-md/02-ensembles-integrators.md#lab-act-npt-tension-on-a-copper-nanowire-segment) archived `cu.elastic/` before row 55 electronic audit meta prelude capstone opens.
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  DM[Dynamics meta prelude capstone row 153]
+  BR[VIII.3 Bridge to Part IX]
+  R54[row 55 meta gate]
+  MP --> DM --> BR --> R54
+```
+
+When row 154 feels disconnected from row 153, read them as **dynamics meta prelude capstone vs export meta prelude capstones**: row 153 when **VIII.1 Bridge and Row 68 → Row 53 meta must read on the same wire before any VIII.2 → VIII.3 audit on the capstone path**; row 154 when **VIII.3 Bridge to Part IX and Row 68 → Row 54 meta must read on the same wire before row 155 electronic audit meta capstone or row 55 electronic audit reunion opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous NPT → pedigree afternoon. When row 153 closed but export meta reunion still lags on the capstone path, switch to [row 154](#row-154-baby-picture-row68-row154-export-meta-prelude-capstone-reunion). When row 154 closed but electronic audit meta reunion still lags on the capstone path, switch to [row 155](#row-155-baby-picture-row68-row155-electronic-audit-meta-prelude-capstone-reunion). When row 155 closed but Born–Oppenheimer meta reunion still lags on the capstone path, switch to [row 156](#row-156-baby-picture-row68-row136-born-oppenheimer-meta-prelude-capstone-reunion). When row 156 closed but Kohn–Sham meta reunion still lags on the capstone path, switch to [row 137](#row-137-baby-picture-row68-row117-kohn-sham-meta-capstone-reunion). When row 137 closed but DFT workflows meta reunion still lags on the capstone path, switch to [row 138](#row-138-baby-picture-row68-row118-dft-workflows-meta-capstone-reunion). When row 138 closed but Handshake 3 meta reunion still lags on the capstone path, switch to [row 139](#row-139-baby-picture-row68-row119-handshake3-meta-capstone-reunion). When row 139 closed but Handshake 3 meta prelude reunion still lags on the capstone path, switch to [row 140](#row-140-baby-picture-row68-row120-handshake3-meta-prelude-capstone-reunion). When row 140 closed but Handshake 4a meta prelude reunion still lags on the capstone path, switch to [row 141](#row-141-baby-picture-row68-row121-handshake4a-meta-prelude-capstone-reunion). When row 141 closed but Handshake 4b meta prelude reunion still lags on the capstone path, switch to [row 142](#row-142-baby-picture-row68-row122-handshake4b-meta-prelude-capstone-reunion). When row 142 closed but orchestration meta prelude reunion still lags on the capstone path, switch to [row 143](#row-143-baby-picture-row68-row123-orchestration-meta-prelude-capstone-reunion). When row 143 closed but book-loop meta prelude reunion still lags on the capstone path, switch to [row 144](#row-144-baby-picture-row68-row124-book-loop-meta-prelude-capstone-reunion). When row 144 closed but novel second pass still lags on the capstone path, switch to [row 145](#row-145-baby-picture-row68-row125-second-pass-meta-prelude-capstone-reunion). When row 145 closed but canonical tree discipline still lags on the capstone path, switch to [row 146](#row-146-baby-picture-row68-row126-writings-meta-prelude-capstone-reunion).
+
+
+
+
+### Row 155 baby picture (Row 68 → Row 155 Row 68 → Row 55 electronic audit meta prelude capstone reunion) {#row-155-baby-picture-row68-row155-electronic-audit-meta-prelude-capstone-reunion}
+
+**Row 155 baby picture:** when row 68 closed the midpoint prelude and row 154 or row 155 closed export meta prelude capstone / electronic audit meta prelude but **row 55's VIII.3 Bridge to Part IX → SCF handoff still feels like separate courses on the capstone path**, open the [Row 68 → Row 155 electronic audit meta prelude capstone reunion index](sources.md#row68-row155-electronic-audit-meta-prelude-capstone-reunion-index-row-155) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 154](../preface.md#skill-navigation-row-154) or [preface row 155](../preface.md#skill-navigation-row-155) export meta prelude capstone / electronic audit meta prelude gate → [VIII.3 Bridge to Part IX](../part08-md/03-ab-initio-and-coarse-graining.md#bridge-to-part-ix) through [IX.0 opening hinge from VIII.3](../part09-dft/00-opening.md#opening-hinge-viii3-to-ix) aloud → [preface row 55](../preface.md#skill-navigation-row-55) five-step audit → confirm [EAM-fit audit Lab act steps 1–6](../part08-md/03-ab-initio-and-coarse-graining.md#lab-act-eam-fit-audit-before-the-notch-md-run-act-v--notch) archived `pedigree_checklist.yaml` and `eam_fit_audit.log` before row 56 Born–Oppenheimer meta prelude capstone opens.
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  EM[Export meta prelude capstone row 154]
+  BR[VIII.3 Bridge to Part IX]
+  R55[row 55 meta gate]
+  MP --> EM --> BR --> R55
+```
+
+When row 155 feels disconnected from row 154, read them as **export meta prelude capstone vs electronic audit meta prelude capstones**: row 154 when **VIII.3 Bridge to Part IX and Row 68 → Row 54 meta must read on the same wire before any VIII.3 → IX.0 audit on the capstone path**; row 155 when **VIII.3 Bridge to Part IX and Row 68 → Row 55 meta must read on the same wire before row 136 Born–Oppenheimer meta capstone or row 56 BO reunion opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous pedigree → foundation SCF afternoon.
+
+
+
+
+### Row 156 baby picture (Row 68 → Row 136 Row 68 → Row 56 Born–Oppenheimer meta prelude capstone reunion) {#row-156-baby-picture-row68-row136-born-oppenheimer-meta-prelude-capstone-reunion}
+
+**Row 156 baby picture:** when row 68 closed the midpoint prelude and row 155 or row 136 closed electronic audit meta prelude capstone / Born–Oppenheimer opening prelude but **row 56's IX.0 → IX.1 audit or the Bridge → BO/HK chain still feel like separate checklists**, open the [Row 68 → Row 136 Born–Oppenheimer meta prelude capstone reunion index](sources.md#row68-row136-born-oppenheimer-meta-prelude-capstone-reunion-index-row-156) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 155](../preface.md#skill-navigation-row-155) or [preface row 156](../preface.md#skill-navigation-row-96) electronic audit meta prelude capstone / Born–Oppenheimer opening gate → [IX.0 Bridge](../part09-dft/00-opening.md#bridge) through [IX.1 opening hinge from IX.0](../part09-dft/01-born-oppenheimer.md#opening-hinge-ix0-to-ix1) aloud → [preface row 56](../preface.md#skill-navigation-row-56) five-step audit → confirm [foundation SCF audit Lab act steps 1–6](../part09-dft/00-opening.md#lab-act-foundation-scf-audit-before-born-oppenheimer-act-vi--foundation) and [electronic audit export manifest](../part09-dft/00-opening.md#electronic-audit-export-manifest-handoff-to-ix1) at \(T_w\).
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  EA[Electronic audit meta row 155]
+  BR[IX.0 Bridge to IX.1]
+  R56[row 56 meta gate]
+  MP --> EA --> BR --> R56
+```
+
+When row 156 feels disconnected from row 155, read them as **electronic audit meta prelude capstone vs Born–Oppenheimer meta capstones**: row 155 when **VIII.3 Bridge and Row 68 → Row 55 meta must read on the same wire before any IX.0 → IX.1 audit**; row 156 when **IX.0 Bridge and Row 68 → Row 56 meta must read on the same wire before row 137 Kohn–Sham meta capstone or row 57 KS reunion opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous SCF log → \(V_{\text{BO}}\) afternoon.
+
+
+
+### Row 137 baby picture (Row 68 → Row 117 Row 68 → Row 57 Kohn–Sham meta capstone reunion) {#row-137-baby-picture-row68-row117-kohn-sham-meta-capstone-reunion}
+
+**Row 137 baby picture:** when row 68 closed the midpoint prelude and row 156 or row 117 closed Born–Oppenheimer meta capstone / Kohn–Sham opening prelude but **row 57's IX.1 → IX.2 audit or the Bridge → Kohn–Sham SCF chain still feel like separate checklists**, open the [Row 68 → Row 97 Kohn–Sham meta capstone reunion index](sources.md#row68-row117-kohn-sham-meta-capstone-reunion-index-row-137) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 156](../preface.md#skill-navigation-row-156) or [preface row 117](../preface.md#skill-navigation-row-117) Born–Oppenheimer meta capstone / Kohn–Sham opening gate → [IX.1 Bridge](../part09-dft/01-born-oppenheimer.md#bridge) through [IX.2 opening hinge from IX.1](../part09-dft/02-kohn-sham.md#opening-hinge-ix1-to-ix2) aloud → [preface row 57](../preface.md#skill-navigation-row-57) five-step audit → confirm [Murnaghan Lab act steps 1–5](../part09-dft/01-born-oppenheimer.md#lab-act-murnaghan-fit-on-fcc-cu-act-vi--foundation) and [Murnaghan export manifest](../part09-dft/01-born-oppenheimer.md#murnaghan-export-manifest-handoff-to-ix2) at \(T_w\).
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  BO[Born–Oppenheimer meta row 156]
+  BR[IX.1 Bridge to IX.2]
+  R57[row 57 meta gate]
+  MP --> BO --> BR --> R57
+```
+
+When row 137 feels disconnected from row 156, read them as **Born–Oppenheimer meta capstone vs Kohn–Sham meta capstones**: row 156 when **IX.0 Bridge and Row 68 → Row 56 meta must read on the same wire before any IX.1 → IX.2 audit**; row 137 when **IX.1 Bridge and Row 68 → Row 57 meta must read on the same wire before row 138 DFT workflows meta capstone or row 58 workflow reunion opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous Murnaghan scan → \(\rho^\star = \mathcal{G}(\rho^\star)\) afternoon.
 
 
 ### Row 138 baby picture (Row 68 → Row 118 Row 68 → Row 58 DFT workflows meta capstone reunion) {#row-138-baby-picture-row68-row118-dft-workflows-meta-capstone-reunion}
