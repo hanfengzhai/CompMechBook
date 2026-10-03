@@ -1,0 +1,10 @@
+# Replica-exchange histogram (illustrative, Part VIII.3 Lab act)
+# Columns: T_K  E_eV  count
+300  -3.620  1200
+300  -3.580   800
+350  -3.615  1100
+350  -3.575   750
+380  -3.610  1000
+380  -3.570   700
+420  -3.605   900
+420  -3.565   650
