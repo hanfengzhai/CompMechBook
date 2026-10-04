@@ -202,9 +202,9 @@ def main():
     preface_path = ROOT / "writings/preface/chapters/preface.md"
     preface = preface_path.read_text()
     copper = "\n## The copper wire through the book"
-    if "skill-navigation-row-184" in preface and preface.index("skill-navigation-row-184") < preface.index(copper):
+    if "{#skill-navigation-row-184}" in preface and preface.index("{#skill-navigation-row-184}") < preface.index(copper):
         print("preface: row 184 already present")
-    elif "skill-navigation-row-184" in preface:
+    elif "{#skill-navigation-row-184}" in preface:
         raise SystemExit("preface row 184 exists but not at copper wire insert point")
     else:
         if "skill-navigation-row-183" not in preface:
@@ -218,7 +218,9 @@ def main():
 
     prologue_path = ROOT / "writings/prologue/chapters/00-many-scales.md"
     prologue = prologue_path.read_text()
-    if "prologue-preview-row-184" not in prologue:
+    if "reunion (row 184) |" in prologue:
+        print("prologue: row 184 already present")
+    else:
         needle = "| Row 68 → Row 163 Row 68 → Row 63 orchestration meta prelude capstone reunion (row 183) |"
         if needle not in prologue:
             raise SystemExit("prologue compass row 183 not found")
@@ -245,14 +247,18 @@ def main():
     epilogue = epilogue_path.read_text()
     if "### Row 184 closing loop" not in epilogue:
         old_proceed = (
-            "Proceed to [row 164](#row-164-closing-loop) when row 68 closed but book-loop meta still feels disconnected after row 183 on the full capstone path,"
-        )
-        new_proceed = (
             "Proceed to [row 184](#row-184-closing-loop) when row 68 closed but book-loop meta still feels disconnected after row 183 on the full capstone path,"
         )
         if old_proceed not in epilogue:
-            raise SystemExit("epilogue row 183 end marker not found")
-        epilogue = epilogue.replace(old_proceed, new_proceed, 1)
+            old_proceed = (
+                "Proceed to [row 164](#row-164-closing-loop) when row 68 closed but book-loop meta still feels disconnected after row 183 on the full capstone path,"
+            )
+            new_proceed = (
+                "Proceed to [row 184](#row-184-closing-loop) when row 68 closed but book-loop meta still feels disconnected after row 183 on the full capstone path,"
+            )
+            if old_proceed not in epilogue:
+                raise SystemExit("epilogue row 183 end marker not found")
+            epilogue = epilogue.replace(old_proceed, new_proceed, 1)
         epilogue = epilogue.replace(
             "before row 184 book-loop meta prelude capstone reunion on the full capstone path (then row 164 on the capstone path).",
             "before row 185 second-pass meta prelude capstone reunion on the full capstone path (then row 165 on the capstone path).",
@@ -267,7 +273,7 @@ def main():
 
     sources_path = ROOT / "writings/appendix/chapters/sources.md"
     sources = sources_path.read_text()
-    if "row68-row164-book-loop-meta-prelude-capstone-reunion-index-row-184" not in sources:
+    if "| 184 | Row 68 → Row 164" not in sources:
         sources = sources.replace(
             "| 164 | Row 68 → Row 144 Row 68 → Row 64 book-loop meta prelude capstone",
             SOURCES_TABLE + "| 164 | Row 68 → Row 144 Row 68 → Row 64 book-loop meta prelude capstone",
@@ -282,7 +288,7 @@ def main():
 
     memory_path = ROOT / "writings/appendix/chapters/memory-sheet.md"
     memory = memory_path.read_text()
-    if "row-184-baby-picture-row68-row164" not in memory:
+    if "### Row 184 baby picture" not in memory:
         memory = memory.replace(
             "| 183 | Meta | [Row 68 → Row 163 orchestration meta prelude capstone reunion index]",
             MEMORY_TABLE + "| 183 | Meta | [Row 68 → Row 163 orchestration meta prelude capstone reunion index]",
