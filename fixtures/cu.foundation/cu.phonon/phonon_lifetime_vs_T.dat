@@ -1,0 +1,8 @@
+# phonon_lifetime_vs_T.dat — LA acoustic lifetime vs temperature (Part VIII–IX sweep)
+# Columns: T_K  mode  omega_THz  linewidth_GHz  lifetime_ps  source
+# Illustrative Cu bulk values; archive production VACF/ph.x sweeps beside cu.phonon/
+100  LA  1.28  0.040  25.0  VACF_FWHM
+200  LA  1.29  0.052  19.2  VACF_FWHM
+300  LA  1.30  0.065  15.4  VACF_FWHM
+380  LA  1.31  0.082  12.2  VACF_FWHM
+500  LA  1.32  0.110  9.1   ph.x_anharmonic
