@@ -125,6 +125,24 @@ Each row below is a **representative anchor** on the midpoint prelude ↔ Kohn�
 
 
 
+## Row 68 → Row 151 Row 68 → Row 60 Handshake 3 meta prelude capstone reunion index (row 180) {#row68-row151-handshake3-meta-prelude-capstone-reunion-index-row-180}
+
+### Row 151 baby picture (Row 68 → Row 151 Row 68 → Row 60 Handshake 3 meta prelude capstone reunion) {#row-180-baby-picture-row68-row151-handshake3-meta-prelude-capstone-reunion}
+
+**Row 151 baby picture:** when row 68 closed the midpoint prelude and row 179 or row 151 closed Handshake 3 meta capstone / Handshake 3 meta prelude but **row 60's epilogue α cross-links audit or the III.4 → IV.4 → V.4 → VI.2 ascent chain still feel like separate checklists on the capstone path**, open the [Row 68 → Row 151 Handshake 3 meta prelude capstone reunion index](sources.md#row68-row151-handshake3-meta-prelude-capstone-reunion-index-row-180) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 179](../preface.md#skill-navigation-row-139) or [preface row 151](../preface.md#skill-navigation-row-140) Handshake 3 meta capstone / meta prelude gate → [epilogue α cross-links audit](../epilogue/multiscale.md#opening-hinge-ix3-handshake3) aloud → [preface row 60](../preface.md#skill-navigation-row-60) five-step audit → confirm [V.4 Picard CHT Lab act](../part05-fvm/04-navier-stokes-cfd.md#lab-act-extension-two-domain-picard-loop-with-a-1d-fem-solid) and [VI.2 \(\alpha\) handshake](../part06-continuum/02-stress-balance.md#scale-boundary-handshake-thermal-expansion-alpha) at \(T_w\).
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  HS[Handshake 3 meta capstone row 179]
+  XL[Epilogue α cross-links]
+  R60[row 60 meta gate]
+  MP --> HS --> XL --> R60
+```
+
+When row 151 feels disconnected from row 179, read them as **Handshake 3 meta capstone vs Handshake 3 meta prelude capstones**: row 179 when **IX.3 → Handshake 3 must reunite on foundation archive at \(T_w\) before any cross-links table on the capstone path**; row 151 when **epilogue α cross-links and Row 59 → Row 40 Handshake 3 meta must read on the same wire before row 62 Handshake 4a meta prelude capstone opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous \(\alpha(T_w)\) → Act II–III afternoon after verified Kohn–Sham meta capstone. When row 179 closed but Parts III–VI still lag, switch to [row 180](#row-180-baby-picture-row68-row120-handshake3-meta-prelude-capstone-reunion).
+
+
 row68-row151-handshake3-meta-prelude-capstone-reunion-index-row-179} {#row68-row151-handshake3-meta-prelude-capstone-reunion-index-row-179}
 
 Row 117 names **Row 68 → Row 77 Row 68 → Row 59 Kohn–Sham meta prelude reunion** at opening-prelude depth (midpoint prelude gate + IX.3 Bridge to the epilogue → opening hinge + row 59 meta); row 59 names **IX.3 → Handshake 3 opening hinge reunion** when plane-wave SCF stalls after Murnaghan Lab act; row 136 names **Row 68 → Row 96 Row 68 → Row 59 Born–Oppenheimer meta capstone reunion** when electronic audit meta capstone and IX.3 → Handshake 3 meta must read as one afternoon. Row 179 names **Row 68 → Row 117 Row 68 → Row 59 Kohn–Sham meta capstone reunion** — when row 68 closed the dual midpoint prelude and row 136 or row 117 closed Born–Oppenheimer meta capstone / Kohn–Sham opening prelude with IX.3 Bridge to the epilogue → IX.1 BO/HK recited and [Murnaghan Lab act](../part09-dft/01-born-oppenheimer.md#lab-act-murnaghan-fit-on-fcc-cu-act-vi--foundation) archived `foundation_export.yaml` and converged `scf_*.out` beside [Murnaghan export manifest](../part09-dft/01-born-oppenheimer.md#murnaghan-export-manifest-handoff-to-ix2) at \(T_w\), but **row 59 still opens like standalone quantum chemistry after IX.1's Murnaghan Scene** — `./scripts/sync-writings.sh --check` passes yet [IX.3 Bridge to the epilogue](../part09-dft/01-born-oppenheimer.md#bridge) and [opening hinge to Handshake 3](../part09-dft/02-kohn-sham.md#opening-hinge-ix1-to-ix2) read correctly in isolation, or row 59's five-step audit feels like a duplicate checklist rather than the rear-view mirror of row 136's BO/HK → SCF fixed-point turn at the Kohn–Sham meta capstone boundary.
