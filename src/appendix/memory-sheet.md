@@ -2660,21 +2660,6 @@ flowchart LR
 When row 142 feels disconnected from row 161, read them as **Handshake 4a meta prelude capstone vs Handshake 4b meta prelude capstones**: row 161 when **epilogue rate cross-links must reunite on verified Handshake 3 meta prelude capstone before any FE² table on the capstone path**; row 142 when **epilogue FE² cross-links and Row 61 → Row 42 Handshake 4b meta must read on the same wire before row 123 orchestration meta prelude capstone opens** — same copper wire, same Functional Analysis Notes layout, one continuous bulk hardening → Act IV–V afternoon after verified Handshake 4a meta prelude capstone. When row 161 closed but Part VII Step 4 still lags, switch to [row 142](#row-122-baby-picture-row68-row102-handshake4b-meta-prelude-capstone-reunion).
 
 
-### Row 142 baby picture (Row 68 → Row 122 Row 68 → Row 62 Handshake 4b meta prelude capstone reunion) {#row-142-baby-picture-row68-row122-handshake4b-meta-prelude-capstone-reunion}
-
-**Row 142 baby picture:** when row 68 closed the midpoint prelude and row 141 or row 122 closed Handshake 4a meta prelude capstone / Handshake 4b meta prelude but **row 62's epilogue FE² cross-links audit or the IV.4 → VII.3 Step 4 → IX.3 GSF discretization chain still feel like separate checklists on the capstone path**, open the [Row 68 → Row 122 Handshake 4b meta prelude capstone reunion index](sources.md#row68-row122-handshake4b-meta-prelude-capstone-reunion-index-row-142) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 141](../preface.md#skill-navigation-row-121) or [preface row 142](../preface.md#skill-navigation-row-102) Handshake 4a meta prelude capstone / Handshake 4b meta prelude gate → [epilogue FE² cross-links audit](../epilogue/multiscale.md#opening-hinge-vii3-handshake4b) aloud → [preface row 62](../preface.md#skill-navigation-row-62) five-step audit → confirm [VII.3 Step 4 FE²](../part07-defects/03-polycrystal-and-fem-handoff.md#step-4--when-offline-calibration-fails-fe-at-the-notch) and [`parse_fe2.sh`](../scripts/parse_fe2.sh) when uplift exceeds 10%.
-
-```mermaid
-flowchart LR
-  MP[Midpoint row 68]
-  HS[Handshake 4a meta prelude capstone row 141]
-  XL[Epilogue FE² cross-links]
-  R62[row 62 meta gate]
-  MP --> HS --> XL --> R62
-```
-
-When row 142 feels disconnected from row 141, read them as **Handshake 4a meta prelude capstone vs Handshake 4b meta prelude capstones**: row 141 when **epilogue rate cross-links must reunite on verified Handshake 3 meta prelude capstone before any FE² table on the capstone path**; row 142 when **epilogue FE² cross-links and Row 61 → Row 42 Handshake 4b meta must read on the same wire before row 63 orchestration meta prelude opens on the capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous bulk hardening → Act IV–V afternoon after verified Handshake 4a meta prelude capstone. When row 141 closed but Part VII Step 4 still lags, switch to [row 142](#row-142-baby-picture-row68-row122-handshake4b-meta-prelude-capstone-reunion).
-
 
 ### Row 123 baby picture (Row 68 → Row 103 Row 68 → Row 63 orchestration meta prelude capstone reunion) {#row-123-baby-picture-row68-row103-orchestration-meta-prelude-capstone-reunion}
 
@@ -2690,6 +2675,38 @@ flowchart LR
 ```
 
 When row 123 feels disconnected from row 122, read them as **Handshake 4b meta prelude capstone vs orchestration meta prelude capstones**: row 122 when **epilogue FE² cross-links must reunite on verified Handshake 4a meta prelude capstone before any orchestration table on the capstone path**; row 123 when **epilogue orchestration cross-links and Row 62 → Row 43 meta must read on the same wire before row 124 book-loop meta prelude capstone opens** — same copper wire, same Functional Analysis Notes layout, one continuous notch closure → Act V–VI afternoon after verified Handshake 4b meta prelude capstone. When row 122 closed but Act VI foundation still lags, switch to [row 123](#row-123-baby-picture-row68-row103-orchestration-meta-prelude-capstone-reunion).
+
+### Row 162 baby picture (Row 68 → Row 102 Row 68 → Row 62 Handshake 4b meta prelude capstone reunion) {#row-122-baby-picture-row68-row102-handshake4b-meta-prelude-capstone-reunion}
+
+**Row 162 baby picture:** when row 68 closed the midpoint prelude and row 161 or row 102 closed Handshake 4a meta prelude capstone / Handshake 4b meta prelude but **row 62's epilogue FE² cross-links audit or the IV.4 → VII.3 Step 4 → IX.3 GSF discretization chain still feel like separate checklists on the capstone path**, open the [Row 68 → Row 102 Handshake 4b meta prelude capstone reunion index](sources.md#row68-row102-handshake4b-meta-prelude-capstone-reunion-index-row-122) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 161](../preface.md#skill-navigation-row-121) or [preface row 102](../preface.md#skill-navigation-row-102) Handshake 4a meta prelude capstone / Handshake 4b meta prelude gate → [epilogue FE² cross-links audit](../epilogue/multiscale.md#opening-hinge-vii3-handshake4b) aloud → [preface row 62](../preface.md#skill-navigation-row-62) five-step audit → confirm [VII.3 Step 4 FE²](../part07-defects/03-polycrystal-and-fem-handoff.md#step-4--when-offline-calibration-fails-fe-at-the-notch) and [`parse_fe2.sh`](../scripts/parse_fe2.sh) when uplift exceeds 10%.
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  HS[Handshake 4a meta prelude capstone row 161]
+  XL[Epilogue FE² cross-links]
+  R62[row 62 meta gate]
+  MP --> HS --> XL --> R62
+```
+
+When row 162 feels disconnected from row 161, read them as **Handshake 4a meta prelude capstone vs Handshake 4b meta prelude capstones**: row 161 when **epilogue rate cross-links must reunite on verified Handshake 3 meta prelude capstone before any FE² table on the capstone path**; row 162 when **epilogue FE² cross-links and Row 61 → Row 42 Handshake 4b meta must read on the same wire before row 143 orchestration meta prelude capstone opens** — same copper wire, same Functional Analysis Notes layout, one continuous bulk hardening → Act IV–V afternoon after verified Handshake 4a meta prelude capstone. When row 161 closed but Part VII Step 4 still lags, switch to [row 162](#row-122-baby-picture-row68-row102-handshake4b-meta-prelude-capstone-reunion).
+
+
+
+### Row 143 baby picture (Row 68 → Row 103 Row 68 → Row 63 orchestration meta prelude capstone reunion) {#row-123-baby-picture-row68-row103-orchestration-meta-prelude-capstone-reunion}
+
+**Row 143 baby picture:** when row 68 closed the midpoint prelude and row 162 or row 103 closed Handshake 4b meta prelude capstone / orchestration meta prelude but **row 63's epilogue orchestration cross-links audit or the H1→H2→H3→H4a→H4b chain still feel like separate checklists on the capstone path**, open the [Row 68 → Row 103 orchestration meta prelude capstone reunion index](sources.md#row68-row103-orchestration-meta-prelude-capstone-reunion-index-row-123) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 162](../preface.md#skill-navigation-row-122) or [preface row 103](../preface.md#skill-navigation-row-103) Handshake 4b meta prelude capstone / orchestration meta prelude gate → [epilogue orchestration cross-links audit](../epilogue/multiscale.md#opening-hinge-rows17-42-row16) aloud → [preface row 63](../preface.md#skill-navigation-row-63) five-step audit → confirm [`parse_multiscale_workflow.sh`](../scripts/parse_multiscale_workflow.sh) and `multiscale_export.yaml` before row 44 book-loop closure opens.
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  HS[Handshake 4b meta prelude capstone row 162]
+  XL[Epilogue orchestration cross-links]
+  R63[row 63 meta gate]
+  MP --> HS --> XL --> R63
+```
+
+When row 143 feels disconnected from row 162, read them as **Handshake 4b meta prelude capstone vs orchestration meta prelude capstones**: row 162 when **epilogue FE² cross-links must reunite on verified Handshake 4a meta prelude capstone before any orchestration table on the capstone path**; row 143 when **epilogue orchestration cross-links and Row 62 → Row 43 meta must read on the same wire before row 124 book-loop meta prelude capstone opens** — same copper wire, same Functional Analysis Notes layout, one continuous notch closure → Act V–VI afternoon after verified Handshake 4b meta prelude capstone. When row 162 closed but Act VI foundation still lags, switch to [row 143](#row-123-baby-picture-row68-row103-orchestration-meta-prelude-capstone-reunion).
 
 ### Row 143 baby picture (Row 68 → Row 123 Row 68 → Row 63 orchestration meta prelude capstone reunion) {#row-143-baby-picture-row68-row123-orchestration-meta-prelude-capstone-reunion}
 
