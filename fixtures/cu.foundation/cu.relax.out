@@ -1,0 +1,16 @@
+     Program PWSCF v.7.2 starts on  2-Aug-2026
+
+     convergence has been achieved in   12 iterations
+
+     celldm(1)=  5.1310  alat=  5.1310  Bohr
+
+     total energy              =    -3314.56789012 Ry
+
+     Forces acting on atoms (cartesian axes, Ry/au):
+
+     atom    1 type  1   force =     0.000012    0.000008   -0.000003
+
+     bfgs converged in  12 scf cycles
+
+     final coordinates (angstroms)
+          Cu     0.000000000   0.000000000   0.000000000
