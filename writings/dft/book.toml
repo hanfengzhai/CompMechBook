@@ -1,0 +1,13 @@
+[book]
+title = "Density Functional Theory Notes"
+authors = ["Hanfeng Zhai"]
+description = "Born-Oppenheimer, Hohenberg-Kohn, Kohn-Sham. — source notes for CompMechBook."
+language = "en"
+multilingual = false
+src = "chapters"
+
+[build]
+create-missing = false
+
+[output.html]
+mathjax-support = true
