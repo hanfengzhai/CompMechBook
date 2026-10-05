@@ -279,6 +279,7 @@ When a chapter feels disconnected from the last, pause at the hinge for your rea
 | 153 | Meta | [Row 68 → Row 133 dynamics meta prelude capstone reunion index](sources.md#row68-row133-dynamics-meta-prelude-capstone-reunion-index-row-153) · [preface row 153 skill checkpoint](../preface.md#skill-navigation-row-153) · [prologue row 153 preview](../prologue/00-many-scales.md#prologue-preview-row-153) · [prologue row 153 closing stitch](../prologue/00-many-scales.md#row-153-closing-stitch) · [epilogue row 153 closing loop](../epilogue/multiscale.md#row-153-closing-loop) | Row 68 closed but row 53 VIII.1 → VIII.2 opening hinge feels disconnected from verified atomistic meta prelude capstone on the full capstone path — read row 68 + row 152 or row 133 gate + VIII.1 Bridge → opening hinge → VIII.2 ensembles + row 53; [row 153 baby picture](#row-153-baby-picture-row68-row133-dynamics-meta-prelude-capstone-reunion) |
 | 154 | Meta | [Row 68 → Row 134 export meta prelude capstone reunion index](sources.md#row68-row134-export-meta-prelude-capstone-reunion-index-row-154) · [preface row 154 skill checkpoint](../preface.md#skill-navigation-row-154) · [prologue row 154 preview](../prologue/00-many-scales.md#prologue-preview-row-154) · [prologue row 154 closing stitch](../prologue/00-many-scales.md#row-154-closing-stitch) · [epilogue row 154 closing loop](../epilogue/multiscale.md#row-154-closing-loop) | Row 68 closed but row 54 VIII.2 → VIII.3 opening hinge feels disconnected from verified dynamics meta prelude capstone on the full capstone path — read row 68 + row 153 or row 134 gate + VIII.2 Bridge → opening hinge → VIII.3 pedigree + row 54; [row 154 baby picture](#row-154-baby-picture-row68-row134-export-meta-prelude-capstone-reunion) |
 | 156 | Meta | [Row 68 → Row 136 Born–Oppenheimer meta prelude capstone reunion index](sources.md#row68-row136-born-oppenheimer-meta-prelude-capstone-reunion-index-row-156) · [preface row 156 skill checkpoint](../preface.md#skill-navigation-row-156) · [prologue row 156 preview](../prologue/00-many-scales.md#prologue-preview-row-156) · [prologue row 156 closing stitch](../prologue/00-many-scales.md#row-156-closing-stitch) · [epilogue row 156 closing loop](../epilogue/multiscale.md#row-156-closing-loop) | Row 68 closed but row 56 IX.0 → IX.1 opening hinge feels disconnected from verified electronic audit meta prelude capstone on the full capstone path — read row 68 + row 155 or row 136 gate + IX.0 Bridge → opening hinge → IX.1 BO/HK + row 56; [row 156 baby picture](#row-156-baby-picture-row68-row136-born-oppenheimer-meta-prelude-capstone-reunion) |
+| 202 | Meta | [Row 68 → Row 182 Handshake 4b meta prelude capstone reunion index](sources.md#row68-row182-handshake4b-meta-prelude-capstone-reunion-index-row-202) · [preface row 201 skill checkpoint](../preface.md#skill-navigation-row-202) · [prologue row 201 preview](../prologue/00-many-scales.md#prologue-preview-row-202) · [prologue row 201 closing stitch](../prologue/00-many-scales.md#row-202-closing-stitch) · [epilogue row 201 closing loop](../epilogue/multiscale.md#row-202-closing-loop) | Row 68 closed but row 62 Handshake 4b meta reunion feels disconnected from verified Handshake 4b meta prelude capstone on the full capstone path — read row 68 + row 201 or row 202 gate + epilogue FE² cross-links + row 62; [row 201 baby picture](#row-202-baby-picture-row68-row182-handshake4b-meta-prelude-capstone-reunion) |
 | 201 | Meta | [Row 68 → Row 181 Handshake 4a meta prelude capstone reunion index](sources.md#row68-row181-handshake4a-meta-prelude-capstone-reunion-index-row-201) · [preface row 201 skill checkpoint](../preface.md#skill-navigation-row-201) · [prologue row 201 preview](../prologue/00-many-scales.md#prologue-preview-row-201) · [prologue row 201 closing stitch](../prologue/00-many-scales.md#row-201-closing-stitch) · [epilogue row 201 closing loop](../epilogue/multiscale.md#row-201-closing-loop) | Row 68 closed but row 61 Handshake 4a meta reunion feels disconnected from verified Handshake 4a meta prelude capstone on the full capstone path — read row 68 + row 200 or row 181 gate + epilogue rate cross-links + row 61; [row 201 baby picture](#row-201-baby-picture-row68-row181-handshake4a-meta-prelude-capstone-reunion) |
 | 200 | Meta | [Row 68 → Row 180 Handshake 3 meta prelude capstone reunion index](sources.md#row68-row180-handshake3-meta-prelude-capstone-reunion-index-row-200) · [preface row 200 skill checkpoint](../preface.md#skill-navigation-row-200) · [prologue row 200 preview](../prologue/00-many-scales.md#prologue-preview-row-200) · [prologue row 200 closing stitch](../prologue/00-many-scales.md#row-200-closing-stitch) · [epilogue row 200 closing loop](../epilogue/multiscale.md#row-200-closing-loop) | Row 68 closed but row 60 Handshake 3 meta reunion feels disconnected from verified Handshake 3 meta prelude capstone on the full capstone path — read row 68 + row 199 or row 180 gate + epilogue α cross-links + row 60; [row 200 baby picture](#row-200-baby-picture-row68-row180-handshake3-meta-prelude-capstone-reunion) |
 | 199 | Meta | [Row 68 → Row 179 Handshake 3 meta prelude capstone reunion index](sources.md#row68-row179-handshake3-meta-prelude-capstone-reunion-index-row-199) · [preface row 199 skill checkpoint](../preface.md#skill-navigation-row-199) · [prologue row 199 preview](../prologue/00-many-scales.md#prologue-preview-row-199) · [prologue row 199 closing stitch](../prologue/00-many-scales.md#row-199-closing-stitch) · [epilogue row 199 closing loop](../epilogue/multiscale.md#row-199-closing-loop) | Row 68 closed but row 59 IX.3 → Handshake 3 opening hinge feels disconnected from verified DFT workflows meta prelude capstone on the full capstone path — read row 68 + row 198 or row 179 gate + IX.3 Bridge → opening hinge to Handshake 3 + row 59; [row 199 baby picture](#row-199-baby-picture-row68-row179-handshake3-meta-prelude-capstone-reunion) |
@@ -3400,6 +3401,94 @@ flowchart LR
 ```
 
 When row 159 feels disconnected from row 158, read them as **Kohn–Sham / DFT workflows meta prelude capstone vs Handshake 3 meta prelude capstones on the full capstone path**: row 158 when **IX.2 → IX.3 must reunite on cutoff certificates at \(T_w\) before any foundation archive on the full capstone path**; row 159 when **foundation export manifest and IX.3 → Handshake 3 meta must read on the same wire before row 140 Handshake 3 meta prelude capstone opens on the full capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous foundation archive → \(\alpha(T_w)\) afternoon. When row 158 closed but load-cell sections still lag on the full capstone path, switch to [row 159](#row-159-baby-picture-row68-row139-handshake3-meta-prelude-capstone-reunion).
+
+
+### Row 201 baby picture (Row 68 → Row 182 Row 68 → Row 62 Handshake 4b meta prelude capstone reunion) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 201](../preface.md#skill-navigation-row-160) or [preface row 202](../preface.md#skill-navigation-row-141) Handshake 3 meta prelude capstone / Handshake 4b meta capstone gate → [epilogue FE² cross-links audit](../epilogue/multiscale.md#opening-hinge-vii3-handshake4b) aloud → [preface row 62](../preface.md#skill-navigation-row-61) five-step audit → confirm [VII.3 rate handshake](../part07-defects/03-polycrystal-and-fem-handoff.md#scale-boundary-handshake-ddd-strain-rate-to-quasi-static-fem) and [`parse_fe2.sh`](../scripts/parse_fe2.sh) at lab grip rate on the full capstone path.
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  HS[Handshake 4b meta prelude capstone row 201]
+  XL[Epilogue FE² cross-links]
+  R61[row 62 meta gate]
+  MP --> HS --> XL --> R61
+```
+
+When row 201 feels disconnected from row 201, read them as **Handshake 3 meta prelude capstone vs Handshake 4b meta prelude capstones on the full capstone path**: row 201 when **epilogue α cross-links must reunite on verified Handshake 3 meta prelude capstone before any rate table on the full capstone path**; row 201 when **epilogue FE² cross-links and Row 60 → Row 41 Handshake 4b meta must read on the same wire before row 202 Handshake 4b meta prelude capstone reunion opens on the full capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous thermal pre-stress → Act III–IV afternoon after verified Handshake 4b meta prelude capstone. When row 201 closed but Part VII still lags on the full capstone path, switch to [row 201](#row-202-baby-picture-row68-row182-handshake4b-meta-prelude-capstone-reunion).
+
+
+### Row 201 baby picture (Row 68 → Row 201 Row 68 → Row 60 Handshake 3 meta prelude capstone reunion) gate → [preface row 199](../preface.md#skill-navigation-row-159) or [preface row 201](../preface.md#skill-navigation-row-120) Handshake 3 meta prelude capstone / meta capstone gate → [epilogue α cross-links audit](../epilogue/multiscale.md#opening-hinge-ix3-handshake3) aloud → [preface row 60](../preface.md#skill-navigation-row-60) five-step audit → confirm [V.4 Picard CHT Lab act](../part05-fvm/04-navier-stokes-cfd.md#lab-act-extension-two-domain-picard-loop-with-a-1d-fem-solid) and [VI.2 \(\alpha\) handshake](../part06-continuum/02-stress-balance.md#scale-boundary-handshake-thermal-expansion-alpha) at \(T_w\) on the full capstone path.
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  HS[Handshake 3 meta prelude row 199]
+  XL[Epilogue α cross-links]
+  R60[row 60 meta gate]
+  MP --> HS --> XL --> R60
+```
+
+When row 201 feels disconnected from row 199, read them as **Handshake 3 opening vs Handshake 3 meta prelude capstones on the full capstone path**: row 199 when **IX.3 → Handshake 3 must reunite on foundation archive at \(T_w\) before any cross-links table on the full capstone path**; row 201 when **epilogue α cross-links and Row 59 → Row 40 Handshake 3 meta must read on the same wire before row 202 Handshake 4b meta prelude capstone reunion opens on the full capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous \(\alpha(T_w)\) → Act II–III afternoon after verified Handshake 3 meta prelude capstone. When row 199 closed but Parts III–VI still lag on the full capstone path, switch to [row 201](#row-200-baby-picture-row68-row180-handshake3-meta-prelude-capstone-reunion).
+
+
+### Row 201 baby picture {#row-160-baby-picture-row68-row140-handshake3-meta-prelude-capstone-reunion}
+
+**Row 201 baby picture:** when row 68 closed the midpoint prelude and row 159 or row 160 closed Handshake 3 meta prelude capstone / Handshake 3 meta capstone on the full capstone path but **row 60's epilogue α cross-links audit or the III.4 → IV.4 → V.4 → VI.2 ascent chain still feel like separate checklists**, open the [Row 68 → Row 160 Handshake 3 meta prelude capstone reunion index](sources.md#row68-row180-handshake3-meta-prelude-capstone-reunion-index-row-200) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 159](../preface.md#skill-navigation-row-159) or [preface row 160](../preface.md#skill-navigation-row-120) Handshake 3 meta prelude capstone / meta capstone gate → [epilogue α cross-links audit](../epilogue/multiscale.md#opening-hinge-ix3-handshake3) aloud → [preface row 60](../preface.md#skill-navigation-row-60) five-step audit → confirm [V.4 Picard CHT Lab act](../part05-fvm/04-navier-stokes-cfd.md#lab-act-extension-two-domain-picard-loop-with-a-1d-fem-solid) and [VI.2 \(\alpha\) handshake](../part06-continuum/02-stress-balance.md#scale-boundary-handshake-thermal-expansion-alpha) at \(T_w\) on the full capstone path.
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  HS[Handshake 3 meta prelude row 159]
+  XL[Epilogue α cross-links]
+  R60[row 60 meta gate]
+  MP --> HS --> XL --> R60
+```
+
+When row 201 feels disconnected from row 159, read them as **Handshake 3 opening vs Handshake 3 meta prelude capstones on the full capstone path**: row 159 when **IX.3 → Handshake 3 must reunite on foundation archive at \(T_w\) before any cross-links table on the full capstone path**; row 201 when **epilogue α cross-links and Row 59 → Row 40 Handshake 3 meta must read on the same wire before row 162 Handshake 4b meta prelude capstone opens on the full capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous \(\alpha(T_w)\) → Act II–III afternoon after verified Handshake 3 meta prelude capstone. When row 159 closed but Parts III–VI still lag on the full capstone path, switch to [row 201](#row-160-baby-picture-row68-row140-handshake3-meta-prelude-capstone-reunion).
+
+
+### Row 201 baby picture (Row 68 → Row 160 Row 68 → Row 60 Handshake 3 meta prelude capstone reunion) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 179](../preface.md#skill-navigation-row-159) or [preface row 160](../preface.md#skill-navigation-row-120) Handshake 3 meta prelude capstone / meta capstone gate → [epilogue α cross-links audit](../epilogue/multiscale.md#opening-hinge-ix3-handshake3) aloud → [preface row 60](../preface.md#skill-navigation-row-60) five-step audit → confirm [V.4 Picard CHT Lab act](../part05-fvm/04-navier-stokes-cfd.md#lab-act-extension-two-domain-picard-loop-with-a-1d-fem-solid) and [VI.2 \(\alpha\) handshake](../part06-continuum/02-stress-balance.md#scale-boundary-handshake-thermal-expansion-alpha) at \(T_w\) on the full capstone path.
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  HS[Handshake 3 meta prelude row 179]
+  XL[Epilogue α cross-links]
+  R60[row 60 meta gate]
+  MP --> HS --> XL --> R60
+```
+
+When row 201 feels disconnected from row 179, read them as **Handshake 3 opening vs Handshake 3 meta prelude capstones on the full capstone path**: row 179 when **IX.3 → Handshake 3 must reunite on foundation archive at \(T_w\) before any cross-links table on the full capstone path**; row 201 when **epilogue α cross-links and Row 59 → Row 40 Handshake 3 meta must read on the same wire before row 202 Handshake 4b meta prelude capstone reunion opens on the full capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous \(\alpha(T_w)\) → Act II–III afternoon after verified Handshake 3 meta prelude capstone. When row 179 closed but Parts III–VI still lag on the full capstone path, switch to [row 201](#row-180-baby-picture-row68-row160-handshake3-meta-prelude-capstone-reunion).
+
+
+### Row 160 baby picture {#row-160-baby-picture-row68-row140-handshake3-meta-prelude-capstone-reunion}
+
+**Row 160 baby picture:** when row 68 closed the midpoint prelude and row 159 or row 140 closed Handshake 3 meta prelude capstone / Handshake 3 meta capstone on the full capstone path but **row 60's epilogue α cross-links audit or the III.4 → IV.4 → V.4 → VI.2 ascent chain still feel like separate checklists**, open the [Row 68 → Row 140 Handshake 3 meta prelude capstone reunion index](sources.md#row68-row140-handshake3-meta-prelude-capstone-reunion-index-row-160) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 159](../preface.md#skill-navigation-row-159) or [preface row 140](../preface.md#skill-navigation-row-120) Handshake 3 meta prelude capstone / meta capstone gate → [epilogue α cross-links audit](../epilogue/multiscale.md#opening-hinge-ix3-handshake3) aloud → [preface row 60](../preface.md#skill-navigation-row-60) five-step audit → confirm [V.4 Picard CHT Lab act](../part05-fvm/04-navier-stokes-cfd.md#lab-act-extension-two-domain-picard-loop-with-a-1d-fem-solid) and [VI.2 \(\alpha\) handshake](../part06-continuum/02-stress-balance.md#scale-boundary-handshake-thermal-expansion-alpha) at \(T_w\) on the full capstone path.
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  HS[Handshake 3 meta prelude row 159]
+  XL[Epilogue α cross-links]
+  R60[row 60 meta gate]
+  MP --> HS --> XL --> R60
+```
+
+When row 160 feels disconnected from row 159, read them as **Handshake 3 opening vs Handshake 3 meta prelude capstones on the full capstone path**: row 159 when **IX.3 → Handshake 3 must reunite on foundation archive at \(T_w\) before any cross-links table on the full capstone path**; row 160 when **epilogue α cross-links and Row 59 → Row 40 Handshake 3 meta must read on the same wire before row 162 Handshake 4b meta prelude capstone opens on the full capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous \(\alpha(T_w)\) → Act II–III afternoon after verified Handshake 3 meta prelude capstone. When row 159 closed but Parts III–VI still lag on the full capstone path, switch to [row 160](#row-160-baby-picture-row68-row140-handshake3-meta-prelude-capstone-reunion).
+
+
+### Row 201 baby picture (Row 68 → Row 182 Row 68 → Row 62 Handshake 4b meta prelude capstone reunion) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 201](../preface.md#skill-navigation-row-160) or [preface row 182](../preface.md#skill-navigation-row-141) Handshake 3 meta prelude capstone / Handshake 4b meta capstone gate → [epilogue FE² cross-links audit](../epilogue/multiscale.md#opening-hinge-vii3-handshake4b) aloud → [preface row 62](../preface.md#skill-navigation-row-61) five-step audit → confirm [VII.3 rate handshake](../part07-defects/03-polycrystal-and-fem-handoff.md#scale-boundary-handshake-ddd-strain-rate-to-quasi-static-fem) and [`parse_fe2.sh`](../scripts/parse_fe2.sh) at lab grip rate on the full capstone path.
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  HS[Handshake 4b meta prelude capstone row 201]
+  XL[Epilogue FE² cross-links]
+  R61[row 62 meta gate]
+  MP --> HS --> XL --> R61
+```
+
+When row 202 feels disconnected from row 201, read them as **Handshake 3 meta prelude capstone vs Handshake 4b meta prelude capstones on the full capstone path**: row 201 when **epilogue α cross-links must reunite on verified Handshake 3 meta prelude capstone before any rate table on the full capstone path**; row 202 when **epilogue FE² cross-links and Row 60 → Row 41 Handshake 4b meta must read on the same wire before row 202 Handshake 4b meta prelude capstone reunion opens on the full capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous thermal pre-stress → Act III–IV afternoon after verified Handshake 4b meta prelude capstone. When row 201 closed but Part VII still lags on the full capstone path, switch to [row 202](#row-202-baby-picture-row68-row182-handshake4b-meta-prelude-capstone-reunion).
 
 
 ### Row 201 baby picture (Row 68 → Row 181 Row 68 → Row 61 Handshake 4a meta prelude capstone reunion) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 200](../preface.md#skill-navigation-row-160) or [preface row 181](../preface.md#skill-navigation-row-141) Handshake 3 meta prelude capstone / Handshake 4a meta capstone gate → [epilogue rate cross-links audit](../epilogue/multiscale.md#opening-hinge-vii3-handshake4a) aloud → [preface row 61](../preface.md#skill-navigation-row-61) five-step audit → confirm [VII.3 rate handshake](../part07-defects/03-polycrystal-and-fem-handoff.md#scale-boundary-handshake-ddd-strain-rate-to-quasi-static-fem) and [`parse_rate.sh`](../scripts/parse_rate.sh) at lab grip rate on the full capstone path.
