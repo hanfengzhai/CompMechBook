@@ -3937,6 +3937,50 @@ flowchart LR
 When row 197 feels disconnected from row 196, read them as **Born–Oppenheimer meta prelude capstone vs Kohn–Sham meta prelude capstones on the full capstone path**: row 196 when **IX.0 Bridge and Row 68 → Row 56 meta must read on the same wire before any IX.1 → IX.2 audit on the full capstone path**; row 197 when **IX.2 Bridge and Row 68 → Row 58 meta must read on the same wire before row 198 DFT workflows meta prelude capstone opens on the full capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous Murnaghan scan → \(\rho^\star = \mathcal{G}(\rho^\star)\) afternoon after verified Born–Oppenheimer meta prelude capstone.
 
 
+### Row 218 baby picture {#row-218-baby-picture-row68-row198-dft-workflows-meta-prelude-capstone-reunion} (Row 68 → Row 198 Row 68 → Row 58 DFT workflows meta prelude capstone reunion) gate → [preface row 197](../preface.md#skill-navigation-row-137) or [preface row 218](../preface.md#skill-navigation-row-118) Kohn–Sham meta prelude capstone / DFT workflows opening gate → [IX.2 Bridge](../part09-dft/02-kohn-sham.md#bridge) through [IX.3 opening hinge from IX.2](../part09-dft/03-dft-workflows.md#opening-hinge-ix2-to-ix3) aloud → [preface row 58](../preface.md#skill-navigation-row-58) five-step audit → confirm [cutoff-sweep Lab act steps 1–5](../part09-dft/02-kohn-sham.md#lab-act-cutoff-sweep-on-fcc-cu-act-vi--convergence-certificate) and [cutoff export manifest](../part09-dft/02-kohn-sham.md#cutoff-export-manifest-handoff-to-ix3) at \(T_w\) on the full capstone path.
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  KS[Kohn–Sham meta prelude capstone row 197]
+  BR[IX.2 Bridge to IX.3]
+  R58[row 58 meta gate]
+  MP --> KS --> BR --> R58
+```
+
+When row 198 feels disconnected from row 197, read them as **Kohn–Sham meta prelude capstone vs DFT workflows meta prelude capstones on the full capstone path**: row 197 when **IX.1 Bridge and Row 68 → Row 57 meta must read on the same wire before any IX.2 → IX.3 audit on the full capstone path**; row 198 when **IX.2 Bridge and Row 68 → Row 58 meta must read on the same wire before row 219 Handshake 3 meta prelude capstone reunion opens on the full capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous cutoff certificate → `cu.foundation/` afternoon after verified Kohn–Sham meta prelude capstone.
+
+
+### Row 177 baby picture (Row 68 → Row 157 Row 68 → Row 57 Kohn–Sham meta prelude capstone reunion) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 176](../preface.md#skill-navigation-row-156) or [preface row 157](../preface.md#skill-navigation-row-157) Born–Oppenheimer meta prelude capstone / Kohn–Sham opening gate → [IX.1 Bridge](../part09-dft/01-born-oppenheimer.md#bridge) through [IX.2 opening hinge from IX.1](../part09-dft/02-kohn-sham.md#opening-hinge-ix1-to-ix2) aloud → [preface row 57](../preface.md#skill-navigation-row-57) five-step audit → confirm [Murnaghan Lab act steps 1–5](../part09-dft/01-born-oppenheimer.md#lab-act-murnaghan-fit-on-fcc-cu-act-vi--foundation) and [Murnaghan export manifest](../part09-dft/01-born-oppenheimer.md#murnaghan-export-manifest-handoff-to-ix2) at \(T_w\) on the full capstone path.
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  BO[Born–Oppenheimer meta prelude capstone row 176]
+  BR[IX.1 Bridge to IX.2]
+  R57[row 57 meta gate]
+  MP --> BO --> BR --> R57
+```
+
+When row 177 feels disconnected from row 176, read them as **Born–Oppenheimer meta prelude capstone vs Kohn–Sham meta prelude capstones on the full capstone path**: row 176 when **IX.0 Bridge and Row 68 → Row 56 meta must read on the same wire before any IX.1 → IX.2 audit on the full capstone path**; row 177 when **IX.2 Bridge and Row 68 → Row 58 meta must read on the same wire before row 198 DFT workflows meta prelude capstone opens on the full capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous Murnaghan scan → \(\rho^\star = \mathcal{G}(\rho^\star)\) afternoon after verified Born–Oppenheimer meta prelude capstone.
+
+
+### Row 157 baby picture (Row 68 → Row 137 Row 68 → Row 57 Kohn–Sham meta prelude capstone reunion) {#row-157-baby-picture-row68-row137-kohn-sham-meta-prelude-capstone-reunion}
+
+**Row 157 baby picture:** when row 68 closed the midpoint prelude and row 156 or row 137 closed Born–Oppenheimer meta prelude capstone / Kohn–Sham opening prelude but **row 57's IX.1 → IX.2 audit or the Bridge → Kohn–Sham SCF chain still feel like separate checklists on the full capstone path**, open the [Row 68 → Row 137 Kohn–Sham meta prelude capstone reunion index](sources.md#row68-row137-kohn-sham-meta-prelude-capstone-reunion-index-row-157) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 156](../preface.md#skill-navigation-row-156) or [preface row 137](../preface.md#skill-navigation-row-137) Born–Oppenheimer meta prelude capstone / Kohn–Sham opening gate → [IX.1 Bridge](../part09-dft/01-born-oppenheimer.md#bridge) through [IX.2 opening hinge from IX.1](../part09-dft/02-kohn-sham.md#opening-hinge-ix1-to-ix2) aloud → [preface row 57](../preface.md#skill-navigation-row-57) five-step audit → confirm [Murnaghan Lab act steps 1–5](../part09-dft/01-born-oppenheimer.md#lab-act-murnaghan-fit-on-fcc-cu-act-vi--foundation) and [Murnaghan export manifest](../part09-dft/01-born-oppenheimer.md#murnaghan-export-manifest-handoff-to-ix2) at \(T_w\) on the full capstone path.
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  BO[Born–Oppenheimer meta prelude capstone row 156]
+  BR[IX.1 Bridge to IX.2]
+  R57[row 57 meta gate]
+  MP --> BO --> BR --> R57
+```
+
+When row 157 feels disconnected from row 156, read them as **Born–Oppenheimer meta prelude capstone vs Kohn–Sham meta prelude capstones on the full capstone path**: row 156 when **IX.0 Bridge and Row 68 → Row 56 meta must read on the same wire before any IX.1 → IX.2 audit on the full capstone path**; row 157 when **IX.1 Bridge and Row 68 → Row 57 meta must read on the same wire before row 198 DFT workflows meta prelude capstone opens on the full capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous Murnaghan scan → \(\rho^\star = \mathcal{G}(\rho^\star)\) afternoon after verified Born–Oppenheimer meta prelude capstone.
+
+
 ### Row 177 baby picture (Row 68 → Row 157 Row 68 → Row 57 Kohn–Sham meta prelude capstone reunion) {#row-157-baby-picture-row68-row137-kohn-sham-meta-prelude-capstone-reunion}
 
 **Row 177 baby picture:** when row 68 closed the midpoint prelude and row 156 or row 157 closed Born–Oppenheimer meta prelude capstone / Kohn–Sham opening prelude but **row 57's IX.1 → IX.2 audit or the Bridge → Kohn–Sham SCF chain still feel like separate checklists on the full capstone path**, open the [Row 68 → Row 157 Kohn–Sham meta prelude capstone reunion index](sources.md#row68-row157-kohn-sham-meta-prelude-capstone-reunion-index-row-177) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 156](../preface.md#skill-navigation-row-156) or [preface row 157](../preface.md#skill-navigation-row-137) Born–Oppenheimer meta prelude capstone / Kohn–Sham opening gate → [IX.1 Bridge](../part09-dft/01-born-oppenheimer.md#bridge) through [IX.2 opening hinge from IX.1](../part09-dft/02-kohn-sham.md#opening-hinge-ix1-to-ix2) aloud → [preface row 57](../preface.md#skill-navigation-row-57) five-step audit → confirm [Murnaghan Lab act steps 1–5](../part09-dft/01-born-oppenheimer.md#lab-act-murnaghan-fit-on-fcc-cu-act-vi--foundation) and [Murnaghan export manifest](../part09-dft/01-born-oppenheimer.md#murnaghan-export-manifest-handoff-to-ix2) at \(T_w\) on the full capstone path.
