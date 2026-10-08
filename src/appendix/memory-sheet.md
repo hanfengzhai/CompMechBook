@@ -4606,6 +4606,21 @@ When row 379 feels disconnected from row 378, read them as **Kohn–Sham / DFT w
 
 
 
+### Row 459 baby picture {#row-459-baby-picture-row68-row439-handshake3-meta-prelude-capstone-reunion}
+
+**Row 459 baby picture:** when row 68 closed the midpoint prelude and row 398 or row 439 closed DFT workflows meta prelude capstone / Handshake 3 meta capstone on the full capstone path but **row 59's IX.3 → Handshake 3 audit or the Bridge → quasiharmonic \(\alpha(T_w)\) chain still feel like separate checklists**, open the [Row 68 → Row 439 Handshake 3 meta prelude capstone reunion index](sources.md#row68-row439-handshake3-meta-prelude-capstone-reunion-index-row-459) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 398](../preface.md#skill-navigation-row-398) or [preface row 459](../preface.md#skill-navigation-row-379) DFT workflows meta prelude capstone / Handshake 3 meta capstone gate → [IX.3 Bridge to the epilogue](../part09-dft/03-dft-workflows.md#bridge-to-the-epilogue) through [opening hinge to Handshake 3](../part09-dft/03-dft-workflows.md#opening-hinge-ix3-to-handshake3) aloud → [preface row 59](../preface.md#skill-navigation-row-59) five-step audit → confirm [foundation archive Lab act steps 1–5](../part09-dft/03-dft-workflows.md#lab-act-archive-the-foundation-run-before-the-wire-scale-solve-act-vi--foundation) and [foundation export manifest](../part09-dft/03-dft-workflows.md#foundation-export-manifest-handoff-to-epilogue) at \(T_w\) on the full capstone path.
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  DF[DFT workflows meta row 398]
+  BR[IX.3 Bridge to Handshake 3]
+  R59[row 59 meta gate]
+  MP --> DF --> BR --> R59
+```
+
+When row 439 feels disconnected from row 398, read them as **Kohn–Sham / DFT workflows meta prelude capstone vs Handshake 3 meta prelude capstones on the full capstone path**: row 398 when **IX.2 → IX.3 must reunite on cutoff certificates at \(T_w\) before any foundation archive on the full capstone path**; row 439 when **foundation export manifest and IX.3 → Handshake 3 meta must read on the same wire before row 380 Handshake 3 meta prelude capstone opens on the full capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous foundation archive → \(\alpha(T_w)\) afternoon. When row 398 closed but load-cell sections still lag on the full capstone path, switch to [row 439](#row-399-baby-picture-row68-row379-handshake3-meta-prelude-capstone-reunion).
+
 ### Row 439 baby picture {#row-439-baby-picture-row68-row419-handshake3-meta-prelude-capstone-reunion}
 
 **Row 439 baby picture:** when row 68 closed the midpoint prelude and row 378 or row 419 closed DFT workflows meta prelude capstone / Handshake 3 meta capstone on the full capstone path but **row 59's IX.3 → Handshake 3 audit or the Bridge → quasiharmonic \(\alpha(T_w)\) chain still feel like separate checklists**, open the [Row 68 → Row 419 Handshake 3 meta prelude capstone reunion index](sources.md#row68-row419-handshake3-meta-prelude-capstone-reunion-index-row-439) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 378](../preface.md#skill-navigation-row-378) or [preface row 439](../preface.md#skill-navigation-row-359) DFT workflows meta prelude capstone / Handshake 3 meta capstone gate → [IX.3 Bridge to the epilogue](../part09-dft/03-dft-workflows.md#bridge-to-the-epilogue) through [opening hinge to Handshake 3](../part09-dft/03-dft-workflows.md#opening-hinge-ix3-to-handshake3) aloud → [preface row 59](../preface.md#skill-navigation-row-59) five-step audit → confirm [foundation archive Lab act steps 1–5](../part09-dft/03-dft-workflows.md#lab-act-archive-the-foundation-run-before-the-wire-scale-solve-act-vi--foundation) and [foundation export manifest](../part09-dft/03-dft-workflows.md#foundation-export-manifest-handoff-to-epilogue) at \(T_w\) on the full capstone path.
