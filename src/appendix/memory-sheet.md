@@ -4739,6 +4739,20 @@ flowchart LR
 When row 202 feels disconnected from row 201, read them as **Handshake 3 meta prelude capstone vs Handshake 4b meta prelude capstones on the full capstone path**: row 201 when **epilogue α cross-links must reunite on verified Handshake 3 meta prelude capstone before any rate table on the full capstone path**; row 202 when **epilogue FE² cross-links and Row 60 → Row 41 Handshake 4b meta must read on the same wire before row 202 Handshake 4b meta prelude capstone reunion opens on the full capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous thermal pre-stress → Act III–IV afternoon after verified Handshake 4b meta prelude capstone. When row 201 closed but Part VII still lags on the full capstone path, switch to [row 202](#row-202-baby-picture-row68-row182-handshake4b-meta-prelude-capstone-reunion).
 
 
+### Row 221 baby picture (Row 68 → Row 241 Row 68 → Row 61 Handshake 4a meta prelude capstone reunion) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 220](../preface.md#skill-navigation-row-180) or [preface row 221](../preface.md#skill-navigation-row-161) Handshake 3 meta prelude capstone / Handshake 4a meta capstone gate → [epilogue rate cross-links audit](../epilogue/multiscale.md#opening-hinge-vii3-handshake4a) aloud → [preface row 61](../preface.md#skill-navigation-row-61) five-step audit → confirm [VII.3 rate handshake](../part07-defects/03-polycrystal-and-fem-handoff.md#scale-boundary-handshake-ddd-strain-rate-to-quasi-static-fem) and [`parse_rate.sh`](../scripts/parse_rate.sh) at lab grip rate on the full capstone path.
+
+```mermaid
+flowchart LR
+  MP[Midpoint row 68]
+  HS[Handshake 4a meta prelude capstone row 220]
+  XL[Epilogue rate cross-links]
+  R61[row 61 meta gate]
+  MP --> HS --> XL --> R61
+```
+
+When row 221 feels disconnected from row 220, read them as **Handshake 3 meta prelude capstone vs Handshake 4a meta prelude capstones on the full capstone path**: row 220 when **epilogue α cross-links must reunite on verified Handshake 3 meta prelude capstone before any rate table on the full capstone path**; row 221 when **epilogue rate cross-links and Row 60 → Row 41 Handshake 4a meta must read on the same wire before row 202 Handshake 4b meta prelude capstone reunion opens on the full capstone path** — same copper wire, same Functional Analysis Notes layout, one continuous thermal pre-stress → Act III–IV afternoon after verified Handshake 4a meta prelude capstone. When row 220 closed but Part VII still lags on the full capstone path, switch to [row 221](#row-221-baby-picture-row68-row201-handshake4a-meta-prelude-capstone-reunion).
+
+
 ### Row 221 baby picture {#row-221-baby-picture-row68-row201-handshake4a-meta-prelude-capstone-reunion} (Row 68 → Row 221 Row 68 → Row 61 Handshake 4a meta prelude capstone reunion) — read [preface row 68](../preface.md#skill-navigation-row-68) gate → [preface row 200](../preface.md#skill-navigation-row-160) or [preface row 201](../preface.md#skill-navigation-row-141) Handshake 3 meta prelude capstone / Handshake 4a meta capstone gate → [epilogue rate cross-links audit](../epilogue/multiscale.md#opening-hinge-vii3-handshake4a) aloud → [preface row 61](../preface.md#skill-navigation-row-61) five-step audit → confirm [VII.3 rate handshake](../part07-defects/03-polycrystal-and-fem-handoff.md#scale-boundary-handshake-ddd-strain-rate-to-quasi-static-fem) and [`parse_rate.sh`](../scripts/parse_rate.sh) at lab grip rate on the full capstone path.
 
 ```mermaid
