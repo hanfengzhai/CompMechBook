@@ -6230,6 +6230,49 @@ This checkpoint closes the **Row 68 → Row 339 Row 68 → Row 59 Handshake 3 me
 
 
 
+### Row 379 skill checkpoint — Row 68 → Row 359 Row 68 → Row 59 Handshake 3 meta prelude capstone reunion audit {#skill-navigation-row-379}
+
+This checkpoint closes the **Row 68 → Row 359 Row 68 → Row 59 Handshake 3 meta prelude capstone reunion** chain — the reader meta-stitch when row 68 closed the dual midpoint prelude (part-boundary gate row 67 + VI.4 → VII.0 meta row 48 + intermission → Bridge chain), and [row 358](preface.md#skill-navigation-row-358) or [row 359](preface.md#skill-navigation-row-339) closed the DFT workflows meta prelude capstone / Handshake 3 meta capstone hinge (IX.2 Bridge → IX.3 calculation ladder recited, [foundation archive Lab act](part09-dft/03-dft-workflows.md#lab-act-archive-the-foundation-run-before-the-wire-scale-solve-act-vi--foundation) archived `foundation_export.yaml` and converged bulk logs beside [foundation export manifest](part09-dft/03-dft-workflows.md#foundation-export-manifest-handoff-to-epilogue) at \(T_w\) on the full capstone path, one dft arc under `writings/dft` chapter 03 → epilogue), but **row 59 still opens like standalone epilogue coursework after IX.3's foundation archive Lab act on the full capstone path** — `./scripts/sync-writings.sh --check` passes yet [IX.3 Bridge to the epilogue](part09-dft/03-dft-workflows.md#bridge-to-the-epilogue) reads correctly in isolation from [opening hinge to Handshake 3](part09-dft/03-dft-workflows.md#opening-hinge-ix3-to-handshake3), fixed-grip thermal stress and handbook \(\alpha(300\,\text{K})\) feel disconnected from the Bridge line that named **load-cell inheritance from SCF logs**, or row 59's five-step audit feels like a duplicate checklist rather than the rear-view mirror of row 358's cutoff certificate → foundation archive → quasiharmonic \(\alpha(T_w)\) turn at the Handshake 3 meta prelude capstone boundary inside the coupling gate on the full capstone path. The [Row 68 → Row 359 Handshake 3 meta prelude capstone reunion index](appendix/sources.md#row68-row359-handshake3-meta-prelude-capstone-reunion-index-row-379) and [memory sheet row 379 baby picture](appendix/memory-sheet.md#row-379-baby-picture-row68-row359-handshake3-meta-prelude-capstone-reunion) are the **navigation halves**; [row 68](preface.md#skill-navigation-row-68) (midpoint prelude gate) and [row 59](preface.md#skill-navigation-row-59) (IX.3 → Handshake 3 meta gate) are the **audit halves**. Row 379 does not replace row 68, row 59, row 358, row 359, row 99, row 79, row 98, or row 40 — it reunites **verified DFT workflows meta prelude capstone closure with the full-book IX.3 → Handshake 3 meta reunion on the full capstone path** when `foundation_export.yaml` and row 59 meta both read correctly alone but not as one foundation archive → \(\alpha(T_w)\) afternoon before row 360 Handshake 3 meta prelude capstone opens on the full capstone path.
+
+| Step | Skill on the Row 68 ↔ Row 59 reunion (full capstone path) | Minimal artifact |
+|------|------------------------------------------------------|------------------|
+| 1 — Row 68 gate | Confirm row 68 closed ([Row 67 → Row 48 reunion index](appendix/sources.md#row67-row48-midpoint-prelude-reunion-index-row-68) recited); `./scripts/sync-writings.sh --check` green | Midpoint Bridge chain recited before Handshake 3 meta prelude capstone |
+| 2 — DFT workflows meta prelude capstone / Handshake 3 meta capstone gate | Confirm [row 358](preface.md#skill-navigation-row-338) or [Row 68 → Row 359 Handshake 3 meta prelude capstone reunion index (row 359)](appendix/sources.md#row68-row359-handshake3-meta-prelude-capstone-reunion-index-row-379) recited | `foundation_export.yaml` + converged bulk logs at \(T_w\) before IX.3 Bridge → quasiharmonic \(\alpha\) |
+| 3 — Bridge recitation | Read [IX.3 Bridge to the epilogue](part09-dft/03-dft-workflows.md#bridge-to-the-epilogue) through [opening hinge to Handshake 3](part09-dft/03-dft-workflows.md#opening-hinge-ix3-to-handshake3) aloud | "Load cell curve inherits from an SCF log" |
+| 4 — Scene audit | Open [IX.3 Scene](part09-dft/03-dft-workflows.md#scene-bulk-copper-in-a-workstation) then [epilogue Handshake 3 opening hinge](epilogue/multiscale.md#opening-hinge-ix3-handshake3); confirm [foundation archive Lab act steps 1–5](part09-dft/03-dft-workflows.md#lab-act-archive-the-foundation-run-before-the-wire-scale-solve-act-vi--foundation) | Same wire; foundation folder → fixed-grip \(\alpha(T_w)\Delta T\) visible |
+| 5 — Row 59 meta gate | Confirm [IX.3 → Handshake 3 reunion index (row 59)](appendix/sources.md#ix3-handshake3-opening-hinge-reunion-index-row-59) five-step audit | `alpha_export.yaml` matches `cht_export.yaml` at \(T_w\) |
+
+**Row 379 three-way audit (prologue preview ↔ this checkpoint ↔ workflow exam).**
+
+| Step | Prologue preview ([row 359](prologue/00-many-scales.md#prologue-preview-row-379)) | This checkpoint (above) | Workflow exam ([full arc row](epilogue/multiscale.md#what-you-should-be-able-to-do-after-the-book)) |
+|------|--------------------------------------------------------------------------------|-------------------------|------------------------------------------------------------------------------------------------------|
+| 1 | Name row 68 closed before Handshake 3 meta prelude capstone | Step 1 — row 68 gate | Midpoint prelude recited |
+| 2 | Name DFT workflows meta prelude capstone before IX.3 Bridge | Step 2 — DFT workflows meta prelude capstone / Handshake 3 meta capstone gate | `foundation_export.yaml` + converged bulk logs at \(T_w\) before quasiharmonic \(\alpha\) |
+| 3 | Name IX.3 Bridge as coupling request | Step 3 — Bridge recitation | Archive → Handshake chain |
+| 4 | Name foundation archive Lab act before Handshake 3 Scene | Step 4 — Scene audit | Same specimen, \(\alpha(T_w)\) not handbook default |
+| 5 | [Row 68 → Row 359 reunion index](appendix/sources.md#row68-row359-handshake3-meta-prelude-capstone-reunion-index-row-379) recitation | Step 5 — row 59 meta gate | IX.3 → Handshake 3 reads continuous |
+
+**When to pause.** Read the [prologue row 379 closing stitch](prologue/00-many-scales.md#row-379-closing-stitch) first when row 378 closed but row 59 IX.3 → Handshake 3 reunion still feels like epilogue homework disconnected from verified DFT workflows meta prelude capstone on the full capstone path — it names the dual reunion before the quasiharmonic \(\alpha\) Lab act. Then read the [prologue row 379 preview](prologue/00-many-scales.md#prologue-preview-row-379) when `foundation_export.yaml` exists but `alpha_export.yaml` lists `target_temperature_K: 300` after row 358 on the full capstone path. Return to the [Row 68 → Row 359 reunion index](appendix/sources.md#row68-row359-handshake3-meta-prelude-capstone-reunion-index-row-379) when row 358 and row 59 both verify individually but **DFT workflows meta prelude capstone and IX.3 → Handshake 3 opening hinge still feel like separate stories on the full capstone path** — the break is usually skipping [IX.3's opening hinge to Handshake 3](part09-dft/03-dft-workflows.md#opening-hinge-ix3-to-handshake3), not missing quasiharmonic algebra. Read the [memory sheet row 379 baby picture](appendix/memory-sheet.md#row-379-baby-picture-row68-row359-handshake3-meta-prelude-capstone-reunion) when opening [row 340](preface.md#skill-navigation-row-340) before row 60 closes on the full capstone path; read the [epilogue row 379 closing loop](epilogue/multiscale.md#row-379-closing-loop) when the competence loop closes. When row 379 is complete, proceed to [row 380](preface.md#skill-navigation-row-380) when load cell parses at \(T_w\) but Handshake 3 still feels disconnected from Parts III–VI after verified Handshake 3 meta prelude capstone on the full capstone path, to [row 320](preface.md#skill-navigation-row-320) for the Row 68 ↔ Row 60 Handshake 3 meta audit on the opening-hinge capstone path alone, to [row 300](preface.md#skill-navigation-row-300) for the Row 68 ↔ Row 60 Handshake 3 meta audit on the opening-hinge capstone path alone, to [row 280](preface.md#skill-navigation-row-280) for the Row 68 ↔ Row 60 Handshake 3 meta audit on the opening-hinge prelude path alone, to [row 260](preface.md#skill-navigation-row-260) when the opening-hinge prelude path (row 99) closed the chapter hinge without row 359 prelude capstone, to [row 359](preface.md#skill-navigation-row-319) for the Row 68 ↔ Row 59 Handshake 3 meta audit on the opening-hinge capstone path alone, to [row 99](preface.md#skill-navigation-row-99) for the Row 68 ↔ Row 59 Handshake 3 opening prelude audit alone, to [row 79](preface.md#skill-navigation-row-79) for the Row 68 ↔ Row 59 prelude audit alone, to [row 358](preface.md#skill-navigation-row-338) when DFT workflows meta prelude capstone still lags after verified Kohn–Sham meta prelude capstone on the full capstone path, to [row 59](preface.md#skill-navigation-row-59) when only IX.3 → Handshake 3 stalls, or extend prose only under `writings/` then sync.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## The copper wire through the book
 
 The same specimen — a cold-drawn copper wire under tension, heated by current, cooled by air — reappears in every part. The table below is a reading map: what changes is the **state variable**, not the material.
