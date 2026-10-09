@@ -9930,6 +9930,14 @@ Each row below is a **representative anchor** on the midpoint prelude ↔ second
 **Baby picture:** row 124 tells you **why verified book-loop meta prelude capstone demands second-pass cross-links before any Writings sync audit on row 46**; row 65 tells you **why the novel second pass demands Scene → Bridge rhythm with rows 18–44 as rear-view mirrors, not front-page detours** — same copper wire, same Bridges, one continuous story instead of a syllabus of checkpoints. The [preface row 125 skill checkpoint](../preface.md#skill-navigation-row-125) closes the competence loop; the [memory sheet row 125 baby picture](memory-sheet.md#row-125-baby-picture-row68-row105-second-pass-meta-prelude-capstone-reunion) compresses the dual second-pass meta prelude capstone for index-card review.
 
 
+## Row 68 → Row 255 Row 68 → Row 55 electronic audit meta prelude capstone reunion index (row 255) {#row68-row255-electronic-audit-meta-prelude-capstone-reunion-index-row-255}
+
+Row 255 closes the **electronic audit meta prelude capstone** on the full capstone path — see [preface row 255](../preface.md#skill-navigation-row-255) and the five-step audit in:
+
+ — Row 68 → Row 235 Row 68 → Row 55 electronic audit meta prelude capstone reunion audit {#skill-navigation-row-255}
+
+This checkpoint closes the **Row 68 → Row 235 Row 68 → Row 55 electronic audit meta prelude capstone reunion** chain — the reader meta-stitch when row 68 closed the dual midpoint prelude (part-boundary gate row 67 + VI.4 → VII.0 meta row 48 + intermission → Bridge chain), and [row 254](preface.md#skill-navigation-row-254) or [row 235](preface.md#skill-navigation-row-235) closed the export meta prelude capstone / electronic audit opening prelude hinge (VIII.2 Bridge → VIII.3 pedigree recited on the full capstone path, [EAM-fit audit Lab act](part08-md/03-ab-initio-and-coarse-graining.md#lab-act-eam-fit-audit-before-the-notch-md-run-act-v--notch) archived `pedigree_checklist.…
+
 ## Row 68 → Row 254 Row 68 → Row 54 export meta prelude capstone reunion index (row 254) {#row68-row254-export-meta-prelude-capstone-reunion-index-row-254}
 
 Row 254 closes the **export meta prelude capstone** on the full capstone path — see [preface row 254](../preface.md#skill-navigation-row-254) and the five-step audit in:
