@@ -9930,6 +9930,14 @@ Each row below is a **representative anchor** on the midpoint prelude ↔ second
 **Baby picture:** row 124 tells you **why verified book-loop meta prelude capstone demands second-pass cross-links before any Writings sync audit on row 46**; row 65 tells you **why the novel second pass demands Scene → Bridge rhythm with rows 18–44 as rear-view mirrors, not front-page detours** — same copper wire, same Bridges, one continuous story instead of a syllabus of checkpoints. The [preface row 125 skill checkpoint](../preface.md#skill-navigation-row-125) closes the competence loop; the [memory sheet row 125 baby picture](memory-sheet.md#row-125-baby-picture-row68-row105-second-pass-meta-prelude-capstone-reunion) compresses the dual second-pass meta prelude capstone for index-card review.
 
 
+## Row 68 → Row 254 Row 68 → Row 54 export meta prelude capstone reunion index (row 254) {#row68-row254-export-meta-prelude-capstone-reunion-index-row-254}
+
+Row 254 closes the **export meta prelude capstone** on the full capstone path — see [preface row 254](../preface.md#skill-navigation-row-254) and the five-step audit in:
+
+ — Row 68 → Row 234 Row 68 → Row 54 export meta prelude capstone reunion audit {#skill-navigation-row-254}
+
+This checkpoint closes the **Row 68 → Row 234 Row 68 → Row 54 export meta prelude capstone reunion** chain — the reader meta-stitch when row 68 closed the dual midpoint prelude (part-boundary gate row 67 + VI.4 → VII.0 meta row 48 + intermission → Bridge chain), and [row 253](preface.md#skill-navigation-row-253) or [row 234](preface.md#skill-navigation-row-234) closed the dynamics meta prelude capstone / export opening prelude hinge (VIII.2 Bridge → opening hinge → VIII.3 pedigree recited on the full capstone path, [NPT Lab act](part08-md/02-ensembles-integrators.md#lab-act-npt-tension-on-a-copper-nanowire-segment) archived `cu.elastic/` and `mobility_cu_screw_{T_w}K.yaml` beside [dy…
+
 ## Row 68 → Row 233 Row 68 → Row 53 dynamics meta prelude capstone reunion index (row 253) {#row68-row233-dynamics-meta-prelude-capstone-reunion-index-row-253}
 
 Row 253 closes the **dynamics meta prelude capstone** on the full capstone path — see [preface row 253](../preface.md#skill-navigation-row-253) and the five-step audit in:
