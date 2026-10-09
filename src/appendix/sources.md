@@ -9930,6 +9930,14 @@ Each row below is a **representative anchor** on the midpoint prelude ↔ second
 **Baby picture:** row 124 tells you **why verified book-loop meta prelude capstone demands second-pass cross-links before any Writings sync audit on row 46**; row 65 tells you **why the novel second pass demands Scene → Bridge rhythm with rows 18–44 as rear-view mirrors, not front-page detours** — same copper wire, same Bridges, one continuous story instead of a syllabus of checkpoints. The [preface row 125 skill checkpoint](../preface.md#skill-navigation-row-125) closes the competence loop; the [memory sheet row 125 baby picture](memory-sheet.md#row-125-baby-picture-row68-row105-second-pass-meta-prelude-capstone-reunion) compresses the dual second-pass meta prelude capstone for index-card review.
 
 
+## Row 68 → Row 233 Row 68 → Row 53 dynamics meta prelude capstone reunion index (row 253) {#row68-row233-dynamics-meta-prelude-capstone-reunion-index-row-253}
+
+Row 253 closes the **dynamics meta prelude capstone** on the full capstone path — see [preface row 253](../preface.md#skill-navigation-row-253) and the five-step audit in:
+
+ — Row 68 → Row 233 Row 68 → Row 53 dynamics meta prelude capstone reunion audit {#skill-navigation-row-253}
+
+This checkpoint closes the **Row 68 → Row 233 Row 68 → Row 53 dynamics meta prelude capstone reunion** chain — the reader meta-stitch when row 68 closed the dual midpoint prelude (part-boundary gate row 67 + VI.4 → VII.0 meta row 48 + intermission → Bridge chain), and [row 252](preface.md#skill-navigation-row-252) or [row 233](preface.md#skill-navigation-row-233) closed the atomistic meta prelude capstone / dynamics opening prelude hinge (VIII.1 Bridge → screw-core phase space recited on the full capstone path, [EAM Lab act](part08-md/01-potentials-phase-space.md#lab-act-eam-lattice-constant-from-energy-minimization-act-v--notch-prelude) archived `cu_eam_a0.txt` and linked `cu.foun…
+
 ## Row 68 → Row 232 Row 68 → Row 52 atomistic meta prelude capstone reunion index (row 252) {#row68-row232-atomistic-meta-prelude-capstone-reunion-index-row-252}
 
 Row 252 closes the **atomistic meta prelude capstone** on the full capstone path — see [preface row 252](../preface.md#skill-navigation-row-252) and the five-step audit in:
