@@ -299,21 +299,14 @@ def main() -> None:
     sources = sources_path.read_text()
     sources = _remove_broken_sources_262(sources)
     idx_anchor = "row68-row242-handshake4b-meta-prelude-capstone-reunion-index-row-262"
-    if idx_anchor not in sources.split("| 262 | Row 68 → Row 242", 1)[0]:
-        table_needle = "| 242 | Row 68 → Row 222 Row 68 → Row 62 Handshake 4b meta prelude capstone"
-        if table_needle in sources and "| 262 | Row 68 → Row 242" not in sources:
-            sources = sources.replace(
-                table_needle,
-                b["sources_table"] + table_needle,
-                1,
-            )
+    if idx_anchor not in sources:
         src_header = (
-            "## Row 68 → Row 222 Row 68 → Row 62 Handshake 4b meta prelude capstone reunion index (row 242)"
+            "## Row 68 → Row 241 Row 68 → Row 61 Handshake 4a meta prelude capstone reunion index (row 261)"
         )
         if src_header in sources and b["sources_index"].strip() not in sources:
-            sources = sources.replace(src_header, b["sources_index"] + src_header, 1)
-        sources_path.write_text(sources)
-        print("sources: added row 262")
+            sources = sources.replace(src_header, b["sources_index"].strip() + "\n\n" + src_header, 1)
+            sources_path.write_text(sources)
+            print("sources: added row 262")
 
     memory_path = ROOT / "writings/appendix/chapters/memory-sheet.md"
     memory = memory_path.read_text()
