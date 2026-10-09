@@ -9930,6 +9930,14 @@ Each row below is a **representative anchor** on the midpoint prelude ↔ second
 **Baby picture:** row 124 tells you **why verified book-loop meta prelude capstone demands second-pass cross-links before any Writings sync audit on row 46**; row 65 tells you **why the novel second pass demands Scene → Bridge rhythm with rows 18–44 as rear-view mirrors, not front-page detours** — same copper wire, same Bridges, one continuous story instead of a syllabus of checkpoints. The [preface row 125 skill checkpoint](../preface.md#skill-navigation-row-125) closes the competence loop; the [memory sheet row 125 baby picture](memory-sheet.md#row-125-baby-picture-row68-row105-second-pass-meta-prelude-capstone-reunion) compresses the dual second-pass meta prelude capstone for index-card review.
 
 
+## Row 68 → Row 229 Row 68 → Row 49 taxonomy meta prelude capstone reunion index (row 249) {#row68-row229-taxonomy-meta-prelude-capstone-reunion-index-row-249}
+
+Row 249 closes the **taxonomy meta prelude capstone** on the full capstone path — see [preface row 249](../preface.md#skill-navigation-row-249) and the five-step audit in:
+
+ — Row 68 → Row 229 Row 68 → Row 49 taxonomy meta prelude capstone reunion audit {#skill-navigation-row-249}
+
+This checkpoint closes the **Row 68 → Row 229 Row 68 → Row 49 taxonomy meta prelude capstone reunion** chain — the reader meta-stitch when row 68 closed the dual midpoint prelude (part-boundary gate row 67 + VI.4 → VII.0 meta row 48 + intermission → Bridge chain), and [row 248](preface.md#skill-navigation-row-248) or [row 229](preface.md#skill-navigation-row-229) closed the midpoint meta prelude capstone / taxonomy meta prelude hinge (intermission → VII.0 landing recited on the full capstone path after verified midpoint meta prelude capstone via [row 247](preface.md#skill-navigation-row-247), `hardening.yaml` beside Act IV, one continuum → defects arc under `writings/continuum` → `…
+
 ## Row 68 → Row 228 Row 68 → Row 48 midpoint meta prelude capstone reunion index (row 248) {#row68-row228-midpoint-meta-prelude-capstone-reunion-index-row-248}
 
 Row 248 closes the **midpoint meta prelude capstone** on the full capstone path — see [preface row 248](../preface.md#skill-navigation-row-248) and the five-step audit in:
