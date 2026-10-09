@@ -9930,6 +9930,14 @@ Each row below is a **representative anchor** on the midpoint prelude ↔ second
 **Baby picture:** row 124 tells you **why verified book-loop meta prelude capstone demands second-pass cross-links before any Writings sync audit on row 46**; row 65 tells you **why the novel second pass demands Scene → Bridge rhythm with rows 18–44 as rear-view mirrors, not front-page detours** — same copper wire, same Bridges, one continuous story instead of a syllabus of checkpoints. The [preface row 125 skill checkpoint](../preface.md#skill-navigation-row-125) closes the competence loop; the [memory sheet row 125 baby picture](memory-sheet.md#row-125-baby-picture-row68-row105-second-pass-meta-prelude-capstone-reunion) compresses the dual second-pass meta prelude capstone for index-card review.
 
 
+## Row 68 → Row 232 Row 68 → Row 52 atomistic meta prelude capstone reunion index (row 252) {#row68-row232-atomistic-meta-prelude-capstone-reunion-index-row-252}
+
+Row 252 closes the **atomistic meta prelude capstone** on the full capstone path — see [preface row 252](../preface.md#skill-navigation-row-252) and the five-step audit in:
+
+ — Row 68 → Row 251 Row 68 → Row 51 homogenization meta prelude capstone reunion audit {#skill-navigation-row-271}
+
+This checkpoint closes the **Row 68 → Row 251 Row 68 → Row 51 homogenization meta prelude capstone reunion** chain — the reader meta-stitch when row 68 closed the dual midpoint prelude (part-boundary gate row 67 + VI.4 → VII.0 meta row 48 + intermission → Bridge chain), and [row 270](preface.md#skill-navigation-row-270) or [row 251](preface.md#skill-navigation-row-251) closed the DDD meta prelude capstone / homogenization meta prelude hinge (VII.1 Bridge → VII.2 Peach–Köhler recited on the full capstone path, forest-density Lab act linked \(\tau(\gamma)\) to Taylor hardening, one OpenDiS → segment-network arc under `writings/defects` chapters 01–02 after verified DDD meta pre…
+
 ## Row 68 → Row 231 Row 68 → Row 51 homogenization meta prelude capstone reunion index (row 251) {#row68-row231-homogenization-meta-prelude-capstone-reunion-index-row-251}
 
 Row 251 closes the **homogenization meta prelude capstone** on the full capstone path — see [preface row 251](../preface.md#skill-navigation-row-251) and the five-step audit in:
