@@ -1,0 +1,13 @@
+[book]
+title = "Computational Mechanics — Preface"
+authors = ["Hanfeng Zhai"]
+description = "Front matter for the Computational Mechanics book — why one continuous narrative."
+language = "en"
+multilingual = false
+src = "chapters"
+
+[build]
+create-missing = false
+
+[output.html]
+mathjax-support = true
