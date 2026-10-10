@@ -11864,6 +11864,14 @@ Row 268 closes the **midpoint meta prelude capstone** on the full capstone path 
 
 This checkpoint closes the **Row 68 → Row 268 Row 68 → Row 48 midpoint meta prelude capstone reunion** chain — the reader meta-stitch when row 68 closed the dual midpoint prelude (part-boundary gate row 67 + VI.4 → VII.0 meta row 48 + intermission → Bridge chain), and [row 267](preface.md#skill-navigation-row-267) or [row 268](preface.md#skill-navigation-row-268) closed the part-boundary meta prelude capstone / midpoint meta prelude hinge (twin-ladder Bridge recited on the full capstone path after verified Writings canonical meta prelude capstone via [row 266](preface.md#skill-navigation-row-266), `cht_export.yaml` beside FEM and FVM decks, one discretization arc under `writings/fv…
 
+## Row 68 → Row 248 Row 68 → Row 48 midpoint meta prelude capstone reunion index (row 268) {#row68-row248-midpoint-meta-prelude-capstone-reunion-index-row-268}
+
+Row 268 closes the **midpoint meta prelude capstone** on the full capstone path — see [preface row 268](../preface.md#skill-navigation-row-268) and the five-step audit in:
+
+ — Row 68 → Row 248 Row 68 → Row 48 midpoint meta prelude capstone reunion audit {#skill-navigation-row-268}
+
+This checkpoint closes the **Row 68 → Row 248 Row 68 → Row 48 midpoint meta prelude capstone reunion** chain — the reader meta-stitch when row 68 closed the dual midpoint prelude (part-boundary gate row 67 + VI.4 → VII.0 meta row 48 + intermission → Bridge chain), and [row 267](preface.md#skill-navigation-row-267) or [row 248](preface.md#skill-navigation-row-248) closed the part-boundary meta prelude capstone / midpoint meta prelude hinge (twin-ladder Bridge recited on the full capstone path after verified Writings canonical meta prelude capstone via [row 266](preface.md#skill-navigation-row-266), `cht_export.yaml` beside FEM and FVM decks, one discretization arc under `writings/fv…
+
 ## Row 68 → Row 247 Row 68 → Row 67 part-boundary meta prelude capstone reunion index (row 267) {#row68-row247-part-boundary-meta-prelude-capstone-reunion-index-row-267}
 
 Row 267 closes the **part-boundary meta prelude capstone** on the full capstone path — see [preface row 267](../preface.md#skill-navigation-row-267) and the five-step audit in:
