@@ -1,0 +1,5 @@
+/book/
+/target/
+writings/**/book/
+/mdbook
+__pycache__/
