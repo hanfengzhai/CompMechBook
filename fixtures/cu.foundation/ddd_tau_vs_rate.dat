@@ -1,0 +1,6 @@
+# ddd_tau_vs_rate.dat — illustrative OpenDiS RVE sweep (Handshake 4a fixture)
+# Columns: strain_rate_s-1  tau_flow_MPa  gamma
+# Exact power law: tau = 45 * (eps_dot / 1e3)^0.022  at gamma = 0.01
+1.0e2   42.7767   0.01
+1.0e3   45.0000   0.01
+1.0e4   47.3383   0.01
